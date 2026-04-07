@@ -1,0 +1,161 @@
+{
+  "generated_at": "2026-03-15T00:45:34.589835+00:00",
+  "schema_version": "1.0",
+  "artifacts": [
+    {
+      "key": "archive",
+      "path": "/home/deploy/ai_media_os/data/archives/ops_archive_20260314_195353.zip",
+      "updated_at": "2026-03-14T10:53:53.282060+00:00",
+      "exists": true
+    },
+    {
+      "key": "artifact_index_html",
+      "path": "/home/deploy/ai_media_os/data/reports/artifact_index_latest.html",
+      "updated_at": "2026-03-14T03:20:23.417582+00:00",
+      "exists": true
+    },
+    {
+      "key": "bootstrap",
+      "path": "/home/deploy/ai_media_os/data/reports/ops_bootstrap_latest.json",
+      "updated_at": "2026-03-15T00:25:57.136270+00:00",
+      "exists": true
+    },
+    {
+      "key": "daily_checklist",
+      "path": "/home/deploy/ai_media_os/docs/daily_checklist_latest.md",
+      "updated_at": "2026-03-14T02:36:25.169695+00:00",
+      "exists": true
+    },
+    {
+      "key": "dashboard_daily",
+      "path": "/home/deploy/ai_media_os/data/reports/dashboard_latest.html",
+      "updated_at": "2026-03-14T10:53:53.093058+00:00",
+      "exists": true
+    },
+    {
+      "key": "dashboard_monthly",
+      "path": "/home/deploy/ai_media_os/data/reports/monthly_dashboard_latest.html",
+      "updated_at": "2026-03-12T15:02:36.002970+00:00",
+      "exists": true
+    },
+    {
+      "key": "dashboard_weekly",
+      "path": "/home/deploy/ai_media_os/data/reports/weekly_dashboard_latest.html",
+      "updated_at": "2026-03-14T01:45:54.519371+00:00",
+      "exists": true
+    },
+    {
+      "key": "empty_states",
+      "path": "/home/deploy/ai_media_os/data/reports/ops_empty_states_latest.json",
+      "updated_at": "2026-03-15T00:42:00.202351+00:00",
+      "exists": true
+    },
+    {
+      "key": "error_states",
+      "path": "/home/deploy/ai_media_os/data/reports/ops_error_states_latest.json",
+      "updated_at": "2026-03-15T00:39:15.762369+00:00",
+      "exists": true
+    },
+    {
+      "key": "gui_handoff",
+      "path": "/home/deploy/ai_media_os/data/reports/ops_gui_handoff_latest.json",
+      "updated_at": "2026-03-15T00:35:57.059800+00:00",
+      "exists": true
+    },
+    {
+      "key": "gui_schema",
+      "path": "/home/deploy/ai_media_os/data/reports/ops_gui_schema_latest.json",
+      "updated_at": "2026-03-15T00:35:56.993799+00:00",
+      "exists": true
+    },
+    {
+      "key": "mock_api",
+      "path": "/home/deploy/ai_media_os/data/reports/mock_api_home_latest.json",
+      "updated_at": "2026-03-15T00:25:57.222271+00:00",
+      "exists": true
+    },
+    {
+      "key": "monthly_report",
+      "path": "/home/deploy/ai_media_os/data/reports/monthly_report_202603.json",
+      "updated_at": "2026-03-15T00:17:51.172264+00:00",
+      "exists": true
+    },
+    {
+      "key": "navigation_search",
+      "path": "/home/deploy/ai_media_os/data/reports/ops_nav_search_latest.json",
+      "updated_at": "2026-03-15T00:35:57.147801+00:00",
+      "exists": true
+    },
+    {
+      "key": "ops_api_payload",
+      "path": "/home/deploy/ai_media_os/data/reports/ops_api_payload_latest.json",
+      "updated_at": "2026-03-15T00:25:55.868260+00:00",
+      "exists": true
+    },
+    {
+      "key": "ops_home_html",
+      "path": "/home/deploy/ai_media_os/data/reports/ops_home_latest.html",
+      "updated_at": "2026-03-15T00:25:56.223263+00:00",
+      "exists": true
+    },
+    {
+      "key": "ops_portal_html",
+      "path": "/home/deploy/ai_media_os/data/reports/ops_portal_latest.html",
+      "updated_at": "2026-03-15T00:25:56.129262+00:00",
+      "exists": true
+    },
+    {
+      "key": "ops_summary",
+      "path": "/home/deploy/ai_media_os/data/reports/ops_summary_latest.json",
+      "updated_at": "2026-03-15T00:25:55.791259+00:00",
+      "exists": true
+    },
+    {
+      "key": "release_readiness",
+      "path": "/home/deploy/ai_media_os/data/reports/release_readiness_latest.json",
+      "updated_at": "2026-03-15T00:25:55.674258+00:00",
+      "exists": true
+    },
+    {
+      "key": "runbook",
+      "path": "/home/deploy/ai_media_os/docs/runbook_latest.md",
+      "updated_at": "2026-03-14T00:26:04.428555+00:00",
+      "exists": true
+    },
+    {
+      "key": "status_badge",
+      "path": "/home/deploy/ai_media_os/data/reports/status_badge_latest.json",
+      "updated_at": "2026-03-15T00:25:55.963261+00:00",
+      "exists": true
+    },
+    {
+      "key": "status_light",
+      "path": "/home/deploy/ai_media_os/data/reports/ops_status_light_latest.json",
+      "updated_at": "2026-03-15T00:25:56.038261+00:00",
+      "exists": true
+    }
+  ],
+  "summary": {
+    "total": 22,
+    "exists_count": 22,
+    "missing_count": 0,
+    "missing_keys": []
+  },
+  "status": {
+    "partial": false,
+    "ready": true,
+    "fail_safe": true
+  },
+  "sources": {
+    "manifest": {
+      "path": "/home/deploy/ai_media_os/data/reports/ops_manifest_latest.json",
+      "exists": true,
+      "loaded": true
+    },
+    "status_light": {
+      "path": "/home/deploy/ai_media_os/data/reports/ops_status_light_latest.json",
+      "exists": true,
+      "loaded": true
+    }
+  }
+}

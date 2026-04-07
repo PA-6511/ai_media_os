@@ -1,0 +1,45 @@
+{
+  "ok": true,
+  "status": "PASS",
+  "generated_at": "2026-03-15T12:18:39.029760+00:00",
+  "service": "ai_media_os_mock_server_operational_check",
+  "runtime_json": "data/reports/mock_server_runtime_latest.json",
+  "target_base_url": "http://127.0.0.1:8766",
+  "summary": {
+    "total_checks": 4,
+    "pass_count": 4,
+    "fail_count": 0
+  },
+  "checks": [
+    {
+      "name": "runtime_json_exists_and_parseable",
+      "ok": true,
+      "detail": "runtime json loaded",
+      "path": "data/reports/mock_server_runtime_latest.json"
+    },
+    {
+      "name": "runtime_host_port_valid",
+      "ok": true,
+      "detail": "host/port are valid",
+      "host": "127.0.0.1",
+      "port": 8766
+    },
+    {
+      "name": "health_endpoint",
+      "ok": true,
+      "detail": "/health returned ok=true",
+      "url": "http://127.0.0.1:8766/health",
+      "status_code": 200,
+      "response_ok": true
+    },
+    {
+      "name": "api_index_endpoint",
+      "ok": true,
+      "detail": "/api/index returned endpoint index",
+      "url": "http://127.0.0.1:8766/api/index",
+      "status_code": 200,
+      "endpoint_count": 9,
+      "has_endpoints_array": true
+    }
+  ]
+}

@@ -1,0 +1,256 @@
+{
+  "generated_at": "2026-03-15T11:12:26.534046+00:00",
+  "schema_version": "1.0",
+  "pages": [
+    {
+      "key": "dashboards",
+      "label": "Dashboards",
+      "route": "/dashboards",
+      "parent": null,
+      "children": [
+        "dashboards.daily_dashboard",
+        "dashboards.weekly_dashboard",
+        "dashboards.monthly_dashboard"
+      ],
+      "primary_source": "data/reports/dashboard_latest.html",
+      "source": "data/reports/dashboard_latest.html",
+      "type": "tab",
+      "default": false
+    },
+    {
+      "key": "docs",
+      "label": "Docs",
+      "route": "/docs",
+      "parent": null,
+      "children": [
+        "docs.daily_checklist",
+        "docs.runbook"
+      ],
+      "primary_source": "docs/daily_checklist_latest.md",
+      "source": "docs/daily_checklist_latest.md",
+      "type": "tab",
+      "default": false
+    },
+    {
+      "key": "operations",
+      "label": "Operations",
+      "route": "/operations",
+      "parent": null,
+      "children": [
+        "operations.ops_portal",
+        "operations.artifact_index"
+      ],
+      "primary_source": "data/reports/ops_portal_latest.html",
+      "source": "data/reports/ops_portal_latest.html",
+      "type": "tab",
+      "default": false
+    },
+    {
+      "key": "overview",
+      "label": "Overview",
+      "route": "/overview",
+      "parent": null,
+      "children": [
+        "overview.ops_home",
+        "overview.status_light"
+      ],
+      "primary_source": "data/reports/ops_home_latest.html",
+      "source": "data/reports/ops_home_latest.html",
+      "type": "tab",
+      "default": true
+    },
+    {
+      "key": "reports",
+      "label": "Reports",
+      "route": "/reports",
+      "parent": null,
+      "children": [
+        "reports.ops_summary",
+        "reports.ops_api_payload",
+        "reports.release_readiness",
+        "reports.status_badge"
+      ],
+      "primary_source": "data/reports/ops_summary_latest.json",
+      "source": "data/reports/ops_summary_latest.json",
+      "type": "tab",
+      "default": false
+    },
+    {
+      "key": "dashboards.daily_dashboard",
+      "label": "Daily Dashboard (Health C)",
+      "route": "/dashboards/daily-dashboard",
+      "parent": "dashboards",
+      "children": [],
+      "primary_source": "data/reports/dashboard_latest.html",
+      "source": "data/reports/dashboard_latest.html",
+      "type": "sidebar_item"
+    },
+    {
+      "key": "dashboards.monthly_dashboard",
+      "label": "Monthly Dashboard",
+      "route": "/dashboards/monthly-dashboard",
+      "parent": "dashboards",
+      "children": [],
+      "primary_source": "data/reports/monthly_dashboard_latest.html",
+      "source": "data/reports/monthly_dashboard_latest.html",
+      "type": "sidebar_item"
+    },
+    {
+      "key": "dashboards.weekly_dashboard",
+      "label": "Weekly Dashboard",
+      "route": "/dashboards/weekly-dashboard",
+      "parent": "dashboards",
+      "children": [],
+      "primary_source": "data/reports/weekly_dashboard_latest.html",
+      "source": "data/reports/weekly_dashboard_latest.html",
+      "type": "sidebar_item"
+    },
+    {
+      "key": "docs.daily_checklist",
+      "label": "Daily Checklist",
+      "route": "/docs/daily-checklist",
+      "parent": "docs",
+      "children": [],
+      "primary_source": "docs/daily_checklist_latest.md",
+      "source": "docs/daily_checklist_latest.md",
+      "type": "sidebar_item"
+    },
+    {
+      "key": "docs.runbook",
+      "label": "Runbook",
+      "route": "/docs/runbook",
+      "parent": "docs",
+      "children": [],
+      "primary_source": "docs/runbook_latest.md",
+      "source": "docs/runbook_latest.md",
+      "type": "sidebar_item"
+    },
+    {
+      "key": "operations.artifact_index",
+      "label": "Artifact Index",
+      "route": "/operations/artifact-index",
+      "parent": "operations",
+      "children": [],
+      "primary_source": "data/reports/artifact_index_latest.html",
+      "source": "data/reports/artifact_index_latest.html",
+      "type": "sidebar_item"
+    },
+    {
+      "key": "operations.ops_portal",
+      "label": "Ops Portal",
+      "route": "/operations/ops-portal",
+      "parent": "operations",
+      "children": [],
+      "primary_source": "data/reports/ops_portal_latest.html",
+      "source": "data/reports/ops_portal_latest.html",
+      "type": "sidebar_item"
+    },
+    {
+      "key": "overview.ops_home",
+      "label": "Ops Home",
+      "route": "/overview/ops-home",
+      "parent": "overview",
+      "children": [],
+      "primary_source": "data/reports/ops_home_latest.html",
+      "source": "data/reports/ops_home_latest.html",
+      "type": "sidebar_item"
+    },
+    {
+      "key": "overview.status_light",
+      "label": "Today's Decision (RELEASE)",
+      "route": "/overview/status-light",
+      "parent": "overview",
+      "children": [],
+      "primary_source": "data/reports/ops_status_light_latest.json",
+      "source": "data/reports/ops_status_light_latest.json",
+      "type": "sidebar_item"
+    },
+    {
+      "key": "reports.ops_api_payload",
+      "label": "Ops API Payload JSON",
+      "route": "/reports/ops-api-payload",
+      "parent": "reports",
+      "children": [],
+      "primary_source": "data/reports/ops_api_payload_latest.json",
+      "source": "data/reports/ops_api_payload_latest.json",
+      "type": "sidebar_item"
+    },
+    {
+      "key": "reports.ops_summary",
+      "label": "Ops Summary JSON",
+      "route": "/reports/ops-summary",
+      "parent": "reports",
+      "children": [],
+      "primary_source": "data/reports/ops_summary_latest.json",
+      "source": "data/reports/ops_summary_latest.json",
+      "type": "sidebar_item"
+    },
+    {
+      "key": "reports.release_readiness",
+      "label": "Release Readiness JSON",
+      "route": "/reports/release-readiness",
+      "parent": "reports",
+      "children": [],
+      "primary_source": "data/reports/release_readiness_latest.json",
+      "source": "data/reports/release_readiness_latest.json",
+      "type": "sidebar_item"
+    },
+    {
+      "key": "reports.status_badge",
+      "label": "Status Badge JSON",
+      "route": "/reports/status-badge",
+      "parent": "reports",
+      "children": [],
+      "primary_source": "data/reports/status_badge_latest.json",
+      "source": "data/reports/status_badge_latest.json",
+      "type": "sidebar_item"
+    }
+  ],
+  "navigation": {
+    "default_page_key": "overview",
+    "root_page_keys": [
+      "dashboards",
+      "docs",
+      "operations",
+      "overview",
+      "reports"
+    ]
+  },
+  "summary": {
+    "page_count": 18,
+    "root_count": 5,
+    "leaf_count": 13
+  },
+  "status": {
+    "partial": false,
+    "ready": true,
+    "missing_source_keys": [],
+    "fail_safe": true
+  },
+  "sources": {
+    "sidebar": {
+      "path": "data/reports/ops_sidebar_latest.json",
+      "exists": true,
+      "loaded": true,
+      "updated_at": "2026-03-15T11:12:26.229614+00:00"
+    },
+    "tabs": {
+      "path": "data/reports/ops_tabs_latest.json",
+      "exists": true,
+      "loaded": true,
+      "updated_at": "2026-03-15T11:12:26.308614+00:00"
+    },
+    "layout": {
+      "path": "data/reports/ops_layout_latest.json",
+      "exists": true,
+      "loaded": true,
+      "updated_at": "2026-03-15T11:12:26.382615+00:00"
+    },
+    "gui_schema": {
+      "path": "data/reports/ops_gui_schema_latest.json",
+      "exists": true,
+      "loaded": true,
+      "updated_at": "2026-03-15T11:12:26.458615+00:00"
+    }
+  }
+}

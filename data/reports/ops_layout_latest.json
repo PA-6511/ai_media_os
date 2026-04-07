@@ -1,0 +1,91 @@
+{
+  "generated_at": "2026-03-15T12:32:44.129226+00:00",
+  "schema_version": "1.0",
+  "layout": {
+    "header": {
+      "source": "data/reports/ops_header_latest.json",
+      "visible": true,
+      "sticky": true
+    },
+    "sidebar": {
+      "source": "data/reports/ops_sidebar_latest.json",
+      "visible": true,
+      "collapsible": true,
+      "default_open": true
+    },
+    "tabs": {
+      "source": "data/reports/ops_tabs_latest.json",
+      "visible": true,
+      "placement": "top"
+    },
+    "main": {
+      "widgets_source": "data/reports/ops_widgets_latest.json",
+      "widget_order": [
+        "status_header",
+        "status_summary",
+        "decision_card",
+        "status_badge_card",
+        "daily_dashboard_card",
+        "archive_card",
+        "runbook_card",
+        "home_cards_grid"
+      ],
+      "default_view": "overview",
+      "supports_lazy_load": true
+    },
+    "footer": {
+      "source": "data/reports/ops_home_payload_latest.json",
+      "visible": true,
+      "source_selector": {
+        "path": "summary"
+      }
+    }
+  },
+  "responsive": {
+    "desktop": {
+      "sidebar_mode": "expanded",
+      "tabs_mode": "horizontal",
+      "main_columns": 2
+    },
+    "tablet": {
+      "sidebar_mode": "collapsible",
+      "tabs_mode": "horizontal",
+      "main_columns": 1
+    },
+    "mobile": {
+      "sidebar_mode": "drawer",
+      "tabs_mode": "scrollable",
+      "main_columns": 1
+    }
+  },
+  "summary": {
+    "widget_count": 8,
+    "header_exists": true,
+    "sidebar_exists": true,
+    "tabs_exists": true,
+    "widgets_exists": true,
+    "home_payload_exists": true
+  },
+  "sources": {
+    "header": {
+      "path": "data/reports/ops_header_latest.json",
+      "exists": true
+    },
+    "sidebar": {
+      "path": "data/reports/ops_sidebar_latest.json",
+      "exists": true
+    },
+    "tabs": {
+      "path": "data/reports/ops_tabs_latest.json",
+      "exists": true
+    },
+    "widgets": {
+      "path": "data/reports/ops_widgets_latest.json",
+      "exists": true
+    },
+    "home_payload": {
+      "path": "data/reports/ops_home_payload_latest.json",
+      "exists": true
+    }
+  }
+}

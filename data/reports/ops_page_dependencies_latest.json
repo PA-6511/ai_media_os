@@ -1,0 +1,585 @@
+{
+  "generated_at": "2026-03-15T11:15:23.634399+00:00",
+  "schema_version": "1.0",
+  "pages": [
+    {
+      "page_key": "dashboards",
+      "route": "/dashboards",
+      "page_type": "tab",
+      "required_sources": [
+        "data/reports/ops_bootstrap_latest.json",
+        "data/reports/ops_gui_schema_latest.json",
+        "data/reports/ops_header_latest.json",
+        "data/reports/ops_sidebar_latest.json",
+        "data/reports/ops_tabs_latest.json",
+        "data/reports/ops_widgets_latest.json",
+        "data/reports/dashboard_latest.html"
+      ],
+      "optional_sources": [
+        "data/reports/mock_api_home_latest.json",
+        "data/reports/ops_gui_health_latest.json",
+        "data/reports/ops_header_latest.json",
+        "data/reports/ops_status_light_latest.json",
+        "data/reports/ops_cards_latest.json",
+        "data/reports/ops_home_payload_latest.json",
+        "data/reports/ops_gui_preview_latest.html",
+        "data/reports/dashboard_latest.html",
+        "data/reports/weekly_dashboard_latest.html",
+        "data/reports/monthly_dashboard_latest.html"
+      ],
+      "preview_sources": [
+        "data/reports/ops_gui_preview_latest.html",
+        "data/reports/ops_home_latest.html",
+        "data/reports/ops_portal_latest.html",
+        "data/reports/dashboard_latest.html"
+      ]
+    },
+    {
+      "page_key": "docs",
+      "route": "/docs",
+      "page_type": "tab",
+      "required_sources": [
+        "data/reports/ops_bootstrap_latest.json",
+        "data/reports/ops_gui_schema_latest.json",
+        "data/reports/ops_header_latest.json",
+        "data/reports/ops_sidebar_latest.json",
+        "data/reports/ops_tabs_latest.json",
+        "data/reports/ops_widgets_latest.json",
+        "docs/daily_checklist_latest.md"
+      ],
+      "optional_sources": [
+        "data/reports/mock_api_home_latest.json",
+        "data/reports/ops_gui_health_latest.json",
+        "data/reports/ops_header_latest.json",
+        "data/reports/ops_status_light_latest.json",
+        "data/reports/ops_cards_latest.json",
+        "data/reports/ops_home_payload_latest.json",
+        "data/reports/ops_gui_preview_latest.html"
+      ],
+      "preview_sources": [
+        "data/reports/ops_gui_preview_latest.html",
+        "data/reports/ops_home_latest.html",
+        "data/reports/ops_portal_latest.html"
+      ]
+    },
+    {
+      "page_key": "operations",
+      "route": "/operations",
+      "page_type": "tab",
+      "required_sources": [
+        "data/reports/ops_bootstrap_latest.json",
+        "data/reports/ops_gui_schema_latest.json",
+        "data/reports/ops_header_latest.json",
+        "data/reports/ops_sidebar_latest.json",
+        "data/reports/ops_tabs_latest.json",
+        "data/reports/ops_widgets_latest.json",
+        "data/reports/ops_portal_latest.html"
+      ],
+      "optional_sources": [
+        "data/reports/mock_api_home_latest.json",
+        "data/reports/ops_gui_health_latest.json",
+        "data/reports/ops_header_latest.json",
+        "data/reports/ops_status_light_latest.json",
+        "data/reports/ops_cards_latest.json",
+        "data/reports/ops_home_payload_latest.json",
+        "data/reports/ops_gui_preview_latest.html"
+      ],
+      "preview_sources": [
+        "data/reports/ops_gui_preview_latest.html",
+        "data/reports/ops_home_latest.html",
+        "data/reports/ops_portal_latest.html"
+      ]
+    },
+    {
+      "page_key": "overview",
+      "route": "/overview",
+      "page_type": "tab",
+      "required_sources": [
+        "data/reports/ops_bootstrap_latest.json",
+        "data/reports/ops_gui_schema_latest.json",
+        "data/reports/ops_header_latest.json",
+        "data/reports/ops_sidebar_latest.json",
+        "data/reports/ops_tabs_latest.json",
+        "data/reports/ops_widgets_latest.json",
+        "data/reports/ops_home_latest.html"
+      ],
+      "optional_sources": [
+        "data/reports/mock_api_home_latest.json",
+        "data/reports/ops_gui_health_latest.json",
+        "data/reports/ops_header_latest.json",
+        "data/reports/ops_status_light_latest.json",
+        "data/reports/ops_cards_latest.json",
+        "data/reports/ops_home_payload_latest.json",
+        "data/reports/ops_gui_preview_latest.html"
+      ],
+      "preview_sources": [
+        "data/reports/ops_gui_preview_latest.html",
+        "data/reports/ops_home_latest.html",
+        "data/reports/ops_portal_latest.html"
+      ]
+    },
+    {
+      "page_key": "reports",
+      "route": "/reports",
+      "page_type": "tab",
+      "required_sources": [
+        "data/reports/ops_bootstrap_latest.json",
+        "data/reports/ops_gui_schema_latest.json",
+        "data/reports/ops_header_latest.json",
+        "data/reports/ops_sidebar_latest.json",
+        "data/reports/ops_tabs_latest.json",
+        "data/reports/ops_widgets_latest.json",
+        "data/reports/ops_summary_latest.json"
+      ],
+      "optional_sources": [
+        "data/reports/mock_api_home_latest.json",
+        "data/reports/ops_gui_health_latest.json",
+        "data/reports/ops_header_latest.json",
+        "data/reports/ops_status_light_latest.json",
+        "data/reports/ops_cards_latest.json",
+        "data/reports/ops_home_payload_latest.json",
+        "data/reports/ops_gui_preview_latest.html",
+        "data/reports/ops_summary_latest.json",
+        "data/reports/ops_api_payload_latest.json",
+        "data/reports/release_readiness_latest.json"
+      ],
+      "preview_sources": [
+        "data/reports/ops_gui_preview_latest.html",
+        "data/reports/ops_home_latest.html",
+        "data/reports/ops_portal_latest.html"
+      ]
+    },
+    {
+      "page_key": "dashboards.daily_dashboard",
+      "route": "/dashboards/daily-dashboard",
+      "page_type": "sidebar_item",
+      "required_sources": [
+        "data/reports/ops_bootstrap_latest.json",
+        "data/reports/ops_gui_schema_latest.json",
+        "data/reports/ops_header_latest.json",
+        "data/reports/ops_sidebar_latest.json",
+        "data/reports/ops_tabs_latest.json",
+        "data/reports/ops_widgets_latest.json",
+        "data/reports/dashboard_latest.html"
+      ],
+      "optional_sources": [
+        "data/reports/mock_api_home_latest.json",
+        "data/reports/ops_gui_health_latest.json",
+        "data/reports/ops_header_latest.json",
+        "data/reports/ops_status_light_latest.json",
+        "data/reports/ops_cards_latest.json",
+        "data/reports/ops_home_payload_latest.json",
+        "data/reports/dashboard_latest.html",
+        "data/reports/weekly_dashboard_latest.html",
+        "data/reports/monthly_dashboard_latest.html"
+      ],
+      "preview_sources": [
+        "data/reports/ops_gui_preview_latest.html",
+        "data/reports/ops_home_latest.html",
+        "data/reports/ops_portal_latest.html",
+        "data/reports/dashboard_latest.html"
+      ]
+    },
+    {
+      "page_key": "dashboards.monthly_dashboard",
+      "route": "/dashboards/monthly-dashboard",
+      "page_type": "sidebar_item",
+      "required_sources": [
+        "data/reports/ops_bootstrap_latest.json",
+        "data/reports/ops_gui_schema_latest.json",
+        "data/reports/ops_header_latest.json",
+        "data/reports/ops_sidebar_latest.json",
+        "data/reports/ops_tabs_latest.json",
+        "data/reports/ops_widgets_latest.json",
+        "data/reports/monthly_dashboard_latest.html"
+      ],
+      "optional_sources": [
+        "data/reports/mock_api_home_latest.json",
+        "data/reports/ops_gui_health_latest.json",
+        "data/reports/ops_header_latest.json",
+        "data/reports/ops_status_light_latest.json",
+        "data/reports/ops_cards_latest.json",
+        "data/reports/ops_home_payload_latest.json",
+        "data/reports/dashboard_latest.html",
+        "data/reports/weekly_dashboard_latest.html",
+        "data/reports/monthly_dashboard_latest.html"
+      ],
+      "preview_sources": [
+        "data/reports/ops_gui_preview_latest.html",
+        "data/reports/ops_home_latest.html",
+        "data/reports/ops_portal_latest.html",
+        "data/reports/monthly_dashboard_latest.html"
+      ]
+    },
+    {
+      "page_key": "dashboards.weekly_dashboard",
+      "route": "/dashboards/weekly-dashboard",
+      "page_type": "sidebar_item",
+      "required_sources": [
+        "data/reports/ops_bootstrap_latest.json",
+        "data/reports/ops_gui_schema_latest.json",
+        "data/reports/ops_header_latest.json",
+        "data/reports/ops_sidebar_latest.json",
+        "data/reports/ops_tabs_latest.json",
+        "data/reports/ops_widgets_latest.json",
+        "data/reports/weekly_dashboard_latest.html"
+      ],
+      "optional_sources": [
+        "data/reports/mock_api_home_latest.json",
+        "data/reports/ops_gui_health_latest.json",
+        "data/reports/ops_header_latest.json",
+        "data/reports/ops_status_light_latest.json",
+        "data/reports/ops_cards_latest.json",
+        "data/reports/ops_home_payload_latest.json",
+        "data/reports/dashboard_latest.html",
+        "data/reports/weekly_dashboard_latest.html",
+        "data/reports/monthly_dashboard_latest.html"
+      ],
+      "preview_sources": [
+        "data/reports/ops_gui_preview_latest.html",
+        "data/reports/ops_home_latest.html",
+        "data/reports/ops_portal_latest.html",
+        "data/reports/weekly_dashboard_latest.html"
+      ]
+    },
+    {
+      "page_key": "docs.daily_checklist",
+      "route": "/docs/daily-checklist",
+      "page_type": "sidebar_item",
+      "required_sources": [
+        "data/reports/ops_bootstrap_latest.json",
+        "data/reports/ops_gui_schema_latest.json",
+        "data/reports/ops_header_latest.json",
+        "data/reports/ops_sidebar_latest.json",
+        "data/reports/ops_tabs_latest.json",
+        "data/reports/ops_widgets_latest.json",
+        "docs/daily_checklist_latest.md"
+      ],
+      "optional_sources": [
+        "data/reports/mock_api_home_latest.json",
+        "data/reports/ops_gui_health_latest.json",
+        "data/reports/ops_header_latest.json",
+        "data/reports/ops_status_light_latest.json",
+        "data/reports/ops_cards_latest.json",
+        "data/reports/ops_home_payload_latest.json"
+      ],
+      "preview_sources": [
+        "data/reports/ops_gui_preview_latest.html",
+        "data/reports/ops_home_latest.html",
+        "data/reports/ops_portal_latest.html"
+      ]
+    },
+    {
+      "page_key": "docs.runbook",
+      "route": "/docs/runbook",
+      "page_type": "sidebar_item",
+      "required_sources": [
+        "data/reports/ops_bootstrap_latest.json",
+        "data/reports/ops_gui_schema_latest.json",
+        "data/reports/ops_header_latest.json",
+        "data/reports/ops_sidebar_latest.json",
+        "data/reports/ops_tabs_latest.json",
+        "data/reports/ops_widgets_latest.json",
+        "docs/runbook_latest.md"
+      ],
+      "optional_sources": [
+        "data/reports/mock_api_home_latest.json",
+        "data/reports/ops_gui_health_latest.json",
+        "data/reports/ops_header_latest.json",
+        "data/reports/ops_status_light_latest.json",
+        "data/reports/ops_cards_latest.json",
+        "data/reports/ops_home_payload_latest.json"
+      ],
+      "preview_sources": [
+        "data/reports/ops_gui_preview_latest.html",
+        "data/reports/ops_home_latest.html",
+        "data/reports/ops_portal_latest.html"
+      ]
+    },
+    {
+      "page_key": "operations.artifact_index",
+      "route": "/operations/artifact-index",
+      "page_type": "sidebar_item",
+      "required_sources": [
+        "data/reports/ops_bootstrap_latest.json",
+        "data/reports/ops_gui_schema_latest.json",
+        "data/reports/ops_header_latest.json",
+        "data/reports/ops_sidebar_latest.json",
+        "data/reports/ops_tabs_latest.json",
+        "data/reports/ops_widgets_latest.json",
+        "data/reports/artifact_index_latest.html"
+      ],
+      "optional_sources": [
+        "data/reports/mock_api_home_latest.json",
+        "data/reports/ops_gui_health_latest.json",
+        "data/reports/ops_header_latest.json",
+        "data/reports/ops_status_light_latest.json",
+        "data/reports/ops_cards_latest.json",
+        "data/reports/ops_home_payload_latest.json"
+      ],
+      "preview_sources": [
+        "data/reports/ops_gui_preview_latest.html",
+        "data/reports/ops_home_latest.html",
+        "data/reports/ops_portal_latest.html",
+        "data/reports/artifact_index_latest.html"
+      ]
+    },
+    {
+      "page_key": "operations.ops_portal",
+      "route": "/operations/ops-portal",
+      "page_type": "sidebar_item",
+      "required_sources": [
+        "data/reports/ops_bootstrap_latest.json",
+        "data/reports/ops_gui_schema_latest.json",
+        "data/reports/ops_header_latest.json",
+        "data/reports/ops_sidebar_latest.json",
+        "data/reports/ops_tabs_latest.json",
+        "data/reports/ops_widgets_latest.json",
+        "data/reports/ops_portal_latest.html"
+      ],
+      "optional_sources": [
+        "data/reports/mock_api_home_latest.json",
+        "data/reports/ops_gui_health_latest.json",
+        "data/reports/ops_header_latest.json",
+        "data/reports/ops_status_light_latest.json",
+        "data/reports/ops_cards_latest.json",
+        "data/reports/ops_home_payload_latest.json"
+      ],
+      "preview_sources": [
+        "data/reports/ops_gui_preview_latest.html",
+        "data/reports/ops_home_latest.html",
+        "data/reports/ops_portal_latest.html"
+      ]
+    },
+    {
+      "page_key": "overview.ops_home",
+      "route": "/overview/ops-home",
+      "page_type": "sidebar_item",
+      "required_sources": [
+        "data/reports/ops_bootstrap_latest.json",
+        "data/reports/ops_gui_schema_latest.json",
+        "data/reports/ops_header_latest.json",
+        "data/reports/ops_sidebar_latest.json",
+        "data/reports/ops_tabs_latest.json",
+        "data/reports/ops_widgets_latest.json",
+        "data/reports/ops_home_latest.html"
+      ],
+      "optional_sources": [
+        "data/reports/mock_api_home_latest.json",
+        "data/reports/ops_gui_health_latest.json",
+        "data/reports/ops_header_latest.json",
+        "data/reports/ops_status_light_latest.json",
+        "data/reports/ops_cards_latest.json",
+        "data/reports/ops_home_payload_latest.json"
+      ],
+      "preview_sources": [
+        "data/reports/ops_gui_preview_latest.html",
+        "data/reports/ops_home_latest.html",
+        "data/reports/ops_portal_latest.html"
+      ]
+    },
+    {
+      "page_key": "overview.status_light",
+      "route": "/overview/status-light",
+      "page_type": "sidebar_item",
+      "required_sources": [
+        "data/reports/ops_bootstrap_latest.json",
+        "data/reports/ops_gui_schema_latest.json",
+        "data/reports/ops_header_latest.json",
+        "data/reports/ops_sidebar_latest.json",
+        "data/reports/ops_tabs_latest.json",
+        "data/reports/ops_widgets_latest.json",
+        "data/reports/ops_status_light_latest.json"
+      ],
+      "optional_sources": [
+        "data/reports/mock_api_home_latest.json",
+        "data/reports/ops_gui_health_latest.json",
+        "data/reports/ops_header_latest.json",
+        "data/reports/ops_status_light_latest.json",
+        "data/reports/ops_cards_latest.json",
+        "data/reports/ops_home_payload_latest.json"
+      ],
+      "preview_sources": [
+        "data/reports/ops_gui_preview_latest.html",
+        "data/reports/ops_home_latest.html",
+        "data/reports/ops_portal_latest.html"
+      ]
+    },
+    {
+      "page_key": "reports.ops_api_payload",
+      "route": "/reports/ops-api-payload",
+      "page_type": "sidebar_item",
+      "required_sources": [
+        "data/reports/ops_bootstrap_latest.json",
+        "data/reports/ops_gui_schema_latest.json",
+        "data/reports/ops_header_latest.json",
+        "data/reports/ops_sidebar_latest.json",
+        "data/reports/ops_tabs_latest.json",
+        "data/reports/ops_widgets_latest.json",
+        "data/reports/ops_api_payload_latest.json"
+      ],
+      "optional_sources": [
+        "data/reports/mock_api_home_latest.json",
+        "data/reports/ops_gui_health_latest.json",
+        "data/reports/ops_header_latest.json",
+        "data/reports/ops_status_light_latest.json",
+        "data/reports/ops_cards_latest.json",
+        "data/reports/ops_home_payload_latest.json",
+        "data/reports/ops_summary_latest.json",
+        "data/reports/ops_api_payload_latest.json",
+        "data/reports/release_readiness_latest.json"
+      ],
+      "preview_sources": [
+        "data/reports/ops_gui_preview_latest.html",
+        "data/reports/ops_home_latest.html",
+        "data/reports/ops_portal_latest.html"
+      ]
+    },
+    {
+      "page_key": "reports.ops_summary",
+      "route": "/reports/ops-summary",
+      "page_type": "sidebar_item",
+      "required_sources": [
+        "data/reports/ops_bootstrap_latest.json",
+        "data/reports/ops_gui_schema_latest.json",
+        "data/reports/ops_header_latest.json",
+        "data/reports/ops_sidebar_latest.json",
+        "data/reports/ops_tabs_latest.json",
+        "data/reports/ops_widgets_latest.json",
+        "data/reports/ops_summary_latest.json"
+      ],
+      "optional_sources": [
+        "data/reports/mock_api_home_latest.json",
+        "data/reports/ops_gui_health_latest.json",
+        "data/reports/ops_header_latest.json",
+        "data/reports/ops_status_light_latest.json",
+        "data/reports/ops_cards_latest.json",
+        "data/reports/ops_home_payload_latest.json",
+        "data/reports/ops_summary_latest.json",
+        "data/reports/ops_api_payload_latest.json",
+        "data/reports/release_readiness_latest.json"
+      ],
+      "preview_sources": [
+        "data/reports/ops_gui_preview_latest.html",
+        "data/reports/ops_home_latest.html",
+        "data/reports/ops_portal_latest.html"
+      ]
+    },
+    {
+      "page_key": "reports.release_readiness",
+      "route": "/reports/release-readiness",
+      "page_type": "sidebar_item",
+      "required_sources": [
+        "data/reports/ops_bootstrap_latest.json",
+        "data/reports/ops_gui_schema_latest.json",
+        "data/reports/ops_header_latest.json",
+        "data/reports/ops_sidebar_latest.json",
+        "data/reports/ops_tabs_latest.json",
+        "data/reports/ops_widgets_latest.json",
+        "data/reports/release_readiness_latest.json"
+      ],
+      "optional_sources": [
+        "data/reports/mock_api_home_latest.json",
+        "data/reports/ops_gui_health_latest.json",
+        "data/reports/ops_header_latest.json",
+        "data/reports/ops_status_light_latest.json",
+        "data/reports/ops_cards_latest.json",
+        "data/reports/ops_home_payload_latest.json",
+        "data/reports/ops_summary_latest.json",
+        "data/reports/ops_api_payload_latest.json",
+        "data/reports/release_readiness_latest.json"
+      ],
+      "preview_sources": [
+        "data/reports/ops_gui_preview_latest.html",
+        "data/reports/ops_home_latest.html",
+        "data/reports/ops_portal_latest.html"
+      ]
+    },
+    {
+      "page_key": "reports.status_badge",
+      "route": "/reports/status-badge",
+      "page_type": "sidebar_item",
+      "required_sources": [
+        "data/reports/ops_bootstrap_latest.json",
+        "data/reports/ops_gui_schema_latest.json",
+        "data/reports/ops_header_latest.json",
+        "data/reports/ops_sidebar_latest.json",
+        "data/reports/ops_tabs_latest.json",
+        "data/reports/ops_widgets_latest.json",
+        "data/reports/status_badge_latest.json"
+      ],
+      "optional_sources": [
+        "data/reports/mock_api_home_latest.json",
+        "data/reports/ops_gui_health_latest.json",
+        "data/reports/ops_header_latest.json",
+        "data/reports/ops_status_light_latest.json",
+        "data/reports/ops_cards_latest.json",
+        "data/reports/ops_home_payload_latest.json",
+        "data/reports/ops_summary_latest.json",
+        "data/reports/ops_api_payload_latest.json",
+        "data/reports/release_readiness_latest.json"
+      ],
+      "preview_sources": [
+        "data/reports/ops_gui_preview_latest.html",
+        "data/reports/ops_home_latest.html",
+        "data/reports/ops_portal_latest.html"
+      ]
+    }
+  ],
+  "summary": {
+    "page_count": 18,
+    "required_source_total": 126,
+    "optional_source_total": 140,
+    "preview_source_total": 59
+  },
+  "status": {
+    "partial": false,
+    "ready": true,
+    "missing_source_keys": [],
+    "fail_safe": true
+  },
+  "sources": {
+    "bootstrap": {
+      "path": "data/reports/ops_bootstrap_latest.json",
+      "exists": true,
+      "loaded": true,
+      "updated_at": "2026-03-15T11:15:23.253121+00:00"
+    },
+    "gui_schema": {
+      "path": "data/reports/ops_gui_schema_latest.json",
+      "exists": true,
+      "loaded": true,
+      "updated_at": "2026-03-15T11:15:23.326123+00:00"
+    },
+    "widgets": {
+      "path": "data/reports/ops_widgets_latest.json",
+      "exists": true,
+      "loaded": true,
+      "updated_at": "2026-03-15T10:44:55.703684+00:00"
+    },
+    "layout": {
+      "path": "data/reports/ops_layout_latest.json",
+      "exists": true,
+      "loaded": true,
+      "updated_at": "2026-03-15T11:12:26.382615+00:00"
+    },
+    "navigation_map": {
+      "path": "data/reports/ops_navigation_map_latest.json",
+      "exists": true,
+      "loaded": true,
+      "updated_at": "2026-03-15T11:12:26.533616+00:00"
+    },
+    "mock_api": {
+      "path": "data/reports/mock_api_home_latest.json",
+      "exists": true,
+      "loaded": true,
+      "updated_at": "2026-03-15T11:15:23.397125+00:00"
+    },
+    "gui_health": {
+      "path": "data/reports/ops_gui_health_latest.json",
+      "exists": true,
+      "loaded": true,
+      "updated_at": "2026-03-15T10:44:56.625701+00:00"
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "_fixture_name": "sale_combined",
+  "_fixture_label": "combined",
+  "_ran_at": "2026-03-12T12:41:00.897006+00:00",
+  "signal_mode": "combined",
+  "template_mode": "combined_sale_release",
+  "is_combined_signal": true,
+  "decision": "would_republish_combined_signal",
+  "reason": "combined_price_and_release_changed",
+  "cta_experiment": "price_changed_sale_cta_v1",
+  "cta_variant": "C",
+  "cta_mode": "ab_test",
+  "content_html_head200": "<h1>テスト漫画（フィクスチャ用）</h1>\n<h2>結論</h2><p>この記事では「テスト漫画 セール」について、最新の価格変動と新刊情報を同時にお伝えします。</p><p>価格と新刊の両方が更新されているため、まずは複合情報を確認してください。</p>\n<div class=\"combined-alert-box\">\n  <h2>最新情報更新</h2>\n  <p>テスト漫画の新刊情報と価格",
+  "has_combined_alert_box": true,
+  "journey_mode": "combined_optimized",
+  "journey_stage": "purchase_ready",
+  "journey_cta_text": "値下げが確認できたため、まずは最新価格をストアで確認してください。価格が戻る前に対象巻や全巻情報もあわせて確認するのがおすすめです。割引率が高いため、購入候補なら早めに確認しておくのがおすすめです。前回より値下がりしているため、今の価格状況を優先して確認してください。",
+  "journey_is_sale_optimized": true,
+  "journey_is_release_optimized": true,
+  "policy_priority": 260,
+  "policy_decision": "would_republish_combined_signal",
+  "policy_reason": "combined_price_and_release_changed",
+  "policy_sub_reasons": [
+    "discount_rate_threshold",
+    "new_volume"
+  ],
+  "policy_signal_mode": "combined",
+  "normalized_event_type": "combined",
+  "normalized_stage": "purchase_ready",
+  "normalized_journey_mode": "combined_optimized"
+}

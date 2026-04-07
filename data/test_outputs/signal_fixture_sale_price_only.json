@@ -1,0 +1,30 @@
+{
+  "_fixture_name": "sale_price_only",
+  "_fixture_label": "price_only",
+  "_ran_at": "2026-03-12T12:41:00.086010+00:00",
+  "signal_mode": "price_only",
+  "template_mode": "sale_price_changed",
+  "is_combined_signal": false,
+  "decision": "would_republish_price_changed",
+  "reason": "discount_rate_threshold",
+  "cta_experiment": "price_changed_sale_cta_v1",
+  "cta_variant": "C",
+  "cta_mode": "ab_test",
+  "content_html_head200": "<h1>テスト漫画（フィクスチャ用）</h1>\n<h2>結論</h2><p>この記事では「テスト漫画 セール」の最新セール価格と値下げ状況を整理します。</p><p>まずは冒頭の価格変動ボックスで前回価格と現在価格を確認してください。</p>\n<div class=\"price-alert-box sale-alert-box\">\n  <h2>セール価格更新</h2>\n  <p>テスト漫画の価格情",
+  "has_combined_alert_box": false,
+  "journey_mode": "sale_optimized",
+  "journey_stage": "purchase_ready",
+  "journey_cta_text": "値下げが確認できたため、まずは最新価格をストアで確認してください。価格が戻る前に対象巻や全巻情報もあわせて確認するのがおすすめです。割引率が高いため、購入候補なら早めに確認しておくのがおすすめです。前回より値下がりしているため、今の価格状況を優先して確認してください。",
+  "journey_is_sale_optimized": true,
+  "journey_is_release_optimized": false,
+  "policy_priority": 200,
+  "policy_decision": "would_republish_price_changed",
+  "policy_reason": "price_changed_event",
+  "policy_sub_reasons": [
+    "discount_rate_threshold"
+  ],
+  "policy_signal_mode": "price_only",
+  "normalized_event_type": "price_only",
+  "normalized_stage": "purchase_ready",
+  "normalized_journey_mode": "sale_optimized"
+}

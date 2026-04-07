@@ -1,0 +1,49 @@
+{
+  "generated_at": "2026-03-15T12:32:45.613419+00:00",
+  "schema_version": "1.0",
+  "decision": "review",
+  "severity": "warning",
+  "reason": "anomaly overall is WARNING and alerts=4",
+  "recommended_action": "リリース可。軽微警告を運用監視に登録し、次回 ops cycle で再確認",
+  "health_score": 70,
+  "health_grade": "C",
+  "anomaly_overall": "WARNING",
+  "alert_count": 4,
+  "updated_at": "2026-03-15T12:32:44.776823+00:00",
+  "signals": {
+    "readiness_decision": "release",
+    "alert_center_overall": "warning"
+  },
+  "status": {
+    "partial": false,
+    "ready": true,
+    "missing_source_keys": [],
+    "fail_safe": true
+  },
+  "sources": {
+    "release_readiness": {
+      "path": "data/reports/release_readiness_latest.json",
+      "exists": true,
+      "loaded": true,
+      "updated_at": "2026-03-15T12:32:43.105426+00:00"
+    },
+    "status_light": {
+      "path": "data/reports/ops_status_light_latest.json",
+      "exists": true,
+      "loaded": true,
+      "updated_at": "2026-03-15T12:32:43.426430+00:00"
+    },
+    "header": {
+      "path": "data/reports/ops_header_latest.json",
+      "exists": true,
+      "loaded": true,
+      "updated_at": "2026-03-15T12:32:44.211438+00:00"
+    },
+    "alert_center": {
+      "path": "data/reports/ops_alert_center_latest.json",
+      "exists": true,
+      "loaded": true,
+      "updated_at": "2026-03-15T12:32:44.777444+00:00"
+    }
+  }
+}

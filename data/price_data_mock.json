@@ -1,0 +1,5 @@
+{
+  "manga_0001": {"current_price": 550, "discount_rate": 25},
+  "manga_0002": {"current_price": 600, "discount_rate": 18},
+  "lightnovel_0001": {"current_price": 500, "discount_rate": 30}
+}

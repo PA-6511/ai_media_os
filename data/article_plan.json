@@ -1,0 +1,29 @@
+{
+  "work_id": "manga_0001",
+  "keyword": "呪術廻戦 セール",
+  "article_type": "sale_article",
+  "title": "呪術廻戦 セール情報まとめ",
+  "sections": [
+    "結論",
+    "現在価格",
+    "値下げ情報",
+    "割引率",
+    "今チェックすべき理由",
+    "関連記事",
+    "購入リンク"
+  ],
+  "cta_type": "sale_purchase",
+  "internal_link_hints": [
+    "呪術廻戦 全巻",
+    "呪術廻戦 最新巻",
+    "呪術廻戦 何巻まで"
+  ],
+  "price_changed": true,
+  "change_reason": "discount_rate_threshold",
+  "previous_price": 700,
+  "current_price": 550,
+  "price_diff": -150,
+  "discount_rate": 25.0,
+  "discount_rate_diff": 5.0,
+  "checked_at": "2026-03-11T00:00:00+00:00"
+}

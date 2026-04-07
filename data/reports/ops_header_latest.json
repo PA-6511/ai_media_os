@@ -1,0 +1,11 @@
+{
+  "generated_at": "2026-03-15T12:32:44.211717+00:00",
+  "schema_version": "1.0",
+  "decision": "RELEASE",
+  "badge_text": "RELEASE | Health C | WARNING",
+  "health_score": 70,
+  "health_grade": "C",
+  "anomaly_overall": "WARNING",
+  "last_updated": "2026-03-15T12:32:43.736572+00:00",
+  "latest_archive_available": true
+}

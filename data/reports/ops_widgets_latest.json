@@ -1,0 +1,128 @@
+{
+  "generated_at": "2026-03-15T12:32:44.063919+00:00",
+  "schema_version": "1.0",
+  "widgets": [
+    {
+      "key": "status_header",
+      "widget_type": "header_status",
+      "title": "System Status",
+      "source": "data/reports/ops_header_latest.json",
+      "order": 1,
+      "source_exists": true
+    },
+    {
+      "key": "status_summary",
+      "widget_type": "status_summary",
+      "title": "Operations Summary",
+      "source": "data/reports/ops_status_light_latest.json",
+      "order": 2,
+      "source_exists": true
+    },
+    {
+      "key": "decision_card",
+      "widget_type": "decision_card",
+      "title": "Today's Decision",
+      "source": "data/reports/ops_cards_latest.json",
+      "order": 3,
+      "source_exists": true,
+      "source_selector": {
+        "match": {
+          "title": "Today's Decision"
+        },
+        "path": "data/reports/ops_portal_latest.html"
+      }
+    },
+    {
+      "key": "status_badge_card",
+      "widget_type": "status_badge_card",
+      "title": "Status Badge",
+      "source": "data/reports/ops_cards_latest.json",
+      "order": 4,
+      "source_exists": true,
+      "source_selector": {
+        "match": {
+          "title": "Status Badge"
+        },
+        "path": "data/reports/status_badge_latest.json"
+      }
+    },
+    {
+      "key": "daily_dashboard_card",
+      "widget_type": "dashboard_card",
+      "title": "Latest Daily Dashboard",
+      "source": "data/reports/ops_cards_latest.json",
+      "order": 5,
+      "source_exists": true,
+      "source_selector": {
+        "match": {
+          "title": "Latest Daily Dashboard"
+        },
+        "path": "data/reports/dashboard_latest.html"
+      }
+    },
+    {
+      "key": "archive_card",
+      "widget_type": "archive_card",
+      "title": "Latest Archive",
+      "source": "data/reports/ops_cards_latest.json",
+      "order": 6,
+      "source_exists": true,
+      "source_selector": {
+        "match": {
+          "title": "Latest Archive"
+        },
+        "path": "data/archives/ops_archive_20260314_195353.zip"
+      }
+    },
+    {
+      "key": "runbook_card",
+      "widget_type": "runbook_card",
+      "title": "Runbook",
+      "source": "data/reports/ops_cards_latest.json",
+      "order": 7,
+      "source_exists": true,
+      "source_selector": {
+        "match": {
+          "title": "Runbook"
+        },
+        "path": "docs/runbook_latest.md"
+      }
+    },
+    {
+      "key": "home_cards_grid",
+      "widget_type": "cards_grid",
+      "title": "Top Cards",
+      "source": "data/reports/ops_home_payload_latest.json",
+      "order": 8,
+      "source_exists": true,
+      "source_selector": {
+        "path": "cards.cards"
+      }
+    }
+  ],
+  "summary": {
+    "widget_count": 8,
+    "header_exists": true,
+    "status_exists": true,
+    "cards_exists": true,
+    "home_payload_exists": true
+  },
+  "sources": {
+    "header": {
+      "path": "data/reports/ops_header_latest.json",
+      "exists": true
+    },
+    "status_light": {
+      "path": "data/reports/ops_status_light_latest.json",
+      "exists": true
+    },
+    "cards": {
+      "path": "data/reports/ops_cards_latest.json",
+      "exists": true
+    },
+    "home_payload": {
+      "path": "data/reports/ops_home_payload_latest.json",
+      "exists": true
+    }
+  }
+}

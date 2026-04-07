@@ -1,0 +1,53 @@
+<style>
+.ai-media-status-badge {
+  --badge-ok-bg: #e4f4e8;
+  --badge-ok-ink: #1a6a34;
+  --badge-warning-bg: #fff3d9;
+  --badge-warning-ink: #8a5a00;
+  --badge-critical-bg: #ffe2e0;
+  --badge-critical-ink: #9a231c;
+  --badge-unknown-bg: #edf1f5;
+  --badge-unknown-ink: #51606d;
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: #ffffff;
+  color: #1f2d24;
+  font-family: "Segoe UI", "Hiragino Kaku Gothic ProN", sans-serif;
+  box-shadow: 0 1px 4px rgba(0, 24, 30, 0.08);
+}
+.ai-media-status-badge[data-level="ok"] { border-color: #bddcc4; }
+.ai-media-status-badge[data-level="warning"] { border-color: #ecd28e; }
+.ai-media-status-badge[data-level="critical"] { border-color: #efb3ad; }
+.ai-media-status-badge[data-level="unknown"] { border-color: #cfd6de; }
+.ai-media-status-badge .pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+.ai-media-status-badge .text {
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+.ai-media-status-badge .meta {
+  font-size: 0.75rem;
+  color: #5d6f63;
+}
+.ai-media-status-badge[data-level="ok"] .pill { background: var(--badge-ok-bg); color: var(--badge-ok-ink); }
+.ai-media-status-badge[data-level="warning"] .pill { background: var(--badge-warning-bg); color: var(--badge-warning-ink); }
+.ai-media-status-badge[data-level="critical"] .pill { background: var(--badge-critical-bg); color: var(--badge-critical-ink); }
+.ai-media-status-badge[data-level="unknown"] .pill { background: var(--badge-unknown-bg); color: var(--badge-unknown-ink); }
+</style>
+<div class="ai-media-status-badge" data-level="warning" data-decision="RELEASE" data-health-grade="C" data-anomaly-overall="WARNING">
+  <span class="pill">RELEASE</span>
+  <span class="text">RELEASE | Health C | WARNING</span>
+  <span class="meta">score=70 / generated_at=2026-03-15T12:32:43.351707+00:00</span>
+</div>

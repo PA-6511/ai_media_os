@@ -1,0 +1,77 @@
+{
+  "generated_at": "2026-03-15T12:32:46.139098+00:00",
+  "schema_version": "1.0",
+  "service": "ops_gui_acceptance",
+  "overall": "WARNING",
+  "checks": [
+    {
+      "key": "bootstrap_exists",
+      "status": "PASS",
+      "message": "ops_bootstrap_latest.json exists",
+      "path": "data/reports/ops_bootstrap_latest.json",
+      "exists": true
+    },
+    {
+      "key": "mock_api_home_exists",
+      "status": "PASS",
+      "message": "mock_api_home_latest.json exists",
+      "path": "data/reports/mock_api_home_latest.json",
+      "exists": true
+    },
+    {
+      "key": "gui_preview_exists",
+      "status": "PASS",
+      "message": "ops_gui_preview_latest.html exists",
+      "path": "data/reports/ops_gui_preview_latest.html",
+      "exists": true
+    },
+    {
+      "key": "gui_handoff_exists",
+      "status": "PASS",
+      "message": "ops_gui_handoff_latest.json exists",
+      "path": "data/reports/ops_gui_handoff_latest.json",
+      "exists": true
+    },
+    {
+      "key": "gui_starter_pack_exists",
+      "status": "PASS",
+      "message": "ops_gui_starter_pack_latest.json exists",
+      "path": "data/reports/ops_gui_starter_pack_latest.json",
+      "exists": true
+    },
+    {
+      "key": "integrity_status",
+      "status": "WARNING",
+      "message": "ops_gui_integrity_latest.json overall=WARNING",
+      "path": "data/reports/ops_gui_integrity_latest.json",
+      "integrity_overall": "WARNING",
+      "integrity_summary": {
+        "total": 15,
+        "pass_count": 14,
+        "warning_count": 1,
+        "fail_count": 0
+      }
+    },
+    {
+      "key": "mock_server_entrypoint_confirmed",
+      "status": "PASS",
+      "message": "mock server runtime and operational check are confirmed",
+      "runtime_json": "data/reports/mock_server_runtime_latest.json",
+      "operational_check_json": "data/reports/mock_server_operational_check_latest.json",
+      "target": "http://127.0.0.1:8766"
+    }
+  ],
+  "missing_items": [
+    "integrity_status"
+  ],
+  "summary": {
+    "total_checks": 7,
+    "pass_count": 6,
+    "warning_count": 1,
+    "fail_count": 0,
+    "ready_for_gui_impl": false
+  },
+  "status": {
+    "fail_safe": true
+  }
+}

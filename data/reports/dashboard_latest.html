@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>AI Media OS Dashboard</title>
+  <style>
+    :root {
+      --bg: #f4f7f4;
+      --panel: #ffffff;
+      --text: #1e2a1f;
+      --muted: #5f6f60;
+      --line: #d9e3da;
+      --accent: #246b45;
+      --warn: #b06b00;
+      --danger: #b42318;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", sans-serif;
+      color: var(--text);
+      background: linear-gradient(140deg, #edf6ef, #f8fbf8 45%, #eef4ff);
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+    .header {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+    .header h1 { margin: 0 0 8px 0; font-size: 24px; }
+    .sub { color: var(--muted); font-size: 14px; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 14px;
+    }
+    .card .label { color: var(--muted); font-size: 12px; margin-bottom: 8px; }
+    .card .value { font-size: 28px; font-weight: 700; line-height: 1; }
+    .value.warn { color: var(--warn); }
+    .value.danger { color: var(--danger); }
+    .value.accent { color: var(--accent); }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 14px;
+      margin-bottom: 12px;
+    }
+    .panel h3 { margin: 0 0 10px 0; font-size: 16px; }
+
+    .panels {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 12px;
+    }
+
+    .slug-list { margin: 0; padding-left: 18px; max-height: 300px; overflow: auto; }
+    .slug-list li { margin: 4px 0; font-size: 13px; }
+    .slug-list li.empty { list-style: none; color: var(--muted); margin-left: -18px; }
+
+    .table-wrap { overflow-x: auto; }
+    .history-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      min-width: 920px;
+    }
+    .history-table th,
+    .history-table td {
+      border: 1px solid var(--line);
+      padding: 8px;
+      text-align: right;
+      white-space: nowrap;
+    }
+    .history-table th:first-child,
+    .history-table td:first-child { text-align: left; }
+    .history-table thead th {
+      background: #eef6f0;
+      font-weight: 700;
+    }
+
+    .muted { color: var(--muted); font-size: 13px; }
+    .footer { color: var(--muted); font-size: 12px; margin-top: 14px; }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <header class="header">
+      <h1>AI Media OS 簡易運用ダッシュボード</h1>
+      <div class="sub">レポート日: 20260314 / 生成時刻: 2026-03-14T10:53:51.236808+00:00</div>
+    </header>
+
+    <section class="grid">
+      <article class="card"><div class="label">Success</div><div class="value accent">0</div></article>
+      <article class="card"><div class="label">Skipped</div><div class="value">3</div></article>
+      <article class="card"><div class="label">Failed</div><div class="value danger">2</div></article>
+      <article class="card"><div class="label">Draft</div><div class="value">2</div></article>
+      <article class="card"><div class="label">Retry Queued</div><div class="value warn">0</div></article>
+    </section>
+
+    <section class="grid">
+      <article class="card"><div class="label">Combined</div><div class="value">0</div></article>
+      <article class="card"><div class="label">Price Only</div><div class="value">0</div></article>
+      <article class="card"><div class="label">Release Only</div><div class="value">0</div></article>
+      <article class="card"><div class="label">Total Processed</div><div class="value">5</div></article>
+    </section>
+
+    <section class="panel">
+      <h3>直近7日 ミニ履歴</h3>
+      
+      <div class="table-wrap">
+        <table class="history-table">
+          <thead>
+            <tr>
+              <th>report_date</th>
+              <th>success</th>
+              <th>skipped</th>
+              <th>failed</th>
+              <th>draft</th>
+              <th>retry_queued</th>
+              <th>combined</th>
+              <th>price_only</th>
+              <th>release_only</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>20260314</td><td>0</td><td>3</td><td>2</td><td>2</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td>20260313</td><td>0</td><td>3</td><td>2</td><td>2</td><td>0</td><td>0</td><td>3</td><td>0</td></tr>
+<tr><td>20260312</td><td>0</td><td>3</td><td>2</td><td>2</td><td>0</td><td>0</td><td>3</td><td>0</td></tr>
+<tr><td>20260311</td><td>0</td><td>3</td><td>2</td><td>2</td><td>0</td><td>0</td><td>49</td><td>0</td></tr>
+<tr><td>20260310</td><td>0</td><td>3</td><td>2</td><td>2</td><td>0</td><td>0</td><td>34</td><td>0</td></tr>
+          </tbody>
+        </table>
+      </div>
+    
+    </section>
+
+    <section class="panels">
+      
+      <section class="panel">
+        <h3>Failed Slugs</h3>
+        <ul class="slug-list">
+          <li>fail_0000-sale-article</li>
+<li>fail_0001-sale-article</li>
+        </ul>
+      </section>
+    
+      
+      <section class="panel">
+        <h3>Skipped Slugs</h3>
+        <ul class="slug-list">
+          <li>skip_0000-sale-article</li>
+<li>skip_0001-sale-article</li>
+<li>skip_0002-sale-article</li>
+        </ul>
+      </section>
+    
+      
+      <section class="panel">
+        <h3>Draft Slugs</h3>
+        <ul class="slug-list">
+          <li>draft_0000-sale-article</li>
+<li>draft_0001-sale-article</li>
+        </ul>
+      </section>
+    
+    </section>
+
+    <div class="footer">Generated from daily_report_YYYYMMDD.json</div>
+  </main>
+</body>
+</html>

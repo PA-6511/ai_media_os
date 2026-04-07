@@ -1,0 +1,67 @@
+{
+  "generated_at": "2026-03-15T12:32:46.057665+00:00",
+  "schema_version": "1.0",
+  "first_read": [
+    "data/reports/ops_bootstrap_latest.json",
+    "data/reports/ops_gui_schema_latest.json",
+    "data/reports/mock_api_home_latest.json",
+    "data/reports/ops_home_payload_latest.json",
+    "data/reports/ops_sidebar_latest.json",
+    "data/reports/ops_tabs_latest.json",
+    "data/reports/ops_widgets_latest.json",
+    "data/reports/ops_layout_latest.json"
+  ],
+  "entrypoints": {
+    "bootstrap": "data/reports/ops_bootstrap_latest.json",
+    "gui_schema": "data/reports/ops_gui_schema_latest.json",
+    "home_payload": "data/reports/ops_home_payload_latest.json",
+    "mock_api": "data/reports/mock_api_home_latest.json",
+    "preview_html": "data/reports/ops_gui_preview_latest.html"
+  },
+  "preview_files": [
+    "data/reports/ops_gui_preview_latest.html",
+    "data/reports/ops_home_latest.html",
+    "data/reports/ops_portal_latest.html"
+  ],
+  "api_mock": {
+    "home": "data/reports/mock_api_home_latest.json",
+    "health_endpoint": "http://127.0.0.1:8765/health"
+  },
+  "docs": {
+    "runbook": "docs/runbook_latest.md",
+    "daily_checklist": "docs/daily_checklist_latest.md",
+    "gui_go_live_checklist": "docs/gui_go_live_checklist_latest.md"
+  },
+  "next_steps": [
+    "python3 -m gui.run_mock_server を実行して mock API を起動する",
+    "ops_gui_preview_latest.html を開いて UI 全体構成を確認する",
+    "bootstrap -> gui_schema -> mock_api の順でデータ読み込みを実装する",
+    "sidebar/tabs/widgets/layout を使って初期画面を組み立てる",
+    "gui_go_live_checklist_latest.md で go-live 判定項目を確認する"
+  ],
+  "summary": {
+    "first_read_count": 8,
+    "preview_file_count": 3,
+    "doc_count": 3
+  },
+  "status": {
+    "partial": false,
+    "ready": true,
+    "missing_source_keys": [],
+    "fail_safe": true
+  },
+  "sources": {
+    "handoff": {
+      "path": "data/reports/ops_gui_handoff_latest.json",
+      "exists": true,
+      "loaded": true,
+      "updated_at": "2026-03-15T12:32:45.832456+00:00"
+    },
+    "bundle_manifest": {
+      "path": "data/reports/ops_gui_bundle_manifest_latest.json",
+      "exists": true,
+      "loaded": true,
+      "updated_at": "2026-03-15T12:32:45.736455+00:00"
+    }
+  }
+}

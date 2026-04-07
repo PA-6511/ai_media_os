@@ -1,0 +1,26 @@
+{
+  "report_date": "20260310",
+  "generated_at": "2026-03-12T13:08:44.114675+00:00",
+  "success_count": 0,
+  "skipped_count": 3,
+  "failed_count": 2,
+  "draft_count": 2,
+  "retry_queued_count": 0,
+  "combined_count": 0,
+  "price_only_count": 34,
+  "release_only_count": 0,
+  "failed_slugs": [
+    "fail_0000-sale-article",
+    "fail_0001-sale-article"
+  ],
+  "skipped_slugs": [
+    "skip_0000-sale-article",
+    "skip_0001-sale-article",
+    "skip_0002-sale-article"
+  ],
+  "draft_slugs": [
+    "draft_0000-sale-article",
+    "draft_0001-sale-article"
+  ],
+  "completion_rate": 0.0
+}

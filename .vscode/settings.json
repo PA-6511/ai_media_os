@@ -1,0 +1,73 @@
+{
+  // ===================================================================
+  // [perf] profiling ループ 切り分け用 settings.json
+  // 適用後: Ctrl+Shift+P → "Kill VS Code Server on Host..." → 再接続
+  // 元に戻す: 各設定を削除 or デフォルト値に戻す
+  // ===================================================================
+
+  // --- Test 5: 大量ファイル監視 除外 ---
+  // node_modules / dist / .git など変更監視が不要な重量ディレクトリを除外する
+  // Python + Node が混在する環境向け
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/node_modules/**": true,
+    "**/.venv/**": true,
+    "**/__pycache__/**": true,
+    "**/dist/**": true,
+    "**/build/**": true,
+    "**/logs/**": true,
+    "**/tmp/**": true,
+    "**/*.egg-info/**": true
+  },
+
+  // 検索インデックスからも除外（search.exclude は watcherExclude と独立）
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/.venv": true,
+    "**/__pycache__": true,
+    "**/dist": true,
+    "**/build": true,
+    "**/logs": true
+  },
+
+  // エクスプローラーからも非表示（任意: 不要なら削除可）
+  "files.exclude": {
+    "**/__pycache__": true,
+    "**/*.pyc": true,
+    "**/.pytest_cache": true
+  },
+
+  // --- Test 4: 自動ポーリング・自動更新 抑制 ---
+  // git.autofetch: 自動 fetch を止める（5秒刻みポーリングの原因になりやすい）
+  "git.autofetch": false,
+
+  // git.autoRepositoryDetection: サブフォルダ全検索を無効化
+  "git.autoRepositoryDetection": false,
+
+  // 拡張機能の自動更新・自動確認を無効化
+  "extensions.autoUpdate": false,
+  "extensions.autoCheckUpdates": false,
+
+  // VS Code 本体の自動更新通知を無効化
+  "update.mode": "none",
+
+  // --- テレメトリ・実験機能 抑制 ---
+  // テレメトリ送信を止める（バックグラウンド通信の削減）
+  "telemetry.telemetryLevel": "off",
+
+  // A/B テスト・実験機能を無効化
+  "workbench.enableExperiments": false,
+
+  // --- Remote SSH 安定化（前回 A/B settings より引き継ぎ）---
+  // useExecServer: false にすることで PTY 確保の方法を変える
+  "remote.SSH.useExecServer": false,
+
+  // ログレベルを debug にして [perf] の発生箇所を特定しやすくする
+  // 確認が終わったら "default" に戻す
+  "remote.SSH.logLevel": "debug",
+
+  // --- ファイル保存の自動化を最小限に ---
+  // 保存時の自動フォーマットは監視系拡張を動かすトリガーになる（任意）
+  "editor.formatOnSave": false
+}

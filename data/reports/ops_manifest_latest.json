@@ -1,0 +1,32 @@
+{
+  "generated_at": "2026-03-15T12:32:43.668803+00:00",
+  "schema_version": "1.0",
+  "status_light": "data/reports/ops_status_light_latest.json",
+  "ops_api_payload": "data/reports/ops_api_payload_latest.json",
+  "ops_summary": "data/reports/ops_summary_latest.json",
+  "artifact_index_html": "data/reports/artifact_index_latest.html",
+  "ops_portal_html": "data/reports/ops_portal_latest.html",
+  "ops_home_html": "data/reports/ops_home_latest.html",
+  "daily_dashboard_html": "data/reports/dashboard_latest.html",
+  "weekly_dashboard_html": "data/reports/weekly_dashboard_latest.html",
+  "monthly_dashboard_html": "data/reports/monthly_dashboard_latest.html",
+  "release_readiness_json": "data/reports/release_readiness_latest.json",
+  "status_badge_json": "data/reports/status_badge_latest.json",
+  "daily_checklist_md": "docs/daily_checklist_latest.md",
+  "runbook_md": "docs/runbook_latest.md",
+  "availability": {
+    "status_light": true,
+    "ops_api_payload": true,
+    "ops_summary": true,
+    "artifact_index_html": true,
+    "ops_portal_html": true,
+    "ops_home_html": true,
+    "daily_dashboard_html": true,
+    "weekly_dashboard_html": true,
+    "monthly_dashboard_html": true,
+    "release_readiness_json": true,
+    "status_badge_json": true,
+    "daily_checklist_md": true,
+    "runbook_md": true
+  }
+}

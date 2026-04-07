@@ -1,0 +1,45 @@
+{
+  "report_month": "202603",
+  "daily_report_count": 5,
+  "total_success_count": 0,
+  "total_skipped_count": 15,
+  "total_failed_count": 10,
+  "total_draft_count": 10,
+  "total_retry_queued_count": 0,
+  "total_combined_count": 0,
+  "total_price_only_count": 89,
+  "total_release_only_count": 0,
+  "top_failed_slugs": [
+    {
+      "slug": "fail_0000-sale-article",
+      "count": 5
+    },
+    {
+      "slug": "fail_0001-sale-article",
+      "count": 5
+    }
+  ],
+  "top_skipped_slugs": [
+    {
+      "slug": "skip_0000-sale-article",
+      "count": 5
+    },
+    {
+      "slug": "skip_0001-sale-article",
+      "count": 5
+    },
+    {
+      "slug": "skip_0002-sale-article",
+      "count": 5
+    }
+  ],
+  "kpi_summary": {
+    "generated_at": "2026-03-14T04:25:23.800986+00:00",
+    "health_score": 70,
+    "health_grade": "C",
+    "anomaly_overall": "WARNING",
+    "alert_total": 0,
+    "retry_queued_count": 0,
+    "latest_archive": "/home/deploy/ai_media_os/data/archives/ops_archive_20260314_132424.zip"
+  }
+}

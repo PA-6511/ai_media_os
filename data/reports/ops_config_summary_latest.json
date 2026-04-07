@@ -1,0 +1,95 @@
+{
+  "generated_at": "2026-03-15T12:32:45.223954+00:00",
+  "schema_version": "1.0",
+  "ops": {
+    "default_dry_run": true
+  },
+  "ops_cycle": {
+    "continue_on_error": true,
+    "enable_gui_assets": true,
+    "enabled_steps_count": 23,
+    "enabled_steps": [
+      "scheduler",
+      "smoke_test",
+      "anomaly_check",
+      "daily_report",
+      "dashboard_build",
+      "archive_backup",
+      "log_rotate",
+      "release_readiness_check",
+      "ops_home_build",
+      "ops_summary_build",
+      "ops_api_payload_build",
+      "ops_status_light_build",
+      "ops_manifest_build",
+      "ops_home_payload_build",
+      "ops_sidebar_build",
+      "ops_tabs_build",
+      "ops_header_build",
+      "ops_widgets_build",
+      "ops_layout_build",
+      "ops_gui_schema_build",
+      "ops_bootstrap_build",
+      "ops_gui_preview_build",
+      "mock_api_build"
+    ],
+    "run_weekly_report": false,
+    "run_weekly_dashboard": false,
+    "run_monthly_report": false,
+    "run_monthly_dashboard": false
+  },
+  "dashboard": {
+    "history_days": 7
+  },
+  "anomaly": {
+    "failed_count_warning": 3,
+    "failed_count_critical": 5,
+    "retry_queued_warning": 5,
+    "retry_queued_critical": 10,
+    "all_signal_zero_warning_days": 2,
+    "smoke_failed_warning": 1,
+    "smoke_failed_critical": 2,
+    "notify_on_ok": false,
+    "notify_on_warning": true,
+    "notify_on_critical": true
+  },
+  "scheduler": {
+    "run_daily_report_after_job": true,
+    "run_daily_report_on_success_only": false
+  },
+  "archive": {
+    "keep_generations": 7
+  },
+  "log_rotation": {
+    "enabled": true,
+    "keep_generations": 7,
+    "compress_rotated": false,
+    "target_logs_count": 8
+  },
+  "smoke_test": {
+    "enabled_steps_count": 5,
+    "enabled_steps": [
+      "main",
+      "run_price_change_refresh",
+      "run_release_refresh",
+      "show_retry_queue",
+      "show_status_report"
+    ]
+  },
+  "summary": {
+    "config_section_count": 9,
+    "missing_sections": [],
+    "partial": false
+  },
+  "status": {
+    "ready": true,
+    "fail_safe": true
+  },
+  "sources": {
+    "ops_settings": {
+      "path": "config/ops_settings.json",
+      "exists": true,
+      "loaded": true
+    }
+  }
+}

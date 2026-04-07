@@ -1,0 +1,52 @@
+{
+  "work_id": "manga_0001",
+  "keyword": "呪術廻戦 何巻まで",
+  "article_type": "volume_guide",
+  "title": "呪術廻戦は何巻まで出てる？最新巻・関連情報まとめ",
+  "content_html": "<h1>呪術廻戦は何巻まで出てる？最新巻・関連情報まとめ</h1><h2>結論</h2><p>この記事では「呪術廻戦 何巻まで」についてわかりやすく整理します。</p><p>まず結論から確認していきます。</p><h2>現在の巻数情報</h2><p>呪術廻戦は何巻まで出てる？最新巻・関連情報まとめ に関する現在の巻数情報を確認していきます。</p><p>最新の刊行状況は公式ストアや出版社情報もあわせて確認してください。</p><h2>最新巻情報</h2><p>最新巻の発売状況や配信状況をチェックしておくと安心です。</p><p>続きをすぐ読みたい場合は電子書籍ストアの在庫も確認しましょう。</p><h2>関連記事</h2><p>関連情報として他の記事もあわせて確認できます。</p><p>続き・全巻・セール情報も参考になります。</p><h2>購入リンク</h2><p>気になる巻は電子書籍ストアで確認してください。</p><p>お得なセール対象になっている場合もあります。</p><div class=\"cta-box\"><p>続きが気になる方はKindleで最新巻を確認してください。</p></div><div class=\"related-links\"><h2>関連記事</h2><ul><li><a href=\"/related/呪術廻戦-最新巻\">呪術廻戦 最新巻</a></li><li><a href=\"/related/呪術廻戦-全巻\">呪術廻戦 全巻</a></li><li><a href=\"/related/呪術廻戦-セール\">呪術廻戦 セール</a></li></ul></div>",
+  "cta_type": "volume_purchase",
+  "internal_link_hints": [
+    "呪術廻戦 最新巻",
+    "呪術廻戦 全巻",
+    "呪術廻戦 セール"
+  ],
+  "template_mode": "standard",
+  "signal_mode": "normal",
+  "is_combined_signal": false,
+  "decision": "standard_publish",
+  "reason": "no_signal",
+  "cta_experiment": "",
+  "cta_variant": "",
+  "cta_mode": "standard",
+  "release_changed": false,
+  "release_change_reason": "no_change",
+  "previous_latest_volume_number": 25,
+  "current_latest_volume_number": 25,
+  "previous_latest_release_date": "2026-03-14",
+  "current_latest_release_date": "2026-03-14",
+  "previous_availability_status": "available",
+  "current_availability_status": "available",
+  "price_changed": false,
+  "change_reason": "not_sale_article",
+  "previous_price": null,
+  "current_price": null,
+  "price_diff": null,
+  "discount_rate": null,
+  "related_links": [
+    {
+      "title": "呪術廻戦 最新巻",
+      "url": "/related/呪術廻戦-最新巻",
+      "source": "fallback"
+    },
+    {
+      "title": "呪術廻戦 全巻",
+      "url": "/related/呪術廻戦-全巻",
+      "source": "fallback"
+    },
+    {
+      "title": "呪術廻戦 セール",
+      "url": "/related/呪術廻戦-セール",
+      "source": "fallback"
+    }
+  ]
+}

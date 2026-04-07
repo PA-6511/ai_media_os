@@ -1,0 +1,219 @@
+{
+  "generated_at": "2026-03-15T12:32:44.298187+00:00",
+  "schema_version": "1.0",
+  "status": {
+    "generated_at": "2026-03-15T12:32:43.426682+00:00",
+    "schema_version": "1.0",
+    "decision": "RELEASE",
+    "badge_text": "RELEASE | Health C | WARNING",
+    "health_score": 70,
+    "health_grade": "C",
+    "anomaly_overall": "WARNING",
+    "latest_daily_report": "/home/deploy/ai_media_os/data/reports/daily_report_20260314.json",
+    "latest_archive": "/home/deploy/ai_media_os/data/archives/ops_archive_20260314_195353.zip",
+    "recommended_action": "リリース可。軽微警告を運用監視に登録し、次回 ops cycle で再確認",
+    "recent_trend": {
+      "release_decisions": [
+        "release",
+        "release",
+        "release"
+      ],
+      "health_scores": [
+        70,
+        70,
+        90
+      ],
+      "anomaly_overall": [
+        "WARNING",
+        "WARNING",
+        "OK"
+      ]
+    },
+    "source": {
+      "ops_api_payload_json": "/home/deploy/ai_media_os/data/reports/ops_api_payload_latest.json",
+      "status_badge_json": "/home/deploy/ai_media_os/data/reports/status_badge_latest.json",
+      "release_readiness_json": "/home/deploy/ai_media_os/data/reports/release_readiness_latest.json"
+    }
+  },
+  "navigation": {},
+  "cards": {
+    "generated_at": "2026-03-15T12:32:43.854313+00:00",
+    "schema_version": "1.0",
+    "cards": [
+      {
+        "title": "Today's Decision",
+        "subtitle": "release / review / hold",
+        "status": "RELEASE",
+        "path": "data/reports/ops_portal_latest.html"
+      },
+      {
+        "title": "Status Badge",
+        "subtitle": "RELEASE | Health C | WARNING",
+        "status": "RELEASE",
+        "path": "data/reports/status_badge_latest.json"
+      },
+      {
+        "title": "Daily Checklist",
+        "subtitle": "daily operations checklist",
+        "status": "READY",
+        "path": "docs/daily_checklist_latest.md"
+      },
+      {
+        "title": "Ops Portal",
+        "subtitle": "operations portal overview",
+        "status": "WARNING",
+        "path": "data/reports/ops_portal_latest.html"
+      },
+      {
+        "title": "Ops Home",
+        "subtitle": "runbook and quick links",
+        "status": "RELEASE",
+        "path": "data/reports/ops_home_latest.html"
+      },
+      {
+        "title": "Latest Daily Dashboard",
+        "subtitle": "daily metrics dashboard",
+        "status": "C",
+        "path": "data/reports/dashboard_latest.html"
+      },
+      {
+        "title": "Latest Weekly Dashboard",
+        "subtitle": "weekly metrics dashboard",
+        "status": "READY",
+        "path": "data/reports/weekly_dashboard_latest.html"
+      },
+      {
+        "title": "Latest Monthly Dashboard",
+        "subtitle": "monthly metrics dashboard",
+        "status": "READY",
+        "path": "data/reports/monthly_dashboard_latest.html"
+      },
+      {
+        "title": "Latest Archive",
+        "subtitle": "latest backup archive",
+        "status": "AVAILABLE",
+        "path": "data/archives/ops_archive_20260314_195353.zip"
+      },
+      {
+        "title": "Latest Summary JSON",
+        "subtitle": "ops summary aggregate",
+        "status": "RELEASE",
+        "path": "data/reports/ops_summary_latest.json"
+      },
+      {
+        "title": "Runbook",
+        "subtitle": "リリース可。軽微警告を運用監視に登録し、次回 ops cycle で再確認",
+        "status": "READY",
+        "path": "docs/runbook_latest.md"
+      }
+    ]
+  },
+  "timestamps": {
+    "generated_at": "2026-03-15T12:32:43.736572+00:00",
+    "timestamps": [
+      {
+        "name": "status_light",
+        "path": "data/reports/ops_status_light_latest.json",
+        "updated_at": "2026-03-15T12:32:43.426430+00:00"
+      },
+      {
+        "name": "ops_api_payload",
+        "path": "data/reports/ops_api_payload_latest.json",
+        "updated_at": "2026-03-15T12:32:43.275428+00:00"
+      },
+      {
+        "name": "ops_summary",
+        "path": "data/reports/ops_summary_latest.json",
+        "updated_at": "2026-03-15T12:32:43.207427+00:00"
+      },
+      {
+        "name": "artifact_index_html",
+        "path": "data/reports/artifact_index_latest.html",
+        "updated_at": "2026-03-14T03:20:23.417582+00:00"
+      },
+      {
+        "name": "ops_portal_html",
+        "path": "data/reports/ops_portal_latest.html",
+        "updated_at": "2026-03-15T12:32:43.508430+00:00"
+      },
+      {
+        "name": "ops_home_html",
+        "path": "data/reports/ops_home_latest.html",
+        "updated_at": "2026-03-15T12:32:43.597431+00:00"
+      },
+      {
+        "name": "daily_dashboard_html",
+        "path": "data/reports/dashboard_latest.html",
+        "updated_at": "2026-03-14T10:53:53.093058+00:00"
+      },
+      {
+        "name": "weekly_dashboard_html",
+        "path": "data/reports/weekly_dashboard_latest.html",
+        "updated_at": "2026-03-14T01:45:54.519371+00:00"
+      },
+      {
+        "name": "monthly_dashboard_html",
+        "path": "data/reports/monthly_dashboard_latest.html",
+        "updated_at": "2026-03-12T15:02:36.002970+00:00"
+      },
+      {
+        "name": "release_readiness_json",
+        "path": "data/reports/release_readiness_latest.json",
+        "updated_at": "2026-03-15T12:32:43.105426+00:00"
+      },
+      {
+        "name": "status_badge_json",
+        "path": "data/reports/status_badge_latest.json",
+        "updated_at": "2026-03-15T12:32:43.351429+00:00"
+      },
+      {
+        "name": "daily_checklist_md",
+        "path": "docs/daily_checklist_latest.md",
+        "updated_at": "2026-03-14T02:36:25.169695+00:00"
+      },
+      {
+        "name": "runbook_md",
+        "path": "docs/runbook_latest.md",
+        "updated_at": "2026-03-14T00:26:04.428555+00:00"
+      },
+      {
+        "name": "latest_daily_report",
+        "path": "/home/deploy/ai_media_os/data/reports/daily_report_20260314.json",
+        "updated_at": "2026-03-15T10:40:57.341420+00:00"
+      },
+      {
+        "name": "latest_archive",
+        "path": "/home/deploy/ai_media_os/data/archives/ops_archive_20260314_195353.zip",
+        "updated_at": "2026-03-14T10:53:53.282060+00:00"
+      }
+    ]
+  },
+  "summary": {
+    "decision": "RELEASE",
+    "badge_text": "RELEASE | Health C | WARNING",
+    "cards_count": 11,
+    "timestamps_count": 15
+  },
+  "sources": {
+    "status": {
+      "path": "/home/deploy/ai_media_os/data/reports/ops_status_light_latest.json",
+      "generated_at": "2026-03-15T12:32:43.426682+00:00",
+      "exists": true
+    },
+    "navigation": {
+      "path": "/home/deploy/ai_media_os/data/reports/ops_navigation_latest.json",
+      "generated_at": null,
+      "exists": false
+    },
+    "cards": {
+      "path": "/home/deploy/ai_media_os/data/reports/ops_cards_latest.json",
+      "generated_at": "2026-03-15T12:32:43.854313+00:00",
+      "exists": true
+    },
+    "timestamps": {
+      "path": "/home/deploy/ai_media_os/data/reports/ops_timestamps_latest.json",
+      "generated_at": "2026-03-15T12:32:43.736572+00:00",
+      "exists": true
+    }
+  }
+}

@@ -1,0 +1,124 @@
+{
+  "generated_at": "2026-03-15T12:32:45.940385+00:00",
+  "schema_version": "1.0",
+  "overall": "WARNING",
+  "checks": [
+    {
+      "target": "ops_bootstrap_latest.json",
+      "path": "data/reports/ops_bootstrap_latest.json",
+      "exists": true,
+      "json_valid": true,
+      "status": "PASS"
+    },
+    {
+      "target": "ops_home_payload_latest.json",
+      "path": "data/reports/ops_home_payload_latest.json",
+      "exists": true,
+      "json_valid": true,
+      "status": "PASS"
+    },
+    {
+      "target": "ops_sidebar_latest.json",
+      "path": "data/reports/ops_sidebar_latest.json",
+      "exists": true,
+      "json_valid": true,
+      "status": "PASS"
+    },
+    {
+      "target": "ops_tabs_latest.json",
+      "path": "data/reports/ops_tabs_latest.json",
+      "exists": true,
+      "json_valid": true,
+      "status": "PASS"
+    },
+    {
+      "target": "ops_widgets_latest.json",
+      "path": "data/reports/ops_widgets_latest.json",
+      "exists": true,
+      "json_valid": true,
+      "status": "PASS"
+    },
+    {
+      "target": "ops_layout_latest.json",
+      "path": "data/reports/ops_layout_latest.json",
+      "exists": true,
+      "json_valid": true,
+      "status": "PASS"
+    },
+    {
+      "target": "ops_header_latest.json",
+      "path": "data/reports/ops_header_latest.json",
+      "exists": true,
+      "json_valid": true,
+      "status": "PASS"
+    },
+    {
+      "target": "ops_gui_schema_latest.json",
+      "path": "data/reports/ops_gui_schema_latest.json",
+      "exists": true,
+      "json_valid": true,
+      "status": "PASS"
+    },
+    {
+      "target": "ops_gui_handoff_latest.json",
+      "path": "data/reports/ops_gui_handoff_latest.json",
+      "exists": true,
+      "json_valid": true,
+      "status": "PASS"
+    },
+    {
+      "target": "mock_api_home_latest.json",
+      "path": "data/reports/mock_api_home_latest.json",
+      "exists": true,
+      "json_valid": true,
+      "status": "PASS"
+    },
+    {
+      "target": "ops_manifest_latest.json",
+      "path": "data/reports/ops_manifest_latest.json",
+      "exists": true,
+      "json_valid": true,
+      "status": "PASS"
+    },
+    {
+      "target": "ops_gui_bundle_manifest_latest.json",
+      "path": "data/reports/ops_gui_bundle_manifest_latest.json",
+      "exists": true,
+      "json_valid": true,
+      "status": "PASS"
+    },
+    {
+      "target": "bootstrap_sections",
+      "exists": true,
+      "json_valid": true,
+      "status": "PASS",
+      "detail": "all required sections present"
+    },
+    {
+      "target": "bootstrap_path_references",
+      "exists": true,
+      "json_valid": true,
+      "status": "WARNING",
+      "detail": "missing_refs=1",
+      "missing_refs": [
+        "/home/deploy/ai_media_os/data/reports/ops_navigation_latest.json"
+      ]
+    },
+    {
+      "target": "entrypoints_consistency",
+      "exists": true,
+      "json_valid": true,
+      "status": "PASS",
+      "detail": "bundle/handoff entrypoints are consistent"
+    }
+  ],
+  "summary": {
+    "total": 15,
+    "pass_count": 14,
+    "warning_count": 1,
+    "fail_count": 0
+  },
+  "status": {
+    "fail_safe": true
+  }
+}

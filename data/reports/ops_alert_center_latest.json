@@ -1,0 +1,79 @@
+{
+  "generated_at": "2026-03-15T12:32:44.776823+00:00",
+  "schema_version": "1.0",
+  "overall": "warning",
+  "alerts": [
+    {
+      "severity": "warning",
+      "source": "anomaly",
+      "title": "Anomaly Warning",
+      "message": "anomaly overall is WARNING",
+      "action": "daily_report と release_readiness を確認"
+    },
+    {
+      "severity": "info",
+      "source": "readiness",
+      "title": "Release Decision Release",
+      "message": "release readiness decision is release",
+      "action": "通常運用を継続"
+    },
+    {
+      "severity": "info",
+      "source": "retry_queue",
+      "title": "Retry Queue Empty",
+      "message": "retry queue has no pending items",
+      "action": "監視のみ継続"
+    },
+    {
+      "severity": "warning",
+      "source": "pipeline_failure",
+      "title": "Pipeline Warning Detected",
+      "message": "pipeline failure log contains WARNING lines: 1",
+      "action": "warning 内容と通知設定を確認"
+    }
+  ],
+  "summary": {
+    "alert_count": 4,
+    "critical_count": 0,
+    "warning_count": 2,
+    "review_count": 0,
+    "info_count": 2
+  },
+  "signals": {
+    "retry_queue": {
+      "queued": 0,
+      "retrying": 0,
+      "resolved": 0,
+      "give_up": 0
+    },
+    "status_light": {
+      "decision": "RELEASE",
+      "anomaly_overall": "WARNING"
+    },
+    "release_readiness": {
+      "decision": "release",
+      "retry_queued": 0
+    }
+  },
+  "sources": {
+    "status_light": {
+      "path": "data/reports/ops_status_light_latest.json",
+      "exists": true
+    },
+    "release_readiness": {
+      "path": "data/reports/release_readiness_latest.json",
+      "exists": true
+    },
+    "anomaly_log": {
+      "path": "data/logs/anomaly_check.log",
+      "exists": true
+    },
+    "pipeline_failure_log": {
+      "path": "data/logs/pipeline_failures.log",
+      "exists": true
+    }
+  },
+  "status": {
+    "fail_safe": true
+  }
+}

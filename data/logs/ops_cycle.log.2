@@ -1,0 +1,476 @@
+================================================================================
+OPS CYCLE LOG
+timestamp: 2026-03-14T10:03:02.863855+00:00
+================================================================================
+
+[1] step: scheduler
+timestamp_start: 2026-03-14T10:02:58.281902+00:00
+timestamp_end: 2026-03-14T10:02:58.860152+00:00
+returncode: 0
+status: PASS
+cmd: python3 -m scheduler.scheduler
+stdout_head:
+Scheduler started
+mode: interval
+dry_run: True
+run_daily_report_after_job: True
+run_daily_report_on_success_only: False
+interval_seconds: 1
+lock acquired
+[1/4] DBセットアップ 開始
+[1/4] DBセットアップ完了: /home/deploy/ai_media_os/data/media.db
+      works件数: 3
+[2/4] キーワード生成 開始
+[2/4] キーワード生成完了: /home/deploy/ai_media_os/data/keywords.json
+      キーワード対象作品数: 3
+[3/4] 検索意図解析 開始
+[3/4] 検索意図解析完了: /home/deploy/ai_media_os/data/intent_analysis.json
+      解析件数: 15
+[4/4] Batch Planner/Generator/Publish 開始
+[新刊検知]
+work_id: manga_0001
+title: 呪術廻戦
+previous_latest_volume_number: 25
+current_latest_volume_number: 25
+release_change_reason: no_change
+release_changed: False
+[新刊検知]
+work_id: manga_0001
+title: 呪術廻戦
+previous_latest_volume_number: 25
+current_latest_volume_number: 25
+release_change_reason: no_change
+release_changed: False
+[新刊検知]
+work_id: manga_0001
+title: 呪術廻戦
+previous_latest_volume_number: 25
+current_latest_volume_number: 25
+release_change_reason: no_change
+release_changed: False
+[新刊検知]
+work_id: manga_0001
+title: 呪術廻戦
+previous_latest_volume_number: 25
+current_latest_volume_number: 25
+release_change_reason: no_change
+release_changed: False
+[新刊検知]
+work_id: manga_0001
+title: 呪術廻戦
+previous_latest_volume_number:
+... (truncated 39734 chars)
+stderr_head:
+2026-03-14 19:02:58,671 | INFO | scheduler | scheduler started mode=interval dry_run=True run_daily_report_after_job=True run_daily_report_on_success_only=False
+2026-03-14 19:02:58,672 | INFO | scheduler | lock acquired path=/home/deploy/ai_media_os/data/locks/scheduler.lock
+2026-03-14 19:02:58,673 | INFO | scheduler | job started
+2026-03-14 19:02:58,808 | INFO | scheduler | job finished success=False success_count=0 skipped_count=0 failed_count=15
+2026-03-14 19:02:58,808 | INFO | scheduler | daily report hook started
+2026-03-14 19:02:58,809 | INFO | scheduler | daily report generated path=/home/deploy/ai_media_os/data/reports/daily_report_20260314.txt json_path=/home/deploy/ai_media_os/data/reports/daily_report_20260314.json
+2026-03-14 19:02:58,809 | INFO | scheduler | run_once enabled. scheduler exiting
+2026-03-14 19:02:58,809 | INFO | scheduler | lock released path=/home/deploy/ai_media_os/data/locks/scheduler.lock
+
+--------------------------------------------------------------------------------
+[2] step: smoke_test
+timestamp_start: 2026-03-14T10:02:58.861158+00:00
+timestamp_end: 2026-03-14T10:03:00.554611+00:00
+returncode: 0
+status: PASS
+cmd: python3 -m testing.smoke_test_runner
+stdout_head:
+
+======================================================================
+E2E スモークテスト開始
+======================================================================
+
+[1/5] main.py (dry-run)
+  実行: python3 ./main.py
+  ✓ PASS
+[2/5] run_price_change_refresh
+  実行: python3 -m pipelines.run_price_change_refresh
+  ✓ PASS
+[3/5] run_release_refresh
+  実行: python3 -m pipelines.run_release_refresh
+  ✓ PASS
+[4/5] show_retry_queue
+  実行: python3 -m pipelines.show_retry_queue
+  ✓ PASS
+[5/5] show_status_report
+  実行: python3 -m pipelines.show_status_report
+  ✓ PASS
+
+======================================================================
+スモークテスト サマリー
+======================================================================
+総実行: 5
+成功:   5
+失敗:   0
+
+ログ出力先: data/logs/smoke_test.log
+======================================================================
+
+
+stderr_head:
+(none)
+--------------------------------------------------------------------------------
+[3] step: anomaly_check
+timestamp_start: 2026-03-14T10:03:00.554956+00:00
+timestamp_end: 2026-03-14T10:03:00.736937+00:00
+returncode: 0
+status: PASS
+cmd: python3 -m monitoring.run_anomaly_check
+stdout_head:
+
+========================================================================
+運用異常チェック結果
+========================================================================
+チェック時刻: 2026-03-14T19:03:00
+最新レポート: /home/deploy/ai_media_os/data/reports/daily_report_20260314.json
+判定: OK
+alerts: total=0 warning=0 critical=0
+
+異常は検知されませんでした。
+
+stderr_head:
+2026-03-14 19:03:00,708 | INFO | monitoring.anomaly_check | anomaly_check finished overall=OK alerts=0 warning=0 critical=0 latest_report=/home/deploy/ai_media_os/data/reports/daily_report_20260314.json smoke_failed_count=0
+2026-03-14 19:03:00,709 | INFO | monitoring.anomaly_check | anomaly slack notify attempted=False config_ok=False config_warning=True config_critical=True
+
+--------------------------------------------------------------------------------
+[4] step: daily_report
+timestamp_start: 2026-03-14T10:03:00.736989+00:00
+timestamp_end: 2026-03-14T10:03:00.837245+00:00
+returncode: 0
+status: PASS
+cmd: python3 -m reporting.run_daily_report
+stdout_head:
+
+======================================================================
+日次レポート生成開始
+======================================================================
+
+レポート対象日: 2026-03-13
+
+✓ レポート生成: 15 項目
+✓ JSON 保存: /home/deploy/ai_media_os/data/reports/daily_report_20260313.json
+✓ TXT 保存:  /home/deploy/ai_media_os/data/reports/daily_report_20260313.txt
+
+======================================================================
+日次レポート生成完了
+======================================================================
+
+レポート日:      20260313
+生成時刻:        2026-03-14T10:03:00.820218+00:00
+
+======================================================================
+◆ 処理統計
+======================================================================
+総処理件数:     5
+  成功:      0 (  0%)
+  スキップ:     3 ( 60%)
+  失敗:      2 ( 40%)
+完了率:   0.00%
+
+======================================================================
+◆ 信号統計
+======================================================================
+総シグナル:     3
+  複合:     0
+  価格:     3
+  新刊:     0
+
+======================================================================
+◆ Retry Queue
+======================================================================
+保留中:     0
+
+==============================
+... (truncated 263 chars)
+stderr_head:
+(none)
+--------------------------------------------------------------------------------
+[5] step: dashboard_build
+timestamp_start: 2026-03-14T10:03:00.837967+00:00
+timestamp_end: 2026-03-14T10:03:00.937582+00:00
+returncode: 0
+status: PASS
+cmd: python3 -m reporting.run_dashboard_build
+stdout_head:
+input report: /home/deploy/ai_media_os/data/reports/daily_report_20260314.json
+history loaded: 5 days
+dashboard generated: /home/deploy/ai_media_os/data/reports/dashboard_latest.html
+
+stderr_head:
+(none)
+--------------------------------------------------------------------------------
+[6] step: archive_backup
+timestamp_start: 2026-03-14T10:03:00.937948+00:00
+timestamp_end: 2026-03-14T10:03:01.146727+00:00
+returncode: 0
+status: PASS
+cmd: python3 -m ops.run_archive_backup
+stdout_head:
+archive created: /home/deploy/ai_media_os/data/archives/ops_archive_20260314_190301.zip
+keep generations: 7
+removed archives: 1
+  - /home/deploy/ai_media_os/data/archives/ops_archive_20260314_134451.zip
+
+stderr_head:
+(none)
+--------------------------------------------------------------------------------
+[7] step: log_rotate
+timestamp_start: 2026-03-14T10:03:01.146791+00:00
+timestamp_end: 2026-03-14T10:03:01.252117+00:00
+returncode: 0
+status: PASS
+cmd: python3 -m ops.run_log_rotate
+stdout_head:
+Log rotation summary:
+total: 8
+rotated: 6
+skipped: 2
+errors: 0
+report: /home/deploy/ai_media_os/data/logs/log_rotate.log
+[ROTATED] /home/deploy/ai_media_os/data/logs/anomaly_check.log -> /home/deploy/ai_media_os/data/logs/anomaly_check.log.1
+[ROTATED] /home/deploy/ai_media_os/data/logs/combined_signal.log -> /home/deploy/ai_media_os/data/logs/combined_signal.log.1
+[ROTATED] /home/deploy/ai_media_os/data/logs/ops_cycle.log -> /home/deploy/ai_media_os/data/logs/ops_cycle.log.1
+[ROTATED] /home/deploy/ai_media_os/data/logs/pipeline_failures.log -> /home/deploy/ai_media_os/data/logs/pipeline_failures.log.1
+[SKIP] /home/deploy/ai_media_os/data/logs/price_change.log (empty_file)
+[SKIP] /home/deploy/ai_media_os/data/logs/release_change.log (empty_file)
+[ROTATED] /home/deploy/ai_media_os/data/logs/scheduler.log -> /home/deploy/ai_media_os/data/logs/scheduler.log.1
+[ROTATED] /home/deploy/ai_media_os/data/logs/smoke_test.log -> /home/deploy/ai_media_os/data/logs/smoke_test.log.1
+
+stderr_head:
+(none)
+--------------------------------------------------------------------------------
+[8] step: release_readiness_check
+timestamp_start: 2026-03-14T10:03:01.252908+00:00
+timestamp_end: 2026-03-14T10:03:01.472753+00:00
+returncode: 0
+status: PASS
+cmd: python3 -m ops.run_release_readiness_check
+stdout_head:
+release readiness json: /home/deploy/ai_media_os/data/reports/release_readiness_latest.json
+release readiness md:   /home/deploy/ai_media_os/data/reports/release_readiness_latest.md
+release readiness history: /home/deploy/ai_media_os/data/kpi/release_readiness_history.jsonl
+========================================================================
+AI Media OS Release Readiness
+========================================================================
+decision: release
+anomaly_overall: WARNING
+health: 70 (C)
+retry_queued: 0
+integrity_overall: PASS
+latest_daily_report: /home/deploy/ai_media_os/data/reports/daily_report_20260313.json
+latest_archive: /home/deploy/ai_media_os/data/archives/ops_archive_20260314_132424.zip
+reasons:
+- 判定条件を満たしたため release
+- 連動指標: alerts=0 warning=0 critical=0 / integrity PASS=12 WARNING=0 FAIL=0
+- anomaly overall は WARNING だが health/retry/integrity 条件を満たす
+recommended_action: リリース可。軽微警告を運用監視に登録し、次回 ops cycle で再確認
+
+stderr_head:
+(none)
+--------------------------------------------------------------------------------
+[9] step: ops_home_build
+timestamp_start: 2026-03-14T10:03:01.473390+00:00
+timestamp_end: 2026-03-14T10:03:01.583963+00:00
+returncode: 0
+status: PASS
+cmd: python3 -m reporting.run_ops_home_build
+stdout_head:
+ops home generated: /home/deploy/ai_media_os/data/reports/ops_home_latest.html
+
+stderr_head:
+(none)
+--------------------------------------------------------------------------------
+[10] step: ops_summary_build
+timestamp_start: 2026-03-14T10:03:01.584024+00:00
+timestamp_end: 2026-03-14T10:03:01.686232+00:00
+returncode: 0
+status: PASS
+cmd: python3 -m reporting.run_ops_summary_build
+stdout_head:
+ops summary json: /home/deploy/ai_media_os/data/reports/ops_summary_latest.json
+============================================================================
+AI Media OS Ops Summary
+============================================================================
+generated_at: 2026-03-14T10:03:01.670781+00:00
+
+Latest Artifacts
+- daily_report_json:     /home/deploy/ai_media_os/data/reports/daily_report_20260313.json
+- weekly_report_json:    /home/deploy/ai_media_os/data/reports/weekly_report_2026W11.json
+- monthly_report_json:   /home/deploy/ai_media_os/data/reports/monthly_report_202603.json
+- dashboard:             /home/deploy/ai_media_os/data/reports/dashboard_latest.html
+- weekly_dashboard:      /home/deploy/ai_media_os/data/reports/weekly_dashboard_latest.html
+- monthly_dashboard:     /home/deploy/ai_media_os/data/reports/monthly_dashboard_latest.html
+- archive:               /home/deploy/ai_media_os/data/archives/ops_archive_20260314_190301.zip
+- artifact_index:        /home/deploy/ai_media_os/data/reports/artifact_index_latest.html
+- ops_portal:            /home/deploy/ai_media_os/data/reports/ops_portal_latest.html
+- ops_home:              /home/deploy/ai_media_os/data/reports/op
+... (truncated 245 chars)
+stderr_head:
+(none)
+--------------------------------------------------------------------------------
+[11] step: ops_api_payload_build
+timestamp_start: 2026-03-14T10:03:01.687894+00:00
+timestamp_end: 2026-03-14T10:03:01.771133+00:00
+returncode: 0
+status: PASS
+cmd: python3 -m reporting.run_ops_api_payload_build
+stdout_head:
+ops api payload generated: /home/deploy/ai_media_os/data/reports/ops_api_payload_latest.json
+
+stderr_head:
+(none)
+--------------------------------------------------------------------------------
+[12] step: ops_status_light_build
+timestamp_start: 2026-03-14T10:03:01.771917+00:00
+timestamp_end: 2026-03-14T10:03:01.862918+00:00
+returncode: 0
+status: PASS
+cmd: python3 -m reporting.run_ops_status_light_build
+stdout_head:
+ops status light generated: /home/deploy/ai_media_os/data/reports/ops_status_light_latest.json
+
+stderr_head:
+(none)
+--------------------------------------------------------------------------------
+[13] step: ops_manifest_build
+timestamp_start: 2026-03-14T10:03:01.862972+00:00
+timestamp_end: 2026-03-14T10:03:01.942950+00:00
+returncode: 0
+status: PASS
+cmd: python3 -m reporting.run_ops_manifest_build
+stdout_head:
+ops manifest generated: /home/deploy/ai_media_os/data/reports/ops_manifest_latest.json
+
+stderr_head:
+(none)
+--------------------------------------------------------------------------------
+[14] step: ops_home_payload_build
+timestamp_start: 2026-03-14T10:03:01.943690+00:00
+timestamp_end: 2026-03-14T10:03:02.031666+00:00
+returncode: 0
+status: PASS
+cmd: python3 -m reporting.run_ops_home_payload_build
+stdout_head:
+ops home payload generated: /home/deploy/ai_media_os/data/reports/ops_home_payload_latest.json
+
+stderr_head:
+(none)
+--------------------------------------------------------------------------------
+[15] step: ops_sidebar_build
+timestamp_start: 2026-03-14T10:03:02.033265+00:00
+timestamp_end: 2026-03-14T10:03:02.119158+00:00
+returncode: 0
+status: PASS
+cmd: python3 -m reporting.run_ops_sidebar_build
+stdout_head:
+ops sidebar generated: /home/deploy/ai_media_os/data/reports/ops_sidebar_latest.json
+
+stderr_head:
+(none)
+--------------------------------------------------------------------------------
+[16] step: ops_tabs_build
+timestamp_start: 2026-03-14T10:03:02.119963+00:00
+timestamp_end: 2026-03-14T10:03:02.245401+00:00
+returncode: 0
+status: PASS
+cmd: python3 -m reporting.run_ops_tabs_build
+stdout_head:
+ops tabs generated: /home/deploy/ai_media_os/data/reports/ops_tabs_latest.json
+
+stderr_head:
+(none)
+--------------------------------------------------------------------------------
+[17] step: ops_header_build
+timestamp_start: 2026-03-14T10:03:02.245904+00:00
+timestamp_end: 2026-03-14T10:03:02.339124+00:00
+returncode: 0
+status: PASS
+cmd: python3 -m reporting.run_ops_header_build
+stdout_head:
+ops header generated: /home/deploy/ai_media_os/data/reports/ops_header_latest.json
+
+stderr_head:
+(none)
+--------------------------------------------------------------------------------
+[18] step: ops_widgets_build
+timestamp_start: 2026-03-14T10:03:02.339190+00:00
+timestamp_end: 2026-03-14T10:03:02.420092+00:00
+returncode: 0
+status: PASS
+cmd: python3 -m reporting.run_ops_widgets_build
+stdout_head:
+ops widgets generated: /home/deploy/ai_media_os/data/reports/ops_widgets_latest.json
+
+stderr_head:
+(none)
+--------------------------------------------------------------------------------
+[19] step: ops_layout_build
+timestamp_start: 2026-03-14T10:03:02.420321+00:00
+timestamp_end: 2026-03-14T10:03:02.504755+00:00
+returncode: 0
+status: PASS
+cmd: python3 -m reporting.run_ops_layout_build
+stdout_head:
+ops layout generated: /home/deploy/ai_media_os/data/reports/ops_layout_latest.json
+
+stderr_head:
+(none)
+--------------------------------------------------------------------------------
+[20] step: ops_gui_schema_build
+timestamp_start: 2026-03-14T10:03:02.506770+00:00
+timestamp_end: 2026-03-14T10:03:02.593755+00:00
+returncode: 0
+status: PASS
+cmd: python3 -m reporting.run_ops_gui_schema_build
+stdout_head:
+ops gui schema generated: /home/deploy/ai_media_os/data/reports/ops_gui_schema_latest.json
+
+stderr_head:
+(none)
+--------------------------------------------------------------------------------
+[21] step: ops_bootstrap_build
+timestamp_start: 2026-03-14T10:03:02.593822+00:00
+timestamp_end: 2026-03-14T10:03:02.676287+00:00
+returncode: 0
+status: PASS
+cmd: python3 -m reporting.run_ops_bootstrap_build
+stdout_head:
+ops bootstrap generated: /home/deploy/ai_media_os/data/reports/ops_bootstrap_latest.json
+
+stderr_head:
+(none)
+--------------------------------------------------------------------------------
+[22] step: ops_gui_preview_build
+timestamp_start: 2026-03-14T10:03:02.676921+00:00
+timestamp_end: 2026-03-14T10:03:02.763366+00:00
+returncode: 0
+status: PASS
+cmd: python3 -m reporting.run_ops_gui_preview_build
+stdout_head:
+ops gui preview generated: /home/deploy/ai_media_os/data/reports/ops_gui_preview_latest.html
+
+stderr_head:
+(none)
+--------------------------------------------------------------------------------
+[23] step: mock_api_build
+timestamp_start: 2026-03-14T10:03:02.763939+00:00
+timestamp_end: 2026-03-14T10:03:02.855081+00:00
+returncode: 0
+status: PASS
+cmd: python3 -m reporting.run_mock_api_build
+stdout_head:
+mock api home generated: /home/deploy/ai_media_os/data/reports/mock_api_home_latest.json
+
+stderr_head:
+(none)
+--------------------------------------------------------------------------------
+FINAL SUMMARY
+{
+  "total": 23,
+  "pass_count": 23,
+  "fail_count": 0,
+  "overall": "PASS"
+}

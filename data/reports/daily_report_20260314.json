@@ -1,0 +1,35 @@
+{
+  "report_date": "20260314",
+  "generated_at": "2026-03-15T10:40:57.341012+00:00",
+  "success_count": 0,
+  "skipped_count": 3,
+  "failed_count": 2,
+  "draft_count": 2,
+  "retry_queued_count": 0,
+  "combined_count": 0,
+  "price_only_count": 0,
+  "release_only_count": 0,
+  "failed_slugs": [
+    "fail_0000-sale-article",
+    "fail_0001-sale-article"
+  ],
+  "skipped_slugs": [
+    "skip_0000-sale-article",
+    "skip_0001-sale-article",
+    "skip_0002-sale-article"
+  ],
+  "draft_slugs": [
+    "draft_0000-sale-article",
+    "draft_0001-sale-article"
+  ],
+  "completion_rate": 0.0,
+  "kpi_summary": {
+    "generated_at": "2026-03-14T04:25:23.800986+00:00",
+    "health_score": 70,
+    "health_grade": "C",
+    "anomaly_overall": "WARNING",
+    "alert_total": 0,
+    "retry_queued_count": 0,
+    "latest_archive": "/home/deploy/ai_media_os/data/archives/ops_archive_20260314_132424.zip"
+  }
+}

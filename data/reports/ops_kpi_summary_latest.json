@@ -1,0 +1,148 @@
+{
+  "generated_at": "2026-03-15T10:40:57.604551+00:00",
+  "schema_version": "1.0",
+  "kpis": [
+    {
+      "key": "success_count",
+      "label": "成功件数",
+      "value": 0,
+      "category": "daily"
+    },
+    {
+      "key": "skipped_count",
+      "label": "スキップ件数",
+      "value": 3,
+      "category": "daily"
+    },
+    {
+      "key": "failed_count",
+      "label": "失敗件数",
+      "value": 2,
+      "category": "daily"
+    },
+    {
+      "key": "draft_count",
+      "label": "Draft件数",
+      "value": 2,
+      "category": "daily"
+    },
+    {
+      "key": "retry_queued_count",
+      "label": "Retry Queue件数",
+      "value": 0,
+      "category": "daily"
+    },
+    {
+      "key": "health_score",
+      "label": "Health Score",
+      "value": 70,
+      "category": "status"
+    },
+    {
+      "key": "health_grade",
+      "label": "Health Grade",
+      "value": "C",
+      "category": "status"
+    },
+    {
+      "key": "anomaly_overall",
+      "label": "Anomaly Status",
+      "value": "WARNING",
+      "category": "status"
+    },
+    {
+      "key": "alert_count",
+      "label": "Alert件数",
+      "value": 4,
+      "category": "status"
+    },
+    {
+      "key": "weekly_total_success_count",
+      "label": "週次成功合計",
+      "value": 0,
+      "category": "weekly"
+    },
+    {
+      "key": "weekly_total_failed_count",
+      "label": "週次失敗合計",
+      "value": 10,
+      "category": "weekly"
+    },
+    {
+      "key": "monthly_total_success_count",
+      "label": "月次成功合計",
+      "value": 0,
+      "category": "monthly"
+    },
+    {
+      "key": "monthly_total_failed_count",
+      "label": "月次失敗合計",
+      "value": 10,
+      "category": "monthly"
+    }
+  ],
+  "snapshots": {
+    "daily": {
+      "report_date": "20260314",
+      "success_count": 0,
+      "skipped_count": 3,
+      "failed_count": 2,
+      "draft_count": 2,
+      "retry_queued_count": 0
+    },
+    "weekly": {
+      "report_week": "2026W11",
+      "total_success_count": 0,
+      "total_failed_count": 10
+    },
+    "monthly": {
+      "report_month": "202603",
+      "total_success_count": 0,
+      "total_failed_count": 10
+    },
+    "status": {
+      "health_score": 70,
+      "health_grade": "C",
+      "anomaly_overall": "WARNING",
+      "alert_count": 4
+    }
+  },
+  "status": {
+    "partial": false,
+    "ready": true,
+    "missing_source_keys": [],
+    "fail_safe": true
+  },
+  "sources": {
+    "daily_report": {
+      "path": "data/reports/daily_report_20260314.json",
+      "exists": true,
+      "loaded": true,
+      "updated_at": "2026-03-15T10:40:57.341420+00:00"
+    },
+    "weekly_report": {
+      "path": "data/reports/weekly_report_2026W11.json",
+      "exists": true,
+      "loaded": true,
+      "updated_at": "2026-03-15T10:40:57.433420+00:00"
+    },
+    "monthly_report": {
+      "path": "data/reports/monthly_report_202603.json",
+      "exists": true,
+      "loaded": true,
+      "updated_at": "2026-03-15T10:40:57.518420+00:00"
+    },
+    "status_light": {
+      "path": "data/reports/ops_status_light_latest.json",
+      "exists": true,
+      "loaded": true,
+      "updated_at": "2026-03-15T00:25:56.038261+00:00"
+    },
+    "alert_center": {
+      "path": "data/reports/ops_alert_center_latest.json",
+      "exists": true,
+      "loaded": true,
+      "updated_at": "2026-03-15T00:25:57.420273+00:00"
+    }
+  }
+}

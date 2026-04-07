@@ -1,0 +1,21 @@
+{
+  "generated_at": "2026-03-14T03:17:14.966214+00:00",
+  "total_days": 1,
+  "release_count": 1,
+  "review_count": 0,
+  "hold_count": 0,
+  "latest_decision": "release",
+  "recent_days": [
+    {
+      "date": "2026-03-14",
+      "decision": "release",
+      "health_score": 70,
+      "anomaly_overall": "WARNING"
+    }
+  ],
+  "source": {
+    "history_path": "/home/deploy/ai_media_os/data/kpi/release_readiness_history.jsonl",
+    "history_records": 12,
+    "limit_days": 7
+  }
+}

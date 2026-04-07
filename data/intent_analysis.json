@@ -1,0 +1,107 @@
+[
+  {
+    "work_id": "manga_0001",
+    "title": "呪術廻戦",
+    "keyword": "呪術廻戦 何巻まで",
+    "article_type": "volume_guide",
+    "intent": "巻数確認"
+  },
+  {
+    "work_id": "manga_0001",
+    "title": "呪術廻戦",
+    "keyword": "呪術廻戦 最新巻",
+    "article_type": "latest_volume",
+    "intent": "最新巻確認"
+  },
+  {
+    "work_id": "manga_0001",
+    "title": "呪術廻戦",
+    "keyword": "呪術廻戦 全巻",
+    "article_type": "summary",
+    "intent": "まとめ買い"
+  },
+  {
+    "work_id": "manga_0001",
+    "title": "呪術廻戦",
+    "keyword": "呪術廻戦 セール",
+    "article_type": "sale_article",
+    "intent": "安く買いたい"
+  },
+  {
+    "work_id": "manga_0001",
+    "title": "呪術廻戦",
+    "keyword": "呪術廻戦 評価",
+    "article_type": "work_article",
+    "intent": "評判確認"
+  },
+  {
+    "work_id": "manga_0002",
+    "title": "葬送のフリーレン",
+    "keyword": "葬送のフリーレン 何巻まで",
+    "article_type": "volume_guide",
+    "intent": "巻数確認"
+  },
+  {
+    "work_id": "manga_0002",
+    "title": "葬送のフリーレン",
+    "keyword": "葬送のフリーレン 最新巻",
+    "article_type": "latest_volume",
+    "intent": "最新巻確認"
+  },
+  {
+    "work_id": "manga_0002",
+    "title": "葬送のフリーレン",
+    "keyword": "葬送のフリーレン 全巻",
+    "article_type": "summary",
+    "intent": "まとめ買い"
+  },
+  {
+    "work_id": "manga_0002",
+    "title": "葬送のフリーレン",
+    "keyword": "葬送のフリーレン セール",
+    "article_type": "sale_article",
+    "intent": "安く買いたい"
+  },
+  {
+    "work_id": "manga_0002",
+    "title": "葬送のフリーレン",
+    "keyword": "葬送のフリーレン 評価",
+    "article_type": "work_article",
+    "intent": "評判確認"
+  },
+  {
+    "work_id": "lightnovel_0001",
+    "title": "無職転生",
+    "keyword": "無職転生 何巻まで",
+    "article_type": "volume_guide",
+    "intent": "巻数確認"
+  },
+  {
+    "work_id": "lightnovel_0001",
+    "title": "無職転生",
+    "keyword": "無職転生 最新巻",
+    "article_type": "latest_volume",
+    "intent": "最新巻確認"
+  },
+  {
+    "work_id": "lightnovel_0001",
+    "title": "無職転生",
+    "keyword": "無職転生 全巻",
+    "article_type": "summary",
+    "intent": "まとめ買い"
+  },
+  {
+    "work_id": "lightnovel_0001",
+    "title": "無職転生",
+    "keyword": "無職転生 セール",
+    "article_type": "sale_article",
+    "intent": "安く買いたい"
+  },
+  {
+    "work_id": "lightnovel_0001",
+    "title": "無職転生",
+    "keyword": "無職転生 評価",
+    "article_type": "work_article",
+    "intent": "評判確認"
+  }
+]

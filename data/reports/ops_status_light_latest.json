@@ -1,0 +1,34 @@
+{
+  "generated_at": "2026-03-15T12:32:43.426682+00:00",
+  "schema_version": "1.0",
+  "decision": "RELEASE",
+  "badge_text": "RELEASE | Health C | WARNING",
+  "health_score": 70,
+  "health_grade": "C",
+  "anomaly_overall": "WARNING",
+  "latest_daily_report": "/home/deploy/ai_media_os/data/reports/daily_report_20260314.json",
+  "latest_archive": "/home/deploy/ai_media_os/data/archives/ops_archive_20260314_195353.zip",
+  "recommended_action": "リリース可。軽微警告を運用監視に登録し、次回 ops cycle で再確認",
+  "recent_trend": {
+    "release_decisions": [
+      "release",
+      "release",
+      "release"
+    ],
+    "health_scores": [
+      70,
+      70,
+      90
+    ],
+    "anomaly_overall": [
+      "WARNING",
+      "WARNING",
+      "OK"
+    ]
+  },
+  "source": {
+    "ops_api_payload_json": "/home/deploy/ai_media_os/data/reports/ops_api_payload_latest.json",
+    "status_badge_json": "/home/deploy/ai_media_os/data/reports/status_badge_latest.json",
+    "release_readiness_json": "/home/deploy/ai_media_os/data/reports/release_readiness_latest.json"
+  }
+}

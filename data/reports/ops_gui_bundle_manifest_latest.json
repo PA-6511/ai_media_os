@@ -1,0 +1,140 @@
+{
+  "generated_at": "2026-03-15T12:32:45.736917+00:00",
+  "schema_version": "1.0",
+  "json_assets": [
+    {
+      "key": "bootstrap",
+      "path": "data/reports/ops_bootstrap_latest.json",
+      "exists": true,
+      "size_bytes": 16805,
+      "updated_at": "2026-03-15T12:32:44.456441+00:00"
+    },
+    {
+      "key": "home_payload",
+      "path": "data/reports/ops_home_payload_latest.json",
+      "exists": true,
+      "size_bytes": 7026,
+      "updated_at": "2026-03-15T12:32:44.297439+00:00"
+    },
+    {
+      "key": "sidebar",
+      "path": "data/reports/ops_sidebar_latest.json",
+      "exists": true,
+      "size_bytes": 3117,
+      "updated_at": "2026-03-15T12:32:43.921435+00:00"
+    },
+    {
+      "key": "tabs",
+      "path": "data/reports/ops_tabs_latest.json",
+      "exists": true,
+      "size_bytes": 1702,
+      "updated_at": "2026-03-15T12:32:43.996436+00:00"
+    },
+    {
+      "key": "widgets",
+      "path": "data/reports/ops_widgets_latest.json",
+      "exists": true,
+      "size_bytes": 3270,
+      "updated_at": "2026-03-15T12:32:44.063437+00:00"
+    },
+    {
+      "key": "layout",
+      "path": "data/reports/ops_layout_latest.json",
+      "exists": true,
+      "size_bytes": 2131,
+      "updated_at": "2026-03-15T12:32:44.132437+00:00"
+    },
+    {
+      "key": "header",
+      "path": "data/reports/ops_header_latest.json",
+      "exists": true,
+      "size_bytes": 323,
+      "updated_at": "2026-03-15T12:32:44.211438+00:00"
+    },
+    {
+      "key": "gui_schema",
+      "path": "data/reports/ops_gui_schema_latest.json",
+      "exists": true,
+      "size_bytes": 32858,
+      "updated_at": "2026-03-15T12:32:44.363440+00:00"
+    },
+    {
+      "key": "mock_api",
+      "path": "data/reports/mock_api_home_latest.json",
+      "exists": true,
+      "size_bytes": 37146,
+      "updated_at": "2026-03-15T12:32:44.566442+00:00"
+    },
+    {
+      "key": "cards",
+      "path": "data/reports/ops_cards_latest.json",
+      "exists": true,
+      "size_bytes": 2055,
+      "updated_at": "2026-03-15T12:32:43.853434+00:00"
+    },
+    {
+      "key": "manifest",
+      "path": "data/reports/ops_manifest_latest.json",
+      "exists": true,
+      "size_bytes": 1321,
+      "updated_at": "2026-03-15T12:32:43.669432+00:00"
+    }
+  ],
+  "html_assets": [
+    {
+      "key": "portal",
+      "path": "data/reports/ops_portal_latest.html",
+      "exists": true,
+      "size_bytes": 8691,
+      "updated_at": "2026-03-15T12:32:43.508430+00:00"
+    },
+    {
+      "key": "home",
+      "path": "data/reports/ops_home_latest.html",
+      "exists": true,
+      "size_bytes": 6669,
+      "updated_at": "2026-03-15T12:32:43.597431+00:00"
+    },
+    {
+      "key": "gui_preview",
+      "path": "data/reports/ops_gui_preview_latest.html",
+      "exists": true,
+      "size_bytes": 13756,
+      "updated_at": "2026-03-15T12:32:44.653443+00:00"
+    }
+  ],
+  "markdown_assets": [
+    {
+      "key": "checklist",
+      "path": "docs/daily_checklist_latest.md",
+      "exists": true,
+      "size_bytes": 879,
+      "updated_at": "2026-03-14T02:36:25.169695+00:00"
+    },
+    {
+      "key": "runbook",
+      "path": "docs/runbook_latest.md",
+      "exists": true,
+      "size_bytes": 3475,
+      "updated_at": "2026-03-14T00:26:04.428555+00:00"
+    }
+  ],
+  "entrypoints": {
+    "bootstrap": "data/reports/ops_bootstrap_latest.json",
+    "home_payload": "data/reports/ops_home_payload_latest.json",
+    "mock_api": "data/reports/mock_api_home_latest.json",
+    "preview_html": "data/reports/ops_gui_preview_latest.html"
+  },
+  "summary": {
+    "json_count": 11,
+    "html_count": 3,
+    "markdown_count": 2,
+    "total_assets": 16,
+    "missing_count": 0
+  },
+  "status": {
+    "ready": true,
+    "missing_keys": [],
+    "fail_safe": true
+  }
+}

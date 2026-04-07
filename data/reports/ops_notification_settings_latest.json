@@ -1,0 +1,53 @@
+{
+  "generated_at": "2026-03-15T10:39:14.308531+00:00",
+  "schema_version": "1.0",
+  "notifications": {
+    "notify_on_ok": false,
+    "notify_on_warning": true,
+    "notify_on_critical": true
+  },
+  "thresholds": {
+    "failed_count_warning": 3,
+    "failed_count_critical": 5,
+    "retry_queued_warning": 5,
+    "retry_queued_critical": 10,
+    "all_signal_zero_warning_days": 2,
+    "smoke_failed_warning": 1,
+    "smoke_failed_critical": 2
+  },
+  "channels": {
+    "slack_configured": false,
+    "slack_webhook_env": "SLACK_WEBHOOK_URL"
+  },
+  "context": {
+    "alert_center_overall": "warning",
+    "alert_count": 4,
+    "release_readiness_decision": "release"
+  },
+  "status": {
+    "partial": false,
+    "ready": true,
+    "missing_source_keys": [],
+    "fail_safe": true
+  },
+  "sources": {
+    "ops_settings": {
+      "path": "config/ops_settings.json",
+      "exists": true,
+      "loaded": true,
+      "updated_at": "2026-03-14T09:48:19.049406+00:00"
+    },
+    "alert_center": {
+      "path": "data/reports/ops_alert_center_latest.json",
+      "exists": true,
+      "loaded": true,
+      "updated_at": "2026-03-15T00:25:57.420273+00:00"
+    },
+    "release_readiness": {
+      "path": "data/reports/release_readiness_latest.json",
+      "exists": true,
+      "loaded": true,
+      "updated_at": "2026-03-15T00:25:55.674258+00:00"
+    }
+  }
+}

@@ -1,0 +1,121 @@
+{
+  "generated_at": "2026-03-15T12:32:43.922202+00:00",
+  "schema_version": "1.0",
+  "sections": [
+    {
+      "key": "today",
+      "title": "Today",
+      "icon": "home",
+      "default_open": true,
+      "items": [
+        {
+          "key": "ops_home",
+          "label": "Ops Home",
+          "path": "data/reports/ops_home_latest.html",
+          "icon": "home"
+        },
+        {
+          "key": "ops_portal",
+          "label": "Ops Portal",
+          "path": "data/reports/ops_portal_latest.html",
+          "icon": "compass"
+        },
+        {
+          "key": "status_light",
+          "label": "Today's Decision (RELEASE)",
+          "path": "data/reports/ops_status_light_latest.json",
+          "icon": "pulse"
+        }
+      ]
+    },
+    {
+      "key": "dashboards",
+      "title": "Dashboards",
+      "icon": "chart",
+      "default_open": true,
+      "items": [
+        {
+          "key": "daily_dashboard",
+          "label": "Daily Dashboard (Health C)",
+          "path": "data/reports/dashboard_latest.html",
+          "icon": "chart"
+        },
+        {
+          "key": "weekly_dashboard",
+          "label": "Weekly Dashboard",
+          "path": "data/reports/weekly_dashboard_latest.html",
+          "icon": "chart"
+        },
+        {
+          "key": "monthly_dashboard",
+          "label": "Monthly Dashboard",
+          "path": "data/reports/monthly_dashboard_latest.html",
+          "icon": "chart"
+        }
+      ]
+    },
+    {
+      "key": "artifacts",
+      "title": "Artifacts",
+      "icon": "database",
+      "default_open": false,
+      "items": [
+        {
+          "key": "ops_summary",
+          "label": "Ops Summary JSON",
+          "path": "data/reports/ops_summary_latest.json",
+          "icon": "database"
+        },
+        {
+          "key": "ops_api_payload",
+          "label": "Ops API Payload JSON",
+          "path": "data/reports/ops_api_payload_latest.json",
+          "icon": "database"
+        },
+        {
+          "key": "release_readiness",
+          "label": "Release Readiness JSON",
+          "path": "data/reports/release_readiness_latest.json",
+          "icon": "pulse"
+        },
+        {
+          "key": "status_badge",
+          "label": "Status Badge JSON",
+          "path": "data/reports/status_badge_latest.json",
+          "icon": "tag"
+        },
+        {
+          "key": "artifact_index",
+          "label": "Artifact Index",
+          "path": "data/reports/artifact_index_latest.html",
+          "icon": "list"
+        }
+      ]
+    },
+    {
+      "key": "docs",
+      "title": "Docs",
+      "icon": "book",
+      "default_open": false,
+      "items": [
+        {
+          "key": "daily_checklist",
+          "label": "Daily Checklist",
+          "path": "docs/daily_checklist_latest.md",
+          "icon": "check-square"
+        },
+        {
+          "key": "runbook",
+          "label": "Runbook",
+          "path": "docs/runbook_latest.md",
+          "icon": "book"
+        }
+      ]
+    }
+  ],
+  "meta": {
+    "source_navigation_exists": false,
+    "source_manifest_exists": true,
+    "source_status_exists": true
+  }
+}

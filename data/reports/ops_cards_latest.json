@@ -1,0 +1,72 @@
+{
+  "generated_at": "2026-03-15T12:32:43.854313+00:00",
+  "schema_version": "1.0",
+  "cards": [
+    {
+      "title": "Today's Decision",
+      "subtitle": "release / review / hold",
+      "status": "RELEASE",
+      "path": "data/reports/ops_portal_latest.html"
+    },
+    {
+      "title": "Status Badge",
+      "subtitle": "RELEASE | Health C | WARNING",
+      "status": "RELEASE",
+      "path": "data/reports/status_badge_latest.json"
+    },
+    {
+      "title": "Daily Checklist",
+      "subtitle": "daily operations checklist",
+      "status": "READY",
+      "path": "docs/daily_checklist_latest.md"
+    },
+    {
+      "title": "Ops Portal",
+      "subtitle": "operations portal overview",
+      "status": "WARNING",
+      "path": "data/reports/ops_portal_latest.html"
+    },
+    {
+      "title": "Ops Home",
+      "subtitle": "runbook and quick links",
+      "status": "RELEASE",
+      "path": "data/reports/ops_home_latest.html"
+    },
+    {
+      "title": "Latest Daily Dashboard",
+      "subtitle": "daily metrics dashboard",
+      "status": "C",
+      "path": "data/reports/dashboard_latest.html"
+    },
+    {
+      "title": "Latest Weekly Dashboard",
+      "subtitle": "weekly metrics dashboard",
+      "status": "READY",
+      "path": "data/reports/weekly_dashboard_latest.html"
+    },
+    {
+      "title": "Latest Monthly Dashboard",
+      "subtitle": "monthly metrics dashboard",
+      "status": "READY",
+      "path": "data/reports/monthly_dashboard_latest.html"
+    },
+    {
+      "title": "Latest Archive",
+      "subtitle": "latest backup archive",
+      "status": "AVAILABLE",
+      "path": "data/archives/ops_archive_20260314_195353.zip"
+    },
+    {
+      "title": "Latest Summary JSON",
+      "subtitle": "ops summary aggregate",
+      "status": "RELEASE",
+      "path": "data/reports/ops_summary_latest.json"
+    },
+    {
+      "title": "Runbook",
+      "subtitle": "リリース可。軽微警告を運用監視に登録し、次回 ops cycle で再確認",
+      "status": "READY",
+      "path": "docs/runbook_latest.md"
+    }
+  ]
+}

@@ -1,0 +1,106 @@
+{
+  "generated_at": "2026-03-15T11:22:54.913484+00:00",
+  "schema_version": "1.0",
+  "models": [
+    {
+      "severity": "critical",
+      "badge": "CRITICAL",
+      "color_hint": "red",
+      "title_template": "Critical Issue Detected",
+      "action_template": "即時対応してください。復旧後に再チェックを実行してください。"
+    },
+    {
+      "severity": "warning",
+      "badge": "WARNING",
+      "color_hint": "amber",
+      "title_template": "Warning Detected",
+      "action_template": "詳細を確認し、必要な修正を実施してください。"
+    },
+    {
+      "severity": "review",
+      "badge": "REVIEW",
+      "color_hint": "blue",
+      "title_template": "Review Required",
+      "action_template": "判断保留です。担当者レビュー後に最終判断してください。"
+    },
+    {
+      "severity": "info",
+      "badge": "INFO",
+      "color_hint": "teal",
+      "title_template": "Information",
+      "action_template": "状況を確認し、通常運用を継続してください。"
+    },
+    {
+      "severity": "ok",
+      "badge": "OK",
+      "color_hint": "green",
+      "title_template": "All Systems Nominal",
+      "action_template": "追加対応は不要です。定期監視を継続してください。"
+    }
+  ],
+  "active": {
+    "severities": [
+      "warning",
+      "review",
+      "info"
+    ],
+    "reasons": [
+      "warning/integrity warning/retry queue/mock api 状態を検出",
+      "readiness decision が review/hold",
+      "informational alert を検出"
+    ],
+    "snapshot": {
+      "anomaly_overall": "WARNING",
+      "decision": "review",
+      "decision_severity": "warning",
+      "integrity_overall": "WARNING",
+      "retry_queued": 0,
+      "mock_api_missing": false,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 2
+    }
+  },
+  "summary": {
+    "model_count": 5,
+    "active_severity_count": 3
+  },
+  "status": {
+    "partial": false,
+    "ready": true,
+    "missing_source_keys": [],
+    "fail_safe": true
+  },
+  "sources": {
+    "alert_center": {
+      "path": "data/reports/ops_alert_center_latest.json",
+      "exists": true,
+      "loaded": true,
+      "updated_at": "2026-03-15T11:22:54.690255+00:00"
+    },
+    "decision_summary": {
+      "path": "data/reports/ops_decision_summary_latest.json",
+      "exists": true,
+      "loaded": true,
+      "updated_at": "2026-03-15T11:22:54.764256+00:00"
+    },
+    "gui_integrity": {
+      "path": "data/reports/ops_gui_integrity_latest.json",
+      "exists": true,
+      "loaded": true,
+      "updated_at": "2026-03-15T11:22:54.843257+00:00"
+    },
+    "gui_health": {
+      "path": "data/reports/ops_gui_health_latest.json",
+      "exists": true,
+      "loaded": true,
+      "updated_at": "2026-03-15T10:44:56.625701+00:00"
+    },
+    "mock_api": {
+      "path": "data/reports/mock_api_home_latest.json",
+      "exists": true,
+      "loaded": true,
+      "updated_at": "2026-03-15T11:15:23.397125+00:00"
+    }
+  }
+}

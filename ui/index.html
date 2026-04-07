@@ -1,0 +1,726 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI_MEDIA_OS_GUI</title>
+    <link rel="stylesheet" href="./main.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="サイドバー">
+        <h1 class="logo">AI_MEDIA_OS_GUI</h1>
+        <nav class="menu" aria-label="メニュー">
+          <a href="#" class="menu-item is-active" data-nav="dashboard">Dashboard</a>
+          <a href="#" class="menu-item" data-nav="blocks">Block管理</a>
+          <a href="#" class="menu-item" data-nav="connections">接続/切断管理</a>
+          <a href="#" class="menu-item" data-nav="export-delete">Export/Delete管理</a>
+          <a href="#" class="menu-item" data-nav="audit">Audit Log</a>
+          <a href="#" class="menu-item" data-nav="settings">Security/Settings</a>
+        </nav>
+      </aside>
+
+      <div class="workspace">
+        <header class="topbar" aria-label="上部ヘッダー">
+          <h2 id="topbar-title">ダッシュボード</h2>
+        </header>
+
+        <main class="content" id="page-dashboard" data-page="dashboard" data-ui-region="dashboard" aria-label="Dashboard">
+          <section class="dashboard" id="dashboard-overview" data-ui-region="dashboard-overview" aria-label="Dashboard 概要">
+            <p class="dashboard-title">AI_MEDIA_OS_GUI ダミーUI</p>
+
+            <div class="dashboard-grid">
+              <article class="dashboard-card">
+                <p class="card-label">稼働中Block数</p>
+                <p class="card-value is-ok">18</p>
+              </article>
+
+              <article class="dashboard-card">
+                <p class="card-label">切断中Block数</p>
+                <p class="card-value is-warn">4</p>
+              </article>
+
+              <article class="dashboard-card">
+                <p class="card-label">要確認アラート数</p>
+                <p class="card-value is-danger">2</p>
+              </article>
+
+              <article class="dashboard-card dashboard-log">
+                <p class="card-label">最新操作ログ</p>
+                <ul>
+                  <li>09:41 Block-A12 を起動</li>
+                  <li>09:32 Block-C07 を切断</li>
+                  <li>09:10 Export設定を更新</li>
+                </ul>
+              </article>
+            </div>
+
+            <section class="block-list-section" aria-label="Dashboard 実データ" style="margin-top:16px">
+              <div class="section-heading">
+                <p class="dashboard-title">Dashboard 実データ</p>
+                <p class="section-copy">集計値</p>
+              </div>
+
+              <div class="dashboard-grid" id="dashboard-stats-panel">
+                <article class="dashboard-card">
+                  <p class="card-label">totalBlocks</p>
+                  <p class="card-value" id="totalBlocks">-</p>
+                </article>
+
+                <article class="dashboard-card">
+                  <p class="card-label">connectedBlocks</p>
+                  <p class="card-value" id="connectedBlocks">-</p>
+                </article>
+
+                <article class="dashboard-card">
+                  <p class="card-label">disconnectedBlocks</p>
+                  <p class="card-value" id="disconnectedBlocks">-</p>
+                </article>
+
+                <article class="dashboard-card">
+                  <p class="card-label">frozenBlocks</p>
+                  <p class="card-value" id="frozenBlocks">-</p>
+                </article>
+
+                <article class="dashboard-card">
+                  <p class="card-label">activeBlocks</p>
+                  <p class="card-value" id="activeBlocks">-</p>
+                </article>
+
+                <article class="dashboard-card">
+                  <p class="card-label">deleteRequestedBlocks</p>
+                  <p class="card-value" id="deleteRequestedBlocks">-</p>
+                </article>
+
+                <article class="dashboard-card dashboard-log">
+                  <p class="card-label">recentLog</p>
+                  <p id="recentLog">表示できるログはありません</p>
+                </article>
+              </div>
+            </section>
+
+            <section class="block-list-section" id="dashboard-block-list-section" data-ui-region="block-list" aria-label="Block管理一覧">
+              <div class="section-heading">
+                <p class="dashboard-title">Block管理一覧</p>
+                <p class="section-copy">ダミー Block 一覧</p>
+              </div>
+
+              <div id="block-operation-message" data-ui-region="message-area" hidden style="margin:0 0 12px;padding:8px 12px;border:1px solid rgba(148,163,184,0.2);border-radius:10px;font-size:12px;line-height:1.5;"></div>
+
+              <div class="table-shell">
+                <table class="block-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Block名</th>
+                      <th scope="col">種別</th>
+                      <th scope="col">状態</th>
+                      <th scope="col">接続状態</th>
+                      <th scope="col">Freeze状態</th>
+                      <th scope="col">最終更新</th>
+                      <th scope="col">操作</th>
+                    </tr>
+                  </thead>
+                  <tbody id="dashboard-blocks-body" data-ui-region="block-list-body"><!-- JS で描画 --></tbody>
+                </table>
+              </div>
+
+              <aside class="detail-panel" id="dashboard-block-detail-panel" data-ui-region="block-detail" aria-label="Block 詳細">
+                <div class="section-heading" style="margin-top:14px">
+                  <p class="dashboard-title">Block 詳細</p>
+                  <p class="section-copy" id="dashboard-block-detail-placeholder">Block が選択されていません</p>
+                </div>
+                <dl class="detail-grid" id="dashboard-block-detail-fields">
+                  <dt>id</dt><dd id="dashboard-detail-id">-</dd>
+                  <dt>name</dt><dd id="dashboard-detail-name">-</dd>
+                  <dt>type</dt><dd id="dashboard-detail-type">-</dd>
+                  <dt>status</dt><dd id="dashboard-detail-status">-</dd>
+                  <dt>connectionStatus</dt><dd id="dashboard-detail-connectionStatus">-</dd>
+                  <dt>freezeStatus</dt><dd id="dashboard-detail-freezeStatus">-</dd>
+                  <dt>handshakeStatus</dt><dd id="dashboard-detail-handshakeStatus">未取得</dd>
+                  <dt>updatedAt</dt><dd id="dashboard-detail-updatedAt">-</dd>
+                  <dt>deleteRequested</dt><dd id="dashboard-detail-deleteRequested">-</dd>
+                </dl>
+              </aside>
+            </section>
+
+            <section class="block-list-section" aria-label="Audit Log 一覧" style="margin-top:16px">
+              <div class="section-heading">
+                <p class="dashboard-title">Audit Log</p>
+                <p class="section-copy">最新5件</p>
+              </div>
+
+              <div class="table-shell">
+                <table class="block-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">timestamp</th>
+                      <th scope="col">action</th>
+                      <th scope="col">target</th>
+                      <th scope="col">result</th>
+                    </tr>
+                  </thead>
+                  <tbody id="dashboard-audit-log-body"><!-- JS で描画 --></tbody>
+                </table>
+              </div>
+            </section>
+
+            <section class="danger-modal-section" aria-label="危険操作モーダル">
+              <div class="section-heading">
+                <p class="dashboard-title">危険操作モーダル</p>
+                <p class="section-copy">見た目のみ</p>
+              </div>
+
+              <div class="danger-modal-grid">
+                <div class="danger-modal-stage">
+                  <div class="danger-modal-backdrop" data-auth-modal="export">
+                    <section class="danger-modal" aria-label="Export モーダル">
+                      <div class="danger-modal-header">
+                        <span class="modal-badge is-export">Export</span>
+                        <h3>Export 実行確認</h3>
+                        <p>対象 Block のデータを外部出力します。実行前に再認証してください。</p>
+                      </div>
+
+                      <div class="danger-alert is-export">
+                        <strong>確認事項</strong>
+                        <p>出力対象、保存先、取扱権限を確認してください。</p>
+                      </div>
+
+                      <div class="danger-form-grid">
+                        <label class="danger-field">
+                          <span>パスワード再入力</span>
+                          <input type="password" placeholder="パスワードを入力" data-auth-field="password" />
+                        </label>
+
+                        <label class="danger-field">
+                          <span>2FAコード</span>
+                          <input type="text" placeholder="000000" data-auth-field="twoFactorCode" />
+                        </label>
+
+                        <label class="danger-field">
+                          <span>確認テキスト</span>
+                          <input type="text" placeholder="EXPORT" data-auth-field="confirmationText" />
+                        </label>
+                      </div>
+
+                      <label class="danger-check">
+                        <input type="checkbox" data-auth-field="confirmed" />
+                        <span>内容を確認し、Export 実行の影響を理解しました</span>
+                      </label>
+
+                      <div class="danger-actions">
+                        <button class="modal-action is-cancel" type="button">キャンセル</button>
+                        <button class="modal-action is-export" type="button">実行</button>
+                      </div>
+                    </section>
+                  </div>
+                </div>
+
+                <div class="danger-modal-stage">
+                  <div class="danger-modal-backdrop is-delete" data-auth-modal="delete">
+                    <section class="danger-modal is-delete" aria-label="Delete モーダル">
+                      <div class="danger-modal-header">
+                        <span class="modal-badge is-delete">Delete</span>
+                        <h3>Delete 実行確認</h3>
+                        <p>この操作は対象データと関連設定を削除します。元に戻せません。</p>
+                      </div>
+
+                      <div class="danger-alert is-delete">
+                        <strong>強い警告</strong>
+                        <p>Delete は Export より危険度が高い操作です。削除後の復旧は想定していません。</p>
+                      </div>
+
+                      <div class="danger-form-grid">
+                        <label class="danger-field">
+                          <span>パスワード再入力</span>
+                          <input type="password" placeholder="パスワードを入力" data-auth-field="password" />
+                        </label>
+
+                        <label class="danger-field">
+                          <span>2FAコード</span>
+                          <input type="text" placeholder="000000" data-auth-field="twoFactorCode" />
+                        </label>
+
+                        <label class="danger-field">
+                          <span>確認テキスト</span>
+                          <input type="text" placeholder="DELETE" data-auth-field="confirmationText" />
+                        </label>
+                      </div>
+
+                      <label class="danger-check is-delete">
+                        <input type="checkbox" data-auth-field="confirmed" />
+                        <span>削除対象と影響範囲を確認し、Delete を実行することに同意します</span>
+                      </label>
+
+                      <div class="danger-actions">
+                        <button class="modal-action is-cancel" type="button">キャンセル</button>
+                        <button class="modal-action is-delete" type="button">実行</button>
+                      </div>
+                    </section>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </section>
+        </main>
+
+        <!-- ===================== Block管理 ===================== -->
+        <main class="content" id="page-blocks" data-page="blocks" data-ui-region="blocks" aria-label="Block管理" hidden>
+          <section>
+            <div class="section-heading">
+              <p class="dashboard-title">Block管理</p>
+              <div class="table-actions">
+                <button class="table-action is-connect" type="button" data-action="freeze">Freeze</button>
+                <button class="table-action is-disconnect" type="button" data-action="unfreeze">Unfreeze</button>
+              </div>
+            </div>
+
+            <section id="freeze-warning" class="block-list-section" data-ui-region="freeze-warning" aria-label="Freeze/Unfreeze 警告" hidden style="margin-top:12px" data-danger-flow="freeze-warning" data-warning-type="freeze" data-warning-block-id="">
+              <div class="danger-alert is-delete" id="freeze-warning-body" role="alert" aria-live="polite">
+                <strong id="freeze-warning-title">Freeze / Unfreeze 実行前の確認</strong>
+                <p id="freeze-warning-message">対象 Block を選択すると、操作前の確認事項を表示します。</p>
+                <p>対象 Block: <span id="freeze-warning-block-name">未選択</span></p>
+                <label class="danger-check is-delete" for="freeze-warning-confirm" style="margin-top:8px">
+                  <input id="freeze-warning-confirm" type="checkbox" />
+                  <span id="freeze-warning-confirm-label">警告内容を確認し、操作を継続します</span>
+                </label>
+
+                <div class="danger-actions" style="margin-top:10px">
+                  <button id="freeze-warning-cancel" class="modal-action is-cancel" type="button" data-freeze-warning-action="cancel">閉じる</button>
+                  <button id="freeze-warning-execute" class="modal-action is-delete" type="button" data-freeze-warning-action="execute">実行</button>
+                </div>
+              </div>
+
+              <div id="unfreeze-warning" hidden aria-hidden="true"></div>
+            </section>
+
+            <div class="table-shell" style="margin-top:14px">
+              <table class="block-table" id="blocks-table">
+                <thead>
+                  <tr>
+                    <th scope="col">Block名</th>
+                    <th scope="col">種別</th>
+                    <th scope="col">状態</th>
+                    <th scope="col">接続状態</th>
+                    <th scope="col">Freeze状態</th>
+                    <th scope="col">最終更新</th>
+                    <th scope="col">操作</th>
+                  </tr>
+                </thead>
+                <tbody id="blocks-table-body"><!-- JS で描画 --></tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- Block詳細パネル (JS で表示切替) -->
+          <aside class="detail-panel" id="block-detail" data-ui-region="block-detail" hidden>
+            <div class="detail-header">
+              <div>
+                <span class="dashboard-title">Block 詳細</span>
+                <p class="section-copy" id="block-detail-placeholder">Block が選択されていません</p>
+              </div>
+              <button class="table-action is-secondary" type="button" data-action="detail-close">✕ 閉じる</button>
+            </div>
+            <dl class="detail-grid">
+              <dt>id</dt><dd id="detail-id">-</dd>
+              <dt>name</dt><dd id="detail-name">-</dd>
+              <dt>type</dt><dd id="detail-type">-</dd>
+              <dt>status</dt><dd id="detail-status">-</dd>
+              <dt>connectionStatus</dt><dd id="detail-connectionStatus">-</dd>
+              <dt>freezeStatus</dt><dd id="detail-freezeStatus">-</dd>
+              <dt>handshakeStatus</dt><dd id="detail-handshakeStatus">未取得</dd>
+              <dt>updatedAt</dt><dd id="detail-updatedAt">-</dd>
+              <dt>deleteRequested</dt><dd id="detail-deleteRequested">-</dd>
+            </dl>
+            <div class="table-actions" style="margin-top:16px">
+              <button class="table-action is-connect"    type="button" data-action="connect">Connect</button>
+              <button class="table-action is-disconnect" type="button" data-action="disconnect">Disconnect</button>
+              <button class="table-action is-connect"    type="button" data-action="freeze">Freeze</button>
+              <button class="table-action is-disconnect" type="button" data-action="unfreeze">Unfreeze</button>
+            </div>
+          </aside>
+        </main>
+
+        <!-- ===================== 接続/切断管理 ===================== -->
+        <main class="content" id="page-connections" data-page="connections" data-ui-region="connection-management" aria-label="接続/切断管理" hidden>
+          <section>
+            <div class="section-heading">
+              <p class="dashboard-title">接続/切断管理</p>
+              <div class="table-actions">
+                <button class="table-action is-connect"    type="button" data-action="connect-all">全接続</button>
+                <button class="table-action is-disconnect" type="button" data-action="disconnect-all">全切断</button>
+              </div>
+            </div>
+            <div class="table-shell" style="margin-top:14px">
+              <table class="block-table" id="conn-table">
+                <thead>
+                  <tr>
+                    <th scope="col">Block名</th>
+                    <th scope="col">接続状態</th>
+                    <th scope="col">最終変更</th>
+                    <th scope="col">操作</th>
+                  </tr>
+                </thead>
+                <tbody id="conn-table-body"><!-- JS で描画 --></tbody>
+              </table>
+            </div>
+
+            <section class="block-list-section" id="connection-management-panel" data-ui-region="connection-management-panel" aria-label="接続/切断管理パネル" style="margin-top:16px">
+              <div class="section-heading">
+                <p class="dashboard-title">接続/切断管理パネル</p>
+                <p class="section-copy" id="connection-management-placeholder">接続状態とハンドシェイク状態を表示します</p>
+              </div>
+              <div class="table-shell" style="margin-top:14px">
+                <table class="block-table" id="connection-management-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Block名</th>
+                      <th scope="col">接続状態</th>
+                      <th scope="col">ハンドシェイク状態</th>
+                      <th scope="col">操作</th>
+                    </tr>
+                  </thead>
+                  <tbody id="connection-management-list">
+                    <tr id="connection-management-list-placeholder">
+                      <td colspan="4">表示できる接続情報はありません</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          </section>
+        </main>
+
+        <!-- ===================== Export/Delete管理 ===================== -->
+        <main class="content" id="page-export-delete" data-page="export-delete" data-ui-region="export-delete" aria-label="Export/Delete管理" hidden>
+          <section>
+            <div class="section-heading">
+              <p class="dashboard-title">Export/Delete管理</p>
+            </div>
+            <div class="table-shell" style="margin-top:14px">
+              <table class="block-table" id="exportdel-table">
+                <thead>
+                  <tr>
+                    <th scope="col">Block名</th>
+                    <th scope="col">種別</th>
+                    <th scope="col">状態</th>
+                    <th scope="col">操作</th>
+                  </tr>
+                </thead>
+                <tbody id="exportdel-table-body"><!-- JS で描画 --></tbody>
+              </table>
+            </div>
+
+            <section
+              id="lockguard-panel"
+              class="block-list-section"
+              aria-label="LockGuard 表示領域"
+              hidden
+              data-ui-region="lockguard"
+              data-danger-flow="lockguard"
+              data-lockguard-state="placeholder"
+              data-block-id=""
+              data-action-type="export"
+              style="margin-top:16px"
+            >
+              <div class="section-heading">
+                <p class="dashboard-title" id="lockguard-title">LockGuard</p>
+                <p class="section-copy" id="lockguard-danger-description">
+                  対象 Block を選択すると、再認証と確認項目を表示します。
+                </p>
+              </div>
+
+              <div class="dashboard-card" id="lockguard-body" style="margin-top:12px;padding:16px;max-width:720px">
+                <p id="lockguard-target-row">対象 Block: <strong id="lockguard-target-block" aria-live="polite">未選択</strong></p>
+                <p id="lockguard-action-row">操作種別: <strong id="lockguard-action-type" aria-live="polite">未選択</strong></p>
+
+                <div class="danger-form-grid" style="margin-top:12px">
+                  <label class="danger-field" id="lockguard-password-field" for="lockguard-password">
+                    <span>パスワード再入力</span>
+                    <input id="lockguard-password" type="password" placeholder="パスワードを再入力" autocomplete="current-password" />
+                  </label>
+
+                  <label class="danger-field" id="lockguard-2fa-field" for="lockguard-2fa-code">
+                    <span>2FAコード</span>
+                    <input id="lockguard-2fa-code" type="text" placeholder="000000" inputmode="numeric" />
+                  </label>
+
+                  <label class="danger-field" id="lockguard-confirmation-field" for="lockguard-confirmation-text">
+                    <span>確認テキスト</span>
+                    <input id="lockguard-confirmation-text" type="text" placeholder="EXPORT または DELETE を入力" />
+                  </label>
+                </div>
+
+                <label class="danger-check" id="lockguard-final-confirm-row" for="lockguard-final-confirm" style="margin-top:10px">
+                  <input id="lockguard-final-confirm" type="checkbox" />
+                  <span>内容を確認し、実行の影響を理解しました</span>
+                </label>
+
+                <div class="danger-actions" id="lockguard-actions" style="margin-top:10px">
+                  <button id="lockguard-cancel-button" class="modal-action is-cancel" type="button">キャンセル</button>
+                  <button id="lockguard-execute-button" class="modal-action is-delete" type="button">実行</button>
+                </div>
+              </div>
+            </section>
+          </section>
+
+          <!-- Export モーダル -->
+          <div class="danger-modal-stage" id="modal-export" style="display:none">
+            <div class="danger-modal-backdrop" data-auth-modal="export">
+              <section class="danger-modal" aria-label="Export モーダル">
+                <div class="danger-modal-header">
+                  <span class="modal-badge is-export">Export</span>
+                  <h3>Export 実行確認</h3>
+                  <p>対象 Block のデータを外部出力します。実行前に再認証してください。</p>
+                </div>
+                <div class="danger-alert is-export">
+                  <strong>確認事項</strong>
+                  <p>出力対象、保存先、取扱権限を確認してください。</p>
+                </div>
+                <div class="danger-form-grid">
+                  <label class="danger-field">
+                    <span>パスワード再入力</span>
+                    <input type="password" placeholder="パスワードを入力" data-auth-field="password" />
+                  </label>
+                  <label class="danger-field">
+                    <span>2FAコード</span>
+                    <input type="text" placeholder="000000" data-auth-field="twoFactorCode" />
+                  </label>
+                  <label class="danger-field">
+                    <span>確認テキスト</span>
+                    <input type="text" placeholder="EXPORT" data-auth-field="confirmationText" />
+                  </label>
+                </div>
+                <label class="danger-check">
+                  <input type="checkbox" data-auth-field="confirmed" />
+                  <span>内容を確認し、Export 実行の影響を理解しました</span>
+                </label>
+                <div class="danger-actions">
+                  <button class="modal-action is-cancel" type="button" data-modal-close="export">キャンセル</button>
+                  <button class="modal-action is-export" type="button" data-action="do-export">実行</button>
+                </div>
+              </section>
+            </div>
+          </div>
+
+          <!-- Delete モーダル -->
+          <div class="danger-modal-stage" id="modal-delete" style="display:none">
+            <div class="danger-modal-backdrop is-delete" data-auth-modal="delete">
+              <section class="danger-modal is-delete" aria-label="Delete モーダル">
+                <div class="danger-modal-header">
+                  <span class="modal-badge is-delete">Delete</span>
+                  <h3>Delete 実行確認</h3>
+                  <p>この操作は対象データと関連設定を削除します。元に戻せません。</p>
+                </div>
+                <div class="danger-alert is-delete">
+                  <strong>強い警告</strong>
+                  <p>Delete は Export より危険度が高い操作です。削除後の復旧は想定していません。</p>
+                </div>
+                <div class="danger-form-grid">
+                  <label class="danger-field">
+                    <span>パスワード再入力</span>
+                    <input type="password" placeholder="パスワードを入力" data-auth-field="password" />
+                  </label>
+                  <label class="danger-field">
+                    <span>2FAコード</span>
+                    <input type="text" placeholder="000000" data-auth-field="twoFactorCode" />
+                  </label>
+                  <label class="danger-field">
+                    <span>確認テキスト</span>
+                    <input type="text" placeholder="DELETE" data-auth-field="confirmationText" />
+                  </label>
+                </div>
+                <label class="danger-check is-delete">
+                  <input type="checkbox" data-auth-field="confirmed" />
+                  <span>削除対象と影響範囲を確認し、Delete を実行することに同意します</span>
+                </label>
+                <div class="danger-actions">
+                  <button class="modal-action is-cancel" type="button" data-modal-close="delete">キャンセル</button>
+                  <button class="modal-action is-delete" type="button" data-action="do-delete">実行</button>
+                </div>
+              </section>
+            </div>
+          </div>
+        </main>
+
+        <!-- ===================== Audit Log ===================== -->
+        <main class="content" id="page-audit" data-page="audit" data-ui-region="audit-log" aria-label="Audit Log" hidden>
+          <section id="audit-log-page" data-ui-region="audit-log-page">
+            <style>
+              #audit-log-page #audit-table thead,
+              #audit-log-page #audit-table tbody {
+                display: block;
+              }
+
+              #audit-log-page #audit-table thead tr,
+              #audit-log-page #audit-table tbody tr {
+                display: grid;
+                grid-template-columns: minmax(180px, 1.4fr) minmax(140px, 1fr) minmax(160px, 1fr) minmax(120px, 0.8fr) minmax(140px, 1fr);
+                align-items: center;
+              }
+
+              #audit-log-page #audit-table tr > :nth-child(1) {
+                order: 1;
+              }
+
+              #audit-log-page #audit-table tr > :nth-child(2) {
+                order: 5;
+              }
+
+              #audit-log-page #audit-table tr > :nth-child(3) {
+                order: 3;
+              }
+
+              #audit-log-page #audit-table tr > :nth-child(4) {
+                order: 2;
+              }
+
+              #audit-log-page #audit-table tr > :nth-child(5) {
+                order: 4;
+              }
+
+              #audit-log-page #audit-table th,
+              #audit-log-page #audit-table td {
+                min-width: 0;
+              }
+            </style>
+
+            <div class="section-heading" id="audit-log-heading">
+              <p class="dashboard-title" id="audit-log-title">Audit Log</p>
+              <p class="section-copy" id="audit-log-summary">操作履歴を表示します。</p>
+            </div>
+
+            <div class="dashboard-grid" id="audit-log-toolbar" style="margin-top:12px">
+              <article class="dashboard-card" id="audit-log-count-panel" style="padding:12px 16px">
+                <p class="card-label" id="log-count-label">件数</p>
+                <p class="card-value" id="audit-log-count">-</p>
+                <p class="section-copy" id="audit-log-count-note">表示対象の Audit Log 件数</p>
+              </article>
+
+              <section class="dashboard-card" id="audit-log-filter-panel" aria-label="Audit Log フィルタ" style="padding:12px 16px">
+                <div class="section-heading" id="audit-log-filter-heading" style="margin-bottom:0">
+                  <p class="dashboard-title" id="audit-log-filter-title">Filter</p>
+                  <p class="section-copy" id="audit-log-filter-summary">action / target / result / operator</p>
+                </div>
+                <div class="danger-form-grid" id="log-filter" style="margin-top:10px">
+                  <label class="danger-field" for="audit-log-filter-action" id="audit-log-filter-action-field">
+                    <span>action</span>
+                    <input id="audit-log-filter-action" type="text" placeholder="all" />
+                  </label>
+                  <label class="danger-field" for="audit-log-filter-target" id="audit-log-filter-target-field">
+                    <span>target</span>
+                    <input id="audit-log-filter-target" type="text" placeholder="all" />
+                  </label>
+                  <label class="danger-field" for="audit-log-filter-result" id="audit-log-filter-result-field">
+                    <span>result</span>
+                    <input id="audit-log-filter-result" type="text" placeholder="all" />
+                  </label>
+                  <label class="danger-field" for="audit-log-filter-operator" id="audit-log-filter-operator-field">
+                    <span>operator</span>
+                    <input id="audit-log-filter-operator" type="text" placeholder="all" />
+                  </label>
+                </div>
+              </section>
+            </div>
+
+            <section class="block-list-section" id="audit-log-results-panel" aria-label="Audit Log 一覧" style="margin-top:16px">
+              <div class="section-heading" id="audit-log-list-heading">
+                <p class="dashboard-title" id="audit-log-list-title">ログ一覧</p>
+                <p class="section-copy" id="audit-log-list-summary">timestamp / action / target / result / operator</p>
+              </div>
+
+              <div class="table-shell" id="audit-log-list" style="margin-top:14px">
+                <table class="block-table" id="audit-table">
+                  <thead id="audit-log-list-header">
+                    <tr id="audit-log-list-header-row">
+                      <th scope="col" id="audit-log-col-timestamp">timestamp</th>
+                      <th scope="col" id="audit-log-col-operator">operator</th>
+                      <th scope="col" id="audit-log-col-target">target</th>
+                      <th scope="col" id="audit-log-col-action">action</th>
+                      <th scope="col" id="audit-log-col-result">result</th>
+                    </tr>
+                  </thead>
+                  <tbody id="audit-log-list-body">
+                    <tr>
+                      <td id="audit-log-placeholder" colspan="5">監査ログを読み込むと一覧を表示します。</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          </section>
+        </main>
+
+        <!-- ===================== Security/Settings ===================== -->
+        <main class="content" id="page-settings" data-page="settings" data-ui-region="security-settings" aria-label="Security/Settings" hidden>
+          <section>
+            <p class="dashboard-title">Security/Settings</p>
+            <div class="dashboard-grid" style="margin-top:14px">
+              <article class="dashboard-card">
+                <p class="card-label">2FA 設定</p>
+                <p class="card-value is-ok">有効</p>
+                <div class="table-actions" style="margin-top:12px">
+                  <button class="table-action is-secondary" type="button" data-action="2fa-toggle">切替</button>
+                </div>
+              </article>
+              <article class="dashboard-card">
+                <p class="card-label">セッション</p>
+                <p class="card-value is-warn">3 件</p>
+                <div class="table-actions" style="margin-top:12px">
+                  <button class="table-action is-disconnect" type="button" data-action="revoke-sessions">全失効</button>
+                </div>
+              </article>
+              <article class="dashboard-card">
+                <p class="card-label">Freeze ポリシー</p>
+                <p class="card-value is-ok">Strict</p>
+                <div class="table-actions" style="margin-top:12px">
+                  <button class="table-action is-secondary" type="button" data-action="policy-edit">編集</button>
+                </div>
+              </article>
+            </div>
+
+            <section class="block-list-section" id="settings-panel" data-ui-region="settings-panel" aria-label="Security Settings Panel" style="margin-top:16px">
+              <div class="section-heading">
+                <p class="dashboard-title">Security / Settings パネル</p>
+                <p class="section-copy" id="settings-panel-placeholder">設定値を読み込み中です</p>
+              </div>
+
+              <div class="dashboard-card" id="security-settings-panel" style="margin-top:14px;padding:20px;max-width:720px">
+                <div class="danger-form-grid">
+                  <label class="danger-field" for="settings-passwordProtectionEnabled">
+                    <span>passwordProtectionEnabled</span>
+                    <input id="settings-passwordProtectionEnabled" type="checkbox" />
+                  </label>
+
+                  <label class="danger-field" for="settings-twoFactorEnabled">
+                    <span>twoFactorEnabled</span>
+                    <input id="settings-twoFactorEnabled" type="checkbox" />
+                  </label>
+
+                  <label class="danger-field" for="settings-auditLogRetentionDays">
+                    <span>auditLogRetentionDays</span>
+                    <input id="settings-auditLogRetentionDays" type="number" min="0" placeholder="例: 90" />
+                  </label>
+
+                  <label class="danger-field" for="settings-handshakeRequired">
+                    <span>handshakeRequired</span>
+                    <input id="settings-handshakeRequired" type="checkbox" />
+                  </label>
+
+                  <label class="danger-field" for="settings-dangerousActionLock">
+                    <span>dangerousActionLock</span>
+                    <input id="settings-dangerousActionLock" type="checkbox" />
+                  </label>
+                </div>
+
+                <div class="table-actions" style="margin-top:16px">
+                  <button class="table-action is-connect" type="button" id="settings-save-button">保存</button>
+                </div>
+              </div>
+            </section>
+          </section>
+        </main>
+      </div>
+    </div>
+    <script type="module" src="./script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,29 @@
+{
+  "work_id": "manga_0001",
+  "keyword": "呪術廻戦 最新巻",
+  "article_type": "latest_volume",
+  "title": "呪術廻戦 最新巻まとめ",
+  "content_html": "<h1>テスト</h1><p>本文</p>",
+  "release_changed": true,
+  "release_change_reason": "new_volume_detected",
+  "current_latest_volume_number": 30,
+  "current_latest_release_date": "2026-03-10",
+  "current_availability_status": "available",
+  "related_links": [
+    {
+      "title": "呪術廻戦 29巻",
+      "url": "/related/jujutsu-29"
+    },
+    {
+      "title": "呪術廻戦 全巻",
+      "url": "/related/jujutsu-summary"
+    },
+    {
+      "title": "呪術廻戦 セール",
+      "url": "/related/jujutsu-sale"
+    }
+  ],
+  "internal_link_hints": [
+    "呪術廻戦 何巻まで"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "_fixture_name": "volume_release_only",
+  "_fixture_label": "release_only",
+  "_ran_at": "2026-03-12T12:41:00.898595+00:00",
+  "signal_mode": "release_only",
+  "template_mode": "latest_volume_release",
+  "is_combined_signal": false,
+  "decision": "would_republish_release_changed",
+  "reason": "new_volume",
+  "cta_experiment": "",
+  "cta_variant": "",
+  "cta_mode": "standard",
+  "content_html_head200": "<h1>テスト漫画（フィクスチャ用）最新巻</h1>\n<h2>結論</h2><p>この記事では「テスト漫画 最新巻」について、最新の巻数・発売日・配信状態を整理します。</p><p>まず結論から確認していきます。</p>\n<div class=\"release-alert-box\">\n  <h2>最新巻速報</h2>\n  <p>テスト漫画の最新巻は<strong>13巻</strong>です。</",
+  "has_combined_alert_box": false,
+  "journey_mode": "release_optimized",
+  "journey_stage": "purchase_ready",
+  "journey_cta_text": "新刊情報が更新されたため、最新情報を優先して確認してください。最新巻はすぐ読める可能性があるため、ストアで配信状況を確認してください。続きを今すぐ読みたい方は最新巻ページをチェックしてください。",
+  "journey_is_sale_optimized": false,
+  "journey_is_release_optimized": true,
+  "policy_priority": 300,
+  "policy_decision": "would_republish_release_changed",
+  "policy_reason": "release_changed_event",
+  "policy_sub_reasons": [
+    "new_volume"
+  ],
+  "policy_signal_mode": "release_only",
+  "normalized_event_type": "release_only",
+  "normalized_stage": "purchase_ready",
+  "normalized_journey_mode": "release_optimized"
+}

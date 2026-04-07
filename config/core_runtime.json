@@ -1,0 +1,24 @@
+{
+  "_comment": "Core/Retry/Logging runtime settings. Invalid or missing values fall back to safe defaults.",
+  "retry": {
+    "_comment": "Retry queue safety limits.",
+    "max_retry_count": 3,
+    "max_retry_count_clamp_min": 1,
+    "max_retry_count_clamp_max": 10
+  },
+  "core": {
+    "_comment": "Core decision boundary behavior.",
+    "default_action": "generate_article",
+    "invalid_decision_fallback": "freeze",
+    "invalid_transition_fallback": "review",
+    "freeze_on_invalid_selected": true,
+    "priority_clamp_min": 0.0,
+    "priority_clamp_max": 1.0,
+    "confidence_clamp_min": 0.0,
+    "confidence_clamp_max": 1.0
+  },
+  "logging": {
+    "_comment": "Log level for monitoring loggers.",
+    "level": "INFO"
+  }
+}

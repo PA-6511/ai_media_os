@@ -1,0 +1,63 @@
+{
+  "generated_at": "2026-03-15T12:32:43.997620+00:00",
+  "schema_version": "1.0",
+  "tabs": [
+    {
+      "key": "overview",
+      "title": "Overview",
+      "default": true,
+      "primary_path": "data/reports/ops_home_latest.html",
+      "related_paths": [
+        "data/reports/ops_status_light_latest.json",
+        "data/reports/ops_home_latest.html"
+      ]
+    },
+    {
+      "key": "dashboards",
+      "title": "Dashboards",
+      "default": false,
+      "primary_path": "data/reports/dashboard_latest.html",
+      "related_paths": [
+        "data/reports/dashboard_latest.html",
+        "data/reports/weekly_dashboard_latest.html",
+        "data/reports/monthly_dashboard_latest.html"
+      ]
+    },
+    {
+      "key": "reports",
+      "title": "Reports",
+      "default": false,
+      "primary_path": "data/reports/ops_summary_latest.json",
+      "related_paths": [
+        "data/reports/ops_summary_latest.json",
+        "data/reports/ops_api_payload_latest.json",
+        "data/reports/release_readiness_latest.json"
+      ]
+    },
+    {
+      "key": "operations",
+      "title": "Operations",
+      "default": false,
+      "primary_path": "data/reports/ops_portal_latest.html",
+      "related_paths": [
+        "data/reports/ops_portal_latest.html",
+        "data/reports/artifact_index_latest.html"
+      ]
+    },
+    {
+      "key": "docs",
+      "title": "Docs",
+      "default": false,
+      "primary_path": "docs/daily_checklist_latest.md",
+      "related_paths": [
+        "docs/daily_checklist_latest.md",
+        "docs/runbook_latest.md"
+      ]
+    }
+  ],
+  "meta": {
+    "source_manifest_exists": true,
+    "source_navigation_exists": false,
+    "source_cards_exists": true
+  }
+}

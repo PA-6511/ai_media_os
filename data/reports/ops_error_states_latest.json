@@ -1,0 +1,157 @@
+{
+  "generated_at": "2026-03-15T00:39:15.763156+00:00",
+  "schema_version": "1.0",
+  "states": [
+    {
+      "code": "anomaly_critical",
+      "title": "Anomaly Critical",
+      "message": "anomaly が CRITICAL のため通常運用継続は推奨されません。",
+      "recommended_action": "復旧完了までリリース判断を hold にし、ops cycle を再実行してください。",
+      "severity": "critical",
+      "active": false,
+      "context": {
+        "anomaly_overall": "WARNING"
+      }
+    },
+    {
+      "code": "integrity_fail",
+      "title": "Integrity Failed",
+      "message": "GUI成果物の整合性チェックが FAIL です。",
+      "recommended_action": "不足ファイルを再生成し、FAIL が 0 になるまでリリース導線を停止してください。",
+      "severity": "critical",
+      "active": false,
+      "context": {
+        "integrity_overall": "WARNING",
+        "fail_count": 0
+      }
+    },
+    {
+      "code": "retry_queue_critical",
+      "title": "Retry Queue Critical",
+      "message": "retry queue が臨界値を超えています。",
+      "recommended_action": "障害原因を優先調査し、未解決キューを解消するまで GUI 表示を制限してください。",
+      "severity": "critical",
+      "active": false,
+      "context": {
+        "retry_queued": 0,
+        "critical_threshold": 10
+      }
+    },
+    {
+      "code": "anomaly_warning",
+      "title": "Anomaly Warning",
+      "message": "anomaly が WARNING のため監視強化が必要です。",
+      "recommended_action": "ops_alert_center_latest.json と daily report を確認して要因を切り分けてください。",
+      "severity": "warning",
+      "active": true,
+      "context": {
+        "anomaly_overall": "WARNING"
+      }
+    },
+    {
+      "code": "bootstrap_missing",
+      "title": "Bootstrap Missing",
+      "message": "GUI起動用データが見つかりません。",
+      "recommended_action": "python3 -m reporting.run_ops_bootstrap_build を実行してください。",
+      "severity": "warning",
+      "active": false,
+      "context": {
+        "path": "data/reports/ops_bootstrap_latest.json",
+        "exists": true
+      }
+    },
+    {
+      "code": "integrity_warning",
+      "title": "Integrity Warning",
+      "message": "GUI成果物の整合性チェックで WARNING が検出されました。",
+      "recommended_action": "python3 -m reporting.run_ops_gui_integrity_build を実行し、missing_refs を修正してください。",
+      "severity": "warning",
+      "active": true,
+      "context": {
+        "integrity_overall": "WARNING",
+        "warning_count": 1
+      }
+    },
+    {
+      "code": "mock_api_unavailable",
+      "title": "Mock API Unavailable",
+      "message": "mock API 用データが取得できません。",
+      "recommended_action": "python3 -m reporting.run_mock_api_build と python3 -m gui.run_mock_server を確認してください。",
+      "severity": "warning",
+      "active": false,
+      "context": {
+        "path": "data/reports/mock_api_home_latest.json",
+        "exists": true,
+        "health_endpoint": "http://127.0.0.1:8765/health"
+      }
+    },
+    {
+      "code": "retry_queue_pending",
+      "title": "Retry Queue Pending",
+      "message": "retry queue に未解決ジョブがあります。",
+      "recommended_action": "失敗ジョブのログを確認し、次回サイクルで再試行または手動復旧を実施してください。",
+      "severity": "warning",
+      "active": false,
+      "context": {
+        "retry_queued": 0,
+        "warning_threshold": 5
+      }
+    }
+  ],
+  "summary": {
+    "state_count": 8,
+    "active_count": 2,
+    "warning_count": 5,
+    "critical_count": 3
+  },
+  "status": {
+    "partial": false,
+    "ready": true,
+    "missing_source_keys": [],
+    "fail_safe": true
+  },
+  "sources": {
+    "bootstrap": {
+      "path": "data/reports/ops_bootstrap_latest.json",
+      "exists": true,
+      "loaded": true,
+      "updated_at": "2026-03-15T00:25:57.136270+00:00"
+    },
+    "mock_api": {
+      "path": "data/reports/mock_api_home_latest.json",
+      "exists": true,
+      "loaded": true,
+      "updated_at": "2026-03-15T00:25:57.222271+00:00"
+    },
+    "gui_integrity": {
+      "path": "data/reports/ops_gui_integrity_latest.json",
+      "exists": true,
+      "loaded": true,
+      "updated_at": "2026-03-15T00:25:58.093278+00:00"
+    },
+    "gui_health": {
+      "path": "data/reports/ops_gui_health_latest.json",
+      "exists": true,
+      "loaded": true,
+      "updated_at": "2026-03-15T00:25:57.754275+00:00"
+    },
+    "alert_center": {
+      "path": "data/reports/ops_alert_center_latest.json",
+      "exists": true,
+      "loaded": true,
+      "updated_at": "2026-03-15T00:25:57.420273+00:00"
+    },
+    "release_readiness": {
+      "path": "data/reports/release_readiness_latest.json",
+      "exists": true,
+      "loaded": true,
+      "updated_at": "2026-03-15T00:25:55.674258+00:00"
+    },
+    "config_summary": {
+      "path": "data/reports/ops_config_summary_latest.json",
+      "exists": true,
+      "loaded": true,
+      "updated_at": "2026-03-15T00:25:57.682275+00:00"
+    }
+  }
+}

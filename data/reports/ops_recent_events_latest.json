@@ -1,0 +1,55 @@
+{
+  "generated_at": "2026-03-15T12:32:45.044712+00:00",
+  "schema_version": "1.0",
+  "items": [
+    {
+      "timestamp": "2026-03-15T12:32:43.105426+00:00",
+      "title": "Release readiness generated",
+      "status": "PASS",
+      "category": "readiness"
+    },
+    {
+      "timestamp": "2026-03-15T11:22:54.554000+00:00",
+      "title": "Anomaly check completed",
+      "status": "OK",
+      "category": "anomaly_check"
+    },
+    {
+      "timestamp": "2026-03-15T10:40:57.518420+00:00",
+      "title": "Monthly report generated",
+      "status": "PASS",
+      "category": "report"
+    },
+    {
+      "timestamp": "2026-03-15T10:40:57.433420+00:00",
+      "title": "Weekly report generated",
+      "status": "PASS",
+      "category": "report"
+    },
+    {
+      "timestamp": "2026-03-15T10:40:57.341420+00:00",
+      "title": "Daily report generated",
+      "status": "PASS",
+      "category": "report"
+    }
+  ],
+  "summary": {
+    "item_count": 5,
+    "limit": 5,
+    "source_kind": "timeline"
+  },
+  "status": {
+    "ready": true,
+    "fail_safe": true
+  },
+  "sources": {
+    "timeline": {
+      "path": "data/reports/ops_timeline_latest.json",
+      "exists": true
+    },
+    "ops_cycle_log": {
+      "path": "data/logs/ops_cycle.log",
+      "exists": true
+    }
+  }
+}

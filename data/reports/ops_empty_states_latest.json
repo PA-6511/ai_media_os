@@ -1,0 +1,113 @@
+{
+  "generated_at": "2026-03-15T00:42:00.202774+00:00",
+  "schema_version": "1.0",
+  "states": [
+    {
+      "key": "no_recent_events",
+      "title": "最近のイベントはありません",
+      "message": "直近の運用イベントはまだ記録されていません。",
+      "action_label": "Ops Cycle を実行",
+      "action_target": "python3 -m ops.run_ops_cycle",
+      "active": false,
+      "context": {
+        "item_count": 5,
+        "source": "data/reports/ops_recent_events_latest.json"
+      }
+    },
+    {
+      "key": "retry_queue_empty",
+      "title": "再試行キューは空です",
+      "message": "現在、再試行待ちのジョブはありません。",
+      "action_label": "運用ログを見る",
+      "action_target": "data/logs/ops_cycle.log",
+      "active": true,
+      "context": {
+        "retry_queued": 0,
+        "source": "data/reports/release_readiness_latest.json"
+      }
+    },
+    {
+      "key": "no_alerts",
+      "title": "アラートはありません",
+      "message": "現在表示対象のアラートは 0 件です。",
+      "action_label": "Alert Center を更新",
+      "action_target": "python3 -m reporting.run_ops_alert_center_build",
+      "active": false,
+      "context": {
+        "alert_count": 4,
+        "source": "data/reports/ops_alert_center_latest.json"
+      }
+    },
+    {
+      "key": "timeline_empty",
+      "title": "タイムライン項目がありません",
+      "message": "表示できる運用履歴がまだありません。",
+      "action_label": "Timeline を再生成",
+      "action_target": "python3 -m reporting.run_ops_timeline_build",
+      "active": false,
+      "context": {
+        "event_count": 17,
+        "source": "data/reports/ops_timeline_latest.json"
+      }
+    },
+    {
+      "key": "nav_search_no_match",
+      "title": "一致するナビゲーションがありません",
+      "message": "検索条件に一致する画面や成果物が見つかりませんでした。",
+      "action_label": "検索インデックスを更新",
+      "action_target": "python3 -m reporting.run_ops_nav_search_build",
+      "active": false,
+      "context": {
+        "item_count": 25,
+        "source": "data/reports/ops_nav_search_latest.json"
+      }
+    }
+  ],
+  "summary": {
+    "state_count": 5,
+    "active_count": 1,
+    "recent_events_count": 5,
+    "alerts_count": 4,
+    "timeline_count": 17,
+    "nav_search_count": 25,
+    "retry_queued": 0
+  },
+  "status": {
+    "partial": false,
+    "ready": true,
+    "missing_source_keys": [],
+    "fail_safe": true
+  },
+  "sources": {
+    "recent_events": {
+      "path": "data/reports/ops_recent_events_latest.json",
+      "exists": true,
+      "loaded": true,
+      "updated_at": "2026-03-15T00:25:57.597274+00:00"
+    },
+    "alert_center": {
+      "path": "data/reports/ops_alert_center_latest.json",
+      "exists": true,
+      "loaded": true,
+      "updated_at": "2026-03-15T00:25:57.420273+00:00"
+    },
+    "timeline": {
+      "path": "data/reports/ops_timeline_latest.json",
+      "exists": true,
+      "loaded": true,
+      "updated_at": "2026-03-15T00:25:57.507273+00:00"
+    },
+    "nav_search": {
+      "path": "data/reports/ops_nav_search_latest.json",
+      "exists": true,
+      "loaded": true,
+      "updated_at": "2026-03-15T00:35:57.147801+00:00"
+    },
+    "release_readiness": {
+      "path": "data/reports/release_readiness_latest.json",
+      "exists": true,
+      "loaded": true,
+      "updated_at": "2026-03-15T00:25:55.674258+00:00"
+    }
+  }
+}

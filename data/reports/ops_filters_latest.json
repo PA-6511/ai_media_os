@@ -1,0 +1,90 @@
+{
+  "generated_at": "2026-03-15T10:42:58.996432+00:00",
+  "schema_version": "1.0",
+  "filters": {
+    "severity": [
+      "critical",
+      "info",
+      "review",
+      "warning"
+    ],
+    "status": [
+      "FAIL",
+      "INFO",
+      "OK",
+      "PASS",
+      "SKIP"
+    ],
+    "category": [
+      "anomaly_check",
+      "archive",
+      "archive_backup",
+      "daily_report",
+      "dashboard",
+      "dashboard_build",
+      "ops_cycle",
+      "readiness",
+      "release_readiness_check",
+      "report",
+      "smoke_test"
+    ],
+    "decision": [
+      "hold",
+      "release",
+      "review"
+    ],
+    "signal_mode": [
+      "combined",
+      "normal",
+      "price_only",
+      "release_only"
+    ],
+    "date_range": [
+      "today",
+      "last_24h",
+      "last_3d",
+      "last_7d",
+      "last_30d",
+      "custom"
+    ]
+  },
+  "summary": {
+    "severity_count": 4,
+    "status_count": 5,
+    "category_count": 11,
+    "decision_count": 3,
+    "signal_mode_count": 4
+  },
+  "status": {
+    "partial": false,
+    "ready": true,
+    "missing_source_keys": [],
+    "fail_safe": true
+  },
+  "sources": {
+    "alert_center": {
+      "path": "data/reports/ops_alert_center_latest.json",
+      "exists": true,
+      "loaded": true,
+      "updated_at": "2026-03-15T10:42:58.831234+00:00"
+    },
+    "timeline": {
+      "path": "data/reports/ops_timeline_latest.json",
+      "exists": true,
+      "loaded": true,
+      "updated_at": "2026-03-15T10:42:58.923236+00:00"
+    },
+    "decision_summary": {
+      "path": "data/reports/ops_decision_summary_latest.json",
+      "exists": true,
+      "loaded": true,
+      "updated_at": "2026-03-15T00:25:57.837276+00:00"
+    },
+    "release_readiness": {
+      "path": "data/reports/release_readiness_latest.json",
+      "exists": true,
+      "loaded": true,
+      "updated_at": "2026-03-15T00:25:55.674258+00:00"
+    }
+  }
+}

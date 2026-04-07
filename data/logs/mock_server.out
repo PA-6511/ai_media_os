@@ -1,0 +1,17 @@
+nohup: ignoring input
+[startup:try ] 127.0.0.1:8766
+
+============================================================
+  MOCK SERVER READY
+  final_port  : 8766
+  server_url  : http://127.0.0.1:8766/
+  pid         : 650537
+  started_at  : 2026-03-15T12:18:37.091032+00:00
+  endpoints   : /, /docs, /api/index, /health,
+                /api/home, /api/bootstrap, /api/header,
+                /api/sidebar, /api/tabs
+  stop        : Ctrl+C or SIGTERM
+============================================================
+
+[startup] runtime JSON : /home/deploy/ai_media_os/data/reports/mock_server_runtime_latest.json
+

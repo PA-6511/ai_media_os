@@ -1,0 +1,412 @@
+{
+  "generated_at": "2026-03-15T00:35:57.148363+00:00",
+  "schema_version": "1.0",
+  "items": [
+    {
+      "label": "Mock API Home",
+      "keywords": [
+        "mock",
+        "api",
+        "home",
+        "handoff",
+        "read",
+        "order",
+        "archive"
+      ],
+      "target": "data/reports/mock_api_home_latest.json",
+      "category": "api"
+    },
+    {
+      "label": "Daily Checklist",
+      "keywords": [
+        "daily",
+        "checklist",
+        "sidebar",
+        "navigation",
+        "tab",
+        "primary",
+        "related",
+        "handoff",
+        "read",
+        "order",
+        "archive"
+      ],
+      "target": "docs/daily_checklist_latest.md",
+      "category": "doc"
+    },
+    {
+      "label": "Runbook",
+      "keywords": [
+        "runbook",
+        "sidebar",
+        "navigation",
+        "tab",
+        "related",
+        "handoff",
+        "read",
+        "order",
+        "archive"
+      ],
+      "target": "docs/runbook_latest.md",
+      "category": "doc"
+    },
+    {
+      "label": "Bootstrap",
+      "keywords": [
+        "bootstrap",
+        "handoff",
+        "entrypoint",
+        "preview",
+        "mock",
+        "api",
+        "read",
+        "order",
+        "archive"
+      ],
+      "target": "data/reports/ops_bootstrap_latest.json",
+      "category": "handoff"
+    },
+    {
+      "label": "Home Payload",
+      "keywords": [
+        "home",
+        "payload",
+        "handoff",
+        "entrypoint",
+        "bootstrap",
+        "preview",
+        "mock",
+        "api",
+        "read",
+        "order",
+        "archive"
+      ],
+      "target": "data/reports/ops_home_payload_latest.json",
+      "category": "handoff"
+    },
+    {
+      "label": "ops_gui_bundle_manifest_latest.json",
+      "keywords": [
+        "gui",
+        "bundle",
+        "manifest",
+        "handoff",
+        "read",
+        "order",
+        "archive"
+      ],
+      "target": "data/reports/ops_gui_bundle_manifest_latest.json",
+      "category": "handoff"
+    },
+    {
+      "label": "ops_header_latest.json",
+      "keywords": [
+        "header",
+        "handoff",
+        "read",
+        "order",
+        "archive"
+      ],
+      "target": "data/reports/ops_header_latest.json",
+      "category": "handoff"
+    },
+    {
+      "label": "ops_layout_latest.json",
+      "keywords": [
+        "layout",
+        "handoff",
+        "read",
+        "order",
+        "archive"
+      ],
+      "target": "data/reports/ops_layout_latest.json",
+      "category": "handoff"
+    },
+    {
+      "label": "ops_manifest_latest.json",
+      "keywords": [
+        "manifest",
+        "handoff",
+        "read",
+        "order",
+        "archive"
+      ],
+      "target": "data/reports/ops_manifest_latest.json",
+      "category": "handoff"
+    },
+    {
+      "label": "ops_sidebar_latest.json",
+      "keywords": [
+        "sidebar",
+        "handoff",
+        "read",
+        "order",
+        "archive"
+      ],
+      "target": "data/reports/ops_sidebar_latest.json",
+      "category": "handoff"
+    },
+    {
+      "label": "ops_tabs_latest.json",
+      "keywords": [
+        "tabs",
+        "handoff",
+        "read",
+        "order",
+        "archive"
+      ],
+      "target": "data/reports/ops_tabs_latest.json",
+      "category": "handoff"
+    },
+    {
+      "label": "ops_widgets_latest.json",
+      "keywords": [
+        "widgets",
+        "handoff",
+        "read",
+        "order",
+        "archive"
+      ],
+      "target": "data/reports/ops_widgets_latest.json",
+      "category": "handoff"
+    },
+    {
+      "label": "Artifact Index",
+      "keywords": [
+        "artifact",
+        "index",
+        "artifacts",
+        "sidebar",
+        "navigation",
+        "operations",
+        "tab",
+        "related",
+        "archive",
+        "history"
+      ],
+      "target": "data/reports/artifact_index_latest.html",
+      "category": "page"
+    },
+    {
+      "label": "Daily Dashboard (Health C)",
+      "keywords": [
+        "daily",
+        "dashboard",
+        "health",
+        "c",
+        "dashboards",
+        "sidebar",
+        "navigation",
+        "tab",
+        "primary",
+        "related"
+      ],
+      "target": "data/reports/dashboard_latest.html",
+      "category": "page"
+    },
+    {
+      "label": "Gui Preview Html",
+      "keywords": [
+        "gui",
+        "preview",
+        "handoff",
+        "read",
+        "order",
+        "archive"
+      ],
+      "target": "data/reports/ops_gui_preview_latest.html",
+      "category": "page"
+    },
+    {
+      "label": "Monthly Dashboard",
+      "keywords": [
+        "monthly",
+        "dashboard",
+        "dashboards",
+        "sidebar",
+        "navigation",
+        "tab",
+        "related"
+      ],
+      "target": "data/reports/monthly_dashboard_latest.html",
+      "category": "page"
+    },
+    {
+      "label": "Ops Home",
+      "keywords": [
+        "home",
+        "today",
+        "sidebar",
+        "navigation",
+        "overview",
+        "tab",
+        "primary",
+        "related"
+      ],
+      "target": "data/reports/ops_home_latest.html",
+      "category": "page"
+    },
+    {
+      "label": "Ops Portal",
+      "keywords": [
+        "portal",
+        "today",
+        "sidebar",
+        "navigation",
+        "operations",
+        "tab",
+        "primary",
+        "related"
+      ],
+      "target": "data/reports/ops_portal_latest.html",
+      "category": "page"
+    },
+    {
+      "label": "Weekly Dashboard",
+      "keywords": [
+        "weekly",
+        "dashboard",
+        "dashboards",
+        "sidebar",
+        "navigation",
+        "tab",
+        "related"
+      ],
+      "target": "data/reports/weekly_dashboard_latest.html",
+      "category": "page"
+    },
+    {
+      "label": "Ops API Payload JSON",
+      "keywords": [
+        "api",
+        "payload",
+        "artifacts",
+        "sidebar",
+        "navigation",
+        "tab",
+        "related"
+      ],
+      "target": "data/reports/ops_api_payload_latest.json",
+      "category": "report"
+    },
+    {
+      "label": "Ops Summary JSON",
+      "keywords": [
+        "summary",
+        "artifacts",
+        "sidebar",
+        "navigation",
+        "tab",
+        "primary",
+        "related"
+      ],
+      "target": "data/reports/ops_summary_latest.json",
+      "category": "report"
+    },
+    {
+      "label": "Release Readiness JSON",
+      "keywords": [
+        "release",
+        "readiness",
+        "artifacts",
+        "sidebar",
+        "navigation",
+        "tab",
+        "related"
+      ],
+      "target": "data/reports/release_readiness_latest.json",
+      "category": "report"
+    },
+    {
+      "label": "Status Badge JSON",
+      "keywords": [
+        "status",
+        "badge",
+        "artifacts",
+        "sidebar",
+        "navigation"
+      ],
+      "target": "data/reports/status_badge_latest.json",
+      "category": "report"
+    },
+    {
+      "label": "Today's Decision (RELEASE)",
+      "keywords": [
+        "today",
+        "s",
+        "decision",
+        "release",
+        "status",
+        "light",
+        "sidebar",
+        "navigation",
+        "overview",
+        "tab",
+        "related"
+      ],
+      "target": "data/reports/ops_status_light_latest.json",
+      "category": "report"
+    },
+    {
+      "label": "Gui Schema",
+      "keywords": [
+        "gui",
+        "schema",
+        "handoff",
+        "entrypoint",
+        "bootstrap",
+        "preview",
+        "mock",
+        "api",
+        "read",
+        "order",
+        "archive"
+      ],
+      "target": "data/reports/ops_gui_schema_latest.json",
+      "category": "schema"
+    }
+  ],
+  "summary": {
+    "item_count": 25,
+    "category_counts": {
+      "page": 7,
+      "report": 5,
+      "schema": 1,
+      "api": 1,
+      "doc": 2,
+      "handoff": 9
+    }
+  },
+  "status": {
+    "partial": false,
+    "ready": true,
+    "missing_source_keys": [],
+    "fail_safe": true
+  },
+  "sources": {
+    "sidebar": {
+      "path": "data/reports/ops_sidebar_latest.json",
+      "exists": true,
+      "loaded": true,
+      "updated_at": "2026-03-15T00:35:56.854797+00:00"
+    },
+    "tabs": {
+      "path": "data/reports/ops_tabs_latest.json",
+      "exists": true,
+      "loaded": true,
+      "updated_at": "2026-03-15T00:35:56.923798+00:00"
+    },
+    "gui_schema": {
+      "path": "data/reports/ops_gui_schema_latest.json",
+      "exists": true,
+      "loaded": true,
+      "updated_at": "2026-03-15T00:35:56.993799+00:00"
+    },
+    "gui_handoff": {
+      "path": "data/reports/ops_gui_handoff_latest.json",
+      "exists": true,
+      "loaded": true,
+      "updated_at": "2026-03-15T00:35:57.059800+00:00"
+    }
+  }
+}

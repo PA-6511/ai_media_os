@@ -1,0 +1,231 @@
+{
+  "generated_at": "2026-03-15T12:32:43.276152+00:00",
+  "schema_version": "1.0",
+  "compact_summary": {
+    "badge_text": "RELEASE | Health C | WARNING",
+    "badge_level": "warning",
+    "decision": "RELEASE",
+    "health_score": 70,
+    "health_grade": "C",
+    "anomaly_overall": "WARNING",
+    "recommended_action": "リリース可。軽微警告を運用監視に登録し、次回 ops cycle で再確認",
+    "trend_latest_decision": "release"
+  },
+  "status_badge": {
+    "generated_at": "2026-03-15T12:30:39.983898+00:00",
+    "decision": "RELEASE",
+    "health_score": 70,
+    "health_grade": "C",
+    "anomaly_overall": "WARNING",
+    "badge_text": "RELEASE | Health C | WARNING",
+    "badge_level": "warning",
+    "source": {
+      "release_readiness_json": "/home/deploy/ai_media_os/data/reports/release_readiness_latest.json"
+    }
+  },
+  "release_readiness": {
+    "generated_at": "2026-03-15T12:32:43.104552+00:00",
+    "decision": "release",
+    "reasons": [
+      "判定条件を満たしたため release",
+      "連動指標: alerts=0 warning=0 critical=0 / integrity PASS=12 WARNING=0 FAIL=0",
+      "anomaly overall は WARNING だが health/retry/integrity 条件を満たす"
+    ],
+    "anomaly_overall": "WARNING",
+    "anomaly_alert_total": 0,
+    "anomaly_warning_count": 0,
+    "anomaly_critical_count": 0,
+    "health_score": 70,
+    "health_grade": "C",
+    "retry_queued": 0,
+    "integrity_overall": "PASS",
+    "integrity_pass_count": 12,
+    "integrity_warning_count": 0,
+    "integrity_fail_count": 0,
+    "latest_daily_report": "/home/deploy/ai_media_os/data/reports/daily_report_20260314.json",
+    "latest_archive": "/home/deploy/ai_media_os/data/archives/ops_archive_20260314_132424.zip",
+    "recommended_action": "リリース可。軽微警告を運用監視に登録し、次回 ops cycle で再確認",
+    "signals": {
+      "checklist_anomaly_overall": "WARNING",
+      "checklist_retry_queued_count": 0,
+      "checklist_daily_report_exists": true,
+      "checklist_dashboard_exists": true,
+      "checklist_archive_exists": false,
+      "integrity_pass_count": 12,
+      "integrity_warning_count": 0,
+      "integrity_fail_count": 0
+    }
+  },
+  "ops_summary": {
+    "generated_at": "2026-03-15T12:32:43.207644+00:00",
+    "latest_daily_report_json": "/home/deploy/ai_media_os/data/reports/daily_report_20260314.json",
+    "latest_weekly_report_json": "/home/deploy/ai_media_os/data/reports/weekly_report_2026W11.json",
+    "latest_monthly_report_json": "/home/deploy/ai_media_os/data/reports/monthly_report_202603.json",
+    "latest_dashboard": "/home/deploy/ai_media_os/data/reports/dashboard_latest.html",
+    "latest_weekly_dashboard": "/home/deploy/ai_media_os/data/reports/weekly_dashboard_latest.html",
+    "latest_monthly_dashboard": "/home/deploy/ai_media_os/data/reports/monthly_dashboard_latest.html",
+    "latest_archive": "/home/deploy/ai_media_os/data/archives/ops_archive_20260314_195353.zip",
+    "latest_artifact_index": "/home/deploy/ai_media_os/data/reports/artifact_index_latest.html",
+    "latest_ops_portal": "/home/deploy/ai_media_os/data/reports/ops_portal_latest.html",
+    "latest_ops_home": "/home/deploy/ai_media_os/data/reports/ops_home_latest.html",
+    "latest_ops_decision_dashboard": "/home/deploy/ai_media_os/data/reports/ops_decision_dashboard_latest.html",
+    "latest_release_readiness_json": "/home/deploy/ai_media_os/data/reports/release_readiness_latest.json",
+    "latest_release_readiness_md": "/home/deploy/ai_media_os/data/reports/release_readiness_latest.md",
+    "latest_release_readiness_trend_json": "/home/deploy/ai_media_os/data/reports/release_readiness_trend_latest.json",
+    "latest_release_readiness_trend_md": "/home/deploy/ai_media_os/data/reports/release_readiness_trend_latest.md",
+    "release_decision": "release",
+    "release_recommended_action": "リリース可。軽微警告を運用監視に登録し、次回 ops cycle で再確認",
+    "trend_total_days": 1,
+    "trend_release_count": 1,
+    "trend_review_count": 0,
+    "trend_hold_count": 0,
+    "trend_latest_decision": "release",
+    "daily_stats": {
+      "report_date": "20260314",
+      "success_count": 0,
+      "skipped_count": 3,
+      "failed_count": 2,
+      "draft_count": 2,
+      "retry_queued_count": 0,
+      "combined_count": 0,
+      "price_only_count": 0,
+      "release_only_count": 0
+    },
+    "weekly_stats": {
+      "report_week": "2026W11",
+      "daily_report_count": 5,
+      "total_success_count": 0,
+      "total_skipped_count": 15,
+      "total_failed_count": 10,
+      "total_draft_count": 10,
+      "total_retry_queued_count": 0,
+      "total_combined_count": 0,
+      "total_price_only_count": 89,
+      "total_release_only_count": 0
+    },
+    "monthly_stats": {
+      "report_month": "202603",
+      "daily_report_count": 5,
+      "total_success_count": 0,
+      "total_skipped_count": 15,
+      "total_failed_count": 10,
+      "total_draft_count": 10,
+      "total_retry_queued_count": 0,
+      "total_combined_count": 0,
+      "total_price_only_count": 89,
+      "total_release_only_count": 0
+    },
+    "counts": {
+      "daily_report_count": 5,
+      "weekly_report_count": 1,
+      "monthly_report_count": 1,
+      "archive_count": 7
+    }
+  },
+  "artifact_index": {
+    "generated_at": "2026-03-15T12:32:43.275885+00:00",
+    "report_dir": "/home/deploy/ai_media_os/data/reports",
+    "archive_dir": "/home/deploy/ai_media_os/data/archives",
+    "latest_daily_report_json": "/home/deploy/ai_media_os/data/reports/daily_report_20260314.json",
+    "latest_daily_report_txt": "/home/deploy/ai_media_os/data/reports/daily_report_20260314.txt",
+    "latest_weekly_report_json": "/home/deploy/ai_media_os/data/reports/weekly_report_2026W11.json",
+    "latest_weekly_report_txt": "/home/deploy/ai_media_os/data/reports/weekly_report_2026W11.txt",
+    "latest_monthly_report_json": "/home/deploy/ai_media_os/data/reports/monthly_report_202603.json",
+    "latest_monthly_report_txt": "/home/deploy/ai_media_os/data/reports/monthly_report_202603.txt",
+    "latest_dashboard": "/home/deploy/ai_media_os/data/reports/dashboard_latest.html",
+    "latest_weekly_dashboard": "/home/deploy/ai_media_os/data/reports/weekly_dashboard_latest.html",
+    "latest_monthly_dashboard": "/home/deploy/ai_media_os/data/reports/monthly_dashboard_latest.html",
+    "latest_ops_decision_dashboard": "/home/deploy/ai_media_os/data/reports/ops_decision_dashboard_latest.html",
+    "latest_release_readiness_json": "/home/deploy/ai_media_os/data/reports/release_readiness_latest.json",
+    "latest_release_readiness_md": "/home/deploy/ai_media_os/data/reports/release_readiness_latest.md",
+    "latest_archive": "/home/deploy/ai_media_os/data/archives/ops_archive_20260314_195353.zip",
+    "daily_report_count": 5,
+    "weekly_report_count": 1,
+    "monthly_report_count": 1,
+    "archive_count": 7,
+    "details": {
+      "latest_daily_report_json": {
+        "path": "/home/deploy/ai_media_os/data/reports/daily_report_20260314.json",
+        "updated_at": "2026-03-15T10:40:57.341420+00:00",
+        "size_bytes": 891
+      },
+      "latest_daily_report_txt": {
+        "path": "/home/deploy/ai_media_os/data/reports/daily_report_20260314.txt",
+        "updated_at": "2026-03-15T10:40:57.341420+00:00",
+        "size_bytes": 2194
+      },
+      "latest_weekly_report_json": {
+        "path": "/home/deploy/ai_media_os/data/reports/weekly_report_2026W11.json",
+        "updated_at": "2026-03-15T10:40:57.433420+00:00",
+        "size_bytes": 1012
+      },
+      "latest_weekly_report_txt": {
+        "path": "/home/deploy/ai_media_os/data/reports/weekly_report_2026W11.txt",
+        "updated_at": "2026-03-15T10:40:57.434420+00:00",
+        "size_bytes": 1718
+      },
+      "latest_monthly_report_json": {
+        "path": "/home/deploy/ai_media_os/data/reports/monthly_report_202603.json",
+        "updated_at": "2026-03-15T10:40:57.518420+00:00",
+        "size_bytes": 1012
+      },
+      "latest_monthly_report_txt": {
+        "path": "/home/deploy/ai_media_os/data/reports/monthly_report_202603.txt",
+        "updated_at": "2026-03-15T10:40:57.518420+00:00",
+        "size_bytes": 1717
+      },
+      "latest_dashboard": {
+        "path": "/home/deploy/ai_media_os/data/reports/dashboard_latest.html",
+        "updated_at": "2026-03-14T10:53:53.093058+00:00",
+        "size_bytes": 5972
+      },
+      "latest_weekly_dashboard": {
+        "path": "/home/deploy/ai_media_os/data/reports/weekly_dashboard_latest.html",
+        "updated_at": "2026-03-14T01:45:54.519371+00:00",
+        "size_bytes": 5252
+      },
+      "latest_monthly_dashboard": {
+        "path": "/home/deploy/ai_media_os/data/reports/monthly_dashboard_latest.html",
+        "updated_at": "2026-03-12T15:02:36.002970+00:00",
+        "size_bytes": 5251
+      },
+      "latest_ops_decision_dashboard": {
+        "path": "/home/deploy/ai_media_os/data/reports/ops_decision_dashboard_latest.html",
+        "updated_at": "2026-03-14T03:28:30.380492+00:00",
+        "size_bytes": 6847
+      },
+      "latest_release_readiness_json": {
+        "path": "/home/deploy/ai_media_os/data/reports/release_readiness_latest.json",
+        "updated_at": "2026-03-15T12:32:43.105426+00:00",
+        "size_bytes": 1255
+      },
+      "latest_release_readiness_md": {
+        "path": "/home/deploy/ai_media_os/data/reports/release_readiness_latest.md",
+        "updated_at": "2026-03-15T12:32:43.105426+00:00",
+        "size_bytes": 1031
+      },
+      "latest_archive": {
+        "path": "/home/deploy/ai_media_os/data/archives/ops_archive_20260314_195353.zip",
+        "updated_at": "2026-03-14T10:53:53.282060+00:00",
+        "size_bytes": 199980
+      }
+    }
+  },
+  "links": {
+    "artifact_index_html": "/home/deploy/ai_media_os/data/reports/artifact_index_latest.html",
+    "ops_portal_html": "/home/deploy/ai_media_os/data/reports/ops_portal_latest.html",
+    "ops_home_html": "/home/deploy/ai_media_os/data/reports/ops_home_latest.html",
+    "ops_decision_dashboard_html": "/home/deploy/ai_media_os/data/reports/ops_decision_dashboard_latest.html",
+    "release_readiness_json": "/home/deploy/ai_media_os/data/reports/release_readiness_latest.json",
+    "status_badge_json": "/home/deploy/ai_media_os/data/reports/status_badge_latest.json"
+  },
+  "availability": {
+    "ops_summary": true,
+    "release_readiness": true,
+    "status_badge": true,
+    "artifact_index_html": true,
+    "ops_portal_html": true,
+    "ops_home_html": true,
+    "ops_decision_dashboard_html": true
+  }
+}

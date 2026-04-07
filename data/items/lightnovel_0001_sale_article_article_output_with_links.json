@@ -1,0 +1,59 @@
+{
+  "work_id": "lightnovel_0001",
+  "keyword": "無職転生 セール",
+  "article_type": "sale_article",
+  "title": "無職転生セール情報まとめ",
+  "content_html": "<h1>無職転生セール情報まとめ</h1>\n<h2>結論</h2><p>この記事では「無職転生 セール」の最新セール価格と値下げ状況を整理します。</p><p>まずは冒頭の価格変動ボックスで前回価格と現在価格を確認してください。</p>\n<div class=\"price-alert-box sale-alert-box\">\n  <h2>セール価格更新</h2>\n  <p>無職転生の価格情報を確認しました。</p>\n  <p>前回価格: <strong>500円</strong></p>\n  <p>現在価格: <strong>500円</strong></p>\n  <p>価格変動: なし</p>\n  <p>割引率: <strong>30.0%</strong></p>\n  <p>確認時刻: 確認時刻は記録されていません</p>\n  <p class=\"sale-updated-notice\">※ 価格情報が更新されました。最新価格を優先して確認してください。</p>\n</div>\n<h2>現在価格と前回価格</h2><p>前回価格は <strong>500円</strong> でした。</p><p>現在価格は <strong>500円</strong> です。</p><p>最終確認時刻: 確認時刻は記録されていません</p>\n<h2>値下げ情報</h2><p>前回価格: <strong>500円</strong></p><p>現在価格: <strong>500円</strong></p><p>価格は前回から変わっていません。</p><p>値下げが確認できたため、価格が戻る前に早めのチェックがおすすめです。</p>\n<h2>割引率</h2><p>現在の割引率: <strong>30.0%</strong></p><p>割引率は前回と同じです。</p><p>割引率が高いため、早めに確認しておくのがおすすめです。</p>\n<h2>今チェックすべき理由</h2><p>セール価格は短期間で変わることがあるため、いまの価格を確認しておくと安心です。</p><p>値下げが確認できたため、価格が変わる前にストアで最新状況を確認してください。</p><p>割引率が変化したため、最新価格を優先して確認してください。</p><p><strong>今が買い時の可能性が高い</strong>ため、在庫・価格の両方を早めに確認してください。</p>\n<h2>次に確認したい情報</h2><p>最新巻・全巻・関連セールを順に確認すると、買い逃しを防ぎやすくなります。</p><ul><li><a href=\"/related/無職転生-全巻\">無職転生 全巻</a></li><li><a href=\"/related/無職転生-最新巻\">無職転生 最新巻</a></li><li><a href=\"/related/無職転生-何巻まで\">無職転生 何巻まで</a></li></ul>\n<h2>購入リンク</h2><p>価格は随時更新されるため、購入前にストアで最新価格をご確認ください。</p>\n<div class=\"cta-box cta-variant-c\" data-cta-experiment=\"price_changed_sale_cta_v1\" data-cta-variant=\"C\">\n  <h2>価格比較しながら確認</h2>\n  <p>現在価格だけでなく、全巻情報や最新巻もあわせて見ると判断しやすくなります。セール価格が更新されているため、今の価格を優先して確認してください。値下げ幅が大きい可能性があるため、購入候補なら早めの判断がおすすめです。セール中にまとめ買いしたい方は全巻情報もあわせて確認してください。</p>\n  <a href=\"#\" class=\"cta-button\">関連情報も見る</a>\n  <p class=\"cta-note\">購入前に他の巻の価格状況もあわせて確認してください。</p>\n</div><div class=\"related-links\"><h2>関連記事</h2><ul><li><a href=\"/related/無職転生-全巻\">無職転生 全巻</a></li><li><a href=\"/related/無職転生-最新巻\">無職転生 最新巻</a></li><li><a href=\"/related/無職転生-何巻まで\">無職転生 何巻まで</a></li><li><a href=\"/related/無職転生-セール\">無職転生 セール</a></li></ul></div>",
+  "cta_type": "sale_purchase",
+  "internal_link_hints": [
+    "無職転生 全巻",
+    "無職転生 最新巻",
+    "無職転生 何巻まで",
+    "無職転生 セール"
+  ],
+  "template_mode": "sale_price_changed",
+  "signal_mode": "price_only",
+  "is_combined_signal": false,
+  "decision": "would_republish_price_changed",
+  "reason": "discount_rate_threshold",
+  "cta_experiment": "price_changed_sale_cta_v1",
+  "cta_variant": "C",
+  "cta_mode": "ab_test",
+  "release_changed": false,
+  "release_change_reason": "no_change",
+  "previous_latest_volume_number": 23,
+  "current_latest_volume_number": 23,
+  "previous_latest_release_date": "2026-03-14",
+  "current_latest_release_date": "2026-03-14",
+  "previous_availability_status": "available",
+  "current_availability_status": "available",
+  "price_changed": true,
+  "change_reason": "discount_rate_threshold",
+  "previous_price": 500.0,
+  "current_price": 500.0,
+  "price_diff": 0.0,
+  "discount_rate": 30.0,
+  "discount_rate_diff": 0.0,
+  "related_links": [
+    {
+      "title": "無職転生 全巻",
+      "url": "/related/無職転生-全巻",
+      "source": "fallback"
+    },
+    {
+      "title": "無職転生 最新巻",
+      "url": "/related/無職転生-最新巻",
+      "source": "fallback"
+    },
+    {
+      "title": "無職転生 何巻まで",
+      "url": "/related/無職転生-何巻まで",
+      "source": "fallback"
+    },
+    {
+      "title": "無職転生 セール",
+      "url": "/related/無職転生-セール",
+      "source": "fallback"
+    }
+  ]
+}

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Media OS Ops Decision Dashboard</title>
+  <style>
+    :root {
+      --paper: #f4f8f5;
+      --ink: #18231f;
+      --muted: #4d6158;
+      --line: #c8d6cd;
+      --card: #ffffff;
+      --release: #0b8f46;
+      --review: #bf8a00;
+      --hold: #b32a2a;
+      --unknown: #2f4f66;
+      --accent: #0a5e7a;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: "IBM Plex Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+      background:
+        radial-gradient(circle at 12% 15%, #ddeee2 0%, transparent 28%),
+        radial-gradient(circle at 90% 12%, #d8e8f0 0%, transparent 30%),
+        linear-gradient(180deg, #f9fdf8 0%, var(--paper) 100%);
+      padding: 24px 16px 32px;
+    }
+    .wrap { max-width: 1040px; margin: 0 auto; }
+    h1 { margin: 0; font-size: 1.72rem; letter-spacing: 0.2px; }
+    .sub { margin-top: 8px; color: var(--muted); font-size: 0.92rem; }
+
+    .hero {
+      margin-top: 18px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 8px 22px rgba(15, 53, 36, 0.08);
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+    .decision-badge {
+      display: inline-block;
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-size: 2rem;
+      line-height: 1;
+      font-weight: 800;
+      letter-spacing: 1.4px;
+      color: #fff;
+      width: fit-content;
+      animation: fade-in 420ms ease-out;
+    }
+    .decision-release { background: linear-gradient(135deg, #0b8f46, #26b267); }
+    .decision-review { background: linear-gradient(135deg, #b37a00, #dba11e); }
+    .decision-hold { background: linear-gradient(135deg, #9f2424, #d03f3f); }
+    .decision-unknown { background: linear-gradient(135deg, #315870, #4f7b95); }
+
+    .action {
+      border-left: 4px solid var(--accent);
+      background: #f4fbff;
+      padding: 10px 12px;
+      border-radius: 10px;
+      font-weight: 600;
+    }
+
+    .grid {
+      margin-top: 14px;
+      display: grid;
+      grid-template-columns: repeat(5, minmax(120px, 1fr));
+      gap: 10px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 10px 12px;
+    }
+    .card h3 { margin: 0; font-size: 0.84rem; color: var(--muted); font-weight: 600; }
+    .card p { margin: 8px 0 2px; font-size: 1.04rem; font-weight: 700; }
+
+    .section {
+      margin-top: 14px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 12px 14px;
+    }
+    .section h2 { margin: 0 0 10px; font-size: 1.02rem; }
+
+    ul { margin: 0; padding-left: 20px; }
+    li { margin: 6px 0; }
+
+    .metrics {
+      margin-top: 8px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(180px, 1fr));
+      gap: 10px;
+    }
+    .metrics pre {
+      margin: 0;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #f7fbf8;
+      padding: 10px 12px;
+      font-family: "IBM Plex Mono", "Consolas", monospace;
+      font-size: 0.86rem;
+      white-space: pre-wrap;
+      line-height: 1.5;
+    }
+
+    .links { list-style: none; margin: 0; padding: 0; }
+    .links li {
+      display: grid;
+      grid-template-columns: minmax(180px, 260px) 1fr;
+      gap: 10px;
+      padding: 6px 0;
+      border-bottom: 1px dashed var(--line);
+    }
+    .links li:last-child { border-bottom: none; }
+    .links a { color: #0d5ca3; text-decoration: none; font-weight: 700; }
+    .links a:hover { text-decoration: underline; }
+    .links span { color: var(--muted); font-family: "IBM Plex Mono", "Consolas", monospace; font-size: 0.8rem; word-break: break-all; }
+
+    @keyframes fade-in {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 900px) {
+      .grid { grid-template-columns: repeat(2, minmax(140px, 1fr)); }
+      .metrics { grid-template-columns: 1fr; }
+      .links li { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 560px) {
+      .decision-badge { font-size: 1.6rem; }
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>AI Media OS Ops Decision Dashboard</h1>
+    <div class="sub">today-focused view / generated for rapid operational judgment</div>
+
+    <section class="hero">
+      <div class="decision-badge decision-release">RELEASE</div>
+      <div class="action">recommended_action: リリース可。軽微警告を運用監視に登録し、次回 ops cycle で再確認</div>
+    </section>
+
+    
+    <div class="grid">
+      <article class="card"><h3>Generated At</h3><p>2026-03-14T03:28:30.189191+00:00</p></article>
+      <article class="card"><h3>Anomaly</h3><p>WARNING</p></article>
+      <article class="card"><h3>Health</h3><p>70 (C)</p></article>
+      <article class="card"><h3>Retry Queued</h3><p>0</p></article>
+      <article class="card"><h3>Integrity</h3><p>PASS</p></article>
+    </div>
+    
+
+    <section class="section">
+      <h2>Reasons</h2>
+      <ul>
+        <li>判定条件を満たしたため release</li>
+<li>連動指標: alerts=1 warning=0 critical=0 / integrity PASS=12 WARNING=0 FAIL=0</li>
+<li>anomaly overall は WARNING だが health/retry/integrity 条件を満たす</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>Anomaly / Integrity Counts</h2>
+      <div class="metrics">
+        <pre>alert_total      : 1
+warning_count   : 0
+critical_count  : 0</pre>
+        <pre>integrity PASS   : 12
+integrity WARNING: 0
+integrity FAIL   : 0</pre>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Related Links</h2>
+      <ul class="links">
+        <li><a href='../../docs/daily_checklist_latest.md' target='_blank' rel='noopener'>Daily Checklist</a><span>/home/deploy/ai_media_os/docs/daily_checklist_latest.md</span></li>
+<li><a href='ops_portal_latest.html' target='_blank' rel='noopener'>Ops Portal</a><span>/home/deploy/ai_media_os/data/reports/ops_portal_latest.html</span></li>
+<li><a href='artifact_index_latest.html' target='_blank' rel='noopener'>Artifact Index</a><span>/home/deploy/ai_media_os/data/reports/artifact_index_latest.html</span></li>
+<li><a href='release_readiness_latest.json' target='_blank' rel='noopener'>Release Readiness JSON</a><span>/home/deploy/ai_media_os/data/reports/release_readiness_latest.json</span></li>
+<li><a href='release_readiness_latest.md' target='_blank' rel='noopener'>Release Readiness Markdown</a><span>/home/deploy/ai_media_os/data/reports/release_readiness_latest.md</span></li>
+      </ul>
+    </section>
+  </div>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Media OS Ops Home</title>
+  <style>
+    :root {
+      --bg: #f4f7f2;
+      --card: #ffffff;
+      --line: #d7dfd2;
+      --ink: #1a2921;
+      --muted: #5b6e62;
+      --accent: #0e6b8a;
+    }
+    body {
+      margin: 0;
+      padding: 24px;
+      background: linear-gradient(180deg, #f9fcf8, var(--bg));
+      color: var(--ink);
+      font-family: "Segoe UI", "Hiragino Kaku Gothic ProN", sans-serif;
+    }
+    .wrap { max-width: 980px; margin: 0 auto; }
+    h1 { margin: 0; font-size: 1.6rem; }
+    .meta { color: var(--muted); font-size: 0.86rem; margin-top: 6px; }
+
+    .hero {
+      margin-top: 16px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 14px 16px;
+      box-shadow: 0 1px 6px rgba(0, 30, 50, 0.07);
+    }
+    .decision { font-size: 1.9rem; font-weight: 800; letter-spacing: 1px; margin: 0; }
+    .action { margin-top: 8px; padding-left: 10px; border-left: 3px solid var(--accent); font-weight: 600; }
+
+        .badge {
+            margin-top: 14px;
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            padding: 14px 16px;
+            box-shadow: 0 1px 6px rgba(0, 30, 50, 0.07);
+        }
+        .badge-pill {
+            display: inline-flex;
+            align-items: center;
+            border-radius: 999px;
+            padding: 4px 10px;
+            font-size: 0.76rem;
+            font-weight: 800;
+            letter-spacing: 0.04em;
+        }
+        .level-ok { background: #e4f4e8; color: #1a6a34; }
+        .level-warning { background: #fff3d9; color: #8a5a00; }
+        .level-critical { background: #ffe2e0; color: #9a231c; }
+        .level-unknown { background: #edf1f5; color: #51606d; }
+        .badge-main { margin-top: 8px; font-size: 1.2rem; font-weight: 800; }
+        .badge-sub { margin-top: 6px; color: #3f5a4f; font-size: 0.86rem; }
+
+    .card {
+      margin-top: 14px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 12px 16px;
+    }
+    h2 { margin: 0 0 10px; font-size: 1.04rem; }
+    ul { list-style: none; margin: 0; padding: 0; }
+    li {
+      display: grid;
+      grid-template-columns: 220px minmax(180px, 1fr);
+      gap: 8px 12px;
+      padding: 8px 0;
+      border-bottom: 1px dashed var(--line);
+    }
+    li:last-child { border-bottom: none; }
+    .k { color: var(--muted); }
+    a { color: var(--accent); text-decoration: none; font-weight: 700; }
+    a:hover { text-decoration: underline; }
+    .p { grid-column: 2; color: #3f5a4f; font-family: ui-monospace, monospace; font-size: 0.81rem; word-break: break-all; }
+    .na { color: #8a988f; font-style: italic; }
+
+    @media (max-width: 720px) {
+      li { grid-template-columns: 1fr; }
+      .p { grid-column: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>AI Media OS Ops Home</h1>
+    <div class="meta">generated_at: 2026-03-15T12:32:43.595445+00:00</div>
+
+        <section class='badge'><div class='badge-pill level-warning'>RELEASE</div><div class='badge-main'>RELEASE | Health C | WARNING</div><div class='badge-sub'>badge_level=warning / decision=RELEASE / health=70 (C) / anomaly=WARNING</div></section>
+
+    <section class="hero">
+      <h2>Today's Decision</h2>
+      <p class="decision">RELEASE</p>
+      <div class="action">recommended_action: リリース可。軽微警告を運用監視に登録し、次回 ops cycle で再確認</div>
+    </section>
+
+    <section class="card">
+      <h2>Quick Links</h2>
+      <ul>
+<li><span class='k'>Daily Checklist</span><a href='../../docs/daily_checklist_latest.md' target='_blank' rel='noopener'>daily_checklist_latest.md</a><span class='p'>/home/deploy/ai_media_os/docs/daily_checklist_latest.md</span></li>
+<li><span class='k'>Runbook</span><a href='../../docs/runbook_latest.md' target='_blank' rel='noopener'>runbook_latest.md</a><span class='p'>/home/deploy/ai_media_os/docs/runbook_latest.md</span></li>
+<li><span class='k'>Ops Decision Dashboard</span><a href='ops_decision_dashboard_latest.html' target='_blank' rel='noopener'>ops_decision_dashboard_latest.html</a><span class='p'>/home/deploy/ai_media_os/data/reports/ops_decision_dashboard_latest.html</span></li>
+<li><span class='k'>Ops Portal</span><a href='ops_portal_latest.html' target='_blank' rel='noopener'>ops_portal_latest.html</a><span class='p'>/home/deploy/ai_media_os/data/reports/ops_portal_latest.html</span></li>
+<li><span class='k'>Artifact Index</span><a href='artifact_index_latest.html' target='_blank' rel='noopener'>artifact_index_latest.html</a><span class='p'>/home/deploy/ai_media_os/data/reports/artifact_index_latest.html</span></li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Latest Reports</h2>
+      <ul>
+<li><span class='k'>Latest Daily Report</span><a href='daily_report_20260314.json' target='_blank' rel='noopener'>daily_report_20260314.json</a><span class='p'>/home/deploy/ai_media_os/data/reports/daily_report_20260314.json</span></li>
+<li><span class='k'>Latest Weekly Report</span><a href='weekly_report_2026W11.json' target='_blank' rel='noopener'>weekly_report_2026W11.json</a><span class='p'>/home/deploy/ai_media_os/data/reports/weekly_report_2026W11.json</span></li>
+<li><span class='k'>Latest Monthly Report</span><a href='monthly_report_202603.json' target='_blank' rel='noopener'>monthly_report_202603.json</a><span class='p'>/home/deploy/ai_media_os/data/reports/monthly_report_202603.json</span></li>
+<li><span class='k'>Latest Archive</span><a href='../archives/ops_archive_20260314_195353.zip' target='_blank' rel='noopener'>ops_archive_20260314_195353.zip</a><span class='p'>/home/deploy/ai_media_os/data/archives/ops_archive_20260314_195353.zip</span></li>
+      </ul>
+    </section>
+
+    <section class='card'><h2>Release Trend Snapshot</h2><ul><li><span class='k'>Release Readiness Trend (MD)</span><a href='release_readiness_trend_latest.md' target='_blank' rel='noopener'>release_readiness_trend_latest.md</a><span class='p'>/home/deploy/ai_media_os/data/reports/release_readiness_trend_latest.md</span></li><li><span class='k'>trend_total_days</span><span>1</span><span class='p'>直近の日次判定数</span></li><li><span class='k'>trend_counts</span><span>release=1 review=0 hold=0</span><span class='p'>release/review/hold 集計</span></li><li><span class='k'>latest_decision</span><span>release</span><span class='p'>trend 最新日判定</span></li></ul></section>
+  </div>
+</body>
+</html>
