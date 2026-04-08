@@ -5,3 +5,14 @@ __pycache__/
 venv/
 .env
 *.log
+
+# Local artifacts and generated files
+*.db
+*.sqlite
+*.sqlite3
+*.zip
+data/logs/
+data/archives/
+*.tmp
+*.bak
+.DS_Store
