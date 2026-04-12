@@ -82,9 +82,9 @@
 	- 確認コマンド: `grep -n "pytest -q" reports/core_ai_runbook.md`
 
 ## 設定と機密情報
-- [ ] 本番用 Secrets / Variables が登録済みである
-	- 根拠: 実環境側の最終確認未実施
-	- 確認方法: GitHub / 実行環境の設定画面
+- [x] 本番用 Secrets / Variables が登録済みである
+	- 根拠: 必須 Secrets 4件（`WP_BASE_URL` / `WP_USERNAME` / `WP_APP_PASSWORD` / `SLACK_WEBHOOK_URL`）と Variables（`WP_DRY_RUN`）を確認済み
+	- 確認方法: GitHub Repository Settings -> Secrets and variables -> Actions（名称のみ確認）
 
 - [x] ローカル用 .env は Git 非追跡である
 	- 根拠: `git ls-files '.env' '.env.*'` で追跡なし
@@ -99,8 +99,8 @@
 	- 確認コマンド: `grep -n "設定変更時の注意" reports/core_ai_runbook.md`
 
 - [ ] 権限が最小化されている
-	- 根拠: Secrets / Token / deploy 権限の最終確認未実施
-	- 確認方法: Secrets / Token / deploy 権限確認
+	- 根拠: リポジトリ内監査では、GitHub Actions workflow に permissions 未明示、WordPress 接続ユーザーの実ロール未確認、Slack webhook の用途専用性未確認のため最終確定できない
+	- 確認方法: GitHub / WordPress / Slack 各管理画面で実権限を確認
 
 ## データ保全
 - [x] DB バックアップ手順がある
@@ -157,13 +157,25 @@
 	- 根拠: reports/core_ai_runbook.md に切り戻し手順あり
 	- 確認コマンド: `grep -n "切り戻し手順" reports/core_ai_runbook.md`
 
-- [ ] 初回運用日の担当者が決まっている
-	- 根拠: 未確認
-	- 確認方法: 運用計画
+- [x] 初回運用日の担当者が決まっている
+	- 根拠: 担当者は芦港で確定
+	- 確認方法: 初回運用体制の確定記録
 
-- [ ] 連絡フローが決まっている
-	- 根拠: 未確認
-	- 確認方法: 運用計画
+- [x] 連絡フローが決まっている
+	- 根拠: 異常検知時は新規処理投入停止を起点に、手動一次確認・停止継続判断・原因切り分け・1バッチ再開確認までのフローを確定
+	- 確認方法: 初回運用体制の確定記録
+
+- [x] 異常時の一次判断者が決まっている
+	- 根拠: 異常時の一次判断者は芦港で確定
+	- 確認方法: 初回運用体制の確定記録
+
+- [x] rollback 判断条件が共有されている
+	- 根拠: fail-safe 前提で停止条件を確定済み（give_up 増加、同種エラー連続2バッチ、想定外エラー1件、投稿異常1件、監視不能状態で停止）。初回運用日は「迷ったら停止」を適用する
+	- 確認方法: 初回運用体制の確定記録
+
+- [x] 当日見るログと retry queue が決まっている
+	- 根拠: 当日確認対象は retry queue / 主要ログ / 直近ジョブ結果で確定。監視優先度は retry queue、give_up 件数、連続失敗有無、想定外エラー、投稿結果整合性の順とする
+	- 確認方法: 初回運用体制の確定記録
 
 - [x] 初回運用時の監視ポイントが明確である
 	- 根拠: Runbook / preflight に確認項目あり
@@ -171,19 +183,16 @@
 
 ## Go / No-Go 判定
 - 判定: [ ] Go  [x] Conditional Go  [ ] No-Go
-- 判定日: 2026-04-09
+- 判定日: 2026-04-12
 - 判定者:
 - 備考:
 	- Go にするための残条件:
-		- Secrets / Variables の最終確認
 		- 権限最小化の確認
 		- バックアップ保持期間の明文化
 		- 復元確認の実施記録
-		- 初回運用日の担当者・連絡フロー確定
 	- 未確認の重要項目:
-		- 本番用 Secrets / Variables
 		- 権限
-		- 運用体制
+		- データ保全記録
 	- 初回運用日までに埋める項目:
 		- 当日 py_compile / pytest 実行結果
 		- retry queue / 主要ログ確認
@@ -308,16 +317,16 @@
 - 何をもって Go / Stop を決めるか
 
 チェック項目:
-- [ ] 初回運用日の担当者が決まっている
-- [ ] 連絡フローが決まっている
-- [ ] 異常時の一次判断者が決まっている
+- [x] 初回運用日の担当者が決まっている
+- [x] 連絡フローが決まっている
+- [x] 異常時の一次判断者が決まっている
 - [x] rollback 判断条件が明確
 - [x] 当日確認するログと queue が決まっている
 
 確認結果メモ:
 - `reports/core_ai_runbook.md` の「freeze / 異常時対応」に復旧判断条件あり。
 - `reports/core_ai_runbook.md` の「retry queue 確認手順」「ログ確認手順」「運用前チェック Top3」に当日確認項目あり。
-- 担当者・連絡フロー・一次判断者は未確認。
+- 担当者・連絡フロー・一次判断者を確定（いずれも初回運用方針として明文化済み）。
 
 埋めるメモ例:
 - 担当者:
@@ -337,7 +346,7 @@ Conditional Go -> Go に上げる条件:
 - [ ] Secrets / Variables 確認完了
 - [ ] 権限最小化確認完了
 - [ ] 保持期間と復元確認が完了
-- [ ] 初回運用日の担当者・連絡フロー確定
+- [x] 初回運用日の担当者・連絡フロー確定
 
 これが埋まれば、かなり自然に Go へ上げられます。
 
@@ -404,22 +413,22 @@ Secrets / Variables:
 
 チェックリスト:
 #### Secrets / Variables
-- [ ] GitHub Actions Secrets が必要分そろっている
-- [ ] GitHub Actions Variables が必要分そろっている
-- [ ] 各値の用途が分かる
-- [ ] 不要な古い値が残っていない
+- [x] GitHub Actions Secrets が必要分そろっている
+- [x] GitHub Actions Variables が必要分そろっている
+- [x] 各値の用途が分かる
+- [x] 不要な古い値が残っていない
 - [ ] テスト用と本番用が混在していない
-- [ ] preflight 本体の「本番用 Secrets / Variables が登録済みである」を [x] に更新した
+- [x] preflight 本体の「本番用 Secrets / Variables が登録済みである」を [x] に更新した
 
 見る場所:
 - GitHub -> Repository Settings -> Secrets and variables -> Actions
 - VPS 側 .env や運用メモ
 
 記録メモ欄:
-- 確認した Secrets:
-- 確認した Variables:
-- 不足していたもの:
-- 備考:
+- 確認した Secrets: WP_BASE_URL / WP_USERNAME / WP_APP_PASSWORD / SLACK_WEBHOOK_URL
+- 確認した Variables: WP_DRY_RUN
+- 不足していたもの: なし（今回必須分）
+- 備考: 旧名（WORDPRESS_URL / WORDPRESS_USER / WORDPRESS_APP_PASSWORD / WP_URL）は未使用。
 
 ### 2. 権限最小化
 
@@ -451,19 +460,33 @@ Secrets / Variables:
 
 チェックリスト:
 #### 初回運用体制
-- [ ] 初回運用日の担当者が決まっている
-- [ ] 連絡フローが決まっている
-- [ ] 異常時の一次判断者が決まっている
-- [ ] rollback 判断条件が共有されている
-- [ ] 当日見るログと retry queue が決まっている
-- [ ] preflight 本体の「初回運用日の担当者」「連絡フロー」を [x] に更新した
+- [x] 初回運用日の担当者が決まっている
+- [x] 連絡フローが決まっている
+- [x] 異常時の一次判断者が決まっている
+- [x] rollback 判断条件が共有されている
+- [x] 当日見るログと retry queue が決まっている
+- [x] preflight 本体の「初回運用日の担当者」「異常時の一次判断者」「連絡フロー」を [x] に更新した
 
 記録メモ欄:
-- 担当者:
-- 異常時判断者:
-- 連絡フロー:
-- 当日確認対象:
-- 備考:
+- 担当者: 芦港
+- 異常時判断者: 芦港
+- 連絡フロー: 異常検知 → その場で新規処理投入を停止（自動継続させない） → 芦港が手動一次確認（retry queue、主要ログ、直近ジョブ結果） → 停止継続を即時判断（初回運用日は「迷ったら停止」） → 停止後に原因切り分け（入力データ、設定値、外部依存、コード外運用要因） → 再開条件を満たすまで再開しない → 条件充足後に小さく再開（1バッチ） → 正常確認後に通常運用へ戻す
+- 当日確認対象: retry queue / 主要ログ / 直近ジョブ結果（監視優先度: retry queue → give_up 件数 → 連続失敗有無 → 想定外エラー → 投稿結果整合性）
+- 備考: 初回運用日は継続性より安全性を優先し、停止判断を早めに行う。判断に迷いがある場合は必ず停止を選ぶ（fail-safe 固定）。担当者と異常時判断者はともに芦港で運用する。
+
+停止条件（初回運用方針）:
+1. give_up が増加した
+2. 同種エラーが連続2バッチで発生した
+3. 想定外エラー（事前に許容していない例外種別）が1件でも発生した
+4. 投稿結果に異常（重複投稿、欠落、フォーマット崩れ、宛先誤り）が1件でも確認された
+5. 監視に必要なログ欠損や判定不能状態が発生した
+
+再開条件（初回運用方針）:
+1. 原因を特定し、説明可能な状態になっている
+2. 必要な運用修正（設定・手順・入力データ是正）が反映済み
+3. dry run または同等の事前確認で異常が再現しないことを確認済み
+4. 主要ログと retry queue が正常化している
+5. 再開は1バッチ単位で実施し、その1バッチの結果正常を確認済み
 
 ### 4. データ保全の残項目
 
@@ -489,9 +512,9 @@ Secrets / Variables:
 
 Conditional Go -> Go に上げる条件:
 #### 判定更新条件
-- [ ] Secrets / Variables 確認完了
+- [x] Secrets / Variables 確認完了
 - [ ] 権限最小化確認完了
-- [ ] 初回運用体制確認完了
+- [x] 初回運用体制確認完了
 - [ ] 保持期間と復元確認記録が埋まった
 - [ ] preflight 本体の対応項目が [x] に更新済み
 
@@ -500,9 +523,9 @@ Conditional Go -> Go に上げる条件:
 #### 第10.5弾 実環境確認
 
 Secrets / Variables:
-- [ ] 確認完了
-- [ ] preflight 反映済み
-- メモ:
+- [x] 確認完了
+- [x] preflight 反映済み
+- メモ: 必須 Secrets 4件と `WP_DRY_RUN` を確認済み（名称のみ）。
 
 権限最小化:
 - [ ] 確認完了
@@ -510,9 +533,9 @@ Secrets / Variables:
 - メモ:
 
 初回運用体制:
-- [ ] 確認完了
-- [ ] preflight 反映済み
-- メモ:
+- [x] 確認完了
+- [x] preflight 反映済み
+- メモ: 担当者/一次判断者は芦港で確定。連絡フロー、停止条件、再開条件を反映済み。
 
 データ保全:
 - [ ] 確認完了
@@ -540,47 +563,77 @@ Secrets / Variables:
 ## 第10.5弾 実環境確認シート（現状反映版）
 
 ### 1) Secrets / Variables
-- [ ] GitHub Actions Secrets が必要分そろっている
-- [ ] GitHub Actions Variables が必要分そろっている
-- [ ] 各値の用途が分かる
-- [ ] 不要な古い値が残っていない
+- [x] GitHub Actions Secrets が必要分そろっている
+- [x] GitHub Actions Variables が必要分そろっている
+- [x] 各値の用途が分かる
+- [x] 不要な古い値が残っていない
 - [ ] テスト用と本番用が混在していない
-- [ ] preflight 本体の「本番用 Secrets / Variables が登録済みである」を [x] に更新した
+- [x] preflight 本体の「本番用 Secrets / Variables が登録済みである」を [x] に更新した
 
 記録:
-- 確認した Secrets: 未確認
-- 確認した Variables: 未確認
-- 不足していたもの: 未確認
-- 備考: GitHub / 実行環境の設定画面での実確認が必要
+- 確認した Secrets: WP_BASE_URL / WP_USERNAME / WP_APP_PASSWORD / SLACK_WEBHOOK_URL
+- 確認した Variables: WP_DRY_RUN
+- 不足していたもの: なし（今回必須分）
+- 備考: 旧名（WORDPRESS_URL / WORDPRESS_USER / WORDPRESS_APP_PASSWORD / WP_URL）は未使用。
 
 ### 2) 初回運用体制
-- [ ] 初回運用日の担当者が決まっている
-- [ ] 連絡フローが決まっている
-- [ ] 異常時の一次判断者が決まっている
+- [x] 初回運用日の担当者が決まっている
+- [x] 連絡フローが決まっている
+- [x] 異常時の一次判断者が決まっている
 - [x] rollback 判断条件が共有されている
 - [x] 当日見るログと retry queue が決まっている
-- [ ] preflight 本体の「初回運用日の担当者」「連絡フロー」を [x] に更新した
+- [x] preflight 本体の「初回運用日の担当者」「異常時の一次判断者」「連絡フロー」を [x] に更新した
 
 記録:
-- 担当者: 未確認
-- 異常時判断者: 未確認
-- 連絡フロー: 未確認
-- 当日確認対象: retry queue / pipeline_failures.log / combined_signal.log / py_compile / pytest -q
-- 備考: rollback 手順と監視対象は Runbook / preflight に記載済み。担当者と連絡フローのみ未確定
+- 担当者: 芦港
+- 異常時判断者: 芦港
+- 連絡フロー: 異常検知 → その場で新規処理投入を停止（自動継続させない） → 芦港が手動一次確認（retry queue、主要ログ、直近ジョブ結果） → 停止継続を即時判断（初回運用日は「迷ったら停止」） → 停止後に原因切り分け（入力データ、設定値、外部依存、コード外運用要因） → 再開条件を満たすまで再開しない → 条件充足後に小さく再開（1バッチ） → 正常確認後に通常運用へ戻す
+- 当日確認対象: retry queue / 主要ログ / 直近ジョブ結果（監視優先度: retry queue → give_up 件数 → 連続失敗有無 → 想定外エラー → 投稿結果整合性）
+- 備考: 初回運用日は継続性より安全性を優先し、停止判断を早めに行う。判断に迷いがある場合は必ず停止を選ぶ（fail-safe 固定）。担当者と異常時判断者はともに芦港で運用する。
+
+停止条件:
+1. give_up が増加した
+2. 同種エラーが連続2バッチで発生した
+3. 想定外エラー（事前に許容していない例外種別）が1件でも発生した
+4. 投稿結果に異常（重複投稿、欠落、フォーマット崩れ、宛先誤り）が1件でも確認された
+5. 監視に必要なログ欠損や判定不能状態が発生した
+
+再開条件:
+1. 原因を特定し、説明可能な状態になっている
+2. 必要な運用修正（設定・手順・入力データ是正）が反映済み
+3. dry run または同等の事前確認で異常が再現しないことを確認済み
+4. 主要ログと retry queue が正常化している
+5. 再開は1バッチ単位で実施し、その1バッチの結果正常を確認済み
+
+最短の記入フォーマット:
+- 担当者:
+- 異常時判断者:
+- 連絡フロー:
+- 備考:
 
 ### 3) 権限最小化
 - [ ] GitHub Actions / Token 権限が必要最小限
 - [ ] WordPress 接続権限が必要最小限
 - [ ] Slack webhook が用途限定である
-- [ ] 外部 API キーが必要最小限の用途に限定されている
+- [x] 外部 API キーが必要最小限の用途に限定されている
 - [ ] 使っていない token / key が残っていない
 - [ ] preflight 本体の「権限が最小化されている」を [x] に更新した
 
 記録:
-- 確認した権限: 未確認
-- 過剰権限の疑い: 未確認
-- 削除/無効化対象: 未確認
-- 備考: Secrets / Token / webhook / API キーの実環境確認が必要
+- 確認した権限:
+	- GitHub Actions: python-check workflow 1本のみ。checkout / Python setup / test 実行中心で、Secrets参照や明示的 token 利用は見当たらない
+	- WordPress: WP_BASE_URL / WP_USERNAME / WP_APP_PASSWORD / WP_DRY_RUN を利用。用途は投稿作成・カテゴリ/タグ作成・既存確認
+	- Slack webhook: SLACK_WEBHOOK_URL による通知送信専用
+- 過剰権限の疑い:
+	- GitHub Actions: workflow に `permissions` 未記載
+	- WordPress: 管理者権限で運用している場合は過剰の可能性
+	- Slack: 専用 webhook / 専用チャンネルかは未確認
+- 削除/無効化対象:
+	- 旧WP系名称: WORDPRESS_URL, WORDPRESS_USER, WORDPRESS_APP_PASSWORD, WP_URL
+	- 文書上のみ確認の候補: AMAZON_PAAPI_KEY
+- 備考:
+	- リポジトリ内監査では、WordPress / Slack / GitHub 各管理画面の実権限までは未確認
+	- 最終確定には管理画面での確認が必要
 
 ### 4) データ保全（残項目）
 - [ ] バックアップ保持期間が決まっている
@@ -599,9 +652,9 @@ Secrets / Variables:
 ---
 
 ## 判定更新条件（Conditional Go → Go）
-- [ ] Secrets / Variables 確認完了
+- [x] Secrets / Variables 確認完了
 - [ ] 権限最小化確認完了
-- [ ] 初回運用体制確認完了
+- [x] 初回運用体制確認完了
 - [ ] 保持期間と復元確認記録が埋まった
 - [ ] preflight 本体の対応項目が [x] に更新済み
 
@@ -615,5 +668,5 @@ Secrets / Variables:
 	- Git / GitHub / Actions / .gitignore / 追跡除外 / Runbook / Preflight は整備済み
 	- GitHub Actions の python-check は成功確認済み
 	- DB / ZIP / logs は Git 非追跡化済み
-	- Secrets / Variables、権限最小化、保持期間、復元確認記録、担当者・連絡フローは未確認
+	- 権限最小化、保持期間、復元確認記録は未確認
 	- 上記が埋まれば Go 判定へ移行可能
