@@ -110,7 +110,7 @@ class ArticleFormatter:
         # Simple links: [label](url) -> <a href="url">label</a>
         escaped = re.sub(
             r"\[(.+?)\]\((https?://[^\s\)]+)\)",
-            r'<a href="\2" target="_blank" rel="noopener noreferrer">\1</a>',
+            r'<a href="\2" target="_blank" rel="nofollow sponsored noopener">\1</a>',
             escaped,
         )
         return escaped

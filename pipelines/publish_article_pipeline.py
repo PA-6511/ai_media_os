@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 from pathlib import Path
 from typing import Any
 
@@ -20,6 +21,136 @@ BASE_DIR = Path(__file__).resolve().parents[1]
 DATA_DIR = BASE_DIR / "data"
 ARTICLE_OUTPUT_PATH = DATA_DIR / "article_output_with_journey.json"
 
+REQUIRED_REL_TOKENS = ("nofollow", "sponsored", "noopener")
+
+
+def _strip_html(text: str) -> str:
+    return re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", text or "")).strip()
+
+
+def _merge_rel_tokens(rel_text: str) -> str:
+    tokens = {token.strip().lower() for token in (rel_text or "").split() if token.strip()}
+    tokens.update(REQUIRED_REL_TOKENS)
+    return " ".join(sorted(tokens))
+
+
+def _normalize_anchor_attrs(content_html: str) -> str:
+    def repl(match: re.Match[str]) -> str:
+        tag = match.group(0)
+        href_match = re.search(r'href\s*=\s*(["\'])(.*?)\1', tag, flags=re.IGNORECASE)
+        if href_match is None:
+            return tag
+
+        href = href_match.group(2).strip()
+        if not (href.startswith("http://") or href.startswith("https://")):
+            return tag
+
+        out = tag
+        rel_match = re.search(r'rel\s*=\s*(["\'])(.*?)\1', out, flags=re.IGNORECASE)
+        if rel_match is None:
+            out = out[:-1] + f' rel="{" ".join(REQUIRED_REL_TOKENS)}">'
+        else:
+            merged = _merge_rel_tokens(rel_match.group(2))
+            out = re.sub(r'rel\s*=\s*(["\'])(.*?)\1', f'rel="{merged}"', out, count=1, flags=re.IGNORECASE)
+
+        if re.search(r'target\s*=\s*(["\'])_blank\1', out, flags=re.IGNORECASE) is None:
+            out = out[:-1] + ' target="_blank">'
+        return out
+
+    return re.sub(r"<a\b[^>]*>", repl, content_html or "", flags=re.IGNORECASE)
+
+
+def _has_pr_label(content_html: str) -> bool:
+    text = _strip_html(content_html)
+    return "PR" in text or "プロモーション" in text
+
+
+def _has_price_notice(content_html: str) -> bool:
+    text = _strip_html(content_html)
+    return "価格" in text and any(token in text for token in ("キャンペーン", "変動", "掲載時点"))
+
+
+def _find_external_links(content_html: str) -> list[str]:
+    links = re.findall(r'<a\s+[^>]*href=["\']([^"\']+)["\'][^>]*>', content_html or "", flags=re.IGNORECASE)
+    return [url for url in links if url.startswith("http://") or url.startswith("https://")]
+
+
+def _has_cta_link(content_html: str) -> bool:
+    pattern = re.compile(
+        r"<a\b[^>]*href=['\"]https?://[^'\"]+['\"][^>]*>(.*?)</a>",
+        flags=re.IGNORECASE | re.DOTALL,
+    )
+    for inner in pattern.findall(content_html or ""):
+        text = _strip_html(inner)
+        if any(token in text for token in ("確認", "チェック", "購入", "公式", "詳しく", "今すぐ")):
+            return True
+    return False
+
+
+def _pick_cta_url(row: dict[str, Any] | None) -> str:
+    if not row:
+        return ""
+    for key in ("official_url", "rakuten_url", "dmm_url"):
+        value = str(row.get(key, "")).strip()
+        if value.startswith("http://") or value.startswith("https://"):
+            return value
+    return ""
+
+
+def _inject_cta_block(content_html: str, cta_url: str) -> str:
+    return (
+        (content_html or "")
+        + "\n"
+        + '<div class="cta-box"><p><strong>購入先リンク</strong></p>'
+        + f'<p><a href="{cta_url}">公式ページで詳細を確認する</a></p></div>'
+    )
+
+
+def enforce_wp_prepublish_quality(article: dict[str, Any], row: dict[str, Any] | None = None) -> dict[str, Any]:
+    """投稿直前に本文HTMLの必須要素を補強し、満たせない場合は例外を送出する。"""
+    normalized = dict(article)
+    content_html = str(normalized.get("content", "")).strip()
+
+    if not content_html:
+        raise ValueError("quality NG: 本文が空です")
+
+    if not _has_pr_label(content_html):
+        content_html = '<p><strong>PR</strong> 本記事にはプロモーションが含まれます。</p>\n' + content_html
+
+    if not _has_price_notice(content_html):
+        content_html = (
+            content_html
+            + "\n"
+            + '<p><small>価格・キャンペーン情報は掲載時点の内容です。最新情報は各ストアでご確認ください。</small></p>'
+        )
+
+    if not _has_cta_link(content_html):
+        cta_url = _pick_cta_url(row)
+        if not cta_url:
+            raise ValueError("quality NG: CTAリンクURLが不足しています")
+        content_html = _inject_cta_block(content_html, cta_url)
+
+    content_html = _normalize_anchor_attrs(content_html)
+
+    links = _find_external_links(content_html)
+    if not links:
+        raise ValueError("quality NG: 外部リンクがありません")
+
+    rel_values = re.findall(
+        r'<a\b[^>]*href=["\']https?://[^"\']+["\'][^>]*rel=["\']([^"\']+)["\'][^>]*>',
+        content_html,
+        flags=re.IGNORECASE,
+    )
+    rel_ok = any(
+        all(token in rel_text.lower().split() for token in REQUIRED_REL_TOKENS)
+        for rel_text in rel_values
+    )
+    if not rel_ok:
+        raise ValueError("quality NG: rel=nofollow sponsored noopener が不足しています")
+
+    normalized["content"] = content_html
+    return normalized
+
 
 def _to_bool(value: str, default: bool = False) -> bool:
     """環境変数文字列を bool に変換する。"""
@@ -29,6 +160,11 @@ def _to_bool(value: str, default: bool = False) -> bool:
     if normalized in {"0", "false", "no", "off"}:
         return False
     return default
+
+
+def _get_wp_username() -> str:
+    """WP_USER を正とし、旧 WP_USERNAME も後方互換で許容する。"""
+    return os.getenv("WP_USER", "").strip() or os.getenv("WP_USERNAME", "").strip()
 
 
 def load_article_output(path: Path) -> dict[str, Any]:
@@ -81,7 +217,7 @@ def build_wp_article(article_output: dict[str, Any]) -> dict[str, Any]:
 def create_publisher_from_env() -> tuple[WordPressPublisher, bool]:
     """環境変数から WordPressPublisher を初期化し dry_run 設定も返す。"""
     base_url = os.getenv("WP_BASE_URL", "").strip()
-    username = os.getenv("WP_USERNAME", "").strip()
+    username = _get_wp_username()
     app_password = os.getenv("WP_APP_PASSWORD", "").strip()
     dry_run = _to_bool(os.getenv("WP_DRY_RUN", "1"), default=True)
 
@@ -89,7 +225,7 @@ def create_publisher_from_env() -> tuple[WordPressPublisher, bool]:
     if not base_url:
         missing.append("WP_BASE_URL")
     if not username:
-        missing.append("WP_USERNAME")
+        missing.append("WP_USER (or legacy WP_USERNAME)")
     if not app_password:
         missing.append("WP_APP_PASSWORD")
 
