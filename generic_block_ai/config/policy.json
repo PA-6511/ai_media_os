@@ -1,0 +1,11 @@
+{
+  "forbidden_actions": [
+    "delete_block",
+    "export_block",
+    "sell_block",
+    "change_core_policy",
+    "disable_audit",
+    "auto_publish_without_approval",
+    "handle_adult_content"
+  ]
+}

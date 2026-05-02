@@ -1,0 +1,30 @@
+{
+  "block_id": "generic_block",
+  "display_name": "汎用ブロックAI",
+  "version": "0.1.0",
+  "category": "generic",
+  "mode": "dry_run",
+  "risk_level": "low",
+  "capabilities": {
+    "collect_data": true,
+    "analyze": true,
+    "generate_report": true,
+    "notify_slack": true,
+    "publish_content": false,
+    "delete_data": false,
+    "change_config": false
+  },
+  "approval_policy": {
+    "requires_human_approval": true,
+    "auto_execute_allowed": false
+  },
+  "forbidden_actions": [
+    "delete_block",
+    "export_block",
+    "sell_block",
+    "change_core_policy",
+    "disable_audit",
+    "auto_publish_without_approval",
+    "handle_adult_content"
+  ]
+}
