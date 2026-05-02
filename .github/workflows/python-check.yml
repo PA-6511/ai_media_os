@@ -32,3 +32,14 @@ jobs:
         run: |
           python3 tools/print_block_registry.py --root .
           python3 tools/print_block_registry.py --root . --json
+
+      - name: Save block registry JSON
+        run: |
+          mkdir -p reports
+          python3 tools/print_block_registry.py --root . --json > reports/block_registry.json
+
+      - name: Upload block registry artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: block-registry
+          path: reports/block_registry.json
