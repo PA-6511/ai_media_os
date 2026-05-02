@@ -79,3 +79,18 @@ def test_main_marks_invalid_manifest(tmp_path, capsys) -> None:
     assert "total: 2" in captured.out
     assert "valid: 1" in captured.out
     assert "invalid: 1" in captured.out
+
+
+def test_main_prints_json_for_repo_root(capsys) -> None:
+    exit_code = main(["--root", ".", "--json"])
+    captured = capsys.readouterr()
+    payload = json.loads(captured.out)
+
+    assert exit_code == 0
+    assert isinstance(payload, dict)
+    assert "blocks" in payload
+    assert "summary" in payload
+    assert payload["summary"]["total"] >= 2
+    block_ids = {entry.get("block_id") for entry in payload["blocks"]}
+    assert "generic_block" in block_ids
+    assert "ebook_affiliate_block" in block_ids

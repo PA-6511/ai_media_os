@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import json
 import sys
 from pathlib import Path
 from typing import Any
@@ -48,11 +49,19 @@ def main(argv: list[str] | None = None) -> int:
         default=".",
         help="Repository root path to scan (default: current directory)",
     )
+    parser.add_argument(
+        "--json",
+        action="store_true",
+        help="Print raw registry data as JSON",
+    )
     args = parser.parse_args(argv)
 
     root_path = Path(args.root).resolve()
     registry = load_block_registry(str(root_path))
-    print(format_block_registry_report(registry))
+    if args.json:
+        print(json.dumps(registry, ensure_ascii=False, indent=2))
+    else:
+        print(format_block_registry_report(registry))
     return 0
 
 
