@@ -30,7 +30,7 @@ def search_posts_by_hint(hint: str, per_page: int = 5, timeout_sec: int = 10) ->
     if not base_url:
         return []
 
-    username = os.getenv("WP_USERNAME", "").strip()
+    username = os.getenv("WP_USER", "").strip() or os.getenv("WP_USERNAME", "").strip()
     app_password = os.getenv("WP_APP_PASSWORD", "").strip()
     auth = (username, app_password) if username and app_password else None
 

@@ -36,7 +36,7 @@ class HomepageGenerator:
     def publish_homepage(self, page_data: Dict[str, str], dry_run: bool = True) -> Dict[str, Any]:
         publisher = WPPublisher(
             base_url=os.getenv("WP_BASE_URL", "https://example.com"),
-            username=os.getenv("WP_USERNAME", "demo_user"),
+            username=os.getenv("WP_USER", "").strip() or os.getenv("WP_USERNAME", "demo_user"),
             app_password=os.getenv("WP_APP_PASSWORD", "demo_app_password"),
         )
         page_id_raw = os.getenv("WP_HOMEPAGE_PAGE_ID", "").strip()

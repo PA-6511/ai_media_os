@@ -57,7 +57,7 @@ class SaleRankingAI:
 
         publisher = WPPublisher(
             base_url=os.getenv("WP_BASE_URL", "https://example.com"),
-            username=os.getenv("WP_USERNAME", "demo_user"),
+            username=os.getenv("WP_USER", "").strip() or os.getenv("WP_USERNAME", "demo_user"),
             app_password=os.getenv("WP_APP_PASSWORD", "demo_app_password"),
         )
         publish_result = publisher.publish(page, dry_run=dry_run)
