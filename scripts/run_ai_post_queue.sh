@@ -3,12 +3,12 @@
 # scripts/run_ai_post_queue.sh
 #
 # AI 投稿キューを実行するラッパースクリプト。
-# Google Sheets から投稿キューを読み込み、OpenAI で記事生成後、
-# WordPress へ投稿する。
+# Google Sheets の投稿キューから先頭の NEW 1件を読み込み、
+# OpenAI で記事生成後、WordPress へ下書き投稿する。
 #
 # 使い方:
 #   cd ~/ai_media_os
-#   bash scripts/run_ai_post_queue.sh [--max-items N] [--dry-run]
+#   bash scripts/run_ai_post_queue.sh [--max-items 1]
 #
 # 環境変数 (事前に .env に設定):
 #   SPREADSHEET_ID            必須 - 投稿キュー Google Spreadsheet ID
@@ -22,7 +22,7 @@
 # 互換 alias:
 #   WP_USER           -> WP_USERNAME
 #   DRY_RUN           -> WP_DRY_RUN
-#   MAX_ROWS_PER_RUN  -> SCHEDULER_MAX_ITEMS / MAX_ITEMS
+#   MAX_ROWS_PER_RUN  -> 先頭 NEW 行の処理件数上限
 # ---------------------------------------------------------------
 set -euo pipefail
 
@@ -59,19 +59,35 @@ if [[ -n "${DRY_RUN:-}" && -z "${WP_DRY_RUN:-}" ]]; then
     export WP_DRY_RUN="${DRY_RUN}"
 fi
 
-# scheduler 側の dry_run 既定値に上書きされないよう、
-# WP_DRY_RUN 指定時は SCHEDULER_DRY_RUN にも同値を渡す。
-if [[ -n "${WP_DRY_RUN:-}" && -z "${SCHEDULER_DRY_RUN:-}" ]]; then
-    export SCHEDULER_DRY_RUN="${WP_DRY_RUN}"
+MAX_ITEMS="${MAX_ROWS_PER_RUN:-1}"
+
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        --max-items)
+            MAX_ITEMS="${2:-}"
+            shift 2
+            ;;
+        --max-items=*)
+            MAX_ITEMS="${1#*=}"
+            shift
+            ;;
+        --dry-run|--real-run|--only-sale-articles)
+            _log WARN "ignored unsupported argument: $1"
+            shift
+            ;;
+        *)
+            _log WARN "ignored unknown argument: $1"
+            shift
+            ;;
+    esac
+done
+
+if [[ -z "${MAX_ITEMS}" ]]; then
+    MAX_ITEMS="1"
 fi
 
-if [[ -n "${MAX_ROWS_PER_RUN:-}" ]]; then
-    if [[ -z "${SCHEDULER_MAX_ITEMS:-}" ]]; then
-        export SCHEDULER_MAX_ITEMS="${MAX_ROWS_PER_RUN}"
-    fi
-    if [[ -z "${MAX_ITEMS:-}" ]]; then
-        export MAX_ITEMS="${MAX_ROWS_PER_RUN}"
-    fi
+if [[ "${MAX_ITEMS}" != "1" ]]; then
+    _log WARN "only --max-items 1 is supported in queue mode; using 1"
 fi
 
 # --- 必須環境変数チェック ---
@@ -91,9 +107,33 @@ fi
 # --- 引数を Python スクリプトへ転送 ---
 cd "${PROJECT_DIR}"
 
-_log INFO "running python scheduler (run_once)"
+_log INFO "selecting first NEW row from Sheets queue"
 
-python3 -m scheduler.job_runner "$@" 2>&1 | tee -a "${RUN_LOG}"
+ROW_ID="$(python3 - <<'PY'
+from pathlib import Path
+from dotenv import load_dotenv
+
+load_dotenv(Path('.env'), override=True)
+
+from src.sheets import fetch_all_rows, get_sheet
+
+sheet = get_sheet('投稿キュー')
+rows = fetch_all_rows(sheet)
+for row in rows:
+    if str(row.get('status', '')).strip().upper() == 'NEW':
+        print(str(row.get('row_id', '')).strip())
+        break
+PY
+)"
+
+if [[ -z "${ROW_ID}" ]]; then
+    _log INFO "no NEW rows found; nothing to process"
+    exit 0
+fi
+
+_log INFO "running queue publish for row_id=${ROW_ID}"
+
+python3 tools/run_single_row_real.py --yes "${ROW_ID}" 2>&1 | tee -a "${RUN_LOG}"
 EXIT_CODE="${PIPESTATUS[0]}"
 
 _log INFO "done | exit_code=${EXIT_CODE}"

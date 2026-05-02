@@ -72,6 +72,10 @@ def _confirm_execution(row_id: str) -> bool:
     return answer == "YES"
 
 
+def _should_skip_confirmation(args: list[str]) -> bool:
+    return any(arg == "--yes" for arg in args)
+
+
 def _build_taxonomy_from_row(row: dict[str, Any]) -> tuple[list[str], list[str]]:
     category = str(row.get("category", "")).strip() or "review"
     raw_tags = str(row.get("tags", "")).strip()
@@ -93,16 +97,18 @@ def main(argv: list[str] | None = None) -> int:
     load_dotenv(BASE_DIR / ".env", override=True)
 
     args = argv if argv is not None else sys.argv[1:]
-    if len(args) != 1:
+    skip_confirmation = _should_skip_confirmation(args)
+    normalized_args = [arg for arg in args if arg != "--yes"]
+    if len(normalized_args) != 1:
         print("エラー: row_id を1つ指定してください。例: python3 tools/run_single_row_real.py TEST-WP-001")
         return 1
 
-    row_id = args[0].strip()
+    row_id = normalized_args[0].strip()
     if not row_id:
         print("エラー: row_id が空です")
         return 1
 
-    if not _confirm_execution(row_id):
+    if not skip_confirmation and not _confirm_execution(row_id):
         print("中止: YES が入力されなかったため処理を停止しました")
         return 1
 
