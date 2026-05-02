@@ -1,12 +1,14 @@
 from __future__ import annotations
 
+import argparse
 import os
+import sys
 from contextlib import contextmanager
 from typing import Any, Iterator
 
 from monitoring.log_helper import get_failure_logger
 from main import run_pipeline
-from scheduler.config import SchedulerConfig
+from scheduler.config import SchedulerConfig, load_scheduler_config
 from scheduler.report_hook import run_daily_report_hook
 
 
@@ -83,3 +85,63 @@ def run_once(config: SchedulerConfig) -> dict[str, Any]:
         "job_success": job_success,
         "report_hook": hook_result,
     }
+
+
+def main(argv: list[str] | None = None) -> int:
+    """1回だけ scheduler job を実行する CLI 入口。"""
+    parser = argparse.ArgumentParser(description="scheduler job を1回だけ実行する")
+    parser.add_argument(
+        "--dry-run",
+        dest="dry_run",
+        action="store_true",
+        help="WordPress への実投稿を行わない",
+    )
+    parser.add_argument(
+        "--real-run",
+        dest="real_run",
+        action="store_true",
+        help="WordPress への実投稿を行う",
+    )
+    parser.add_argument(
+        "--max-items",
+        type=int,
+        default=None,
+        help="今回処理する最大件数を上書きする",
+    )
+    parser.add_argument(
+        "--only-sale-articles",
+        action="store_true",
+        help="sale_article のみ処理する",
+    )
+
+    args = parser.parse_args(argv)
+    if args.dry_run and args.real_run:
+        parser.error("--dry-run と --real-run は同時に指定できません")
+
+    config = load_scheduler_config()
+    if args.dry_run:
+        config.dry_run = True
+    elif args.real_run:
+        config.dry_run = False
+
+    if args.max_items is not None:
+        config.max_items = args.max_items
+
+    if args.only_sale_articles:
+        config.only_sale_articles = True
+
+    wrapped = run_once(config)
+    job_result = wrapped.get("job_result", {})
+
+    print("Scheduler job result:")
+    print(f"success_count: {job_result.get('success_count', 0)}")
+    print(f"skipped_count: {job_result.get('skipped_count', 0)}")
+    print(f"failed_count: {job_result.get('failed_count', 0)}")
+    print(f"dry_run: {config.dry_run}")
+    print(f"max_items: {config.max_items}")
+
+    return 0 if wrapped.get("job_success", False) else 1
+
+
+if __name__ == "__main__":
+    sys.exit(main())
