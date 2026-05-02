@@ -38,6 +38,21 @@ jobs:
           mkdir -p reports
           python3 tools/print_block_registry.py --root . --json > reports/block_registry.json
 
+      - name: Check block registry warnings
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          payload = json.loads(Path("reports/block_registry.json").read_text(encoding="utf-8"))
+          invalid = int(payload.get("summary", {}).get("invalid", 0))
+
+          if invalid > 0:
+              print(f"::warning::Block registry has {invalid} invalid manifest(s)")
+          else:
+              print("Block registry invalid count: 0")
+          PY
+
       - name: Upload block registry artifact
         uses: actions/upload-artifact@v4
         with:
