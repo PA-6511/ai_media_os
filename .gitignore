@@ -8,6 +8,11 @@ secrets/
 *.log
 
 # Local artifacts and generated files
+# Generated article / report outputs
+data/items/
+data/reports/
+backups/
+
 *.db
 *.sqlite
 *.sqlite3
