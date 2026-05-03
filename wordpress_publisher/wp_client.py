@@ -50,6 +50,25 @@ class WordPressClient:
             "title": (first.get("title") or {}).get("rendered", "") if isinstance(first.get("title"), dict) else "",
         }
 
+    def get_post(self, post_id: int | str) -> Dict[str, Any] | None:
+        """投稿IDで単一投稿を取得する。"""
+        post_id_text = str(post_id).strip()
+        if not post_id_text:
+            return None
+
+        data = self._get(f"/wp-json/wp/v2/posts/{post_id_text}", params={"context": "edit"})
+        if not isinstance(data, dict):
+            return None
+
+        return {
+            "id": data.get("id"),
+            "slug": data.get("slug"),
+            "link": data.get("link"),
+            "status": data.get("status"),
+            "featured_media": data.get("featured_media"),
+            "title": (data.get("title") or {}).get("rendered", "") if isinstance(data.get("title"), dict) else "",
+        }
+
     def list_categories(self, search: str | None = None) -> list[Dict[str, Any]]:
         """カテゴリ一覧を取得する。"""
         params: dict[str, Any] = {"per_page": 100}

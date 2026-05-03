@@ -33,6 +33,53 @@ class WordPressPublisher:
         """category_names / tag_names を term ID 配列へ変換する。"""
         return self.term_resolver.enrich_payload_with_term_ids(payload)
 
+    def check_featured_image_warning(self, result_payload: Dict[str, Any], article: Dict[str, Any]) -> None:
+        """投稿後にアイキャッチ有無を確認し、未設定なら warning のみ出す。"""
+        post_id = result_payload.get("id")
+        post_id_text = str(post_id).strip() if post_id is not None else ""
+        if not post_id_text:
+            return
+
+        row_id = str(article.get("row_id", "")).strip()
+        work_id = str(article.get("work_id", "")).strip()
+        slug = str(article.get("slug", "")).strip()
+        title = str(article.get("title", "")).strip()
+        draft_url = str(result_payload.get("link", "")).strip()
+
+        try:
+            post_data = self.client.get_post(post_id_text)
+            if not isinstance(post_data, dict):
+                self.logger.warning(
+                    "featured image check skipped row_id=%s work_id=%s slug=%s wp_post_id=%s reason=post_not_found",
+                    row_id,
+                    work_id,
+                    slug,
+                    post_id_text,
+                )
+                return
+
+            featured_media = post_data.get("featured_media")
+            missing_featured = featured_media in (None, "", 0, "0")
+            if missing_featured:
+                self.logger.warning(
+                    "featured image missing row_id=%s work_id=%s slug=%s wp_post_id=%s wp_draft_url=%s title=%s",
+                    row_id,
+                    work_id,
+                    slug,
+                    post_id_text,
+                    draft_url,
+                    title,
+                )
+        except Exception as exc:
+            self.logger.warning(
+                "featured image check failed row_id=%s work_id=%s slug=%s wp_post_id=%s error=%s",
+                row_id,
+                work_id,
+                slug,
+                post_id_text,
+                exc,
+            )
+
     def publish(self, article: Dict[str, Any], dry_run: bool = False) -> Dict[str, Any]:
         payload = self.format_article(article)
         resolved_payload = self.resolve_terms(payload)
@@ -46,6 +93,7 @@ class WordPressPublisher:
             }
 
         result = self.client.create_post(resolved_payload)
+        self.check_featured_image_warning(result, article)
         return {
             "dry_run": False,
             "post_id": result.get("id"),

@@ -137,6 +137,7 @@ def main(argv: list[str] | None = None) -> int:
             article_output = generate_article_content(plan)
 
         wp_article = build_wp_article(article_output)
+        wp_article["row_id"] = row_id
         category_names, tag_names = _build_taxonomy_from_row(row)
         if not wp_article.get("category_names"):
             wp_article["category_names"] = category_names

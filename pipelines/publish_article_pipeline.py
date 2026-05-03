@@ -197,6 +197,7 @@ def build_wp_article(article_output: dict[str, Any]) -> dict[str, Any]:
         "tag_names": enriched.get("tag_names", []),
         # ログ確認用の補助情報
         "work_id": str(article_output.get("work_id", "")).strip(),
+        "row_id": str(article_output.get("row_id", "")).strip(),
         "keyword": str(article_output.get("keyword", "")).strip(),
         "article_type": str(article_output.get("article_type", "")).strip(),
         "price_changed": bool(article_output.get("price_changed", False)),
