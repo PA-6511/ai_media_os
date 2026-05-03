@@ -64,6 +64,36 @@ def _build_checked_at_text(article_data: dict[str, Any]) -> str:
         return escape(raw)
 
 
+def _normalize_entry_required(value: Any) -> str:
+    text = str(value or "").strip().lower()
+    if text in {"required", "must", "yes", "true", "1", "必須"}:
+        return "エントリー必須"
+    if text in {"optional", "recommend", "recommended", "推奨"}:
+        return "エントリー推奨"
+    if text in {"none", "no", "false", "0", "不要"}:
+        return "エントリー不要"
+    return "エントリー不要"
+
+
+def build_sale_campaign_section(article_data: dict[str, Any]) -> str:
+    """sale 固有のキャンペーン情報セクションを返す。"""
+    campaign_name = str(article_data.get("campaign_name", "")).strip() or "未設定"
+    sale_start_date = str(article_data.get("sale_start_date", "")).strip() or "未設定"
+    sale_end_date = str(article_data.get("sale_end_date", "")).strip() or "未設定"
+    discount_text = str(article_data.get("discount_text", "")).strip() or "情報なし"
+    point_text = str(article_data.get("point_text", "")).strip() or "情報なし"
+    entry_text = _normalize_entry_required(article_data.get("entry_required"))
+
+    return (
+        "<h2>セール概要</h2>"
+        f"<p>キャンペーン名: <strong>{escape(campaign_name)}</strong></p>"
+        f"<p>期間: <strong>{escape(sale_start_date)} 〜 {escape(sale_end_date)}</strong></p>"
+        f"<p>エントリー: <strong>{escape(entry_text)}</strong></p>"
+        f"<p>割引: <strong>{escape(discount_text)}</strong></p>"
+        f"<p>ポイント: <strong>{escape(point_text)}</strong></p>"
+    )
+
+
 def _classify_nav_link(title: str) -> str:
     text = (title or "").strip()
     if "最新巻" in text or "新刊" in text or "\u5dfb" in text:
@@ -311,6 +341,7 @@ def build_sale_article_html(article_data: dict[str, Any]) -> str:
             "<h2>結論</h2>"
             f"<p>この記事では「{keyword}」の最新セール価格と値下げ状況を整理します。</p>"
             "<p>まずは冒頭の価格変動ボックスで前回価格と現在価格を確認してください。</p>",
+            build_sale_campaign_section(article_data),
             build_price_alert_box(article_data),
             build_sale_price_section(article_data),
             build_sale_diff_section(article_data),

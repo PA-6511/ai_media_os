@@ -67,6 +67,21 @@ _PRICE_FIELDS: tuple[str, ...] = (
     "checked_at",
 )
 
+# sale 情報として article_plan から引き継ぐフィールド一覧
+_SALE_FIELDS: tuple[str, ...] = (
+    "campaign_name",
+    "sale_start_date",
+    "sale_end_date",
+    "entry_required",
+    "discount_text",
+    "point_text",
+    "store",
+    "rakuten_url",
+    "official_url",
+    "dmm_url",
+    "cta_store_priority",
+)
+
 
 def generate_article_content(
     article_plan: dict[str, Any],
@@ -177,6 +192,11 @@ def generate_article_content(
 
     # price フィールドを出力に引き継ぐ
     for field in _PRICE_FIELDS:
+        if field in merged_plan:
+            output[field] = merged_plan[field]
+
+    # sale フィールドを出力に引き継ぐ
+    for field in _SALE_FIELDS:
         if field in merged_plan:
             output[field] = merged_plan[field]
 

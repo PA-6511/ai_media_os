@@ -84,6 +84,21 @@ _PRICE_PASSTHROUGH_FIELDS: tuple[str, ...] = (
     "checked_at",
 )
 
+# sale 情報として article_plan に引き継ぐフィールド一覧
+_SALE_PASSTHROUGH_FIELDS: tuple[str, ...] = (
+    "campaign_name",
+    "sale_start_date",
+    "sale_end_date",
+    "entry_required",
+    "discount_text",
+    "point_text",
+    "store",
+    "rakuten_url",
+    "official_url",
+    "dmm_url",
+    "cta_store_priority",
+)
+
 
 def build_structure(item: dict[str, str]) -> dict[str, Any]:
     """intent_analysis の1件から記事設計図を作成する。
@@ -118,6 +133,11 @@ def build_structure(item: dict[str, str]) -> dict[str, Any]:
 
     # price 情報を上流から引き継ぐ（存在する場合のみ）
     for field in _PRICE_PASSTHROUGH_FIELDS:
+        if field in item:
+            structure[field] = item[field]  # type: ignore[assignment]
+
+    # sale 情報を上流から引き継ぐ（存在する場合のみ）
+    for field in _SALE_PASSTHROUGH_FIELDS:
         if field in item:
             structure[field] = item[field]  # type: ignore[assignment]
 

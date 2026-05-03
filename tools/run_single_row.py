@@ -51,6 +51,17 @@ def _build_plan_input(row: dict[str, Any]) -> dict[str, Any]:
         "author": str(row.get("author", "")).strip(),
         "publisher": str(row.get("publisher", "")).strip(),
         "category": str(row.get("category", "review")).strip() or "review",
+        "campaign_name": str(row.get("campaign_name", "")).strip(),
+        "sale_start_date": str(row.get("sale_start_date", "")).strip(),
+        "sale_end_date": str(row.get("sale_end_date", "")).strip(),
+        "entry_required": str(row.get("entry_required", "")).strip(),
+        "discount_text": str(row.get("discount_text", "")).strip(),
+        "point_text": str(row.get("point_text", "")).strip(),
+        "store": str(row.get("store", "")).strip(),
+        "rakuten_url": str(row.get("rakuten_url", "")).strip(),
+        "official_url": str(row.get("official_url", "")).strip(),
+        "dmm_url": str(row.get("dmm_url", "")).strip(),
+        "cta_store_priority": str(row.get("cta_store_priority", "")).strip(),
     }
 
 

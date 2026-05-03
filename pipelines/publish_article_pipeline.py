@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 import os
 import re
+from html import escape
 from pathlib import Path
 from typing import Any
 
@@ -22,6 +23,7 @@ DATA_DIR = BASE_DIR / "data"
 ARTICLE_OUTPUT_PATH = DATA_DIR / "article_output_with_journey.json"
 
 REQUIRED_REL_TOKENS = ("nofollow", "sponsored", "noopener")
+SALE_REQUIRED_LABELS = ("キャンペーン名:", "期間:", "エントリー:", "割引:", "ポイント:")
 
 
 def _strip_html(text: str) -> str:
@@ -87,13 +89,56 @@ def _has_cta_link(content_html: str) -> bool:
     return False
 
 
-def _pick_cta_url(row: dict[str, Any] | None) -> str:
-    if not row:
-        return ""
-    for key in ("official_url", "rakuten_url", "dmm_url"):
-        value = str(row.get(key, "")).strip()
-        if value.startswith("http://") or value.startswith("https://"):
-            return value
+def _normalize_entry_required_text(value: str) -> str:
+    normalized = (value or "").strip().lower()
+    if normalized in {"required", "must", "yes", "true", "1", "必須"}:
+        return "エントリー必須"
+    if normalized in {"optional", "recommend", "recommended", "推奨"}:
+        return "エントリー推奨"
+    if normalized in {"none", "no", "false", "0", "不要"}:
+        return "エントリー不要"
+    return "エントリー不要"
+
+
+def _has_sale_info_block(content_html: str) -> bool:
+    text = _strip_html(content_html)
+    return all(label in text for label in SALE_REQUIRED_LABELS)
+
+
+def _build_sale_info_block(article: dict[str, Any], row: dict[str, Any] | None = None) -> str:
+    source = row if isinstance(row, dict) else article
+
+    campaign_name = str(source.get("campaign_name", "")).strip() or "未設定"
+    sale_start_date = str(source.get("sale_start_date", "")).strip() or "未設定"
+    sale_end_date = str(source.get("sale_end_date", "")).strip() or "未設定"
+    discount_text = str(source.get("discount_text", "")).strip() or "情報なし"
+    point_text = str(source.get("point_text", "")).strip() or "情報なし"
+    entry_required = _normalize_entry_required_text(str(source.get("entry_required", "")).strip())
+
+    return (
+        '<section class="sale-required-info">'
+        "<h2>セール概要</h2>"
+        f"<p>キャンペーン名: <strong>{escape(campaign_name)}</strong></p>"
+        f"<p>期間: <strong>{escape(sale_start_date)} 〜 {escape(sale_end_date)}</strong></p>"
+        f"<p>エントリー: <strong>{escape(entry_required)}</strong></p>"
+        f"<p>割引: <strong>{escape(discount_text)}</strong></p>"
+        f"<p>ポイント: <strong>{escape(point_text)}</strong></p>"
+        "</section>"
+    )
+
+
+def _pick_cta_url(row: dict[str, Any] | None, article: dict[str, Any] | None = None) -> str:
+    source_candidates: list[dict[str, Any]] = []
+    if isinstance(row, dict):
+        source_candidates.append(row)
+    if isinstance(article, dict):
+        source_candidates.append(article)
+
+    for source in source_candidates:
+        for key in ("official_url", "rakuten_url", "dmm_url"):
+            value = str(source.get(key, "")).strip()
+            if value.startswith("http://") or value.startswith("https://"):
+                return value
     return ""
 
 
@@ -114,6 +159,11 @@ def enforce_wp_prepublish_quality(article: dict[str, Any], row: dict[str, Any] |
     if not content_html:
         raise ValueError("quality NG: 本文が空です")
 
+    article_type = str(normalized.get("article_type", "")).strip()
+    if article_type == "sale_article" and not _has_sale_info_block(content_html):
+        # sale 情報は揺れなく必ず本文に載せる（重複回避のため不足時のみ挿入）。
+        content_html = content_html + "\n" + _build_sale_info_block(normalized, row=row)
+
     if not _has_pr_label(content_html):
         content_html = '<p><strong>PR</strong> 本記事にはプロモーションが含まれます。</p>\n' + content_html
 
@@ -125,7 +175,7 @@ def enforce_wp_prepublish_quality(article: dict[str, Any], row: dict[str, Any] |
         )
 
     if not _has_cta_link(content_html):
-        cta_url = _pick_cta_url(row)
+        cta_url = _pick_cta_url(row, normalized)
         if not cta_url:
             raise ValueError("quality NG: CTAリンクURLが不足しています")
         content_html = _inject_cta_block(content_html, cta_url)
@@ -210,6 +260,17 @@ def build_wp_article(article_output: dict[str, Any]) -> dict[str, Any]:
         "release_change_reason": str(article_output.get("release_change_reason", "no_change")),
         "previous_latest_volume_number": article_output.get("previous_latest_volume_number"),
         "current_latest_volume_number": article_output.get("current_latest_volume_number"),
+        "campaign_name": str(article_output.get("campaign_name", "")).strip(),
+        "sale_start_date": str(article_output.get("sale_start_date", "")).strip(),
+        "sale_end_date": str(article_output.get("sale_end_date", "")).strip(),
+        "entry_required": str(article_output.get("entry_required", "")).strip(),
+        "discount_text": str(article_output.get("discount_text", "")).strip(),
+        "point_text": str(article_output.get("point_text", "")).strip(),
+        "store": str(article_output.get("store", "")).strip(),
+        "rakuten_url": str(article_output.get("rakuten_url", "")).strip(),
+        "official_url": str(article_output.get("official_url", "")).strip(),
+        "dmm_url": str(article_output.get("dmm_url", "")).strip(),
+        "cta_store_priority": str(article_output.get("cta_store_priority", "")).strip(),
         "related_links": article_output.get("related_links", []),
         "journey": article_output.get("journey", {}),
     }
