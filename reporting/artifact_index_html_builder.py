@@ -6,19 +6,19 @@ from typing import Any
 
 
 _LABEL: dict[str, str] = {
-    "latest_daily_report_json":    "Latest Daily Report (JSON)",
-    "latest_daily_report_txt":     "Latest Daily Report (TXT)",
-    "latest_weekly_report_json":   "Latest Weekly Report (JSON)",
-    "latest_weekly_report_txt":    "Latest Weekly Report (TXT)",
-    "latest_monthly_report_json":  "Latest Monthly Report (JSON)",
-    "latest_monthly_report_txt":   "Latest Monthly Report (TXT)",
-    "latest_dashboard":            "Latest Dashboard",
-    "latest_weekly_dashboard":     "Latest Weekly Dashboard",
-    "latest_monthly_dashboard":    "Latest Monthly Dashboard",
-    "latest_ops_decision_dashboard": "Latest Ops Decision Dashboard",
-    "latest_release_readiness_json": "Latest Release Readiness (JSON)",
-    "latest_release_readiness_md": "Latest Release Readiness (MD)",
-    "latest_archive":              "Latest Archive",
+    "latest_daily_report_json":    "最新の日次レポート (JSON)",
+    "latest_daily_report_txt":     "最新の日次レポート (TXT)",
+    "latest_weekly_report_json":   "最新の週次レポート (JSON)",
+    "latest_weekly_report_txt":    "最新の週次レポート (TXT)",
+    "latest_monthly_report_json":  "最新の月次レポート (JSON)",
+    "latest_monthly_report_txt":   "最新の月次レポート (TXT)",
+    "latest_dashboard":            "最新ダッシュボード",
+    "latest_weekly_dashboard":     "最新の週次ダッシュボード",
+    "latest_monthly_dashboard":    "最新の月次ダッシュボード",
+    "latest_ops_decision_dashboard": "最新の運用判定ダッシュボード",
+    "latest_release_readiness_json": "最新のリリース可否判定 (JSON)",
+    "latest_release_readiness_md": "最新のリリース可否判定 (MD)",
+    "latest_archive":              "最新アーカイブ",
 }
 
 _DETAIL_ORDER = list(_LABEL.keys())
@@ -57,10 +57,10 @@ def _latest_rows_html(index: dict) -> str:
 
 def _counts_rows_html(index: dict) -> str:
     counts = [
-        ("Daily Report",   index.get("daily_report_count", 0)),
-        ("Weekly Report",  index.get("weekly_report_count", 0)),
-        ("Monthly Report", index.get("monthly_report_count", 0)),
-        ("Archive",        index.get("archive_count", 0)),
+        ("日次レポート",   index.get("daily_report_count", 0)),
+        ("週次レポート",   index.get("weekly_report_count", 0)),
+        ("月次レポート",   index.get("monthly_report_count", 0)),
+        ("アーカイブ",     index.get("archive_count", 0)),
     ]
     rows = [
         f"    <tr><td class='label'>{html.escape(label)}</td>"
@@ -113,7 +113,7 @@ def build_artifact_index_html(index: dict) -> str:
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AI Media OS – Artifact Index</title>
+<title>AI Media OS - 成果物インデックス</title>
 <style>
   body {{ font-family: 'Segoe UI', sans-serif; background: #f4f6f8; color: #222; margin: 0; padding: 24px; }}
   h1   {{ font-size: 1.4rem; margin: 0 0 4px; color: #1a3a5c; }}
@@ -132,33 +132,33 @@ def build_artifact_index_html(index: dict) -> str:
 </style>
 </head>
 <body>
-<h1>AI Media OS – Artifact Index</h1>
+<h1>AI Media OS - 成果物インデックス</h1>
 <div class="meta">
-  <span>Generated: {generated_at}</span>
-  <span>Report Dir: {report_dir}</span>
-  <span>Archive Dir: {archive_dir}</span>
+    <span>生成時刻: {generated_at}</span>
+    <span>レポート保存先: {report_dir}</span>
+    <span>アーカイブ保存先: {archive_dir}</span>
 </div>
 
 <section>
-  <h2>Latest Artifacts</h2>
+    <h2>最新成果物</h2>
   <table>
-    <tr><th>Item</th><th>File</th></tr>
+        <tr><th>項目</th><th>ファイル</th></tr>
 {latest_rows}
   </table>
 </section>
 
 <section>
-  <h2>Counts</h2>
+    <h2>件数</h2>
   <table>
-    <tr><th>Category</th><th>Count</th></tr>
+        <tr><th>区分</th><th>件数</th></tr>
 {counts_rows}
   </table>
 </section>
 
 <section>
-  <h2>Details</h2>
+    <h2>詳細</h2>
   <table>
-    <tr><th>Item</th><th>File</th><th>Size</th><th>Updated At (UTC)</th></tr>
+        <tr><th>項目</th><th>ファイル</th><th>サイズ</th><th>更新時刻 (UTC)</th></tr>
 {details_rows}
   </table>
 </section>

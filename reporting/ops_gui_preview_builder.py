@@ -72,7 +72,7 @@ def _header_value(header: dict[str, Any], status_light: dict[str, Any], key: str
 
 
 def _source_item(path: Path, payload: dict[str, Any]) -> str:
-    state = "OK" if payload else "N/A"
+    state = "利用可能" if payload else "N/A"
     state_class = "ok" if payload else "na"
     return (
         "<div class='source-pill'>"
@@ -207,7 +207,7 @@ def build_ops_gui_preview_html() -> str:
 <head>
 <meta charset=\"UTF-8\">
 <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">
-<title>AI Media OS GUI Preview</title>
+<title>AI Media OS GUI プレビュー</title>
 <style>
   :root {{
     --bg: #eef3ed;
@@ -311,33 +311,33 @@ def build_ops_gui_preview_html() -> str:
 <body>
   <div class=\"page\">
     <header class=\"hero\">
-      <div class=\"eyebrow\">AI Media OS GUI Preview</div>
-      <h1>Static sample page for pre-implementation layout review</h1>
-      <p class=\"hero-copy\">Existing JSON artifacts are projected into a lightweight HTML shell so the team can inspect header, sidebar, tabs, and top cards before a full GUI implementation.</p>
+      <div class=\"eyebrow\">AI Media OS GUI プレビュー</div>
+      <h1>実装前レイアウト確認用のサンプルページ</h1>
+      <p class=\"hero-copy\">既存のJSON成果物を軽量HTMLへ反映し、正式実装前にヘッダー・サイドバー・タブ・トップカードの見え方を確認できます。</p>
       <div class=\"hero-grid\">
         <div>
           <div class=\"status-strip\">
             <div class=\"metric\">
-              <div class=\"metric-label\">Decision</div>
+              <div class=\"metric-label\">判定</div>
               <div class=\"metric-value\">{_escape(decision)}</div>
             </div>
             <div class=\"metric\">
-              <div class=\"metric-label\">Badge</div>
+              <div class=\"metric-label\">バッジ</div>
               <div class=\"metric-value\">{_escape(badge_text)}</div>
             </div>
             <div class=\"metric\">
-              <div class=\"metric-label\">Health Grade</div>
+              <div class=\"metric-label\">健全性グレード</div>
               <div class=\"metric-value\">{_escape(health_grade)}</div>
             </div>
             <div class=\"metric\">
-              <div class=\"metric-label\">Anomaly</div>
+              <div class=\"metric-label\">異常判定</div>
               <div class=\"metric-value\">{_escape(anomaly_overall)}</div>
             </div>
           </div>
           <div class=\"source-row\">{sources_html}</div>
         </div>
         <aside class=\"status-card\">
-          <div class=\"status-pill\">header status</div>
+          <div class=\"status-pill\">ヘッダーステータス</div>
           <div class=\"status-main\">{_escape(decision)}</div>
           <div class=\"status-sub\">{_escape(recommended_action)}</div>
         </aside>
@@ -347,8 +347,8 @@ def build_ops_gui_preview_html() -> str:
     <div class=\"shell\">
       <aside class=\"panel\">
         <div class=\"panel-head\">
-          <h2 class=\"panel-title\">Sidebar</h2>
-          <p class=\"panel-subtitle\">Sections and navigation items</p>
+          <h2 class=\"panel-title\">サイドバー</h2>
+          <p class=\"panel-subtitle\">セクションとナビゲーション項目</p>
         </div>
         <div class=\"sidebar-body\">{sidebar_html}</div>
       </aside>
@@ -356,23 +356,23 @@ def build_ops_gui_preview_html() -> str:
       <main class=\"main\">
         <section class=\"panel\">
           <div class=\"panel-head\">
-            <h2 class=\"panel-title\">Tabs</h2>
-            <p class=\"panel-subtitle\">Top-level views for GUI implementation</p>
+            <h2 class=\"panel-title\">タブ</h2>
+            <p class=\"panel-subtitle\">GUI実装時の上位ビュー</p>
           </div>
           <div class=\"tabs-wrap\">{tabs_html}</div>
         </section>
 
         <section class=\"panel\">
           <div class=\"panel-head\">
-            <h2 class=\"panel-title\">Top Cards</h2>
-            <p class=\"panel-subtitle\">Representative cards for above-the-fold layout</p>
+            <h2 class=\"panel-title\">トップカード</h2>
+            <p class=\"panel-subtitle\">ファーストビュー向けの代表カード</p>
           </div>
           <div class=\"cards-wrap\">{cards_html}</div>
         </section>
       </main>
     </div>
 
-    <div class=\"footer-meta\">Generated at: {html.escape(generated_at)}</div>
+    <div class=\"footer-meta\">生成時刻: {html.escape(generated_at)}</div>
   </div>
 </body>
 </html>

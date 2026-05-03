@@ -113,23 +113,23 @@ def _build_tabs_from_navigation(nav: dict[str, Any], manifest: dict[str, Any]) -
 def _build_fallback_tabs(manifest: dict[str, Any], cards: dict[str, Any]) -> list[dict[str, Any]]:
     cards_list = cards.get("cards") if isinstance(cards.get("cards"), list) else []
 
-    overview_path = _to_rel_path(manifest.get("ops_home_html")) or _find_card_path(cards_list, "Ops Home")
-    dashboards_path = _to_rel_path(manifest.get("daily_dashboard_html")) or _find_card_path(cards_list, "Latest Daily Dashboard")
-    reports_path = _to_rel_path(manifest.get("ops_summary")) or _find_card_path(cards_list, "Latest Summary JSON")
-    operations_path = _to_rel_path(manifest.get("ops_portal_html")) or _find_card_path(cards_list, "Ops Portal")
-    docs_path = _to_rel_path(manifest.get("daily_checklist_md")) or _find_card_path(cards_list, "Daily Checklist")
+    overview_path = _to_rel_path(manifest.get("ops_home_html")) or _find_card_path(cards_list, "運用ホーム")
+    dashboards_path = _to_rel_path(manifest.get("daily_dashboard_html")) or _find_card_path(cards_list, "最新の日次ダッシュボード")
+    reports_path = _to_rel_path(manifest.get("ops_summary")) or _find_card_path(cards_list, "最新サマリー JSON")
+    operations_path = _to_rel_path(manifest.get("ops_portal_html")) or _find_card_path(cards_list, "運用ポータル")
+    docs_path = _to_rel_path(manifest.get("daily_checklist_md")) or _find_card_path(cards_list, "日次チェックリスト")
 
     return [
         _tab(
             "overview",
-            "Overview",
+            "概要",
             True,
             overview_path,
             [manifest.get("status_light"), manifest.get("ops_home_html")],
         ),
         _tab(
             "dashboards",
-            "Dashboards",
+            "ダッシュボード",
             False,
             dashboards_path,
             [
@@ -140,7 +140,7 @@ def _build_fallback_tabs(manifest: dict[str, Any], cards: dict[str, Any]) -> lis
         ),
         _tab(
             "reports",
-            "Reports",
+            "レポート",
             False,
             reports_path,
             [
@@ -151,14 +151,14 @@ def _build_fallback_tabs(manifest: dict[str, Any], cards: dict[str, Any]) -> lis
         ),
         _tab(
             "operations",
-            "Operations",
+            "運用",
             False,
             operations_path,
             [manifest.get("ops_portal_html"), manifest.get("artifact_index_html")],
         ),
         _tab(
             "docs",
-            "Docs",
+            "ドキュメント",
             False,
             docs_path,
             [manifest.get("daily_checklist_md"), manifest.get("runbook_md")],

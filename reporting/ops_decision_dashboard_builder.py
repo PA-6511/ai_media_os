@@ -61,11 +61,11 @@ def _primary_cards(summary: dict[str, Any]) -> str:
 
     return f"""
     <div class=\"grid\">
-      <article class=\"card\"><h3>Generated At</h3><p>{generated_at}</p></article>
-      <article class=\"card\"><h3>Anomaly</h3><p>{anomaly_overall}</p></article>
-      <article class=\"card\"><h3>Health</h3><p>{health_score} ({health_grade})</p></article>
-      <article class=\"card\"><h3>Retry Queued</h3><p>{retry_queued}</p></article>
-      <article class=\"card\"><h3>Integrity</h3><p>{integrity_overall}</p></article>
+      <article class=\"card\"><h3>生成時刻</h3><p>{generated_at}</p></article>
+      <article class=\"card\"><h3>異常判定</h3><p>{anomaly_overall}</p></article>
+      <article class=\"card\"><h3>健全性</h3><p>{health_score} ({health_grade})</p></article>
+      <article class=\"card\"><h3>再試行キュー</h3><p>{retry_queued}</p></article>
+      <article class=\"card\"><h3>整合性</h3><p>{integrity_overall}</p></article>
     </div>
     """
 
@@ -73,17 +73,17 @@ def _primary_cards(summary: dict[str, Any]) -> str:
 def _reasons_html(summary: dict[str, Any]) -> str:
     reasons = summary.get("reasons") if isinstance(summary.get("reasons"), list) else []
     if not reasons:
-        return "<li>No reasons available</li>"
+      return "<li>理由情報はありません</li>"
     return "\n".join(f"<li>{html.escape(str(reason))}</li>" for reason in reasons)
 
 
 def _links_html() -> str:
     links: list[tuple[str, Path]] = [
-        ("Daily Checklist", DEFAULT_DAILY_CHECKLIST_PATH),
-        ("Ops Portal", DEFAULT_OPS_PORTAL_PATH),
-        ("Artifact Index", DEFAULT_ARTIFACT_INDEX_PATH),
-        ("Release Readiness JSON", DEFAULT_RELEASE_READINESS_PATH),
-        ("Release Readiness Markdown", DEFAULT_RELEASE_READINESS_MD_PATH),
+        ("日次チェックリスト", DEFAULT_DAILY_CHECKLIST_PATH),
+        ("運用ポータル", DEFAULT_OPS_PORTAL_PATH),
+        ("成果物インデックス", DEFAULT_ARTIFACT_INDEX_PATH),
+        ("リリース可否判定 JSON", DEFAULT_RELEASE_READINESS_PATH),
+        ("リリース可否判定 Markdown", DEFAULT_RELEASE_READINESS_MD_PATH),
     ]
 
     items: list[str] = []
@@ -101,7 +101,7 @@ def _links_html() -> str:
             items.append(
                 "<li>"
                 f"<span>{html.escape(label)}</span>"
-                "<span>not found</span>"
+                "<span>見つかりません</span>"
                 "</li>"
             )
 
@@ -166,7 +166,7 @@ def build_ops_decision_dashboard_html(summary: dict | None) -> str:
 <head>
   <meta charset=\"UTF-8\" />
   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />
-  <title>AI Media OS Ops Decision Dashboard</title>
+  <title>AI Media OS 運用判定ダッシュボード</title>
   <style>
     :root {{
       --paper: #f4f8f5;
@@ -308,37 +308,37 @@ def build_ops_decision_dashboard_html(summary: dict | None) -> str:
 </head>
 <body>
   <div class=\"wrap\">
-    <h1>AI Media OS Ops Decision Dashboard</h1>
-    <div class=\"sub\">today-focused view / generated for rapid operational judgment</div>
+    <h1>AI Media OS 運用判定ダッシュボード</h1>
+    <div class=\"sub\">本日の運用判断を素早く確認するためのビューです</div>
 
     <section class=\"hero\">
       <div class=\"decision-badge {decision_css}\">{html.escape(decision)}</div>
-      <div class=\"action\">recommended_action: {recommended_action}</div>
+      <div class=\"action\">推奨アクション: {recommended_action}</div>
     </section>
 
     {primary_cards}
 
     <section class=\"section\">
-      <h2>Reasons</h2>
+      <h2>判断理由</h2>
       <ul>
         {reasons}
       </ul>
     </section>
 
     <section class=\"section\">
-      <h2>Anomaly / Integrity Counts</h2>
+      <h2>異常・整合性の件数</h2>
       <div class=\"metrics\">
-        <pre>alert_total      : {anomaly_alert_total}
-warning_count   : {anomaly_warning_count}
-critical_count  : {anomaly_critical_count}</pre>
-        <pre>integrity PASS   : {integrity_pass_count}
-integrity WARNING: {integrity_warning_count}
-integrity FAIL   : {integrity_fail_count}</pre>
+        <pre>アラート合計      : {anomaly_alert_total}
+      警告件数         : {anomaly_warning_count}
+      重大件数         : {anomaly_critical_count}</pre>
+        <pre>整合性 PASS      : {integrity_pass_count}
+      整合性 WARNING   : {integrity_warning_count}
+      整合性 FAIL      : {integrity_fail_count}</pre>
       </div>
     </section>
 
     <section class=\"section\">
-      <h2>Related Links</h2>
+      <h2>関連リンク</h2>
       <ul class=\"links\">
         {links}
       </ul>

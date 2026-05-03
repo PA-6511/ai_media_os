@@ -56,7 +56,7 @@ def _item_html(label: str, path_str: str | None) -> str:
     return (
         f"<li><span class='k'>{html.escape(label)}</span>"
         "<span class='na'>N/A</span>"
-        "<span class='p'>not found</span></li>"
+        "<span class='p'>見つかりません</span></li>"
     )
 
 
@@ -94,7 +94,7 @@ def build_status_badge_section(badge: dict | None) -> str:
     """ステータスバッジのセクション HTML 断片を返す。"""
     if not badge:
         rows = [
-            "<li><span class='k'>badge_text</span><span class='na'>N/A | Health N/A | N/A</span><span class='p'>status badge not found</span></li>",
+            "<li><span class='k'>badge_text</span><span class='na'>N/A | Health N/A | N/A</span><span class='p'>ステータスバッジが見つかりません</span></li>",
             "<li><span class='k'>badge_level</span><span class='na'>unknown</span><span class='p'>N/A</span></li>",
             "<li><span class='k'>decision / health / anomaly</span><span class='na'>N/A</span><span class='p'>decision=N/A health=N/A anomaly=N/A</span></li>",
         ]
@@ -162,12 +162,12 @@ def load_latest_release_readiness_trend_summary() -> dict | None:
 def build_release_readiness_section(summary: dict | None) -> str:
     """release readiness の decision/recommended_action を HTML 断片で返す。"""
     decision_dashboard_path = str(DEFAULT_OPS_DECISION_DASHBOARD_PATH)
-    dashboard_row = _item_html("Ops Decision Dashboard", decision_dashboard_path)
+    dashboard_row = _item_html("運用判定ダッシュボード", decision_dashboard_path)
 
     if not summary:
         rows = [
-            "<li><span class='k'>Release Decision</span><span class='na'>N/A</span><span class='p'>release readiness not found</span></li>",
-            "<li><span class='k'>Recommended Action</span><span class='na'>N/A</span><span class='p'>N/A</span></li>",
+            "<li><span class='k'>リリース判定</span><span class='na'>N/A</span><span class='p'>release readiness が見つかりません</span></li>",
+            "<li><span class='k'>推奨アクション</span><span class='na'>N/A</span><span class='p'>N/A</span></li>",
             dashboard_row,
         ]
         return "\n".join(rows)
@@ -179,8 +179,8 @@ def build_release_readiness_section(summary: dict | None) -> str:
     reason_text = html.escape(reason_text)
 
     rows = [
-        f"<li><span class='k'>Release Decision</span><span>{decision}</span><span class='p'>today readiness decision</span></li>",
-        f"<li><span class='k'>Recommended Action</span><span>{action}</span><span class='p'>{reason_text}</span></li>",
+        f"<li><span class='k'>リリース判定</span><span>{decision}</span><span class='p'>本日の readiness 判定</span></li>",
+        f"<li><span class='k'>推奨アクション</span><span>{action}</span><span class='p'>{reason_text}</span></li>",
         dashboard_row,
     ]
     return "\n".join(rows)
@@ -189,13 +189,13 @@ def build_release_readiness_section(summary: dict | None) -> str:
 def build_release_trend_section(summary: dict | None) -> str:
     """release readiness trend の要約を HTML 断片で返す。"""
     trend_path = str(DEFAULT_RELEASE_TREND_MD_PATH)
-    trend_row = _item_html("Release Readiness Trend (MD)", trend_path)
+    trend_row = _item_html("リリース可否トレンド (MD)", trend_path)
 
     if not summary:
         rows = [
             trend_row,
-            "<li><span class='k'>trend_total_days</span><span class='na'>N/A</span><span class='p'>trend summary not found</span></li>",
-            "<li><span class='k'>trend_counts</span><span class='na'>N/A</span><span class='p'>release/review/hold unavailable</span></li>",
+            "<li><span class='k'>trend_total_days</span><span class='na'>N/A</span><span class='p'>トレンド要約が見つかりません</span></li>",
+            "<li><span class='k'>trend_counts</span><span class='na'>N/A</span><span class='p'>release/review/hold の集計がありません</span></li>",
             "<li><span class='k'>latest_decision</span><span class='na'>N/A</span><span class='p'>N/A</span></li>",
         ]
         return "\n".join(rows)
@@ -250,29 +250,29 @@ def build_ops_portal_html() -> str:
 
     links_section = "\n".join(
         [
-            _item_html("Daily Dashboard", latest_daily_dashboard),
-            _item_html("Weekly Dashboard", latest_weekly_dashboard),
-            _item_html("Monthly Dashboard", latest_monthly_dashboard),
-            _item_html("Ops Decision Dashboard", latest_ops_decision_dashboard),
-            _item_html("Artifact Index", latest_artifact_index),
-            _item_html("Release Readiness (JSON)", latest_release_readiness_json),
-            _item_html("Release Readiness (MD)", latest_release_readiness_md),
-            _item_html("Release Readiness Trend (MD)", latest_release_trend_md),
-            _item_html("Daily Checklist", daily_checklist),
-            _item_html("Runbook", runbook),
+            _item_html("日次ダッシュボード", latest_daily_dashboard),
+            _item_html("週次ダッシュボード", latest_weekly_dashboard),
+            _item_html("月次ダッシュボード", latest_monthly_dashboard),
+            _item_html("運用判定ダッシュボード", latest_ops_decision_dashboard),
+            _item_html("成果物インデックス", latest_artifact_index),
+            _item_html("リリース可否判定 (JSON)", latest_release_readiness_json),
+            _item_html("リリース可否判定 (MD)", latest_release_readiness_md),
+            _item_html("リリース可否トレンド (MD)", latest_release_trend_md),
+            _item_html("日次チェックリスト", daily_checklist),
+            _item_html("運用手順書", runbook),
         ]
     )
 
     latest_section = "\n".join(
         [
-            _item_html("Latest Daily Report", latest_daily_report),
-            _item_html("Latest Weekly Report", latest_weekly_report),
-            _item_html("Latest Monthly Report", latest_monthly_report),
-            _item_html("Latest Archive", latest_archive),
-            _item_html("Latest Ops Decision Dashboard", latest_ops_decision_dashboard),
-            _item_html("Latest Release Readiness JSON", latest_release_readiness_json),
-            _item_html("Latest Release Readiness MD", latest_release_readiness_md),
-            _item_html("Latest Release Readiness Trend MD", latest_release_trend_md),
+            _item_html("最新の日次レポート", latest_daily_report),
+            _item_html("最新の週次レポート", latest_weekly_report),
+            _item_html("最新の月次レポート", latest_monthly_report),
+            _item_html("最新アーカイブ", latest_archive),
+            _item_html("最新の運用判定ダッシュボード", latest_ops_decision_dashboard),
+            _item_html("最新のリリース可否判定 JSON", latest_release_readiness_json),
+            _item_html("最新のリリース可否判定 MD", latest_release_readiness_md),
+            _item_html("最新のリリース可否トレンド MD", latest_release_trend_md),
         ]
     )
 
@@ -281,7 +281,7 @@ def build_ops_portal_html() -> str:
 <head>
   <meta charset=\"UTF-8\" />
   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />
-  <title>AI Media OS Ops Portal</title>
+  <title>AI Media OS 運用ポータル</title>
   <style>
     :root {{
       --bg: #f6f8fb;
@@ -332,39 +332,39 @@ def build_ops_portal_html() -> str:
 </head>
 <body>
   <div class=\"wrap\">
-    <h1>AI Media OS Ops Portal</h1>
-    <div class=\"meta\">generated_at: {html.escape(generated_at)}</div>
+    <h1>AI Media OS 運用ポータル</h1>
+    <div class=\"meta\">生成時刻: {html.escape(generated_at)}</div>
 
         <section class=\"card\">
-            <h2>Status Badge</h2>
+            <h2>ステータスバッジ</h2>
             <ul>
 {badge_section}
             </ul>
         </section>
 
     <section class=\"card\">
-      <h2>Navigation</h2>
+      <h2>ナビゲーション</h2>
       <ul>
 {links_section}
       </ul>
     </section>
 
     <section class=\"card\">
-      <h2>Latest Artifacts</h2>
+      <h2>最新成果物</h2>
       <ul>
 {latest_section}
       </ul>
     </section>
 
     <section class=\"card\">
-      <h2>Release Readiness</h2>
+      <h2>リリース可否判定</h2>
       <ul>
 {release_section}
       </ul>
     </section>
 
         <section class="card">
-            <h2>Release Readiness Trend</h2>
+            <h2>リリース可否トレンド</h2>
             <ul>
 {release_trend_section}
             </ul>

@@ -165,9 +165,9 @@ def build_dashboard_html(model: dict[str, Any]) -> str:
     slugs = model.get("slugs", {})
     recent_history = model.get("recent_history", [])
 
-    failed_section = _render_slug_list("Failed Slugs", slugs.get("failed", []))
-    skipped_section = _render_slug_list("Skipped Slugs", slugs.get("skipped", []))
-    draft_section = _render_slug_list("Draft Slugs", slugs.get("draft", []))
+    failed_section = _render_slug_list("失敗したスラッグ", slugs.get("failed", []))
+    skipped_section = _render_slug_list("スキップしたスラッグ", slugs.get("skipped", []))
+    draft_section = _render_slug_list("下書きスラッグ", slugs.get("draft", []))
     history_table = build_recent_history_table(recent_history)
 
     return f"""<!doctype html>
@@ -175,7 +175,7 @@ def build_dashboard_html(model: dict[str, Any]) -> str:
 <head>
   <meta charset=\"utf-8\" />
   <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\" />
-  <title>AI Media OS Dashboard</title>
+  <title>AI Media OS ダッシュボード</title>
   <style>
     :root {{
       --bg: #f4f7f4;
@@ -279,18 +279,18 @@ def build_dashboard_html(model: dict[str, Any]) -> str:
     </header>
 
     <section class=\"grid\">
-      <article class=\"card\"><div class=\"label\">Success</div><div class=\"value accent\">{counts.get("success", 0)}</div></article>
-      <article class=\"card\"><div class=\"label\">Skipped</div><div class=\"value\">{counts.get("skipped", 0)}</div></article>
-      <article class=\"card\"><div class=\"label\">Failed</div><div class=\"value danger\">{counts.get("failed", 0)}</div></article>
-      <article class=\"card\"><div class=\"label\">Draft</div><div class=\"value\">{counts.get("draft", 0)}</div></article>
-      <article class=\"card\"><div class=\"label\">Retry Queued</div><div class=\"value warn\">{counts.get("retry_queued", 0)}</div></article>
+      <article class=\"card\"><div class=\"label\">成功</div><div class=\"value accent\">{counts.get("success", 0)}</div></article>
+      <article class=\"card\"><div class=\"label\">スキップ</div><div class=\"value\">{counts.get("skipped", 0)}</div></article>
+      <article class=\"card\"><div class=\"label\">失敗</div><div class=\"value danger\">{counts.get("failed", 0)}</div></article>
+      <article class=\"card\"><div class=\"label\">下書き</div><div class=\"value\">{counts.get("draft", 0)}</div></article>
+      <article class=\"card\"><div class=\"label\">再試行キュー</div><div class=\"value warn\">{counts.get("retry_queued", 0)}</div></article>
     </section>
 
     <section class=\"grid\">
-      <article class=\"card\"><div class=\"label\">Combined</div><div class=\"value\">{signals.get("combined", 0)}</div></article>
-      <article class=\"card\"><div class=\"label\">Price Only</div><div class=\"value\">{signals.get("price_only", 0)}</div></article>
-      <article class=\"card\"><div class=\"label\">Release Only</div><div class=\"value\">{signals.get("release_only", 0)}</div></article>
-      <article class=\"card\"><div class=\"label\">Total Processed</div><div class=\"value\">{counts.get("total_processed", 0)}</div></article>
+      <article class=\"card\"><div class=\"label\">複合シグナル</div><div class=\"value\">{signals.get("combined", 0)}</div></article>
+      <article class=\"card\"><div class=\"label\">価格のみ</div><div class=\"value\">{signals.get("price_only", 0)}</div></article>
+      <article class=\"card\"><div class=\"label\">発売日のみ</div><div class=\"value\">{signals.get("release_only", 0)}</div></article>
+      <article class=\"card\"><div class=\"label\">処理合計</div><div class=\"value\">{counts.get("total_processed", 0)}</div></article>
     </section>
 
     <section class=\"panel\">
@@ -304,7 +304,7 @@ def build_dashboard_html(model: dict[str, Any]) -> str:
       {draft_section}
     </section>
 
-    <div class=\"footer\">Generated from daily_report_YYYYMMDD.json</div>
+    <div class=\"footer\">daily_report_YYYYMMDD.json から生成</div>
   </main>
 </body>
 </html>

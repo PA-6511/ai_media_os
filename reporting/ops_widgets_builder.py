@@ -89,11 +89,11 @@ def _card_widget_specs(cards_payload: dict[str, Any]) -> list[tuple[str, str, st
     }
 
     desired = [
-        ("decision_card", "decision_card", "Today's Decision"),
-        ("status_badge_card", "status_badge_card", "Status Badge"),
-        ("daily_dashboard_card", "dashboard_card", "Latest Daily Dashboard"),
-        ("archive_card", "archive_card", "Latest Archive"),
-        ("runbook_card", "runbook_card", "Runbook"),
+        ("decision_card", "decision_card", "本日の判定"),
+        ("status_badge_card", "status_badge_card", "ステータスバッジ"),
+        ("daily_dashboard_card", "dashboard_card", "最新の日次ダッシュボード"),
+        ("archive_card", "archive_card", "最新アーカイブ"),
+        ("runbook_card", "runbook_card", "運用手順書"),
     ]
 
     specs: list[tuple[str, str, str, dict[str, Any] | None]] = []
@@ -122,14 +122,14 @@ def build_ops_widgets() -> dict[str, Any]:
         _widget(
             key="status_header",
             widget_type="header_status",
-            title="System Status",
+            title="システムステータス",
             source=header_source,
             order=1,
         ),
         _widget(
             key="status_summary",
             widget_type="status_summary",
-            title="Operations Summary",
+            title="運用サマリー",
             source=status_source,
             order=2,
         ),
@@ -153,7 +153,7 @@ def build_ops_widgets() -> dict[str, Any]:
         _widget(
             key="home_cards_grid",
             widget_type="cards_grid",
-            title="Top Cards",
+            title="トップカード",
             source=home_source,
             order=next_order,
             source_selector={"path": "cards.cards"},

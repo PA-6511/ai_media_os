@@ -120,25 +120,25 @@ def _build_fallback_sections(manifest: dict[str, Any], status: dict[str, Any]) -
     return [
         {
             "key": "today",
-            "title": "Today",
+            "title": "今日",
             "icon": "home",
             "default_open": True,
             "items": [
                 {
                     "key": "ops_home",
-                    "label": "Ops Home",
+                    "label": "運用ホーム",
                     "path": _to_rel_path(manifest.get("ops_home_html")),
                     "icon": "home",
                 },
                 {
                     "key": "ops_portal",
-                    "label": "Ops Portal",
+                    "label": "運用ポータル",
                     "path": _to_rel_path(manifest.get("ops_portal_html")),
                     "icon": "compass",
                 },
                 {
                     "key": "status_light",
-                    "label": f"Today's Decision ({decision})",
+                    "label": f"本日の判定 ({decision})",
                     "path": _to_rel_path(manifest.get("status_light")),
                     "icon": "pulse",
                 },
@@ -146,25 +146,25 @@ def _build_fallback_sections(manifest: dict[str, Any], status: dict[str, Any]) -
         },
         {
             "key": "dashboards",
-            "title": "Dashboards",
+            "title": "ダッシュボード",
             "icon": "chart",
             "default_open": True,
             "items": [
                 {
                     "key": "daily_dashboard",
-                    "label": f"Daily Dashboard (Health {health})",
+                    "label": f"日次ダッシュボード (健全性 {health})",
                     "path": _to_rel_path(manifest.get("daily_dashboard_html")),
                     "icon": "chart",
                 },
                 {
                     "key": "weekly_dashboard",
-                    "label": "Weekly Dashboard",
+                    "label": "週次ダッシュボード",
                     "path": _to_rel_path(manifest.get("weekly_dashboard_html")),
                     "icon": "chart",
                 },
                 {
                     "key": "monthly_dashboard",
-                    "label": "Monthly Dashboard",
+                    "label": "月次ダッシュボード",
                     "path": _to_rel_path(manifest.get("monthly_dashboard_html")),
                     "icon": "chart",
                 },
@@ -172,37 +172,37 @@ def _build_fallback_sections(manifest: dict[str, Any], status: dict[str, Any]) -
         },
         {
             "key": "artifacts",
-            "title": "Artifacts",
+            "title": "成果物",
             "icon": "database",
             "default_open": False,
             "items": [
                 {
                     "key": "ops_summary",
-                    "label": "Ops Summary JSON",
+                    "label": "運用サマリー JSON",
                     "path": _to_rel_path(manifest.get("ops_summary")),
                     "icon": "database",
                 },
                 {
                     "key": "ops_api_payload",
-                    "label": "Ops API Payload JSON",
+                    "label": "運用APIペイロード JSON",
                     "path": _to_rel_path(manifest.get("ops_api_payload")),
                     "icon": "database",
                 },
                 {
                     "key": "release_readiness",
-                    "label": "Release Readiness JSON",
+                    "label": "リリース可否判定 JSON",
                     "path": _to_rel_path(manifest.get("release_readiness_json")),
                     "icon": "pulse",
                 },
                 {
                     "key": "status_badge",
-                    "label": "Status Badge JSON",
+                    "label": "ステータスバッジ JSON",
                     "path": _to_rel_path(manifest.get("status_badge_json")),
                     "icon": "tag",
                 },
                 {
                     "key": "artifact_index",
-                    "label": "Artifact Index",
+                    "label": "成果物インデックス",
                     "path": _to_rel_path(manifest.get("artifact_index_html")),
                     "icon": "list",
                 },
@@ -210,19 +210,19 @@ def _build_fallback_sections(manifest: dict[str, Any], status: dict[str, Any]) -
         },
         {
             "key": "docs",
-            "title": "Docs",
+            "title": "ドキュメント",
             "icon": "book",
             "default_open": False,
             "items": [
                 {
                     "key": "daily_checklist",
-                    "label": "Daily Checklist",
+                    "label": "日次チェックリスト",
                     "path": _to_rel_path(manifest.get("daily_checklist_md")),
                     "icon": "check-square",
                 },
                 {
                     "key": "runbook",
-                    "label": "Runbook",
+                    "label": "運用手順書",
                     "path": _to_rel_path(manifest.get("runbook_md")),
                     "icon": "book",
                 },

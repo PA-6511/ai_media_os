@@ -56,7 +56,7 @@ def _item_html(label: str, path_str: str | None) -> str:
     return (
         f"<li><span class='k'>{html.escape(label)}</span>"
         "<span class='na'>N/A</span>"
-        "<span class='p'>not found</span></li>"
+        "<span class='p'>見つかりません</span></li>"
     )
 
 
@@ -161,16 +161,16 @@ def _load_release_trend_summary() -> dict | None:
 
 def build_release_trend_summary_block(summary: dict | None) -> str:
     """release readiness trend の短い要約ブロック HTML を返す。"""
-    trend_link = _item_html("Release Readiness Trend (MD)", str(DEFAULT_RELEASE_TREND_MD_PATH))
+    trend_link = _item_html("リリース可否トレンド (MD)", str(DEFAULT_RELEASE_TREND_MD_PATH))
 
     if not summary:
         return (
             "<section class='card'>"
-            "<h2>Release Trend Snapshot</h2>"
+            "<h2>リリース判定トレンド要約</h2>"
             "<ul>"
             f"{trend_link}"
-            "<li><span class='k'>trend_total_days</span><span class='na'>N/A</span><span class='p'>trend summary not found</span></li>"
-            "<li><span class='k'>trend_counts</span><span class='na'>N/A</span><span class='p'>release/review/hold unavailable</span></li>"
+            "<li><span class='k'>trend_total_days</span><span class='na'>N/A</span><span class='p'>トレンド要約が見つかりません</span></li>"
+            "<li><span class='k'>trend_counts</span><span class='na'>N/A</span><span class='p'>release/review/hold の集計がありません</span></li>"
             "<li><span class='k'>latest_decision</span><span class='na'>N/A</span><span class='p'>N/A</span></li>"
             "</ul>"
             "</section>"
@@ -184,7 +184,7 @@ def build_release_trend_summary_block(summary: dict | None) -> str:
 
     return (
         "<section class='card'>"
-        "<h2>Release Trend Snapshot</h2>"
+        "<h2>リリース判定トレンド要約</h2>"
         "<ul>"
         f"{trend_link}"
         f"<li><span class='k'>trend_total_days</span><span>{total_days}</span><span class='p'>直近の日次判定数</span></li>"
@@ -211,20 +211,20 @@ def build_ops_home_html() -> str:
 
     nav_rows = "\n".join(
         [
-            _item_html("Daily Checklist", str(DEFAULT_DAILY_CHECKLIST_PATH)),
-            _item_html("Runbook", str(DEFAULT_RUNBOOK_PATH)),
-            _item_html("Ops Decision Dashboard", idx.get("latest_ops_decision_dashboard") or str(DEFAULT_OPS_DECISION_DASHBOARD_PATH)),
-            _item_html("Ops Portal", str(DEFAULT_OPS_PORTAL_PATH)),
-            _item_html("Artifact Index", str(DEFAULT_ARTIFACT_INDEX_PATH)),
+            _item_html("日次チェックリスト", str(DEFAULT_DAILY_CHECKLIST_PATH)),
+            _item_html("運用手順書", str(DEFAULT_RUNBOOK_PATH)),
+            _item_html("運用判定ダッシュボード", idx.get("latest_ops_decision_dashboard") or str(DEFAULT_OPS_DECISION_DASHBOARD_PATH)),
+            _item_html("運用ポータル", str(DEFAULT_OPS_PORTAL_PATH)),
+            _item_html("成果物インデックス", str(DEFAULT_ARTIFACT_INDEX_PATH)),
         ]
     )
 
     report_rows = "\n".join(
         [
-            _item_html("Latest Daily Report", idx.get("latest_daily_report_json")),
-            _item_html("Latest Weekly Report", idx.get("latest_weekly_report_json")),
-            _item_html("Latest Monthly Report", idx.get("latest_monthly_report_json")),
-            _item_html("Latest Archive", idx.get("latest_archive")),
+            _item_html("最新の日次レポート", idx.get("latest_daily_report_json")),
+            _item_html("最新の週次レポート", idx.get("latest_weekly_report_json")),
+            _item_html("最新の月次レポート", idx.get("latest_monthly_report_json")),
+            _item_html("最新アーカイブ", idx.get("latest_archive")),
         ]
     )
 
@@ -236,7 +236,7 @@ def build_ops_home_html() -> str:
 <head>
   <meta charset=\"UTF-8\" />
   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />
-  <title>AI Media OS Ops Home</title>
+  <title>AI Media OS 運用ホーム</title>
   <style>
     :root {{
       --bg: #f4f7f2;
@@ -323,26 +323,26 @@ def build_ops_home_html() -> str:
 </head>
 <body>
   <div class=\"wrap\">
-    <h1>AI Media OS Ops Home</h1>
-    <div class=\"meta\">generated_at: {html.escape(generated_at)}</div>
+    <h1>AI Media OS 運用ホーム</h1>
+    <div class=\"meta\">生成時刻: {html.escape(generated_at)}</div>
 
         {badge_section}
 
     <section class=\"hero\">
-      <h2>Today's Decision</h2>
+      <h2>本日の判定</h2>
       <p class=\"decision\">{html.escape(decision.upper())}</p>
-      <div class=\"action\">recommended_action: {html.escape(action)}</div>
+      <div class=\"action\">推奨アクション: {html.escape(action)}</div>
     </section>
 
     <section class=\"card\">
-      <h2>Quick Links</h2>
+      <h2>クイックリンク</h2>
       <ul>
 {nav_rows}
       </ul>
     </section>
 
     <section class=\"card\">
-      <h2>Latest Reports</h2>
+      <h2>最新レポート</h2>
       <ul>
 {report_rows}
       </ul>

@@ -134,15 +134,15 @@ def build_weekly_dashboard_html(model: dict[str, Any]) -> str:
     counts = model.get("counts", {})
     signals = model.get("signals", {})
 
-    failed_table = _render_ranked_slug_table("Top Failed Slugs", model.get("top_failed_slugs", []))
-    skipped_table = _render_ranked_slug_table("Top Skipped Slugs", model.get("top_skipped_slugs", []))
+    failed_table = _render_ranked_slug_table("失敗上位スラッグ", model.get("top_failed_slugs", []))
+    skipped_table = _render_ranked_slug_table("スキップ上位スラッグ", model.get("top_skipped_slugs", []))
 
     return f"""<!doctype html>
 <html lang=\"ja\">
 <head>
   <meta charset=\"utf-8\" />
   <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\" />
-  <title>AI Media OS Weekly Dashboard</title>
+  <title>AI Media OS 週次ダッシュボード</title>
   <style>
     :root {{
       --bg: #f6f8f3;
@@ -216,25 +216,25 @@ def build_weekly_dashboard_html(model: dict[str, Any]) -> str:
 <body>
   <main class=\"container\">
     <header class=\"header\">
-      <div class=\"eyebrow\">Weekly Operations</div>
+      <div class=\"eyebrow\">週次運用</div>
       <h1>AI Media OS 週次ダッシュボード</h1>
       <div class=\"sub\">対象週: {report_week} / 日次レポート数: {daily_report_count}</div>
     </header>
 
     <section class=\"grid\">
-      <article class=\"card\"><div class=\"label\">Success</div><div class=\"value accent\">{counts.get("success", 0)}</div></article>
-      <article class=\"card\"><div class=\"label\">Skipped</div><div class=\"value\">{counts.get("skipped", 0)}</div></article>
-      <article class=\"card\"><div class=\"label\">Failed</div><div class=\"value danger\">{counts.get("failed", 0)}</div></article>
-      <article class=\"card\"><div class=\"label\">Draft</div><div class=\"value\">{counts.get("draft", 0)}</div></article>
-      <article class=\"card\"><div class=\"label\">Retry Queued</div><div class=\"value warn\">{counts.get("retry_queued", 0)}</div></article>
-      <article class=\"card\"><div class=\"label\">Daily Report Count</div><div class=\"value\">{daily_report_count}</div></article>
+      <article class=\"card\"><div class=\"label\">成功</div><div class=\"value accent\">{counts.get("success", 0)}</div></article>
+      <article class=\"card\"><div class=\"label\">スキップ</div><div class=\"value\">{counts.get("skipped", 0)}</div></article>
+      <article class=\"card\"><div class=\"label\">失敗</div><div class=\"value danger\">{counts.get("failed", 0)}</div></article>
+      <article class=\"card\"><div class=\"label\">下書き</div><div class=\"value\">{counts.get("draft", 0)}</div></article>
+      <article class=\"card\"><div class=\"label\">再試行キュー</div><div class=\"value warn\">{counts.get("retry_queued", 0)}</div></article>
+      <article class=\"card\"><div class=\"label\">日次レポート件数</div><div class=\"value\">{daily_report_count}</div></article>
     </section>
 
     <section class=\"grid\">
-      <article class=\"card\"><div class=\"label\">Combined</div><div class=\"value\">{signals.get("combined", 0)}</div></article>
-      <article class=\"card\"><div class=\"label\">Price Only</div><div class=\"value\">{signals.get("price_only", 0)}</div></article>
-      <article class=\"card\"><div class=\"label\">Release Only</div><div class=\"value\">{signals.get("release_only", 0)}</div></article>
-      <article class=\"card\"><div class=\"label\">Total Processed</div><div class=\"value\">{counts.get("total_processed", 0)}</div></article>
+      <article class=\"card\"><div class=\"label\">複合シグナル</div><div class=\"value\">{signals.get("combined", 0)}</div></article>
+      <article class=\"card\"><div class=\"label\">価格のみ</div><div class=\"value\">{signals.get("price_only", 0)}</div></article>
+      <article class=\"card\"><div class=\"label\">発売日のみ</div><div class=\"value\">{signals.get("release_only", 0)}</div></article>
+      <article class=\"card\"><div class=\"label\">処理合計</div><div class=\"value\">{counts.get("total_processed", 0)}</div></article>
     </section>
 
     <section class=\"panels\">
@@ -242,7 +242,7 @@ def build_weekly_dashboard_html(model: dict[str, Any]) -> str:
       {skipped_table}
     </section>
 
-    <div class=\"footer\">Generated from weekly_report_YYYYWww.json</div>
+    <div class=\"footer\">weekly_report_YYYYWww.json から生成</div>
   </main>
 </body>
 </html>
