@@ -51,6 +51,9 @@ python3 -m http.server 8080 --bind 127.0.0.1
 - [ ] 各カードのリンクが別タブまたは対象 URL へ遷移する
 - [ ] リンク先が 404 でない（代表 2 ～ 3 件を目視確認）
 - [ ] rel="noopener noreferrer" が付与されている（DevTools Elements で確認）
+- [ ] `href="#"` が 0 件である（1件でもあれば本番反映 BLOCK）
+- [ ] `affiliate_url` / `campaign_url` が空 / null / `#` のカードが 0 件である
+- [ ] `python3 scripts/check_affiliate_links.py` が終了コード 0 で完了する
 
 ### 8. PR / 広告表記確認
 - [ ] アフィリエイト該当箇所に PR または広告の表記が確認できる
@@ -68,7 +71,7 @@ python3 -m http.server 8080 --bind 127.0.0.1
 |---|---|
 | PASS | 全項目チェック済み・重大問題なし |
 | Conditional Go | 軽微な指摘あり・本番反映前に対応予定として記録 |
-| FAIL | Console 致命エラー・リンク 404・blink 超過など重大問題あり |
+| FAIL | Console 致命エラー・リンク 404・blink 超過・`href="#"` 残存・リンク未設定混入など重大問題あり |
 
 ---
 
