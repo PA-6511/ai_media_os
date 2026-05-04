@@ -28,6 +28,7 @@
 
     .book-card { display: flex; flex-direction: column; background: #fff; border: 2px solid #e5e5e5; border-radius: 8px; overflow: hidden; transition: box-shadow .2s, border-color .2s; }
     .book-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,.12); }
+    .book-card.is-disabled { opacity: .8; }
     .card-thumb-placeholder { width: 100%; aspect-ratio: 3/4; background: linear-gradient(135deg, #ddd 0%, #bbb 100%); display: flex; align-items: center; justify-content: center; font-size: 2rem; color: #999; }
     .card-body { padding: 10px; flex: 1; display: flex; flex-direction: column; gap: 4px; }
     .card-title { font-size: .85rem; font-weight: 700; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
@@ -47,6 +48,7 @@
     @keyframes blinkDeadline { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
     .book-card.is-ai-push { border-color: #f43f5e; box-shadow: 0 0 0 2px rgba(244, 63, 94, .12); }
     .book-card.is-manual-push { border-color: #f59e0b; box-shadow: 0 0 0 2px rgba(245, 158, 11, .18); }
+    .book-card.is-disabled .btn-buy { background: #9ca3af; }
 
     .site-footer { text-align: center; padding: 24px 16px; font-size: .75rem; color: #aaa; }
   </style>
@@ -78,16 +80,16 @@
 </div>
 
 <main class="card-grid" id="card-grid">
-  <a class="book-card" href="#" data-item-id="kobo-001" data-tab-tags="new entry" data-deadline="2026-05-05T23:59:00+09:00" data-discount="30" data-sales="35"><div class="card-thumb-placeholder">📚</div><div class="card-body"><div class="card-title">新着の還元強化キャンペーン</div><div class="card-author">楽天Kobo / new_release</div><div class="card-meta"><span class="badge badge-new">NEW</span><span class="badge badge-entry">要エントリー</span><span class="badge badge-discount">30%OFF</span><span class="badge badge-sales">24h: 35冊</span></div><div class="deadline">終了: 2026-05-05 23:59</div></div><div class="card-footer"><span class="btn-buy">詳細を見る</span></div></a>
-  <a class="book-card" href="#" data-item-id="kobo-002" data-tab-tags="" data-deadline="2026-05-04T23:59:00+09:00" data-discount="50" data-sales="12"><div class="card-thumb-placeholder">📖</div><div class="card-body"><div class="card-title">人気シリーズ最新刊50%OFF</div><div class="card-author">楽天Kobo / sale</div><div class="card-meta"><span class="badge badge-discount">50%OFF</span><span class="badge badge-sales">24h: 12冊</span></div><div class="deadline">終了: 2026-05-04 23:59</div></div><div class="card-footer"><span class="btn-buy">詳細を見る</span></div></a>
-  <a class="book-card" href="#" data-item-id="kobo-003" data-tab-tags="new entry" data-deadline="2026-05-05T10:00:00+09:00" data-discount="50" data-sales="40"><div class="card-thumb-placeholder">📘</div><div class="card-body"><div class="card-title">Kindle限定 週末ポイント還元</div><div class="card-author">Kindle / point_back</div><div class="card-meta"><span class="badge badge-new">NEW</span><span class="badge badge-entry">要エントリー</span><span class="badge badge-discount">50%還元</span><span class="badge badge-sales">24h: 40冊</span></div><div class="deadline">終了: 2026-05-05 10:00</div></div><div class="card-footer"><span class="btn-buy">詳細を見る</span></div></a>
-  <a class="book-card" href="#" data-item-id="kobo-004" data-tab-tags="entry" data-deadline="2026-05-05T08:00:00+09:00" data-discount="40" data-sales="25"><div class="card-thumb-placeholder">📙</div><div class="card-body"><div class="card-title">DMMクーポン祭 40%OFF</div><div class="card-author">DMMブックス / coupon</div><div class="card-meta"><span class="badge badge-entry">要エントリー</span><span class="badge badge-discount">40%OFF</span><span class="badge badge-sales">24h: 25冊</span></div><div class="deadline">終了: 2026-05-05 08:00</div></div><div class="card-footer"><span class="btn-buy">詳細を見る</span></div></a>
-  <a class="book-card" href="#" data-item-id="kobo-005" data-tab-tags="new" data-deadline="2026-05-05T07:30:00+09:00" data-discount="50" data-sales="18"><div class="card-thumb-placeholder">📗</div><div class="card-body"><div class="card-title">シーモア先行 ポイント50%還元</div><div class="card-author">シーモア / point_back</div><div class="card-meta"><span class="badge badge-new">NEW</span><span class="badge badge-discount">50%還元</span><span class="badge badge-sales">24h: 18冊</span></div><div class="deadline">終了: 2026-05-05 07:30</div></div><div class="card-footer"><span class="btn-buy">詳細を見る</span></div></a>
-  <a class="book-card" href="#" data-item-id="kobo-006" data-tab-tags="new" data-deadline="2026-05-06T18:00:00+09:00" data-discount="25" data-sales="9"><div class="card-thumb-placeholder">📓</div><div class="card-body"><div class="card-title">Kindle新刊クーポン配布</div><div class="card-author">Kindle / new_release</div><div class="card-meta"><span class="badge badge-new">NEW</span><span class="badge badge-discount">25%OFF</span><span class="badge badge-sales">24h: 9冊</span></div><div class="deadline">終了: 2026-05-06 18:00</div></div><div class="card-footer"><span class="btn-buy">詳細を見る</span></div></a>
-  <a class="book-card" href="#" data-item-id="kobo-007" data-tab-tags="entry" data-deadline="2026-05-04T20:00:00+09:00" data-discount="60" data-sales="31"><div class="card-thumb-placeholder">📔</div><div class="card-body"><div class="card-title">終了間近 60%OFF 緊急ピック</div><div class="card-author">楽天Kobo / ending_soon</div><div class="card-meta"><span class="badge badge-entry">要エントリー</span><span class="badge badge-discount">60%OFF</span><span class="badge badge-sales">24h: 31冊</span></div><div class="deadline">終了: 2026-05-04 20:00</div></div><div class="card-footer"><span class="btn-buy">詳細を見る</span></div></a>
-  <a class="book-card" href="#" data-item-id="kobo-008" data-tab-tags="entry" data-deadline="2026-05-05T12:00:00+09:00" data-discount="35" data-sales="28"><div class="card-thumb-placeholder">📒</div><div class="card-body"><div class="card-title">DMMメディアミックス特集</div><div class="card-author">DMMブックス / media_mix</div><div class="card-meta"><span class="badge badge-entry">要エントリー</span><span class="badge badge-discount">35%OFF</span><span class="badge badge-sales">24h: 28冊</span></div><div class="deadline">終了: 2026-05-05 12:00</div></div><div class="card-footer"><span class="btn-buy">詳細を見る</span></div></a>
-  <a class="book-card" href="#" data-item-id="kobo-009" data-tab-tags="" data-deadline="2026-05-06T09:00:00+09:00" data-discount="20" data-sales="14"><div class="card-thumb-placeholder">📚</div><div class="card-body"><div class="card-title">シーモア限定クーポン20%</div><div class="card-author">シーモア / coupon</div><div class="card-meta"><span class="badge badge-discount">20%OFF</span><span class="badge badge-sales">24h: 14冊</span></div><div class="deadline">終了: 2026-05-06 09:00</div></div><div class="card-footer"><span class="btn-buy">詳細を見る</span></div></a>
-  <a class="book-card" href="#" data-item-id="kobo-010" data-tab-tags="" data-deadline="2026-05-05T06:00:00+09:00" data-discount="55" data-sales="11"><div class="card-thumb-placeholder">📖</div><div class="card-body"><div class="card-title">Kindle GWセール まとめ買い対象</div><div class="card-author">Kindle / sale</div><div class="card-meta"><span class="badge badge-discount">55%OFF</span><span class="badge badge-sales">24h: 11冊</span></div><div class="deadline">終了: 2026-05-05 06:00</div></div><div class="card-footer"><span class="btn-buy">詳細を見る</span></div></a>
+  <a class="book-card" data-item-id="kobo-001" data-tab-tags="new entry" data-deadline="2026-05-05T23:59:00+09:00" data-discount="30" data-sales="35"><div class="card-thumb-placeholder">📚</div><div class="card-body"><div class="card-title">新着の還元強化キャンペーン</div><div class="card-author">楽天Kobo / new_release</div><div class="card-meta"><span class="badge badge-new">NEW</span><span class="badge badge-entry">要エントリー</span><span class="badge badge-discount">30%OFF</span><span class="badge badge-sales">24h: 35冊</span></div><div class="deadline">終了: 2026-05-05 23:59</div></div><div class="card-footer"><span class="btn-buy">詳細を見る</span></div></a>
+  <a class="book-card" data-item-id="kobo-002" data-tab-tags="" data-deadline="2026-05-04T23:59:00+09:00" data-discount="50" data-sales="12"><div class="card-thumb-placeholder">📖</div><div class="card-body"><div class="card-title">人気シリーズ最新刊50%OFF</div><div class="card-author">楽天Kobo / sale</div><div class="card-meta"><span class="badge badge-discount">50%OFF</span><span class="badge badge-sales">24h: 12冊</span></div><div class="deadline">終了: 2026-05-04 23:59</div></div><div class="card-footer"><span class="btn-buy">詳細を見る</span></div></a>
+  <a class="book-card" data-item-id="kobo-003" data-tab-tags="new entry" data-deadline="2026-05-05T10:00:00+09:00" data-discount="50" data-sales="40"><div class="card-thumb-placeholder">📘</div><div class="card-body"><div class="card-title">Kindle限定 週末ポイント還元</div><div class="card-author">Kindle / point_back</div><div class="card-meta"><span class="badge badge-new">NEW</span><span class="badge badge-entry">要エントリー</span><span class="badge badge-discount">50%還元</span><span class="badge badge-sales">24h: 40冊</span></div><div class="deadline">終了: 2026-05-05 10:00</div></div><div class="card-footer"><span class="btn-buy">詳細を見る</span></div></a>
+  <a class="book-card" data-item-id="kobo-004" data-tab-tags="entry" data-deadline="2026-05-05T08:00:00+09:00" data-discount="40" data-sales="25"><div class="card-thumb-placeholder">📙</div><div class="card-body"><div class="card-title">DMMクーポン祭 40%OFF</div><div class="card-author">DMMブックス / coupon</div><div class="card-meta"><span class="badge badge-entry">要エントリー</span><span class="badge badge-discount">40%OFF</span><span class="badge badge-sales">24h: 25冊</span></div><div class="deadline">終了: 2026-05-05 08:00</div></div><div class="card-footer"><span class="btn-buy">詳細を見る</span></div></a>
+  <a class="book-card" data-item-id="kobo-005" data-tab-tags="new" data-deadline="2026-05-05T07:30:00+09:00" data-discount="50" data-sales="18"><div class="card-thumb-placeholder">📗</div><div class="card-body"><div class="card-title">シーモア先行 ポイント50%還元</div><div class="card-author">シーモア / point_back</div><div class="card-meta"><span class="badge badge-new">NEW</span><span class="badge badge-discount">50%還元</span><span class="badge badge-sales">24h: 18冊</span></div><div class="deadline">終了: 2026-05-05 07:30</div></div><div class="card-footer"><span class="btn-buy">詳細を見る</span></div></a>
+  <a class="book-card" data-item-id="kobo-006" data-tab-tags="new" data-deadline="2026-05-06T18:00:00+09:00" data-discount="25" data-sales="9"><div class="card-thumb-placeholder">📓</div><div class="card-body"><div class="card-title">Kindle新刊クーポン配布</div><div class="card-author">Kindle / new_release</div><div class="card-meta"><span class="badge badge-new">NEW</span><span class="badge badge-discount">25%OFF</span><span class="badge badge-sales">24h: 9冊</span></div><div class="deadline">終了: 2026-05-06 18:00</div></div><div class="card-footer"><span class="btn-buy">詳細を見る</span></div></a>
+  <a class="book-card" data-item-id="kobo-007" data-tab-tags="entry" data-deadline="2026-05-04T20:00:00+09:00" data-discount="60" data-sales="31"><div class="card-thumb-placeholder">📔</div><div class="card-body"><div class="card-title">終了間近 60%OFF 緊急ピック</div><div class="card-author">楽天Kobo / ending_soon</div><div class="card-meta"><span class="badge badge-entry">要エントリー</span><span class="badge badge-discount">60%OFF</span><span class="badge badge-sales">24h: 31冊</span></div><div class="deadline">終了: 2026-05-04 20:00</div></div><div class="card-footer"><span class="btn-buy">詳細を見る</span></div></a>
+  <a class="book-card" data-item-id="kobo-008" data-tab-tags="entry" data-deadline="2026-05-05T12:00:00+09:00" data-discount="35" data-sales="28"><div class="card-thumb-placeholder">📒</div><div class="card-body"><div class="card-title">DMMメディアミックス特集</div><div class="card-author">DMMブックス / media_mix</div><div class="card-meta"><span class="badge badge-entry">要エントリー</span><span class="badge badge-discount">35%OFF</span><span class="badge badge-sales">24h: 28冊</span></div><div class="deadline">終了: 2026-05-05 12:00</div></div><div class="card-footer"><span class="btn-buy">詳細を見る</span></div></a>
+  <a class="book-card" data-item-id="kobo-009" data-tab-tags="" data-deadline="2026-05-06T09:00:00+09:00" data-discount="20" data-sales="14"><div class="card-thumb-placeholder">📚</div><div class="card-body"><div class="card-title">シーモア限定クーポン20%</div><div class="card-author">シーモア / coupon</div><div class="card-meta"><span class="badge badge-discount">20%OFF</span><span class="badge badge-sales">24h: 14冊</span></div><div class="deadline">終了: 2026-05-06 09:00</div></div><div class="card-footer"><span class="btn-buy">詳細を見る</span></div></a>
+  <a class="book-card" data-item-id="kobo-010" data-tab-tags="" data-deadline="2026-05-05T06:00:00+09:00" data-discount="55" data-sales="11"><div class="card-thumb-placeholder">📖</div><div class="card-body"><div class="card-title">Kindle GWセール まとめ買い対象</div><div class="card-author">Kindle / sale</div><div class="card-meta"><span class="badge badge-discount">55%OFF</span><span class="badge badge-sales">24h: 11冊</span></div><div class="deadline">終了: 2026-05-05 06:00</div></div><div class="card-footer"><span class="btn-buy">詳細を見る</span></div></a>
 </main>
 
 <footer class="site-footer">※ 価格・キャンペーン情報は変更になる場合があります。購入前に公式サイトでご確認ください。</footer>
@@ -146,6 +148,7 @@ async function loadUiFlags() {
       const item = itemMap.get(itemId);
       if (!item) return;
       applyUiFlagsToCard(card, item);
+      applyCtaLinkToCard(card, item);
     });
 
     const htmlIds = new Set(Array.from(document.querySelectorAll('.book-card[data-item-id]')).map(el => el.dataset.itemId));
@@ -160,6 +163,60 @@ async function loadUiFlags() {
   } catch (error) {
     console.warn('[ui_flags] apply failed:', error);
   }
+}
+
+function isValidCtaUrl(value) {
+  if (typeof value !== 'string') return false;
+  const trimmed = value.trim();
+  if (!trimmed || trimmed === '#') return false;
+  // DRY_RUN中は example.invalid をUI反映に許容するが、本番反映判定はBLOCKEDを維持する。
+  return trimmed.startsWith('https://');
+}
+
+function resolveCtaUrl(item) {
+  const affiliate = item && item.affiliate_url;
+  if (isValidCtaUrl(affiliate)) return affiliate.trim();
+  const campaign = item && item.campaign_url;
+  if (isValidCtaUrl(campaign)) return campaign.trim();
+  return null;
+}
+
+function setCardDisabled(card, disabled) {
+  const cta = card.querySelector('.btn-buy');
+  if (disabled) {
+    card.classList.add('is-disabled');
+    card.setAttribute('aria-disabled', 'true');
+    card.removeAttribute('href');
+    if (cta) cta.textContent = '準備中';
+    return;
+  }
+
+  card.classList.remove('is-disabled');
+  card.removeAttribute('aria-disabled');
+  if (cta) cta.textContent = '詳細を見る';
+}
+
+function applyCtaLinkToCard(card, item) {
+  const url = resolveCtaUrl(item);
+  if (!card.dataset.ctaBound) {
+    card.addEventListener('click', event => {
+      if (card.getAttribute('aria-disabled') === 'true') {
+        event.preventDefault();
+      }
+    });
+    card.dataset.ctaBound = '1';
+  }
+
+  if (url) {
+    // 明示ポリシー: target="_blank" / rel="noopener noreferrer sponsored"
+    card.setAttribute('href', url);
+    card.setAttribute("target", "_blank");
+    card.setAttribute("rel", "noopener noreferrer sponsored");
+    setCardDisabled(card, false);
+    return;
+  }
+
+  setCardDisabled(card, true);
 }
 
 function applyUiFlagsToCard(card, item) {
