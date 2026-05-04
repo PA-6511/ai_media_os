@@ -27,6 +27,12 @@ from price_drop_ai.proposal_generator import build_refresh_proposal
 from pipelines.enrich_article_with_journey import enrich_article_with_journey
 from pipelines.enrich_article_with_links import enrich_article
 from monitoring.failure_reporter import report_batch_summary
+from core.verification import (
+    VerificationResult,
+    VerificationStatus,
+    build_verification_failure_report,
+    escalate_verification_failure,
+)
 from pipelines.combined_signal_policy import build_combined_event, evaluate_combined_signal
 from pipelines.priority_policy import get_article_priority
 from pipelines.sale_refresh_selector import select_processing_items
@@ -630,13 +636,41 @@ def run_pipeline(
     failed_count = len(results) - success_count - skipped_count
 
     failed_slugs = [str(row.get("slug", "")) for row in results if not row.get("success") and row.get("slug")]
+    dry_run = _to_bool(os.getenv("WP_DRY_RUN", "1"), default=True)
+
+    verification_results = [
+        VerificationResult(
+            check_name="batch_failed_count",
+            status=VerificationStatus.FAILURE if failed_count > 0 else VerificationStatus.OK,
+            message=f"failed_count={failed_count}",
+            detail={
+                "failed_count": failed_count,
+                "failed_slugs": failed_slugs[:10],
+            },
+        )
+    ]
+
+    verification_report = build_verification_failure_report(
+        verification_results,
+        context={
+            "pipeline": "main.run_pipeline",
+            "success_count": success_count,
+            "skipped_count": skipped_count,
+            "failed_count": failed_count,
+            "dry_run": dry_run,
+        },
+    )
+
+    if verification_report.get("failure_count", 0) > 0:
+        escalate_verification_failure(verification_report, dry_run=dry_run)
+
     report_batch_summary(
         {
             "success_count": success_count,
             "skipped_count": skipped_count,
             "failed_count": failed_count,
             "failed_slugs": failed_slugs,
-            "dry_run": _to_bool(os.getenv("WP_DRY_RUN", "1"), default=True),
+            "dry_run": dry_run,
         }
     )
 
