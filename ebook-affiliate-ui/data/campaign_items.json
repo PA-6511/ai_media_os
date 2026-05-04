@@ -31,7 +31,8 @@
         "expires_at": "",
         "reason": ""
       }
-    }
+    },
+    "affiliate_url": "https://example.invalid/dry-run/ebook-affiliate/kobo-003"
   },
   {
     "id": "kobo-007",
@@ -65,7 +66,8 @@
         "expires_at": "",
         "reason": ""
       }
-    }
+    },
+    "affiliate_url": "https://example.invalid/dry-run/ebook-affiliate/kobo-007"
   },
   {
     "id": "kobo-005",
@@ -99,7 +101,8 @@
         "expires_at": "",
         "reason": ""
       }
-    }
+    },
+    "affiliate_url": "https://example.invalid/dry-run/ebook-affiliate/kobo-005"
   },
   {
     "id": "kobo-001",
@@ -133,7 +136,8 @@
         "expires_at": "",
         "reason": ""
       }
-    }
+    },
+    "affiliate_url": "https://example.invalid/dry-run/ebook-affiliate/kobo-001"
   },
   {
     "id": "kobo-010",
@@ -167,7 +171,8 @@
         "expires_at": "",
         "reason": ""
       }
-    }
+    },
+    "affiliate_url": "https://example.invalid/dry-run/ebook-affiliate/kobo-010"
   },
   {
     "id": "kobo-004",
@@ -201,7 +206,8 @@
         "expires_at": "",
         "reason": ""
       }
-    }
+    },
+    "affiliate_url": "https://example.invalid/dry-run/ebook-affiliate/kobo-004"
   },
   {
     "id": "kobo-002",
@@ -235,7 +241,8 @@
         "expires_at": "",
         "reason": ""
       }
-    }
+    },
+    "affiliate_url": "https://example.invalid/dry-run/ebook-affiliate/kobo-002"
   },
   {
     "id": "kobo-008",
@@ -269,7 +276,8 @@
         "expires_at": "",
         "reason": ""
       }
-    }
+    },
+    "affiliate_url": "https://example.invalid/dry-run/ebook-affiliate/kobo-008"
   },
   {
     "id": "kobo-006",
@@ -303,7 +311,8 @@
         "expires_at": "",
         "reason": ""
       }
-    }
+    },
+    "affiliate_url": "https://example.invalid/dry-run/ebook-affiliate/kobo-006"
   },
   {
     "id": "kobo-009",
@@ -337,6 +346,7 @@
         "expires_at": "2026-05-04T20:12:32.545998+09:00",
         "reason": "Phase1.2 priority review"
       }
-    }
+    },
+    "affiliate_url": "https://example.invalid/dry-run/ebook-affiliate/kobo-009"
   }
 ]
