@@ -33,6 +33,8 @@ ALLOWED_DOMAINS_BY_STORE = {
     "amazon": {"www.amazon.co.jp", "amzn.to"},
     "rakuten_kobo": {"books.rakuten.co.jp", "hb.afl.rakuten.co.jp"},
     "kindle": {"www.amazon.co.jp", "amzn.to"},
+    "cmoa": {"www.cmoa.jp"},
+    "dmm_books": {"book.dmm.com", "al.dmm.com"},
 }
 
 
