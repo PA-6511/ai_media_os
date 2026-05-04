@@ -1,0 +1,24 @@
+/* UI Flags highlight styles for Cocoon Additional CSS */
+.deadline.is-urgent {
+  color: #dc2626;
+  font-weight: 900;
+}
+
+.deadline.is-blink {
+  animation: blinkDeadline 1s infinite;
+}
+
+@keyframes blinkDeadline {
+  0%, 100% { opacity: 1; }
+  50% { opacity: .35; }
+}
+
+.book-card.is-ai-push {
+  border-color: #f43f5e;
+  box-shadow: 0 0 0 2px rgba(244, 63, 94, .12);
+}
+
+.book-card.is-manual-push {
+  border-color: #f59e0b;
+  box-shadow: 0 0 0 2px rgba(245, 158, 11, .18);
+}
