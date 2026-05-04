@@ -189,6 +189,42 @@ DRY_RUNで実施しないこと:
 - would_enqueue_ids
 
 
+## 7-B. preview_sale_candidates.py（47-B 実装済み）
+
+実装ファイル:
+- tools/preview_sale_candidates.py
+
+位置づけ:
+- セクション7のDRY_RUN仕様を読み取り専用で先行実装したスクリプト
+- Sheets書き込み・WordPress接続・cron連携は一切行わない
+
+使い方:
+```
+# デフォルト（samples/auto_collection/sale_candidates.sample.json を読む）
+python3 tools/preview_sale_candidates.py
+
+# 任意のJSONを指定
+python3 tools/preview_sale_candidates.py --input path/to/candidates.json
+```
+
+実行結果の見方:
+- would_enqueue: Sheetsに投入される予定件数（DRY_RUNなので実際には書かない）
+- skip_expired: sale_end_date < 実行日(UTC) で除外された件数
+- skip_duplicate: candidate_id 重複で除外された件数
+- skip_validation_err: バリデーション失敗で除外された件数
+
+サンプルJSON:
+- samples/auto_collection/sale_candidates.sample.json
+- 楽天Kobo・DMM・Kindle 各1件
+- 期限切れ検証用 1件（sale_end_date が過去日）
+- 重複検証用 1件（candidate_id を同一に設定）
+
+注意事項:
+- このスクリプトはSheetsへの接続を行わない（SPREADSHEET_ID 不要）
+- 重複判定は候補リスト内のcandidate_id一致のみ（投稿キューとの照合は未実装）
+- review_status によるフィルタリングは行わない（pending/approved いずれも表示）
+
+
 ## 8. 複数件処理の解禁条件
 
 現時点:

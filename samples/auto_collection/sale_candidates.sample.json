@@ -84,7 +84,7 @@
     "review_note": "sale_end_date=2026-04-30 は期限切れ。DRY_RUNでskip_expiredになるはず"
   },
   {
-    "candidate_id": "e5f6a1b2c3d4",
+    "candidate_id": "a1b2c3d4e5f6",
     "source_store": "rakuten_kobo",
     "work_title": "楽天Kobo サンプル作品",
     "campaign_name": "楽天Kobo テストキャンペーン",
