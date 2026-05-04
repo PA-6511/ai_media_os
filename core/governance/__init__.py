@@ -7,6 +7,14 @@ from core.governance.authority_guard import (
     PHASE2_PERMISSION_MATRIX,
     evaluate_authority_request,
 )
+from core.governance.auto_freeze_judge import (
+    FREEZE_THRESHOLDS,
+    FreezeDecision,
+    FreezeJudgeResult,
+    WARN_THRESHOLDS,
+    judge_auto_freeze,
+    normalize_kpi,
+)
 
 __all__ = [
     "AuthorityDecision",
@@ -14,4 +22,10 @@ __all__ = [
     "Decision",
     "PHASE2_PERMISSION_MATRIX",
     "evaluate_authority_request",
+    "FREEZE_THRESHOLDS",
+    "WARN_THRESHOLDS",
+    "FreezeDecision",
+    "FreezeJudgeResult",
+    "judge_auto_freeze",
+    "normalize_kpi",
 ]

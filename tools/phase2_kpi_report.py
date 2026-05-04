@@ -12,12 +12,11 @@ import sys
 from pathlib import Path
 from typing import Any
 
-FREEZE_THRESHOLDS = {
-    "failsafe_coverage_min": 1.00,
-    "freeze_correctness_min": 0.90,
-    "policy_deny_delta_max": 2.0,
-    "warning_streak_freeze": 2,
-}
+BASE_DIR = Path(__file__).resolve().parents[1]
+if str(BASE_DIR) not in sys.path:
+    sys.path.insert(0, str(BASE_DIR))
+
+from core.governance.auto_freeze_judge import FREEZE_THRESHOLDS, judge_auto_freeze
 
 
 def _load_events(path: Path) -> list[dict[str, Any]]:
@@ -48,54 +47,12 @@ def _load_events(path: Path) -> list[dict[str, Any]]:
     return events
 
 
-def _safe_float(v: Any, default: float = 0.0) -> float:
-    try:
-        return float(v)
-    except Exception:
-        return default
-
-
-def _safe_int(v: Any, default: int = 0) -> int:
-    try:
-        return int(v)
-    except Exception:
-        return default
-
-
 def _extract_latest_kpi(events: list[dict[str, Any]]) -> dict[str, Any]:
     for event in reversed(events):
         kpi = event.get("kpi")
         if isinstance(kpi, dict):
             return kpi
     return {}
-
-
-def _freeze_reasons(kpi: dict[str, Any]) -> list[str]:
-    reasons: list[str] = []
-
-    failsafe_coverage = _safe_float(kpi.get("failsafe_coverage"), 0.0)
-    freeze_correctness = _safe_float(kpi.get("freeze_correctness"), 0.0)
-    policy_deny_delta = _safe_float(kpi.get("policy_deny_delta"), 0.0)
-    warning_streak = _safe_int(kpi.get("warning_streak"), 0)
-
-    if failsafe_coverage < FREEZE_THRESHOLDS["failsafe_coverage_min"]:
-        reasons.append(
-            f"failsafe_coverage<{FREEZE_THRESHOLDS['failsafe_coverage_min']:.2f} ({failsafe_coverage:.4f})"
-        )
-    if freeze_correctness < FREEZE_THRESHOLDS["freeze_correctness_min"]:
-        reasons.append(
-            f"freeze_correctness<{FREEZE_THRESHOLDS['freeze_correctness_min']:.2f} ({freeze_correctness:.4f})"
-        )
-    if policy_deny_delta >= FREEZE_THRESHOLDS["policy_deny_delta_max"]:
-        reasons.append(
-            f"policy_deny_delta>={FREEZE_THRESHOLDS['policy_deny_delta_max']:.1f} ({policy_deny_delta:.4f})"
-        )
-    if warning_streak >= FREEZE_THRESHOLDS["warning_streak_freeze"]:
-        reasons.append(
-            f"warning_streak>={FREEZE_THRESHOLDS['warning_streak_freeze']} ({warning_streak})"
-        )
-
-    return reasons
 
 
 def _count_by_key(events: list[dict[str, Any]], key: str) -> dict[str, int]:
@@ -123,20 +80,16 @@ def main(argv: list[str] | None = None) -> int:
         return 1
 
     latest_kpi = _extract_latest_kpi(events)
-    reasons = _freeze_reasons(latest_kpi)
-    decision = "FREEZE" if reasons else "CONTINUE"
+    judge = judge_auto_freeze(latest_kpi)
+    decision = judge.decision.value
+    reasons = judge.reasons
 
     report = {
         "input": str(args.input),
         "event_count": len(events),
         "decision_counts": _count_by_key(events, "decision"),
         "result_counts": _count_by_key(events, "result"),
-        "latest_kpi": {
-            "failsafe_coverage": _safe_float(latest_kpi.get("failsafe_coverage"), 0.0),
-            "freeze_correctness": _safe_float(latest_kpi.get("freeze_correctness"), 0.0),
-            "policy_deny_delta": _safe_float(latest_kpi.get("policy_deny_delta"), 0.0),
-            "warning_streak": _safe_int(latest_kpi.get("warning_streak"), 0),
-        },
+        "latest_kpi": judge.normalized_kpi,
         "freeze_thresholds": FREEZE_THRESHOLDS,
         "final_decision": decision,
         "freeze_reasons": reasons,
