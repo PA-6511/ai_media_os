@@ -1,0 +1,46 @@
+{
+  "version": "phase0.5-ui-flags-v1",
+  "required_fields": [
+    "id",
+    "title",
+    "store",
+    "campaign_url",
+    "sale_end",
+    "metrics",
+    "ai_flags",
+    "ui_flags"
+  ],
+  "item": {
+    "id": "string",
+    "asin": "string_optional",
+    "title": "string",
+    "store": "rakuten_kobo",
+    "campaign_url": "string",
+    "sale_end": "ISO8601 string",
+    "metrics": {
+      "sales_24h": "number",
+      "sales_72h": "number",
+      "rating": "number",
+      "rating_avg_series": "number",
+      "discount_rate": "number",
+      "is_new": "boolean",
+      "is_entry_required": "boolean",
+      "manual_priority": "number"
+    },
+    "ai_flags": {
+      "urgent": "boolean",
+      "blink": "boolean",
+      "reason": "string"
+    },
+    "ui_flags": {
+      "urgent": "boolean",
+      "blink": "boolean",
+      "source": "ai | manual_override",
+      "manual_override": {
+        "enabled": "boolean",
+        "expires_at": "ISO8601 string",
+        "reason": "string"
+      }
+    }
+  }
+}

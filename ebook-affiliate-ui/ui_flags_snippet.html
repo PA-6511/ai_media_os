@@ -1,0 +1,98 @@
+<!--
+  ui_flags_snippet.html
+  Phase0.5 - HTMLに追加するCSS/JS スニペット
+
+  使い方:
+  1. <style> タグ内に CSS セクションを追加する
+  2. </body> 直前に JS セクションを追加する
+  3. フロントHTMLは判断せず、ui_flags を表示反映するだけにする
+-->
+
+<!-- ===== CSS: <style> タグ内に追加 ===== -->
+<style>
+/* urgent: 残り24時間以内 */
+.deadline.is-urgent {
+  color: #dc2626;
+  font-weight: 900;
+}
+
+/* blink: score>=70 かつ urgent（最大3件） */
+.deadline.is-blink {
+  animation: blinkDeadline 1s infinite;
+}
+
+@keyframes blinkDeadline {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: .35; }
+}
+
+/* AI推薦カード */
+.book-card.is-ai-push {
+  border-color: #f43f5e;
+  box-shadow: 0 0 0 2px rgba(244, 63, 94, .12);
+}
+
+/* manual_override カード */
+.book-card.is-manual-push {
+  border-color: #f59e0b;
+  box-shadow: 0 0 0 2px rgba(245, 158, 11, .18);
+}
+</style>
+
+<!-- ===== JS: campaign_items.json 読み込みと ui_flags 反映 ===== -->
+<script>
+/**
+ * ui_flags をカードに反映する関数
+ * @param {HTMLElement} card - .book-card 要素
+ * @param {Object} item     - campaign_items.json の1件
+ */
+function applyUiFlagsToCard(card, item) {
+  const deadline = card.querySelector('.deadline');
+  const flags = item.ui_flags || {};
+
+  if (deadline) {
+    if (flags.urgent) {
+      deadline.classList.add('is-urgent');
+    }
+    if (flags.blink) {
+      deadline.classList.add('is-blink');
+    }
+  }
+
+  if (flags.source === 'manual_override') {
+    card.classList.add('is-manual-push');
+  } else if (flags.blink) {
+    card.classList.add('is-ai-push');
+  }
+}
+
+/**
+ * campaign_items.json を読み込み、全カードに ui_flags を適用する
+ * 本番では fetch('/data/campaign_items.json') に差し替える
+ */
+async function loadAndApplyUiFlags() {
+  try {
+    const res = await fetch('./data/campaign_items.json');
+    if (!res.ok) {
+      console.warn('[ui_flags] campaign_items.json の読み込みに失敗しました:', res.status);
+      return;
+    }
+    const items = await res.json();
+
+    items.forEach(item => {
+      // data-item-id 属性でカードを特定する想定
+      const card = document.querySelector(`[data-item-id="${item.id}"]`);
+      if (card) {
+        applyUiFlagsToCard(card, item);
+      }
+    });
+
+    console.log('[ui_flags] 適用完了:', items.length, '件');
+  } catch (err) {
+    console.warn('[ui_flags] エラー:', err);
+  }
+}
+
+// DOMContentLoaded 後に適用
+document.addEventListener('DOMContentLoaded', loadAndApplyUiFlags);
+</script>

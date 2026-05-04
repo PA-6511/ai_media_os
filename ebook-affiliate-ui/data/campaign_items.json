@@ -1,0 +1,101 @@
+[
+  {
+    "id": "kobo-001",
+    "asin": "",
+    "title": "新着の還元強化キャンペーン",
+    "store": "rakuten_kobo",
+    "campaign_url": "#",
+    "sale_end": "2026-05-05T23:59:00+09:00",
+    "metrics": {
+      "sales_24h": 35,
+      "sales_72h": 92,
+      "rating": 4.7,
+      "rating_avg_series": 4.5,
+      "discount_rate": 30,
+      "is_new": true,
+      "is_entry_required": true,
+      "manual_priority": 0
+    },
+    "ai_flags": {
+      "urgent": false,
+      "blink": false,
+      "reason": "score=98, hours_until_end=34.03"
+    },
+    "ui_flags": {
+      "urgent": false,
+      "blink": false,
+      "source": "ai",
+      "manual_override": {
+        "enabled": false,
+        "expires_at": "",
+        "reason": ""
+      }
+    }
+  },
+  {
+    "id": "kobo-002",
+    "asin": "",
+    "title": "人気シリーズ最新刊50%OFF",
+    "store": "rakuten_kobo",
+    "campaign_url": "#",
+    "sale_end": "2026-05-04T23:59:00+09:00",
+    "metrics": {
+      "sales_24h": 12,
+      "sales_72h": 45,
+      "rating": 4.8,
+      "rating_avg_series": 4.6,
+      "discount_rate": 50,
+      "is_new": false,
+      "is_entry_required": false,
+      "manual_priority": 0
+    },
+    "ai_flags": {
+      "urgent": true,
+      "blink": true,
+      "reason": "score=75, hours_until_end=10.03"
+    },
+    "ui_flags": {
+      "urgent": true,
+      "blink": true,
+      "source": "ai",
+      "manual_override": {
+        "enabled": false,
+        "expires_at": "",
+        "reason": ""
+      }
+    }
+  },
+  {
+    "id": "kobo-003",
+    "asin": "",
+    "title": "話題の新刊 期間限定30%還元",
+    "store": "rakuten_kobo",
+    "campaign_url": "#",
+    "sale_end": "2026-05-06T12:00:00+09:00",
+    "metrics": {
+      "sales_24h": 5,
+      "sales_72h": 18,
+      "rating": 4.2,
+      "rating_avg_series": 4.0,
+      "discount_rate": 30,
+      "is_new": true,
+      "is_entry_required": true,
+      "manual_priority": 0
+    },
+    "ai_flags": {
+      "urgent": false,
+      "blink": false,
+      "reason": "score=48, hours_until_end=46.05"
+    },
+    "ui_flags": {
+      "urgent": false,
+      "blink": false,
+      "source": "ai",
+      "manual_override": {
+        "enabled": false,
+        "expires_at": "2026-05-04T19:50:38.501182+09:00",
+        "reason": "テスト: 期間限定推し"
+      }
+    }
+  }
+]

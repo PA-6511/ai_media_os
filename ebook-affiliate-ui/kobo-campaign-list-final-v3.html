@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Koboキャンペーン一覧</title>
+  <style>
+    /* ===== リセット & ベース ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", sans-serif; background: #f8f8f8; color: #222; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ===== ヘッダー ===== */
+    .site-header { background: #c0392b; color: #fff; padding: 12px 16px; }
+    .site-header h1 { font-size: 1.1rem; font-weight: 700; }
+
+    /* ===== コントロールバー ===== */
+    .controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 16px; background: #fff; border-bottom: 1px solid #e5e5e5; }
+    .tab-group { display: flex; gap: 4px; }
+    .tab-btn { padding: 5px 14px; border: 1px solid #ccc; border-radius: 4px; background: #fff; cursor: pointer; font-size: .85rem; }
+    .tab-btn.active { background: #c0392b; color: #fff; border-color: #c0392b; }
+
+    .sort-group { margin-left: auto; display: flex; align-items: center; gap: 6px; font-size: .85rem; }
+    .sort-group select { padding: 4px 8px; border: 1px solid #ccc; border-radius: 4px; }
+
+    .col-group { display: flex; gap: 4px; }
+    .col-btn { width: 30px; height: 30px; border: 1px solid #ccc; border-radius: 4px; background: #fff; cursor: pointer; font-size: .8rem; }
+    .col-btn.active { background: #333; color: #fff; border-color: #333; }
+
+    /* ===== カードグリッド ===== */
+    .card-grid { display: grid; grid-template-columns: repeat(var(--cols, 3), 1fr); gap: 12px; padding: 16px; }
+    @media (max-width: 640px) { .card-grid { --cols: 2; } }
+    @media (max-width: 400px) { .card-grid { --cols: 1; } }
+
+    /* ===== カード ===== */
+    .book-card {
+      display: flex; flex-direction: column;
+      background: #fff; border: 2px solid #e5e5e5; border-radius: 8px;
+      overflow: hidden; transition: box-shadow .2s, border-color .2s;
+    }
+    .book-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,.12); }
+
+    .card-thumb { width: 100%; aspect-ratio: 3/4; object-fit: cover; background: #ddd; }
+    .card-thumb-placeholder { width: 100%; aspect-ratio: 3/4; background: linear-gradient(135deg, #ddd 0%, #bbb 100%); display: flex; align-items: center; justify-content: center; font-size: 2rem; color: #999; }
+
+    .card-body { padding: 10px; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+    .card-title { font-size: .85rem; font-weight: 700; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .card-author { font-size: .75rem; color: #666; }
+
+    .card-meta { margin-top: auto; display: flex; flex-wrap: wrap; gap: 4px; align-items: center; }
+    .badge { font-size: .7rem; padding: 2px 6px; border-radius: 3px; font-weight: 700; white-space: nowrap; }
+    .badge-new    { background: #16a34a; color: #fff; }
+    .badge-entry  { background: #7c3aed; color: #fff; }
+    .badge-discount { background: #dc2626; color: #fff; }
+    .badge-sales  { background: #0284c7; color: #fff; }
+
+    .deadline { font-size: .72rem; color: #888; margin-top: 4px; }
+
+    .card-footer { padding: 8px 10px; border-top: 1px solid #f0f0f0; }
+    .btn-buy { display: block; text-align: center; background: #c0392b; color: #fff; border-radius: 4px; padding: 7px; font-size: .8rem; font-weight: 700; }
+    .btn-buy:hover { background: #a93226; }
+
+    /* ===== ui_flags CSS ===== */
+    .deadline.is-urgent {
+      color: #dc2626;
+      font-weight: 900;
+    }
+
+    .deadline.is-blink {
+      animation: blinkDeadline 1s infinite;
+    }
+
+    @keyframes blinkDeadline {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: .35; }
+    }
+
+    .book-card.is-ai-push {
+      border-color: #f43f5e;
+      box-shadow: 0 0 0 2px rgba(244, 63, 94, .12);
+    }
+
+    .book-card.is-manual-push {
+      border-color: #f59e0b;
+      box-shadow: 0 0 0 2px rgba(245, 158, 11, .18);
+    }
+
+    /* ===== フッター ===== */
+    .site-footer { text-align: center; padding: 24px 16px; font-size: .75rem; color: #aaa; }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <h1>Koboキャンペーン一覧</h1>
+</header>
+
+<div class="controls">
+  <div class="tab-group">
+    <button class="tab-btn active" data-tab="all">すべて</button>
+    <button class="tab-btn" data-tab="new">新着</button>
+    <button class="tab-btn" data-tab="entry">エントリー必須</button>
+    <button class="tab-btn" data-tab="urgent">終了間近</button>
+  </div>
+
+  <div class="sort-group">
+    <label for="sort-select">並び替え:</label>
+    <select id="sort-select">
+      <option value="default">おすすめ順</option>
+      <option value="deadline">終了時刻が近い順</option>
+      <option value="discount">割引率が高い順</option>
+      <option value="sales">売上が多い順</option>
+    </select>
+  </div>
+
+  <div class="col-group">
+    <button class="col-btn" data-cols="2">2</button>
+    <button class="col-btn active" data-cols="3">3</button>
+    <button class="col-btn" data-cols="4">4</button>
+  </div>
+</div>
+
+<main class="card-grid" id="card-grid">
+
+  <!-- カード1 -->
+  <a class="book-card" href="#" data-item-id="kobo-001"
+     data-tab-tags="new entry"
+     data-deadline="2026-05-05T23:59:00+09:00"
+     data-discount="30" data-sales="35">
+    <div class="card-thumb-placeholder">📚</div>
+    <div class="card-body">
+      <div class="card-title">新着の還元強化キャンペーン</div>
+      <div class="card-author">著者名 A</div>
+      <div class="card-meta">
+        <span class="badge badge-new">NEW</span>
+        <span class="badge badge-entry">要エントリー</span>
+        <span class="badge badge-discount">30%OFF</span>
+        <span class="badge badge-sales">24h: 35冊</span>
+      </div>
+      <div class="deadline" data-deadline-value="2026-05-05T23:59:00+09:00">
+        終了: 2026-05-05 23:59
+      </div>
+    </div>
+    <div class="card-footer">
+      <span class="btn-buy">Koboで購入</span>
+    </div>
+  </a>
+
+  <!-- カード2 -->
+  <a class="book-card" href="#" data-item-id="kobo-002"
+     data-tab-tags=""
+     data-deadline="2026-05-04T23:59:00+09:00"
+     data-discount="50" data-sales="12">
+    <div class="card-thumb-placeholder">📖</div>
+    <div class="card-body">
+      <div class="card-title">人気シリーズ最新刊50%OFF</div>
+      <div class="card-author">著者名 B</div>
+      <div class="card-meta">
+        <span class="badge badge-discount">50%OFF</span>
+        <span class="badge badge-sales">24h: 12冊</span>
+      </div>
+      <div class="deadline" data-deadline-value="2026-05-04T23:59:00+09:00">
+        終了: 2026-05-04 23:59
+      </div>
+    </div>
+    <div class="card-footer">
+      <span class="btn-buy">Koboで購入</span>
+    </div>
+  </a>
+
+  <!-- カード3 -->
+  <a class="book-card" href="#" data-item-id="kobo-003"
+     data-tab-tags="new entry"
+     data-deadline="2026-05-06T12:00:00+09:00"
+     data-discount="30" data-sales="5">
+    <div class="card-thumb-placeholder">📕</div>
+    <div class="card-body">
+      <div class="card-title">話題の新刊 期間限定30%還元</div>
+      <div class="card-author">著者名 C</div>
+      <div class="card-meta">
+        <span class="badge badge-new">NEW</span>
+        <span class="badge badge-entry">要エントリー</span>
+        <span class="badge badge-discount">30%OFF</span>
+        <span class="badge badge-sales">24h: 5冊</span>
+      </div>
+      <div class="deadline" data-deadline-value="2026-05-06T12:00:00+09:00">
+        終了: 2026-05-06 12:00
+      </div>
+    </div>
+    <div class="card-footer">
+      <span class="btn-buy">Koboで購入</span>
+    </div>
+  </a>
+
+</main>
+
+<footer class="site-footer">
+  ※ 価格・キャンペーン情報は変更になる場合があります。購入前に公式サイトでご確認ください。
+</footer>
+
+<script>
+// ===== タブ切り替え =====
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const tab = btn.dataset.tab;
+    document.querySelectorAll('.book-card').forEach(card => {
+      if (tab === 'all') {
+        card.style.display = '';
+        return;
+      }
+      if (tab === 'urgent') {
+        const dl = card.querySelector('.deadline');
+        card.style.display = dl && dl.classList.contains('is-urgent') ? '' : 'none';
+        return;
+      }
+      const tags = (card.dataset.tabTags || '').split(' ');
+      card.style.display = tags.includes(tab) ? '' : 'none';
+    });
+  });
+});
+
+// ===== 並び替え =====
+document.getElementById('sort-select').addEventListener('change', function () {
+  const grid = document.getElementById('card-grid');
+  const cards = Array.from(grid.querySelectorAll('.book-card'));
+  const val = this.value;
+
+  cards.sort((a, b) => {
+    if (val === 'deadline') {
+      return new Date(a.dataset.deadline) - new Date(b.dataset.deadline);
+    }
+    if (val === 'discount') {
+      return Number(b.dataset.discount) - Number(a.dataset.discount);
+    }
+    if (val === 'sales') {
+      return Number(b.dataset.sales) - Number(a.dataset.sales);
+    }
+    return 0; // default: DOM順
+  });
+
+  cards.forEach(card => grid.appendChild(card));
+});
+
+// ===== スマホ列数切替 =====
+document.querySelectorAll('.col-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.col-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('card-grid').style.setProperty('--cols', btn.dataset.cols);
+  });
+});
+
+// ===== ui_flags 接続 =====
+async function loadUiFlags() {
+  try {
+    const response = await fetch('data/campaign_items.json', { cache: 'no-store' });
+    if (!response.ok) {
+      console.warn('[ui_flags] campaign_items.json load failed:', response.status);
+      return;
+    }
+
+    const items = await response.json();
+    const itemMap = new Map(items.map(item => [item.id, item]));
+
+    document.querySelectorAll('.book-card[data-item-id]').forEach(card => {
+      const itemId = card.dataset.itemId;
+      const item = itemMap.get(itemId);
+      if (!item) return;
+      applyUiFlagsToCard(card, item);
+    });
+
+    console.log('[ui_flags] 適用完了:', items.length, '件');
+  } catch (error) {
+    console.warn('[ui_flags] apply failed:', error);
+  }
+}
+
+function applyUiFlagsToCard(card, item) {
+  const deadline = card.querySelector('.deadline');
+  const flags = item.ui_flags || {};
+
+  // 一度クリアしてから付け直す
+  deadline && deadline.classList.remove('is-urgent', 'is-blink');
+  card.classList.remove('is-ai-push', 'is-manual-push');
+
+  if (!deadline) return;
+
+  if (flags.urgent) {
+    deadline.classList.add('is-urgent');
+  }
+  if (flags.blink) {
+    deadline.classList.add('is-blink');
+  }
+  if (flags.source === 'manual_override') {
+    card.classList.add('is-manual-push');
+  } else if (flags.blink) {
+    card.classList.add('is-ai-push');
+  }
+}
+
+loadUiFlags();
+</script>
+
+</body>
+</html>
