@@ -97,6 +97,63 @@ cd ~/ai_media_os
 bash scripts/run_ai_post_queue.sh
 ```
 
+### 2-4. 公開前チェックリスト（固定）
+
+draft 作成後は、自動公開せず次の 5 項目を人間が確認する。
+
+| 確認 | 観点 |
+|------|------|
+| 本文品質 | 不自然な文、同じ表現の連続、空セクションがない |
+| CTA | ストアリンクが目立つ位置にある |
+| PR表記 | 広告・アフィリエイト表記が明確 |
+| スマホ表示 | Cocoon 表示で崩れがない |
+| アイキャッチ | featured image が設定されている |
+
+### 2-5. 低頻度 cron 観測（3日）
+
+初期運用フェーズは次の条件を固定する。
+
+- 1日1回
+- 1件上限（`--max-items 1`）
+- draft 止まり（公開しない）
+- Slack 通知あり
+- Phase2 health check が `result: OK`
+
+毎日の観測は次を実行する。
+
+```bash
+cd /home/deploy/ai_media_os
+
+echo "=== cron log ==="
+tail -120 logs/ai_post_queue_cron.log
+
+echo "=== queue status ==="
+python3 - <<'PYEOF'
+import sys
+sys.path.insert(0, '/home/deploy/ai_media_os')
+from dotenv import load_dotenv
+load_dotenv('/home/deploy/ai_media_os/.env', override=True)
+from src.sheets import get_sheet, fetch_all_rows
+
+rows = fetch_all_rows(get_sheet('投稿キュー'))
+for r in rows:
+    status = str(r.get('status','')).strip().upper()
+    if status in ('NEW', 'DRAFTED', 'ERROR'):
+        print(r.get('row_id'), status, r.get('wp_post_id'), r.get('wp_draft_url'), r.get('error_message'))
+PYEOF
+
+echo "=== Phase2 health ==="
+python3 tools/phase2_health_check.py --input data/logs/phase2_runtime.log --strict-log
+```
+
+判定基準（3日連続）:
+
+- cron log が異常終了していない
+- Slack 通知が到達している
+- Sheets の対象行が `DRAFTED` になっている
+- `ERROR` 行が増えていない
+- health check が `result: OK`
+
 ---
 
 ## 3. 必須 .env 設定チェックリスト
