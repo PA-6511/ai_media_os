@@ -4,6 +4,7 @@ import contextlib
 import io
 import os
 import sys
+import logging
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -68,13 +69,14 @@ def _build_plan_input(row: dict[str, Any]) -> dict[str, Any]:
 def _notify_success(row_id: str, status: str, draft_url: str) -> None:
     if not os.getenv("SLACK_WEBHOOK_URL", "").strip():
         return
+    _logger = logging.getLogger(__name__)
     try:
         send_slack_block(
             f"[run_single_row] DRY_RUN 成功 {row_id}",
             [f"status: {status}", f"draft_url: {draft_url}"]
         )
-    except Exception:
-        pass
+    except Exception as e:
+        _logger.warning("Slack notification failed (run_single_row): %s", e)
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -166,8 +168,8 @@ def main(argv: list[str] | None = None) -> int:
                     },
                 )
                 append_error_log(sheet, int(row["_row_index"]), str(exc))
-        except Exception:
-            pass
+        except Exception as sheet_err:
+            logging.getLogger(__name__).warning("Sheets error-log write failed (run_single_row): %s", sheet_err)
         print(f"エラー: 単発DRY_RUN検証に失敗しました: {exc}")
         return 1
 

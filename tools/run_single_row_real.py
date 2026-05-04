@@ -4,6 +4,7 @@ import contextlib
 import io
 import os
 import sys
+import logging
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -63,8 +64,8 @@ def _notify_success(row_id: str, status: str, draft_url: str) -> None:
             f"[run_single_row_real] draft投稿 成功 {row_id}",
             [f"status: {status}", f"draft_url: {draft_url}"],
         )
-    except Exception:
-        pass
+    except Exception as e:
+        logging.getLogger(__name__).warning("Slack notification failed (run_single_row_real): %s", e)
 
 
 def _print_result(row_id: str, status: str, wp_post_id: str, wp_draft_url: str, error_message: str) -> None:
@@ -197,8 +198,8 @@ def main(argv: list[str] | None = None) -> int:
                     },
                 )
                 append_error_log(sheet, int(row["_row_index"]), error_message)
-            except Exception:
-                pass
+            except Exception as sheet_err:
+                logging.getLogger(__name__).warning("Sheets error-log write failed (FAILED branch): %s", sheet_err)
 
         _print_result(
             row_id=row_id,
@@ -221,8 +222,8 @@ def main(argv: list[str] | None = None) -> int:
                     },
                 )
                 append_error_log(sheet, int(row["_row_index"]), error_message)
-            except Exception:
-                pass
+            except Exception as sheet_err:
+                logging.getLogger(__name__).warning("Sheets error-log write failed (KeyboardInterrupt): %s", sheet_err)
 
         _print_result(
             row_id=row_id,
