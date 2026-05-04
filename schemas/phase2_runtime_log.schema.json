@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ai-media-os.local/schemas/phase2_runtime_log.schema.json",
+  "title": "Phase2 Runtime Log Event",
+  "type": "object",
+  "required": [
+    "timestamp",
+    "run_id",
+    "phase",
+    "component",
+    "action",
+    "decision",
+    "result",
+    "kpi"
+  ],
+  "properties": {
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "run_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "phase": {
+      "type": "string",
+      "enum": [
+        "PHASE1_5",
+        "PHASE2"
+      ]
+    },
+    "component": {
+      "type": "string",
+      "minLength": 1
+    },
+    "action": {
+      "type": "string",
+      "minLength": 1
+    },
+    "decision": {
+      "type": "string",
+      "enum": [
+        "APPROVE",
+        "ESCALATE",
+        "DENY"
+      ]
+    },
+    "result": {
+      "type": "string",
+      "enum": [
+        "SUCCESS",
+        "FAIL",
+        "SKIP"
+      ]
+    },
+    "message": {
+      "type": "string"
+    },
+    "kpi": {
+      "type": "object",
+      "required": [
+        "failsafe_coverage",
+        "freeze_correctness",
+        "policy_deny_delta",
+        "warning_streak"
+      ],
+      "properties": {
+        "failsafe_coverage": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "freeze_correctness": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "policy_deny_delta": {
+          "type": "number",
+          "minimum": 0
+        },
+        "warning_streak": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": true
+    },
+    "meta": {
+      "type": "object"
+    }
+  },
+  "additionalProperties": true
+}
