@@ -1,9 +1,10 @@
 {
-  "version": "phase0.5-ui-flags-v1",
+  "version": "phase1.1-ui-flags-v1",
   "required_fields": [
     "id",
     "title",
     "store",
+    "campaign_type",
     "campaign_url",
     "sale_end",
     "metrics",
@@ -14,7 +15,8 @@
     "id": "string",
     "asin": "string_optional",
     "title": "string",
-    "store": "rakuten_kobo",
+    "store": "kindle | rakuten_kobo | dmm_books | cmoa",
+    "campaign_type": "sale | point_back | coupon | new_release | ending_soon | media_mix",
     "campaign_url": "string",
     "sale_end": "ISO8601 string",
     "metrics": {

@@ -102,14 +102,14 @@ def judge_ai_flags(items: list[Dict[str, Any]]) -> list[Dict[str, Any]]:
         }
         scored.append((score, item))
 
-    # blinkは最大3件まで
+    # blinkは最大3件まで（スコア降順の上位を採用）
     scored.sort(key=lambda x: x[0], reverse=True)
-    blink_allowed_ids = {
+    blink_candidates = [
         item["id"]
         for score, item in scored
         if item.get("ai_flags", {}).get("blink")
-    }
-    blink_allowed_ids = set(list(blink_allowed_ids)[:MAX_BLINK_ITEMS])
+    ]
+    blink_allowed_ids = set(blink_candidates[:MAX_BLINK_ITEMS])
 
     for _, item in scored:
         if item["id"] not in blink_allowed_ids:
