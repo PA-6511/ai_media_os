@@ -1,0 +1,26 @@
+{
+  "block_id": "dummy_block",
+  "display_name": "Dummy Block",
+  "version": "0.1.0",
+  "category": "test",
+  "mode": "dry_run",
+  "risk_level": "low",
+  "capabilities": {
+    "collect_data": false,
+    "analyze": true,
+    "generate_report": true,
+    "notify_slack": false,
+    "publish_content": false,
+    "delete_data": false,
+    "change_config": false
+  },
+  "approval_policy": {
+    "requires_human_approval": true,
+    "auto_execute_allowed": false
+  },
+  "forbidden_actions": [
+    "delete_block",
+    "change_core_policy",
+    "disable_audit"
+  ]
+}
