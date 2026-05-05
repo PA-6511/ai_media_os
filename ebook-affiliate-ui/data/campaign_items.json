@@ -5,7 +5,7 @@
     "title": "Kindle限定 週末ポイント還元",
     "store": "kindle",
     "campaign_type": "point_back",
-    "campaign_url": "#",
+    "campaign_url": "https://www.amazon.co.jp/dp/B0BVPRB4P7?_encoding=UTF8&pd_rd_w=FaaLO&content-id=amzn1.sym.25186998-f28e-4583-b90b-37bbd649c3a5&pf_rd_p=25186998-f28e-4583-b90b-37bbd649c3a5&pf_rd_r=CVBDSH5E4852ZS5ZWN4Y&pd_rd_wg=lQ54W&pd_rd_r=8fcd4100-8b6a-4a71-a049-c1e1ec3c6cd0&linkCode=ll2&tag=ktkr77-22&linkId=d71efb4d4ed444eb4c4d05b60f869dbd&ref_=as_li_ss_tl",
     "sale_end": "2026-05-05T10:00:00+09:00",
     "metrics": {
       "sales_24h": 40,
@@ -32,7 +32,7 @@
         "reason": ""
       }
     },
-    "affiliate_url": "https://example.invalid/dry-run/ebook-affiliate/kobo-003"
+    "affiliate_url": "https://www.amazon.co.jp/dp/B0BVPRB4P7?_encoding=UTF8&pd_rd_w=FaaLO&content-id=amzn1.sym.25186998-f28e-4583-b90b-37bbd649c3a5&pf_rd_p=25186998-f28e-4583-b90b-37bbd649c3a5&pf_rd_r=CVBDSH5E4852ZS5ZWN4Y&pd_rd_wg=lQ54W&pd_rd_r=8fcd4100-8b6a-4a71-a049-c1e1ec3c6cd0&linkCode=ll2&tag=ktkr77-22&linkId=d71efb4d4ed444eb4c4d05b60f869dbd&ref_=as_li_ss_tl"
   },
   {
     "id": "kobo-007",
@@ -40,7 +40,7 @@
     "title": "終了間近 60%OFF 緊急ピック",
     "store": "rakuten_kobo",
     "campaign_type": "ending_soon",
-    "campaign_url": "#",
+    "campaign_url": "https://hb.afl.rakuten.co.jp/ichiba/537645d2.cd4cf684.537645d3.4d4b4256/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Frakutenkobo-ebooks%2F821379034e573548893bb9d2279bc9c7%2F&link_type=hybrid_url&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJoeWJyaWRfdXJsIiwic2l6ZSI6IjI0MHgyNDAiLCJuYW0iOjEsIm5hbXAiOiJyaWdodCIsImNvbSI6MSwiY29tcCI6ImRvd24iLCJwcmljZSI6MSwiYm9yIjoxLCJjb2wiOjEsImJidG4iOjEsInByb2QiOjAsImFtcCI6ZmFsc2V9",
     "sale_end": "2026-05-04T20:00:00+09:00",
     "metrics": {
       "sales_24h": 31,
@@ -67,7 +67,7 @@
         "reason": ""
       }
     },
-    "affiliate_url": "https://example.invalid/dry-run/ebook-affiliate/kobo-007"
+    "affiliate_url": "https://hb.afl.rakuten.co.jp/ichiba/537645d2.cd4cf684.537645d3.4d4b4256/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Frakutenkobo-ebooks%2F821379034e573548893bb9d2279bc9c7%2F&link_type=hybrid_url&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJoeWJyaWRfdXJsIiwic2l6ZSI6IjI0MHgyNDAiLCJuYW0iOjEsIm5hbXAiOiJyaWdodCIsImNvbSI6MSwiY29tcCI6ImRvd24iLCJwcmljZSI6MSwiYm9yIjoxLCJjb2wiOjEsImJidG4iOjEsInByb2QiOjAsImFtcCI6ZmFsc2V9"
   },
   {
     "id": "kobo-005",
@@ -110,7 +110,7 @@
     "title": "新着の還元強化キャンペーン",
     "store": "rakuten_kobo",
     "campaign_type": "new_release",
-    "campaign_url": "#",
+    "campaign_url": "https://hb.afl.rakuten.co.jp/ichiba/537645d2.cd4cf684.537645d3.4d4b4256/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Frakutenkobo-ebooks%2F6f6a800ef6dc344e9963e9ec450dc1ab%2F&link_type=hybrid_url&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJoeWJyaWRfdXJsIiwic2l6ZSI6IjI0MHgyNDAiLCJuYW0iOjEsIm5hbXAiOiJyaWdodCIsImNvbSI6MSwiY29tcCI6ImRvd24iLCJwcmljZSI6MSwiYm9yIjoxLCJjb2wiOjEsImJidG4iOjEsInByb2QiOjAsImFtcCI6ZmFsc2V9",
     "sale_end": "2026-05-05T23:59:00+09:00",
     "metrics": {
       "sales_24h": 35,
@@ -137,7 +137,7 @@
         "reason": ""
       }
     },
-    "affiliate_url": "https://example.invalid/dry-run/ebook-affiliate/kobo-001"
+    "affiliate_url": "https://hb.afl.rakuten.co.jp/ichiba/537645d2.cd4cf684.537645d3.4d4b4256/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Frakutenkobo-ebooks%2F6f6a800ef6dc344e9963e9ec450dc1ab%2F&link_type=hybrid_url&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJoeWJyaWRfdXJsIiwic2l6ZSI6IjI0MHgyNDAiLCJuYW0iOjEsIm5hbXAiOiJyaWdodCIsImNvbSI6MSwiY29tcCI6ImRvd24iLCJwcmljZSI6MSwiYm9yIjoxLCJjb2wiOjEsImJidG4iOjEsInByb2QiOjAsImFtcCI6ZmFsc2V9"
   },
   {
     "id": "kobo-010",
@@ -145,7 +145,7 @@
     "title": "Kindle GWセール まとめ買い対象",
     "store": "kindle",
     "campaign_type": "sale",
-    "campaign_url": "#",
+    "campaign_url": "https://www.amazon.co.jp/dp/B07JZNFJVD?_encoding=UTF8&pd_rd_w=Onoen&content-id=amzn1.sym.e80694c8-3e4e-42c1-9f20-2b7c589565f2&pf_rd_p=e80694c8-3e4e-42c1-9f20-2b7c589565f2&pf_rd_r=1BKP1CCQA03PH315GYAP&pd_rd_wg=HMmpJ&pd_rd_r=6acc28b3-349a-4539-8db9-0fd4d1016ba3&linkCode=ll2&tag=ktkr77-22&linkId=4cd6022556b193eeac63575a943529de&ref_=as_li_ss_tl",
     "sale_end": "2026-05-05T06:00:00+09:00",
     "metrics": {
       "sales_24h": 11,
@@ -172,7 +172,7 @@
         "reason": ""
       }
     },
-    "affiliate_url": "https://example.invalid/dry-run/ebook-affiliate/kobo-010"
+    "affiliate_url": "https://www.amazon.co.jp/dp/B07JZNFJVD?_encoding=UTF8&pd_rd_w=Onoen&content-id=amzn1.sym.e80694c8-3e4e-42c1-9f20-2b7c589565f2&pf_rd_p=e80694c8-3e4e-42c1-9f20-2b7c589565f2&pf_rd_r=1BKP1CCQA03PH315GYAP&pd_rd_wg=HMmpJ&pd_rd_r=6acc28b3-349a-4539-8db9-0fd4d1016ba3&linkCode=ll2&tag=ktkr77-22&linkId=4cd6022556b193eeac63575a943529de&ref_=as_li_ss_tl"
   },
   {
     "id": "kobo-004",
@@ -180,7 +180,7 @@
     "title": "DMMクーポン祭 40%OFF",
     "store": "dmm_books",
     "campaign_type": "coupon",
-    "campaign_url": "#",
+    "campaign_url": "https://al.dmm.com/?lurl=https%3A%2F%2Fbook.dmm.com%2Fproduct%2F4179756%2Fb999bsqex16805%2F&af_id=xuanyilugang-001&ch=search_link&ch_id=link",
     "sale_end": "2026-05-05T08:00:00+09:00",
     "metrics": {
       "sales_24h": 25,
@@ -207,7 +207,7 @@
         "reason": ""
       }
     },
-    "affiliate_url": "https://example.invalid/dry-run/ebook-affiliate/kobo-004"
+    "affiliate_url": "https://al.dmm.com/?lurl=https%3A%2F%2Fbook.dmm.com%2Fproduct%2F4179756%2Fb999bsqex16805%2F&af_id=xuanyilugang-001&ch=search_link&ch_id=link"
   },
   {
     "id": "kobo-002",
@@ -215,7 +215,7 @@
     "title": "人気シリーズ最新刊50%OFF",
     "store": "rakuten_kobo",
     "campaign_type": "sale",
-    "campaign_url": "#",
+    "campaign_url": "https://hb.afl.rakuten.co.jp/ichiba/537645d2.cd4cf684.537645d3.4d4b4256/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Frakutenkobo-ebooks%2Ffe5e0cf67f7934b9ac3ec9bdd0cfbc32%2F&link_type=hybrid_url&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJoeWJyaWRfdXJsIiwic2l6ZSI6IjI0MHgyNDAiLCJuYW0iOjEsIm5hbXAiOiJyaWdodCIsImNvbSI6MSwiY29tcCI6ImRvd24iLCJwcmljZSI6MSwiYm9yIjoxLCJjb2wiOjEsImJidG4iOjEsInByb2QiOjAsImFtcCI6ZmFsc2V9",
     "sale_end": "2026-05-04T23:59:00+09:00",
     "metrics": {
       "sales_24h": 12,
@@ -242,7 +242,7 @@
         "reason": ""
       }
     },
-    "affiliate_url": "https://example.invalid/dry-run/ebook-affiliate/kobo-002"
+    "affiliate_url": "https://hb.afl.rakuten.co.jp/ichiba/537645d2.cd4cf684.537645d3.4d4b4256/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Frakutenkobo-ebooks%2Ffe5e0cf67f7934b9ac3ec9bdd0cfbc32%2F&link_type=hybrid_url&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJoeWJyaWRfdXJsIiwic2l6ZSI6IjI0MHgyNDAiLCJuYW0iOjEsIm5hbXAiOiJyaWdodCIsImNvbSI6MSwiY29tcCI6ImRvd24iLCJwcmljZSI6MSwiYm9yIjoxLCJjb2wiOjEsImJidG4iOjEsInByb2QiOjAsImFtcCI6ZmFsc2V9"
   },
   {
     "id": "kobo-008",
@@ -250,7 +250,7 @@
     "title": "DMMメディアミックス特集",
     "store": "dmm_books",
     "campaign_type": "media_mix",
-    "campaign_url": "#",
+    "campaign_url": "https://al.dmm.com/?lurl=https%3A%2F%2Fbook.dmm.com%2Fproduct%2F4098070%2Fb950yshes25644%2F&af_id=xuanyilugang-001&ch=search_link&ch_id=link",
     "sale_end": "2026-05-05T12:00:00+09:00",
     "metrics": {
       "sales_24h": 28,
@@ -277,7 +277,7 @@
         "reason": ""
       }
     },
-    "affiliate_url": "https://example.invalid/dry-run/ebook-affiliate/kobo-008"
+    "affiliate_url": "https://al.dmm.com/?lurl=https%3A%2F%2Fbook.dmm.com%2Fproduct%2F4098070%2Fb950yshes25644%2F&af_id=xuanyilugang-001&ch=search_link&ch_id=link"
   },
   {
     "id": "kobo-006",
@@ -285,7 +285,7 @@
     "title": "Kindle新刊クーポン配布",
     "store": "kindle",
     "campaign_type": "new_release",
-    "campaign_url": "#",
+    "campaign_url": "https://www.amazon.co.jp/2-5%E6%AC%A1%E5%85%83%E3%81%AE%E8%AA%98%E6%83%91-1-%E3%82%B8%E3%83%A3%E3%83%B3%E3%83%97%E3%82%B3%E3%83%9F%E3%83%83%E3%82%AF%E3%82%B9DIGITAL-%E6%A9%8B%E6%9C%AC%E6%82%A0-ebook/dp/B07X2G67B4?crid=1QKNCW3KHV4Q5&dib=eyJ2IjoiMSJ9.tBoIMvt5OoiOqPc0xS35CZhmUFlY7RKkaVkuFTEDZjBNjdJ5_oSvfgCF-WhtcoVsqTPxZe0CPSP0xPgKI7LwYwo69lhEcvZEdEVd2QYlNYiKRAkq8MqQlERniOI74YYJg8g563CifEB_wDURIRcR0qoDPQ1XzZ0C9S7ttzs7OCWGNn4MgXcvK6FXIYMEWvMfZ6z2OWE1ghco9o2FTuGkLpOnBLIeP-ndMi8jAGnT-T-OumXMV8kMfzacr0nl6Myl6chwOWC04uqQPy8p24EiH8_gse7og1M-vqffNHTv7m4.kTh_3SUpZoCQeCkrMkHsYgUellM6G_HJoV-yriQdbVY&dib_tag=se&keywords=2.5%E6%AC%A1%E5%85%83%E3%81%AE%E8%AA%98%E6%83%91&qid=1777557590&sprefix=2.5%2Caps%2C189&sr=8-8&linkCode=ll2&tag=ktkr77-22&linkId=7f7e69c5f369d99379c20b1dda5debab&ref_=as_li_ss_tl",
     "sale_end": "2026-05-06T18:00:00+09:00",
     "metrics": {
       "sales_24h": 9,
@@ -312,7 +312,7 @@
         "reason": ""
       }
     },
-    "affiliate_url": "https://example.invalid/dry-run/ebook-affiliate/kobo-006"
+    "affiliate_url": "https://www.amazon.co.jp/2-5%E6%AC%A1%E5%85%83%E3%81%AE%E8%AA%98%E6%83%91-1-%E3%82%B8%E3%83%A3%E3%83%B3%E3%83%97%E3%82%B3%E3%83%9F%E3%83%83%E3%82%AF%E3%82%B9DIGITAL-%E6%A9%8B%E6%9C%AC%E6%82%A0-ebook/dp/B07X2G67B4?crid=1QKNCW3KHV4Q5&dib=eyJ2IjoiMSJ9.tBoIMvt5OoiOqPc0xS35CZhmUFlY7RKkaVkuFTEDZjBNjdJ5_oSvfgCF-WhtcoVsqTPxZe0CPSP0xPgKI7LwYwo69lhEcvZEdEVd2QYlNYiKRAkq8MqQlERniOI74YYJg8g563CifEB_wDURIRcR0qoDPQ1XzZ0C9S7ttzs7OCWGNn4MgXcvK6FXIYMEWvMfZ6z2OWE1ghco9o2FTuGkLpOnBLIeP-ndMi8jAGnT-T-OumXMV8kMfzacr0nl6Myl6chwOWC04uqQPy8p24EiH8_gse7og1M-vqffNHTv7m4.kTh_3SUpZoCQeCkrMkHsYgUellM6G_HJoV-yriQdbVY&dib_tag=se&keywords=2.5%E6%AC%A1%E5%85%83%E3%81%AE%E8%AA%98%E6%83%91&qid=1777557590&sprefix=2.5%2Caps%2C189&sr=8-8&linkCode=ll2&tag=ktkr77-22&linkId=7f7e69c5f369d99379c20b1dda5debab&ref_=as_li_ss_tl"
   },
   {
     "id": "kobo-009",

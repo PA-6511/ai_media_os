@@ -130,6 +130,7 @@ def check_json_links(mode: str, json_path: Path) -> dict[str, object]:
     campaign_checked = 0
     invalid_count = 0
     example_invalid_count = 0
+    reason_counts: dict[str, int] = {}
     invalid_records: list[str] = []
 
     for item in items:
@@ -152,6 +153,7 @@ def check_json_links(mode: str, json_path: Path) -> dict[str, object]:
 
             if not ok:
                 invalid_count += 1
+                reason_counts[reason] = reason_counts.get(reason, 0) + 1
                 invalid_records.append(f"{item_id}:{field}:{reason}")
 
     return {
@@ -160,6 +162,7 @@ def check_json_links(mode: str, json_path: Path) -> dict[str, object]:
         "campaign_checked": campaign_checked,
         "invalid_count": invalid_count,
         "example_invalid_count": example_invalid_count,
+        "reason_counts": reason_counts,
         "invalid_records": invalid_records,
     }
 
@@ -207,6 +210,10 @@ def main() -> int:
         print(f"html href=# count    : {html_count}")
         print(f"json invalid count   : {json_report['invalid_count']}")
         print(f"example.invalid count: {json_report['example_invalid_count']}")
+
+        reason_counts = json_report.get("reason_counts") or {}
+        print(f"store_not_allowed    : {reason_counts.get('store_not_allowed', 0)}")
+        print(f"domain_not_allowed   : {reason_counts.get('domain_not_allowed', 0)}")
 
         if html_ids:
             print("html href=# item_ids:", ", ".join(html_ids))

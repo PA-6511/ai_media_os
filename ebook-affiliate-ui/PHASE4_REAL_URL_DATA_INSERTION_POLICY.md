@@ -123,3 +123,14 @@ WordPress本番反映は以下をすべて満たすまで BLOCKED。
 - Phase4.109: push
 - Phase4.110: remote再取得確認
 - Phase4.111以降: 実URL投入データ作成・検証
+
+## 11. Phase4.111.2A 一時運用（追記）
+
+Phase4.111.2A では、cmoa審査待ちのため一時的に8件先行投入モードを適用する。
+
+- 先行対象: rakuten_kobo 3件 / kindle 3件 / dmm_books 2件
+- 保留対象: cmoa 2件
+- PRODUCTION exit 0 は一時的に必須から除外
+- 本番反映は BLOCKED 維持
+
+詳細は PHASE4_111_2A_EARLY_8_MODE_DESIGN.md を正とする。
