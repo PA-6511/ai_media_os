@@ -22,3 +22,6 @@ data/archives/
 *.tmp
 *.bak
 .DS_Store
+
+# 47-C runtime input (production candidate data)
+candidates.json

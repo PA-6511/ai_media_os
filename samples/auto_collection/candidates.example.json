@@ -1,0 +1,19 @@
+[
+  {
+    "candidate_id": "real-001",
+    "source_store": "rakuten_kobo",
+    "work_title": "作品名",
+    "campaign_name": "キャンペーン名",
+    "sale_start_date": "2026-05-16",
+    "sale_end_date": "2026-05-30",
+    "entry_required": "required",
+    "discount_text": "30%OFF",
+    "point_text": "20%還元",
+    "official_url": "https://example.com/official",
+    "rakuten_url": "https://example.com/rakuten",
+    "dmm_url": "",
+    "amazon_url": "",
+    "cta_store_priority": "rakuten,official",
+    "review_status": "approved"
+  }
+]
