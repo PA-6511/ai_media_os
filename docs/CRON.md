@@ -17,15 +17,27 @@ ai_media_os の定期実行スケジュール（crontab 設定例）。
 crontab -e
 ```
 
-## 現在の本番登録（2026-05-02 時点）
+## 現在の本番登録（2026-05-18 時点）
 
 現在の ai_media_os 本線 cron 登録行:
 
 ```cron
+# AI 投稿キュー処理（毎朝 8:10）
 10 8 * * * cd /home/deploy/ai_media_os && WP_DRY_RUN=0 bash scripts/run_ai_post_queue.sh --max-items 1 >> logs/ai_post_queue_cron.log 2>&1
+
+# 公開前下書きチェック（毎日 02:00 / Phase 47-C-2-a / 観測期間: 2026-05-18～）
+0 2 * * * cd /home/deploy/ai_media_os && python3 tools/check_wp_draft_prepublish.py report --output reports/draft_check_$(date +\%Y\%m\%d).json >> logs/draft_check.log 2>&1
 ```
 
-この設定は 1日1回 / 1件処理上限 / draftのみ運用の監視条件として固定する。
+これらの設定は以下の監視条件として固定する：
+
+**AI 投稿キュー**
+- 1日1回 / 1件処理上限 / draftのみ運用の監視条件として固定
+
+**公開前下書きチェック**
+- 毎日 02:00 実行（report 生成のみ）
+- Slack 通知なし（観測期間: 3～5日）
+- WARN/FAIL 率、誤検知率を収集
 
 ## 初期運用プロファイル（固定）
 
