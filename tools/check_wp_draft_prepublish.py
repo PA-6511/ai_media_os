@@ -148,7 +148,7 @@ def check_cta(content: str) -> Tuple[str, list]:
     """
     details = []
     
-    has_button = '<button>' in content
+    has_button = '<button' in content
     has_link = '<a' in content and '</a>' in content
     
     if has_button:
@@ -253,8 +253,11 @@ def run_prepublish_check(post: dict) -> dict:
             'recommendation': str
         }
     """
-    content = post.get('content', {}).get('raw', '')
-    excerpt = post.get('excerpt', {}).get('raw', '')
+    # wp/v2 posts list often omits content.raw in default context; fallback to rendered.
+    content_obj = post.get('content', {})
+    excerpt_obj = post.get('excerpt', {})
+    content = content_obj.get('raw') or content_obj.get('rendered') or ''
+    excerpt = excerpt_obj.get('raw') or excerpt_obj.get('rendered') or ''
     
     checks = {
         'content_quality': dict(zip(
@@ -295,7 +298,11 @@ def run_prepublish_check(post: dict) -> dict:
     
     return {
         'post_id': post.get('id'),
-        'post_title': post.get('title', {}).get('raw', '(untitled)'),
+        'post_title': (
+            post.get('title', {}).get('raw')
+            or post.get('title', {}).get('rendered')
+            or '(untitled)'
+        ),
         'check_timestamp': datetime.now(timezone.utc).isoformat(),
         'checks': checks,
         'final_result': final_result,
@@ -316,7 +323,11 @@ def cmd_list(wp: WordPressClient, limit: int = 20):
         print(f"\n=== 下書き記事一覧（最新{limit}件） ===\n")
         for post in drafts:
             post_id = post.get('id')
-            title = post.get('title', {}).get('raw', '(untitled)')
+            title = (
+                post.get('title', {}).get('raw')
+                or post.get('title', {}).get('rendered')
+                or '(untitled)'
+            )
             date = post.get('date', 'N/A')
             print(f"  ID: {post_id:6d} | {title:40s} | {date}")
         print(f"\nTotal: {len(drafts)} posts\n")
