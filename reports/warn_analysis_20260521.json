@@ -1,0 +1,92 @@
+{
+  "files": [
+    "reports/draft_check_recheck_full_20260521.json"
+  ],
+  "days": 1,
+  "total_drafts": 20,
+  "final_summary": {
+    "PASS_WITH_WARNS": 20
+  },
+  "warn_rate": {
+    "pr_notice": 40.0,
+    "urls": 55.0,
+    "cta": 10.0,
+    "featured_image": 100.0,
+    "content_quality": 5.0
+  },
+  "fail_rate": {
+    "content_quality": 0.0,
+    "urls": 0.0,
+    "cta": 0.0,
+    "pr_notice": 0.0,
+    "featured_image": 0.0
+  },
+  "top_warn_reasons": {
+    "pr_notice": [
+      {
+        "reason": "PR/広告表記が見つかりません",
+        "count": 8
+      }
+    ],
+    "urls": [
+      {
+        "reason": "URL が見つかりません",
+        "count": 11
+      }
+    ],
+    "cta": [
+      {
+        "reason": "CTA（ボタン/リンク）が見つかりません",
+        "count": 2
+      }
+    ],
+    "featured_image": [
+      {
+        "reason": "アイキャッチが未設定です",
+        "count": 20
+      }
+    ],
+    "content_quality": [
+      {
+        "reason": "見出し（h2/h3）が見つかりません",
+        "count": 1
+      }
+    ]
+  },
+  "per_day": [
+    {
+      "date": "20260521",
+      "file": "reports/draft_check_recheck_full_20260521.json",
+      "total_drafts": 20,
+      "final": {
+        "PASS_WITH_WARNS": 20
+      },
+      "warn_rate": {
+        "pr_notice": 40.0,
+        "urls": 55.0,
+        "cta": 10.0,
+        "featured_image": 100.0,
+        "content_quality": 5.0
+      }
+    }
+  ],
+  "policy_recommendation": {
+    "block_publish_if_fail": true,
+    "block_publish_if_warn": [
+      "pr_notice",
+      "urls",
+      "cta"
+    ],
+    "allow_with_manual_fix": [
+      "featured_image",
+      "content_quality"
+    ],
+    "priority_order": [
+      "pr_notice",
+      "urls",
+      "cta",
+      "featured_image",
+      "content_quality"
+    ]
+  }
+}
