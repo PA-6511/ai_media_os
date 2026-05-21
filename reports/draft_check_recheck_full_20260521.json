@@ -1,0 +1,753 @@
+{
+  "report_timestamp": "2026-05-21T13:04:08.964344+00:00",
+  "total_drafted": 20,
+  "checks": [
+    {
+      "post_id": 111,
+      "post_title": "名探偵コナン評価・見どころまとめ",
+      "check_timestamp": "2026-05-21T13:04:08.964778+00:00",
+      "checks": {
+        "content_quality": {
+          "result": "PASS",
+          "details": []
+        },
+        "urls": {
+          "result": "PASS",
+          "details": [
+            "外部リンク確認（1件）"
+          ]
+        },
+        "cta": {
+          "result": "PASS",
+          "details": [
+            "リンク CTA 確認"
+          ]
+        },
+        "pr_notice": {
+          "result": "PASS",
+          "details": [
+            "PR表記確認: pr"
+          ]
+        },
+        "featured_image": {
+          "result": "WARN",
+          "details": [
+            "アイキャッチが未設定です"
+          ]
+        }
+      },
+      "final_result": "PASS_WITH_WARNS",
+      "recommendation": "修正推奨: featured_image"
+    },
+    {
+      "post_id": 110,
+      "post_title": "【DRY_RUN候補】Phase 5-1 real-data schema normal sample",
+      "check_timestamp": "2026-05-21T13:04:08.964803+00:00",
+      "checks": {
+        "content_quality": {
+          "result": "WARN",
+          "details": [
+            "見出し（h2/h3）が見つかりません"
+          ]
+        },
+        "urls": {
+          "result": "WARN",
+          "details": [
+            "URL が見つかりません"
+          ]
+        },
+        "cta": {
+          "result": "WARN",
+          "details": [
+            "CTA（ボタン/リンク）が見つかりません"
+          ]
+        },
+        "pr_notice": {
+          "result": "PASS",
+          "details": [
+            "PR表記確認: pr"
+          ]
+        },
+        "featured_image": {
+          "result": "WARN",
+          "details": [
+            "アイキャッチが未設定です"
+          ]
+        }
+      },
+      "final_result": "PASS_WITH_WARNS",
+      "recommendation": "修正推奨: content_quality, urls, cta, featured_image"
+    },
+    {
+      "post_id": 109,
+      "post_title": "ブルーロック評価・見どころまとめ",
+      "check_timestamp": "2026-05-21T13:04:08.964827+00:00",
+      "checks": {
+        "content_quality": {
+          "result": "PASS",
+          "details": []
+        },
+        "urls": {
+          "result": "PASS",
+          "details": [
+            "外部リンク確認（1件）"
+          ]
+        },
+        "cta": {
+          "result": "PASS",
+          "details": [
+            "リンク CTA 確認"
+          ]
+        },
+        "pr_notice": {
+          "result": "PASS",
+          "details": [
+            "PR表記確認: pr"
+          ]
+        },
+        "featured_image": {
+          "result": "WARN",
+          "details": [
+            "アイキャッチが未設定です"
+          ]
+        }
+      },
+      "final_result": "PASS_WITH_WARNS",
+      "recommendation": "修正推奨: featured_image"
+    },
+    {
+      "post_id": 108,
+      "post_title": "葬送のフリーレン評価・見どころまとめ",
+      "check_timestamp": "2026-05-21T13:04:08.964848+00:00",
+      "checks": {
+        "content_quality": {
+          "result": "PASS",
+          "details": []
+        },
+        "urls": {
+          "result": "PASS",
+          "details": [
+            "楽天リンク確認"
+          ]
+        },
+        "cta": {
+          "result": "PASS",
+          "details": [
+            "リンク CTA 確認"
+          ]
+        },
+        "pr_notice": {
+          "result": "PASS",
+          "details": [
+            "PR表記確認: pr"
+          ]
+        },
+        "featured_image": {
+          "result": "WARN",
+          "details": [
+            "アイキャッチが未設定です"
+          ]
+        }
+      },
+      "final_result": "PASS_WITH_WARNS",
+      "recommendation": "修正推奨: featured_image"
+    },
+    {
+      "post_id": 107,
+      "post_title": "転生したらスライムだった件評価・見どころまとめ",
+      "check_timestamp": "2026-05-21T13:04:08.964869+00:00",
+      "checks": {
+        "content_quality": {
+          "result": "PASS",
+          "details": []
+        },
+        "urls": {
+          "result": "PASS",
+          "details": [
+            "楽天リンク確認"
+          ]
+        },
+        "cta": {
+          "result": "PASS",
+          "details": [
+            "リンク CTA 確認"
+          ]
+        },
+        "pr_notice": {
+          "result": "PASS",
+          "details": [
+            "PR表記確認: pr"
+          ]
+        },
+        "featured_image": {
+          "result": "WARN",
+          "details": [
+            "アイキャッチが未設定です"
+          ]
+        }
+      },
+      "final_result": "PASS_WITH_WARNS",
+      "recommendation": "修正推奨: featured_image"
+    },
+    {
+      "post_id": 105,
+      "post_title": "DMMブックス セールテストセール情報まとめ",
+      "check_timestamp": "2026-05-21T13:04:08.964923+00:00",
+      "checks": {
+        "content_quality": {
+          "result": "PASS",
+          "details": []
+        },
+        "urls": {
+          "result": "PASS",
+          "details": [
+            "外部リンク確認（1件）"
+          ]
+        },
+        "cta": {
+          "result": "PASS",
+          "details": [
+            "リンク CTA 確認"
+          ]
+        },
+        "pr_notice": {
+          "result": "PASS",
+          "details": [
+            "PR表記確認: pr"
+          ]
+        },
+        "featured_image": {
+          "result": "WARN",
+          "details": [
+            "アイキャッチが未設定です"
+          ]
+        }
+      },
+      "final_result": "PASS_WITH_WARNS",
+      "recommendation": "修正推奨: featured_image"
+    },
+    {
+      "post_id": 104,
+      "post_title": "楽天Kobo セールテストセール情報まとめ",
+      "check_timestamp": "2026-05-21T13:04:08.964953+00:00",
+      "checks": {
+        "content_quality": {
+          "result": "PASS",
+          "details": []
+        },
+        "urls": {
+          "result": "PASS",
+          "details": [
+            "外部リンク確認（1件）"
+          ]
+        },
+        "cta": {
+          "result": "PASS",
+          "details": [
+            "リンク CTA 確認"
+          ]
+        },
+        "pr_notice": {
+          "result": "PASS",
+          "details": [
+            "PR表記確認: pr"
+          ]
+        },
+        "featured_image": {
+          "result": "WARN",
+          "details": [
+            "アイキャッチが未設定です"
+          ]
+        }
+      },
+      "final_result": "PASS_WITH_WARNS",
+      "recommendation": "修正推奨: featured_image"
+    },
+    {
+      "post_id": 103,
+      "post_title": "楽天Kobo セールテスト評価・見どころまとめ",
+      "check_timestamp": "2026-05-21T13:04:08.964972+00:00",
+      "checks": {
+        "content_quality": {
+          "result": "PASS",
+          "details": []
+        },
+        "urls": {
+          "result": "PASS",
+          "details": [
+            "外部リンク確認（1件）"
+          ]
+        },
+        "cta": {
+          "result": "PASS",
+          "details": [
+            "リンク CTA 確認"
+          ]
+        },
+        "pr_notice": {
+          "result": "PASS",
+          "details": [
+            "PR表記確認: pr"
+          ]
+        },
+        "featured_image": {
+          "result": "WARN",
+          "details": [
+            "アイキャッチが未設定です"
+          ]
+        }
+      },
+      "final_result": "PASS_WITH_WARNS",
+      "recommendation": "修正推奨: featured_image"
+    },
+    {
+      "post_id": 102,
+      "post_title": "Cron Queue Route Test評価・見どころまとめ",
+      "check_timestamp": "2026-05-21T13:04:08.964992+00:00",
+      "checks": {
+        "content_quality": {
+          "result": "PASS",
+          "details": []
+        },
+        "urls": {
+          "result": "PASS",
+          "details": [
+            "外部リンク確認（1件）"
+          ]
+        },
+        "cta": {
+          "result": "PASS",
+          "details": [
+            "リンク CTA 確認"
+          ]
+        },
+        "pr_notice": {
+          "result": "PASS",
+          "details": [
+            "PR表記確認: pr"
+          ]
+        },
+        "featured_image": {
+          "result": "WARN",
+          "details": [
+            "アイキャッチが未設定です"
+          ]
+        }
+      },
+      "final_result": "PASS_WITH_WARNS",
+      "recommendation": "修正推奨: featured_image"
+    },
+    {
+      "post_id": 101,
+      "post_title": "呪術廻戦は何巻まで出てる？最新巻・関連情報まとめ",
+      "check_timestamp": "2026-05-21T13:04:08.965024+00:00",
+      "checks": {
+        "content_quality": {
+          "result": "PASS",
+          "details": []
+        },
+        "urls": {
+          "result": "WARN",
+          "details": [
+            "URL が見つかりません"
+          ]
+        },
+        "cta": {
+          "result": "PASS",
+          "details": [
+            "リンク CTA 確認"
+          ]
+        },
+        "pr_notice": {
+          "result": "WARN",
+          "details": [
+            "PR/広告表記が見つかりません"
+          ]
+        },
+        "featured_image": {
+          "result": "WARN",
+          "details": [
+            "アイキャッチが未設定です"
+          ]
+        }
+      },
+      "final_result": "PASS_WITH_WARNS",
+      "recommendation": "修正推奨: urls, pr_notice, featured_image"
+    },
+    {
+      "post_id": 100,
+      "post_title": "呪術廻戦セール情報まとめ",
+      "check_timestamp": "2026-05-21T13:04:08.965064+00:00",
+      "checks": {
+        "content_quality": {
+          "result": "PASS",
+          "details": []
+        },
+        "urls": {
+          "result": "WARN",
+          "details": [
+            "URL が見つかりません"
+          ]
+        },
+        "cta": {
+          "result": "PASS",
+          "details": [
+            "リンク CTA 確認"
+          ]
+        },
+        "pr_notice": {
+          "result": "PASS",
+          "details": [
+            "PR表記確認: pr"
+          ]
+        },
+        "featured_image": {
+          "result": "WARN",
+          "details": [
+            "アイキャッチが未設定です"
+          ]
+        }
+      },
+      "final_result": "PASS_WITH_WARNS",
+      "recommendation": "修正推奨: urls, featured_image"
+    },
+    {
+      "post_id": 99,
+      "post_title": "WordPress品質補強テスト作品評価・見どころまとめ",
+      "check_timestamp": "2026-05-21T13:04:08.965093+00:00",
+      "checks": {
+        "content_quality": {
+          "result": "PASS",
+          "details": []
+        },
+        "urls": {
+          "result": "PASS",
+          "details": [
+            "外部リンク確認（1件）"
+          ]
+        },
+        "cta": {
+          "result": "PASS",
+          "details": [
+            "リンク CTA 確認"
+          ]
+        },
+        "pr_notice": {
+          "result": "PASS",
+          "details": [
+            "PR表記確認: pr"
+          ]
+        },
+        "featured_image": {
+          "result": "WARN",
+          "details": [
+            "アイキャッチが未設定です"
+          ]
+        }
+      },
+      "final_result": "PASS_WITH_WARNS",
+      "recommendation": "修正推奨: featured_image"
+    },
+    {
+      "post_id": 98,
+      "post_title": "WordPress下書き投稿テスト作品評価・見どころまとめ",
+      "check_timestamp": "2026-05-21T13:04:08.965123+00:00",
+      "checks": {
+        "content_quality": {
+          "result": "PASS",
+          "details": []
+        },
+        "urls": {
+          "result": "WARN",
+          "details": [
+            "URL が見つかりません"
+          ]
+        },
+        "cta": {
+          "result": "WARN",
+          "details": [
+            "CTA（ボタン/リンク）が見つかりません"
+          ]
+        },
+        "pr_notice": {
+          "result": "PASS",
+          "details": [
+            "PR表記確認: pr"
+          ]
+        },
+        "featured_image": {
+          "result": "WARN",
+          "details": [
+            "アイキャッチが未設定です"
+          ]
+        }
+      },
+      "final_result": "PASS_WITH_WARNS",
+      "recommendation": "修正推奨: urls, cta, featured_image"
+    },
+    {
+      "post_id": 96,
+      "post_title": "無職転生全巻まとめ買いガイド",
+      "check_timestamp": "2026-05-21T13:04:08.965154+00:00",
+      "checks": {
+        "content_quality": {
+          "result": "PASS",
+          "details": []
+        },
+        "urls": {
+          "result": "WARN",
+          "details": [
+            "URL が見つかりません"
+          ]
+        },
+        "cta": {
+          "result": "PASS",
+          "details": [
+            "リンク CTA 確認"
+          ]
+        },
+        "pr_notice": {
+          "result": "WARN",
+          "details": [
+            "PR/広告表記が見つかりません"
+          ]
+        },
+        "featured_image": {
+          "result": "WARN",
+          "details": [
+            "アイキャッチが未設定です"
+          ]
+        }
+      },
+      "final_result": "PASS_WITH_WARNS",
+      "recommendation": "修正推奨: urls, pr_notice, featured_image"
+    },
+    {
+      "post_id": 95,
+      "post_title": "葬送のフリーレン全巻まとめ買いガイド",
+      "check_timestamp": "2026-05-21T13:04:08.965176+00:00",
+      "checks": {
+        "content_quality": {
+          "result": "PASS",
+          "details": []
+        },
+        "urls": {
+          "result": "WARN",
+          "details": [
+            "URL が見つかりません"
+          ]
+        },
+        "cta": {
+          "result": "PASS",
+          "details": [
+            "リンク CTA 確認"
+          ]
+        },
+        "pr_notice": {
+          "result": "WARN",
+          "details": [
+            "PR/広告表記が見つかりません"
+          ]
+        },
+        "featured_image": {
+          "result": "WARN",
+          "details": [
+            "アイキャッチが未設定です"
+          ]
+        }
+      },
+      "final_result": "PASS_WITH_WARNS",
+      "recommendation": "修正推奨: urls, pr_notice, featured_image"
+    },
+    {
+      "post_id": 94,
+      "post_title": "呪術廻戦全巻まとめ買いガイド",
+      "check_timestamp": "2026-05-21T13:04:08.965200+00:00",
+      "checks": {
+        "content_quality": {
+          "result": "PASS",
+          "details": []
+        },
+        "urls": {
+          "result": "WARN",
+          "details": [
+            "URL が見つかりません"
+          ]
+        },
+        "cta": {
+          "result": "PASS",
+          "details": [
+            "リンク CTA 確認"
+          ]
+        },
+        "pr_notice": {
+          "result": "WARN",
+          "details": [
+            "PR/広告表記が見つかりません"
+          ]
+        },
+        "featured_image": {
+          "result": "WARN",
+          "details": [
+            "アイキャッチが未設定です"
+          ]
+        }
+      },
+      "final_result": "PASS_WITH_WARNS",
+      "recommendation": "修正推奨: urls, pr_notice, featured_image"
+    },
+    {
+      "post_id": 93,
+      "post_title": "無職転生は何巻まで出てる？最新巻・関連情報まとめ",
+      "check_timestamp": "2026-05-21T13:04:08.965222+00:00",
+      "checks": {
+        "content_quality": {
+          "result": "PASS",
+          "details": []
+        },
+        "urls": {
+          "result": "WARN",
+          "details": [
+            "URL が見つかりません"
+          ]
+        },
+        "cta": {
+          "result": "PASS",
+          "details": [
+            "リンク CTA 確認"
+          ]
+        },
+        "pr_notice": {
+          "result": "WARN",
+          "details": [
+            "PR/広告表記が見つかりません"
+          ]
+        },
+        "featured_image": {
+          "result": "WARN",
+          "details": [
+            "アイキャッチが未設定です"
+          ]
+        }
+      },
+      "final_result": "PASS_WITH_WARNS",
+      "recommendation": "修正推奨: urls, pr_notice, featured_image"
+    },
+    {
+      "post_id": 92,
+      "post_title": "葬送のフリーレンは何巻まで出てる？最新巻・関連情報まとめ",
+      "check_timestamp": "2026-05-21T13:04:08.965246+00:00",
+      "checks": {
+        "content_quality": {
+          "result": "PASS",
+          "details": []
+        },
+        "urls": {
+          "result": "WARN",
+          "details": [
+            "URL が見つかりません"
+          ]
+        },
+        "cta": {
+          "result": "PASS",
+          "details": [
+            "リンク CTA 確認"
+          ]
+        },
+        "pr_notice": {
+          "result": "WARN",
+          "details": [
+            "PR/広告表記が見つかりません"
+          ]
+        },
+        "featured_image": {
+          "result": "WARN",
+          "details": [
+            "アイキャッチが未設定です"
+          ]
+        }
+      },
+      "final_result": "PASS_WITH_WARNS",
+      "recommendation": "修正推奨: urls, pr_notice, featured_image"
+    },
+    {
+      "post_id": 91,
+      "post_title": "呪術廻戦は何巻まで出てる？最新巻・関連情報まとめ",
+      "check_timestamp": "2026-05-21T13:04:08.965267+00:00",
+      "checks": {
+        "content_quality": {
+          "result": "PASS",
+          "details": []
+        },
+        "urls": {
+          "result": "WARN",
+          "details": [
+            "URL が見つかりません"
+          ]
+        },
+        "cta": {
+          "result": "PASS",
+          "details": [
+            "リンク CTA 確認"
+          ]
+        },
+        "pr_notice": {
+          "result": "WARN",
+          "details": [
+            "PR/広告表記が見つかりません"
+          ]
+        },
+        "featured_image": {
+          "result": "WARN",
+          "details": [
+            "アイキャッチが未設定です"
+          ]
+        }
+      },
+      "final_result": "PASS_WITH_WARNS",
+      "recommendation": "修正推奨: urls, pr_notice, featured_image"
+    },
+    {
+      "post_id": 90,
+      "post_title": "無職転生最新巻はいつ？発売日・関連情報まとめ",
+      "check_timestamp": "2026-05-21T13:04:08.965309+00:00",
+      "checks": {
+        "content_quality": {
+          "result": "PASS",
+          "details": []
+        },
+        "urls": {
+          "result": "WARN",
+          "details": [
+            "URL が見つかりません"
+          ]
+        },
+        "cta": {
+          "result": "PASS",
+          "details": [
+            "リンク CTA 確認"
+          ]
+        },
+        "pr_notice": {
+          "result": "WARN",
+          "details": [
+            "PR/広告表記が見つかりません"
+          ]
+        },
+        "featured_image": {
+          "result": "WARN",
+          "details": [
+            "アイキャッチが未設定です"
+          ]
+        }
+      },
+      "final_result": "PASS_WITH_WARNS",
+      "recommendation": "修正推奨: urls, pr_notice, featured_image"
+    }
+  ],
+  "summary": {
+    "PASS_ALL": 0,
+    "PASS_WITH_WARNS": 20,
+    "FAIL": 0
+  }
+}
