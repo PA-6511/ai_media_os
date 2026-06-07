@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SoC Periodic Re-verification Checklist Contract",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "phase",
+    "node_id",
+    "request_id",
+    "source_retention_schema",
+    "schedule_type",
+    "reverify_required",
+    "execution_allowed",
+    "production_status",
+    "checklist_targets",
+    "next_reverification_trigger",
+    "actual_execution",
+    "external_send_executed",
+    "freeze_executed",
+    "isolation_executed",
+    "state_change_executed",
+    "checklist_summary",
+    "timestamp_utc"
+  ],
+  "properties": {
+    "schema_version": {"type": "string", "const": "soc_periodic_reverification_checklist_v1"},
+    "phase": {"type": "string", "const": "SoC-13"},
+    "node_id": {"type": "string", "minLength": 1},
+    "request_id": {"type": "string", "minLength": 1},
+    "source_retention_schema": {"type": "string", "const": "soc_long_term_audit_retention_package_v1"},
+    "schedule_type": {"type": "string", "const": "PERIODIC_CHECKLIST_ONLY"},
+    "reverify_required": {"type": "boolean", "const": true},
+    "execution_allowed": {"type": "boolean", "const": false},
+    "production_status": {"type": "string", "const": "NO_GO"},
+    "checklist_targets": {
+      "type": "array",
+      "items": {"type": "string"},
+      "minItems": 13
+    },
+    "next_reverification_trigger": {"type": "string", "const": "MANUAL_OR_SCHEDULED_REVIEW_ONLY"},
+    "actual_execution": {"type": "boolean", "const": false},
+    "external_send_executed": {"type": "boolean", "const": false},
+    "freeze_executed": {"type": "boolean", "const": false},
+    "isolation_executed": {"type": "boolean", "const": false},
+    "state_change_executed": {"type": "boolean", "const": false},
+    "checklist_summary": {
+      "type": "object",
+      "required": ["target_count", "missing_targets", "coverage_complete"],
+      "properties": {
+        "target_count": {"type": "integer", "minimum": 0},
+        "missing_targets": {"type": "array", "items": {"type": "string"}},
+        "coverage_complete": {"type": "boolean"}
+      },
+      "additionalProperties": true
+    },
+    "timestamp_utc": {"type": "string", "minLength": 1}
+  },
+  "additionalProperties": true
+}

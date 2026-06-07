@@ -1,0 +1,37 @@
+{
+  "phase": "SoC-13",
+  "status": "DESIGN_ONLY",
+  "production_status": "NO_GO",
+  "execution_mode": "NO_EXECUTION",
+  "dry_run_only": true,
+  "schema_version": "soc_periodic_reverification_checklist_v1",
+  "required_input_schema": "soc_long_term_audit_retention_package_v1",
+  "required_schedule_type": "PERIODIC_CHECKLIST_ONLY",
+  "required_next_reverification_trigger": "MANUAL_OR_SCHEDULED_REVIEW_ONLY",
+  "required_checklist_targets": [
+    "SoC-0",
+    "SoC-1",
+    "SoC-2",
+    "SoC-3",
+    "SoC-4",
+    "SoC-5",
+    "SoC-6",
+    "SoC-7",
+    "SoC-8",
+    "SoC-9",
+    "SoC-10",
+    "SoC-11",
+    "SoC-12"
+  ],
+  "must_be_true": [
+    "reverify_required"
+  ],
+  "must_be_false": [
+    "execution_allowed",
+    "actual_execution",
+    "external_send_executed",
+    "freeze_executed",
+    "isolation_executed",
+    "state_change_executed"
+  ]
+}

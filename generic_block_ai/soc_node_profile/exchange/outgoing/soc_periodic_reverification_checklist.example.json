@@ -1,0 +1,26 @@
+{
+  "schema_version": "soc_periodic_reverification_checklist_v1",
+  "phase": "SoC-13",
+  "node_id": "soc_node_001",
+  "request_id": "req_soc_0001",
+  "source_retention_schema": "soc_long_term_audit_retention_package_v1",
+  "schedule_type": "PERIODIC_CHECKLIST_ONLY",
+  "reverify_required": true,
+  "execution_allowed": false,
+  "production_status": "NO_GO",
+  "checklist_targets": [
+    "SoC-0", "SoC-1", "SoC-2", "SoC-3", "SoC-4", "SoC-5", "SoC-6", "SoC-7", "SoC-8", "SoC-9", "SoC-10", "SoC-11", "SoC-12"
+  ],
+  "next_reverification_trigger": "MANUAL_OR_SCHEDULED_REVIEW_ONLY",
+  "actual_execution": false,
+  "external_send_executed": false,
+  "freeze_executed": false,
+  "isolation_executed": false,
+  "state_change_executed": false,
+  "checklist_summary": {
+    "target_count": 13,
+    "missing_targets": [],
+    "coverage_complete": true
+  },
+  "timestamp_utc": "2026-06-07T00:00:00+00:00"
+}
