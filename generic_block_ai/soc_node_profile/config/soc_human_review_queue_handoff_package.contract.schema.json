@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SoC Human Review Queue Handoff Package Contract",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "phase",
+    "node_id",
+    "request_id",
+    "source_connection_status",
+    "source_core_receive_rule",
+    "source_integration_result",
+    "handoff_status",
+    "review_queue_target",
+    "review_priority",
+    "required_human_actions",
+    "human_review_required",
+    "no_external_dispatch",
+    "external_send_executed",
+    "actual_execution",
+    "freeze_executed",
+    "isolation_executed",
+    "state_change_executed",
+    "safeguards",
+    "timestamp_utc"
+  ],
+  "properties": {
+    "schema_version": {"type": "string", "const": "soc_human_review_queue_handoff_package_v1"},
+    "phase": {"type": "string", "const": "SoC-6"},
+    "node_id": {"type": "string", "minLength": 1},
+    "request_id": {"type": "string", "minLength": 1},
+    "source_connection_status": {
+      "type": "string",
+      "enum": ["ACCEPT_DRY_RUN_REVIEW_QUEUE", "BLOCKED_BY_GATE", "REVIEW_REQUIRED", "REJECTED"]
+    },
+    "source_core_receive_rule": {"type": "string", "minLength": 1},
+    "source_integration_result": {"type": "string", "enum": ["PASS", "WARN", "FAIL"]},
+    "handoff_status": {
+      "type": "string",
+      "enum": ["QUEUED_FOR_HUMAN_REVIEW", "BLOCKED_REVIEW_REQUIRED", "MANUAL_REVIEW_REQUIRED", "REJECTED_NO_GO_LOCK"]
+    },
+    "review_queue_target": {"type": "string", "const": "SOC_DRY_RUN_REVIEW_QUEUE"},
+    "review_priority": {"type": "string", "enum": ["NORMAL", "HIGH", "CRITICAL"]},
+    "required_human_actions": {
+      "type": "array",
+      "items": {"type": "string"},
+      "minItems": 1
+    },
+    "human_review_required": {"type": "boolean", "const": true},
+    "no_external_dispatch": {"type": "boolean", "const": true},
+    "external_send_executed": {"type": "boolean", "const": false},
+    "actual_execution": {"type": "boolean", "const": false},
+    "freeze_executed": {"type": "boolean", "const": false},
+    "isolation_executed": {"type": "boolean", "const": false},
+    "state_change_executed": {"type": "boolean", "const": false},
+    "evidence_refs": {
+      "type": "array",
+      "items": {"type": "string"},
+      "minItems": 1
+    },
+    "safeguards": {
+      "type": "object",
+      "required": [
+        "design_only",
+        "no_execution",
+        "external_api_call",
+        "wordpress_write",
+        "shell_execution",
+        "credential_operation"
+      ],
+      "properties": {
+        "design_only": {"type": "boolean", "const": true},
+        "no_execution": {"type": "boolean", "const": true},
+        "external_api_call": {"type": "boolean", "const": false},
+        "wordpress_write": {"type": "boolean", "const": false},
+        "shell_execution": {"type": "boolean", "const": false},
+        "credential_operation": {"type": "boolean", "const": false}
+      },
+      "additionalProperties": true
+    },
+    "timestamp_utc": {"type": "string", "minLength": 1}
+  },
+  "additionalProperties": true
+}

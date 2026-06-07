@@ -1,0 +1,32 @@
+{
+  "phase": "SoC-6",
+  "status": "DESIGN_ONLY",
+  "production_status": "NO_GO",
+  "execution_mode": "NO_EXECUTION",
+  "dry_run_only": true,
+  "schema_version": "soc_human_review_queue_handoff_package_v1",
+  "allowed_source_connection_status": [
+    "ACCEPT_DRY_RUN_REVIEW_QUEUE",
+    "BLOCKED_BY_GATE",
+    "REVIEW_REQUIRED",
+    "REJECTED"
+  ],
+  "allowed_handoff_status": [
+    "QUEUED_FOR_HUMAN_REVIEW",
+    "BLOCKED_REVIEW_REQUIRED",
+    "MANUAL_REVIEW_REQUIRED",
+    "REJECTED_NO_GO_LOCK"
+  ],
+  "required_review_queue_target": "SOC_DRY_RUN_REVIEW_QUEUE",
+  "must_be_true": [
+    "human_review_required",
+    "no_external_dispatch"
+  ],
+  "must_be_false": [
+    "external_send_executed",
+    "actual_execution",
+    "freeze_executed",
+    "isolation_executed",
+    "state_change_executed"
+  ]
+}

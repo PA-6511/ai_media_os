@@ -1,0 +1,37 @@
+{
+  "schema_version": "soc_human_review_queue_handoff_package_v1",
+  "phase": "SoC-6",
+  "node_id": "soc_node_001",
+  "request_id": "req_soc_0001",
+  "source_connection_status": "ACCEPT_DRY_RUN_REVIEW_QUEUE",
+  "source_core_receive_rule": "ACCEPT_DRY_RUN_REVIEW_QUEUE",
+  "source_integration_result": "PASS",
+  "handoff_status": "QUEUED_FOR_HUMAN_REVIEW",
+  "review_queue_target": "SOC_DRY_RUN_REVIEW_QUEUE",
+  "review_priority": "NORMAL",
+  "required_human_actions": [
+    "review_soc_dry_run_summary",
+    "approve_or_reject_followup"
+  ],
+  "human_review_required": true,
+  "no_external_dispatch": true,
+  "external_send_executed": false,
+  "actual_execution": false,
+  "freeze_executed": false,
+  "isolation_executed": false,
+  "state_change_executed": false,
+  "evidence_refs": [
+    "soc_capability_report_v1",
+    "soc_task_runner_result_v1",
+    "soc_core_connection_simulation_result_v1"
+  ],
+  "safeguards": {
+    "design_only": true,
+    "no_execution": true,
+    "external_api_call": false,
+    "wordpress_write": false,
+    "shell_execution": false,
+    "credential_operation": false
+  },
+  "timestamp_utc": "2026-06-07T00:00:00+00:00"
+}
