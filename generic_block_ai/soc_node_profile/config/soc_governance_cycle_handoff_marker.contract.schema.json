@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SoC Governance Cycle Handoff Marker Contract",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "phase",
+    "node_id",
+    "request_id",
+    "source_preservation_schema",
+    "handoff_state",
+    "handoff_mode",
+    "handoff_marker_issued",
+    "reports_only",
+    "record_only",
+    "no_go_lock_confirmed",
+    "execution_allowed",
+    "production_status",
+    "actual_execution",
+    "external_send_executed",
+    "freeze_executed",
+    "isolation_executed",
+    "state_change_executed",
+    "handoff_summary",
+    "timestamp_utc"
+  ],
+  "properties": {
+    "schema_version": {"type": "string", "const": "soc_governance_cycle_handoff_marker_v1"},
+    "phase": {"type": "string", "const": "SoC-19"},
+    "node_id": {"type": "string", "minLength": 1},
+    "request_id": {"type": "string", "minLength": 1},
+    "source_preservation_schema": {"type": "string", "const": "soc_terminal_preservation_receipt_v1"},
+    "handoff_state": {"type": "string", "const": "NEXT_GOVERNANCE_CYCLE_PENDING"},
+    "handoff_mode": {"type": "string", "const": "REPORTS_RECORD_ONLY_HANDOFF"},
+    "handoff_marker_issued": {"type": "boolean", "const": true},
+    "reports_only": {"type": "boolean", "const": true},
+    "record_only": {"type": "boolean", "const": true},
+    "no_go_lock_confirmed": {"type": "boolean", "const": true},
+    "execution_allowed": {"type": "boolean", "const": false},
+    "production_status": {"type": "string", "const": "NO_GO"},
+    "actual_execution": {"type": "boolean", "const": false},
+    "external_send_executed": {"type": "boolean", "const": false},
+    "freeze_executed": {"type": "boolean", "const": false},
+    "isolation_executed": {"type": "boolean", "const": false},
+    "state_change_executed": {"type": "boolean", "const": false},
+    "handoff_summary": {
+      "type": "object",
+      "required": ["receipt_status", "preservation_confirmed", "next_cycle_trigger"],
+      "properties": {
+        "receipt_status": {"type": "string"},
+        "preservation_confirmed": {"type": "boolean"},
+        "next_cycle_trigger": {"type": "string"}
+      },
+      "additionalProperties": true
+    },
+    "timestamp_utc": {"type": "string", "minLength": 1}
+  },
+  "additionalProperties": true
+}
