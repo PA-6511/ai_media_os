@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SoC Audit Evidence Package Contract",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "phase",
+    "node_id",
+    "request_id",
+    "evidence",
+    "evidence_integrity",
+    "safeguards",
+    "timestamp_utc"
+  ],
+  "properties": {
+    "schema_version": {"type": "string", "const": "soc_audit_evidence_package_v1"},
+    "phase": {"type": "string", "const": "SoC-7"},
+    "node_id": {"type": "string", "minLength": 1},
+    "request_id": {"type": "string", "minLength": 1},
+    "evidence": {
+      "type": "object",
+      "required": [
+        "soc2_capability_report",
+        "soc3_acceptance_result",
+        "soc4_runner_result",
+        "soc5_core_connection_simulation_result",
+        "soc6_human_review_handoff_package"
+      ],
+      "additionalProperties": true
+    },
+    "evidence_integrity": {
+      "type": "object",
+      "required": ["evidence_count", "missing_evidence_keys", "is_complete"],
+      "properties": {
+        "evidence_count": {"type": "integer", "minimum": 0},
+        "missing_evidence_keys": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "is_complete": {"type": "boolean"}
+      },
+      "additionalProperties": true
+    },
+    "safeguards": {
+      "type": "object",
+      "required": [
+        "design_only",
+        "no_execution",
+        "external_api_call",
+        "wordpress_write",
+        "shell_execution",
+        "credential_operation",
+        "external_send_executed",
+        "actual_execution",
+        "freeze_executed",
+        "isolation_executed",
+        "state_change_executed"
+      ],
+      "properties": {
+        "design_only": {"type": "boolean", "const": true},
+        "no_execution": {"type": "boolean", "const": true},
+        "external_api_call": {"type": "boolean", "const": false},
+        "wordpress_write": {"type": "boolean", "const": false},
+        "shell_execution": {"type": "boolean", "const": false},
+        "credential_operation": {"type": "boolean", "const": false},
+        "external_send_executed": {"type": "boolean", "const": false},
+        "actual_execution": {"type": "boolean", "const": false},
+        "freeze_executed": {"type": "boolean", "const": false},
+        "isolation_executed": {"type": "boolean", "const": false},
+        "state_change_executed": {"type": "boolean", "const": false}
+      },
+      "additionalProperties": true
+    },
+    "timestamp_utc": {"type": "string", "minLength": 1}
+  },
+  "additionalProperties": true
+}

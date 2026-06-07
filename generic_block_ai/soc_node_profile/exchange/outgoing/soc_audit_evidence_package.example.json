@@ -1,0 +1,32 @@
+{
+  "schema_version": "soc_audit_evidence_package_v1",
+  "phase": "SoC-7",
+  "node_id": "soc_node_001",
+  "request_id": "req_soc_0001",
+  "evidence": {
+    "soc2_capability_report": "soc_capability_report_v1",
+    "soc3_acceptance_result": "soc_task_acceptance_result_v1",
+    "soc4_runner_result": "soc_task_runner_result_v1",
+    "soc5_core_connection_simulation_result": "soc_core_connection_simulation_result_v1",
+    "soc6_human_review_handoff_package": "soc_human_review_queue_handoff_package_v1"
+  },
+  "evidence_integrity": {
+    "evidence_count": 5,
+    "missing_evidence_keys": [],
+    "is_complete": true
+  },
+  "safeguards": {
+    "design_only": true,
+    "no_execution": true,
+    "external_api_call": false,
+    "wordpress_write": false,
+    "shell_execution": false,
+    "credential_operation": false,
+    "external_send_executed": false,
+    "actual_execution": false,
+    "freeze_executed": false,
+    "isolation_executed": false,
+    "state_change_executed": false
+  },
+  "timestamp_utc": "2026-06-07T00:00:00+00:00"
+}

@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SoC Re-evaluation Template Contract",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "phase",
+    "node_id",
+    "request_id",
+    "source_handoff_status",
+    "source_connection_status",
+    "re_evaluation_outcome",
+    "re_evaluation_notes",
+    "required_human_checks",
+    "timestamp_utc"
+  ],
+  "properties": {
+    "schema_version": {"type": "string", "const": "soc_re_evaluation_template_v1"},
+    "phase": {"type": "string", "const": "SoC-7"},
+    "node_id": {"type": "string", "minLength": 1},
+    "request_id": {"type": "string", "minLength": 1},
+    "source_handoff_status": {
+      "type": "string",
+      "enum": [
+        "QUEUED_FOR_HUMAN_REVIEW",
+        "BLOCKED_REVIEW_REQUIRED",
+        "MANUAL_REVIEW_REQUIRED",
+        "REJECTED_NO_GO_LOCK"
+      ]
+    },
+    "source_connection_status": {
+      "type": "string",
+      "enum": [
+        "ACCEPT_DRY_RUN_REVIEW_QUEUE",
+        "BLOCKED_BY_GATE",
+        "REVIEW_REQUIRED",
+        "REJECTED"
+      ]
+    },
+    "re_evaluation_outcome": {"type": "string", "enum": ["GO", "CONDITIONAL_GO", "NO_GO"]},
+    "re_evaluation_notes": {
+      "type": "array",
+      "items": {"type": "string"},
+      "minItems": 1
+    },
+    "required_human_checks": {
+      "type": "array",
+      "items": {"type": "string"},
+      "minItems": 1
+    },
+    "timestamp_utc": {"type": "string", "minLength": 1}
+  },
+  "additionalProperties": true
+}

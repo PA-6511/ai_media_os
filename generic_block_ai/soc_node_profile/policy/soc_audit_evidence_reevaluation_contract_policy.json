@@ -1,0 +1,28 @@
+{
+  "phase": "SoC-7",
+  "status": "DESIGN_ONLY",
+  "production_status": "NO_GO",
+  "execution_mode": "NO_EXECUTION",
+  "dry_run_only": true,
+  "audit_schema_version": "soc_audit_evidence_package_v1",
+  "reevaluation_schema_version": "soc_re_evaluation_template_v1",
+  "required_evidence_keys": [
+    "soc2_capability_report",
+    "soc3_acceptance_result",
+    "soc4_runner_result",
+    "soc5_core_connection_simulation_result",
+    "soc6_human_review_handoff_package"
+  ],
+  "allowed_re_evaluation_outcome": [
+    "GO",
+    "CONDITIONAL_GO",
+    "NO_GO"
+  ],
+  "must_be_false": [
+    "external_send_executed",
+    "actual_execution",
+    "freeze_executed",
+    "isolation_executed",
+    "state_change_executed"
+  ]
+}
