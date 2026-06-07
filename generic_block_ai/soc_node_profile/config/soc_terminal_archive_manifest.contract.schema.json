@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SoC Terminal Archive Manifest Contract",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "phase",
+    "node_id",
+    "request_id",
+    "source_closure_schema",
+    "archive_mode",
+    "archive_scope",
+    "archive_sealed",
+    "record_only",
+    "reports_only",
+    "execution_allowed",
+    "production_status",
+    "actual_execution",
+    "external_send_executed",
+    "freeze_executed",
+    "isolation_executed",
+    "state_change_executed",
+    "archive_entries",
+    "archive_summary",
+    "timestamp_utc"
+  ],
+  "properties": {
+    "schema_version": {"type": "string", "const": "soc_terminal_archive_manifest_v1"},
+    "phase": {"type": "string", "const": "SoC-15"},
+    "node_id": {"type": "string", "minLength": 1},
+    "request_id": {"type": "string", "minLength": 1},
+    "source_closure_schema": {"type": "string", "const": "soc_design_freeze_closure_summary_v1"},
+    "archive_mode": {"type": "string", "const": "REPORTS_ONLY_TERMINAL_ARCHIVE"},
+    "archive_scope": {"type": "string", "const": "SOC_0_TO_SOC_14"},
+    "archive_sealed": {"type": "boolean", "const": true},
+    "record_only": {"type": "boolean", "const": true},
+    "reports_only": {"type": "boolean", "const": true},
+    "execution_allowed": {"type": "boolean", "const": false},
+    "production_status": {"type": "string", "const": "NO_GO"},
+    "actual_execution": {"type": "boolean", "const": false},
+    "external_send_executed": {"type": "boolean", "const": false},
+    "freeze_executed": {"type": "boolean", "const": false},
+    "isolation_executed": {"type": "boolean", "const": false},
+    "state_change_executed": {"type": "boolean", "const": false},
+    "archive_entries": {
+      "type": "array",
+      "items": {"type": "string"},
+      "minItems": 15
+    },
+    "archive_summary": {
+      "type": "object",
+      "required": ["entry_count", "missing_entries", "sealed_complete"],
+      "properties": {
+        "entry_count": {"type": "integer", "minimum": 0},
+        "missing_entries": {"type": "array", "items": {"type": "string"}},
+        "sealed_complete": {"type": "boolean"}
+      },
+      "additionalProperties": true
+    },
+    "timestamp_utc": {"type": "string", "minLength": 1}
+  },
+  "additionalProperties": true
+}

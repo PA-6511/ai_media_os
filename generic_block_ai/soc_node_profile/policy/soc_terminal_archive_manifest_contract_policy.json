@@ -1,0 +1,24 @@
+{
+  "phase": "SoC-15",
+  "status": "DESIGN_ONLY",
+  "production_status": "NO_GO",
+  "execution_mode": "NO_EXECUTION",
+  "dry_run_only": true,
+  "schema_version": "soc_terminal_archive_manifest_v1",
+  "required_input_schema": "soc_design_freeze_closure_summary_v1",
+  "required_archive_mode": "REPORTS_ONLY_TERMINAL_ARCHIVE",
+  "required_archive_scope": "SOC_0_TO_SOC_14",
+  "must_be_true": [
+    "archive_sealed",
+    "record_only",
+    "reports_only"
+  ],
+  "must_be_false": [
+    "execution_allowed",
+    "actual_execution",
+    "external_send_executed",
+    "freeze_executed",
+    "isolation_executed",
+    "state_change_executed"
+  ]
+}
