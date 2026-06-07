@@ -1,0 +1,27 @@
+{
+  "phase": "SoC-1",
+  "status": "DESIGN_ONLY",
+  "production_status": "NO_GO",
+  "execution_mode": "NO_EXECUTION",
+  "dry_run_only": true,
+  "allowed_device_classes": [
+    "SMARTPHONE_SOC",
+    "MOBILE_SOC_BOARD",
+    "TABLET_SOC"
+  ],
+  "thermal_fail_status": [
+    "HOT",
+    "CRITICAL"
+  ],
+  "battery_min_percent": 20,
+  "required_profile_fields": [
+    "node_id",
+    "device_class",
+    "cpu_available",
+    "ram_gb",
+    "storage_gb",
+    "battery_powered",
+    "thermal_status",
+    "battery_percent"
+  ]
+}
