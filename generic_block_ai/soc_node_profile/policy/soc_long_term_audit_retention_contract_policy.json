@@ -1,0 +1,35 @@
+{
+  "phase": "SoC-12",
+  "status": "DESIGN_ONLY",
+  "production_status": "NO_GO",
+  "execution_mode": "NO_EXECUTION",
+  "dry_run_only": true,
+  "schema_version": "soc_long_term_audit_retention_package_v1",
+  "required_input_schema": "soc_release_readiness_design_gate_v1",
+  "required_retention_mode": "REPORTS_ONLY",
+  "required_evidence_retention_targets": [
+    "SoC-0",
+    "SoC-1",
+    "SoC-2",
+    "SoC-3",
+    "SoC-4",
+    "SoC-5",
+    "SoC-6",
+    "SoC-7",
+    "SoC-8",
+    "SoC-9",
+    "SoC-10",
+    "SoC-11"
+  ],
+  "must_be_true": [
+    "retention_ready",
+    "reverify_required"
+  ],
+  "must_be_false": [
+    "actual_execution",
+    "external_send_executed",
+    "freeze_executed",
+    "isolation_executed",
+    "state_change_executed"
+  ]
+}

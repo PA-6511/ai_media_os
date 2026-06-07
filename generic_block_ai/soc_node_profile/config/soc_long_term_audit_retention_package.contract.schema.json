@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SoC Long-term Audit Retention Package Contract",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "phase",
+    "node_id",
+    "request_id",
+    "source_gate_schema",
+    "retention_ready",
+    "retention_mode",
+    "production_status",
+    "actual_execution",
+    "external_send_executed",
+    "freeze_executed",
+    "isolation_executed",
+    "state_change_executed",
+    "evidence_retention_targets",
+    "reverify_required",
+    "retention_summary",
+    "timestamp_utc"
+  ],
+  "properties": {
+    "schema_version": {"type": "string", "const": "soc_long_term_audit_retention_package_v1"},
+    "phase": {"type": "string", "const": "SoC-12"},
+    "node_id": {"type": "string", "minLength": 1},
+    "request_id": {"type": "string", "minLength": 1},
+    "source_gate_schema": {"type": "string", "const": "soc_release_readiness_design_gate_v1"},
+    "retention_ready": {"type": "boolean", "const": true},
+    "retention_mode": {"type": "string", "const": "REPORTS_ONLY"},
+    "production_status": {"type": "string", "const": "NO_GO"},
+    "actual_execution": {"type": "boolean", "const": false},
+    "external_send_executed": {"type": "boolean", "const": false},
+    "freeze_executed": {"type": "boolean", "const": false},
+    "isolation_executed": {"type": "boolean", "const": false},
+    "state_change_executed": {"type": "boolean", "const": false},
+    "evidence_retention_targets": {
+      "type": "array",
+      "items": {"type": "string"},
+      "minItems": 12
+    },
+    "reverify_required": {"type": "boolean", "const": true},
+    "retention_summary": {
+      "type": "object",
+      "required": ["target_count", "missing_targets", "coverage_complete"],
+      "properties": {
+        "target_count": {"type": "integer", "minimum": 0},
+        "missing_targets": {"type": "array", "items": {"type": "string"}},
+        "coverage_complete": {"type": "boolean"}
+      },
+      "additionalProperties": true
+    },
+    "timestamp_utc": {"type": "string", "minLength": 1}
+  },
+  "additionalProperties": true
+}

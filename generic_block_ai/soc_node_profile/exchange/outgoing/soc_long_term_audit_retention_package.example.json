@@ -1,0 +1,25 @@
+{
+  "schema_version": "soc_long_term_audit_retention_package_v1",
+  "phase": "SoC-12",
+  "node_id": "soc_node_001",
+  "request_id": "req_soc_0001",
+  "source_gate_schema": "soc_release_readiness_design_gate_v1",
+  "retention_ready": true,
+  "retention_mode": "REPORTS_ONLY",
+  "production_status": "NO_GO",
+  "actual_execution": false,
+  "external_send_executed": false,
+  "freeze_executed": false,
+  "isolation_executed": false,
+  "state_change_executed": false,
+  "evidence_retention_targets": [
+    "SoC-0", "SoC-1", "SoC-2", "SoC-3", "SoC-4", "SoC-5", "SoC-6", "SoC-7", "SoC-8", "SoC-9", "SoC-10", "SoC-11"
+  ],
+  "reverify_required": true,
+  "retention_summary": {
+    "target_count": 12,
+    "missing_targets": [],
+    "coverage_complete": true
+  },
+  "timestamp_utc": "2026-06-07T00:00:00+00:00"
+}
