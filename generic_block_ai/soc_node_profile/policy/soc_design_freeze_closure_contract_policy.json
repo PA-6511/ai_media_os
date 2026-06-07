@@ -1,0 +1,25 @@
+{
+  "phase": "SoC-14",
+  "status": "DESIGN_ONLY",
+  "production_status": "NO_GO",
+  "execution_mode": "NO_EXECUTION",
+  "dry_run_only": true,
+  "schema_version": "soc_design_freeze_closure_summary_v1",
+  "required_input_schema": "soc_periodic_reverification_checklist_v1",
+  "required_freeze_reason": "DESIGN_LINE_CLOSED_REPORTS_ONLY",
+  "required_closure_status": "CLOSED_DESIGN_ONLY",
+  "must_be_true": [
+    "freeze_declared",
+    "closure_declared",
+    "reports_only",
+    "record_only"
+  ],
+  "must_be_false": [
+    "execution_allowed",
+    "actual_execution",
+    "external_send_executed",
+    "freeze_executed",
+    "isolation_executed",
+    "state_change_executed"
+  ]
+}

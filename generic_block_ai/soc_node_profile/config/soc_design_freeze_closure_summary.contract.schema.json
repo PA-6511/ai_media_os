@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SoC Design Freeze Closure Summary Contract",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "phase",
+    "node_id",
+    "request_id",
+    "source_checklist_schema",
+    "freeze_declared",
+    "closure_declared",
+    "closure_status",
+    "freeze_reason",
+    "reports_only",
+    "record_only",
+    "execution_allowed",
+    "production_status",
+    "actual_execution",
+    "external_send_executed",
+    "freeze_executed",
+    "isolation_executed",
+    "state_change_executed",
+    "closure_summary",
+    "timestamp_utc"
+  ],
+  "properties": {
+    "schema_version": {"type": "string", "const": "soc_design_freeze_closure_summary_v1"},
+    "phase": {"type": "string", "const": "SoC-14"},
+    "node_id": {"type": "string", "minLength": 1},
+    "request_id": {"type": "string", "minLength": 1},
+    "source_checklist_schema": {"type": "string", "const": "soc_periodic_reverification_checklist_v1"},
+    "freeze_declared": {"type": "boolean", "const": true},
+    "closure_declared": {"type": "boolean", "const": true},
+    "closure_status": {"type": "string", "const": "CLOSED_DESIGN_ONLY"},
+    "freeze_reason": {"type": "string", "const": "DESIGN_LINE_CLOSED_REPORTS_ONLY"},
+    "reports_only": {"type": "boolean", "const": true},
+    "record_only": {"type": "boolean", "const": true},
+    "execution_allowed": {"type": "boolean", "const": false},
+    "production_status": {"type": "string", "const": "NO_GO"},
+    "actual_execution": {"type": "boolean", "const": false},
+    "external_send_executed": {"type": "boolean", "const": false},
+    "freeze_executed": {"type": "boolean", "const": false},
+    "isolation_executed": {"type": "boolean", "const": false},
+    "state_change_executed": {"type": "boolean", "const": false},
+    "closure_summary": {
+      "type": "object",
+      "required": ["target_count", "coverage_complete", "next_cycle_entry"],
+      "properties": {
+        "target_count": {"type": "integer", "minimum": 0},
+        "coverage_complete": {"type": "boolean"},
+        "next_cycle_entry": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": true
+    },
+    "timestamp_utc": {"type": "string", "minLength": 1}
+  },
+  "additionalProperties": true
+}
