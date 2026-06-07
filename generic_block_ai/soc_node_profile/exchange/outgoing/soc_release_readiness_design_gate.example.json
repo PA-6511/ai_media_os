@@ -1,0 +1,24 @@
+{
+  "schema_version": "soc_release_readiness_design_gate_v1",
+  "phase": "SoC-11",
+  "node_id": "soc_node_001",
+  "request_id": "req_soc_0001",
+  "source_dossier_schema": "soc_final_design_dossier_index_v1",
+  "dossier_status": "COMPLETE",
+  "release_ready": false,
+  "production_status": "NO_GO",
+  "execution_allowed": false,
+  "external_dispatch_allowed": false,
+  "actual_execution": false,
+  "external_send_executed": false,
+  "freeze_executed": false,
+  "isolation_executed": false,
+  "state_change_executed": false,
+  "reason": "DESIGN_GATE_ONLY",
+  "gate_summary": {
+    "audit_trace_enabled": true,
+    "reverification_ready": true,
+    "missing_keys": []
+  },
+  "timestamp_utc": "2026-06-07T00:00:00+00:00"
+}

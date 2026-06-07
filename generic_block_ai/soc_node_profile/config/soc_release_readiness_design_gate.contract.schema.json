@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SoC Release Readiness Design Gate Contract",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "phase",
+    "node_id",
+    "request_id",
+    "source_dossier_schema",
+    "dossier_status",
+    "release_ready",
+    "production_status",
+    "execution_allowed",
+    "external_dispatch_allowed",
+    "actual_execution",
+    "external_send_executed",
+    "freeze_executed",
+    "isolation_executed",
+    "state_change_executed",
+    "reason",
+    "gate_summary",
+    "timestamp_utc"
+  ],
+  "properties": {
+    "schema_version": {"type": "string", "const": "soc_release_readiness_design_gate_v1"},
+    "phase": {"type": "string", "const": "SoC-11"},
+    "node_id": {"type": "string", "minLength": 1},
+    "request_id": {"type": "string", "minLength": 1},
+    "source_dossier_schema": {"type": "string", "const": "soc_final_design_dossier_index_v1"},
+    "dossier_status": {"type": "string", "enum": ["COMPLETE", "INCOMPLETE"]},
+    "release_ready": {"type": "boolean", "const": false},
+    "production_status": {"type": "string", "const": "NO_GO"},
+    "execution_allowed": {"type": "boolean", "const": false},
+    "external_dispatch_allowed": {"type": "boolean", "const": false},
+    "actual_execution": {"type": "boolean", "const": false},
+    "external_send_executed": {"type": "boolean", "const": false},
+    "freeze_executed": {"type": "boolean", "const": false},
+    "isolation_executed": {"type": "boolean", "const": false},
+    "state_change_executed": {"type": "boolean", "const": false},
+    "reason": {"type": "string", "const": "DESIGN_GATE_ONLY"},
+    "gate_summary": {
+      "type": "object",
+      "required": ["audit_trace_enabled", "reverification_ready", "missing_keys"],
+      "properties": {
+        "audit_trace_enabled": {"type": "boolean"},
+        "reverification_ready": {"type": "boolean"},
+        "missing_keys": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": true
+    },
+    "timestamp_utc": {"type": "string", "minLength": 1}
+  },
+  "additionalProperties": true
+}

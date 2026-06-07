@@ -1,0 +1,20 @@
+{
+  "phase": "SoC-11",
+  "status": "DESIGN_ONLY",
+  "production_status": "NO_GO",
+  "execution_mode": "NO_EXECUTION",
+  "dry_run_only": true,
+  "schema_version": "soc_release_readiness_design_gate_v1",
+  "required_input_schema": "soc_final_design_dossier_index_v1",
+  "required_reason": "DESIGN_GATE_ONLY",
+  "must_be_false": [
+    "release_ready",
+    "execution_allowed",
+    "external_dispatch_allowed",
+    "actual_execution",
+    "external_send_executed",
+    "freeze_executed",
+    "isolation_executed",
+    "state_change_executed"
+  ]
+}
