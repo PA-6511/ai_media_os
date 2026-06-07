@@ -12,6 +12,15 @@ BASE_DIR = Path(__file__).resolve().parents[1]
 DATA_DIR = BASE_DIR / "data"
 ARTICLE_OUTPUT_PATH = DATA_DIR / "article_output.json"
 ARTICLE_OUTPUT_WITH_LINKS_PATH = DATA_DIR / "article_output_with_links.json"
+PR_NOTICE_TEXT = "PR：本記事には広告が含まれます。"
+PR_NOTICE_HTML = f'<p class="pr-notice">{PR_NOTICE_TEXT}</p>'
+PR_NOTICE_MARKERS = (
+    "広告",
+    "pr",
+    "アフィリエイト",
+    "affiliate",
+    "本サイトは",
+)
 
 
 def load_article_output(path: Path) -> dict[str, Any]:
@@ -33,6 +42,19 @@ def load_article_output(path: Path) -> dict[str, Any]:
     return data
 
 
+def ensure_pr_notice(content_html: str) -> str:
+    """PR表記が未挿入のHTMLに固定文言を1回だけ差し込む。"""
+    normalized = content_html.lower()
+    if any(marker in normalized for marker in PR_NOTICE_MARKERS):
+        return content_html
+
+    if "</h1>" in content_html:
+        head, tail = content_html.split("</h1>", 1)
+        return f"{head}</h1>\n{PR_NOTICE_HTML}{tail}"
+
+    return f"{PR_NOTICE_HTML}\n{content_html}"
+
+
 def enrich_article(article_output: dict[str, Any]) -> dict[str, Any]:
     """Internal Link AI を適用して関連記事リンクを付与する。"""
     content_html = str(article_output.get("content_html", "")).strip()
@@ -41,6 +63,7 @@ def enrich_article(article_output: dict[str, Any]) -> dict[str, Any]:
 
     related_links = build_related_links(article_output)
     enriched_html = insert_related_links(content_html, related_links)
+    enriched_html = ensure_pr_notice(enriched_html)
 
     enriched = dict(article_output)
     enriched["related_links"] = related_links
