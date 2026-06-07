@@ -1,0 +1,28 @@
+{
+  "phase": "SoC-8",
+  "status": "DESIGN_ONLY",
+  "production_status": "NO_GO",
+  "execution_mode": "NO_EXECUTION",
+  "dry_run_only": true,
+  "schema_version": "soc_re_evaluation_report_v1",
+  "required_input_schema_versions": {
+    "audit_evidence": "soc_audit_evidence_package_v1",
+    "re_evaluation_template": "soc_re_evaluation_template_v1"
+  },
+  "allowed_final_recommendation": [
+    "GO",
+    "CONDITIONAL_GO",
+    "NO_GO"
+  ],
+  "must_be_true": [
+    "reports_only",
+    "no_external_dispatch"
+  ],
+  "must_be_false": [
+    "actual_execution",
+    "external_send_executed",
+    "freeze_executed",
+    "isolation_executed",
+    "state_change_executed"
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SoC Re-evaluation Report Contract",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "phase",
+    "node_id",
+    "request_id",
+    "reports_only",
+    "no_external_dispatch",
+    "actual_execution",
+    "final_recommendation",
+    "source_input",
+    "evaluation_summary",
+    "safeguards",
+    "timestamp_utc"
+  ],
+  "properties": {
+    "schema_version": {"type": "string", "const": "soc_re_evaluation_report_v1"},
+    "phase": {"type": "string", "const": "SoC-8"},
+    "node_id": {"type": "string", "minLength": 1},
+    "request_id": {"type": "string", "minLength": 1},
+    "reports_only": {"type": "boolean", "const": true},
+    "no_external_dispatch": {"type": "boolean", "const": true},
+    "actual_execution": {"type": "boolean", "const": false},
+    "external_send_executed": {"type": "boolean", "const": false},
+    "freeze_executed": {"type": "boolean", "const": false},
+    "isolation_executed": {"type": "boolean", "const": false},
+    "state_change_executed": {"type": "boolean", "const": false},
+    "final_recommendation": {"type": "string", "enum": ["GO", "CONDITIONAL_GO", "NO_GO"]},
+    "source_input": {
+      "type": "object",
+      "required": ["audit_schema_version", "template_schema_version"],
+      "properties": {
+        "audit_schema_version": {"type": "string"},
+        "template_schema_version": {"type": "string"},
+        "evidence_complete": {"type": "boolean"},
+        "missing_evidence_keys": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": true
+    },
+    "evaluation_summary": {
+      "type": "object",
+      "required": ["template_outcome", "template_notes", "required_human_checks"],
+      "properties": {
+        "template_outcome": {"type": "string", "enum": ["GO", "CONDITIONAL_GO", "NO_GO"]},
+        "template_notes": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+        "required_human_checks": {"type": "array", "items": {"type": "string"}, "minItems": 1}
+      },
+      "additionalProperties": true
+    },
+    "safeguards": {
+      "type": "object",
+      "required": [
+        "design_only",
+        "no_execution",
+        "external_api_call",
+        "wordpress_write",
+        "shell_execution",
+        "credential_operation"
+      ],
+      "properties": {
+        "design_only": {"type": "boolean", "const": true},
+        "no_execution": {"type": "boolean", "const": true},
+        "external_api_call": {"type": "boolean", "const": false},
+        "wordpress_write": {"type": "boolean", "const": false},
+        "shell_execution": {"type": "boolean", "const": false},
+        "credential_operation": {"type": "boolean", "const": false}
+      },
+      "additionalProperties": true
+    },
+    "timestamp_utc": {"type": "string", "minLength": 1}
+  },
+  "additionalProperties": true
+}
