@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SoC Final Design Dossier Index Contract",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "phase",
+    "node_id",
+    "request_id",
+    "dossier_status",
+    "artifact_index",
+    "integrity_summary",
+    "record_only",
+    "audit_trace_enabled",
+    "reverification_ready",
+    "actual_execution",
+    "external_send_executed",
+    "freeze_executed",
+    "isolation_executed",
+    "state_change_executed",
+    "production_status",
+    "timestamp_utc"
+  ],
+  "properties": {
+    "schema_version": {"type": "string", "const": "soc_final_design_dossier_index_v1"},
+    "phase": {"type": "string", "const": "SoC-10"},
+    "node_id": {"type": "string", "minLength": 1},
+    "request_id": {"type": "string", "minLength": 1},
+    "dossier_status": {"type": "string", "enum": ["COMPLETE", "INCOMPLETE"]},
+    "artifact_index": {
+      "type": "object",
+      "required": [
+        "soc0_node_scaffold",
+        "soc1_hardware_profile_validation",
+        "soc2_capability_report_contract",
+        "soc3_task_acceptance_contract",
+        "soc4_task_runner_contract",
+        "soc5_core_connection_simulation",
+        "soc6_human_review_handoff",
+        "soc7_audit_evidence_and_reevaluation_template",
+        "soc8_reports_only_reevaluation_report",
+        "soc9_approval_event_and_final_seal"
+      ],
+      "additionalProperties": true
+    },
+    "integrity_summary": {
+      "type": "object",
+      "required": ["required_count", "present_count", "missing_keys"],
+      "properties": {
+        "required_count": {"type": "integer", "minimum": 0},
+        "present_count": {"type": "integer", "minimum": 0},
+        "missing_keys": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": true
+    },
+    "record_only": {"type": "boolean", "const": true},
+    "audit_trace_enabled": {"type": "boolean", "const": true},
+    "reverification_ready": {"type": "boolean", "const": true},
+    "actual_execution": {"type": "boolean", "const": false},
+    "external_send_executed": {"type": "boolean", "const": false},
+    "freeze_executed": {"type": "boolean", "const": false},
+    "isolation_executed": {"type": "boolean", "const": false},
+    "state_change_executed": {"type": "boolean", "const": false},
+    "production_status": {"type": "string", "const": "NO_GO"},
+    "timestamp_utc": {"type": "string", "minLength": 1}
+  },
+  "additionalProperties": true
+}

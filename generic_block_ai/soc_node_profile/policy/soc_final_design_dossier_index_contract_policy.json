@@ -1,0 +1,32 @@
+{
+  "phase": "SoC-10",
+  "status": "DESIGN_ONLY",
+  "production_status": "NO_GO",
+  "execution_mode": "NO_EXECUTION",
+  "dry_run_only": true,
+  "schema_version": "soc_final_design_dossier_index_v1",
+  "required_phase_artifacts": [
+    "soc0_node_scaffold",
+    "soc1_hardware_profile_validation",
+    "soc2_capability_report_contract",
+    "soc3_task_acceptance_contract",
+    "soc4_task_runner_contract",
+    "soc5_core_connection_simulation",
+    "soc6_human_review_handoff",
+    "soc7_audit_evidence_and_reevaluation_template",
+    "soc8_reports_only_reevaluation_report",
+    "soc9_approval_event_and_final_seal"
+  ],
+  "must_be_true": [
+    "record_only",
+    "audit_trace_enabled",
+    "reverification_ready"
+  ],
+  "must_be_false": [
+    "actual_execution",
+    "external_send_executed",
+    "freeze_executed",
+    "isolation_executed",
+    "state_change_executed"
+  ]
+}
