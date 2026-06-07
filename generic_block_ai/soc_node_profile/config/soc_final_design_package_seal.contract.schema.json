@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SoC Final Design Package Seal Contract",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "phase",
+    "node_id",
+    "request_id",
+    "source_report_schema",
+    "source_approval_schema",
+    "seal_status",
+    "seal_type",
+    "record_only",
+    "actual_execution",
+    "external_send_executed",
+    "freeze_executed",
+    "isolation_executed",
+    "state_change_executed",
+    "production_status",
+    "timestamp_utc"
+  ],
+  "properties": {
+    "schema_version": {"type": "string", "const": "soc_final_design_package_seal_v1"},
+    "phase": {"type": "string", "const": "SoC-9"},
+    "node_id": {"type": "string", "minLength": 1},
+    "request_id": {"type": "string", "minLength": 1},
+    "source_report_schema": {"type": "string", "const": "soc_re_evaluation_report_v1"},
+    "source_approval_schema": {"type": "string", "const": "soc_approval_event_record_v1"},
+    "seal_status": {"type": "string", "enum": ["SEALED_DESIGN_ONLY", "SEALED_CONDITIONAL", "SEALED_NO_GO_LOCK"]},
+    "seal_type": {"type": "string", "const": "SOC_FINAL_DESIGN_PACKAGE_SEAL"},
+    "record_only": {"type": "boolean", "const": true},
+    "actual_execution": {"type": "boolean", "const": false},
+    "external_send_executed": {"type": "boolean", "const": false},
+    "freeze_executed": {"type": "boolean", "const": false},
+    "isolation_executed": {"type": "boolean", "const": false},
+    "state_change_executed": {"type": "boolean", "const": false},
+    "production_status": {"type": "string", "const": "NO_GO"},
+    "timestamp_utc": {"type": "string", "minLength": 1}
+  },
+  "additionalProperties": true
+}

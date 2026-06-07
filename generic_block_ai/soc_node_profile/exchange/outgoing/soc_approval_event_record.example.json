@@ -1,0 +1,18 @@
+{
+  "schema_version": "soc_approval_event_record_v1",
+  "phase": "SoC-9",
+  "node_id": "soc_node_001",
+  "request_id": "req_soc_0001",
+  "source_report_schema": "soc_re_evaluation_report_v1",
+  "final_recommendation": "CONDITIONAL_GO",
+  "approval_decision": "APPROVE_CONDITIONAL_DESIGN_ONLY",
+  "approval_event_type": "SOC_DESIGN_REVIEW_APPROVAL_EVENT",
+  "record_only": true,
+  "actual_execution": false,
+  "external_send_executed": false,
+  "freeze_executed": false,
+  "isolation_executed": false,
+  "state_change_executed": false,
+  "production_status": "NO_GO",
+  "timestamp_utc": "2026-06-07T00:00:00+00:00"
+}

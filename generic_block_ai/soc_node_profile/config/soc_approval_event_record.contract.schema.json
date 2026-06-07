@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SoC Approval Event Record Contract",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "phase",
+    "node_id",
+    "request_id",
+    "source_report_schema",
+    "final_recommendation",
+    "approval_decision",
+    "approval_event_type",
+    "record_only",
+    "actual_execution",
+    "external_send_executed",
+    "freeze_executed",
+    "isolation_executed",
+    "state_change_executed",
+    "production_status",
+    "timestamp_utc"
+  ],
+  "properties": {
+    "schema_version": {"type": "string", "const": "soc_approval_event_record_v1"},
+    "phase": {"type": "string", "const": "SoC-9"},
+    "node_id": {"type": "string", "minLength": 1},
+    "request_id": {"type": "string", "minLength": 1},
+    "source_report_schema": {"type": "string", "const": "soc_re_evaluation_report_v1"},
+    "final_recommendation": {"type": "string", "enum": ["GO", "CONDITIONAL_GO", "NO_GO"]},
+    "approval_decision": {
+      "type": "string",
+      "enum": ["APPROVE_DESIGN_ONLY", "APPROVE_CONDITIONAL_DESIGN_ONLY", "REJECT_KEEP_NO_GO"]
+    },
+    "approval_event_type": {"type": "string", "const": "SOC_DESIGN_REVIEW_APPROVAL_EVENT"},
+    "record_only": {"type": "boolean", "const": true},
+    "actual_execution": {"type": "boolean", "const": false},
+    "external_send_executed": {"type": "boolean", "const": false},
+    "freeze_executed": {"type": "boolean", "const": false},
+    "isolation_executed": {"type": "boolean", "const": false},
+    "state_change_executed": {"type": "boolean", "const": false},
+    "production_status": {"type": "string", "const": "NO_GO"},
+    "timestamp_utc": {"type": "string", "minLength": 1}
+  },
+  "additionalProperties": true
+}

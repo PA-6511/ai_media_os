@@ -1,0 +1,26 @@
+{
+  "phase": "SoC-9",
+  "status": "DESIGN_ONLY",
+  "production_status": "NO_GO",
+  "execution_mode": "NO_EXECUTION",
+  "dry_run_only": true,
+  "approval_schema_version": "soc_approval_event_record_v1",
+  "seal_schema_version": "soc_final_design_package_seal_v1",
+  "allowed_final_recommendation": [
+    "GO",
+    "CONDITIONAL_GO",
+    "NO_GO"
+  ],
+  "allowed_approval_decision": [
+    "APPROVE_DESIGN_ONLY",
+    "APPROVE_CONDITIONAL_DESIGN_ONLY",
+    "REJECT_KEEP_NO_GO"
+  ],
+  "must_be_false": [
+    "actual_execution",
+    "external_send_executed",
+    "freeze_executed",
+    "isolation_executed",
+    "state_change_executed"
+  ]
+}
