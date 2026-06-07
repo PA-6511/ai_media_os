@@ -1,0 +1,14 @@
+{
+  "generated_at_utc": "2026-06-07T13:51:42.255427+00:00",
+  "phase": "SoC-0",
+  "status": "DESIGN_ONLY",
+  "production_status": "NO_GO",
+  "execution": "DRY_RUN",
+  "recommended_task_size": "SMALL",
+  "ready_for_production": false,
+  "notes": [
+    "DESIGN_ONLY scaffold",
+    "DRY_RUN_ONLY execution policy",
+    "human review required"
+  ]
+}

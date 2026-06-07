@@ -1,0 +1,13 @@
+{
+  "node_id": "soc_snapdragon_001",
+  "device_class": "SMARTPHONE_SOC",
+  "chipset": "Snapdragon_8_series",
+  "cpu_cores": 8,
+  "gpu_available": true,
+  "npu_available": true,
+  "ram_gb": 12,
+  "storage_gb": 256,
+  "battery_powered": true,
+  "thermal_throttling_expected": true,
+  "network_policy": "NO_EXTERNAL"
+}

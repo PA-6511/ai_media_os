@@ -3,6 +3,7 @@
   "display_name": "汎用ブロックAI",
   "version": "0.1.0",
   "category": "generic",
+  "operation_mode": "OBSERVE",
   "mode": "dry_run",
   "risk_level": "low",
   "capabilities": {
@@ -26,5 +27,15 @@
     "disable_audit",
     "auto_publish_without_approval",
     "handle_adult_content"
-  ]
+  ],
+  "hardware_profile": {
+    "device_class": "GENERIC_COMPUTE_NODE",
+    "cpu_available": true,
+    "gpu_available": "UNKNOWN",
+    "npu_available": "UNKNOWN",
+    "ram_gb_min_required": 4,
+    "storage_gb_min_required": 8,
+    "battery_powered": false,
+    "thermal_throttling_expected": false
+  }
 }

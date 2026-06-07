@@ -1,0 +1,10 @@
+{
+  "recommended_task_size": "SMALL",
+  "max_input_lines": 200,
+  "max_input_chars": 20000,
+  "max_output_chars": 4000,
+  "max_cpu_usage_percent": 65,
+  "max_memory_mb": 2048,
+  "abort_on_thermal_status": ["HOT", "CRITICAL"],
+  "abort_on_battery_below_percent": 20
+}

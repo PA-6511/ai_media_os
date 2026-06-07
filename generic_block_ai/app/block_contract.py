@@ -15,12 +15,14 @@ class BlockManifest:
     display_name: str
     version: str
     category: str
+    operation_mode: str
     mode: str
     risk_level: str
     capabilities: dict[str, bool]
     requires_human_approval: bool
     auto_execute_allowed: bool
     forbidden_actions: list[str]
+    hardware_profile: dict[str, Any]
 
     @classmethod
     def from_dict(cls, data: dict[str, Any]) -> "BlockManifest":
@@ -46,17 +48,23 @@ class BlockManifest:
 
         forbidden_actions = [str(item).strip() for item in forbidden_actions_raw if str(item).strip()]
 
+        hardware_profile = data.get("hardware_profile", {})
+        if not isinstance(hardware_profile, dict):
+            raise ValueError("manifest.hardware_profile must be an object")
+
         return cls(
             block_id=str(data.get("block_id", "")).strip(),
             display_name=str(data.get("display_name", "")).strip(),
             version=str(data.get("version", "")).strip(),
             category=str(data.get("category", "")).strip(),
+            operation_mode=str(data.get("operation_mode", "")).strip().upper(),
             mode=mode,
             risk_level=risk_level,
             capabilities={str(k): bool(v) for k, v in capabilities.items()},
             requires_human_approval=bool(approval_policy.get("requires_human_approval", True)),
             auto_execute_allowed=bool(approval_policy.get("auto_execute_allowed", False)),
             forbidden_actions=forbidden_actions,
+            hardware_profile=hardware_profile,
         )
 
     @classmethod
@@ -74,6 +82,7 @@ class BlockManifest:
             "display_name": self.display_name,
             "version": self.version,
             "category": self.category,
+            "operation_mode": self.operation_mode,
         }
         for field_name, value in required_text_fields.items():
             if not value:

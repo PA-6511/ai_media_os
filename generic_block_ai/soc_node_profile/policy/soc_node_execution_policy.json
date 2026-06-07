@@ -1,0 +1,10 @@
+{
+  "status": "DESIGN_ONLY",
+  "production_status": "NO_GO",
+  "execution_mode": "DRY_RUN_ONLY",
+  "human_review_required": true,
+  "auto_execute": false,
+  "freeze_executed": false,
+  "isolation_executed": false,
+  "state_change_executed": false
+}

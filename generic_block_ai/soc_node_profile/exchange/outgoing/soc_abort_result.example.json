@@ -1,0 +1,10 @@
+{
+  "status": "ABORT",
+  "decision_reason": "blocked_task_type:wordpress_publish",
+  "freeze_recommendation": "review_required",
+  "freeze_executed": false,
+  "isolation_executed": false,
+  "state_change_executed": false,
+  "wordpress_write_executed": false,
+  "publish_allowed": false
+}

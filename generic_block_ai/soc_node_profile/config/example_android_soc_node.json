@@ -1,0 +1,13 @@
+{
+  "node_id": "soc_android_001",
+  "device_class": "SMARTPHONE_SOC",
+  "chipset": "Android_Generic_SoC",
+  "cpu_cores": 8,
+  "gpu_available": true,
+  "npu_available": false,
+  "ram_gb": 8,
+  "storage_gb": 128,
+  "battery_powered": true,
+  "thermal_throttling_expected": true,
+  "network_policy": "NO_EXTERNAL"
+}

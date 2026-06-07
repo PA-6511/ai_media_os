@@ -1,0 +1,9 @@
+{
+  "external_api_call_allowed": false,
+  "allowed_domains": [],
+  "blocked_operations": [
+    "send_external_message",
+    "network_scan",
+    "webhook_post"
+  ]
+}

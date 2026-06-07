@@ -1,0 +1,13 @@
+{
+  "node_id": "soc_apple_mobile_001",
+  "device_class": "TABLET_SOC",
+  "chipset": "Apple_Mobile_Silicon",
+  "cpu_cores": 10,
+  "gpu_available": true,
+  "npu_available": true,
+  "ram_gb": 8,
+  "storage_gb": 128,
+  "battery_powered": true,
+  "thermal_throttling_expected": true,
+  "network_policy": "NO_EXTERNAL"
+}

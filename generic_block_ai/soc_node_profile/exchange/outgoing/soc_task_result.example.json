@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "decision_reason": "allowed_task_type:log_summary",
+  "summary": "Received 2 lines. DRY_RUN analysis only.",
+  "classification_candidate": "WARN",
+  "freeze_recommendation": "manual_review",
+  "freeze_executed": false,
+  "isolation_executed": false,
+  "state_change_executed": false,
+  "wordpress_write_executed": false,
+  "publish_allowed": false
+}

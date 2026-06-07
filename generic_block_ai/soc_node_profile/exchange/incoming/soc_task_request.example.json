@@ -1,0 +1,13 @@
+{
+  "request_id": "req_soc_0001",
+  "node_id": "soc_node_001",
+  "task_type": "log_summary",
+  "input_lines": [
+    "2026-06-07T00:00:00Z WARN timeout detected",
+    "2026-06-07T00:00:10Z INFO retry success"
+  ],
+  "constraints": {
+    "execution_mode": "DRY_RUN_ONLY",
+    "max_output_chars": 1000
+  }
+}

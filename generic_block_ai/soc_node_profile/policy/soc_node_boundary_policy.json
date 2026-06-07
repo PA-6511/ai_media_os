@@ -1,0 +1,19 @@
+{
+  "phase": "SoC-0",
+  "status": "DESIGN_ONLY",
+  "allow": [
+    "observe",
+    "analyze",
+    "classify",
+    "summarize",
+    "report"
+  ],
+  "deny": [
+    "publish",
+    "delete",
+    "external_send",
+    "credential_operation",
+    "shell_execution",
+    "bulk_generation"
+  ]
+}

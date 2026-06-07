@@ -1,0 +1,7 @@
+{
+  "thermal_report_required": true,
+  "battery_report_required": true,
+  "throttle_warning_status": ["WARM"],
+  "force_abort_status": ["HOT", "CRITICAL"],
+  "cooldown_required_seconds": 60
+}

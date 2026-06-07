@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SoC Node Profile",
+  "type": "object",
+  "required": [
+    "node_id",
+    "device_class",
+    "cpu_cores",
+    "ram_gb",
+    "storage_gb",
+    "battery_powered",
+    "thermal_throttling_expected"
+  ],
+  "properties": {
+    "node_id": {"type": "string", "minLength": 1},
+    "device_class": {"type": "string", "enum": ["SMARTPHONE_SOC", "MOBILE_SOC_BOARD", "TABLET_SOC"]},
+    "chipset": {"type": "string"},
+    "cpu_cores": {"type": "integer", "minimum": 1},
+    "gpu_available": {"type": "boolean"},
+    "npu_available": {"type": "boolean"},
+    "ram_gb": {"type": "number", "minimum": 1},
+    "storage_gb": {"type": "number", "minimum": 1},
+    "battery_powered": {"type": "boolean"},
+    "thermal_throttling_expected": {"type": "boolean"},
+    "network_policy": {"type": "string", "enum": ["NO_EXTERNAL", "INTERNAL_ONLY"]}
+  },
+  "additionalProperties": true
+}

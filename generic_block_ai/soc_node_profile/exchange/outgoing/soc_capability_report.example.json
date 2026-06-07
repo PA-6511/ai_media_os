@@ -1,0 +1,11 @@
+{
+  "node_id": "soc_node_001",
+  "status": "DESIGN_ONLY",
+  "execution_mode": "DRY_RUN",
+  "can_summarize": true,
+  "can_classify": true,
+  "can_generate_long_text": false,
+  "can_call_external_api": false,
+  "can_write_wordpress": false,
+  "recommended_task_size": "SMALL"
+}

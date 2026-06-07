@@ -1,0 +1,41 @@
+{
+  "block_id": "soc_lightweight_monitor_block_ai",
+  "block_type": "SOC_NODE_BLOCK_AI",
+  "version": "0.1.0",
+  "status": "DESIGN_ONLY",
+  "production_status": "NO_GO",
+  "execution": "DRY_RUN",
+  "hardware_profile": {
+    "device_class": "SMARTPHONE_SOC_OR_MOBILE_SOC_BOARD",
+    "cpu_available": true,
+    "gpu_available": "UNKNOWN",
+    "npu_available": "UNKNOWN",
+    "ram_gb_min_required": 6,
+    "storage_gb_min_required": 16,
+    "battery_powered": true,
+    "thermal_throttling_expected": true
+  },
+  "allowed_capabilities": [
+    "observe",
+    "analyze",
+    "classify",
+    "summarize",
+    "propose",
+    "report"
+  ],
+  "blocked_capabilities": [
+    "publish",
+    "delete",
+    "update_production",
+    "send_external_message",
+    "execute_shell_command",
+    "modify_credentials",
+    "modify_wordpress",
+    "network_scan",
+    "self_update"
+  ],
+  "human_review_required": true,
+  "auto_execute": false,
+  "external_api_call_allowed": false,
+  "wordpress_write_allowed": false
+}
