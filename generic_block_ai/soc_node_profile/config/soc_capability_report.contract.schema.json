@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SoC Capability Report Contract",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "node_id",
+    "status",
+    "execution_mode",
+    "can_summarize",
+    "can_classify",
+    "can_generate_long_text",
+    "can_call_external_api",
+    "can_write_wordpress",
+    "recommended_task_size",
+    "blocked_capabilities"
+  ],
+  "properties": {
+    "schema_version": {"type": "string", "const": "soc_capability_report_v1"},
+    "node_id": {"type": "string", "minLength": 1},
+    "status": {"type": "string", "enum": ["DESIGN_ONLY"]},
+    "execution_mode": {"type": "string", "enum": ["DRY_RUN", "DRY_RUN_ONLY", "NO_EXECUTION"]},
+    "can_summarize": {"type": "boolean"},
+    "can_classify": {"type": "boolean"},
+    "can_generate_long_text": {"type": "boolean"},
+    "can_call_external_api": {"type": "boolean", "const": false},
+    "can_write_wordpress": {"type": "boolean", "const": false},
+    "recommended_task_size": {"type": "string", "enum": ["SMALL"]},
+    "battery_powered": {"type": "boolean"},
+    "thermal_status": {"type": "string"},
+    "blocked_capabilities": {
+      "type": "array",
+      "items": {"type": "string"},
+      "minItems": 1
+    }
+  },
+  "additionalProperties": true
+}

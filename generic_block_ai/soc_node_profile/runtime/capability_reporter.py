@@ -8,6 +8,7 @@ def build_soc_capability_report(node_id: str, manifest: dict[str, Any], profile:
     blocked = set(manifest.get("blocked_capabilities", []))
 
     return {
+        "schema_version": "soc_capability_report_v1",
         "node_id": node_id,
         "status": manifest.get("status", "DESIGN_ONLY"),
         "execution_mode": manifest.get("execution", "DRY_RUN"),

@@ -1,4 +1,5 @@
 {
+  "schema_version": "soc_capability_report_v1",
   "node_id": "soc_node_001",
   "status": "DESIGN_ONLY",
   "execution_mode": "DRY_RUN",

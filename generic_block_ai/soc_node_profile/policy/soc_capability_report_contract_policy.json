@@ -1,0 +1,47 @@
+{
+  "phase": "SoC-2",
+  "status": "DESIGN_ONLY",
+  "production_status": "NO_GO",
+  "execution_mode": "NO_EXECUTION",
+  "dry_run_only": true,
+  "schema_version": "soc_capability_report_v1",
+  "required_fields": [
+    "schema_version",
+    "node_id",
+    "status",
+    "execution_mode",
+    "can_summarize",
+    "can_classify",
+    "can_generate_long_text",
+    "can_call_external_api",
+    "can_write_wordpress",
+    "recommended_task_size",
+    "blocked_capabilities"
+  ],
+  "allowed_status": [
+    "DESIGN_ONLY"
+  ],
+  "allowed_execution_mode": [
+    "DRY_RUN",
+    "DRY_RUN_ONLY",
+    "NO_EXECUTION"
+  ],
+  "allowed_task_size": [
+    "SMALL"
+  ],
+  "must_be_false": [
+    "can_call_external_api",
+    "can_write_wordpress"
+  ],
+  "forbidden_blocked_capabilities_missing": [
+    "publish",
+    "delete",
+    "update_production",
+    "send_external_message",
+    "execute_shell_command",
+    "modify_credentials",
+    "modify_wordpress",
+    "network_scan",
+    "self_update"
+  ]
+}

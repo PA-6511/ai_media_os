@@ -14,6 +14,7 @@ def test_soc_capability_report_is_dry_run_and_small() -> None:
     profile = probe_device_profile({"node_id": "soc_node_001", "thermal_status": "NORMAL"})
     report = build_soc_capability_report("soc_node_001", manifest, profile)
 
+    assert report["schema_version"] == "soc_capability_report_v1"
     assert report["execution_mode"] == "DRY_RUN"
     assert report["recommended_task_size"] == "SMALL"
     assert report["can_call_external_api"] is False
