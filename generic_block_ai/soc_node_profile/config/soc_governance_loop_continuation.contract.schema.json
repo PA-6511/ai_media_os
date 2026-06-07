@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SoC Governance Loop Continuation Contract",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "phase",
+    "node_id",
+    "request_id",
+    "source_archive_schema",
+    "loop_mode",
+    "continuation_ready",
+    "next_cycle_mode",
+    "reverification_required",
+    "reports_only",
+    "record_only",
+    "execution_allowed",
+    "production_status",
+    "actual_execution",
+    "external_send_executed",
+    "freeze_executed",
+    "isolation_executed",
+    "state_change_executed",
+    "continuation_summary",
+    "timestamp_utc"
+  ],
+  "properties": {
+    "schema_version": {"type": "string", "const": "soc_governance_loop_continuation_v1"},
+    "phase": {"type": "string", "const": "SoC-16"},
+    "node_id": {"type": "string", "minLength": 1},
+    "request_id": {"type": "string", "minLength": 1},
+    "source_archive_schema": {"type": "string", "const": "soc_terminal_archive_manifest_v1"},
+    "loop_mode": {"type": "string", "const": "GOVERNANCE_CONTINUATION_REPORTS_ONLY"},
+    "continuation_ready": {"type": "boolean", "const": true},
+    "next_cycle_mode": {"type": "string", "const": "MANUAL_OR_SCHEDULED_REVIEW_ONLY"},
+    "reverification_required": {"type": "boolean", "const": true},
+    "reports_only": {"type": "boolean", "const": true},
+    "record_only": {"type": "boolean", "const": true},
+    "execution_allowed": {"type": "boolean", "const": false},
+    "production_status": {"type": "string", "const": "NO_GO"},
+    "actual_execution": {"type": "boolean", "const": false},
+    "external_send_executed": {"type": "boolean", "const": false},
+    "freeze_executed": {"type": "boolean", "const": false},
+    "isolation_executed": {"type": "boolean", "const": false},
+    "state_change_executed": {"type": "boolean", "const": false},
+    "continuation_summary": {
+      "type": "object",
+      "required": ["archive_scope", "entry_count", "sealed_complete"],
+      "properties": {
+        "archive_scope": {"type": "string"},
+        "entry_count": {"type": "integer", "minimum": 0},
+        "sealed_complete": {"type": "boolean"}
+      },
+      "additionalProperties": true
+    },
+    "timestamp_utc": {"type": "string", "minLength": 1}
+  },
+  "additionalProperties": true
+}

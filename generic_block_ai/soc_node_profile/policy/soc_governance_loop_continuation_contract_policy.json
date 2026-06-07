@@ -1,0 +1,25 @@
+{
+  "phase": "SoC-16",
+  "status": "DESIGN_ONLY",
+  "production_status": "NO_GO",
+  "execution_mode": "NO_EXECUTION",
+  "dry_run_only": true,
+  "schema_version": "soc_governance_loop_continuation_v1",
+  "required_input_schema": "soc_terminal_archive_manifest_v1",
+  "required_loop_mode": "GOVERNANCE_CONTINUATION_REPORTS_ONLY",
+  "required_next_cycle_mode": "MANUAL_OR_SCHEDULED_REVIEW_ONLY",
+  "must_be_true": [
+    "continuation_ready",
+    "reverification_required",
+    "reports_only",
+    "record_only"
+  ],
+  "must_be_false": [
+    "execution_allowed",
+    "actual_execution",
+    "external_send_executed",
+    "freeze_executed",
+    "isolation_executed",
+    "state_change_executed"
+  ]
+}
