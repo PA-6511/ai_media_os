@@ -1,0 +1,25 @@
+{
+  "phase": "SoC-18",
+  "status": "DESIGN_ONLY",
+  "production_status": "NO_GO",
+  "execution_mode": "NO_EXECUTION",
+  "dry_run_only": true,
+  "schema_version": "soc_terminal_preservation_receipt_v1",
+  "required_input_schema": "soc_final_closure_audit_declaration_v1",
+  "required_preservation_mode": "REPORTS_RECORD_PRESERVATION_ONLY",
+  "required_receipt_status": "PRESERVATION_RECEIVED",
+  "must_be_true": [
+    "preservation_confirmed",
+    "reports_only",
+    "record_only",
+    "no_go_lock_confirmed"
+  ],
+  "must_be_false": [
+    "execution_allowed",
+    "actual_execution",
+    "external_send_executed",
+    "freeze_executed",
+    "isolation_executed",
+    "state_change_executed"
+  ]
+}

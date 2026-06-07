@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SoC Terminal Preservation Receipt Contract",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "phase",
+    "node_id",
+    "request_id",
+    "source_closure_schema",
+    "preservation_mode",
+    "receipt_status",
+    "preservation_confirmed",
+    "reports_only",
+    "record_only",
+    "no_go_lock_confirmed",
+    "execution_allowed",
+    "production_status",
+    "actual_execution",
+    "external_send_executed",
+    "freeze_executed",
+    "isolation_executed",
+    "state_change_executed",
+    "preservation_summary",
+    "timestamp_utc"
+  ],
+  "properties": {
+    "schema_version": {"type": "string", "const": "soc_terminal_preservation_receipt_v1"},
+    "phase": {"type": "string", "const": "SoC-18"},
+    "node_id": {"type": "string", "minLength": 1},
+    "request_id": {"type": "string", "minLength": 1},
+    "source_closure_schema": {"type": "string", "const": "soc_final_closure_audit_declaration_v1"},
+    "preservation_mode": {"type": "string", "const": "REPORTS_RECORD_PRESERVATION_ONLY"},
+    "receipt_status": {"type": "string", "const": "PRESERVATION_RECEIVED"},
+    "preservation_confirmed": {"type": "boolean", "const": true},
+    "reports_only": {"type": "boolean", "const": true},
+    "record_only": {"type": "boolean", "const": true},
+    "no_go_lock_confirmed": {"type": "boolean", "const": true},
+    "execution_allowed": {"type": "boolean", "const": false},
+    "production_status": {"type": "string", "const": "NO_GO"},
+    "actual_execution": {"type": "boolean", "const": false},
+    "external_send_executed": {"type": "boolean", "const": false},
+    "freeze_executed": {"type": "boolean", "const": false},
+    "isolation_executed": {"type": "boolean", "const": false},
+    "state_change_executed": {"type": "boolean", "const": false},
+    "preservation_summary": {
+      "type": "object",
+      "required": ["closure_state", "sealed_complete", "retention_reference"],
+      "properties": {
+        "closure_state": {"type": "string"},
+        "sealed_complete": {"type": "boolean"},
+        "retention_reference": {"type": "string"}
+      },
+      "additionalProperties": true
+    },
+    "timestamp_utc": {"type": "string", "minLength": 1}
+  },
+  "additionalProperties": true
+}

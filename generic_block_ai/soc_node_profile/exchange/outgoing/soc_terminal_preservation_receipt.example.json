@@ -1,0 +1,26 @@
+{
+  "schema_version": "soc_terminal_preservation_receipt_v1",
+  "phase": "SoC-18",
+  "node_id": "soc_node_001",
+  "request_id": "req_soc_0001",
+  "source_closure_schema": "soc_final_closure_audit_declaration_v1",
+  "preservation_mode": "REPORTS_RECORD_PRESERVATION_ONLY",
+  "receipt_status": "PRESERVATION_RECEIVED",
+  "preservation_confirmed": true,
+  "reports_only": true,
+  "record_only": true,
+  "no_go_lock_confirmed": true,
+  "execution_allowed": false,
+  "production_status": "NO_GO",
+  "actual_execution": false,
+  "external_send_executed": false,
+  "freeze_executed": false,
+  "isolation_executed": false,
+  "state_change_executed": false,
+  "preservation_summary": {
+    "closure_state": "AUDIT_CLOSED_NO_GO",
+    "sealed_complete": true,
+    "retention_reference": "soc_long_term_audit_retention_package_v1"
+  },
+  "timestamp_utc": "2026-06-07T00:00:00+00:00"
+}
