@@ -1,0 +1,35 @@
+{
+  "phase": "SoC-3",
+  "status": "DESIGN_ONLY",
+  "production_status": "NO_GO",
+  "execution_mode": "NO_EXECUTION",
+  "dry_run_only": true,
+  "schema_version": "soc_task_acceptance_result_v1",
+  "required_execution_mode": "DRY_RUN_ONLY",
+  "max_input_lines": 200,
+  "max_input_chars": 20000,
+  "allowed_task_types": [
+    "log_summary",
+    "lightweight_monitor",
+    "anomaly_hint",
+    "policy_precheck",
+    "short_text_generation",
+    "classification"
+  ],
+  "blocked_task_types": [
+    "wordpress_publish",
+    "production_write",
+    "credential_operation",
+    "external_send",
+    "shell_execution",
+    "delete_operation",
+    "bulk_generation"
+  ],
+  "blocked_keywords": [
+    "wordpress",
+    "external_send",
+    "credential",
+    "shell",
+    "delete"
+  ]
+}

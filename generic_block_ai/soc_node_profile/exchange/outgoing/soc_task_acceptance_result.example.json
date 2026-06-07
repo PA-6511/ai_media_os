@@ -1,0 +1,28 @@
+{
+  "schema_version": "soc_task_acceptance_result_v1",
+  "request_id": "req_soc_0001",
+  "node_id": "soc_node_001",
+  "task_type": "log_summary",
+  "execution_mode": "DRY_RUN_ONLY",
+  "decision": "PASS",
+  "reason": "allowed_task_type:log_summary",
+  "reason_codes": [
+    "allowed_task_type"
+  ],
+  "input_metrics": {
+    "input_lines": 2,
+    "input_chars": 76
+  },
+  "enforced_limits": {
+    "max_input_lines": 200,
+    "max_input_chars": 20000
+  },
+  "safeguards": {
+    "design_only": true,
+    "no_execution": true,
+    "external_api_call": false,
+    "wordpress_write": false,
+    "shell_execution": false,
+    "credential_operation": false
+  }
+}
