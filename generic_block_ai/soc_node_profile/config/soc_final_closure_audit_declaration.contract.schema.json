@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SoC Final Closure Audit Declaration Contract",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "phase",
+    "node_id",
+    "request_id",
+    "source_governance_schema",
+    "audit_closure_declared",
+    "closure_state",
+    "declaration_reason",
+    "reports_only",
+    "record_only",
+    "no_go_lock_confirmed",
+    "execution_allowed",
+    "production_status",
+    "actual_execution",
+    "external_send_executed",
+    "freeze_executed",
+    "isolation_executed",
+    "state_change_executed",
+    "audit_summary",
+    "timestamp_utc"
+  ],
+  "properties": {
+    "schema_version": {"type": "string", "const": "soc_final_closure_audit_declaration_v1"},
+    "phase": {"type": "string", "const": "SoC-17"},
+    "node_id": {"type": "string", "minLength": 1},
+    "request_id": {"type": "string", "minLength": 1},
+    "source_governance_schema": {"type": "string", "const": "soc_governance_loop_continuation_v1"},
+    "audit_closure_declared": {"type": "boolean", "const": true},
+    "closure_state": {"type": "string", "const": "AUDIT_CLOSED_NO_GO"},
+    "declaration_reason": {"type": "string", "const": "FINAL_AUDIT_CLOSURE_REPORTS_RECORD_ONLY"},
+    "reports_only": {"type": "boolean", "const": true},
+    "record_only": {"type": "boolean", "const": true},
+    "no_go_lock_confirmed": {"type": "boolean", "const": true},
+    "execution_allowed": {"type": "boolean", "const": false},
+    "production_status": {"type": "string", "const": "NO_GO"},
+    "actual_execution": {"type": "boolean", "const": false},
+    "external_send_executed": {"type": "boolean", "const": false},
+    "freeze_executed": {"type": "boolean", "const": false},
+    "isolation_executed": {"type": "boolean", "const": false},
+    "state_change_executed": {"type": "boolean", "const": false},
+    "audit_summary": {
+      "type": "object",
+      "required": ["continuation_ready", "next_cycle_mode", "sealed_complete"],
+      "properties": {
+        "continuation_ready": {"type": "boolean"},
+        "next_cycle_mode": {"type": "string"},
+        "sealed_complete": {"type": "boolean"}
+      },
+      "additionalProperties": true
+    },
+    "timestamp_utc": {"type": "string", "minLength": 1}
+  },
+  "additionalProperties": true
+}

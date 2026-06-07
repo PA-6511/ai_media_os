@@ -1,0 +1,25 @@
+{
+  "phase": "SoC-17",
+  "status": "DESIGN_ONLY",
+  "production_status": "NO_GO",
+  "execution_mode": "NO_EXECUTION",
+  "dry_run_only": true,
+  "schema_version": "soc_final_closure_audit_declaration_v1",
+  "required_input_schema": "soc_governance_loop_continuation_v1",
+  "required_declaration_reason": "FINAL_AUDIT_CLOSURE_REPORTS_RECORD_ONLY",
+  "required_closure_state": "AUDIT_CLOSED_NO_GO",
+  "must_be_true": [
+    "audit_closure_declared",
+    "reports_only",
+    "record_only",
+    "no_go_lock_confirmed"
+  ],
+  "must_be_false": [
+    "execution_allowed",
+    "actual_execution",
+    "external_send_executed",
+    "freeze_executed",
+    "isolation_executed",
+    "state_change_executed"
+  ]
+}
