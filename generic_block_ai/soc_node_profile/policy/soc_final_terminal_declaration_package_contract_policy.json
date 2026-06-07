@@ -1,0 +1,25 @@
+{
+  "phase": "SoC-20",
+  "status": "DESIGN_ONLY",
+  "production_status": "NO_GO",
+  "execution_mode": "NO_EXECUTION",
+  "dry_run_only": true,
+  "schema_version": "soc_final_terminal_declaration_package_v1",
+  "required_input_schema": "soc_governance_cycle_handoff_marker_v1",
+  "required_declaration_state": "TERMINAL_DECLARATION_FINALIZED",
+  "required_declaration_mode": "REPORTS_RECORD_ONLY_FINAL_DECLARATION",
+  "must_be_true": [
+    "terminal_declaration_issued",
+    "reports_only",
+    "record_only",
+    "no_go_lock_confirmed"
+  ],
+  "must_be_false": [
+    "execution_allowed",
+    "actual_execution",
+    "external_send_executed",
+    "freeze_executed",
+    "isolation_executed",
+    "state_change_executed"
+  ]
+}

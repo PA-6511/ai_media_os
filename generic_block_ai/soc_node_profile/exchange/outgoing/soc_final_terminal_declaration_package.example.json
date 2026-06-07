@@ -1,0 +1,26 @@
+{
+  "schema_version": "soc_final_terminal_declaration_package_v1",
+  "phase": "SoC-20",
+  "node_id": "soc_node_001",
+  "request_id": "req_soc_20001",
+  "source_handoff_schema": "soc_governance_cycle_handoff_marker_v1",
+  "declaration_state": "TERMINAL_DECLARATION_FINALIZED",
+  "declaration_mode": "REPORTS_RECORD_ONLY_FINAL_DECLARATION",
+  "terminal_declaration_issued": true,
+  "reports_only": true,
+  "record_only": true,
+  "no_go_lock_confirmed": true,
+  "execution_allowed": false,
+  "production_status": "NO_GO",
+  "actual_execution": false,
+  "external_send_executed": false,
+  "freeze_executed": false,
+  "isolation_executed": false,
+  "state_change_executed": false,
+  "declaration_summary": {
+    "handoff_state": "NEXT_GOVERNANCE_CYCLE_PENDING",
+    "handoff_marker_issued": true,
+    "line_terminal_status": "CLOSED_PRESERVED_HANDOFF_READY"
+  },
+  "timestamp_utc": "2026-01-01T00:00:00+00:00"
+}
