@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SoC Task Runner Result Contract",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "request_id",
+    "node_id",
+    "task_type",
+    "execution_mode",
+    "status",
+    "decision_reason",
+    "acceptance_decision",
+    "acceptance_reason",
+    "input_metrics",
+    "safeguards",
+    "timestamp_utc"
+  ],
+  "properties": {
+    "schema_version": {"type": "string", "const": "soc_task_runner_result_v1"},
+    "request_id": {"type": "string", "minLength": 1},
+    "node_id": {"type": "string", "minLength": 1},
+    "task_type": {"type": "string", "minLength": 1},
+    "execution_mode": {"type": "string", "const": "DRY_RUN_ONLY"},
+    "status": {"type": "string", "enum": ["PASS", "ABORT"]},
+    "decision_reason": {"type": "string", "minLength": 1},
+    "acceptance_decision": {"type": "string", "enum": ["PASS", "ABORT"]},
+    "acceptance_reason": {"type": "string", "minLength": 1},
+    "summary": {"type": "string"},
+    "classification_candidate": {"type": "string", "enum": ["INFO", "WARN", "FAIL", "ABORT"]},
+    "input_metrics": {
+      "type": "object",
+      "required": ["input_lines", "input_chars"],
+      "properties": {
+        "input_lines": {"type": "integer", "minimum": 0},
+        "input_chars": {"type": "integer", "minimum": 0}
+      },
+      "additionalProperties": true
+    },
+    "safeguards": {
+      "type": "object",
+      "required": [
+        "design_only",
+        "no_execution",
+        "external_api_call",
+        "wordpress_write",
+        "shell_execution",
+        "credential_operation",
+        "freeze_executed",
+        "isolation_executed",
+        "state_change_executed"
+      ],
+      "properties": {
+        "design_only": {"type": "boolean", "const": true},
+        "no_execution": {"type": "boolean", "const": true},
+        "external_api_call": {"type": "boolean", "const": false},
+        "wordpress_write": {"type": "boolean", "const": false},
+        "shell_execution": {"type": "boolean", "const": false},
+        "credential_operation": {"type": "boolean", "const": false},
+        "freeze_executed": {"type": "boolean", "const": false},
+        "isolation_executed": {"type": "boolean", "const": false},
+        "state_change_executed": {"type": "boolean", "const": false}
+      },
+      "additionalProperties": true
+    },
+    "timestamp_utc": {"type": "string", "minLength": 1}
+  },
+  "additionalProperties": true
+}

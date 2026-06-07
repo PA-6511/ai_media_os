@@ -25,11 +25,5 @@
     "isolation_executed": false,
     "state_change_executed": false
   },
-  "freeze_recommendation": "manual_review",
-  "freeze_executed": false,
-  "isolation_executed": false,
-  "state_change_executed": false,
-  "wordpress_write_executed": false,
-  "publish_allowed": false,
   "timestamp_utc": "2026-06-07T00:00:00+00:00"
 }

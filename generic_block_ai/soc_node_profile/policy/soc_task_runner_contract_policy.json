@@ -1,0 +1,31 @@
+{
+  "phase": "SoC-4",
+  "status": "DESIGN_ONLY",
+  "production_status": "NO_GO",
+  "execution_mode": "NO_EXECUTION",
+  "dry_run_only": true,
+  "schema_version": "soc_task_runner_result_v1",
+  "required_acceptance_decision": "PASS",
+  "allowed_status": [
+    "PASS",
+    "ABORT"
+  ],
+  "allowed_execution_mode": [
+    "DRY_RUN_ONLY"
+  ],
+  "allowed_classification_candidates": [
+    "INFO",
+    "WARN",
+    "FAIL",
+    "ABORT"
+  ],
+  "must_be_false": [
+    "external_api_call",
+    "wordpress_write",
+    "shell_execution",
+    "credential_operation",
+    "freeze_executed",
+    "isolation_executed",
+    "state_change_executed"
+  ]
+}
