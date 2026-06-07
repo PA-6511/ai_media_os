@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SoC Core Connection Simulation Result Contract",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "phase",
+    "node_id",
+    "request_id",
+    "integration_result",
+    "connection_status",
+    "capability_validation",
+    "runner_validation",
+    "safeguards",
+    "timestamp_utc"
+  ],
+  "properties": {
+    "schema_version": {"type": "string", "const": "soc_core_connection_simulation_result_v1"},
+    "phase": {"type": "string", "const": "SoC-5"},
+    "node_id": {"type": "string", "minLength": 1},
+    "request_id": {"type": "string", "minLength": 1},
+    "integration_result": {"type": "string", "enum": ["PASS", "WARN", "FAIL"]},
+    "connection_status": {
+      "type": "string",
+      "enum": [
+        "ACCEPT_DRY_RUN_REVIEW_QUEUE",
+        "BLOCKED_BY_GATE",
+        "REVIEW_REQUIRED",
+        "REJECTED"
+      ]
+    },
+    "core_receive_rule": {
+      "type": "string",
+      "enum": [
+        "ACCEPT_DRY_RUN_REVIEW_QUEUE",
+        "BLOCK_AND_PRESERVE_AUDIT_EVIDENCE",
+        "REQUIRE_HUMAN_REVIEW",
+        "REJECT_AND_KEEP_NO_GO"
+      ]
+    },
+    "capability_validation": {
+      "type": "object",
+      "required": ["result", "failed_checks", "warnings"],
+      "properties": {
+        "result": {"type": "string", "enum": ["PASS", "WARN", "FAIL"]},
+        "failed_checks": {"type": "array", "items": {"type": "string"}},
+        "warnings": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": true
+    },
+    "runner_validation": {
+      "type": "object",
+      "required": ["result", "failed_checks", "warnings"],
+      "properties": {
+        "result": {"type": "string", "enum": ["PASS", "WARN", "FAIL"]},
+        "failed_checks": {"type": "array", "items": {"type": "string"}},
+        "warnings": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": true
+    },
+    "safeguards": {
+      "type": "object",
+      "required": [
+        "design_only",
+        "no_execution",
+        "external_api_call",
+        "wordpress_write",
+        "shell_execution",
+        "credential_operation",
+        "actual_execution",
+        "freeze_executed",
+        "isolation_executed",
+        "state_change_executed"
+      ],
+      "properties": {
+        "design_only": {"type": "boolean", "const": true},
+        "no_execution": {"type": "boolean", "const": true},
+        "external_api_call": {"type": "boolean", "const": false},
+        "wordpress_write": {"type": "boolean", "const": false},
+        "shell_execution": {"type": "boolean", "const": false},
+        "credential_operation": {"type": "boolean", "const": false},
+        "actual_execution": {"type": "boolean", "const": false},
+        "freeze_executed": {"type": "boolean", "const": false},
+        "isolation_executed": {"type": "boolean", "const": false},
+        "state_change_executed": {"type": "boolean", "const": false}
+      },
+      "additionalProperties": true
+    },
+    "timestamp_utc": {"type": "string", "minLength": 1}
+  },
+  "additionalProperties": true
+}

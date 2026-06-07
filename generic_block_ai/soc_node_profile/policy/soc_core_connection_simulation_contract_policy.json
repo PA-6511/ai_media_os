@@ -1,0 +1,32 @@
+{
+  "phase": "SoC-5",
+  "status": "DESIGN_ONLY",
+  "production_status": "NO_GO",
+  "execution_mode": "NO_EXECUTION",
+  "dry_run_only": true,
+  "schema_version": "soc_core_connection_simulation_result_v1",
+  "required_capability_validation_result": [
+    "PASS",
+    "WARN"
+  ],
+  "required_runner_validation_result": [
+    "PASS",
+    "WARN"
+  ],
+  "allowed_connection_status": [
+    "ACCEPT_DRY_RUN_REVIEW_QUEUE",
+    "BLOCKED_BY_GATE",
+    "REVIEW_REQUIRED",
+    "REJECTED"
+  ],
+  "must_be_false": [
+    "external_api_call",
+    "wordpress_write",
+    "shell_execution",
+    "credential_operation",
+    "actual_execution",
+    "freeze_executed",
+    "isolation_executed",
+    "state_change_executed"
+  ]
+}
