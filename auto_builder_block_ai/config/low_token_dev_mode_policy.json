@@ -1,0 +1,40 @@
+{
+  "phase_id": "AUTO_BUILDER_LEVEL5_L5_1_TO_L5_5",
+  "status": "LOW_TOKEN_DEV_MODE_POLICY_READY_DESIGN_ONLY",
+  "production_status": "NO_GO",
+  "execution_mode": "DRY_RUN_ONLY",
+  "external_calls_allowed": false,
+  "credential_access_allowed": false,
+  "systemd_changes_allowed": false,
+  "wordpress_write_allowed": false,
+  "allowed_output_blocks": [
+    "TASK",
+    "SCOPE",
+    "ALLOWED_FILES",
+    "DO_NOT",
+    "VALIDATION",
+    "OUTPUT",
+    "SUMMARY",
+    "LIKELY_CAUSE",
+    "FILES_TO_CHECK",
+    "NEXT_ACTION",
+    "SAFETY_NOTES"
+  ],
+  "forbidden_actions": [
+    "read_credentials",
+    "external_api_calls",
+    "wordpress_writes",
+    "systemd_changes",
+    "cron_registration",
+    "sudo_install",
+    "production_execution"
+  ],
+  "required_prompt_sections": [
+    "TASK",
+    "SCOPE",
+    "ALLOWED_FILES",
+    "DO_NOT",
+    "VALIDATION",
+    "OUTPUT"
+  ]
+}

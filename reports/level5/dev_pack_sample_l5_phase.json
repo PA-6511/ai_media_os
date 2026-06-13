@@ -1,0 +1,22 @@
+{
+  "phase_name": "sample_l5_phase",
+  "objective": "sample low token development pack",
+  "production_status": "NO_GO",
+  "execution_mode": "DRY_RUN_ONLY",
+  "external_calls_allowed": false,
+  "credential_access_allowed": false,
+  "wordpress_write_allowed": false,
+  "systemd_changes_allowed": false,
+  "target_files": [
+    "auto_builder_block_ai/src/low_token_dev_mode.py"
+  ],
+  "validation_commands": [
+    "PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 pytest -q auto_builder_block_ai/tests"
+  ],
+  "generated_artifacts": [
+    "/home/deploy/ai_media_os/reports/level5/dev_pack_sample_l5_phase.json",
+    "/home/deploy/ai_media_os/reports/level5/copilot_prompt_sample_l5_phase.txt",
+    "/home/deploy/ai_media_os/reports/level5/codex_summary_sample_l5_phase.md",
+    "/home/deploy/ai_media_os/reports/level5/allowed_files_sample_l5_phase.txt"
+  ]
+}

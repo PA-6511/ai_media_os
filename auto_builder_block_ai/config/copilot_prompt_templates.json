@@ -1,0 +1,22 @@
+{
+  "template_version": "1.0",
+  "mode": "LOW_TOKEN_DEV_MODE",
+  "production_status": "NO_GO",
+  "execution_mode": "DRY_RUN_ONLY",
+  "required_sections": [
+    "TASK",
+    "SCOPE",
+    "ALLOWED_FILES",
+    "DO_NOT",
+    "VALIDATION",
+    "OUTPUT"
+  ],
+  "default_output": [
+    "changed files",
+    "generated files",
+    "validation results",
+    "final_status",
+    "production_status",
+    "execution_mode"
+  ]
+}

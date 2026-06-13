@@ -1,0 +1,22 @@
+{
+  "template_version": "1.0",
+  "mode": "LOW_TOKEN_DEV_MODE",
+  "production_status": "NO_GO",
+  "execution_mode": "DRY_RUN_ONLY",
+  "max_summary_lines": 3,
+  "max_line_length": 160,
+  "required_sections": [
+    "SUMMARY",
+    "LIKELY_CAUSE",
+    "FILES_TO_CHECK",
+    "NEXT_ACTION",
+    "SAFETY_NOTES"
+  ],
+  "redaction_markers": [
+    "token",
+    "secret",
+    "password",
+    "authorization",
+    "bearer"
+  ]
+}
