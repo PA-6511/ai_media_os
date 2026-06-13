@@ -1,0 +1,4 @@
+auto_builder_block_ai/src/low_token_dev_mode.py
+auto_builder_block_ai/src/copilot_prompt_generator.py
+auto_builder_block_ai/src/codex_preprocessor.py
+auto_builder_block_ai/src/level5_dev_pack_generator.py
