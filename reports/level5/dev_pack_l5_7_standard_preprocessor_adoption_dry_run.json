@@ -1,0 +1,28 @@
+{
+  "phase_name": "l5_7_standard_preprocessor_adoption_dry_run",
+  "objective": "Adopt Level5 preprocessor as mandatory gate before new phase implementation",
+  "production_status": "NO_GO",
+  "execution_mode": "DRY_RUN_ONLY",
+  "external_calls_allowed": false,
+  "credential_access_allowed": false,
+  "wordpress_write_allowed": false,
+  "systemd_changes_allowed": false,
+  "target_files": [
+    "auto_builder_block_ai/src/low_token_dev_mode.py",
+    "auto_builder_block_ai/src/copilot_prompt_generator.py",
+    "auto_builder_block_ai/src/codex_preprocessor.py",
+    "auto_builder_block_ai/src/level5_dev_pack_generator.py",
+    "auto_builder_block_ai/scripts/generate_level5_dev_pack.py",
+    "auto_builder_block_ai/scripts/generate_level5_status_report.py"
+  ],
+  "validation_commands": [
+    "python3 -m py_compile auto_builder_block_ai/src/*.py auto_builder_block_ai/scripts/*.py",
+    "PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 pytest -q auto_builder_block_ai/tests"
+  ],
+  "generated_artifacts": [
+    "/home/deploy/ai_media_os/reports/level5/dev_pack_l5_7_standard_preprocessor_adoption_dry_run.json",
+    "/home/deploy/ai_media_os/reports/level5/copilot_prompt_l5_7_standard_preprocessor_adoption_dry_run.txt",
+    "/home/deploy/ai_media_os/reports/level5/codex_summary_l5_7_standard_preprocessor_adoption_dry_run.md",
+    "/home/deploy/ai_media_os/reports/level5/allowed_files_l5_7_standard_preprocessor_adoption_dry_run.txt"
+  ]
+}

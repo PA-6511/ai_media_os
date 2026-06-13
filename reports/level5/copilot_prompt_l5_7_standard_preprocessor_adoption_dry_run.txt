@@ -1,0 +1,32 @@
+TASK:
+- Phase l5_7_standard_preprocessor_adoption_dry_run: Adopt Level5 preprocessor as mandatory gate before new phase implementation
+
+SCOPE:
+- Stay within DESIGN_ONLY and DRY_RUN_ONLY.
+- Work only on the listed files.
+
+ALLOWED_FILES:
+- auto_builder_block_ai/src/low_token_dev_mode.py
+- auto_builder_block_ai/src/copilot_prompt_generator.py
+- auto_builder_block_ai/src/codex_preprocessor.py
+- auto_builder_block_ai/src/level5_dev_pack_generator.py
+- auto_builder_block_ai/scripts/generate_level5_dev_pack.py
+- auto_builder_block_ai/scripts/generate_level5_status_report.py
+
+DO_NOT:
+- Do not read credentials.
+- Do not call external APIs.
+- Do not run production execution.
+- Do not write to WordPress.
+- Do not change systemd, sudo, cron, timers, or services.
+- Do not change systemd or cron.
+
+VALIDATION:
+- python3 -m py_compile auto_builder_block_ai/src/*.py auto_builder_block_ai/scripts/*.py
+- PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 pytest -q auto_builder_block_ai/tests
+
+OUTPUT:
+- Return changed files.
+- Return generated files.
+- Return validation results.
+- Return final_status, production_status, and execution_mode.
