@@ -1,0 +1,17 @@
+{
+  "phase": "PR WARN Backfill Phase 1",
+  "approved": false,
+  "approval_token": "APPROVED_PR_WARN_BACKFILL_PHASE1",
+  "approved_post_id": 101,
+  "max_live_updates": 1,
+  "wordpress_write_allowed": false,
+  "review_checklist": {
+    "phase0_artifacts_reviewed": true,
+    "dry_run_diff_reviewed": true,
+    "single_item_limit_confirmed": true,
+    "rollback_plan_confirmed": true
+  },
+  "operator": "human_reviewer",
+  "approved_at": "2026-06-14T00:00:00Z",
+  "notes": "Set approved=true and wordpress_write_allowed=true only after explicit final approval."
+}
