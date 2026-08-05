@@ -1,0 +1,84 @@
+{
+  "phase": "N-9",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "human_approval_required": true,
+  "wordpress_write_executed": false,
+  "wordpress_post_created": false,
+  "external_state_change": false,
+  "executor_action_allowed": false,
+  "network_observation_only": true,
+  "communication_test_only": true,
+  "system_restart_executed": false,
+  "reboot_executed": false,
+  "shutdown_executed": false,
+  "checked_at": "2026-05-31T14:00:11.595642+00:00",
+  "status": "PASS",
+  "scenarios": [
+    {
+      "scenario": "service_check_after_reboot",
+      "expected_action": "verify_all_services_alive",
+      "recommended_action": "run_health_probe_on_each_service",
+      "recovery_steps": [
+        "check nginx process and port 80/443",
+        "check php-fpm process",
+        "verify WordPress API GET health endpoint",
+        "check GitHub HTTPS and DNS reachability",
+        "verify Slack webhook DNS and TLS",
+        "confirm cron is active and lock files are cleared",
+        "review exchange/logs for any FAIL entries"
+      ],
+      "status": "PASS"
+    },
+    {
+      "scenario": "stale_lock_cleanup",
+      "expected_action": "detect_and_plan_stale_lock_removal",
+      "recommended_action": "identify_lock_files_and_prepare_removal_plan",
+      "recovery_steps": [
+        "scan exchange/locks for lock files older than threshold",
+        "verify no live process holds the lock",
+        "prepare manual removal command (do not execute in dry-run)",
+        "document lock cleanup in evidence log"
+      ],
+      "status": "PASS"
+    },
+    {
+      "scenario": "environment_variable_recheck",
+      "expected_action": "verify_env_vars_loaded_after_reboot",
+      "recommended_action": "confirm_env_file_presence_and_non_empty_values",
+      "recovery_steps": [
+        "check .env file presence in project root",
+        "verify required env keys are present (without printing values)",
+        "confirm systemd or cron env injection is configured",
+        "run dry-run check of credential readiness"
+      ],
+      "status": "PASS"
+    },
+    {
+      "scenario": "wordpress_api_reconnect",
+      "expected_action": "revalidate_wordpress_api_after_reboot",
+      "recommended_action": "run_get_head_check_on_wordpress_api",
+      "recovery_steps": [
+        "run HEAD request to WordPress REST API endpoint",
+        "check HTTP status code is 2xx or 4xx (not 5xx or timeout)",
+        "verify authentication headers load correctly",
+        "confirm no draft posts were created during reconnect"
+      ],
+      "status": "PASS"
+    },
+    {
+      "scenario": "github_reconnect",
+      "expected_action": "revalidate_github_connectivity_after_reboot",
+      "recommended_action": "run_ls_remote_and_dns_check",
+      "recovery_steps": [
+        "check github.com DNS resolution",
+        "run git ls-remote read-only probe",
+        "verify no push or merge was triggered",
+        "confirm SSH key presence without exposing key content"
+      ],
+      "status": "PASS"
+    }
+  ],
+  "scenario_count": 5
+}

@@ -1,0 +1,99 @@
+{
+  "phase_id": "21-3",
+  "phase_name": "App/Tests Implementation Start GO/NO-GO Actual Measurement Judgment Template Design",
+  "phase_japanese_name": "app/tests 実装開始GO/NO-GO 実測判定テンプレート設計",
+  "purpose": "Design the actual-measurement judgment template that can issue implementation-start GO only when all measured minimum conditions are truly MET",
+  "layer": "actual_measurement_judgment_template_layer",
+  "design_category": "reports_only",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only"
+  },
+  "phase_21_3_scope": {
+    "scope_1_minimum_conditions_template": {
+      "scope_id": "MINIMUM_CONDITIONS_TEMPLATE",
+      "conditions": {
+        "condition_1": "integrated_decision = GO (actual measurement)",
+        "condition_2": "receiver_validator_permission = EFFECTIVE (actual measurement)",
+        "condition_3": "dual_gate = UNLOCKED (actual cross-validation)",
+        "condition_4": "safety_gate = CLEARED (actual pre-launch safety confirmation)",
+        "condition_5": "human_final_approval_signature = VALID and ACTIVE"
+      },
+      "evaluation_values": "MET | NOT_MET"
+    },
+    "scope_2_judgment_rules": {
+      "scope_id": "JUDGMENT_RULES",
+      "rules": {
+        "rule_J1": "If all condition_1 through condition_5 are MET, determination = IMPLEMENTATION_START_GO",
+        "rule_J2": "If any condition is NOT_MET, determination = IMPLEMENTATION_START_NO_GO",
+        "rule_J3": "Any integrity failure or signature invalidity forces IMPLEMENTATION_START_NO_GO"
+      }
+    },
+    "scope_3_template_sections": {
+      "scope_id": "TEMPLATE_SECTIONS",
+      "sections": {
+        "section_1_header": {
+          "judgment_id": "IMPLSTART_MEASURED_JUDGMENT_<UTC_TIMESTAMP>",
+          "template_version": "1.0.0",
+          "generated_at_utc": "RFC3339",
+          "generated_by": "authority_identifier"
+        },
+        "section_2_measurement_inputs": {
+          "evidence_ids": [
+            "integrated_decision_evidence_id",
+            "receiver_validator_permission_evidence_id",
+            "dual_gate_evidence_id",
+            "safety_gate_evidence_id",
+            "human_approval_signature_evidence_id"
+          ]
+        },
+        "section_3_condition_evaluation": {
+          "condition_1": "MET | NOT_MET",
+          "condition_2": "MET | NOT_MET",
+          "condition_3": "MET | NOT_MET",
+          "condition_4": "MET | NOT_MET",
+          "condition_5": "MET | NOT_MET"
+        },
+        "section_4_final_determination": {
+          "determination": "IMPLEMENTATION_START_GO | IMPLEMENTATION_START_NO_GO",
+          "reason_summary": "human-readable reason",
+          "effective_time": "RFC3339"
+        }
+      }
+    },
+    "scope_4_default_fixed_state": {
+      "scope_id": "DEFAULT_FIXED_STATE",
+      "default_state_until_measured": {
+        "integrated_decision": "NO_GO",
+        "receiver_validator_permission": "NOT_EFFECTIVE",
+        "dual_gate": "LOCKED",
+        "app_implementation_status": "NO_GO",
+        "tests_implementation_status": "NO_GO",
+        "production_status": "NO_GO"
+      }
+    }
+  },
+  "phase_21_3_governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "state_invariants": {
+      "app_implementation_status": "NO_GO",
+      "tests_implementation_status": "NO_GO",
+      "production_status": "NO_GO"
+    }
+  }
+}

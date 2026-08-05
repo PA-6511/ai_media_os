@@ -1,0 +1,37 @@
+{
+  "schema_name": "START_LS_NEW5_HUMAN_REVIEW_CHECKLIST_SCHEMA",
+  "schema_version": "1.0.0",
+  "phase": "LS-NEW-5",
+  "review_target": "LS-NEW-4 purchase navigation payload",
+  "human_review_required": true,
+  "auto_approval_allowed": false,
+  "required_review_sections": [
+    "candidate_identity_review",
+    "wordpress_payload_review",
+    "x_payload_review",
+    "affiliate_disclosure_review",
+    "external_fetch_notice_review",
+    "content_policy_review",
+    "safety_review",
+    "human_decision"
+  ],
+  "required_human_decision_fields": [
+    "human_review_completed",
+    "human_approved",
+    "approval_label",
+    "reviewer_notes"
+  ],
+  "allowed_approval_label": "APPROVED_FOR_LS_NEW_6_WP_DRAFT_PAYLOAD_PREP_ONLY",
+  "safety": {
+    "no_external_fetch": true,
+    "no_http_get": true,
+    "no_scraping": true,
+    "no_wordpress_api": true,
+    "no_wordpress_write": true,
+    "no_x_api": true,
+    "no_x_post": true,
+    "no_credential_read": true,
+    "no_secret_output": true,
+    "execution_allowed": false
+  }
+}

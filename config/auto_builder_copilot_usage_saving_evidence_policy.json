@@ -1,0 +1,56 @@
+{
+  "phase": "AB-T6",
+  "status": "PASS_DESIGN_ONLY_NO_EXECUTION",
+  "purpose": "copilot_usage_saving_evidence_pack",
+  "execution_mode": "DESIGN_ONLY",
+  "production_status": "NO_GO",
+  "safety_state": "DRY_RUN_ONLY",
+  "collect_from": [
+    "AB-T2",
+    "AB-T3",
+    "AB-T4",
+    "AB-T5"
+  ],
+  "evidence_rules": {
+    "verify_previous_phase_results": true,
+    "verify_safety_state": true,
+    "verify_execution_mode": true,
+    "verify_no_execution": true,
+    "verify_no_external_api": true,
+    "verify_no_wordpress": true,
+    "verify_no_git_operation": true,
+    "verify_no_credentials": true,
+    "build_summary_report": true
+  },
+  "allowed_outputs": [
+    "evidence_summary",
+    "phase_status_table",
+    "safety_summary",
+    "token_saving_summary",
+    "readiness_summary"
+  ],
+  "forbidden_outputs": [
+    "production_execution",
+    "wordpress_command",
+    "external_api_payload",
+    "credential_contents",
+    "git_commit",
+    "git_push",
+    "secret_values"
+  ],
+  "copilot_send_allowed": false,
+  "llm_send_allowed": false,
+  "external_api_call_allowed": false,
+  "wordpress_api_call_allowed": false,
+  "credential_read_allowed": false,
+  "credential_output_allowed": false,
+  "production_write_allowed": false,
+  "destructive_operation_allowed": false,
+  "git_commit_allowed": false,
+  "git_push_allowed": false,
+  "next_phase": {
+    "phase": "AB-T7",
+    "name": "Copilot Saving Integration Gate",
+    "execution_allowed": false
+  }
+}

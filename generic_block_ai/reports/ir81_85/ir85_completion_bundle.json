@@ -1,0 +1,322 @@
+{
+  "schema_version": "ir85_phase_81_85_completion_bundle_v1",
+  "phase": "IR85",
+  "generated_at": "2026-05-24T14:32:03.875151+00:00",
+  "source_task_id": "ir81_85_live_trial",
+  "new_cycle_id": "IR71_PLUS_CYCLE_A",
+  "ir81_result": {
+    "schema_version": "ir81_unlock_preconditions_ledger_v1",
+    "phase": "IR81",
+    "generated_at": "2026-05-24T14:32:03.874425+00:00",
+    "source_task_id": "ir81_85_live_trial",
+    "validation_result": "PASS",
+    "validation_failed_checks": [],
+    "validation_warnings": [],
+    "unlock_preconditions_ledger": {
+      "ledger_id": "ir81_ledger_ir81_85_live_trial_20260524T143203Z",
+      "generated_at": "2026-05-24T14:32:03.874406+00:00",
+      "source_task_id": "ir81_85_live_trial",
+      "new_cycle_id": "IR71_PLUS_CYCLE_A",
+      "unlock_preconditions": [
+        {
+          "item": "explicit_go_decision_recorded",
+          "required": true,
+          "satisfied": false
+        },
+        {
+          "item": "named_release_approver_recorded",
+          "required": true,
+          "satisfied": false
+        },
+        {
+          "item": "safety_gate_redeclaration_completed",
+          "required": true,
+          "satisfied": false
+        },
+        {
+          "item": "full_test_matrix_reexecuted",
+          "required": true,
+          "satisfied": false
+        },
+        {
+          "item": "external_execution_authorized",
+          "required": true,
+          "satisfied": false
+        }
+      ],
+      "unlock_ready": false,
+      "ledger_scope": "preconditions_definition_only",
+      "safety_gate_snapshot": {
+        "dry_run": "maintained",
+        "OBSERVE": "maintained",
+        "submission_execution_blocked": true,
+        "execution_policy_execute": false,
+        "external_write_executed": false,
+        "network_transmission_executed": false,
+        "production_release": false,
+        "GitHub_push": "未実行"
+      }
+    },
+    "ledger_hash": "bee6685350a9f94e9fb89b24796c342a9cd28835644d8dabfd6ec1c76fad69b7",
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "ir82_result": {
+    "schema_version": "ir82_approval_evidence_recorder_v1",
+    "phase": "IR82",
+    "generated_at": "2026-05-24T14:32:03.874699+00:00",
+    "source_task_id": "ir81_85_live_trial",
+    "validation_result": "PASS",
+    "validation_failed_checks": [],
+    "validation_warnings": [],
+    "approval_evidence_record": {
+      "recorder_id": "ir82_evidence_ir81_85_live_trial_20260524T143203Z",
+      "generated_at": "2026-05-24T14:32:03.874694+00:00",
+      "source_task_id": "ir81_85_live_trial",
+      "new_cycle_id": "IR71_PLUS_CYCLE_A",
+      "evidence_entries": [
+        {
+          "evidence_type": "go_decision_document",
+          "present": false,
+          "reference": "PENDING"
+        },
+        {
+          "evidence_type": "release_approver_signature",
+          "present": false,
+          "reference": "PENDING"
+        },
+        {
+          "evidence_type": "safety_redeclaration_record",
+          "present": false,
+          "reference": "PENDING"
+        },
+        {
+          "evidence_type": "full_test_matrix_record",
+          "present": false,
+          "reference": "PENDING"
+        },
+        {
+          "evidence_type": "execution_authorization_record",
+          "present": false,
+          "reference": "PENDING"
+        }
+      ],
+      "all_required_evidence_present": false,
+      "recording_mode": "placeholder_registry",
+      "safety_gate_snapshot": {
+        "dry_run": "maintained",
+        "OBSERVE": "maintained",
+        "submission_execution_blocked": true,
+        "execution_policy_execute": false,
+        "external_write_executed": false,
+        "network_transmission_executed": false,
+        "production_release": false,
+        "GitHub_push": "未実行"
+      }
+    },
+    "record_hash": "a5198d7bca28a196aa99b0a1168850420c81e830cf5aebc9accadf12c0baddce",
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "ir83_result": {
+    "schema_version": "ir83_staged_unlock_simulation_v1",
+    "phase": "IR83",
+    "generated_at": "2026-05-24T14:32:03.874859+00:00",
+    "source_task_id": "ir81_85_live_trial",
+    "validation_result": "PASS",
+    "validation_failed_checks": [],
+    "validation_warnings": [],
+    "staged_unlock_simulation": {
+      "simulation_id": "ir83_sim_ir81_85_live_trial_20260524T143203Z",
+      "generated_at": "2026-05-24T14:32:03.874855+00:00",
+      "source_task_id": "ir81_85_live_trial",
+      "new_cycle_id": "IR71_PLUS_CYCLE_A",
+      "stage_results": [
+        {
+          "stage": "STAGE_1_GOVERNANCE_REVIEW",
+          "unlock_possible": false,
+          "reason": "go_decision_document missing"
+        },
+        {
+          "stage": "STAGE_2_APPROVER_CONFIRMATION",
+          "unlock_possible": false,
+          "reason": "release_approver_signature missing"
+        },
+        {
+          "stage": "STAGE_3_EXECUTION_AUTHORIZATION",
+          "unlock_possible": false,
+          "reason": "execution_authorization_record missing"
+        }
+      ],
+      "unlock_simulation_result": "REMAINS_BLOCKED",
+      "execution_unlocked": false,
+      "safety_gate_snapshot": {
+        "dry_run": "maintained",
+        "OBSERVE": "maintained",
+        "submission_execution_blocked": true,
+        "execution_policy_execute": false,
+        "external_write_executed": false,
+        "network_transmission_executed": false,
+        "production_release": false,
+        "GitHub_push": "未実行"
+      }
+    },
+    "simulation_hash": "a350de3a9814ed0d574e6e1054535047f8cd6ac94fdda0142ab813086f1dc5e1",
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "ir84_result": {
+    "schema_version": "ir84_unlock_prohibition_gate_revalidation_v1",
+    "phase": "IR84",
+    "generated_at": "2026-05-24T14:32:03.875002+00:00",
+    "source_task_id": "ir81_85_live_trial",
+    "unlock_prohibition_gate_decision": "UNLOCK_PROHIBITION_CONFIRMED_DRY_RUN_ONLY",
+    "gate_action": "Unlock prohibition re-validated. Dry-run-only remains enforced.",
+    "validation_result": "PASS",
+    "validation_failed_checks": [],
+    "validation_warnings": [],
+    "gate_record": {
+      "gate_id": "ir84_gate_ir81_85_live_trial_20260524T143203Z",
+      "generated_at": "2026-05-24T14:32:03.874998+00:00",
+      "source_task_id": "ir81_85_live_trial",
+      "decision": "UNLOCK_PROHIBITION_CONFIRMED_DRY_RUN_ONLY",
+      "unlock_prohibited": true,
+      "dry_run_only_enforced": true,
+      "safety_gate_snapshot": {
+        "dry_run": "maintained",
+        "OBSERVE": "maintained",
+        "submission_execution_blocked": true,
+        "execution_policy_execute": false,
+        "external_write_executed": false,
+        "network_transmission_executed": false,
+        "production_release": false,
+        "GitHub_push": "未実行"
+      }
+    },
+    "gate_hash": "22dc069bb9641fb46cf88141a53ac6a92fbdb53f115c7c708e59ffbfc79c3d00",
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "test_summary": {
+    "focused": {
+      "passed": 6,
+      "failed": 0
+    },
+    "adjacent": {
+      "passed": 36,
+      "failed": 0
+    },
+    "scoped": {
+      "passed": 398,
+      "failed": 0
+    }
+  },
+  "live_summary": {
+    "ir81": "PASS",
+    "ir82": "PASS",
+    "ir83": "PASS",
+    "ir84": "PASS",
+    "ir85": "PASS"
+  },
+  "safety_gate_summary": {
+    "dry_run": "maintained",
+    "OBSERVE": "maintained",
+    "submission_execution_blocked": true,
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "network_transmission_executed": false,
+    "production_release": false,
+    "GitHub_push": "未実行"
+  },
+  "completion_table": [
+    {
+      "phase": "IR81",
+      "content": "Unlock Preconditions Ledger",
+      "focused": "PASS",
+      "adjacent": "PASS",
+      "scoped": "PASS",
+      "live": "PASS",
+      "judgement": "完了"
+    },
+    {
+      "phase": "IR82",
+      "content": "Approval Evidence Recorder",
+      "focused": "PASS",
+      "adjacent": "PASS",
+      "scoped": "PASS",
+      "live": "PASS",
+      "judgement": "完了"
+    },
+    {
+      "phase": "IR83",
+      "content": "Staged Unlock Simulation",
+      "focused": "PASS",
+      "adjacent": "PASS",
+      "scoped": "PASS",
+      "live": "PASS",
+      "judgement": "完了"
+    },
+    {
+      "phase": "IR84",
+      "content": "Unlock Prohibition Gate Re-Validation",
+      "focused": "PASS",
+      "adjacent": "PASS",
+      "scoped": "PASS",
+      "live": "PASS",
+      "judgement": "完了"
+    },
+    {
+      "phase": "IR85",
+      "content": "Phase 81-85 Completion Bundle",
+      "focused": "PASS",
+      "adjacent": "PASS",
+      "scoped": "PASS",
+      "live": "PASS",
+      "judgement": "完了"
+    }
+  ],
+  "final_decision": "UNLOCK_PROHIBITION_CONFIRMED_DRY_RUN_ONLY",
+  "unlock_prohibition_confirmed": true,
+  "artifacts": {
+    "ir81_unlock_preconditions_ledger": "generic_block_ai/reports/ir81_85/ir81_unlock_preconditions_ledger.json",
+    "ir82_approval_evidence_record": "generic_block_ai/reports/ir81_85/ir82_approval_evidence_record.json",
+    "ir83_staged_unlock_simulation": "generic_block_ai/reports/ir81_85/ir83_staged_unlock_simulation.json",
+    "ir84_unlock_prohibition_gate_report": "generic_block_ai/reports/ir81_85/ir84_unlock_prohibition_gate_report.json",
+    "ir85_completion_bundle": "generic_block_ai/reports/ir81_85/ir85_completion_bundle.json",
+    "ir81_85_live_status": "generic_block_ai/reports/ir81_85/ir81_85_live_status.md",
+    "ir81_85_completion_table": "generic_block_ai/reports/ir81_85/ir81_85_completion_table.md"
+  },
+  "external_write_executed": false
+}

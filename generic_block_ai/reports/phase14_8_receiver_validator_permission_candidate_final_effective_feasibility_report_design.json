@@ -1,0 +1,67 @@
+{
+  "_meta": {
+    "phase": "14-8",
+    "phase_name": "receiver validator 実装許可候補の最終発効可否レポート設計",
+    "version": "1.0",
+    "created_date": "2026-05-12",
+    "status": "PASS_DESIGN_ONLY",
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only",
+    "description": "integrated_decision 最終候補に基づき、receiver validator 実装許可候補の発効可否を最終判定するレポートを定義する。"
+  },
+  "references": [
+    "generic_block_ai/reports/phase14_3_receiver_validator_permission_candidate_pre_effective_assessment.json",
+    "generic_block_ai/reports/phase14_5_receiver_validator_permission_candidate_evidence_lock_rules_design.json",
+    "generic_block_ai/reports/phase14_7_integrated_decision_final_candidate_assessment_report_design.json"
+  ],
+  "feasibility_rules": [
+    {
+      "rule_id": "FFR-01",
+      "condition": "final_integrated_decision_candidate == GO",
+      "failure_effect": "permission candidate NOT_EFFECTIVE"
+    },
+    {
+      "rule_id": "FFR-02",
+      "condition": "all_candidate_evidence_locked == true",
+      "failure_effect": "permission candidate NOT_EFFECTIVE"
+    },
+    {
+      "rule_id": "FFR-03",
+      "condition": "stop_triggered == false",
+      "failure_effect": "permission candidate NOT_EFFECTIVE"
+    },
+    {
+      "rule_id": "FFR-04",
+      "condition": "production_status == NO_GO",
+      "failure_effect": "abort feasibility"
+    }
+  ],
+  "actual_feasibility_template": {
+    "receiver_validator_permission_candidate": "NOT_EFFECTIVE",
+    "effective_feasibility": "PENDING",
+    "feasibility_basis": [],
+    "reason": "最終候補が NO_GO のため、発効可否判定でも未発効を維持。"
+  },
+  "blocked_actions": [
+    "core_ai_real_send",
+    "external_api_call",
+    "wordpress_operation",
+    "cron_registration",
+    "auto_execute",
+    "auto_post",
+    "auto_update",
+    "auto_delete",
+    "auto_export",
+    "production_execution"
+  ],
+  "phase_decision": {
+    "phase14_8_status": "PASS_DESIGN_ONLY",
+    "app_implementation_status": "NO_GO",
+    "tests_implementation_status": "NO_GO",
+    "note": "最終発効可否レポートの設計のみ。receiver validator 実装許可は未発効を維持。"
+  }
+}

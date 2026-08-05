@@ -1,0 +1,26 @@
+{
+  "phase": "SQL-B2-4B-5G-3A-2",
+  "production_status": "NO_GO",
+  "implementation_scope": "REPOSITORY_UNIT_ONLY_NO_INSTALL_NO_ENABLE_NO_START",
+  "target_unit": "ai-media-os-slack-approval-readiness.service",
+  "integration_method": "SYSTEMD_EXEC_CONDITION",
+  "condition_command": "scripts/check_slack_readiness_autostart.py --check-autostart",
+  "required_condition_exit_behavior": {
+    "approved": 0,
+    "health_failure": 2,
+    "not_approved": 3
+  },
+  "required_order": [
+    "ExecCondition",
+    "ExecStartPre",
+    "ExecStart"
+  ],
+  "required_database_target": "READINESS_COPY_ONLY",
+  "required_slack_mode": "DRY_RUN",
+  "required_production_database_allowed": false,
+  "installed_unit_change_allowed": false,
+  "unit_enable_allowed": false,
+  "service_start_allowed": false,
+  "gate_file_creation_allowed": false,
+  "default_decision": "NO_GO"
+}

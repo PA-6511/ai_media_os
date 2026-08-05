@@ -1,0 +1,29 @@
+{
+  "phase": "LS-NEW-X-MANUAL-POST-LITE-1",
+  "status": "LSNEW_X_MANUAL_POST_LITE_1_MANUAL_X_POST_CONFIRMED",
+  "execution_mode": "MANUAL_X_POST_EVIDENCE_ONLY_NO_API_CALL",
+  "production_status": "X_MANUAL_POST_CONFIRMED",
+
+  "previous_phase": "LS-NEW-X-TEMPLATE-LITE-1",
+  "previous_status": "LSNEW_X_TEMPLATE_LITE_1_CREATED_NO_X_POST",
+
+  "published_post_id": 185,
+  "published_post_status": "publish",
+
+  "manual_x_post_completed": true,
+  "manual_x_post_result": "PASS",
+  "x_api_call_executed": false,
+  "x_auto_post_executed": false,
+
+  "x_post_text_confirmed": true,
+  "pr_hashtag_confirmed": true,
+  "article_card_display_confirmed": true,
+
+  "wordpress_api_call_executed_in_this_step": false,
+  "wordpress_write_executed_in_this_step": false,
+  "credential_env_read_executed": false,
+
+  "ready_for_improvement_log_lite": true,
+  "recommended_next_action": "BEGIN_LS_NEW_IMPROVEMENT_LOG_LITE_1",
+  "errors": []
+}

@@ -1,0 +1,79 @@
+{
+  "event_id": "manual_l35_observe",
+  "observed_at_utc": "2026-05-24T03:57:23.438995+00:00",
+  "mode": "LOG_ONLY",
+  "execution": "DRY_RUN",
+  "core_flow_impact": "NONE",
+  "core_decision_logic_changed": false,
+  "decision_package": {
+    "package_type": "decision_package",
+    "source": "legal_compliance_gate_ai",
+    "target": "ebook_affiliate_ai",
+    "mode": "CONNECTION_TEST",
+    "execution": "DRY_RUN",
+    "risk_level": "HIGH",
+    "human_approval_required": true,
+    "auto_post": false,
+    "auto_update": false,
+    "auto_delete": false,
+    "auto_export": false,
+    "decision": {
+      "status": "WARN",
+      "reason": "legal_compliance_gate_signal",
+      "requires_human_review": true,
+      "core_final_decision_required": true
+    },
+    "legal_gate": {
+      "status": "LEGAL_REVIEW_REQUIRED",
+      "detected_risks": [
+        {
+          "risk_id": "AFFILIATE_DISCLOSURE_REQUIRED",
+          "domain": "affiliate_marketing",
+          "severity": "HIGH",
+          "release_blocking": true,
+          "matched_triggers": [
+            "affiliate_link",
+            "monetized_article"
+          ],
+          "required_actions": [
+            "PR表記または広告表記を記事上部に含める",
+            "アフィリエイトリンクであることを明示する",
+            "disclosure_checked=true を証跡に保存する"
+          ]
+        },
+        {
+          "risk_id": "API_TERMS_CHECK_REQUIRED",
+          "domain": "external_api",
+          "severity": "HIGH",
+          "release_blocking": true,
+          "matched_triggers": [
+            "amazon_pa_api"
+          ],
+          "required_actions": [
+            "対象APIの利用規約確認日を保存する",
+            "規約URLまたは参照元を証跡に保存する",
+            "商用利用・保存・表示・再配布条件を確認する"
+          ]
+        }
+      ],
+      "required_actions": [
+        "PR表記または広告表記を記事上部に含める",
+        "アフィリエイトリンクであることを明示する",
+        "disclosure_checked=true を証跡に保存する",
+        "対象APIの利用規約確認日を保存する",
+        "規約URLまたは参照元を証跡に保存する",
+        "商用利用・保存・表示・再配布条件を確認する"
+      ],
+      "human_review_required": true,
+      "core_final_decision_required": true,
+      "task_id": "task-manual-1",
+      "block_id": "legal_compliance_gate_ai"
+    },
+    "integration_notes": {
+      "connection_phase": "L-3",
+      "adapter_only": true,
+      "core_decision_logic_changed": false,
+      "human_review_route_ready": true
+    }
+  }
+}

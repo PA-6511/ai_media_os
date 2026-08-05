@@ -1,0 +1,143 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4C",
+  "policy_id": "NEW_RELEASE_WP_PRODUCTION_CATEGORY_PREEXECUTION_POLICY_V1",
+  "preexecution_package_id": "wp-production-category-pending-example-20260717",
+  "source_review_package_id": "wp-human-review-example-20260717",
+  "batch_id": "example-20260717",
+  "template_contract_id": "POST185_STANDARD_TEMPLATE_V1_FIXED",
+  "source_review_package_digest_sha256": "0b3a87c57cd56d953e6d8060db3aaeda9d93965bc517b60417ff209f89cb0aea",
+  "content_human_review": {
+    "state": "COMPLETED",
+    "approval_recorded": true,
+    "source_review_label": "REVIEW_APPROVED_EXAMPLE_ONLY_NOT_EXECUTABLE"
+  },
+  "production_category_resolution": {
+    "state": "PENDING_MANUAL_VERIFICATION",
+    "category_count": 1,
+    "example_category_ids_removed": true,
+    "production_category_ids_present": false,
+    "human_verification_completed": false,
+    "production_usable": false
+  },
+  "item_count": 1,
+  "items": [
+    {
+      "item_id": "example-20260717-001",
+      "preparation_state": "PREPARED_NOT_APPROVED",
+      "source_preview_digest_sha256": "6fad65d92af395ace314a68ef70dad4139cdc2d0eaf87172138e6359a02350d1",
+      "idempotency_key": "83913c6e739b3502a3761486e64d315805e3a7c0b52679fe606779db5a0c24bd",
+      "payload_digest_sha256": "bd48f9ab91d6898a15769ed23e44169122e47375e2d5c1c468551789de49003f",
+      "html_validation": {
+        "link_count": 2,
+        "image_count": 1
+      },
+      "store_button_order": [
+        "amazon",
+        "rakuten_kobo"
+      ],
+      "draft_payload": {
+        "title": "『サンプル作品 第1巻』電子書籍版の発売日・価格情報",
+        "slug": "example-20260717-001",
+        "status": "draft",
+        "excerpt": "『サンプル作品 第1巻』の発売日と電子書籍ストア情報をまとめています。",
+        "content_html": "<div class=\"ebook-new-release-article\" data-template-id=\"POST185_STANDARD_TEMPLATE_V1\">\n  <p class=\"ebook-pr-disclosure\">※本記事にはアフィリエイト広告を含みます。</p>\n  <div class=\"ebook-release-layout\">\n    <figure class=\"ebook-cover-image\">\n      <img src=\"https://thumbnail.image.rakuten.co.jp/test-cover.jpg\" alt=\"サンプル作品 第1巻の書影\" loading=\"lazy\">\n    </figure>\n    <section class=\"ebook-release-summary\">\n      <h2>サンプル作品 第1巻</h2>\n      <ul>\n        <li>発売日:7月17日</li>\n        <li>著者:著者A/著者B</li>\n        <li>出版社:サンプル出版社</li>\n        <li>分類:コミック新刊</li>\n      </ul>\n    </section>\n  </div>\n  <section class=\"ebook-store-section\">\n    <h2>電子書籍ストアの価格・販売ページ</h2>\n    <div class=\"ebook-price-card-grid\">\n<div class=\"ebook-price-card\" data-store=\"amazon\">\n  <p class=\"ebook-store-name\">Amazon Kindle</p>\n  <p class=\"ebook-store-price\">770円</p>\n  <a class=\"ebook-store-button\" href=\"https://www.amazon.co.jp/dp/BATCHTEST001\" target=\"_blank\" rel=\"nofollow sponsored noopener\">Amazon Kindleで確認</a>\n</div>\n<div class=\"ebook-price-card\" data-store=\"rakuten_kobo\">\n  <p class=\"ebook-store-name\">楽天Kobo</p>\n  <p class=\"ebook-store-price\">770円</p>\n  <a class=\"ebook-store-button\" href=\"https://books.rakuten.co.jp/rk/batch-test-001/\" target=\"_blank\" rel=\"nofollow sponsored noopener\">楽天Koboで確認</a>\n</div>\n    </div>\n  </section>\n</div>",
+        "category": {
+          "slug": "comic-new-release",
+          "name": "コミック新刊",
+          "wordpress_category_id": null,
+          "resolution_state": "PENDING_PRODUCTION_MANUAL_VERIFICATION",
+          "production_usable": false,
+          "resolution_source": null,
+          "production_resolution_verified_at": null,
+          "production_resolution_evidence_note": null,
+          "human_verification_confirmed": false,
+          "source_example_category_id_removed": true
+        },
+        "template_id": "POST185_STANDARD_TEMPLATE_V1",
+        "metadata": {
+          "item_id": "example-20260717-001",
+          "batch_id": "example-20260717",
+          "release_date": "2026-07-17",
+          "image_source": "rakuten_kobo",
+          "store_button_order": [
+            "amazon",
+            "rakuten_kobo"
+          ]
+        }
+      },
+      "approval_state": "NOT_APPROVED",
+      "approval_token": null,
+      "future_wordpress_post_id": null,
+      "rollback_plan": {
+        "required": true,
+        "action_if_future_creation_fails": "DO_NOT_RETRY_AUTOMATICALLY",
+        "action_if_future_draft_is_created_then_rejected": "DELETE_OR_TRASH_CREATED_DRAFT_AFTER_HUMAN_REVIEW"
+      },
+      "credential_read_allowed": false,
+      "wordpress_api_call_allowed": false,
+      "wordpress_write_allowed": false,
+      "execution_allowed": false,
+      "source_payload_digest_sha256": "bd48f9ab91d6898a15769ed23e44169122e47375e2d5c1c468551789de49003f",
+      "resolved_payload_digest_sha256": "42a113efc546e791e4eb2053724deffcb46a916e6e38aa5cd381fa36bbd2183d",
+      "category_resolution_completed": true,
+      "human_review_status": "COMPLETED",
+      "human_review_decision": "APPROVE_FOR_DRAFT_PRE_EXECUTION",
+      "approval_label": null,
+      "human_review_checks": {
+        "title": true,
+        "volume_label": true,
+        "release_date": true,
+        "publisher": true,
+        "authors": true,
+        "cover_image": true,
+        "store_links": true,
+        "prices": true,
+        "pr_disclosure": true,
+        "category": true,
+        "mobile_preview": true
+      },
+      "human_reviewer": "EXAMPLE_HUMAN_REVIEWER",
+      "human_reviewed_at": "2026-07-10T21:00:00+09:00",
+      "human_reviewer_note": "LS-NEW-BATCH-4Bの統合試験用レビュー。EXAMPLE_ONLYカテゴリIDのため実行承認ではない。",
+      "review_label": "REVIEW_APPROVED_EXAMPLE_ONLY_NOT_EXECUTABLE",
+      "execution_approval_issued": false,
+      "production_pending_payload_digest_sha256": "18b49e0b1ae03d7ad177e45afc0d23a27ff2c484106d66e8704f4eb845116618",
+      "production_category_resolution_status": "PENDING_MANUAL_VERIFICATION",
+      "production_category_review_required": true
+    }
+  ],
+  "preexecution_gate": {
+    "state": "BLOCKED_PENDING_PRODUCTION_CATEGORY_RESOLUTION",
+    "content_review_recorded": true,
+    "production_category_resolution_required": true,
+    "production_category_review_required": true,
+    "execution_approval_issued": false,
+    "approval_token": null,
+    "execution_allowed": false
+  },
+  "execution_boundary": {
+    "credential_read_allowed": false,
+    "wordpress_api_call_allowed": false,
+    "wordpress_category_lookup_allowed": false,
+    "wordpress_database_read_allowed": false,
+    "wordpress_write_allowed": false,
+    "wordpress_publish_allowed": false,
+    "x_post_allowed": false,
+    "external_api_call_allowed": false,
+    "execution_approval_issued": false,
+    "approval_token_present": false,
+    "execution_allowed": false,
+    "production_status": "NO_GO",
+    "safety_state": "PRODUCTION_CATEGORY_RESOLUTION_PENDING"
+  },
+  "verified_checks": [
+    "source_phase_identity",
+    "source_review_package_digest_verified",
+    "source_human_review_approval_verified",
+    "source_example_resolution_verified",
+    "source_resolved_payload_digests_verified",
+    "source_execution_gate_closed"
+  ],
+  "preexecution_package_digest_sha256": "1fe6f740f16f556112e3eaa24e683418249c2f5c1c3825f081ffbb3ed560524f"
+}

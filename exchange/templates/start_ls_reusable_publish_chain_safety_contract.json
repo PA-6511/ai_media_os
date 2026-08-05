@@ -1,0 +1,32 @@
+{
+  "contract_name": "START_LS_REUSABLE_PUBLISH_CHAIN_SAFETY_CONTRACT",
+  "schema_version": "1.0.0",
+  "always_forbidden": {
+    "post119_update": true,
+    "credential_value_output": true,
+    "credential_value_persisted": true,
+    "secret_length_output": true,
+    "secret_hash_output": true,
+    "authorization_header_output": true,
+    "basic_auth_string_output": true,
+    "unscoped_wordpress_write": true,
+    "multi_post_update": true,
+    "publish_without_separated_phase": true,
+    "publish_without_explicit_human_approval": true,
+    "rerun_after_publish_without_new_phase": true
+  },
+  "required_boundaries": {
+    "pre_publish_status_check": true,
+    "post_publish_status_check": true,
+    "post_publish_verification": true,
+    "closure_registration": true,
+    "get_only_monitor": true,
+    "rollback_readiness_record": true
+  },
+  "default_state": {
+    "wordpress_api_call_allowed": false,
+    "credential_env_read_allowed": false,
+    "publish_allowed": false,
+    "next_item_creation_allowed": false
+  }
+}

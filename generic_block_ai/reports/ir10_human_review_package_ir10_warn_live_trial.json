@@ -1,0 +1,19 @@
+{
+  "schema_version": "ir10_core_phase_decision_v1",
+  "phase": "IR10-T3",
+  "generated_at": "2026-05-23T14:36:51.921807+00:00",
+  "status": "PENDING_HUMAN_REVIEW",
+  "source_task_id": "ir10_warn_live_trial",
+  "quality_gate_judgment": "WARN",
+  "required_actions": [
+    "review_warn_candidates",
+    "approve_or_reject_decision_package"
+  ],
+  "safeguards": {
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "external_write_executed": false,
+    "actual_auto_execute": false,
+    "production_release": false
+  }
+}

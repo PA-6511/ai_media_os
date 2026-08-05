@@ -1,0 +1,32 @@
+{
+  "phase": "Phase 8-11",
+  "status": "PHASE8_11_REQUEST_FIX",
+  "decision": "REQUEST_FIX",
+  "reason": "manual review requested fixes",
+  "target_post_id": 114,
+  "target_expected_status": "draft",
+  "checklist": {
+    "draft_exists_and_is_draft": true,
+    "title_is_expected": true,
+    "content_has_no_break_or_blank_or_dangerous_html": true,
+    "affiliate_or_pr_disclosure_present": true,
+    "links_are_intended": false,
+    "still_not_published": true
+  },
+  "all_checklist_items_passed": false,
+  "reviewer": "manual_human_reviewer",
+  "reviewed_at_utc": "2026-06-04T13:25:00+00:00",
+  "publish_allowed": false,
+  "update_allowed": false,
+  "delete_allowed": false,
+  "export_allowed": false,
+  "auto_post": false,
+  "production_status": "NO_GO",
+  "wordpress_write_executed": false,
+  "additional_retry_allowed": false,
+  "next_step": "request_fix_and_re_review_without_publish",
+  "errors": [],
+  "warnings": [],
+  "policy_violations": [],
+  "checked_at": "2026-06-04T13:21:22.893937+00:00"
+}

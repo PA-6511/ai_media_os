@@ -1,0 +1,35 @@
+{
+  "_meta": {
+    "phase": "50-3",
+    "phase_name": "発効・実処理開始層",
+    "layer": "監査リスト設計層 (audit list design layer)",
+    "title": "最終解除候補の監査対象リスト設計",
+    "created": "2026-05-14",
+    "author": "governance-framework",
+    "status": "PASS_DESIGN_ONLY",
+    "reports_only": true
+  },
+  "scope": "Phase 50-2 で統合封印された manual_release_go / actual_process_start_go の最終解除候補について，監査対象リストを設計層で定義する。リスト内容：(1) 各解除候補の封印状態・監査要件，(2) 監査対象となる証跡・設計ファイルの一覧，(3) 監査時の確認ポイント・手順，(4) Phase 51 以降での監査プロセスへの引き継ぎ条件。",
+  "governance": {
+    "production_status": "NO_GO",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "report": {
+    "description": "Phase 50-3 では，Phase 50-2 で統合封印された manual_release_go / actual_process_start_go の最終解除候補について，監査対象リストを設計層で定義する。(1) 各解除候補の封印状態・監査要件，(2) 監査対象となる証跡・設計ファイルの一覧，(3) 監査時の確認ポイント・手順，(4) Phase 51 以降での監査プロセスへの引き継ぎ条件。これらは全て reports-only で実装され，実処理開始許可は含まれない。",
+    "invariants": [
+      "NO_GO 維持：監査リスト設計時点で production_status = 'NO_GO' を維持",
+      "NOT_GRANTED 維持：manual_release_go / actual_process_start_go の NOT_GRANTED 状態を維持",
+      "監査要件明示：各解除候補の監査要件・封印状態を明確に記載",
+      "監査証跡一覧：監査対象となる証跡・設計ファイルを網羅的にリスト化",
+      "reports only：全監査リスト設計は設計層の報告書形式で実施"
+    ],
+    "actions": [],
+    "notes": [
+      "Phase 50-3 は設計層のみで実装される（reports-only）",
+      "実処理開始許可は含まれない",
+      "監査リストは Phase 51 以降の監査プロセスへ引き継がれる"
+    ]
+  }
+}

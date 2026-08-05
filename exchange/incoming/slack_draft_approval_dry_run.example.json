@@ -1,0 +1,19 @@
+{
+  "phase": "Phase 6-7",
+  "source": "SLACK_APPROVAL_DRY_RUN",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "human_approval_required": true,
+  "decision": "APPROVE_DRY_RUN_ONLY",
+  "reserved_future_decision": "APPROVE_DRAFT_CREATE_ONLY",
+  "reserved_future_decision_currently_allowed": false,
+  "target_item_count": 1,
+  "wordpress_draft_creation": "NO_GO",
+  "wordpress_write_executed": false,
+  "auto_post": false,
+  "auto_update": false,
+  "auto_delete": false,
+  "auto_export": false,
+  "publish_allowed": false,
+  "operator_note": "Dry-run approval only. No WordPress write is allowed in Phase 6-7."
+}

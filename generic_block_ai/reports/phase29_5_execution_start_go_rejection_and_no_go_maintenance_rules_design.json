@@ -1,0 +1,98 @@
+{
+  "phase_id": "29-5",
+  "phase_name": "Execution Start GO Rejection and NO_GO Maintenance Rules Design",
+  "phase_japanese_name": "実行開始GO不可時の差し戻し・NO_GO維持ルール設計",
+  "purpose": "Design rejection routing and NO_GO maintenance rules when execution_start_go conditions are not satisfied.",
+  "layer": "execution_start_go_actual_measurement_reinforcement_layer",
+  "design_category": "reports_only",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "operation_transition_go_authorization": "NOT_GRANTED",
+    "production_reflection_go_authorization": "NOT_GRANTED",
+    "execution_start_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "phase_29_5_scope": {
+    "scope_1_rejection_categories": {
+      "scope_id": "REJECTION_CATEGORIES",
+      "categories": {
+        "ER1": "minimum condition NOT_MET in Phase 29-3",
+        "ER2": "execution-start judgment evidence lock failure in Phase 29-4",
+        "ER3": "signature invalid, revoked, or expired",
+        "ER4": "pre-execution-start boundary confirmation NOT_CLEARED",
+        "ER5": "human final approval missing or inactive"
+      }
+    },
+    "scope_2_return_and_maintenance_rules": {
+      "scope_id": "RETURN_AND_MAINTENANCE_RULES",
+      "rules": {
+        "rule_ERM1": "Any ER1-ER5 triggers production_status = NO_GO",
+        "rule_ERM2": "Force execution_start_go_authorization = NOT_GRANTED while unresolved_rejections_count > 0",
+        "rule_ERM3": "Route remediation to Phase 29-3 or Phase 29-4 based on rejection category",
+        "rule_ERM4": "Maintain app_implementation_status/tests_implementation_status as NO_GO until clean re-measurement",
+        "rule_ERM5": "Escalate to HALT_REVIEW_REQUIRED after repeated rejection threshold"
+      }
+    },
+    "scope_3_report_structure": {
+      "scope_id": "REPORT_STRUCTURE",
+      "sections": {
+        "section_1_header": {
+          "report_id": "PHASE29_5_EXECUTION_START_NO_GO_MAINTENANCE_<UTC_TIMESTAMP>",
+          "report_type": "execution_start_go_rejection_and_no_go_maintenance",
+          "generated_at_utc": "RFC3339",
+          "generated_by": "authority_identifier"
+        },
+        "section_2_rejection_summary": {
+          "triggered_categories": [
+            "ER1",
+            "ER2",
+            "ER3",
+            "ER4",
+            "ER5"
+          ],
+          "unresolved_rejections_count": "integer"
+        },
+        "section_3_maintenance_state": {
+          "app_implementation_status": "NO_GO",
+          "tests_implementation_status": "NO_GO",
+          "production_status": "NO_GO",
+          "operation_transition_go_authorization": "NOT_GRANTED",
+          "production_reflection_go_authorization": "NOT_GRANTED",
+          "execution_start_go_authorization": "NOT_GRANTED",
+          "changed_area": "reports only"
+        },
+        "section_4_next_actions": {
+          "remediation_route": "Phase 29-3 / 29-4",
+          "re_measurement_required": true
+        }
+      }
+    }
+  },
+  "phase_29_5_governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "state_invariants": {
+      "app_implementation_status": "NO_GO",
+      "tests_implementation_status": "NO_GO",
+      "production_status": "NO_GO",
+      "operation_transition_go_authorization": "NOT_GRANTED",
+      "production_reflection_go_authorization": "NOT_GRANTED",
+      "execution_start_go_authorization": "NOT_GRANTED",
+      "changed_area": "reports only"
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "phase_evidence_export_pack_v1.6",
+  "generated_at_utc": "2026-05-23T06:02:36.404674+00:00",
+  "status": "PASS",
+  "source_paths": [
+    "/home/deploy/ai_media_os/reports/evidence",
+    "/home/deploy/ai_media_os/logs/evidence_append.log",
+    "/home/deploy/ai_media_os/schemas/phase_evidence.schema.json",
+    "/home/deploy/ai_media_os/prompts/phase_evidence_compact_v1.txt",
+    "/home/deploy/ai_media_os/docs/checklists/phase_evidence_checklist_v1.md"
+  ],
+  "exported_files": [
+    "phase_evidence_export_pack_20260523_060236/README.md",
+    "phase_evidence_export_pack_20260523_060236/docs_checklists",
+    "phase_evidence_export_pack_20260523_060236/logs",
+    "phase_evidence_export_pack_20260523_060236/manifest.json",
+    "phase_evidence_export_pack_20260523_060236/prompts",
+    "phase_evidence_export_pack_20260523_060236/reports_evidence/.gitkeep",
+    "phase_evidence_export_pack_20260523_060236/reports_evidence/approval_audit_report.json",
+    "phase_evidence_export_pack_20260523_060236/reports_evidence/approval_audit_report.md",
+    "phase_evidence_export_pack_20260523_060236/reports_evidence/approval_history.json",
+    "phase_evidence_export_pack_20260523_060236/reports_evidence/index.json",
+    "phase_evidence_export_pack_20260523_060236/schemas"
+  ],
+  "missing_sources": [],
+  "sha256_manifest": {
+    "phase_evidence_export_pack_20260523_060236/README.md": "cbd0a9c200f7edc0137747670130313864445f3bfdea8f2cf8622fab3d2ba8b9",
+    "phase_evidence_export_pack_20260523_060236/docs_checklists": "378ed799aa4abf7fe21ca7497bb11b0d98c94c984fde2b1c2314878a08672cbf",
+    "phase_evidence_export_pack_20260523_060236/logs": "e9ea8d80a32cbca745ef48c382d08349790c24851d630b7dafbbab9a14def880",
+    "phase_evidence_export_pack_20260523_060236/manifest.json": "7e6f9082b0c72923d770bd2499b617483d9c4fb370924f38decfdd99b646c302",
+    "phase_evidence_export_pack_20260523_060236/prompts": "14a3d9fbe606b3bb1ee065b77283804cdb1e4360aa9ee6786480dcdf7391d510",
+    "phase_evidence_export_pack_20260523_060236/reports_evidence/.gitkeep": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "phase_evidence_export_pack_20260523_060236/reports_evidence/approval_audit_report.json": "54098927430da3dfaa3e16ca3e454ca3c1d1fc14298eb1418aa7c75a29dd6a98",
+    "phase_evidence_export_pack_20260523_060236/reports_evidence/approval_audit_report.md": "b8f0caf400c6e7466ec2f5b0208e6558f0b8ad572c9cb36a39fb0289983290bb",
+    "phase_evidence_export_pack_20260523_060236/reports_evidence/approval_history.json": "ffe7b02b80666519331d4a187544db801395b95a96ed2709592ac99d054e6232",
+    "phase_evidence_export_pack_20260523_060236/reports_evidence/index.json": "4ba21165b698b96500ea9bb9f7eeb815bce2c8e9b428829647aad91fcad1becd",
+    "phase_evidence_export_pack_20260523_060236/schemas": "c759b57043911cb559fd5649c7b2c27021e8f4a9afaf4fc7acc15dce8b0561f1"
+  },
+  "side_effect_policy": {
+    "wordpress_write": false,
+    "external_send": false,
+    "auto_post": false,
+    "auto_update": false,
+    "auto_delete": false,
+    "auto_export": false,
+    "vps_execution": false,
+    "production_reflection": false
+  }
+}

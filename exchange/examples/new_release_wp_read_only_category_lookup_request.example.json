@@ -1,0 +1,39 @@
+{
+  "request_version": 1,
+  "phase_id": "LS-NEW-BATCH-4G-0",
+  "source_phase_id": "LS-NEW-BATCH-4F-C",
+  "source_result_path": "exchange/logs/ls_new_batch_4f_c_result.json",
+  "source_sanitized_check_digest_sha256": "be27a3a18dcfec9c57ace9cdb07da590fb2d951e0ac61a8f2c66c5d636d3c32a",
+  "operation_mode": "READ_ONLY_CATEGORY_LOOKUP_DESIGN_ONLY",
+  "credential_file_path": "/etc/ai-media-os/wordpress-readonly-category.env",
+  "http_plan": {
+    "method": "GET",
+    "rest_path": "/wp-json/wp/v2/categories",
+    "query_parameters": {
+      "slug": "{category_slug}",
+      "per_page": 100,
+      "_fields": "id,slug,name,count"
+    },
+    "request_body": null,
+    "follow_redirects": false,
+    "timeout_seconds": 15,
+    "maximum_response_bytes": 1048576,
+    "tls_verification_required": true
+  },
+  "target_categories": [
+    {
+      "category_slug": "comic-new-release",
+      "category_name": "コミック新刊"
+    }
+  ],
+  "credential_file_read_requested": false,
+  "environment_variable_read_requested": false,
+  "dns_resolution_requested": false,
+  "tls_connection_requested": false,
+  "http_request_requested": false,
+  "wordpress_response_read_requested": false,
+  "wordpress_write_requested": false,
+  "credential_value_output_requested": false,
+  "execution_approval_issued": false,
+  "approval_token": null
+}

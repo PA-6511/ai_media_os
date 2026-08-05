@@ -1,0 +1,40 @@
+{
+  "package_type": "phase13_5_unlock_candidate_judgment_on_go_conditions_design_report",
+  "phase": "Phase 13-5",
+  "title": "Phase 13-5 Unlock Candidate Judgment on GO Conditions Design Report",
+  "status": "PASS",
+  "phase13_5_judgment_design_status": "PASS",
+  "source_report": "exchange/logs/phase13_4_human_final_decision_file_read_design_report.json",
+  "current_decision": "KEEP_NO_GO",
+  "publish_candidate_unlocked_for_operator": false,
+  "wordpress_publish_execution": "NO_GO",
+  "wordpress_write_executed": false,
+  "production_status": "NO_GO",
+  "wordpress_draft_id": 110,
+  "target_draft_status": "draft",
+  "unlock_candidate_judgment_design": {
+    "go_conditions_defined": true,
+    "unlock_allowed_only_when_manual_go": true,
+    "default_unlock_state": false,
+    "judgment_mode": "design_only"
+  },
+  "still_forbidden": [
+    "wordpress_publish",
+    "wordpress_update_existing_post",
+    "wordpress_delete_post",
+    "wordpress_export",
+    "wordpress_bulk_post",
+    "cron_automation",
+    "github_actions_trigger",
+    "slack_production_notification",
+    "vps_self_builder_execution",
+    "env_or_secrets_or_credentials_auto_edit"
+  ],
+  "summary": {
+    "unlock_candidate_judgment_design_completed": true,
+    "publish_still_not_executed": true,
+    "no_go_boundary_maintained": true
+  },
+  "next_step": "phase13_6_pre_execute_live_final_no_go_maintenance_report",
+  "created_at": "2026-05-10T04:14:51.248155+00:00"
+}

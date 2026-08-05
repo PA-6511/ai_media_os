@@ -1,0 +1,58 @@
+{
+  "_meta": {
+    "phase": "4-2",
+    "purpose": "decision_package_handoff_payload_template",
+    "created_at": "2026-05-12",
+    "status": "TEMPLATE_ONLY",
+    "note": "Core AI への decision package handoff を想定した payload 雛形。実送信・外部I/O・実行トリガーは含まない。"
+  },
+  "handoff_contract": {
+    "connection_test_mode": true,
+    "connection_scope": "decision_package_handoff_only",
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "transport": "none",
+    "external_api_call": false
+  },
+  "source": {
+    "block_id": "generic_block",
+    "component": "generic_block_ai",
+    "artifact_type": "decision_package",
+    "artifact_path": "reports/phase35_decision_package.json"
+  },
+  "target": {
+    "component": "core_ai",
+    "mode": "observation_only",
+    "execution_permission": "none",
+    "write_permission": "none"
+  },
+  "payload": {
+    "handoff_id": "__FILL_IN__",
+    "created_at": "__FILL_IN__",
+    "summary": "__FILL_IN__",
+    "decision_package_ref": "reports/phase35_decision_package.json",
+    "proposed_actions": [],
+    "blocked_actions": [
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "required_review_state": "HUMAN_REVIEW_REQUIRED",
+    "expected_core_ai_behavior": "observe_and_return_assessment_only"
+  },
+  "validation_expectations": {
+    "must_not_trigger_execution": true,
+    "must_not_create_external_request": true,
+    "must_not_change_runtime_mode": true,
+    "must_preserve_no_go_status": true
+  },
+  "result": "PASS_DRY_RUN_ONLY"
+}

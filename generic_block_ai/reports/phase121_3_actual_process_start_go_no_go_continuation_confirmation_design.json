@@ -1,0 +1,15 @@
+{
+  "_meta": {
+    "phase": 121,
+    "status": "PASS_DESIGN_ONLY",
+    "reports_only": true
+  },
+  "governance": {
+    "production_status": "NO_GO",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "execution_start": "NO_GO",
+    "changed_area": "reports only"
+  },
+  "description": "Phase 121-3: actual_process_start_go は引き続き NO_GO 維持確認"
+}

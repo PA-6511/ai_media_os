@@ -1,0 +1,62 @@
+{
+  "_meta": {
+    "phase": "3.5-18",
+    "purpose": "integrated_validation_report",
+    "generated_at": "2026-05-12",
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "auto_execute_allowed": false,
+    "requires_human_approval": true,
+    "note": "Phase 3.5-14〜3.5-17 の validator 実装・実行結果を統合した判定レポートです。外部出力・自動実行・export は含みません。"
+  },
+  "scope": {
+    "block_id": "generic_block",
+    "phase_range": "3.5-14 〜 3.5-17",
+    "validated_artifacts": [
+      "reports/phase35_proposal_package_template.json",
+      "reports/phase35_review_queue_template.json",
+      "evidence/phase35_evidence_index_template.json"
+    ],
+    "validator_modules": [
+      "app/proposal_validator.py",
+      "app/review_queue_validator.py",
+      "app/evidence_index_validator.py",
+      "app/validator_runner.py"
+    ]
+  },
+  "validation_summary": {
+    "proposal": {
+      "result": "PASS",
+      "failed_checks": [],
+      "warnings": []
+    },
+    "review_queue": {
+      "result": "PASS",
+      "failed_checks": [],
+      "warnings": []
+    },
+    "evidence_index": {
+      "result": "PASS",
+      "failed_checks": [],
+      "warnings": []
+    }
+  },
+  "safety_state": {
+    "observe_only": true,
+    "dry_run_enforced": true,
+    "human_approval_required": true,
+    "auto_execute_allowed": false,
+    "auto_export_allowed": false,
+    "external_communication": false,
+    "dangerous_operations_detected": false
+  },
+  "test_coverage": {
+    "pytest_passed": 34,
+    "pytest_failed": 0,
+    "new_tests_added": 23,
+    "regression_tests_intact": true
+  },
+  "overall_result": "PASS",
+  "production_status": "NO_GO",
+  "notes": "全 validator が PASS。安全制約はすべて維持。本番反映・外部 API 呼び出し・実自動化は今後も要 human review。"
+}

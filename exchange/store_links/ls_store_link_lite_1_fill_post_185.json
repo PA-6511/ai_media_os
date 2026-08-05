@@ -1,0 +1,47 @@
+{
+  "phase": "LS-STORE-LINK-LITE-1-FILL",
+  "status": "LS_STORE_LINK_LITE_1_FILL_COMPLETED_NO_WP_UPDATE",
+  "execution_mode": "MANUAL_AFFILIATE_LINK_FILL_ONLY",
+  "production_status": "NO_WP_UPDATE_NO_API_CALL",
+  "published_post_id": 185,
+  "published_post_status": "publish",
+  "title": "月曜日のたわわ",
+  "volume": "第15巻",
+  "author": "比村奇石",
+  "isbn": "978-4065442296",
+  "asin": "B0H6DQLPPB",
+  "amazon": {
+    "enabled": true,
+    "label": "Amazonで見る",
+    "affiliate_url": "https://www.amazon.co.jp/dp/B0H6DQLPPB",
+    "image_available": false
+  },
+  "rakuten_kobo": {
+    "enabled": true,
+    "label": "楽天Koboで見る",
+    "affiliate_url": "https://hb.afl.rakuten.co.jp/ichiba/435f8437.61f1d054.435f8438.9b18b3a3/?pc=https%3A%2F%2Fproduct.rakuten.co.jp%2Fproduct%2F-%2F090cf916fd711b7b3070f63a2cc3bf2a%2F&link_type=pict&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0Iiwic2l6ZSI6IjQwMHg0MDAiLCJuYW0iOjEsIm5hbXAiOiJyaWdodCIsImNvbSI6MSwiY29tcCI6ImRvd24iLCJwcmljZSI6MCwiYm9yIjoxLCJjb2wiOjEsImJidG4iOjEsInByb2QiOjEsImFtcCI6ZmFsc2V9",
+    "image_url": "https://hbb.afl.rakuten.co.jp/hgb/4f1de4e1.0d712bff.4f1de4e2.ad9b5530/?me_id=1213310&item_id=21983018&pc=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fbook%2Fcabinet%2F2296%2F9784065442296_1_2.jpg%3F_ex%3D400x400&s=400x400&t=pict",
+    "image_affiliate_html": "<a href=\"https://hb.afl.rakuten.co.jp/ichiba/435f8437.61f1d054.435f8438.9b18b3a3/?pc=https%3A%2F%2Fproduct.rakuten.co.jp%2Fproduct%2F-%2F090cf916fd711b7b3070f63a2cc3bf2a%2F&link_type=pict&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0Iiwic2l6ZSI6IjQwMHg0MDAiLCJuYW0iOjEsIm5hbXAiOiJyaWdodCIsImNvbSI6MSwiY29tcCI6ImRvd24iLCJwcmljZSI6MCwiYm9yIjoxLCJjb2wiOjEsImJidG4iOjEsInByb2QiOjEsImFtcCI6ZmFsc2V9\" target=\"_blank\" rel=\"nofollow sponsored noopener\" style=\"word-wrap:break-word;\"><img src=\"https://hbb.afl.rakuten.co.jp/hgb/4f1de4e1.0d712bff.4f1de4e2.ad9b5530/?me_id=1213310&item_id=21983018&pc=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fbook%2Fcabinet%2F2296%2F9784065442296_1_2.jpg%3F_ex%3D400x400&s=400x400&t=pict\" border=\"0\" style=\"margin:2px\" alt=\"\" title=\"\"></a>",
+    "image_affiliate_html_available": true
+  },
+  "dmm_books": {
+    "enabled": true,
+    "label": "DMMブックスで見る",
+    "affiliate_url": "https://al.dmm.com/?lurl=https%3A%2F%2Fbook.dmm.com%2Fproduct%2F4071859%2Flatest%2F&af_id=xuanyilugang-001&ch=toolbar&ch_id=link",
+    "image_url": "",
+    "image_affiliate_html": "",
+    "image_affiliate_html_available": false
+  },
+  "selected_cover_source": "rakuten_kobo_image_affiliate_html",
+  "human_checked_product_match": true,
+  "human_checked_volume_match": true,
+  "human_checked_affiliate_links": true,
+  "api_auto_fetch_executed": false,
+  "api_auto_insert_enabled": false,
+  "wordpress_api_call_executed": false,
+  "wordpress_post_update_executed": false,
+  "credential_env_read_executed": false,
+  "ready_for_article_store_block_update": true,
+  "recommended_next_action": "BEGIN_LS_STORE_LINK_LITE_2_ARTICLE_UPDATE_PREP",
+  "errors": []
+}

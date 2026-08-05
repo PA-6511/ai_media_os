@@ -1,0 +1,21 @@
+{
+  "schema_version": "ir22_submission_profile_v1",
+  "phase": "IR22",
+  "generated_at": "2026-05-23T15:35:26.292976+00:00",
+  "source_task_id": "ir22_live_policy",
+  "profile_name": "policy_focus",
+  "validation_result": "PASS",
+  "selected_artifact_count": 11,
+  "missing_pattern_count": 0,
+  "profile_dir": "generic_block_ai/reports/ir22_submission_profile_policy_focus_ir22_live_policy",
+  "profile_manifest_path": "generic_block_ai/reports/ir22_submission_profile_policy_focus_ir22_live_policy/profile_manifest.json",
+  "selected_sha256_manifest_path": "generic_block_ai/reports/ir22_submission_profile_policy_focus_ir22_live_policy/selected_sha256_manifest.json",
+  "readme_path": "generic_block_ai/reports/ir22_submission_profile_policy_focus_ir22_live_policy/README.md",
+  "safeguards": {
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "production_release": false
+  }
+}

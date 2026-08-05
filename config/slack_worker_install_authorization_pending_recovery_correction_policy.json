@@ -1,0 +1,165 @@
+{
+  "phase": "SQL-B2-4B-5G-3B-1D-2B-8",
+  "result": "PASS_PENDING_RECOVERY_FAIL_CLOSED_CLASSIFICATION_CORRECTION_DESIGN_ONLY_NO_HOST_STATE_NO_GO",
+  "schema_version": 1,
+  "design_source_commit": "21bb4e6447da7f26811291d2876108f82fe3e212",
+  "bindings": {
+    "durable_consumption_policy_path": "config/slack_worker_install_authorization_durable_consumption_policy.json",
+    "durable_consumption_policy_sha256": "c8b124dc4eb6da01f89a173ed011089ce9242ebe94683dc5c5f0b08cafbe3652",
+    "sandbox_writer_policy_path": "config/slack_worker_install_authorization_durable_writer_sandbox_policy.json",
+    "sandbox_writer_policy_sha256": "51062e132b8e766a82799df7399ce8e393bca70b22de57fd386d2b45534d2602",
+    "sandbox_writer_source_path": "scripts/slack_worker_install_authorization_durable_writer_sandbox.py",
+    "sandbox_writer_source_sha256": "47dcb4f931330f5a3888d9f42d271e651e7a183c3221944ef0e12160163639e4",
+    "capsule_policy_path": "config/slack_worker_install_authorization_capsule_policy.json",
+    "capsule_policy_sha256": "e738eea63b6ebeb0d26f1d4ce398534b40b9b61dbc5d90a89559bd7e194a34b8",
+    "release_id": "slack-worker-5441bd1-1590693d6ae7",
+    "state_root": "/var/lib/ai-media-os-slack-release/install-authorizations",
+    "records_root": "/var/lib/ai-media-os-slack-release/install-authorizations/records"
+  },
+  "correction_reason": {
+    "directory_fsync_completion_persisted_as_record_field": false,
+    "directory_fsync_completion_derivable_from_recovered_namespace": false,
+    "pending_pre_and_post_consumption_point_distinguishable_after_crash": false,
+    "historical_pre_post_classification_safe_for_direct_recovery_use": false,
+    "unified_fail_closed_pending_classification_required": true
+  },
+  "authoritative_recovery_rule": {
+    "applies_to_future_host_implementation": true,
+    "historical_contract_files_modified": false,
+    "valid_pending_classification": "REPLAY_RESERVED_CONSUMED_OR_UNCERTAIN_HUMAN_RECONCILIATION_REQUIRED",
+    "valid_pending_reserves_authorization_id": true,
+    "valid_pending_reserves_nonce": true,
+    "valid_pending_blocks_new_consumption": true,
+    "valid_pending_blocks_same_capsule_retry": true,
+    "valid_pending_automatic_delete_allowed": false,
+    "valid_pending_automatic_finalize_allowed": false,
+    "valid_pending_human_reconciliation_required": true,
+    "malformed_pending_classification": "BLOCK_ALL_NEW_CONSUMPTION_AND_HUMAN_REVIEW",
+    "malformed_pending_reserves_visible_filename_identifiers": true,
+    "malformed_pending_automatic_delete_allowed": false,
+    "unknown_entry_blocks_all_new_consumption": true
+  },
+  "reconciliation_contract": {
+    "exclusive_lock_required": true,
+    "root_custody_revalidation_required": true,
+    "pending_filename_validation_required": true,
+    "pending_document_validation_required": true,
+    "filename_document_binding_required": true,
+    "authorization_and_nonce_replay_scan_required": true,
+    "related_install_transaction_state_review_required": true,
+    "automatic_retry_authorization_allowed": false,
+    "automatic_consumption_record_deletion_allowed": false,
+    "automatic_new_capsule_issuance_allowed": false,
+    "human_decision_record_required": true,
+    "separate_reconciliation_authorization_required": true
+  },
+  "crash_visibility_matrix": [
+    {
+      "fault_point": "BEFORE_PENDING_CREATE",
+      "possible_recovered_entry": "NONE",
+      "classification": "NOT_DURABLY_CONSUMED",
+      "same_capsule_automatic_retry_allowed": false,
+      "full_capsule_revalidation_required": true,
+      "human_review_required": false
+    },
+    {
+      "fault_point": "AFTER_PENDING_CREATE_BEFORE_PENDING_FILE_FSYNC",
+      "possible_recovered_entry": "ABSENT_OR_PARTIAL_OR_VALID_PENDING",
+      "classification": "IF_PRESENT_FAIL_CLOSED",
+      "same_capsule_automatic_retry_allowed": false,
+      "full_capsule_revalidation_required": true,
+      "human_review_required": true
+    },
+    {
+      "fault_point": "AFTER_PENDING_FILE_FSYNC_BEFORE_RECORDS_DIRECTORY_FSYNC",
+      "possible_recovered_entry": "ABSENT_OR_VALID_PENDING",
+      "classification": "IF_PRESENT_REPLAY_RESERVED_CONSUMED_OR_UNCERTAIN",
+      "same_capsule_automatic_retry_allowed": false,
+      "full_capsule_revalidation_required": true,
+      "human_review_required": true
+    },
+    {
+      "fault_point": "AFTER_CONSUMPTION_POINT_BEFORE_RENAME",
+      "possible_recovered_entry": "VALID_PENDING",
+      "classification": "REPLAY_RESERVED_CONSUMED_OR_UNCERTAIN",
+      "same_capsule_automatic_retry_allowed": false,
+      "full_capsule_revalidation_required": false,
+      "human_review_required": true
+    },
+    {
+      "fault_point": "AFTER_RENAME_BEFORE_POST_RENAME_DIRECTORY_FSYNC",
+      "possible_recovered_entry": "VALID_PENDING_OR_VALID_FINAL",
+      "classification": "REPLAY_RESERVED_CONSUMED",
+      "same_capsule_automatic_retry_allowed": false,
+      "full_capsule_revalidation_required": false,
+      "human_review_required": true
+    },
+    {
+      "fault_point": "AFTER_POST_RENAME_DIRECTORY_FSYNC",
+      "possible_recovered_entry": "VALID_FINAL",
+      "classification": "DURABLY_CONSUMED",
+      "same_capsule_automatic_retry_allowed": false,
+      "full_capsule_revalidation_required": false,
+      "human_review_required": false
+    }
+  ],
+  "sandbox_alignment": {
+    "sandbox_pending_entry_blocks": true,
+    "sandbox_pending_behavior_is_fail_closed": true,
+    "sandbox_behavior_consistent_with_correction": true,
+    "sandbox_writer_modified_in_this_phase": false,
+    "sandbox_test_state_only": true
+  },
+  "implementation_boundary": {
+    "host_recovery_handler_implemented": false,
+    "host_recovery_handler_installed": false,
+    "reconciliation_tool_implemented": false,
+    "reconciliation_tool_installed": false,
+    "host_state_root_created": false,
+    "pending_record_created": false,
+    "pending_record_modified": false,
+    "pending_record_deleted": false,
+    "final_record_created": false,
+    "authorization_consumed_on_host": false,
+    "root_release_install_authorized": false,
+    "root_release_install_executed": false,
+    "host_filesystem_mutation_executed": false
+  },
+  "non_start_guarantee": {
+    "current_link_change_allowed": false,
+    "secret_migration_allowed": false,
+    "unit_change_allowed": false,
+    "daemon_reload_allowed": false,
+    "gate_creation_allowed": false,
+    "service_start_allowed": false,
+    "unit_enable_allowed": false,
+    "production_database_write_allowed": false
+  },
+  "governance": {
+    "design_correction_only": true,
+    "host_change_executed": false,
+    "capsule_issued": false,
+    "capsule_file_created": false,
+    "authorization_consumed_on_host": false,
+    "host_consumption_record_created": false,
+    "host_recovery_handler_implemented": false,
+    "host_recovery_handler_installed": false,
+    "reconciliation_tool_implemented": false,
+    "reconciliation_tool_installed": false,
+    "root_file_custody_validated": false,
+    "root_release_install_authorized": false,
+    "root_release_install_executed": false,
+    "root_helper_implemented": false,
+    "root_helper_installed": false,
+    "root_ownership_applied": false,
+    "current_host_link_created": false,
+    "secret_migration_executed": false,
+    "unit_change_executed": false,
+    "daemon_reload_executed": false,
+    "gate_creation_executed": false,
+    "service_start_executed": false,
+    "unit_enable_executed": false,
+    "production_status": "NO_GO",
+    "final_decision": "NO_GO"
+  }
+}

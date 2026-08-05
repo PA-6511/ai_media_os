@@ -1,0 +1,367 @@
+{
+  "phase_identifier": "16-3",
+  "phase_title": "integrated_decision / receiver_validator_permission の更新可否予備判定設計",
+  "phase_purpose": "Phase 16 実測入力データエントリ受領・検証層：Phase 16-2 で検証されたデータに基づいて、integrated_decision および receiver_validator_permission を Phase 15-7・15-8 測定ワークフローで更新してよいかどうかを予備判定する設計",
+  "execution_context": "reports-only design phase; design of pre-decision update feasibility assessment only, no actual status updates yet",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only"
+  },
+  "governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "safety_rule": "All blocked_actions remain strictly prohibited. Pre-decision assessment is design-only; no actual integrated_decision or receiver_validator_implementation_permission status updates are made. No app/tests implementation permitted.",
+    "hard_stop_condition": "This phase is design-only. No actual status changes permitted. Assessment only determines whether Phase 15-7 and Phase 15-8 measurement workflows can proceed."
+  },
+  "pre_decision_update_feasibility_overview": {
+    "assessment_purpose": "Determine whether validated Phase 15-1 and Phase 15-2 human review input data are ready for integrated_decision and receiver_validator_permission measurement workflows (Phase 15-7 and Phase 15-8)",
+    "assessment_input": [
+      "Phase 16-2 validation report (completeness, authentication, consistency check results)"
+    ],
+    "assessment_output": [
+      "Phase 16-3 pre-decision update feasibility report confirming readiness for Phase 15-7/15-8 workflows, OR blocking conditions that prevent workflow execution"
+    ],
+    "critical_principle": "This assessment is BLOCKING—if feasibility is NOT_READY, Phase 15-7 and Phase 15-8 workflows cannot execute, and integrated_decision/permission remain NO_GO/NOT_EFFECTIVE",
+    "downstream_gate_for": "Phase 15-7 (integrated_decision measurement) and Phase 15-8 (receiver_validator permission measurement)"
+  },
+  "blocking_conditions_design": {
+    "blocking_condition_definition": "Conditions that MUST NOT exist for Phase 15-7 and Phase 15-8 measurement workflows to execute",
+    "blocking_conditions": [
+      {
+        "condition_id": "BLOCK_1_VALIDATION_FAILED",
+        "condition_name": "Phase 16-2 Validation Failed",
+        "description": "Phase 16-2 validation report shows FAILED status (FAILED_INCOMPLETE_DATA, FAILED_AUTHENTICATION, FAILED_INCONSISTENCY)",
+        "check_rule": "IF phase16_2_validation_final_status IN [FAILED_INCOMPLETE_DATA, FAILED_AUTHENTICATION, FAILED_INCONSISTENCY] THEN BLOCK",
+        "unblock_action": "Request data resubmission; perform Phase 16-1 and Phase 16-2 again with corrected data",
+        "severity": "CRITICAL - no measurement can proceed if validation fails"
+      },
+      {
+        "condition_id": "BLOCK_2_PHASE_15_INCOMPLETE",
+        "condition_name": "Phase 15 Design Not Fully Approved",
+        "description": "Phase 15-9 completion declaration has not been formally approved by human reviewer",
+        "check_rule": "Verify Phase 15-9 approval status in governance records",
+        "unblock_action": "Complete Phase 15 human review approval process",
+        "severity": "CRITICAL - measurement cannot execute without approved design"
+      },
+      {
+        "condition_id": "BLOCK_3_EVIDENCE_NOT_LOCKED",
+        "condition_name": "Phase 15-5 Evidence Lock Not Confirmed",
+        "description": "Phase 15-5 (evidence lock rules) has not confirmed all evidence is locked",
+        "check_rule": "Query Phase 15-5 status and Phase 15-6/15-7 evidence lock confirmation",
+        "unblock_action": "Execute Phase 15-5 evidence lock procedure and confirm all evidence locked",
+        "severity": "CRITICAL - measurement requires locked evidence"
+      },
+      {
+        "condition_id": "BLOCK_4_STOP_CONDITIONS_ACTIVE",
+        "condition_name": "Immediate Stop Conditions Active",
+        "description": "Phase 12-6 immediate stop conditions or Phase 14-6 GO stop conditions are currently active",
+        "check_rule": "Check Phase 12-6 and Phase 14-6 status for active stop conditions",
+        "unblock_action": "Resolve stop conditions per Phase 12-6 and Phase 14-6 procedures",
+        "severity": "CRITICAL - stops block measurement workflow"
+      },
+      {
+        "condition_id": "BLOCK_5_REVIEWER_NOT_AUTHORIZED",
+        "condition_name": "Reviewer Not Authorized",
+        "description": "reviewer_id in Phase 16-2 validated data is not in authorized reviewer list",
+        "check_rule": "Cross-reference reviewer_id against authorized reviewer registry",
+        "unblock_action": "Reassign review to authorized reviewer and resubmit Phase 15-1/15-2 data",
+        "severity": "CRITICAL - measurement must be from authorized reviewer"
+      },
+      {
+        "condition_id": "BLOCK_6_DATA_TIMESTAMP_FUTURE",
+        "condition_name": "Data Timestamp in Future",
+        "description": "Phase 15-1 or Phase 15-2 data timestamp is in the future relative to system time",
+        "check_rule": "Verify Phase 16-2 validated reviewer_timestamp is not > current UTC time",
+        "unblock_action": "Request data resubmission with correct timestamp",
+        "severity": "HIGH - indicates data tampering or clock skew"
+      }
+    ]
+  },
+  "readiness_conditions_design": {
+    "readiness_condition_definition": "Conditions that MUST exist for Phase 15-7 and Phase 15-8 measurement workflows to execute",
+    "readiness_conditions": [
+      {
+        "condition_id": "READY_1_VALIDATION_PASSED",
+        "condition_name": "Phase 16-2 Validation Passed",
+        "description": "Phase 16-2 validation report shows PASSED_VALIDATION or PASSED_WITH_WARNINGS status",
+        "check_rule": "IF phase16_2_validation_final_status IN [PASSED_VALIDATION, PASSED_WITH_WARNINGS] THEN READY",
+        "verification": "Required before proceeding"
+      },
+      {
+        "condition_id": "READY_2_PHASE_15_APPROVED",
+        "condition_name": "Phase 15 Design Fully Approved",
+        "description": "Phase 15-9 completion declaration has been formally approved by human authority",
+        "check_rule": "Query Phase 15-9 approval records; status must be APPROVED",
+        "verification": "Required before proceeding"
+      },
+      {
+        "condition_id": "READY_3_EVIDENCE_LOCKED",
+        "condition_name": "All Evidence Locked and Confirmed",
+        "description": "Phase 15-5 evidence lock procedure confirmed all evidence is locked",
+        "check_rule": "Query Phase 15-5 and Phase 15-6 records for evidence_lock_status = COMPLETE",
+        "verification": "Required before proceeding"
+      },
+      {
+        "condition_id": "READY_4_NO_STOP_CONDITIONS",
+        "condition_name": "No Active Stop Conditions",
+        "description": "Phase 12-6 and Phase 14-6 confirm no active stop conditions",
+        "check_rule": "Query Phase 12-6 immediate_stop_conditions_active = false AND Phase 14-6 go_stop_conditions_active = false",
+        "verification": "Required before proceeding"
+      },
+      {
+        "condition_id": "READY_5_REVIEWER_AUTHORIZED",
+        "condition_name": "Reviewer Is Authorized",
+        "description": "reviewer_id in Phase 16-2 validated data matches authorized reviewer registry",
+        "check_rule": "reviewer_id in [authorized_reviewers_list]",
+        "verification": "Required before proceeding"
+      },
+      {
+        "condition_id": "READY_6_DATA_TIMESTAMP_VALID",
+        "condition_name": "Data Timestamp Is Valid",
+        "description": "Phase 15-1 and Phase 15-2 reviewer_timestamp are in valid range (not future, after Phase 15 approval, within retention period)",
+        "check_rule": "Phase_15_approval_timestamp <= reviewer_timestamp <= current_utc_time",
+        "verification": "Required before proceeding"
+      },
+      {
+        "condition_id": "READY_7_BOTH_INPUTS_RECEIVED",
+        "condition_name": "Both Phase 15-1 and Phase 15-2 Inputs Received",
+        "description": "Phase 16-1 receipt confirms both integrated_decision input and permission input data are present",
+        "check_rule": "phase_15_1_received = true AND phase_15_2_received = true",
+        "verification": "Required before proceeding"
+      }
+    ]
+  },
+  "pre_decision_assessment_procedure": {
+    "procedure_name": "Pre-Decision Update Feasibility Assessment",
+    "procedure_steps": [
+      {
+        "step_id": "ASSESS_1_BLOCKING_CONDITIONS_CHECK",
+        "step_name": "Check Blocking Conditions",
+        "action": "For each blocking condition (BLOCK_1 through BLOCK_6), evaluate whether condition exists",
+        "pass_criterion": "NONE of the blocking conditions are present",
+        "procedure": [
+          "Check Phase 16-2 validation final status",
+          "Check Phase 15-9 approval status",
+          "Query Phase 15-5 evidence lock confirmation",
+          "Query Phase 12-6 and Phase 14-6 stop condition status",
+          "Cross-reference reviewer_id against authorized registry",
+          "Verify timestamp validity"
+        ],
+        "fail_result": "If ANY blocking condition found, go to step ASSESS_BLOCK_REPORT and HALT",
+        "pass_result": "All blocking conditions clear; proceed to next step"
+      },
+      {
+        "step_id": "ASSESS_2_READINESS_CONDITIONS_CHECK",
+        "step_name": "Check Readiness Conditions",
+        "action": "For each readiness condition (READY_1 through READY_7), verify whether condition is satisfied",
+        "pass_criterion": "ALL readiness conditions are satisfied",
+        "procedure": [
+          "Verify Phase 16-2 validation PASSED_VALIDATION or PASSED_WITH_WARNINGS",
+          "Verify Phase 15-9 approval status APPROVED",
+          "Confirm Phase 15-5 evidence_lock_status = COMPLETE",
+          "Confirm Phase 12-6 and Phase 14-6 no active stops",
+          "Verify reviewer_id in authorized_reviewers_list",
+          "Verify timestamp in valid range",
+          "Verify both Phase 15-1 and Phase 15-2 data received"
+        ],
+        "fail_result": "If ANY readiness condition not met, go to step ASSESS_READY_REPORT and HALT",
+        "pass_result": "All readiness conditions satisfied; proceed to next step"
+      },
+      {
+        "step_id": "ASSESS_3_SOFT_WARNINGS_ASSESSMENT",
+        "step_name": "Assess Soft Warnings (Non-Blocking Issues)",
+        "action": "Check for issues that do not block but should be flagged for Phase 15-7/15-8 operator awareness",
+        "items_to_check": [
+          "Phase 16-2 PASSED_WITH_WARNINGS status (confidence-judgment alignment warnings)",
+          "Multiple reviewer scenario (if Phase 15-1 and Phase 15-2 from different authorized reviewers)",
+          "Timestamps far apart (if Phase 15-2 significantly later than Phase 15-1)",
+          "Significant time elapsed since Phase 15 approval"
+        ],
+        "result": "Warning list (informational, non-blocking)"
+      },
+      {
+        "step_id": "ASSESS_4_INTEGRATED_DECISION_MEASUREMENT_READINESS",
+        "step_name": "Assess Phase 15-7 Measurement Workflow Readiness",
+        "action": "Specifically evaluate whether integrated_decision measurement (Phase 15-7) can proceed",
+        "specific_checks": [
+          "Phase 15-1 data validation passed (completeness, authentication, consistency)",
+          "integrated_decision judgment field present and valid (GO or NO_GO)",
+          "Supporting evidence references are valid and locked",
+          "Reviewer is authorized for integrated_decision evaluation"
+        ],
+        "result": "READY_FOR_PHASE_15_7 or NOT_READY_FOR_PHASE_15_7"
+      },
+      {
+        "step_id": "ASSESS_5_RECEIVER_VALIDATOR_PERMISSION_READINESS",
+        "step_name": "Assess Phase 15-8 Measurement Workflow Readiness",
+        "action": "Specifically evaluate whether receiver_validator_permission measurement (Phase 15-8) can proceed",
+        "specific_checks": [
+          "Phase 15-2 data validation passed (completeness, authentication, consistency)",
+          "permission_judgment field present and valid (EFFECTIVE or NOT_EFFECTIVE)",
+          "Implementation readiness assessment is coherent and justified",
+          "Reviewer is authorized for permission evaluation",
+          "If integrated_decision_judgment = NO_GO from Phase 15-1, permission MUST be NOT_EFFECTIVE (prerequisite check)"
+        ],
+        "result": "READY_FOR_PHASE_15_8 or NOT_READY_FOR_PHASE_15_8"
+      },
+      {
+        "step_id": "ASSESS_BLOCK_REPORT",
+        "step_name": "Generate Blocking Condition Report",
+        "action": "If any blocking condition triggered, document it and halt",
+        "output": "Block report with blocking condition ID, description, and unblock action required",
+        "next_state": "HALT - cannot proceed to Phase 15-7/15-8 until blocking conditions resolved"
+      },
+      {
+        "step_id": "ASSESS_READY_REPORT",
+        "step_name": "Generate Readiness Assessment Report (No Blocks, All Ready)",
+        "action": "If no blocking conditions AND all readiness conditions met, generate positive report",
+        "output": "Readiness report certifying Phase 15-7 and Phase 15-8 measurement workflows can proceed",
+        "next_state": "APPROVED_FOR_PHASE_15_7_AND_15_8_MEASUREMENT"
+      }
+    ]
+  },
+  "pre_decision_assessment_report_structure": {
+    "report_id": "PRE_DECISION_UPDATE_FEASIBILITY_ASSESSMENT_REPORT_v1",
+    "report_elements": {
+      "assessment_timestamp": {
+        "field_name": "assessment_completed_at",
+        "type": "ISO8601 datetime"
+      },
+      "source_validation_report_reference": {
+        "field_name": "phase16_2_validation_report_id",
+        "type": "string",
+        "description": "Reference to Phase 16-2 validation report that this assessment is based on"
+      },
+      "blocking_conditions_check": {
+        "field_name": "blocking_conditions_status",
+        "type": "object",
+        "elements": {
+          "any_blocking_condition_found": "boolean",
+          "blocking_conditions_detected": "List of blocking conditions (BLOCK_1..BLOCK_6) that triggered",
+          "block_details": "For each blocking condition found: condition_id, condition_name, current_status, required_unblock_action"
+        },
+        "if_any_blocking_found": "Assessment HALTS; cannot proceed to Phase 15-7/15-8; return BLOCKED status"
+      },
+      "readiness_conditions_check": {
+        "field_name": "readiness_conditions_status",
+        "type": "object",
+        "elements": {
+          "all_readiness_conditions_met": "boolean",
+          "readiness_conditions_satisfied": "List of readiness conditions (READY_1..READY_7) that are satisfied",
+          "readiness_conditions_not_met": "List of readiness conditions not yet satisfied (if any)",
+          "readiness_details": "For each readiness condition: condition_id, condition_name, current_status, verification_result"
+        }
+      },
+      "soft_warnings_assessment": {
+        "field_name": "non_blocking_warnings",
+        "type": "array",
+        "description": "Issues that do not block but should be flagged",
+        "example_items": [
+          "Phase 16-2 PASSED_WITH_WARNINGS status found",
+          "Multiple reviewer involvement detected",
+          "Timestamp skew detected",
+          "Significant time elapsed since Phase 15 approval"
+        ]
+      },
+      "integrated_decision_measurement_readiness": {
+        "field_name": "phase_15_7_workflow_ready",
+        "type": "enum",
+        "allowed_values": ["READY_FOR_PHASE_15_7", "NOT_READY_FOR_PHASE_15_7"],
+        "description": "Can Phase 15-7 integrated_decision measurement workflow execute?"
+      },
+      "receiver_validator_permission_measurement_readiness": {
+        "field_name": "phase_15_8_workflow_ready",
+        "type": "enum",
+        "allowed_values": ["READY_FOR_PHASE_15_8", "NOT_READY_FOR_PHASE_15_8"],
+        "description": "Can Phase 15-8 receiver_validator_permission measurement workflow execute?"
+      },
+      "overall_assessment_result": {
+        "field_name": "assessment_final_status",
+        "type": "enum",
+        "allowed_values": [
+          "APPROVED_FOR_PHASE_15_7_AND_15_8_MEASUREMENT",
+          "BLOCKED_CANNOT_PROCEED",
+          "APPROVED_WITH_WARNINGS"
+        ],
+        "logic": "APPROVED if no blocking conditions AND all readiness met. BLOCKED if any blocking condition. APPROVED_WITH_WARNINGS if approved but soft warnings detected."
+      },
+      "recommended_next_action": {
+        "field_name": "next_action_recommendation",
+        "type": "enum",
+        "allowed_values": [
+          "PROCEED_TO_PHASE_15_7_AND_15_8_MEASUREMENT",
+          "HALT_AND_RESOLVE_BLOCKING_CONDITIONS",
+          "ESCALATE_TO_HUMAN_AUTHORITY_FOR_OVERRIDE"
+        ],
+        "logic": "PROCEED if APPROVED. HALT if BLOCKED. ESCALATE if complex issues warrant human decision override."
+      },
+      "assessment_authority_certification": {
+        "field_name": "assessed_by_authority",
+        "type": "string",
+        "description": "Human authority or system process that performed this assessment"
+      }
+    }
+  },
+  "relationship_to_phase_15_7_and_15_8": {
+    "phase_15_7_integration": "Phase 16-3 assessment determines whether Phase 15-7 (integrated_decision final actual measurement report) can be executed",
+    "phase_15_8_integration": "Phase 16-3 assessment determines whether Phase 15-8 (receiver_validator_permission final actual measurement report) can be executed",
+    "blocking_effect": "If Phase 16-3 assessment is BLOCKED, Phase 15-7 and Phase 15-8 measurement workflows CANNOT execute; integrated_decision and receiver_validator_implementation_permission remain NO_GO and NOT_EFFECTIVE",
+    "approval_effect": "If Phase 16-3 assessment is APPROVED, Phase 15-7 and Phase 15-8 can proceed to measure integrated_decision and permission based on validated Phase 15-1 and Phase 15-2 human review input data"
+  },
+  "phase_dependencies": {
+    "depends_on": [
+      "Phase 16-2: Actual measurement input completeness, signature, and consistency validation (provides validation report)",
+      "Phase 15-5: Evidence lock rules confirmation (readiness check)",
+      "Phase 15-9: Phase 15 completion declaration and approval (readiness check)",
+      "Phase 12-6: Immediate stop conditions status (blocking condition check)",
+      "Phase 14-6: GO stop conditions status (blocking condition check)"
+    ],
+    "feeds_into": [
+      "Phase 15-7: integrated_decision measurement workflow (conditional execution based on assessment)",
+      "Phase 15-8: receiver_validator_permission measurement workflow (conditional execution based on assessment)"
+    ]
+  },
+  "design_review_checklist": [
+    "Blocking conditions are critical and clearly defined (6 blocking conditions specified)",
+    "Readiness conditions are comprehensive and all required for measurement (7 readiness conditions specified)",
+    "Assessment procedure steps are sequential with clear pass/fail criteria",
+    "Soft warnings assessment captures non-critical issues",
+    "Integration with Phase 15-7 measurement workflow is explicit",
+    "Integration with Phase 15-8 measurement workflow is explicit",
+    "Assessment report structure captures all key findings",
+    "Overall assessment result logic clearly defines outcomes",
+    "Recommended next actions are specific to assessment outcome",
+    "Authority certification field ensures human accountability",
+    "All blocked actions remain in governance",
+    "production_status remains NO_GO (hardcoded)",
+    "Phase dependencies are accurate and complete"
+  ],
+  "completion_gate": {
+    "gate_condition": "Assessment design approved AND blocking/readiness conditions finalized AND assessment procedure reviewed",
+    "approval_required": "Human technical reviewer + Phase 16 design authority",
+    "prerequisite_for": "Phase 15-7 and Phase 15-8 measurement workflows can execute only after Phase 16-3 assessment is APPROVED"
+  },
+  "status": {
+    "phase_status": "DESIGN_ONLY",
+    "actual_assessment_execution_status": "NOT_YET_STARTED",
+    "integrated_decision_status": "NO_GO",
+    "receiver_validator_implementation_permission_status": "NOT_EFFECTIVE",
+    "app_implementation_status": "NO_GO",
+    "tests_implementation_status": "NO_GO",
+    "production_status": "NO_GO"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "status": "PASS_WITH_WARNINGS",
+  "ready_count": 1,
+  "blocked_count": 0,
+  "warning_count": 1,
+  "batch_ids": [
+    "BATCH_EXAMPLE_001"
+  ],
+  "manifest_path": "/home/deploy/ai_media_os/exchange/inputs/new_release/batches/BATCH_EXAMPLE_001/manifest.json",
+  "blocked_path": "/home/deploy/ai_media_os/exchange/reviews/new_release/batches/BATCH_EXAMPLE_001.multistore_blocked.json",
+  "result_log_path": "/home/deploy/ai_media_os/exchange/logs/BATCH_EXAMPLE_001.multistore_import_result.json",
+  "safety": {
+    "wordpress_write_performed": false,
+    "wordpress_publish_performed": false,
+    "external_network_performed": false,
+    "input_status_fixed_to_draft": true
+  }
+}

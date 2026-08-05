@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M2",
+  "policy_id": "NEW_RELEASE_WP_FRESH_DMM_LATEST_ALIAS_ONE_SHOT_RECHECK_POLICY_V1",
+  "attempt_id": "47d3cd84-3160-4ef4-b796-15504d2b1680",
+  "authorization_consumption_path": "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.dmm_latest_alias_recheck_consumption.json",
+  "authorization_consumption_file_sha256": "fa4d1d2fbc5a4a57b79e1e563d1d7ce12aaab98e12eb822dfc6cf08a20778fd6",
+  "authorization_consumption_digest_sha256": "af67506a51cdabc013ea070ba0624bebc855b8a96c3317b352136b62cbe189ec",
+  "recheck_result_path": "exchange/rechecks/new_release/fresh/new-release-comic-20260703-001.dmm_latest_alias_recheck_result.json",
+  "recheck_result_file_sha256": "0a7f09cdcb048468e21520d3531a257677dcc100087f45842288b692db2648dc",
+  "recheck_result_digest_sha256": "9cac027d2018114f1d1a765600f774a5b5e604e1382828237b704ac995eb215a",
+  "successful_match": false,
+  "dmm_slot_available": false,
+  "authorization_consumed": true,
+  "authorization_reuse_allowed": false,
+  "network_attempt_performed": true,
+  "final_affiliate_link_generated": false,
+  "article_modified": false,
+  "fresh_payload_created": false,
+  "wordpress_access_performed": false,
+  "dmm_recheck_package_digest_sha256": "0a97f84bb4b71b018019bbd1888f7241dccbde3826022a3bfb06517b6ba9c6b2"
+}

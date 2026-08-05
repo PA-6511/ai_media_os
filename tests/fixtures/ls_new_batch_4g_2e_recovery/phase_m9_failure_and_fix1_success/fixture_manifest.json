@@ -1,0 +1,103 @@
+{
+  "fixture_id": "LS_NEW_BATCH_4G_2E_M9_FAILURE_AND_FIX1_SUCCESS",
+  "purpose": "Bind the immutable original M9 post-authorization-consumption failure to its evidence chain while treating M9-FIX1 as a separately approved and authorized success.",
+  "assurance_level": "HASH_BOUND_SEPARATE_PHASE_EVIDENCE",
+  "original_m9_assurance": "IMMUTABLE_FAILURE_EVIDENCE",
+  "fix1_assurance": "SEPARATE_APPROVED_SUCCESS_EVIDENCE",
+  "original_m9_result_path": "exchange/logs/ls_new_batch_4g_2e_recovery_m9_result.json",
+  "original_m9_result_sha256": "4bfc26c714795030ad3c86aa5e3be0e5cd86c7622fface6cca77919053775526",
+  "original_m9_status": "FAILED_AFTER_M9_AUTHORIZATION_CONSUMPTION_NO_AUTOMATIC_RETRY",
+  "original_m9_authorization_path": "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.article_dmm_link_injection_authorization.json",
+  "original_m9_authorization_sha256": "8cec2c0c566b7e992fd3f822403d1c43f2558239aecf702de93190abb2ef83fd",
+  "original_m9_consumption_path": "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.article_dmm_link_injection_consumption.json",
+  "original_m9_consumption_sha256": "7b34ad6e195d7cbe5bd061bc3edb9e001a8e2d914d956e22605dd901e67c655c",
+  "original_m9_article_preimage_sha256": "849a37519c6af70d2212ec01d5cddef5793bfa811e97ca9f248ce099a0350bf4",
+  "original_m9_article_postcondition_sha256": "849a37519c6af70d2212ec01d5cddef5793bfa811e97ca9f248ce099a0350bf4",
+  "automatic_retry_allowed": false,
+  "fix1_result_path": "exchange/logs/ls_new_batch_4g_2e_recovery_m9_fix1_result.json",
+  "fix1_result_sha256": "d98695971f1ffb73c34958e2418a6c18155f6f8a31420c6ab2e3662114a383ab",
+  "fix1_status": "PASS_DMM_ARTICLE_LINK_INJECTED_HTML_ENTITY_VALIDATOR_FIXED_NEW_AUTHORIZATION_CONSUMED_NO_NETWORK_NO_WORDPRESS",
+  "fix1_authorization_path": "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.article_dmm_link_injection_fix1_authorization.json",
+  "fix1_authorization_sha256": "737993fcf83236e610247bb5bc31c9d1966896a95b3ce602ff5d648aeb213df6",
+  "fix1_consumption_path": "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.article_dmm_link_injection_fix1_consumption.json",
+  "fix1_consumption_sha256": "a5954bb426612296b997e26388c74f7996ac210d364b4ceca72694b81d302342",
+  "fix1_preimage_sha256": "849a37519c6af70d2212ec01d5cddef5793bfa811e97ca9f248ce099a0350bf4",
+  "fix1_postimage_sha256": "de2739c8ae1aa4a50973b983964b05844086a2187b9ef337383ad6fa7123697d",
+  "original_result_overwritten": false,
+  "synthetic_result_created": false,
+  "provenance_evidence": [
+    {
+      "role": "m8_result",
+      "path": "exchange/logs/ls_new_batch_4g_2e_recovery_m8_result.json",
+      "sha256": "6bfecffb1c9b955a0482d2908522617b2eccbe5e9bedb64bbe1a83bd345132a8"
+    },
+    {
+      "role": "m8_fix1_approval",
+      "path": "exchange/approvals/ls_new_batch_4g_2e_recovery_m8_fix1_html_validator_fix_approval.json",
+      "sha256": "fa3c9d65058bbce4464aa57f4303478267962e00b352a771c94e15fefb97eb26"
+    },
+    {
+      "role": "m8_fix1_result",
+      "path": "exchange/logs/ls_new_batch_4g_2e_recovery_m8_fix1_result.json",
+      "sha256": "5c38021615d02b6abfde827a4de2653536e6bbc2b25f2c808f48b82b43414f57"
+    },
+    {
+      "role": "m9_approval",
+      "path": "exchange/approvals/ls_new_batch_4g_2e_recovery_m9_execute_now_approval.json",
+      "sha256": "1d037c432a5aa61e70493d1f2e5dca75e63b27c4e044e532d0909c2d592e5443"
+    },
+    {
+      "role": "m9_authorization",
+      "path": "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.article_dmm_link_injection_authorization.json",
+      "sha256": "8cec2c0c566b7e992fd3f822403d1c43f2558239aecf702de93190abb2ef83fd"
+    },
+    {
+      "role": "m9_consumption",
+      "path": "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.article_dmm_link_injection_consumption.json",
+      "sha256": "7b34ad6e195d7cbe5bd061bc3edb9e001a8e2d914d956e22605dd901e67c655c"
+    },
+    {
+      "role": "m9_result",
+      "path": "exchange/logs/ls_new_batch_4g_2e_recovery_m9_result.json",
+      "sha256": "4bfc26c714795030ad3c86aa5e3be0e5cd86c7622fface6cca77919053775526"
+    },
+    {
+      "role": "m9_fix1_approval",
+      "path": "exchange/approvals/ls_new_batch_4g_2e_recovery_m9_fix1_approval.json",
+      "sha256": "d7b94fa3ce8ee3eae571fc826ce5da7bea546ac02f730ea95aa278a8d44b384c"
+    },
+    {
+      "role": "m9_fix1_authorization",
+      "path": "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.article_dmm_link_injection_fix1_authorization.json",
+      "sha256": "737993fcf83236e610247bb5bc31c9d1966896a95b3ce602ff5d648aeb213df6"
+    },
+    {
+      "role": "m9_fix1_consumption",
+      "path": "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.article_dmm_link_injection_fix1_consumption.json",
+      "sha256": "a5954bb426612296b997e26388c74f7996ac210d364b4ceca72694b81d302342"
+    },
+    {
+      "role": "m9_fix1_result",
+      "path": "exchange/logs/ls_new_batch_4g_2e_recovery_m9_fix1_result.json",
+      "sha256": "d98695971f1ffb73c34958e2418a6c18155f6f8a31420c6ab2e3662114a383ab"
+    },
+    {
+      "role": "m10_approval",
+      "path": "exchange/approvals/ls_new_batch_4g_2e_recovery_m10_gate_approval.json",
+      "sha256": "cdd0e18ae66467fe5454903afd195ff868b964c824542b9fac1b626fd45eacc1"
+    },
+    {
+      "role": "m10_review",
+      "path": "exchange/reviews/new_release/fresh/new-release-comic-20260703-001.post_injection_article_human_review.json",
+      "sha256": "823b4ab68e1af22ea9a99d5d224604f950128ec69066a1904fc211f0f39ba4c3"
+    },
+    {
+      "role": "m10_result",
+      "path": "exchange/logs/ls_new_batch_4g_2e_recovery_m10_result.json",
+      "sha256": "1a65a00b9ba8ae462665937819556799087b37c033590509ef3b6de133732ff5"
+    }
+  ],
+  "immutable": true,
+  "update_policy": "Never rewrite historical evidence or synthesize a successful M9 result. Update only by adding a separately approved phase fixture with independently verified artifact hashes.",
+  "created_at": "2026-07-23T15:04:43Z"
+}

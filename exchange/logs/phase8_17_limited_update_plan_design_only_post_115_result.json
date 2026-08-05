@@ -1,0 +1,64 @@
+{
+  "phase": "Phase 8-17",
+  "phase_name": "Limited Update Plan Design Only for post_id 115",
+  "status": "PHASE8_17_LIMITED_UPDATE_PLAN_CREATED_DESIGN_ONLY_NO_EXECUTION",
+  "target_post_id": 115,
+  "target_post_status_required": "draft",
+  "limited_update_plan_created": true,
+  "source_candidate": "exchange/logs/phase8_15_corrected_draft_candidate_v2_dry_run_post_115_result.json",
+  "manual_review_source": "exchange/logs/phase8_16_corrected_candidate_v2_manual_review_post_115_result.json",
+  "update_scope": "title_body_category_tags_only",
+  "allowed_update_fields": [
+    "title",
+    "content/body",
+    "category",
+    "tags"
+  ],
+  "forbidden_update_fields": [
+    "status=publish",
+    "slug",
+    "author",
+    "date",
+    "delete",
+    "bulk_operation",
+    "external_export",
+    "auto_post",
+    "auto_update",
+    "auto_delete",
+    "auto_retry"
+  ],
+  "human_approval_required_before_update": true,
+  "human_update_go_present": false,
+  "production_status": "NO_GO",
+  "execution": "DESIGN_ONLY",
+  "wordpress_api_call_attempted": false,
+  "wordpress_write_executed": false,
+  "wordpress_draft_updated": false,
+  "publish_executed": false,
+  "update_executed": false,
+  "delete_executed": false,
+  "bulk_operation_executed": false,
+  "export_executed": false,
+  "rollback_executed": false,
+  "freeze_executed": false,
+  "secret_values_output": false,
+  "secret_values_written": false,
+  "errors": [],
+  "warnings": [],
+  "safety_violations": [],
+  "evidence_summary": [
+    {
+      "path": "exchange/logs/phase8_15_corrected_draft_candidate_v2_dry_run_post_115_result.json",
+      "exists": true,
+      "status": "PHASE8_15_CORRECTED_CANDIDATE_V2_DRY_RUN_READY"
+    },
+    {
+      "path": "exchange/logs/phase8_16_corrected_candidate_v2_manual_review_post_115_result.json",
+      "exists": true,
+      "status": "PHASE8_16_CORRECTED_CANDIDATE_V2_REVIEW_APPROVED",
+      "action": "approve"
+    }
+  ],
+  "next_step": "phase8_18_limited_update_preflight_no_execution",
+  "checked_at": "2026-06-09T13:34:41.337319+00:00"
+}

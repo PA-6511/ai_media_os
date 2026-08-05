@@ -1,0 +1,14 @@
+{
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "targets": [
+    {
+      "host": "github.com",
+      "https_url": "https://github.com",
+      "tcp_port": 443,
+      "icmp_required": false,
+      "timeout_seconds": 3
+    }
+  ]
+}

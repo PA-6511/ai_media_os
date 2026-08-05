@@ -1,0 +1,57 @@
+{
+  "phase": "Phase 8-32",
+  "name": "provisioned_declaration_overlay_policy",
+  "policy_status": "OVERLAY_REVIEW_ONLY",
+  "production_status": "NO_GO",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "human_approval_required": true,
+  "overlay_is_execution_permission": false,
+  "commands_executed_in_this_phase": false,
+  "phase8_6_to_8_10_executed": false,
+  "wordpress_api_call_allowed": false,
+  "wordpress_write_executed": false,
+  "publish_allowed": false,
+  "target_item_count": 1,
+  "required_evidence": [
+    "exchange/logs/phase8_31_secret_safe_credential_procedure_result.json",
+    "exchange/logs/phase8_30_final_operator_rerun_handoff_report.json"
+  ],
+  "required_phase8_31_status": "PASS_PROCEDURE_ONLY",
+  "allowed_phase8_30_statuses": [
+    "OPERATOR_HANDOFF_BLOCKED_CREDENTIALS_MISSING",
+    "OPERATOR_HANDOFF_READY_FOR_PHASE8_6_TO_8_10_RERUN_BUT_NOT_EXECUTED"
+  ],
+  "allowed_decisions": [
+    "OVERLAY_DECLARE_CREDENTIALS_PROVISIONED_OUTSIDE_REPO",
+    "OVERLAY_DECLARE_CREDENTIALS_STILL_NOT_READY",
+    "REQUEST_FIX",
+    "REJECT",
+    "ABORT"
+  ],
+  "required_acknowledgements": [
+    "acknowledged_overlay_does_not_modify_prior_evidence",
+    "acknowledged_no_secret_values_in_repo",
+    "acknowledged_no_env_file_edit",
+    "acknowledged_no_log_secret_output",
+    "acknowledged_manual_secret_management_only",
+    "acknowledged_no_wordpress_api_call_in_phase8_32",
+    "acknowledged_no_phase8_6_to_8_10_execution_in_phase8_32",
+    "acknowledged_single_item_only",
+    "acknowledged_no_publish",
+    "acknowledged_no_update",
+    "acknowledged_no_delete",
+    "acknowledged_no_bulk"
+  ],
+  "approval_scope_required": {
+    "provisioned_declaration_overlay_only": true,
+    "manual_rerun_handoff": false,
+    "draft_create_only": false,
+    "publish": false,
+    "update": false,
+    "delete": false,
+    "bulk": false,
+    "external_export": false
+  },
+  "allowed_next_step": "Phase 8-33 post-provision environment recheck without secret output"
+}

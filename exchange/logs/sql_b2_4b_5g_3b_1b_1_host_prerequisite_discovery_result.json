@@ -1,0 +1,112 @@
+{
+  "phase": "SQL-B2-4B-5G-3B-1B-1",
+  "result": "PASS_HOST_DISCOVERY_DEDICATED_ROOT_GATE_DIRECTORY_REQUIRED",
+  "recorded_at": "2026-07-14T15:24:06.952062+00:00",
+  "git": {
+    "branch": "feature/sql-b2-4b-slack-production-readiness",
+    "source_commit": "13d72767d4b20d02a7834cf65b7c60f976af1f4f",
+    "source_commit_short": "13d7276"
+  },
+  "current_config_directory": {
+    "path": "/etc/ai-media-os",
+    "owner": "deploy",
+    "group": "deploy",
+    "mode": "0700",
+    "is_directory": true,
+    "is_regular_file": false,
+    "is_symbolic_link": false,
+    "purpose": "DEPLOY_MANAGED_SECRET_ENVIRONMENT",
+    "must_remain_unchanged": true,
+    "suitable_for_root_trusted_gate": false
+  },
+  "secret_files": {
+    "credential.env": {
+      "path": "/etc/ai-media-os/credential.env",
+      "owner": "deploy",
+      "group": "deploy",
+      "mode": "0600",
+      "is_directory": false,
+      "is_regular_file": true,
+      "is_symbolic_link": false
+    },
+    "database.env": {
+      "path": "/etc/ai-media-os/database.env",
+      "owner": "deploy",
+      "group": "deploy",
+      "mode": "0600",
+      "is_directory": false,
+      "is_regular_file": true,
+      "is_symbolic_link": false
+    },
+    "slack.env": {
+      "path": "/etc/ai-media-os/slack.env",
+      "owner": "deploy",
+      "group": "deploy",
+      "mode": "0600",
+      "is_directory": false,
+      "is_regular_file": true,
+      "is_symbolic_link": false
+    },
+    "wordpress-readonly-category.env": {
+      "path": "/etc/ai-media-os/wordpress-readonly-category.env",
+      "owner": "deploy",
+      "group": "deploy",
+      "mode": "0600",
+      "is_directory": false,
+      "is_regular_file": true,
+      "is_symbolic_link": false
+    }
+  },
+  "current_gate": {
+    "path": "/etc/ai-media-os/slack-readiness-autostart.approved",
+    "present": false,
+    "parent_root_managed": false,
+    "host_parent_ready": false
+  },
+  "recommended_gate_boundary": {
+    "directory": "/etc/ai-media-os-autostart",
+    "gate_path": "/etc/ai-media-os-autostart/slack-readiness-autostart.approved",
+    "directory_owner": "root",
+    "directory_group": "root",
+    "directory_mode": "0755",
+    "gate_owner": "root",
+    "gate_group": "root",
+    "gate_mode": "0644",
+    "gate_contains_secrets": false,
+    "separate_from_secret_directory": true
+  },
+  "trusted_verifier": {
+    "future_path": "/usr/local/libexec/ai-media-os/slack-autostart-verifier.py",
+    "installed": false
+  },
+  "database_safety": {
+    "production_sha256": "a4c5c6b3c9f016cd745cdb9c531c807fe5bc4a3ac28f9422609dfa96cd7b37d8",
+    "production_database_unchanged": true
+  },
+  "systemd_state": {
+    "fragment_path": "/etc/systemd/system/ai-media-os-slack-approval-readiness.service",
+    "need_daemon_reload": "no",
+    "active_state": "inactive",
+    "sub_state": "dead",
+    "unit_file_state": "disabled",
+    "main_pid": 0,
+    "enabled": false,
+    "running": false
+  },
+  "decision": {
+    "existing_secret_directory_change": "NOT_ALLOWED",
+    "dedicated_root_gate_directory_required": true,
+    "trusted_verifier_installed": false,
+    "installation_allowed": "HOLD",
+    "autostart_approval": "NOT_APPROVED",
+    "final_decision": "NO_GO"
+  },
+  "governance": {
+    "production_status": "NO_GO",
+    "safety_state": "HOST_GATE_PARENT_UNTRUSTED_PATH_SEPARATION_REQUIRED",
+    "gate_creation_allowed": false,
+    "unit_change_allowed": false,
+    "service_start_allowed": false,
+    "unit_enable_allowed": false
+  }
+}

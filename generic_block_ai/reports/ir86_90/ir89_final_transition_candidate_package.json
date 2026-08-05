@@ -1,0 +1,42 @@
+{
+  "schema_version": "ir89_final_transition_candidate_package_v1",
+  "phase": "IR89",
+  "generated_at": "2026-05-24T14:36:23.667485+00:00",
+  "source_task_id": "ir86_90_live_trial",
+  "validation_result": "PASS",
+  "validation_failed_checks": [],
+  "validation_warnings": [],
+  "final_transition_candidate_package": {
+    "package_id": "ir89_pkg_ir86_90_live_trial_20260524T143623Z",
+    "generated_at": "2026-05-24T14:36:23.667480+00:00",
+    "source_task_id": "ir86_90_live_trial",
+    "new_cycle_id": "IR71_PLUS_CYCLE_A",
+    "review_ref": "ir86_review_ir86_90_live_trial_20260524T143623Z",
+    "delta_ref": "ir87_delta_ir86_90_live_trial_20260524T143623Z",
+    "gate_ref": "ir88_gate_ir86_90_live_trial_20260524T143623Z",
+    "candidate_scope": "pre_migration_candidate_dry_run_only",
+    "unlock_included": false,
+    "production_release_included": false,
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "package_hash": "f98aeb92e8b188670b80257d67a3c3bdd69fbd0114a7551bc98962b87b491e68",
+  "safety_gate_snapshot": {
+    "dry_run": "maintained",
+    "OBSERVE": "maintained",
+    "submission_execution_blocked": true,
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "network_transmission_executed": false,
+    "production_release": false,
+    "GitHub_push": "未実行"
+  }
+}

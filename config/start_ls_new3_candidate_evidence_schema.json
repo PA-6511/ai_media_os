@@ -1,0 +1,60 @@
+{
+  "schema_name": "START_LS_NEW3_CANDIDATE_EVIDENCE_SCHEMA",
+  "schema_version": "1.0.0",
+  "phase": "LS-NEW-3",
+  "content_type": "new_release_comic",
+  "media_type": "purchase_navigation_media",
+  "source_of_truth": "human_filled_candidate_input",
+  "external_fetch_allowed": false,
+  "required_candidate_fields": [
+    "content_item_id",
+    "title",
+    "volume",
+    "author",
+    "publisher",
+    "release_date",
+    "candidate_source_type"
+  ],
+  "required_evidence_sections": [
+    "candidate_identity",
+    "release_evidence",
+    "identifier_evidence",
+    "source_url_inventory",
+    "store_evidence_slots",
+    "simple_x_post_preview",
+    "wordpress_purchase_navigation_preview",
+    "safety"
+  ],
+  "identifier_fields": [
+    "asin",
+    "isbn"
+  ],
+  "source_url_fields": [
+    "publisher_source_url",
+    "kindle_url",
+    "rakuten_kobo_url",
+    "dmm_books_url",
+    "ebookjapan_url",
+    "booklive_url",
+    "manual_source_url"
+  ],
+  "store_slots": [
+    "publisher_official",
+    "kindle",
+    "rakuten_kobo",
+    "dmm_books",
+    "ebookjapan",
+    "booklive",
+    "manual_source"
+  ],
+  "safety": {
+    "no_external_fetch": true,
+    "no_http_get": true,
+    "no_scraping": true,
+    "no_wordpress_write": true,
+    "no_x_post": true,
+    "no_credential_read": true,
+    "no_secret_output": true,
+    "execution_allowed": false
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "schema_version": "gib.beta09.first_call_handoff.v0.1",
+  "beta_version": "beta0.9",
+  "status": "DRY_RUN_FIRST_CALL_HANDOFF_ONLY",
+  "production_status": "NO_GO",
+  "handoff_ready": false,
+  "manual_approval": {
+    "required": true,
+    "granted": false,
+    "approval_statement": "I APPROVE FIRST REAL LOCAL LLM CALL FOR GIB BETA1 UNDER CHANGE CONTROL."
+  },
+  "first_call_target": {
+    "runtime": "ollama",
+    "host": "localhost",
+    "port": 11434,
+    "model": "gemma-4-qat-e2b",
+    "allowlisted_model_patterns": [
+      "gemma-4-qat",
+      "gemma-4-qat-e2b"
+    ]
+  },
+  "promotion_requirements_to_enable_real_call": {
+    "real_llm_call_allowed_must_be_true": true,
+    "execution_allowed_must_be_true": true,
+    "change_control_ticket_required": true,
+    "rollback_to_stub_plan_required": true,
+    "localhost_only_required": true,
+    "no_wordpress_write": true,
+    "no_credential_direct_access": true
+  },
+  "current_guardrails": {
+    "real_llm_call_allowed": false,
+    "execution_allowed": false,
+    "generate_call_allowed": false,
+    "chat_call_allowed": false,
+    "wordpress_write_allowed": false,
+    "credential_access_allowed": false,
+    "fallback_runtime": "stub"
+  },
+  "artifact_policy": {
+    "report_write_scope": ["generic_inference_block_ai/reports"],
+    "reports_only": true
+  }
+}

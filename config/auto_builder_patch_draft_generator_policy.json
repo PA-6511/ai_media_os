@@ -1,0 +1,50 @@
+{
+  "phase": "AB-T4",
+  "status": "PASS_DESIGN_ONLY_NO_EXECUTION",
+  "purpose": "patch_draft_generator",
+  "execution_mode": "DESIGN_ONLY",
+  "production_status": "NO_GO",
+  "safety_state": "DRY_RUN_ONLY",
+  "draft_rules": {
+    "generate_patch_template": true,
+    "generate_unified_diff": false,
+    "generate_apply_command": false,
+    "generate_git_command": false,
+    "max_patch_targets": 5,
+    "patch_style": "minimal_diff",
+    "include_change_summary": true,
+    "include_reason": true,
+    "include_risk_note": true
+  },
+  "allowed_outputs": [
+    "patch_draft",
+    "change_summary",
+    "target_files",
+    "risk_summary",
+    "validation_checklist"
+  ],
+  "forbidden_outputs": [
+    "git_commit",
+    "git_push",
+    "apply_patch_command",
+    "production_execution",
+    "wordpress_command",
+    "external_api_payload",
+    "credential_contents",
+    "secret_values"
+  ],
+  "copilot_send_allowed": false,
+  "external_api_call_allowed": false,
+  "wordpress_api_call_allowed": false,
+  "credential_read_allowed": false,
+  "credential_output_allowed": false,
+  "production_write_allowed": false,
+  "destructive_operation_allowed": false,
+  "git_commit_allowed": false,
+  "git_push_allowed": false,
+  "next_phase": {
+    "phase": "AB-T5",
+    "name": "Limited Test Selector",
+    "execution_allowed": false
+  }
+}

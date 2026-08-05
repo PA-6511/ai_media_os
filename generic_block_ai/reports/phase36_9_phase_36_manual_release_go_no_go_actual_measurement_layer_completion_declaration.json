@@ -1,0 +1,127 @@
+{
+  "phase_id": "36-9",
+  "phase_name": "Phase 36 Manual Release GO/NO-GO Actual Measurement Layer Completion Declaration",
+  "phase_japanese_name": "Phase 36 manual_release_go / NO_GO実測判定層完了宣言",
+  "purpose": "Complete and declare the entire Phase 36 manual_release_go/NO_GO actual measurement design layer before any authorization grant.",
+  "layer": "manual_release_go_actual_measurement_layer",
+  "design_category": "reports_only",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "operation_transition_go_authorization": "NOT_GRANTED",
+    "production_reflection_go_authorization": "NOT_GRANTED",
+    "freeze_release_go_authorization": "NOT_GRANTED",
+    "execution_start_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "phase_36_9_scope": {
+    "scope_1_completion_declaration": {
+      "scope_id": "COMPLETION_DECLARATION",
+      "declaration": {
+        "phase_36_design_layer_status": "COMPLETE",
+        "phase_36_1_through_36_8_status": "ALL_PASS_DESIGN_ONLY",
+        "manual_release_measurement_design_coverage": "COMPREHENSIVE"
+      }
+    },
+    "scope_2_phase_36_summary": {
+      "scope_id": "PHASE_36_SUMMARY",
+      "phases": {
+        "phase_36_1": "Phase 35 completion evidence receipt and consistency confirmation",
+        "phase_36_2": "manual_release_go candidate pre-measurement final safety confirmation",
+        "phase_36_3": "manual_release_go / NO_GO actual measurement template design",
+        "phase_36_4": "manual_release_go / NO_GO judgment result evidence locking rules design",
+        "phase_36_5": "manual_release_go impossible return and NO_GO maintenance rules design",
+        "phase_36_6": "manual_release direct pre-ABORT condition design",
+        "phase_36_7": "manual_release_go / NO_GO integrated final judgment report design",
+        "phase_36_8": "manual_release_go candidate final evidence locking report design"
+      }
+    },
+    "scope_3_state_invariants_final": {
+      "scope_id": "STATE_INVARIANTS_FINAL",
+      "invariants": {
+        "app_implementation_status": "NO_GO",
+        "tests_implementation_status": "NO_GO",
+        "production_status": "NO_GO",
+        "operation_transition_go_authorization": "NOT_GRANTED",
+        "production_reflection_go_authorization": "NOT_GRANTED",
+        "freeze_release_go_authorization": "NOT_GRANTED",
+        "execution_start_go_authorization": "NOT_GRANTED",
+        "actual_process_start_go_authorization": "NOT_GRANTED",
+        "manual_release_go_authorization": "NOT_GRANTED",
+        "changed_area": "reports only"
+      }
+    },
+    "scope_4_report_structure": {
+      "scope_id": "REPORT_STRUCTURE",
+      "sections": {
+        "section_1_header": {
+          "report_id": "PHASE36_9_MANUAL_RELEASE_LAYER_COMPLETION_DECLARATION_<UTC_TIMESTAMP>",
+          "report_type": "phase_36_manual_release_go_no_go_actual_measurement_layer_completion",
+          "generated_at_utc": "RFC3339",
+          "generated_by": "authority_identifier"
+        },
+        "section_2_completion_status": {
+          "phase_36_1_status": "PASS_DESIGN_ONLY",
+          "phase_36_2_status": "PASS_DESIGN_ONLY",
+          "phase_36_3_status": "PASS_DESIGN_ONLY",
+          "phase_36_4_status": "PASS_DESIGN_ONLY",
+          "phase_36_5_status": "PASS_DESIGN_ONLY",
+          "phase_36_6_status": "PASS_DESIGN_ONLY",
+          "phase_36_7_status": "PASS_DESIGN_ONLY",
+          "phase_36_8_status": "PASS_DESIGN_ONLY",
+          "phase_36_overall_status": "PASS_DESIGN_ONLY"
+        },
+        "section_3_design_layer_declaration": {
+          "manual_release_go_no_go_measurement_design_layer": "COMPLETE",
+          "design_coverage": "COMPREHENSIVE",
+          "design_integrity": "VERIFIED"
+        },
+        "section_4_state_confirmation": {
+          "app_implementation_status": "NO_GO",
+          "tests_implementation_status": "NO_GO",
+          "production_status": "NO_GO",
+          "operation_transition_go_authorization": "NOT_GRANTED",
+          "production_reflection_go_authorization": "NOT_GRANTED",
+          "freeze_release_go_authorization": "NOT_GRANTED",
+          "execution_start_go_authorization": "NOT_GRANTED",
+          "actual_process_start_go_authorization": "NOT_GRANTED",
+          "manual_release_go_authorization": "NOT_GRANTED",
+          "changed_area": "reports only"
+        }
+      }
+    }
+  },
+  "phase_36_9_governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution",
+      "manual_release_execution",
+      "actual_process_start_execution"
+    ],
+    "state_invariants": {
+      "app_implementation_status": "NO_GO",
+      "tests_implementation_status": "NO_GO",
+      "production_status": "NO_GO",
+      "operation_transition_go_authorization": "NOT_GRANTED",
+      "production_reflection_go_authorization": "NOT_GRANTED",
+      "freeze_release_go_authorization": "NOT_GRANTED",
+      "execution_start_go_authorization": "NOT_GRANTED",
+      "actual_process_start_go_authorization": "NOT_GRANTED",
+      "manual_release_go_authorization": "NOT_GRANTED",
+      "changed_area": "reports only"
+    }
+  }
+}

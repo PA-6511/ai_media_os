@@ -1,0 +1,79 @@
+{
+  "phase": "N-5",
+  "name": "n5_recovery_simulation_policy",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "human_approval_required": true,
+  "wordpress_write_executed": false,
+  "wordpress_post_created": false,
+  "external_state_change": false,
+  "executor_action_allowed": false,
+  "network_observation_only": true,
+  "communication_test_only": true,
+  "restart_allowed": false,
+  "shutdown_allowed": false,
+  "reboot_allowed": false,
+  "scenario_templates": {
+    "nginx_down": {
+      "expected_action": "switch_to_readonly_and_alert",
+      "recommended_action": "validate_nginx_process_and_config",
+      "recovery_steps": [
+        "check nginx process status",
+        "validate nginx config syntax",
+        "prepare manual restart plan (do not execute in dry-run)",
+        "verify health endpoint after operator approval"
+      ]
+    },
+    "db_down": {
+      "expected_action": "halt_writes_and_alert",
+      "recommended_action": "verify_database_connectivity_and_lock_writes",
+      "recovery_steps": [
+        "check db port connectivity",
+        "review database error logs",
+        "prepare failover or restart runbook (do not execute in dry-run)",
+        "run read-only query health checks"
+      ]
+    },
+    "dns_failure": {
+      "expected_action": "fallback_dns_and_alert",
+      "recommended_action": "switch_dns_resolver_plan",
+      "recovery_steps": [
+        "validate resolver availability",
+        "check authoritative DNS records",
+        "prepare resolver failover changes (do not execute in dry-run)",
+        "recheck service name resolution"
+      ]
+    },
+    "wordpress_no_response": {
+      "expected_action": "freeze_wordpress_write_path",
+      "recommended_action": "inspect_wordpress_api_and_webstack",
+      "recovery_steps": [
+        "check WordPress API endpoint response",
+        "validate php-fpm and web server status",
+        "prepare controlled recovery actions (do not execute in dry-run)",
+        "run GET health probe"
+      ]
+    },
+    "github_connect_failure": {
+      "expected_action": "switch_to_offline_queue_mode",
+      "recommended_action": "verify_github_dns_tls_and_ssh",
+      "recovery_steps": [
+        "check github.com DNS resolution",
+        "run TLS handshake check",
+        "run git ls-remote read-only test",
+        "queue pending operations without push"
+      ]
+    },
+    "slack_connect_failure": {
+      "expected_action": "fallback_alert_channel",
+      "recommended_action": "verify_webhook_url_dns_tls_path",
+      "recovery_steps": [
+        "validate webhook URL format",
+        "check DNS and TLS for webhook host",
+        "record unsent alerts to local queue",
+        "resume alert path after connectivity recovery"
+      ]
+    }
+  }
+}

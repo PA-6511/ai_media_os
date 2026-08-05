@@ -1,0 +1,515 @@
+{
+  "phase_identifier": "16-4",
+  "phase_title": "実測入力データ受領後の形式検証ルール設計",
+  "phase_purpose": "Phase 16 実測入力データエントリ受領・検証層：Phase 16-1 で受領した実測入力データの形式的妥当性（JSON構造、フィールド型、列挙値、必須フィールド）を検証するルールを設計する",
+  "execution_context": "reports-only design phase; design of format validation rules only, no actual format validation execution yet",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only"
+  },
+  "governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "safety_rule": "All blocked_actions remain strictly prohibited. Format validation design is design-only; no actual format validation execution occurs. No app/tests implementation permitted.",
+    "hard_stop_condition": "This phase is design-only. No actual data format validation or processing is permitted."
+  },
+  "format_validation_purpose": {
+    "purpose": "Ensure Phase 16-1 receipt data payload conforms to expected JSON schema, field types, and enumeration constraints before proceeding to Phase 16-2 (completeness/signature/consistency validation)",
+    "validation_tier": "Light, syntactic validation layer preceding Phase 16-2's deeper semantic validation",
+    "validation_timing": "Immediately after Phase 16-1 receipt, before Phase 16-2 processing",
+    "validation_inputs": [
+      "Phase 16-1 receipt record with data payload references",
+      "Phase 15-1 integrated_decision input format specification (reference document)",
+      "Phase 15-2 receiver_validator_permission input format specification (reference document)"
+    ],
+    "validation_outputs": [
+      "Format validation report: PASSED / FAILED, with specific format issues listed"
+    ]
+  },
+  "phase_15_1_format_validation_rules": {
+    "format_spec_reference": "Phase 15-1 integrated_decision final actual measurement input format specification",
+    "required_json_structure": {
+      "rule_id": "STRUCT_15_1_JSON",
+      "rule": "Phase 15-1 data must be valid JSON object at top level",
+      "check": "Parse data as JSON; must succeed without parse errors",
+      "pass_criterion": "JSON parses successfully",
+      "fail_criterion": "JSON parse error detected"
+    },
+    "field_level_rules": [
+      {
+        "field_name": "reviewer_id",
+        "expected_type": "string",
+        "rule_id": "FIELD_15_1_REVIEWER_ID",
+        "validation_rules": [
+          {
+            "rule": "Field must exist in JSON",
+            "check": "Key 'reviewer_id' is present",
+            "fail_value": "missing"
+          },
+          {
+            "rule": "Value must be string type",
+            "check": "typeof(reviewer_id) === 'string'",
+            "fail_value": "not_string"
+          },
+          {
+            "rule": "Value must not be empty string",
+            "check": "reviewer_id.length > 0",
+            "fail_value": "empty_string"
+          },
+          {
+            "rule": "Value must match reviewer ID format (e.g., alphanumeric, email-like, or UUID)",
+            "check": "Regex pattern /^[a-zA-Z0-9._@-]+$/ or predefined format",
+            "fail_value": "format_invalid"
+          }
+        ]
+      },
+      {
+        "field_name": "reviewer_timestamp",
+        "expected_type": "ISO8601 datetime string",
+        "rule_id": "FIELD_15_1_TIMESTAMP",
+        "validation_rules": [
+          {
+            "rule": "Field must exist",
+            "check": "Key 'reviewer_timestamp' is present",
+            "fail_value": "missing"
+          },
+          {
+            "rule": "Value must be string type",
+            "check": "typeof(reviewer_timestamp) === 'string'",
+            "fail_value": "not_string"
+          },
+          {
+            "rule": "Value must be valid ISO8601 datetime string",
+            "check": "Parse with ISO8601 parser; must succeed",
+            "fail_value": "not_iso8601"
+          },
+          {
+            "rule": "Datetime must not be in future",
+            "check": "parsed_datetime <= current_utc_time",
+            "fail_value": "future_timestamp"
+          },
+          {
+            "rule": "Datetime must be after Phase 15 approval timestamp",
+            "check": "parsed_datetime >= phase15_approval_timestamp",
+            "fail_value": "timestamp_before_approval"
+          }
+        ]
+      },
+      {
+        "field_name": "integrated_decision_judgment",
+        "expected_type": "enum string",
+        "rule_id": "FIELD_15_1_DECISION",
+        "validation_rules": [
+          {
+            "rule": "Field must exist",
+            "check": "Key 'integrated_decision_judgment' is present",
+            "fail_value": "missing"
+          },
+          {
+            "rule": "Value must be string type",
+            "check": "typeof(integrated_decision_judgment) === 'string'",
+            "fail_value": "not_string"
+          },
+          {
+            "rule": "Value must be exactly 'GO' or 'NO_GO'",
+            "check": "integrated_decision_judgment in ['GO', 'NO_GO']",
+            "fail_value": "not_enum_value"
+          }
+        ]
+      },
+      {
+        "field_name": "supporting_evidence_references",
+        "expected_type": "array",
+        "rule_id": "FIELD_15_1_EVIDENCE",
+        "validation_rules": [
+          {
+            "rule": "Field must exist",
+            "check": "Key 'supporting_evidence_references' is present",
+            "fail_value": "missing"
+          },
+          {
+            "rule": "Value must be array type",
+            "check": "Array.isArray(supporting_evidence_references)",
+            "fail_value": "not_array"
+          },
+          {
+            "rule": "Array must not be empty",
+            "check": "supporting_evidence_references.length > 0",
+            "fail_value": "empty_array"
+          },
+          {
+            "rule": "Array elements must be strings or valid reference objects",
+            "check": "Each element is string or object with valid structure",
+            "fail_value": "element_invalid_type"
+          }
+        ]
+      },
+      {
+        "field_name": "confidence_assessment",
+        "expected_type": "enum string",
+        "rule_id": "FIELD_15_1_CONFIDENCE",
+        "validation_rules": [
+          {
+            "rule": "Field must exist",
+            "check": "Key 'confidence_assessment' is present",
+            "fail_value": "missing"
+          },
+          {
+            "rule": "Value must be string type",
+            "check": "typeof(confidence_assessment) === 'string'",
+            "fail_value": "not_string"
+          },
+          {
+            "rule": "Value must be one of HIGH, MEDIUM, LOW",
+            "check": "confidence_assessment in ['HIGH', 'MEDIUM', 'LOW']",
+            "fail_value": "not_enum_value"
+          }
+        ]
+      },
+      {
+        "field_name": "reviewer_signature_or_authentication",
+        "expected_type": "string",
+        "rule_id": "FIELD_15_1_SIGNATURE",
+        "validation_rules": [
+          {
+            "rule": "Field must exist",
+            "check": "Key 'reviewer_signature_or_authentication' is present",
+            "fail_value": "missing"
+          },
+          {
+            "rule": "Value must be string type",
+            "check": "typeof(reviewer_signature_or_authentication) === 'string'",
+            "fail_value": "not_string"
+          },
+          {
+            "rule": "Value must not be empty string",
+            "check": "reviewer_signature_or_authentication.length > 0",
+            "fail_value": "empty_string"
+          },
+          {
+            "rule": "Value length must be reasonable for signature/token (e.g., > 20 chars, < 10000 chars)",
+            "check": "20 < length < 10000",
+            "fail_value": "signature_length_invalid"
+          }
+        ]
+      }
+    ],
+    "extra_fields_rule": {
+      "rule_id": "EXTRA_FIELDS_15_1",
+      "rule": "Phase 15-1 format spec defines exact fields allowed; extra fields may be accepted or rejected per policy",
+      "policy": "ALLOW_EXTRA (extra fields ignored) or REJECT_EXTRA (validation fails if extra fields)",
+      "default_policy": "ALLOW_EXTRA"
+    }
+  },
+  "phase_15_2_format_validation_rules": {
+    "format_spec_reference": "Phase 15-2 receiver_validator_permission final actual measurement input format specification",
+    "required_json_structure": {
+      "rule_id": "STRUCT_15_2_JSON",
+      "rule": "Phase 15-2 data must be valid JSON object at top level",
+      "check": "Parse data as JSON; must succeed without parse errors",
+      "pass_criterion": "JSON parses successfully",
+      "fail_criterion": "JSON parse error detected"
+    },
+    "field_level_rules": [
+      {
+        "field_name": "reviewer_id",
+        "expected_type": "string",
+        "rule_id": "FIELD_15_2_REVIEWER_ID",
+        "validation_rules": [
+          {
+            "rule": "Field must exist",
+            "check": "Key 'reviewer_id' is present",
+            "fail_value": "missing"
+          },
+          {
+            "rule": "Value must be string type",
+            "check": "typeof(reviewer_id) === 'string'",
+            "fail_value": "not_string"
+          },
+          {
+            "rule": "Value must not be empty",
+            "check": "reviewer_id.length > 0",
+            "fail_value": "empty_string"
+          },
+          {
+            "rule": "Value must match reviewer ID format",
+            "check": "Regex pattern matching or format validation",
+            "fail_value": "format_invalid"
+          }
+        ]
+      },
+      {
+        "field_name": "reviewer_timestamp",
+        "expected_type": "ISO8601 datetime string",
+        "rule_id": "FIELD_15_2_TIMESTAMP",
+        "validation_rules": [
+          {
+            "rule": "Field must exist",
+            "check": "Key 'reviewer_timestamp' is present",
+            "fail_value": "missing"
+          },
+          {
+            "rule": "Value must be string type",
+            "check": "typeof(reviewer_timestamp) === 'string'",
+            "fail_value": "not_string"
+          },
+          {
+            "rule": "Value must be valid ISO8601 datetime",
+            "check": "ISO8601 parser succeeds",
+            "fail_value": "not_iso8601"
+          },
+          {
+            "rule": "Datetime must not be in future",
+            "check": "parsed_datetime <= current_utc_time",
+            "fail_value": "future_timestamp"
+          }
+        ]
+      },
+      {
+        "field_name": "permission_judgment",
+        "expected_type": "enum string",
+        "rule_id": "FIELD_15_2_PERMISSION",
+        "validation_rules": [
+          {
+            "rule": "Field must exist",
+            "check": "Key 'permission_judgment' is present",
+            "fail_value": "missing"
+          },
+          {
+            "rule": "Value must be string type",
+            "check": "typeof(permission_judgment) === 'string'",
+            "fail_value": "not_string"
+          },
+          {
+            "rule": "Value must be exactly 'EFFECTIVE' or 'NOT_EFFECTIVE'",
+            "check": "permission_judgment in ['EFFECTIVE', 'NOT_EFFECTIVE']",
+            "fail_value": "not_enum_value"
+          }
+        ]
+      },
+      {
+        "field_name": "implementation_readiness_assessment",
+        "expected_type": "object or string",
+        "rule_id": "FIELD_15_2_READINESS",
+        "validation_rules": [
+          {
+            "rule": "Field must exist",
+            "check": "Key 'implementation_readiness_assessment' is present",
+            "fail_value": "missing"
+          },
+          {
+            "rule": "Value must be object or string type",
+            "check": "typeof(value) in ['string', 'object']",
+            "fail_value": "not_string_or_object"
+          },
+          {
+            "rule": "Value must not be empty",
+            "check": "If string: length > 0; if object: has properties",
+            "fail_value": "empty_value"
+          }
+        ]
+      },
+      {
+        "field_name": "supporting_evidence_references",
+        "expected_type": "array",
+        "rule_id": "FIELD_15_2_EVIDENCE",
+        "validation_rules": [
+          {
+            "rule": "Field must exist",
+            "check": "Key 'supporting_evidence_references' is present",
+            "fail_value": "missing"
+          },
+          {
+            "rule": "Value must be array type",
+            "check": "Array.isArray(supporting_evidence_references)",
+            "fail_value": "not_array"
+          },
+          {
+            "rule": "Array must not be empty",
+            "check": "supporting_evidence_references.length > 0",
+            "fail_value": "empty_array"
+          },
+          {
+            "rule": "Array elements must be strings or valid reference objects",
+            "check": "Each element is string or object",
+            "fail_value": "element_invalid_type"
+          }
+        ]
+      },
+      {
+        "field_name": "reviewer_signature_or_authentication",
+        "expected_type": "string",
+        "rule_id": "FIELD_15_2_SIGNATURE",
+        "validation_rules": [
+          {
+            "rule": "Field must exist",
+            "check": "Key 'reviewer_signature_or_authentication' is present",
+            "fail_value": "missing"
+          },
+          {
+            "rule": "Value must be string type",
+            "check": "typeof(reviewer_signature_or_authentication) === 'string'",
+            "fail_value": "not_string"
+          },
+          {
+            "rule": "Value must not be empty",
+            "check": "reviewer_signature_or_authentication.length > 0",
+            "fail_value": "empty_string"
+          },
+          {
+            "rule": "Value length must be reasonable for signature/token",
+            "check": "20 < length < 10000",
+            "fail_value": "signature_length_invalid"
+          }
+        ]
+      }
+    ],
+    "extra_fields_rule": {
+      "rule_id": "EXTRA_FIELDS_15_2",
+      "rule": "Same as Phase 15-1: extra fields may be allowed or rejected",
+      "default_policy": "ALLOW_EXTRA"
+    }
+  },
+  "format_validation_procedure": {
+    "step_1_determine_data_format": {
+      "action": "Identify the input format of Phase 15-1/15-2 data (JSON, CSV, email body, form submission, etc.)",
+      "requirement": "Must be parseable into JSON-like structure",
+      "outcome": "Identified data format"
+    },
+    "step_2_convert_to_json_if_needed": {
+      "action": "If data is not native JSON, convert to JSON (parse CSV, extract JSON from email, etc.)",
+      "requirement": "Conversion must preserve all data fields",
+      "outcome": "JSON object ready for validation"
+    },
+    "step_3_validate_phase_15_1_json_structure": {
+      "action": "Apply STRUCT_15_1_JSON rule: parse as JSON",
+      "pass_criterion": "Valid JSON",
+      "fail_criterion": "JSON parse error",
+      "fail_action": "Halt; mark format validation as FAILED_INVALID_JSON"
+    },
+    "step_4_validate_phase_15_1_field_formats": {
+      "action": "For each field in Phase 15-1 (reviewer_id, timestamp, decision, etc.), apply field-level rules",
+      "pass_criterion": "All fields pass their validation rules",
+      "fail_criterion": "Any field fails",
+      "fail_action": "Record failing fields and reasons"
+    },
+    "step_5_validate_phase_15_2_json_structure": {
+      "action": "Apply STRUCT_15_2_JSON rule: parse as JSON",
+      "pass_criterion": "Valid JSON",
+      "fail_criterion": "JSON parse error",
+      "fail_action": "Halt; mark format validation as FAILED_INVALID_JSON"
+    },
+    "step_6_validate_phase_15_2_field_formats": {
+      "action": "For each field in Phase 15-2 (reviewer_id, timestamp, permission, etc.), apply field-level rules",
+      "pass_criterion": "All fields pass",
+      "fail_criterion": "Any field fails",
+      "fail_action": "Record failing fields and reasons"
+    },
+    "step_7_overall_format_result": {
+      "action": "Synthesize results: if ALL fields pass, PASSED_FORMAT; if ANY fail, FAILED_FORMAT",
+      "output": "Format validation report"
+    }
+  },
+  "format_validation_report_structure": {
+    "report_id": "POST_RECEIPT_FORMAT_VALIDATION_REPORT_v1",
+    "report_elements": {
+      "validation_timestamp": {
+        "field_name": "format_validation_completed_at",
+        "type": "ISO8601 datetime"
+      },
+      "source_receipt_reference": {
+        "field_name": "source_receipt_record_id",
+        "type": "string"
+      },
+      "phase_15_1_format_validation": {
+        "field_name": "integrated_decision_format_status",
+        "type": "enum",
+        "allowed_values": ["PASSED_FORMAT", "FAILED_FORMAT"],
+        "sub_elements": {
+          "json_structure_valid": "boolean - JSON parses successfully",
+          "field_validation_results": "object - for each field (reviewer_id, timestamp, decision, evidence, confidence, signature): PASS or FAIL with reason",
+          "failing_fields": "list of fields that failed validation (if any)",
+          "format_issues_list": "detailed issues: field name, rule failed, fail_value"
+        }
+      },
+      "phase_15_2_format_validation": {
+        "field_name": "permission_format_status",
+        "type": "enum",
+        "allowed_values": ["PASSED_FORMAT", "FAILED_FORMAT"],
+        "sub_elements": {
+          "json_structure_valid": "boolean",
+          "field_validation_results": "object - for each field: PASS or FAIL",
+          "failing_fields": "list of fields that failed (if any)",
+          "format_issues_list": "detailed issues"
+        }
+      },
+      "overall_format_validation_result": {
+        "field_name": "format_validation_final_status",
+        "type": "enum",
+        "allowed_values": ["PASSED_FORMAT", "FAILED_FORMAT"],
+        "logic": "PASSED_FORMAT if both Phase 15-1 and Phase 15-2 are PASSED_FORMAT; FAILED_FORMAT if either is FAILED_FORMAT"
+      },
+      "recommended_next_action": {
+        "field_name": "next_step_recommendation",
+        "type": "enum",
+        "allowed_values": [
+          "PROCEED_TO_PHASE_16_2_VALIDATION",
+          "REQUEST_DATA_REFORMAT_AND_RESUBMIT",
+          "HALT_AND_ESCALATE"
+        ],
+        "logic": "PROCEED if PASSED_FORMAT; REQUEST_REFORMAT if format errors are correctable; HALT if structural issues"
+      }
+    }
+  },
+  "phase_dependencies": {
+    "depends_on": [
+      "Phase 16-1: Receipt record and data payload storage",
+      "Phase 15-1: integrated_decision input format specification (reference)",
+      "Phase 15-2: receiver_validator_permission input format specification (reference)"
+    ],
+    "feeds_into": [
+      "Phase 16-2: Completeness, signature, consistency validation (receives format-validated data)"
+    ]
+  },
+  "design_review_checklist": [
+    "Phase 15-1 format validation rules are complete (6 required fields)",
+    "Phase 15-2 format validation rules are complete (6 required fields)",
+    "Field-level rules include type checking, empty value checking, enum validation",
+    "Timestamp validation includes future/past bounds checking",
+    "Format validation procedure steps are sequential and have clear halt criteria",
+    "Report structure captures all format validation findings",
+    "Recommended actions flow logically from format validation results",
+    "Extra fields policy is defined (ALLOW_EXTRA by default)",
+    "All blocked actions remain in governance",
+    "production_status remains NO_GO (hardcoded)",
+    "Phase dependencies are accurate"
+  ],
+  "completion_gate": {
+    "gate_condition": "Format validation design approved AND validation rules finalized",
+    "approval_required": "Human technical reviewer + Phase 16 design authority",
+    "prerequisite_for": "Phase 16-5 (evidence lock and tamper prevention) can begin once format design is approved"
+  },
+  "status": {
+    "phase_status": "DESIGN_ONLY",
+    "actual_format_validation_execution_status": "NOT_YET_STARTED",
+    "integrated_decision_status": "NO_GO",
+    "receiver_validator_implementation_permission_status": "NOT_EFFECTIVE",
+    "app_implementation_status": "NO_GO",
+    "tests_implementation_status": "NO_GO",
+    "production_status": "NO_GO"
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "protocol": "LS-NEW-1",
+  "content_type": "new_release_comic",
+  "item": {
+    "title": "作品名",
+    "volume": "第12巻",
+    "author": "著者名",
+    "publisher": "出版社",
+    "label": "レーベル",
+    "release_date": "2026-07-10",
+    "ebook_release_date": "2026-07-10",
+    "paper_release_date": "2026-07-10"
+  },
+  "sales_channels": [
+    {
+      "store": "Kindle",
+      "price": 792,
+      "point_rate": null,
+      "reservation_status": "available",
+      "delivery_status": "scheduled",
+      "affiliate_url": null,
+      "source_url": "https://example.com/kindle/placeholder",
+      "checked_at": "2026-07-04T16:00:00+09:00"
+    },
+    {
+      "store": "Rakuten Kobo",
+      "price": 792,
+      "point_rate": "variable",
+      "reservation_status": "available",
+      "delivery_status": "scheduled",
+      "affiliate_url": null,
+      "source_url": null,
+      "checked_at": "2026-07-04T16:00:00+09:00"
+    }
+  ],
+  "content_policy": {
+    "official_synopsis_copy_allowed": false,
+    "store_description_copy_allowed": false,
+    "publisher_description_copy_allowed": false,
+    "review_copy_allowed": false,
+    "user_comment_copy_allowed": false,
+    "catchcopy_copy_allowed": false,
+    "short_original_comment_allowed": true,
+    "long_work_explanation_required": false
+  },
+  "output_targets": {
+    "wordpress_draft": false,
+    "x_post": false,
+    "sale_article": false
+  },
+  "safety": {
+    "scraping_allowed": false,
+    "external_api_call_allowed": false,
+    "wordpress_write_allowed": false,
+    "x_post_allowed": false,
+    "human_review_required": true,
+    "publish_allowed": false
+  }
+}

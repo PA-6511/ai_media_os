@@ -1,0 +1,37 @@
+{
+  "schema_version": "ir51_handoff_integrity_verifier_v1",
+  "phase": "IR51",
+  "generated_at": "2026-05-24T04:53:39.261185+00:00",
+  "source_task_id": "ir51_55_live_trial",
+  "source_ir50_report": "generic_block_ai/reports/ir50_destination_submission_handoff_manifest_ir50_live_trial/destination_submission_handoff_manifest.json",
+  "overall_submission_handoff_decision": "READY_DRY_RUN_HANDOFF",
+  "ir51_integrity_decision": "PASS",
+  "validation_result": "PASS",
+  "validation_failed_checks": [],
+  "validation_warnings": [],
+  "summary": {
+    "destination_count": 3,
+    "handoff_target_count": 3,
+    "target_destinations": [
+      "compliance_archive",
+      "internal_review_board",
+      "regulatory_audit"
+    ],
+    "reference_record_paths": [
+      "generic_block_ai/reports/ir48_destination_human_review_result_intake_ir48_live_trial/compliance_archive_human_review_result.json",
+      "generic_block_ai/reports/ir48_destination_human_review_result_intake_ir48_live_trial/internal_review_board_human_review_result.json",
+      "generic_block_ai/reports/ir48_destination_human_review_result_intake_ir48_live_trial/regulatory_audit_human_review_result.json"
+    ],
+    "missing_reference_record_paths": []
+  },
+  "safety_gate_snapshot": {
+    "dry_run": "maintained",
+    "OBSERVE": "maintained",
+    "submission_execution_blocked": true,
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "network_transmission_executed": false,
+    "production_release": false,
+    "GitHub_push": "未実行"
+  }
+}

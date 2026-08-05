@@ -1,0 +1,53 @@
+{
+  "phase": "PR_WARN_BACKFILL_PHASE1J",
+  "mode": "DRY_RUN",
+  "status": "PASS_LIVE_WRITE_RUNNER_DRY_RUN_ONLY",
+  "target_post_id": 101,
+  "title": "呪術廻戦は何巻まで出てる？最新巻・関連情報まとめ",
+  "dedicated_live_write_runner_created": true,
+  "existing_runners_modified": false,
+  "approval_file": "exchange/human_review/pr_warn_backfill_phase1_101_human_approval.approved.json",
+  "approved_file_currently_allows_write": true,
+  "final_live_approval_path": "exchange/examples/pr_warn_backfill_phase1i_final_live_approval.example.json",
+  "final_live_approval_example_only": true,
+  "final_live_approval_approved": false,
+  "final_live_write_allowed": false,
+  "pre_live_resnapshot_required": true,
+  "pre_live_resnapshot_executed": false,
+  "abort_if_modified_drift_on_resnapshot": true,
+  "abort_if_content_hash_drift_on_resnapshot": true,
+  "live_write_supported_in_this_phase": false,
+  "live_write_blocked_reason": "PHASE1J_DRY_RUN_ONLY",
+  "proposed_changed_fields": [
+    "content"
+  ],
+  "forbidden_changed_fields": [
+    "title",
+    "status",
+    "slug",
+    "link",
+    "categories",
+    "tags",
+    "featured_media",
+    "publish",
+    "excerpt",
+    "author",
+    "date"
+  ],
+  "snapshot_available": true,
+  "snapshot_content_hash": "fed3e62ba7fd5baad3da128e89afb7d03841bab53c49189ff671be143f8f5adb",
+  "snapshot_content_length": 1177,
+  "snapshot_modified": "2026-05-01T14:14:24",
+  "rollback_snapshot_available": true,
+  "wordpress_read_executed": false,
+  "wordpress_write_executed": false,
+  "live_execution_executed": false,
+  "update_count": 0,
+  "next_required_phase": "Phase 1J-FIX or Phase 1K",
+  "missing_for_live_enable": [
+    "final live approval active file with approved=true",
+    "pre-live resnapshot execution",
+    "dedicated live write path implementation and guarded release"
+  ],
+  "created_at": "2026-06-20T03:23:11.948507+00:00"
+}

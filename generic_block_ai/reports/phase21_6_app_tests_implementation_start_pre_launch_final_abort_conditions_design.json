@@ -1,0 +1,97 @@
+{
+  "phase_id": "21-6",
+  "phase_name": "App/Tests Implementation Start Pre-Launch Final ABORT Conditions Design",
+  "phase_japanese_name": "app/tests 実装開始直前の最終ABORT条件設計",
+  "purpose": "Design mandatory final ABORT conditions immediately before implementation start so that unsafe transitions are forcibly blocked",
+  "layer": "pre_launch_final_abort_layer",
+  "design_category": "reports_only",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only"
+  },
+  "phase_21_6_scope": {
+    "scope_1_abort_categories": {
+      "scope_id": "ABORT_CATEGORIES",
+      "categories": {
+        "AB1": "Any minimum condition from Phase 21-3 is NOT_MET",
+        "AB2": "Any evidence lock verification from Phase 21-4 fails",
+        "AB3": "Any unresolved rejection from Phase 21-5 exists",
+        "AB4": "Human final approval signature invalid, revoked, or expired",
+        "AB5": "Detected divergence between measured evidence and decision payload",
+        "AB6": "State invariant violation (integrated_decision / permission / dual_gate mismatch)",
+        "AB7": "Any production execution trace before authorization",
+        "AB8": "Unknown or unclassified risk requiring mandatory human halt"
+      }
+    },
+    "scope_2_abort_handling_rules": {
+      "scope_id": "ABORT_HANDLING_RULES",
+      "rules": {
+        "rule_AH1": "If any AB1-AB8 is true, set launch_status = ABORTED",
+        "rule_AH2": "Forced determination = IMPLEMENTATION_START_NO_GO",
+        "rule_AH3": "Record abort_reason_codes and lock abort evidence",
+        "rule_AH4": "Require human review to clear abort status before re-entry",
+        "rule_AH5": "Do not unlock dual_gate during ABORTED state"
+      }
+    },
+    "scope_3_abort_report_structure": {
+      "scope_id": "ABORT_REPORT_STRUCTURE",
+      "sections": {
+        "section_1_header": {
+          "report_id": "PHASE21_6_PRE_LAUNCH_ABORT_<UTC_TIMESTAMP>",
+          "report_type": "app_tests_impl_start_pre_launch_final_abort_conditions",
+          "generated_at_utc": "RFC3339",
+          "generated_by": "authority_identifier"
+        },
+        "section_2_abort_condition_evaluation": {
+          "AB1": "TRIGGERED | NOT_TRIGGERED",
+          "AB2": "TRIGGERED | NOT_TRIGGERED",
+          "AB3": "TRIGGERED | NOT_TRIGGERED",
+          "AB4": "TRIGGERED | NOT_TRIGGERED",
+          "AB5": "TRIGGERED | NOT_TRIGGERED",
+          "AB6": "TRIGGERED | NOT_TRIGGERED",
+          "AB7": "TRIGGERED | NOT_TRIGGERED",
+          "AB8": "TRIGGERED | NOT_TRIGGERED"
+        },
+        "section_3_final_abort_judgment": {
+          "launch_status": "ABORTED | NOT_ABORTED",
+          "determination": "IMPLEMENTATION_START_NO_GO | IMPLEMENTATION_START_GO",
+          "implementation_start_authorization": "NOT_GRANTED | GRANTED"
+        },
+        "section_4_state_reconfirmation": {
+          "integrated_decision": "NO_GO",
+          "receiver_validator_permission": "NOT_EFFECTIVE",
+          "dual_gate": "LOCKED",
+          "app_implementation_status": "NO_GO",
+          "tests_implementation_status": "NO_GO",
+          "production_status": "NO_GO"
+        }
+      }
+    }
+  },
+  "phase_21_6_governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "state_invariants": {
+      "integrated_decision": "NO_GO",
+      "receiver_validator_permission": "NOT_EFFECTIVE",
+      "dual_gate": "LOCKED",
+      "app_implementation_status": "NO_GO",
+      "tests_implementation_status": "NO_GO",
+      "production_status": "NO_GO"
+    }
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "phase_id": "PHASE_S3",
+  "detector_name": "scheduler_anomaly_detector",
+  "status": "DESIGN_ONLY",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "human_approval_required": true,
+  "detector_only": true,
+  "recommendation_only": true,
+  "executor_action_allowed": false,
+  "detect_retry_loop": true,
+  "detect_queue_runaway": true,
+  "detect_cron_storm": true,
+  "detect_duplicate_run": true,
+  "detect_unexpected_scheduler_activation": true,
+  "thresholds": {
+    "retry_count_warn": 3,
+    "retry_count_fail": 5,
+    "retry_count_abort": 10,
+    "queue_depth_warn": 20,
+    "queue_depth_fail": 50,
+    "queue_depth_abort": 100,
+    "cron_runs_per_hour_warn": 3,
+    "cron_runs_per_hour_fail": 6,
+    "cron_runs_per_hour_abort": 12,
+    "duplicate_run_warn": 1,
+    "duplicate_run_fail": 2,
+    "duplicate_run_abort": 3
+  },
+  "sample_event": {
+    "retry_count": 0,
+    "queue_depth": 0,
+    "cron_runs_per_hour": 0,
+    "duplicate_runs": 0
+  },
+  "recommendations": {
+    "allow_freeze_recommendation": true,
+    "allow_human_review_recommendation": true,
+    "allow_scheduler_review_recommendation": true
+  },
+  "actions": {
+    "auto_freeze_execute": false,
+    "auto_scheduler_stop_execute": false,
+    "auto_retry_disable_execute": false,
+    "process_kill_execute": false
+  },
+  "state_change_executed": false,
+  "freeze_executed": false,
+  "revoke_executed": false,
+  "isolation_executed": false,
+  "scheduler_stop_executed": false,
+  "process_kill_executed": false,
+  "wordpress_write_executed": false,
+  "external_api_call_executed": false
+}

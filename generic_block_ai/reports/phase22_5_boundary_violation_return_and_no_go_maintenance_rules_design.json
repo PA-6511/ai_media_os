@@ -1,0 +1,93 @@
+{
+  "phase_id": "22-5",
+  "phase_name": "Boundary Violation Return and NO-GO Maintenance Rules Design",
+  "phase_japanese_name": "境界違反時の差し戻し・NO_GO維持ルール設計",
+  "purpose": "Design return routing and NO_GO maintenance rules when boundary violations are detected between implementation-start GO and operation-transition GO",
+  "layer": "go_establishment_and_transition_boundary_audit_layer",
+  "design_category": "reports_only",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only"
+  },
+  "phase_22_5_scope": {
+    "scope_1_violation_categories": {
+      "scope_id": "VIOLATION_CATEGORIES",
+      "categories": {
+        "BV1": "Implementation-start GO used as operation-transition authorization",
+        "BV2": "Unauthorized mutation of production_status from implementation layer",
+        "BV3": "Missing independent operation-transition audit evidence",
+        "BV4": "Cross-source consistency mismatch across go_establishment and boundary records",
+        "BV5": "Signature invalidity or evidence tamper detected in boundary audit trail"
+      }
+    },
+    "scope_2_return_and_maintenance_rules": {
+      "scope_id": "RETURN_AND_MAINTENANCE_RULES",
+      "rules": {
+        "rule_BM1": "Any BV1-BV5 triggers immediate NO_GO reassertion",
+        "rule_BM2": "Route remediation to Phase 22-2/22-3/22-4 depending on failure category",
+        "rule_BM3": "Block operation-transition GO decision while unresolved_violations_count > 0",
+        "rule_BM4": "Maintain app/tests implementation status as NO_GO until clean re-audit",
+        "rule_BM5": "Escalate to HALT_REVIEW_REQUIRED when repeated boundary violations exceed threshold"
+      }
+    },
+    "scope_3_report_structure": {
+      "scope_id": "REPORT_STRUCTURE",
+      "sections": {
+        "section_1_header": {
+          "report_id": "PHASE22_5_BOUNDARY_VIOLATION_MAINTENANCE_<UTC_TIMESTAMP>",
+          "report_type": "boundary_violation_return_and_no_go_maintenance",
+          "generated_at_utc": "RFC3339",
+          "generated_by": "authority_identifier"
+        },
+        "section_2_violation_summary": {
+          "triggered_categories": [
+            "BV1",
+            "BV2",
+            "BV3",
+            "BV4",
+            "BV5"
+          ],
+          "unresolved_violations_count": "integer"
+        },
+        "section_3_maintenance_state": {
+          "integrated_decision": "NO_GO",
+          "receiver_validator_permission": "NOT_EFFECTIVE",
+          "dual_gate": "LOCKED",
+          "app_implementation_status": "NO_GO",
+          "tests_implementation_status": "NO_GO",
+          "production_status": "NO_GO"
+        },
+        "section_4_next_actions": {
+          "remediation_route": "Phase 22-2 / 22-3 / 22-4",
+          "re_audit_required": true
+        }
+      }
+    }
+  },
+  "phase_22_5_governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "state_invariants": {
+      "integrated_decision": "NO_GO",
+      "receiver_validator_permission": "NOT_EFFECTIVE",
+      "dual_gate": "LOCKED",
+      "app_implementation_status": "NO_GO",
+      "tests_implementation_status": "NO_GO",
+      "production_status": "NO_GO"
+    }
+  }
+}

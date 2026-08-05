@@ -1,0 +1,56 @@
+{
+  "review_target": "generic_block_ai",
+  "review_scope": "Phase 3.5 human review for dry-run proposal decisions only.",
+  "review_status": "TEMPLATE_ONLY",
+  "required_checks": [
+    "Confirm operation_mode is OBSERVE.",
+    "Confirm observe_only is true.",
+    "Confirm execution remains dry_run.",
+    "Confirm requires_human_approval is true.",
+    "Confirm auto_execute_allowed is false.",
+    "Confirm no external API call is introduced.",
+    "Confirm no WordPress operation is introduced.",
+    "Confirm no cron registration is introduced.",
+    "Confirm no production execution is introduced.",
+    "Confirm no auto_post, auto_update, auto_delete, or auto_export is enabled."
+  ],
+  "approval_fields": {
+    "decision": "APPROVE_DRY_RUN_ONLY",
+    "approved_by": "",
+    "approved_at": "",
+    "approval_reason": "",
+    "allowed_next_step": "dry_run_proposal_only"
+  },
+  "rejection_fields": {
+    "decision": "REJECT",
+    "rejected_by": "",
+    "rejected_at": "",
+    "rejection_reason": "",
+    "required_action": "stop_and_review"
+  },
+  "request_fix_fields": {
+    "decision": "REQUEST_FIX",
+    "requested_by": "",
+    "requested_at": "",
+    "fix_reason": "",
+    "required_fix": ""
+  },
+  "abort_fields": {
+    "decision": "ABORT",
+    "aborted_by": "",
+    "aborted_at": "",
+    "abort_reason": "",
+    "immediate_action": "stop_execution"
+  },
+  "evidence_links": [
+    "generic_block_ai/reports/phase35_existing_audit_report.json",
+    "generic_block_ai/reports/phase35_pass_report.json",
+    "generic_block_ai/reports/phase35_decision_package.json"
+  ],
+  "final_judgment_format": [
+    "APPROVE_DRY_RUN_ONLY",
+    "REQUEST_FIX",
+    "REJECT",
+    "ABORT"
+  ]
+}

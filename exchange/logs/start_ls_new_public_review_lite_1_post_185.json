@@ -1,0 +1,35 @@
+{
+  "phase": "LS-NEW-PUBLIC-REVIEW-LITE-1",
+  "document_type": "START_LS_NEW_PUBLIC_REVIEW_LITE_1_POST_185",
+  "status": "LSNEW_PUBLIC_REVIEW_LITE_1_READY_FOR_MANUAL_PUBLIC_URL_CHECK",
+  "execution_mode": "PUBLIC_URL_REVIEW_RECORD_ONLY_NO_WP_CALL",
+  "production_status": "POST_185_PUBLISHED_PUBLIC_REVIEW_REQUIRED",
+
+  "previous_phase": "LS-NEW-PUBLISH-LITE-1",
+  "previous_status": "LSNEW_PUBLISH_LITE_1_POST_185_PUBLISHED_ONE_SHOT",
+
+  "published_post_id": 185,
+  "published_post_status": "publish",
+  "published_post_link": "https://hoshido.jp/2026/07/09/%e6%9c%88%e6%9b%9c%e6%97%a5%e3%81%ae%e3%81%9f%e3%82%8f%e3%82%8f-%e7%ac%ac15%e5%b7%bb%ef%bd%9ckindle%e7%89%88-%e9%85%8d%e4%bf%a1%e9%96%8b%e5%a7%8b/",
+
+  "content_item_id": "new-comic-001",
+  "title": "月曜日のたわわ",
+  "volume": "第15巻",
+  "author": "比村奇石",
+  "publisher": "講談社",
+
+  "wordpress_api_call_executed_in_this_step": false,
+  "wordpress_write_executed_in_this_step": false,
+  "wordpress_publish_executed_in_this_step": false,
+  "credential_env_read_executed": false,
+
+  "draft_create_rerun_allowed": false,
+  "publish_rerun_allowed": false,
+  "one_shot_publish_consumed": true,
+
+  "manual_public_url_review_required": true,
+  "manual_public_url_review_completed": false,
+  "ready_for_x_template_lite": false,
+  "recommended_next_action": "OPEN_PUBLIC_URL_AND_CONFIRM_DISPLAY",
+  "errors": []
+}

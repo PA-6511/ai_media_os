@@ -1,0 +1,121 @@
+{
+  "phase": "LS-6U",
+  "name": "Manual Publish Actual Execution Runner Boundary / No Publish Execution",
+  "status": "MANUAL_PUBLISH_ACTUAL_EXECUTION_RUNNER_BOUNDARY_GATE",
+  "execution_mode": "RUNNER_BOUNDARY_PREFLIGHT_ONLY_NO_PUBLISH",
+  "production_status": "NO_PUBLISH",
+  "purpose": "Record the runner boundary and final execution-command separation before any manual publish execution for WordPress draft post_id=183. This phase must not publish, schedule, update, delete, create, read credentials, or call the WordPress API.",
+  "required_previous_phase": {
+    "ls6t": {
+      "required_ready_status": "LS6T_MANUAL_PUBLISH_EXECUTE_NOW_CONFIRMATION_READY_NO_PUBLISH",
+      "required_confirmation_status": "CONFIRMED_NO_PUBLISH_EXECUTION",
+      "required_execute_now_confirmation_label": "CONFIRMED_FOR_MANUAL_PUBLISH_EXECUTE_NOW_GATE_ONLY",
+      "required_execute_now_confirmation_consumed": false,
+      "required_publish_execution_still_blocked": true,
+      "ready_result": "exchange/logs/start_ls6t_manual_publish_execute_now_confirmation_ready_result.json",
+      "confirmation_result": "exchange/human_review/start_ls6t_manual_publish_execute_now_confirmation.json"
+    },
+    "ls6s": {
+      "required_run_status": "LS6S_MANUAL_PUBLISH_FINAL_PREFLIGHT_PASSED_NO_PUBLISH",
+      "required_validation_status": "LS6S_MANUAL_PUBLISH_FINAL_PREFLIGHT_VALIDATED_NO_PUBLISH",
+      "required_approval_label_consumed": false,
+      "required_manual_publish_executed": false,
+      "required_publish_execution_still_blocked": true,
+      "manual_publish_final_preflight_result": "exchange/runtime/start_ls6s_manual_publish_final_preflight_result.json",
+      "manual_publish_final_preflight_lock": "exchange/locks/start_ls6s_manual_publish_final_preflight.lock.json",
+      "run_result": "exchange/logs/start_ls6s_manual_publish_final_preflight_result.json",
+      "validation_result": "exchange/logs/start_ls6s_manual_publish_final_preflight_validation_result.json"
+    },
+    "ls6r": {
+      "required_ready_status": "LS6R_SEPARATE_MANUAL_PUBLISH_APPROVAL_READY_NO_PUBLISH",
+      "required_approval_status": "APPROVED_NO_PUBLISH_EXECUTION",
+      "required_approval_label": "APPROVED_FOR_SEPARATE_MANUAL_PUBLISH_APPROVAL_GATE_ONLY",
+      "required_approval_label_consumed": false,
+      "ready_result": "exchange/logs/start_ls6r_separate_manual_publish_approval_ready_result.json",
+      "approval_result": "exchange/human_review/start_ls6r_separate_manual_publish_approval.json"
+    },
+    "ls6p": {
+      "required_validation_status": "LS6P_POST_EXECUTION_EVIDENCE_FREEZE_RESTORE_VALIDATED",
+      "rerun_prevention_final_lock": "exchange/locks/start_ls6p_rerun_prevention_final.lock.json"
+    },
+    "ls6oc1": {
+      "execution_result": "exchange/runtime/start_ls6oc1_actual_wordpress_one_shot_draft_creation_execution_result.json",
+      "consumption_lock": "exchange/locks/start_ls6oc1_actual_execution_consumption.lock.json",
+      "required_created_count": 1,
+      "required_returned_post_status": "draft",
+      "required_rerun_allowed": false
+    }
+  },
+  "target_post": {
+    "post_id": 183,
+    "post_link": "https://hoshido.jp/?p=183",
+    "title": "2.5次元の誘惑",
+    "asin": "B07X2G67B4",
+    "expected_current_status": "draft",
+    "created_count": 1
+  },
+  "runner_boundary_policy": {
+    "manual_publish_runner_boundary_ready": true,
+    "runner_boundary_preflight_allowed_by_this_phase": true,
+    "actual_runner_execution_allowed_by_this_phase": false,
+    "manual_publish_execution_allowed_by_this_phase": false,
+    "manual_publish_allowed_by_this_phase": false,
+    "manual_publish_executed": false,
+    "approval_label_consumed": false,
+    "execute_now_confirmation_consumed": false,
+    "requires_final_execution_command": true,
+    "final_execution_command_required_in_next_phase": true,
+    "publish_execution_still_blocked": true,
+    "wordpress_api_call_allowed_by_this_phase": false,
+    "wordpress_read_allowed_by_this_phase": false,
+    "wordpress_write_allowed_by_this_phase": false,
+    "wordpress_publish_allowed_by_this_phase": false,
+    "wordpress_schedule_allowed_by_this_phase": false,
+    "wordpress_update_allowed_by_this_phase": false,
+    "wordpress_delete_allowed_by_this_phase": false,
+    "credential_env_read_allowed_by_this_phase": false
+  },
+  "must_remain_false_flags": {
+    "wordpress_api_call_executed": false,
+    "wordpress_get_executed": false,
+    "wordpress_write_executed": false,
+    "wordpress_draft_creation_executed": false,
+    "wordpress_existing_post_update_executed": false,
+    "wordpress_publish_executed": false,
+    "publish_executed": false,
+    "future_schedule_executed": false,
+    "delete_executed": false,
+    "post119_update_executed": false,
+    "credential_env_read_executed": false,
+    "credential_value_output": false,
+    "credential_value_persisted": false,
+    "credential_secret_output": false,
+    "secret_length_output": false,
+    "secret_hash_output": false,
+    "authorization_header_output": false,
+    "approval_label_consumed": false,
+    "execute_now_confirmation_consumed": false,
+    "manual_publish_allowed_by_this_phase": false,
+    "manual_publish_execution_allowed_by_this_phase": false,
+    "manual_publish_executed": false,
+    "actual_runner_execution_executed": false,
+    "ls6oc1_rerun_executed": false,
+    "rerun_allowed": false
+  },
+  "outputs": {
+    "runner_boundary_preflight_result": "exchange/runtime/start_ls6u_manual_publish_actual_execution_runner_boundary_preflight_result.json",
+    "runner_boundary_lock": "exchange/locks/start_ls6u_manual_publish_actual_execution_runner_boundary.lock.json",
+    "run_result": "exchange/logs/start_ls6u_manual_publish_actual_execution_runner_boundary_result.json",
+    "validation_result": "exchange/logs/start_ls6u_manual_publish_actual_execution_runner_boundary_validation_result.json",
+    "run_report": "reports/start_ls6u_manual_publish_actual_execution_runner_boundary_report.md",
+    "validation_report": "reports/start_ls6u_manual_publish_actual_execution_runner_boundary_validation_report.md"
+  },
+  "next_phase": {
+    "phase": "LS-6V",
+    "name": "Manual Publish Final Execution Command Gate / No Publish Execution",
+    "execution_allowed_by_this_phase": false,
+    "manual_publish_execution_allowed_by_this_phase": false,
+    "requires_final_execution_command": true,
+    "publish_execution_still_blocked": true
+  }
+}

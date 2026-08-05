@@ -1,0 +1,100 @@
+{
+  "phase_id": "38-4",
+  "phase_name": "Actual Process Start GO/NO_GO Final Approval Evidence Locking Rules Design",
+  "phase_japanese_name": "actual_process_start_go / NO_GO 最終承認結果の証跡固定ルール設計",
+  "purpose": "Design evidence locking rules for final approval result of actual_process_start_go or NO_GO, ensuring all audit trails are immutable and non-executable.",
+  "layer": "actual_process_start_go_final_approval_layer",
+  "design_category": "reports_only",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "operation_transition_go_authorization": "NOT_GRANTED",
+    "production_reflection_go_authorization": "NOT_GRANTED",
+    "freeze_release_go_authorization": "NOT_GRANTED",
+    "execution_start_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "phase_38_4_scope": {
+    "scope_1_input_contract": {
+      "scope_id": "INPUT_CONTRACT",
+      "required_inputs": {
+        "phase38_3_final_measurement_decision": "PENDING_HUMAN_APPROVAL | REJECTED",
+        "actual_process_start_go_authorization": "NOT_GRANTED"
+      }
+    },
+    "scope_2_evidence_locking_rules": {
+      "scope_id": "EVIDENCE_LOCKING_RULES",
+      "rules": {
+        "rule_P38L1": "Lock all final approval results and supporting evidence with cryptographic hash",
+        "rule_P38L2": "Seal audit trail for both GO and NO_GO outcomes",
+        "rule_P38L3": "No authorization is granted by evidence locking alone",
+        "rule_P38L4": "If evidence integrity fails, maintain NO_GO and halt progression"
+      }
+    },
+    "scope_3_report_structure": {
+      "scope_id": "REPORT_STRUCTURE",
+      "sections": {
+        "section_1_header": {
+          "report_id": "PHASE38_4_ACTUAL_PROCESS_START_GO_NO_GO_FINAL_APPROVAL_EVIDENCE_LOCKING_<UTC_TIMESTAMP>",
+          "report_type": "actual_process_start_go_no_go_final_approval_evidence_locking_rules",
+          "generated_at_utc": "RFC3339",
+          "generated_by": "authority_identifier"
+        },
+        "section_2_evidence_locking_summary": {
+          "final_approval_result": "GO | NO_GO",
+          "evidence_hash_status": "LOCKED | UNLOCKED",
+          "audit_trail_sealed": "YES | NO"
+        },
+        "section_3_locking_judgment": {
+          "evidence_locking_status": "PASS | FAIL",
+          "actual_process_start_go_authorization": "NOT_GRANTED"
+        },
+        "section_4_state_confirmation": {
+          "app_implementation_status": "NO_GO",
+          "tests_implementation_status": "NO_GO",
+          "production_status": "NO_GO",
+          "operation_transition_go_authorization": "NOT_GRANTED",
+          "production_reflection_go_authorization": "NOT_GRANTED",
+          "freeze_release_go_authorization": "NOT_GRANTED",
+          "execution_start_go_authorization": "NOT_GRANTED",
+          "actual_process_start_go_authorization": "NOT_GRANTED",
+          "manual_release_go_authorization": "NOT_GRANTED",
+          "changed_area": "reports only"
+        }
+      }
+    }
+  },
+  "phase_38_4_governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution",
+      "manual_release_execution",
+      "actual_process_start_execution"
+    ],
+    "state_invariants": {
+      "app_implementation_status": "NO_GO",
+      "tests_implementation_status": "NO_GO",
+      "production_status": "NO_GO",
+      "operation_transition_go_authorization": "NOT_GRANTED",
+      "production_reflection_go_authorization": "NOT_GRANTED",
+      "freeze_release_go_authorization": "NOT_GRANTED",
+      "execution_start_go_authorization": "NOT_GRANTED",
+      "actual_process_start_go_authorization": "NOT_GRANTED",
+      "manual_release_go_authorization": "NOT_GRANTED",
+      "changed_area": "reports only"
+    }
+  }
+}

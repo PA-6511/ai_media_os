@@ -1,0 +1,124 @@
+{
+  "schema_version": "ir50_destination_submission_handoff_manifest_v1",
+  "phase": "IR50",
+  "generated_at": "2026-05-24T03:43:18.808942+00:00",
+  "source_task_id": "ir50_live_trial",
+  "release_candidate_id": "rc_20260523T155148Z_ir26_live_trial_b940393b490b",
+  "final_submission_decision": "READY_FOR_SUBMISSION_SUMMARY",
+  "overall_approval_decision": "APPROVE_DRY_RUN",
+  "overall_submission_gate_decision": "READY_FOR_REVIEW",
+  "overall_review_queue_approval_decision": "READY_FOR_HUMAN_REVIEW",
+  "overall_human_review_result": "APPROVE",
+  "overall_submission_readiness_decision": "READY_DRY_RUN_ONLY",
+  "overall_submission_handoff_decision": "READY_DRY_RUN_HANDOFF",
+  "overall_handoff_action": "Dry-run submission handoff manifest is ready without executing submission.",
+  "validation_result": "PASS",
+  "validation_failed_checks": [],
+  "validation_warnings": [],
+  "summary": {
+    "destination_count": 3,
+    "include_in_dry_run_handoff_count": 3,
+    "hold_count": 0,
+    "reject_count": 0,
+    "abort_count": 0,
+    "handoff_target_count": 3
+  },
+  "handoff_manifest": {
+    "target_destinations": [
+      "compliance_archive",
+      "internal_review_board",
+      "regulatory_audit"
+    ],
+    "reference_record_paths": [
+      "generic_block_ai/reports/ir48_destination_human_review_result_intake_ir48_live_trial/compliance_archive_human_review_result.json",
+      "generic_block_ai/reports/ir48_destination_human_review_result_intake_ir48_live_trial/internal_review_board_human_review_result.json",
+      "generic_block_ai/reports/ir48_destination_human_review_result_intake_ir48_live_trial/regulatory_audit_human_review_result.json"
+    ],
+    "submission_execution_blocked": true,
+    "network_transmission_blocked": true,
+    "production_release_blocked": true
+  },
+  "destination_submission_handoff_manifest": [
+    {
+      "destination": "compliance_archive",
+      "handoff_manifest_decision": "INCLUDE_IN_DRY_RUN_HANDOFF",
+      "submission_readiness_decision": "READY_DRY_RUN_ONLY",
+      "handoff_reasons": [
+        "destination included in dry-run handoff manifest"
+      ],
+      "reviewer_role": "human_queue_reviewer",
+      "review_item_ids": [
+        "compliance_archive-R1",
+        "compliance_archive-R2"
+      ],
+      "review_notes": [
+        "queue approved for human review intake"
+      ],
+      "intake_record_path": "generic_block_ai/reports/ir48_destination_human_review_result_intake_ir48_live_trial/compliance_archive_human_review_result.json",
+      "evidence_reference_links": {
+        "hash_manifest": "generic_block_ai/reports/ir42_destination_human_event_chain_evidence_bundle_compliance_archive_ir42_live_trial/destination_human_event_chain_hash_manifest.json",
+        "review_summary": "generic_block_ai/reports/ir42_destination_human_event_chain_evidence_bundle_compliance_archive_ir42_live_trial/destination_human_event_chain_review_summary.md",
+        "gate_report": "generic_block_ai/reports/ir44_destination_evidence_bundle_submission_gate_report_ir44_live_trial.json"
+      }
+    },
+    {
+      "destination": "internal_review_board",
+      "handoff_manifest_decision": "INCLUDE_IN_DRY_RUN_HANDOFF",
+      "submission_readiness_decision": "READY_DRY_RUN_ONLY",
+      "handoff_reasons": [
+        "destination included in dry-run handoff manifest"
+      ],
+      "reviewer_role": "human_queue_reviewer",
+      "review_item_ids": [
+        "internal_review_board-R1",
+        "internal_review_board-R2"
+      ],
+      "review_notes": [
+        "queue approved for human review intake"
+      ],
+      "intake_record_path": "generic_block_ai/reports/ir48_destination_human_review_result_intake_ir48_live_trial/internal_review_board_human_review_result.json",
+      "evidence_reference_links": {
+        "hash_manifest": "generic_block_ai/reports/ir42_destination_human_event_chain_evidence_bundle_internal_review_board_ir42_live_trial/destination_human_event_chain_hash_manifest.json",
+        "review_summary": "generic_block_ai/reports/ir42_destination_human_event_chain_evidence_bundle_internal_review_board_ir42_live_trial/destination_human_event_chain_review_summary.md",
+        "gate_report": "generic_block_ai/reports/ir44_destination_evidence_bundle_submission_gate_report_ir44_live_trial.json"
+      }
+    },
+    {
+      "destination": "regulatory_audit",
+      "handoff_manifest_decision": "INCLUDE_IN_DRY_RUN_HANDOFF",
+      "submission_readiness_decision": "READY_DRY_RUN_ONLY",
+      "handoff_reasons": [
+        "destination included in dry-run handoff manifest"
+      ],
+      "reviewer_role": "human_queue_reviewer",
+      "review_item_ids": [
+        "regulatory_audit-R1",
+        "regulatory_audit-R2"
+      ],
+      "review_notes": [
+        "queue approved for human review intake"
+      ],
+      "intake_record_path": "generic_block_ai/reports/ir48_destination_human_review_result_intake_ir48_live_trial/regulatory_audit_human_review_result.json",
+      "evidence_reference_links": {
+        "hash_manifest": "generic_block_ai/reports/ir42_destination_human_event_chain_evidence_bundle_regulatory_audit_ir42_live_trial/destination_human_event_chain_hash_manifest.json",
+        "review_summary": "generic_block_ai/reports/ir42_destination_human_event_chain_evidence_bundle_regulatory_audit_ir42_live_trial/destination_human_event_chain_review_summary.md",
+        "gate_report": "generic_block_ai/reports/ir44_destination_evidence_bundle_submission_gate_report_ir44_live_trial.json"
+      }
+    }
+  ],
+  "artifacts": {
+    "manifest_root": "generic_block_ai/reports/ir50_destination_submission_handoff_manifest_ir50_live_trial",
+    "destination_submission_handoff_manifest": "generic_block_ai/reports/ir50_destination_submission_handoff_manifest_ir50_live_trial/destination_submission_handoff_manifest.json",
+    "destination_submission_handoff_manifest_summary": "generic_block_ai/reports/ir50_destination_submission_handoff_manifest_ir50_live_trial/destination_submission_handoff_manifest_summary.md",
+    "completion_report": "reports/implementation_restart_phase50_completion_report.json"
+  },
+  "safeguards": {
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "submission_execution_blocked": true,
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "network_transmission_executed": false,
+    "production_release": false
+  }
+}

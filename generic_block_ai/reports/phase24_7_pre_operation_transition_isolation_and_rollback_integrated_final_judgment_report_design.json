@@ -1,0 +1,85 @@
+{
+  "phase_id": "24-7",
+  "phase_name": "Pre-Operation Transition Isolation and Rollback Integrated Final Judgment Report Design",
+  "phase_japanese_name": "運用移行前隔離・ロールバック統合最終判定レポート設計",
+  "purpose": "Design the integrated final judgment report that consolidates isolation boundary enforcement, violation handling, and rollback/abort readiness before any operation transition measurement application",
+  "layer": "pre_operation_transition_isolation_and_rollback_boundary_reinforcement_layer",
+  "design_category": "reports_only",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "operation_transition_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "phase_24_7_scope": {
+    "scope_1_input_aggregation": {
+      "scope_id": "INPUT_AGGREGATION",
+      "required_inputs": {
+        "phase24_4_to_24_6_status": "PASS_DESIGN_ONLY",
+        "phase24_isolation_boundary_reinforcement_status": "PASS_DESIGN_ONLY",
+        "source_reports": [
+          "phase24_4_pre_operation_transition_isolation_boundary_audit_result_evidence_locking_rules_design.json",
+          "phase24_5_isolation_boundary_violation_return_and_no_go_maintenance_rules_design.json",
+          "phase24_6_pre_operation_transition_rollback_activation_and_final_abort_conditions_design.json"
+        ]
+      }
+    },
+    "scope_2_integrated_judgment_logic": {
+      "scope_id": "INTEGRATED_JUDGMENT_LOGIC",
+      "rules": {
+        "rule_PI1": "Isolation boundary audit integrity is PASS and lock_status is LOCK_CONFIRMED",
+        "rule_PI2": "Unresolved boundary violations count is 0",
+        "rule_PI3": "No rollback-activation/final-abort category is TRIGGERED",
+        "rule_PI4": "If any PI1-PI3 is NOT_MET, operation_transition_go_authorization = NOT_GRANTED and production_status = NO_GO"
+      }
+    },
+    "scope_3_report_structure": {
+      "scope_id": "REPORT_STRUCTURE",
+      "sections": {
+        "section_1_header": {
+          "report_id": "PHASE24_7_PRE_OPERATION_INTEGRATED_FINAL_JUDGMENT_<UTC_TIMESTAMP>",
+          "report_type": "pre_operation_transition_isolation_and_rollback_integrated_final_judgment",
+          "generated_at_utc": "RFC3339",
+          "generated_by": "authority_identifier"
+        },
+        "section_2_component_status": {
+          "isolation_boundary_audit": "PASS | FAIL",
+          "violation_maintenance": "PASS | FAIL",
+          "rollback_abort_readiness": "PASS | FAIL"
+        },
+        "section_3_integrated_determination": {
+          "operation_transition_go_authorization": "GRANTED | NOT_GRANTED",
+          "operation_transition_go": "GO | NO_GO",
+          "app_implementation_status": "NO_GO",
+          "tests_implementation_status": "NO_GO",
+          "production_status": "NO_GO",
+          "reason_summary": "human-readable reason"
+        }
+      }
+    }
+  },
+  "phase_24_7_governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "state_invariants": {
+      "app_implementation_status": "NO_GO",
+      "tests_implementation_status": "NO_GO",
+      "production_status": "NO_GO",
+      "operation_transition_go_authorization": "NOT_GRANTED",
+      "changed_area": "reports only"
+    }
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "phase_id": "35-3",
+  "phase_name": "Manual Release GO and Actual Process Start GO Boundary Separation Design",
+  "phase_japanese_name": "手動解除GOと実処理開始GOの境界分離設計",
+  "purpose": "Design strict boundary separation between manual_release_go and actual_process_start_go.",
+  "layer": "pre_actual_process_start_final_safety_stop_and_manual_release_boundary_layer",
+  "design_category": "reports_only",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "operation_transition_go_authorization": "NOT_GRANTED",
+    "production_reflection_go_authorization": "NOT_GRANTED",
+    "freeze_release_go_authorization": "NOT_GRANTED",
+    "execution_start_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "phase_35_3_scope": {
+    "scope_1_input_contract": {
+      "scope_id": "INPUT_CONTRACT",
+      "required_inputs": {
+        "phase35_2_safety_stop_boundary_status": "ACTIVE | BREACHED"
+      }
+    },
+    "scope_2_boundary_separation_rules": {
+      "scope_id": "BOUNDARY_SEPARATION_RULES",
+      "rules": {
+        "rule_P35B1": "Treat manual_release_go and actual_process_start_go as independent gates",
+        "rule_P35B2": "Require separate evidence package for each gate",
+        "rule_P35B3": "Reject reuse of manual release evidence as actual process start authorization",
+        "rule_P35B4": "If boundary separation is not proven, maintain NO_GO and block progression"
+      }
+    },
+    "scope_3_report_structure": {
+      "scope_id": "REPORT_STRUCTURE",
+      "sections": {
+        "section_1_header": {
+          "report_id": "PHASE35_3_MANUAL_RELEASE_AND_ACTUAL_PROCESS_START_BOUNDARY_<UTC_TIMESTAMP>",
+          "report_type": "manual_release_go_and_actual_process_start_go_boundary_separation",
+          "generated_at_utc": "RFC3339",
+          "generated_by": "authority_identifier"
+        },
+        "section_2_boundary_summary": {
+          "manual_release_gate_status": "INDEPENDENT | REUSED",
+          "actual_process_start_gate_status": "INDEPENDENT | REUSED",
+          "boundary_separation_verified": "YES | NO"
+        },
+        "section_3_boundary_judgment": {
+          "boundary_status": "PASS | FAIL",
+          "production_status": "NO_GO",
+          "operation_transition_go_authorization": "NOT_GRANTED",
+          "production_reflection_go_authorization": "NOT_GRANTED",
+          "freeze_release_go_authorization": "NOT_GRANTED",
+          "execution_start_go_authorization": "NOT_GRANTED",
+          "actual_process_start_go_authorization": "NOT_GRANTED",
+          "manual_release_go_authorization": "NOT_GRANTED"
+        }
+      }
+    }
+  },
+  "phase_35_3_governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "state_invariants": {
+      "app_implementation_status": "NO_GO",
+      "tests_implementation_status": "NO_GO",
+      "production_status": "NO_GO",
+      "operation_transition_go_authorization": "NOT_GRANTED",
+      "production_reflection_go_authorization": "NOT_GRANTED",
+      "freeze_release_go_authorization": "NOT_GRANTED",
+      "execution_start_go_authorization": "NOT_GRANTED",
+      "actual_process_start_go_authorization": "NOT_GRANTED",
+      "manual_release_go_authorization": "NOT_GRANTED",
+      "changed_area": "reports only"
+    }
+  }
+}

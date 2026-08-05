@@ -1,0 +1,24 @@
+# LS-NEW-BATCH-4G-2E-RECOVERY-M20
+
+- Status: `PASS_WORDPRESS_LAYOUT_CORRECTION_DESIGN_GATE_REQUESTED_PR_POSITION_BLOCKED_COMPLIANT_ALTERNATIVE_DRAFTED_LOCAL_ONLY`
+- Decision: `REQUESTED_PR_AFTER_AFFILIATE_LINKS_REJECTED_COMPLIANT_PR_BEFORE_LINKS_REQUIRES_HUMAN_APPROVAL`
+- WordPress post ID: `192`
+- Requested PR position: `after affiliate buttons`
+- Requested layout compliance verdict: `BLOCK_REQUESTED_PR_POSITION`
+- Compliance assessment type: `conservative operational gate`
+- Formal legal opinion: `false`
+- Compliant desktop order: `cover left / PR / Amazon / Rakuten Kobo / DMM / details`
+- Compliant mobile order: `cover / details / PR / Amazon / Rakuten Kobo / DMM`
+- Comment status target for post 192: `closed`
+- Rendered update content present: `false`
+- WordPress request body present: `false`
+- Compliant alternative drafted: `true`
+- Human reapproval required: `true`
+- Network connection performed: `false`
+- WordPress access performed: `false`
+- WordPress update performed: `false`
+- Authorization issued: `false`
+- Production status: `NO_GO`
+- Ready for compliant layout revision approval: `true`
+- Ready for rendered update payload: `false`
+- Ready for WordPress update: `false`

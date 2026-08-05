@@ -1,0 +1,87 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M10",
+  "policy_id": "DMM_POST_INJECTION_ARTICLE_HUMAN_REVIEW_AND_FRESH_PAYLOAD_AUTHORIZATION_POLICY_V1",
+  "operation_mode": "POST_INJECTION_LOCAL_REVIEW_AND_PAYLOAD_AUTHORIZATION_ONLY",
+  "content_item_id": "new-release-comic-20260703-001",
+  "article_postimage": {
+    "path": "exchange/content/new_release/fresh/new-release-comic-20260703-001.article.json",
+    "required_sha256": "de2739c8ae1aa4a50973b983964b05844086a2187b9ef337383ad6fa7123697d"
+  },
+  "article_preimage": {
+    "required_sha256": "849a37519c6af70d2212ec01d5cddef5793bfa811e97ca9f248ce099a0350bf4",
+    "inverse_reconstruction_validation_required": true,
+    "non_dmm_structure_comparison_required": true
+  },
+  "required_dmm_anchor": {
+    "count": 1,
+    "tag": "a",
+    "class_tokens_exact": [
+      "ls-store-btn",
+      "ls-store-dmm"
+    ],
+    "text": "DMMブックスで確認",
+    "target": "_blank",
+    "rel_tokens_exact": [
+      "nofollow",
+      "sponsored",
+      "noopener"
+    ],
+    "disabled_class_allowed": false,
+    "aria_disabled_allowed": false
+  },
+  "required_store_navigation": {
+    "render_mode": "PARTIAL_ACTIVE_STORE_LINKS",
+    "anchor_elements_included": true,
+    "href_attributes_included": true,
+    "final_affiliate_urls_included": true,
+    "dmm_url_included": true
+  },
+  "fresh_payload_authorization_contract": {
+    "authorization_id": "FRESH_PAYLOAD_GENERATION_ONE_SHOT_AUTHORIZATION_V1",
+    "single_use": true,
+    "initially_unconsumed": true,
+    "reuse_allowed": false,
+    "automatic_retry_allowed": false,
+    "automatic_reissue_allowed": false,
+    "category_mapping_id": "COMIC_NEW_RELEASE_LATEST_VOLUME_TO_WP_CATEGORY_10",
+    "category_id": 10,
+    "category_name": "最新巻",
+    "template_id": "POST185_STANDARD_TEMPLATE_V1_FIXED",
+    "actual_payload_generation_allowed_in_this_phase": false
+  },
+  "secret_handling": {
+    "full_final_url_output_allowed": false,
+    "affiliate_identifier_output_allowed": false,
+    "full_final_url_in_review_allowed": false,
+    "affiliate_identifier_in_review_allowed": false,
+    "full_final_url_in_authorization_allowed": false,
+    "affiliate_identifier_in_authorization_allowed": false
+  },
+  "execution_boundary": {
+    "local_article_read_allowed": true,
+    "secret_link_local_read_allowed": true,
+    "credential_identifier_local_read_allowed": true,
+    "human_review_evidence_creation_allowed": true,
+    "fresh_payload_authorization_creation_allowed": true,
+    "article_modification_allowed": false,
+    "fresh_payload_generation_allowed": false,
+    "category_id_payload_injection_allowed": false,
+    "network_connection_allowed": false,
+    "dns_resolution_allowed": false,
+    "http_request_allowed": false,
+    "dmm_recheck_allowed": false,
+    "wordpress_access_allowed": false,
+    "wordpress_write_allowed": false,
+    "wordpress_publish_allowed": false,
+    "x_post_allowed": false,
+    "execution_allowed": false,
+    "production_status": "NO_GO"
+  },
+  "next_phase": {
+    "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M11",
+    "name": "Fresh Payload One-Shot Generation",
+    "execution_allowed": false,
+    "explicit_execute_now_approval_required": true
+  }
+}

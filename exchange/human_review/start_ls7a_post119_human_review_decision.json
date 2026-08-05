@@ -1,0 +1,40 @@
+{
+  "phase": "LS-7A",
+  "review_type": "HUMAN_REVIEW_AFTER_ONE_SHOT_DRAFT_CREATION",
+  "review_status": "DO_NOT_PUBLISH_SAMPLE_PAYLOAD",
+  "technical_creation_result": "PASS",
+  "publish_decision": "DO_NOT_PUBLISH",
+  "manual_publish_allowed": false,
+  "target_post": {
+    "post_id": 119,
+    "post_status": "draft",
+    "title_observed": "Sample Volume 1"
+  },
+  "observed_issues": [
+    "sample_title",
+    "sample_author",
+    "sample_asin_or_example_tag",
+    "english_sample_body",
+    "markdown_link_not_converted_to_html",
+    "uncategorized_or_category_not_final",
+    "not_ready_as_real_product_article"
+  ],
+  "required_next_fix": {
+    "replace_sample_data_with_real_manual_data": true,
+    "convert_markdown_to_html": true,
+    "fix_affiliate_disclosure_japanese": true,
+    "fix_affiliate_link_format": true,
+    "fix_category_and_tags": true,
+    "regenerate_payload_preview_before_next_wordpress_write": true
+  },
+  "current_phase_execution": {
+    "wordpress_api_call_executed": false,
+    "wordpress_write_executed": false,
+    "wordpress_draft_creation_executed": false,
+    "wordpress_existing_post_update_executed": false,
+    "publish_executed": false,
+    "delete_executed": false,
+    "approval_token_consumed": false
+  },
+  "note": "Human review result for post_id=119. The draft creation test passed technically, but this sample payload must not be published."
+}

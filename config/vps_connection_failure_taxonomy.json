@@ -1,0 +1,29 @@
+{
+  "phase": "Phase 7-4",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "human_review_required": true,
+  "classification_candidates": [
+    "NETWORK_UNREACHABLE",
+    "TCP_22_BLOCKED",
+    "SSH_AUTH_FAILED",
+    "SSH_BANNER_TIMEOUT",
+    "DNS_OR_HOST_ALIAS_MISMATCH",
+    "HIGH_LATENCY",
+    "PACKET_LOSS",
+    "LOCAL_CLIENT_ISSUE",
+    "VPS_RESOURCE_PRESSURE",
+    "UNKNOWN"
+  ],
+  "constraints": {
+    "classification_is_estimation_only": true,
+    "auto_remediation_enabled": false,
+    "allow_firewall_change": false,
+    "allow_sshd_config_change": false,
+    "allow_ufw_change": false,
+    "allow_nginx_change": false,
+    "allow_systemctl": false,
+    "allow_sudo": false
+  }
+}

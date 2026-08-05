@@ -1,0 +1,44 @@
+{
+  "phase": "Phase 8-10",
+  "status": "RERUN_DRAFT_VERIFIED_PENDING_HUMAN_REVIEW",
+  "publish_allowed": false,
+  "update_allowed": false,
+  "delete_allowed": false,
+  "auto_cleanup_allowed": false,
+  "auto_post": false,
+  "auto_update": false,
+  "auto_delete": false,
+  "auto_export": false,
+  "human_review_required": true,
+  "post_id": 115,
+  "post_status": "draft",
+  "post_link": "https://hoshido.jp/?p=115",
+  "freeze_required": false,
+  "evidence_summary": [
+    {
+      "path": "exchange/logs/phase8_6_wordpress_credentials_readiness_result.json",
+      "exists": true,
+      "status": "CREDENTIALS_READY_NO_SECRET_OUTPUT"
+    },
+    {
+      "path": "exchange/logs/phase8_7_rerun_approval_review_result.json",
+      "exists": true,
+      "status": "PASS_RERUN_REVIEW_ONLY"
+    },
+    {
+      "path": "exchange/logs/phase8_8_final_credentialed_live_preflight_result.json",
+      "exists": true,
+      "status": "CREDENTIAL_PREFLIGHT_PASS_READY_FOR_PHASE8_9"
+    },
+    {
+      "path": "exchange/logs/phase8_9_first_one_item_wordpress_draft_create_rerun_result.json",
+      "exists": true,
+      "status": "RERUN_DRAFT_CREATED_PENDING_HUMAN_REVIEW"
+    }
+  ],
+  "errors": [],
+  "warnings": [],
+  "safety_violations": [],
+  "allowed_next_step": "Phase 8-11 manual inspection of created WordPress draft",
+  "checked_at": "2026-06-09T13:15:59.428058+00:00"
+}

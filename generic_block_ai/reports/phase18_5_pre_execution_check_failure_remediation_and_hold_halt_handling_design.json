@@ -1,0 +1,321 @@
+{
+  "phase_id": "18-5",
+  "phase_name": "Pre-Execution Check Failure Remediation and HOLD/HALT Handling Design",
+  "phase_japanese_name": "実行直前チェック失敗時の差し戻し・HOLD/HALTルール設計",
+  "purpose": "Design procedures for handling pre-execution check failures from Phase 18-2 and 18-3, including remediation workflows, HOLD conditions with re-check procedures, and HALT termination with root cause analysis",
+  "layer": "pre_measurement_execution_gate_layer",
+  "design_category": "reports_only",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only"
+  },
+  "phase_18_5_scope": {
+    "scope_1_check_failure_classification": {
+      "scope_id": "CLASSIFY_CHECK_FAILURE",
+      "description": "Classify Phase 18-2 and 18-3 check failures into remedial, recoverable, or terminal categories",
+      "failure_categories": {
+        "category_1_minor_remedial_failures": {
+          "category_id": "MINOR_REMEDIAL",
+          "description": "Failures that can be fixed by configuration/timing adjustments without code changes",
+          "examples": [
+            "check_2_governance_state_consistency: FAILED due to timezone offset mismatch in timestamp (fixable via clock synchronization)",
+            "check_3_timing_gate: FAILED due to execution window closed (fixable by restarting check in next authorized window)",
+            "check_7_infrastructure_readiness: FAILED due to dependency package version mismatch (fixable via package install/upgrade)",
+            "check_8_audit_trail_startup: FAILED due to log file permissions (fixable via chmod or log directory recreation)"
+          ],
+          "remediation_action": "HOLD → Apply fix → Re-execute Phase 18-[2|3] entire check suite → Re-lock evidence",
+          "authority_approval_required": "No (technical fix only)",
+          "re_check_procedure": "Full 8-check re-validation (do not skip failed check only)"
+        },
+        "category_2_blocking_condition_failures": {
+          "category_id": "BLOCKING_CONDITION_FAIL",
+          "description": "Failures due to explicit blocking conditions from Phase 15-7/15-8 design (e.g., prerequisite workflows not complete)",
+          "examples": [
+            "check_5_blocking_conditions_clearance: FAILED due to ai_media_os Phase 43 not yet in stable operation",
+            "check_5_blocking_conditions_clearance: FAILED due to Phase 47-B dry-run not yet complete",
+            "check_5_blocking_conditions_clearance (Phase 18-3 only): FAILED due to receiver_validator_implementation_change detected"
+          ],
+          "remediation_action": "HALT or HOLD → Clear blocking condition via external workflow (Phase 43 completion, Phase 47-B execution, etc.) → Resume",
+          "authority_approval_required": "Yes (authority decision on blocking condition clearance feasibility)",
+          "re_check_procedure": "After blocking condition clearance confirmed, re-execute check_5 → If PASS, proceed to re-execute full check suite"
+        },
+        "category_3_authority_failure": {
+          "category_id": "AUTHORITY_FAIL",
+          "description": "Failures due to authority signature invalidity, revocation, or expiry",
+          "examples": [
+            "check_4_authority_authorization: FAILED due to signer authority signature expired (valid_to_utc < now_utc)",
+            "check_4_authority_authorization: FAILED due to signer authority revoked (revocation_status=REVOKED)",
+            "check_4_authority_authorization: FAILED due to signature algorithm mismatch"
+          ],
+          "remediation_action": "HOLD → Obtain fresh signature from current authority → Re-execute Phase 18-[2|3] check suite",
+          "authority_approval_required": "Yes (must obtain fresh signature from valid authority)",
+          "re_check_procedure": "Phase 18-1 Phase 17 receipt confirmation remains valid; re-execute checks 2-8 with fresh authority signatures"
+        },
+        "category_4_phase18_1_receipt_failure": {
+          "category_id": "RECEIPT_FAIL",
+          "description": "Failure of check_1_phase18_1_receipt_confirmation, indicating Phase 17 completion certificate is invalid or inconsistent",
+          "examples": [
+            "check_1_phase18_1_receipt_confirmation: FAILED due to Phase 18-1 receipt_status=RECEIPT_FAILED_INCONSISTENCY",
+            "check_1_phase18_1_receipt_confirmation: FAILED due to Phase 17-9 completion artifacts missing or invalid"
+          ],
+          "remediation_action": "HALT → Escalate to Phase 17 remediation (cannot proceed without Phase 17 valid receipt)",
+          "authority_approval_required": "No (escalation to Phase 17 team)",
+          "re_check_procedure": "Phase 17 must be remediated and Phase 18-1 re-executed. After Phase 18-1 RECEIPT_CONFIRMED_AND_CONSISTENT, restart full Phase 18-2/18-3 check suite"
+        },
+        "category_5_tamper_detection_failure": {
+          "category_id": "TAMPER_DETECTED",
+          "description": "Failures due to evidence tampering detection or integrity violations",
+          "examples": [
+            "Phase 18-4 evidence lock verification: FAILED due to evidence_hash mismatch",
+            "Phase 18-4 evidence lock verification: FAILED due to audit trail integrity violation (lock record missing)"
+          ],
+          "remediation_action": "CRITICAL HALT → Security incident escalation (cannot remediate, requires investigation)",
+          "authority_approval_required": "Yes (executive authority approval to proceed after tamper investigation)",
+          "re_check_procedure": "No immediate re-check. Security investigation must complete. After investigation approval, Phase 18-4 must re-lock with new evidence"
+        },
+        "category_6_security_incident_failure": {
+          "category_id": "SECURITY_INCIDENT",
+          "description": "Failures due to active security events or threat conditions",
+          "examples": [
+            "check_4_security_threat_conditions: FAILED due to active security threat alert (ransomware, intrusion attempt, DDoS)",
+            "check_5_blocking_conditions_clearance: FAILED due to security incident in dependent system"
+          ],
+          "remediation_action": "CRITICAL HALT → Incident response activation",
+          "authority_approval_required": "Yes (security team + executive approval)",
+          "re_check_procedure": "After incident resolution and security clearance, restart from Phase 18-2/18-3 full check suite"
+        }
+      }
+    },
+    "scope_2_hold_procedure": {
+      "scope_id": "HOLD_PROCEDURE",
+      "description": "Procedures for HOLD status with defined re-check and recovery workflows",
+      "hold_conditions": {
+        "hold_scenario_1_minor_remedial_issues": {
+          "scenario_id": "HOLD_MINOR_REMEDIAL",
+          "trigger": "One or more checks from category_1_minor_remedial_failures fail",
+          "hold_decision_options": [
+            {
+              "option": 1,
+              "action": "RESOLVE_AND_RECHECK",
+              "procedure": "1) Authority documents remediation action 2) Technical team applies fix 3) Phase 18-2/18-3 entire check suite re-executed 4) Evidence re-locked in Phase 18-4",
+              "timeline": "24-48 hours typical",
+              "authority_approval": "Required for remediation action plan"
+            },
+            {
+              "option": 2,
+              "action": "DEFER_TO_NEXT_WINDOW",
+              "procedure": "1) If check_3_timing_gate failure only: Defer execution to next authorized window (e.g., next calendar day, next scheduled maintenance window) 2) Preserve Phase 18-2/18-3 check results 3) At next window, re-execute check_3 timing validation only 4) If PASS, proceed to Phase 15-7/15-8 execution",
+              "timeline": "Depends on next authorized window"
+            },
+            {
+              "option": 3,
+              "action": "ESCALATE_TO_DESIGN_PHASE",
+              "procedure": "1) If remedial fix cannot be identified: Escalate to Phase 19+ design layer 2) Design new validation/mitigation approach 3) Update Phase 18-2/18-3 with new design 4) Re-execute full check suite",
+              "timeline": "1-3 weeks (design phase)"
+            }
+          ],
+          "hold_status_outcomes": {
+            "HOLD_AWAITING_FIX": "Awaiting remediation action completion",
+            "HOLD_AWAITING_WINDOW": "Awaiting next authorized execution window",
+            "HOLD_ESCALATED_TO_DESIGN": "Escalated to Phase 19+ for design enhancement"
+          }
+        },
+        "hold_scenario_2_blocking_condition_failure": {
+          "scenario_id": "HOLD_BLOCKING_CONDITION",
+          "trigger": "check_5_blocking_conditions_clearance fails due to external prerequisite workflow not complete",
+          "hold_decision_options": [
+            {
+              "option": 1,
+              "action": "CLEAR_BLOCKING_CONDITION",
+              "procedure": "1) Authority documents blocking condition and clearance requirements 2) External workflow executes (e.g., Phase 43 completion, Phase 47-B execution) 3) Authority confirms blocking condition cleared 4) Re-execute check_5_blocking_conditions_clearance 5) If PASS, re-execute full Phase 18-2/18-3 check suite",
+              "timeline": "Depends on external workflow (hours to weeks)",
+              "required_authority": "Authority who can clear the blocking condition (may differ from Phase 18-2/18-3 signer)"
+            },
+            {
+              "option": 2,
+              "action": "WAIVE_BLOCKING_CONDITION",
+              "procedure": "1) Requires executive authority approval (escalated level, not standard approval) 2) Authority documents waiver justification 3) Authority signs waiver statement 4) check_5 override to PASS with waiver note 5) Re-execute full Phase 18-2/18-3 check suite with waiver embedded",
+              "timeline": "Executive review (hours to days)",
+              "risk": "HIGH - Waiver bypasses safety gate"
+            },
+            {
+              "option": 3,
+              "action": "HALT_INDEFINITELY",
+              "procedure": "1) If blocking condition cannot be cleared and waiver denied: Halt indefinitely 2) Document reason 3) Await future conditions or explicit user intervention",
+              "timeline": "Indefinite"
+            }
+          ],
+          "hold_status_outcomes": {
+            "HOLD_BLOCKING_CONDITION_PENDING": "Awaiting external workflow completion",
+            "HOLD_WAIVER_PENDING": "Awaiting executive waiver decision",
+            "HALT_BLOCKING_CONDITION_PERMANENT": "Blocking condition unresolvable"
+          }
+        },
+        "hold_scenario_3_authority_failure": {
+          "scenario_id": "HOLD_AUTHORITY_FAIL",
+          "trigger": "check_4_authority_authorization fails due to signature expiry, revocation, or invalidity",
+          "hold_decision_options": [
+            {
+              "option": 1,
+              "action": "OBTAIN_FRESH_SIGNATURE",
+              "procedure": "1) Contact current valid authority (same authority as expired signature if re-authorized, or new authority) 2) Authority reviews Phase 18-2/18-3 check results and Phase 17 completion certificate 3) Authority issues fresh signature 4) Re-execute Phase 18-2/18-3 entire check suite with fresh signature 5) Evidence re-locked with fresh signature",
+              "timeline": "Hours to 1 day",
+              "required_authority": "Same or equivalent authority"
+            },
+            {
+              "option": 2,
+              "action": "ESCALATE_AUTHORITY",
+              "procedure": "1) If original authority is permanently revoked or unavailable: Escalate to higher authority 2) Higher authority reviews all Phase 18-2/18-3 check results and Phase 17 completion certificate 3) Higher authority issues authorization signature 4) Re-execute Phase 18-2/18-3 entire check suite with escalated authority signature",
+              "timeline": "1-3 days (escalation review)"
+            }
+          ],
+          "hold_status_outcomes": {
+            "HOLD_SIGNATURE_PENDING": "Awaiting fresh signature from authority",
+            "HOLD_ESCALATION_PENDING": "Awaiting escalated authority review"
+          }
+        }
+      }
+    },
+    "scope_3_halt_procedure": {
+      "scope_id": "HALT_PROCEDURE",
+      "description": "Procedures for HALT termination with root cause analysis and remediation workflows",
+      "halt_conditions": {
+        "halt_scenario_1_phase18_1_receipt_failure": {
+          "scenario_id": "HALT_RECEIPT_FAIL",
+          "trigger": "check_1_phase18_1_receipt_confirmation fails (Phase 18-1 receipt_status=RECEIPT_FAILED_INCONSISTENCY)",
+          "halt_action": "Execution HALTED. Cannot proceed without valid Phase 17 completion certificate.",
+          "remediation_workflow": {
+            "step_1_identify_inconsistency": "Review Phase 18-1 failure details. Identify which of 5 requirement groups failed (artifact presence, JSON validity, governance consistency, state consistency, dependency references)",
+            "step_2_escalate_to_phase_17_team": "Escalate to Phase 17 remediation. Phase 17 artifacts must be corrected or re-certified.",
+            "step_3_phase_17_remediation": "Phase 17 team executes remediation procedures from Phase 17-5 (PROCEED/HOLD/HALT handling)",
+            "step_4_phase_18_1_re_execution": "After Phase 17 remediation: Re-execute Phase 18-1 receipt confirmation",
+            "step_5_restart_phase_18_2_18_3": "After Phase 18-1 RECEIPT_CONFIRMED_AND_CONSISTENT: Restart full Phase 18-2/18-3 check suite"
+          },
+          "responsibility": "Phase 17 team (not Phase 18 team)"
+        },
+        "halt_scenario_2_tamper_detection": {
+          "scenario_id": "HALT_TAMPER_DETECTED",
+          "trigger": "Phase 18-4 evidence lock verification detects tampering (hash mismatch, audit trail corruption, signature invalid)",
+          "halt_action": "Execution HALTED. Security incident mode activated.",
+          "remediation_workflow": {
+            "step_1_activate_incident_response": "Security incident response team activated",
+            "step_2_evidence_preservation": "Preserve all evidence locks and audit trails for forensics",
+            "step_3_root_cause_analysis": "Investigate tampering: accidental modification, malicious attack, system fault?",
+            "step_4_remediation": "Remediation depends on root cause (restore from backup, apply security hardening, update infrastructure)",
+            "step_5_authority_approval": "Executive authority approval required to proceed after investigation",
+            "step_6_phase_18_4_re_locking": "After remediation and approval: Re-lock all evidence in Phase 18-4",
+            "step_7_restart": "Re-execute full Phase 18-2/18-3 check suite from scratch"
+          },
+          "responsibility": "Security incident response team + Executive authority"
+        },
+        "halt_scenario_3_security_incident": {
+          "scenario_id": "HALT_SECURITY_INCIDENT",
+          "trigger": "check_4_security_threat_conditions fails (active security threat, intrusion attempt, ransomware, DDoS)",
+          "halt_action": "Execution HALTED. Security incident mode activated.",
+          "remediation_workflow": {
+            "step_1_incident_severity_classification": "Classify threat severity: INFO / WARNING / CRITICAL",
+            "step_2_incident_containment": "Activate incident containment procedures (isolate affected systems, disable external access)",
+            "step_3_threat_eradication": "Remove threat (malware removal, firewall rules, access revocation)",
+            "step_4_system_hardening": "Apply security hardening based on threat type",
+            "step_5_forensics_and_audit": "Forensic investigation to identify compromise scope and impact",
+            "step_6_authority_approval": "Executive + security authority approval to resume operations",
+            "step_7_infrastructure_readiness_recheck": "Re-execute check_7_infrastructure_readiness to confirm no lasting compromise",
+            "step_8_restart": "Re-execute full Phase 18-2/18-3 check suite from scratch"
+          },
+          "responsibility": "Security incident response team + Executive authority + Infrastructure team"
+        },
+        "halt_scenario_4_unresolvable_blocking_condition": {
+          "scenario_id": "HALT_BLOCKING_PERMANENT",
+          "trigger": "check_5_blocking_conditions_clearance fails and blocking condition cannot be resolved or waived",
+          "halt_action": "Execution HALTED indefinitely. Awaiting external condition resolution or explicit user intervention.",
+          "remediation_workflow": {
+            "step_1_document_blocking_condition": "Document blocking condition and clearance requirements",
+            "step_2_monitor_external_workflow": "Monitor completion of external prerequisite workflow (Phase 43 stabilization, Phase 47-B completion, etc.)",
+            "step_3_blocking_condition_resolved": "When external prerequisite is complete, authority confirms blocking condition cleared",
+            "step_4_restart": "Re-execute full Phase 18-2/18-3 check suite"
+          },
+          "responsibility": "Phase team managing external prerequisite + Authority"
+        }
+      }
+    }
+  },
+  "phase_18_5_failure_remediation_summary_table": {
+    "summary_table": [
+      {
+        "failure_category": "Minor Remedial",
+        "check_examples": "Timing, Infrastructure, Log Permissions",
+        "outcome": "HOLD → Fix → Re-check",
+        "escalation": "No",
+        "timeline": "24-48h"
+      },
+      {
+        "failure_category": "Blocking Condition",
+        "check_examples": "Phase 43 incomplete, Phase 47-B incomplete",
+        "outcome": "HOLD → Clear Condition → Re-check OR Waive",
+        "escalation": "Authority decision",
+        "timeline": "Variable"
+      },
+      {
+        "failure_category": "Authority Signature",
+        "check_examples": "Expired, Revoked, Invalid",
+        "outcome": "HOLD → Fresh Signature → Re-check",
+        "escalation": "Authority (same or escalated)",
+        "timeline": "Hours-days"
+      },
+      {
+        "failure_category": "Phase 18-1 Receipt",
+        "check_examples": "Phase 17 receipt inconsistent",
+        "outcome": "HALT → Phase 17 Remediation",
+        "escalation": "Phase 17 team",
+        "timeline": "Days-weeks"
+      },
+      {
+        "failure_category": "Evidence Tampering",
+        "check_examples": "Hash mismatch, Audit trail corrupted",
+        "outcome": "HALT → Security Investigation",
+        "escalation": "Security + Executive",
+        "timeline": "Days-weeks"
+      },
+      {
+        "failure_category": "Active Security Threat",
+        "check_examples": "Ransomware, Intrusion, DDoS",
+        "outcome": "HALT → Incident Response",
+        "escalation": "Security + Executive",
+        "timeline": "Hours-days"
+      }
+    ]
+  },
+  "phase_18_5_governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "state_invariants": {
+      "integrated_decision": "NO_GO",
+      "receiver_validator_permission": "NOT_EFFECTIVE",
+      "app_implementation_status": "NO_GO",
+      "tests_implementation_status": "NO_GO"
+    },
+    "phase_18_5_completion_criteria": [
+      "6 failure categories designed with remediation/HOLD/HALT procedures",
+      "HOLD procedure designed for 3 scenarios (minor remedial, blocking conditions, authority failure)",
+      "HALT procedure designed for 4 scenarios (receipt failure, tampering, security incident, unresolvable blocking)",
+      "Failure remediation summary table provided",
+      "All JSON validation passed",
+      "No changes to app/ or tests/ directories",
+      "All state invariants maintained"
+    ]
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-K",
+  "policy_id": "NEW_RELEASE_WP_FRESH_ARTICLE_ONE_SHOT_OFFLINE_GENERATION_POLICY_V1",
+  "source_phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-K-PREFLIGHT",
+  "operation_mode": "EXPLICITLY_APPROVED_ONE_SHOT_OFFLINE_ARTICLE_CONTENT_GENERATION",
+  "content_item_id": "new-release-comic-20260703-001",
+  "template_contract_id": "POST185_STANDARD_TEMPLATE_V1_FIXED",
+  "template_id": "POST185_STANDARD_TEMPLATE_V1",
+  "authorization_id": "DARK_GATHERING_VOLUME_20_OFFLINE_CONTENT_GENERATION_AUTHORIZATION_V1",
+  "preflight_id": "DARK_GATHERING_VOLUME_20_OFFLINE_GENERATION_PREFLIGHT_V1",
+  "output_contract": {
+    "output_path": "exchange/content/new_release/fresh/new-release-comic-20260703-001.article.json",
+    "output_document_role": "OFFLINE_FRESH_NEW_RELEASE_ARTICLE_CONTENT_DRAFT",
+    "one_shot_creation_allowed": true,
+    "overwrite_allowed": false,
+    "second_creation_allowed": false
+  },
+  "authorization_consumption_contract": {
+    "source_authorization_path": "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.offline_content_generation_authorization.json",
+    "consumption_evidence_path": "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.offline_content_generation_consumption.json",
+    "source_authorization_modification_allowed": false,
+    "consumption_evidence_is_authoritative": true,
+    "single_use": true,
+    "authorization_reuse_allowed": false,
+    "consumption_evidence_overwrite_allowed": false,
+    "partial_state_must_fail_closed": true
+  },
+  "fixed_render": {
+    "component_order": [
+      "advertising_disclosure",
+      "cover_and_information_card",
+      "store_navigation_slots"
+    ],
+    "advertising_disclosure": {
+      "exact_text": "【PR】本記事にはアフィリエイト広告を含みます。価格・配信状況は各ストアで確認してください。",
+      "must_be_first_visible_component": true
+    },
+    "cover": {
+      "required": true,
+      "linked_cover_allowed": false
+    },
+    "information_card": {
+      "required": true,
+      "ordered_fields": [
+        "作品名",
+        "価格",
+        "作者",
+        "出版社",
+        "発売日"
+      ],
+      "volume_line_allowed": false
+    },
+    "store_navigation": {
+      "render_mode": "RESERVED_NON_CLICKABLE_SLOTS_ONLY",
+      "ordered_slots": [
+        "amazon",
+        "rakuten_kobo",
+        "dmm_books"
+      ],
+      "render_element": "span",
+      "anchor_element_allowed": false,
+      "href_attribute_allowed": false,
+      "verification_source_url_rendering_allowed": false,
+      "final_affiliate_url_rendering_allowed": false,
+      "dmm_url_rendering_allowed": false
+    }
+  },
+  "content_limits": {
+    "description_mode": "minimal",
+    "synopsis_generation_allowed": false,
+    "story_detail_generation_allowed": false,
+    "unsupported_claim_generation_allowed": false,
+    "discount_claim_generation_allowed": false,
+    "point_return_claim_generation_allowed": false,
+    "campaign_claim_generation_allowed": false,
+    "inventory_claim_generation_allowed": false,
+    "legacy_post185_product_data_inheritance_allowed": false,
+    "legacy_post185_url_inheritance_allowed": false
+  },
+  "phase_boundary": {
+    "article_content_generation_allowed": true,
+    "content_output_creation_allowed": true,
+    "authorization_consumption_evidence_creation_allowed": true,
+    "source_authorization_modification_allowed": false,
+    "fresh_payload_creation_allowed": false,
+    "payload_binding_allowed": false,
+    "categories_field_creation_allowed": false,
+    "production_category_id_payload_injection_allowed": false,
+    "credential_file_read_allowed": false,
+    "dns_resolution_allowed": false,
+    "network_connection_allowed": false,
+    "http_request_allowed": false,
+    "wordpress_api_call_allowed": false,
+    "wordpress_write_allowed": false,
+    "wordpress_draft_creation_allowed": false,
+    "wordpress_publish_allowed": false,
+    "production_status": "NO_GO"
+  },
+  "next_phase": {
+    "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-L",
+    "name": "Fresh Offline Article Content Human Review",
+    "execution_allowed": false
+  }
+}

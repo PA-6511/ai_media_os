@@ -1,0 +1,21 @@
+{
+  "package_type": "decision_package",
+  "source": "vps_self_builder",
+  "target": "ebook_affiliate_block",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "human_approval_required": true,
+  "requested_action": "propose_article_template_update",
+  "risk_level": "LOW",
+  "auto_post": false,
+  "auto_update": false,
+  "auto_delete": false,
+  "auto_export": false,
+  "self_builder_origin": {
+    "type": "VPS_SELF_BUILDER",
+    "location": "vps",
+    "execution_allowed": true,
+    "vps_migration_ready": false
+  },
+  "summary": "Phase 5-1 abort sample: execution_allowed true and migration not ready"
+}

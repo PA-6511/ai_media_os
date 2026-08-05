@@ -1,0 +1,84 @@
+{
+  "schema_version": "ir24_submission_version_diff_audit_v1",
+  "phase": "IR24",
+  "generated_at": "2026-05-23T15:48:40.407386+00:00",
+  "source_task_id": "ir24_live_trial",
+  "validation_result": "PASS",
+  "validation_failed_checks": [],
+  "validation_warnings": [],
+  "summary": {
+    "bundle_added_artifact_count": 0,
+    "bundle_removed_artifact_count": 0,
+    "bundle_sha256_changed_count": 0,
+    "profile_added_count": 0,
+    "profile_removed_count": 0,
+    "profiles_compared": 3,
+    "failed_check_count": 0,
+    "warning_count": 0
+  },
+  "diff_audit": {
+    "baseline_ir23_report": "generic_block_ai/reports/ir23_evidence_pack_lifecycle_audit_report_ir23_live_trial.json",
+    "candidate_ir23_report": "generic_block_ai/reports/ir23_evidence_pack_lifecycle_audit_report_ir23_resubmission_trial.json",
+    "bundle_diff": {
+      "artifact_set": {
+        "added": [],
+        "removed": [],
+        "common_count": 29
+      },
+      "sha256_changed": [],
+      "sha256_changed_count": 0
+    },
+    "profile_diff": {
+      "profile_set": {
+        "added": [],
+        "removed": [],
+        "common_count": 3
+      },
+      "profiles": [
+        {
+          "profile_name": "audit_submission",
+          "selected_artifact_set": {
+            "added": [],
+            "removed": [],
+            "common_count": 12
+          },
+          "sha256_changed": [],
+          "sha256_changed_count": 0,
+          "baseline_report": "generic_block_ai/reports/ir22_submission_profile_report_audit_submission_ir22_live_audit.json",
+          "candidate_report": "generic_block_ai/reports/ir22_submission_profile_report_audit_submission_ir22_live_audit.json"
+        },
+        {
+          "profile_name": "policy_focus",
+          "selected_artifact_set": {
+            "added": [],
+            "removed": [],
+            "common_count": 11
+          },
+          "sha256_changed": [],
+          "sha256_changed_count": 0,
+          "baseline_report": "generic_block_ai/reports/ir22_submission_profile_report_policy_focus_ir22_live_policy.json",
+          "candidate_report": "generic_block_ai/reports/ir22_submission_profile_report_policy_focus_ir22_live_policy.json"
+        },
+        {
+          "profile_name": "review_minimal",
+          "selected_artifact_set": {
+            "added": [],
+            "removed": [],
+            "common_count": 5
+          },
+          "sha256_changed": [],
+          "sha256_changed_count": 0,
+          "baseline_report": "generic_block_ai/reports/ir22_submission_profile_report_review_minimal_ir22_live_review.json",
+          "candidate_report": "generic_block_ai/reports/ir22_submission_profile_report_review_minimal_ir22_live_review.json"
+        }
+      ]
+    }
+  },
+  "safeguards": {
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "production_release": false
+  }
+}

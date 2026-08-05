@@ -1,0 +1,105 @@
+{
+  "phase": "Phase 6-9",
+  "protocol_name": "wordpress_draft_manual_unlock_protocol_design",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "manual_unlock_status": "DESIGN_ONLY",
+  "production_status": "NO_GO",
+  "wordpress_draft_creation": "NO_GO",
+  "unlock_currently_allowed": false,
+  "real_write_enabled": false,
+  "wordpress_write_executed": false,
+  "unlock_scope": {
+    "target": "single_wordpress_draft_only",
+    "max_posts_on_first_unlock": 1,
+    "target_post_status": "draft",
+    "publish_forbidden_on_unlock": true,
+    "update_existing_post_forbidden_on_unlock": true,
+    "delete_post_forbidden_on_unlock": true
+  },
+  "reviewer_requirements": {
+    "human_reviewer_required": true,
+    "reviewer_identity_must_be_recorded": true,
+    "reviewer_cannot_be_automated_agent": true,
+    "review_decision_token": "APPROVE_MANUAL_UNLOCK_DRAFT_CREATE_ONLY",
+    "review_expiry_minutes": 30,
+    "review_timestamp_required": true
+  },
+  "evidence_checklist_before_unlock": [
+    "phase6_1_through_6_8_all_PASS_confirmed",
+    "readiness_result_is_READINESS_DESIGN_PASS",
+    "final_go_no_go_reviewed_by_human",
+    "warn_items_resolved_or_explicitly_overridden",
+    "affiliate_tag_status_confirmed",
+    "content_url_confirmed",
+    "pr_disclosure_confirmed",
+    "wordpress_user_role_confirmed",
+    "application_password_active_confirmed",
+    "no_forbidden_action_in_request",
+    "secrets_env_non_edit_confirmed",
+    "existing_post_impact_zero_confirmed"
+  ],
+  "unlock_decision_mapping": {
+    "all_checklist_items_confirmed_and_human_approved": "UNLOCK_GRANTED_DRAFT_ONLY",
+    "checklist_incomplete_or_warn_unresolved": "UNLOCK_BLOCKED_PENDING_REVIEW",
+    "forbidden_action_detected": "UNLOCK_HARD_BLOCKED",
+    "write_or_publish_detected": "UNLOCK_HARD_BLOCKED",
+    "phase6_9_default": "UNLOCK_BLOCKED_DESIGN_ONLY"
+  },
+  "unlock_hard_block_conditions": [
+    "human_review_missing == true",
+    "human_review_expired == true",
+    "review_decision_not_APPROVE_MANUAL_UNLOCK_DRAFT_CREATE_ONLY == true",
+    "checklist_item_not_confirmed == true",
+    "warn_unresolved_without_override == true",
+    "wordpress_rest_post_attempted == true",
+    "wordpress_rest_put_patch_attempted == true",
+    "publish_attempted == true",
+    "update_existing_post_attempted == true",
+    "delete_post_attempted == true",
+    "external_export_attempted == true",
+    "github_actions_trigger_attempted == true",
+    "slack_production_notification_attempted == true",
+    "vps_self_builder_execution_attempted == true",
+    "env_secret_credential_auto_edit_attempted == true"
+  ],
+  "post_unlock_evidence_spec": {
+    "required_on_actual_unlock": true,
+    "required_in_phase6_9": false,
+    "future_required_fields": [
+      "request_id",
+      "reviewer_id",
+      "decision_token",
+      "reviewed_at",
+      "checklist_snapshot",
+      "draft_post_id",
+      "wordpress_user",
+      "executed_at",
+      "result_status"
+    ]
+  },
+  "re_lock_policy": {
+    "auto_re_lock_after_single_use": true,
+    "re_unlock_requires_new_full_review": true,
+    "bulk_unlock_forbidden": true
+  },
+  "retry_policy": {
+    "auto_retry_forbidden": true,
+    "retry_on_failure": false,
+    "manual_rerun_requires_new_review": true
+  },
+  "forbidden_actions": [
+    "wordpress_rest_post",
+    "wordpress_rest_put_patch",
+    "publish_post",
+    "update_existing_post",
+    "delete_post",
+    "bulk_posting",
+    "external_export",
+    "github_actions_trigger",
+    "slack_production_notification",
+    "cron_automation",
+    "env_secret_auto_edit",
+    "vps_self_builder_execution"
+  ]
+}

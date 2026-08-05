@@ -1,0 +1,48 @@
+{
+  "_meta": {
+    "template_version": "1.0",
+    "phase": "3.5-11",
+    "purpose": "proposal_validator_template",
+    "created_at": "2026-05-12",
+    "status": "TEMPLATE_ONLY",
+    "note": "このファイルは検証ルール定義の雛形です。実際の外部出力・自動実行・approve操作は一切行いません。"
+  },
+  "target_template": "reports/phase35_proposal_package_template.json",
+  "required_fields": [
+    {"path": "_meta.status",                              "expected_type": "string"},
+    {"path": "proposal.block_id",                         "expected_type": "string"},
+    {"path": "proposal.mode",                             "expected_type": "string",  "allowed_values": ["dry_run"]},
+    {"path": "proposal.operation_mode",                   "expected_type": "string",  "allowed_values": ["OBSERVE"]},
+    {"path": "proposal.estimated_impact.reversible",      "expected_type": "boolean", "must_be": true},
+    {"path": "proposal.estimated_impact.requires_human_approval", "expected_type": "boolean", "must_be": true},
+    {"path": "proposal.estimated_impact.auto_execute_allowed",    "expected_type": "boolean", "must_be": false},
+    {"path": "safety_constraints.publish_content",        "expected_type": "boolean", "must_be": false},
+    {"path": "safety_constraints.delete_data",            "expected_type": "boolean", "must_be": false},
+    {"path": "safety_constraints.change_config",          "expected_type": "boolean", "must_be": false},
+    {"path": "safety_constraints.observe_only",           "expected_type": "boolean", "must_be": true},
+    {"path": "review_requirements.requires_human_approval","expected_type": "boolean", "must_be": true},
+    {"path": "status.state",                              "expected_type": "string",  "allowed_values": ["pending_review"]}
+  ],
+  "forbidden_values": [
+    {"path": "proposal.mode",          "forbidden": ["live", "production", "execute"]},
+    {"path": "proposal.operation_mode","forbidden": ["EXECUTE", "WRITE", "PUBLISH"]},
+    {"path": "status.reviewer_decision","forbidden": ["auto_approved"]}
+  ],
+  "safety_checks": [
+    "mode が dry_run 以外は REJECT",
+    "operation_mode が OBSERVE 以外は REJECT",
+    "auto_execute_allowed が true は REJECT",
+    "requires_human_approval が false は REJECT",
+    "publish_content / delete_data / change_config のいずれかが true は REJECT",
+    "observe_only が false は REJECT"
+  ],
+  "validation_result_schema": {
+    "validation_id": "__FILL_IN__",
+    "target_file": "__FILL_IN__",
+    "validated_at": "__FILL_IN__",
+    "result": "PASS | WARN | FAIL",
+    "failed_checks": [],
+    "warnings": [],
+    "validated_by": "__FILL_IN__"
+  }
+}

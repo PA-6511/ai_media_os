@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4C",
+  "policy_id": "NEW_RELEASE_WP_PRODUCTION_CATEGORY_PREEXECUTION_POLICY_V1",
+  "source_phase_id": "LS-NEW-BATCH-4B",
+  "template_contract_id": "POST185_STANDARD_TEMPLATE_V1_FIXED",
+  "source_requirements": {
+    "human_review_state": "COMPLETED",
+    "human_review_approval_recorded": true,
+    "required_effective_outcome": "REVIEW_APPROVED_EXAMPLE_ONLY_NOT_EXECUTABLE",
+    "source_resolution_mode": "EXAMPLE_ONLY",
+    "source_category_ids_production_usable": false,
+    "source_execution_allowed": false
+  },
+  "production_category_request": {
+    "required_status": "PENDING_MANUAL_VERIFICATION",
+    "category_slug_exact_match_required": true,
+    "category_name_exact_match_required": true,
+    "wordpress_category_id_must_begin_null": true,
+    "resolution_source_must_begin_null": true,
+    "verified_at_must_begin_null": true,
+    "evidence_note_must_begin_null": true,
+    "human_verification_must_begin_false": true,
+    "example_category_id_reuse_forbidden": true,
+    "allowed_future_resolution_source": "MANUAL_VERIFIED"
+  },
+  "preexecution_gate": {
+    "state": "BLOCKED_PENDING_PRODUCTION_CATEGORY_RESOLUTION",
+    "content_review_recorded": true,
+    "production_category_resolution_required": true,
+    "production_category_review_required": true,
+    "execution_approval_required": true,
+    "approval_token_required": true,
+    "execution_approval_issued": false,
+    "approval_token_generation_allowed": false,
+    "execution_allowed": false
+  },
+  "integrity": {
+    "source_review_package_digest_verification_required": true,
+    "source_resolved_payload_digest_verification_required": true,
+    "source_package_mutation_allowed": false,
+    "production_pending_payload_digest_required": true,
+    "preexecution_package_digest_required": true
+  },
+  "execution_boundary": {
+    "local_json_read_allowed": true,
+    "local_preexecution_package_write_allowed": true,
+    "credential_read_allowed": false,
+    "wordpress_api_call_allowed": false,
+    "wordpress_category_lookup_allowed": false,
+    "wordpress_database_read_allowed": false,
+    "wordpress_write_allowed": false,
+    "wordpress_publish_allowed": false,
+    "x_api_call_allowed": false,
+    "x_post_allowed": false,
+    "external_api_call_allowed": false,
+    "execution_approval_issued": false,
+    "approval_token_generation_allowed": false,
+    "execution_allowed": false,
+    "production_status": "NO_GO",
+    "safety_state": "PRODUCTION_CATEGORY_RESOLUTION_PENDING"
+  },
+  "next_phase": {
+    "phase_id": "LS-NEW-BATCH-4D",
+    "name": "Read-Only WordPress Category Discovery",
+    "execution_allowed": false
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "route_id": "START-LS/SR",
+  "route_name": "Lean Start to Stable Reinforcement Route",
+  "japanese_name": "最短起動・標準安定補強ルート",
+  "current_phase_pack": "LS-0_LS-1",
+  "status": "DESIGN_ONLY_BASELINE_LOCK",
+  "execution_mode": "DRY_RUN_ONLY",
+  "production_status": "NO_GO",
+  "purpose": "Start Core AI and ebook affiliate Block AI safely by locking the current 8-50B baseline and defining the minimum autonomy charter before any WordPress write, Amazon API call, X posting, or publish action.",
+  "baseline": {
+    "source_phase": "Phase 8-50B",
+    "source_status": "PHASE8_50B_HARDENING_PASS_DRY_RUN_ONLY",
+    "next_action": "KEEP_HOLD_AND_MONITOR",
+    "next_phase": "Phase 8-51-MIGRATION-SKELETON",
+    "next_phase_lock": "NOT_STARTED_LOCKED"
+  },
+  "safety_flags": {
+    "amazon_api_call_allowed": false,
+    "wordpress_write_allowed": false,
+    "x_api_call_allowed": false,
+    "x_post_allowed": false,
+    "publish_allowed": false,
+    "approval_token_consumed": false,
+    "phase_forward_execution_allowed": false,
+    "credential_secret_output_allowed": false
+  },
+  "ls_phases": [
+    {
+      "phase": "LS-0",
+      "name": "8-50B Baseline Lock",
+      "status": "READY_TO_VALIDATE",
+      "execution_allowed": false
+    },
+    {
+      "phase": "LS-1",
+      "name": "Minimum Bounded Autonomy Charter",
+      "status": "READY_TO_VALIDATE",
+      "execution_allowed": false
+    }
+  ],
+  "sr_connection_points": {
+    "core_approval_boundary_registry": "PENDING_SR_1",
+    "stable_core_status_registry": "PENDING_SR_2",
+    "aud_lite": "PENDING_SR_3",
+    "post_start_evidence_review": "PENDING_SR_4",
+    "human_approved_improvement_gate": "PENDING_SR_5"
+  }
+}

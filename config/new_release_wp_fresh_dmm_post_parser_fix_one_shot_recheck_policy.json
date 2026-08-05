@@ -1,0 +1,126 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M4",
+  "policy_id": "NEW_RELEASE_WP_FRESH_DMM_POST_PARSER_FIX_ONE_SHOT_RECHECK_POLICY_V1",
+  "source_phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M3",
+  "operation_mode": "EXPLICITLY_APPROVED_POST_PARSER_REMEDIATION_DMM_ONE_SHOT_READ_ONLY_GET",
+  "content_item_id": "new-release-comic-20260703-001",
+  "authorization_contract": {
+    "authorization_id": "DMM_LATEST_ALIAS_861056_POST_PARSER_FIX_ONE_SHOT_READ_ONLY_RECHECK_AUTHORIZATION_V1",
+    "authorization_path": "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.dmm_latest_alias_recheck_post_parser_fix_authorization.json",
+    "single_use": true,
+    "consume_immediately_before_network_attempt": true,
+    "authorization_reuse_allowed": false,
+    "automatic_retry_allowed": false,
+    "source_authorization_modification_allowed": false
+  },
+  "parser_contract": {
+    "runner_path": "scripts/execute_ls_new_batch_4g_2e_recovery_m2.py",
+    "required_runner_sha256": "adfe2cbb8478458e8940eb0d67de4aa8e223ba6923353a2f0f0dc4d35e37e35f",
+    "required_fix_evidence_digest_sha256": "8f46f1da365be87d4308fdb8327422003f65ee323dfc2ee7b938348a6af9c807",
+    "runner_change_after_authorization_allowed": false
+  },
+  "request_contract": {
+    "method": "GET",
+    "target_url": "https://book.dmm.com/product/861056/latest/",
+    "allowed_scheme": "https",
+    "allowed_initial_host": "book.dmm.com",
+    "maximum_redirect_count": 5,
+    "request_timeout_seconds": 20,
+    "maximum_raw_response_bytes": 12582912,
+    "request_body_allowed": false,
+    "query_parameter_addition_allowed": false,
+    "authentication_allowed": false,
+    "login_allowed": false,
+    "cookie_send_allowed": false,
+    "cookie_persistence_allowed": false,
+    "credential_file_read_allowed": false,
+    "proxy_environment_use_allowed": false,
+    "write_operation_allowed": false,
+    "automatic_retry_allowed": false
+  },
+  "allowed_request_headers": {
+    "Accept": "text/html,application/xhtml+xml",
+    "Accept-Language": "ja,en;q=0.5",
+    "User-Agent": "Mozilla/5.0 (compatible; ai-media-os/1.0; read-only one-shot verification)"
+  },
+  "redirect_contract": {
+    "allowed_schemes": [
+      "https"
+    ],
+    "allowed_hosts": [
+      "book.dmm.com"
+    ],
+    "cross_host_redirect_allowed": false,
+    "https_downgrade_allowed": false,
+    "redirect_chain_recording_required": true
+  },
+  "identity_contract": {
+    "expected_work_title": "ダークギャザリング",
+    "expected_volume_label": "第20巻",
+    "expected_volume_number": 20,
+    "expected_author_name": "近藤憲一",
+    "expected_publisher_name": "集英社",
+    "expected_series_id": "861056",
+    "all_required_identity_fields_must_match": true
+  },
+  "canonical_contract": {
+    "canonical_product_url_required": true,
+    "allowed_scheme": "https",
+    "allowed_hosts": [
+      "book.dmm.com"
+    ],
+    "canonical_url_must_not_equal_latest_alias": true,
+    "canonical_product_binding_to_expected_series_required": true,
+    "latest_alias_as_final_affiliate_link_allowed": false
+  },
+  "evidence_contract": {
+    "consumption_evidence_path": "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.dmm_latest_alias_recheck_post_parser_fix_consumption.json",
+    "recheck_result_path": "exchange/rechecks/new_release/fresh/new-release-comic-20260703-001.dmm_latest_alias_recheck_post_parser_fix_result.json",
+    "full_response_body_persistence_allowed": false,
+    "response_body_sha256_required_when_body_received": true,
+    "allowlisted_response_headers_only": true
+  },
+  "failure_contract": {
+    "communication_failure": "DMM_SLOT_UNAVAILABLE_RETURN_TO_HUMAN_REVIEW",
+    "unexpected_http_status": "DMM_SLOT_UNAVAILABLE_RETURN_TO_HUMAN_REVIEW",
+    "redirect_policy_violation": "DMM_SLOT_UNAVAILABLE_RETURN_TO_HUMAN_REVIEW",
+    "response_limit_exceeded": "DMM_SLOT_UNAVAILABLE_RETURN_TO_HUMAN_REVIEW",
+    "content_decode_failure": "DMM_SLOT_UNAVAILABLE_RETURN_TO_HUMAN_REVIEW",
+    "parser_failure": "DMM_SLOT_UNAVAILABLE_RETURN_TO_HUMAN_REVIEW",
+    "identity_mismatch": "DMM_SLOT_UNAVAILABLE_RETURN_TO_HUMAN_REVIEW",
+    "canonical_product_unresolved": "DMM_SLOT_UNAVAILABLE_RETURN_TO_HUMAN_REVIEW",
+    "automatic_fallback_url_allowed": false,
+    "dummy_url_allowed": false
+  },
+  "historical_preservation": {
+    "old_m1_authorization_modification_allowed": false,
+    "old_m2_result_modification_allowed": false,
+    "old_m2_recheck_result_modification_allowed": false,
+    "old_m2_consumption_modification_allowed": false,
+    "old_m2_execute_approval_modification_allowed": false,
+    "old_response_body_sha256_modification_allowed": false,
+    "m2_fix1_result_modification_allowed": false,
+    "m3_authorization_modification_allowed": false,
+    "generated_article_modification_allowed": false,
+    "store_link_plan_modification_allowed": false
+  },
+  "phase_boundary": {
+    "one_shot_network_get_allowed": true,
+    "new_authorization_consumption_allowed": true,
+    "new_consumption_evidence_creation_allowed": true,
+    "new_recheck_result_creation_allowed": true,
+    "final_affiliate_link_generation_allowed": false,
+    "final_affiliate_link_validation_allowed": false,
+    "article_modification_allowed": false,
+    "article_url_injection_allowed": false,
+    "fresh_payload_creation_allowed": false,
+    "payload_binding_allowed": false,
+    "production_category_id_payload_injection_allowed": false,
+    "wordpress_access_allowed": false,
+    "wordpress_write_allowed": false,
+    "wordpress_draft_creation_allowed": false,
+    "wordpress_publish_allowed": false,
+    "production_status": "NO_GO"
+  }
+}

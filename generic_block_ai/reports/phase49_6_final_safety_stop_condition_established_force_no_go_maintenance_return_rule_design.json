@@ -1,0 +1,35 @@
+{
+  "_meta": {
+    "phase": "49-6",
+    "phase_name": "発効直前・最終安全停止・キャンセル境界層",
+    "layer": "補強層 (reinforcement layer)",
+    "title": "安全停止条件成立時の強制NO_GO維持・差し戻しルール設計",
+    "created": "2026-05-14",
+    "author": "governance-framework",
+    "status": "PASS_DESIGN_ONLY",
+    "reports_only": true
+  },
+  "scope": "Phase 49-2 / 49-3 で実施された manual_release_go_authorization / actual_process_start_go_authorization 発効直前の最終安全停止条件確認において、安全停止が成立と判定された場合、以下のルールを設計する：(1) 即座な NOT_GRANTED 再宣言ルール（該当承認候補の NOT_GRANTED 再宣言）、(2) 安全停止成立の詳細理由の差し戻し・報告ルール、(3) Phase 48-8 / 49-1～49-3 プロセスへの遡及確認ルール、(4) 差し戻し後の改善・再試行プロセスの設計ルール、(5) NO_GO 状態の恒久的維持ルール（安全停止成立が最終判定されるまで NO_GO は解除されない）。",
+  "governance": {
+    "production_status": "NO_GO",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "report": {
+    "description": "Phase 49-6 では、Phase 49-2 / 49-3 で安全停止が成立と判定された場合（または両承認候補のいずれか一方が成立と判定された場合），以下のプロセスを 設計層で定義する。(1) 即座な NOT_GRANTED 再宣言ルール：安全停止成立判定時，該当する承認候補（manual_release_go_authorization / actual_process_start_go_authorization）を即座に 'NOT_GRANTED' に再宣言する。(2) 差し戻しルール：安全停止成立の理由を詳細に分類したレポートを生成し，差し戻し資料とする。(3) 遡及確認ルール：安全停止成立の理由によっては Phase 48-8 / Phase 49-1～49-3 プロセスの再確認が必要となる。(4) 改善・再試行ルール：差し戻し後，最終実測GO入力値や再確認入力の修正・改善を行い，再度 Phase 49-2 / 49-3 で安全停止条件確認を実施できることを設計する。(5) NO_GO 恒久維持ルール：安全停止成立と最終判定されるまで，production_status = 'NO_GO' は解除されない。両承認候補のいずれかが NOT_GRANTED の場合，production_status は NO_GO のまま。これらのルールは全て 設計層（reports only）で実装される。",
+    "invariants": [
+      "NO_GO 強制：安全停止成立判定時は即座に該当承認候補を 'NOT_GRANTED' に再宣言",
+      "NO_GO 恒久維持：いずれかの承認候補が NOT_GRANTED である限り production_status = 'NO_GO'",
+      "reports only：ルール全体は報告書形式で実装される"
+    ],
+    "actions": [],
+    "notes": [
+      "Phase 49-6 は 設計層のみで実装される",
+      "安全停止成立（manual_release_go） → manual_release_go_authorization NOT_GRANTED / production_status NO_GO",
+      "安全停止成立（actual_process_start_go） → actual_process_start_go_authorization NOT_GRANTED / production_status NO_GO",
+      "両承認候補が NOT_GRANTED の場合 → production_status NO_GO（厳格状態）",
+      "実処理開始は NO_GO のまま（安全停止解除まで）"
+    ]
+  }
+}

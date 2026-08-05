@@ -1,0 +1,13 @@
+{
+  "phase": "LS-6P",
+  "document_type": "RUNTIME_FREEZE_RESTORE_RESULT",
+  "status": "RUNTIME_FREEZE_RESTORE_RECORDED",
+  "runtime_freeze_was_active": true,
+  "runtime_freeze_restored": true,
+  "runtime_freeze_restore_method": "EVIDENCE_RECORD_ONLY_DO_NOT_DELETE_ORIGINAL_STATE",
+  "original_runtime_freeze_state": "exchange/runtime/start_ls6m_runtime_freeze_active_state.json",
+  "original_runtime_freeze_lock": "exchange/locks/start_ls6m_runtime_freeze_active.lock.json",
+  "runtime_freeze_state_deleted": false,
+  "runtime_freeze_lock_deleted": false,
+  "errors": []
+}

@@ -1,0 +1,138 @@
+{
+  "package_type": "phase75_limited_dry_run_fixture_plan_report",
+  "phase": "Phase 75",
+  "title": "Phase 75 Limited Dry-Run Fixture Plan Report",
+  "status": "PASS",
+  "fixture_plan_status": "PASS",
+  "source_report": "exchange/logs/phase74_limited_dry_run_sandbox_plan_report.json",
+  "source_report_type": "phase74_limited_dry_run_sandbox_plan_report",
+  "mode": "DRY_RUN",
+  "human_approval_required": true,
+  "can_execute": false,
+  "execute_allowed": false,
+  "max_files_to_execute": 1,
+  "sandbox_scope_required": true,
+  "single_file_scope_required": true,
+  "fixture_plan_package": {
+    "package_scope": "limited_dry_run_fixture_plan_package_only",
+    "does_not_execute": true,
+    "fixture_plan_target": "phase74_limited_dry_run_sandbox_plan_report",
+    "status": "LIMITED_DRY_RUN_FIXTURE_PLAN_PACKAGE_READY"
+  },
+  "fixture_plan_controls": {
+    "controls_required": true,
+    "dry_run_required": true,
+    "human_approval_required": true,
+    "sandbox_scope_required": true,
+    "single_file_scope_required": true,
+    "does_not_execute": true,
+    "status": "LIMITED_DRY_RUN_FIXTURE_PLAN_CONTROLS_READY"
+  },
+  "fixture_plan_evidence_checks": {
+    "evidence_required": true,
+    "required_evidence": [
+      "phase66_go_no_go_report_reference",
+      "preparation_scope_statement",
+      "target_files_manifest",
+      "sandbox_scope_confirmation",
+      "single_file_scope_confirmation",
+      "dry_run_mode_confirmation",
+      "non_execution_confirmation"
+    ],
+    "missing_evidence_blocks_progress": true,
+    "does_not_execute": true,
+    "status": "LIMITED_DRY_RUN_FIXTURE_PLAN_EVIDENCE_CHECKS_READY"
+  },
+  "manual_fixture_plan_gate": {
+    "gate_required": true,
+    "allowed_decisions": [
+      "ALLOW_PHASE76_PLANNING_ONLY",
+      "REJECT"
+    ],
+    "does_not_execute": true,
+    "status": "MANUAL_LIMITED_DRY_RUN_FIXTURE_PLAN_GATE_READY"
+  },
+  "phase76_readiness": {
+    "readiness_status": "READY_FOR_PHASE76_PLANNING_ONLY",
+    "planning_package_scope": "limited_dry_run_rollback_planning_package_only",
+    "human_approval_required": true,
+    "can_execute": false,
+    "execute_allowed": false
+  },
+  "production_status": "NO_GO",
+  "checks": [
+    {
+      "check": "input_phase=Phase 74",
+      "passed": true,
+      "actual": "Phase 74"
+    },
+    {
+      "check": "input_package_type=phase74_limited_dry_run_sandbox_plan_report",
+      "passed": true,
+      "actual": "phase74_limited_dry_run_sandbox_plan_report"
+    },
+    {
+      "check": "input_status=PASS",
+      "passed": true,
+      "actual": "PASS"
+    },
+    {
+      "check": "dry_run_fixed=true",
+      "passed": true,
+      "actual": "DRY_RUN"
+    },
+    {
+      "check": "human_approval_required=true",
+      "passed": true,
+      "actual": true
+    },
+    {
+      "check": "can_execute=false",
+      "passed": true,
+      "actual": false
+    },
+    {
+      "check": "execute_allowed=false",
+      "passed": true,
+      "actual": false
+    },
+    {
+      "check": "max_files_to_execute=1",
+      "passed": true,
+      "actual": 1
+    },
+    {
+      "check": "sandbox_scope_required=true",
+      "passed": true,
+      "actual": true
+    },
+    {
+      "check": "single_file_scope_required=true",
+      "passed": true,
+      "actual": true
+    },
+    {
+      "check": "fixture_plan_controls_does_not_execute=true",
+      "passed": true,
+      "actual": true
+    },
+    {
+      "check": "fixture_plan_evidence_checks_does_not_execute=true",
+      "passed": true,
+      "actual": true
+    },
+    {
+      "check": "manual_fixture_plan_gate_does_not_execute=true",
+      "passed": true,
+      "actual": true
+    },
+    {
+      "check": "phase75_readiness_status=READY_FOR_PHASE75_PLANNING_ONLY",
+      "passed": true,
+      "actual": "READY_FOR_PHASE75_PLANNING_ONLY"
+    }
+  ],
+  "all_checks_passed": true,
+  "next_step": "decide_whether_to_start_phase76_limited_dry_run_rollback_planning_package",
+  "created_at": "2026-05-09T14:46:35.563249+00:00"
+}

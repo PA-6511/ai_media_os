@@ -1,0 +1,235 @@
+[
+  {
+    "status": "PASS",
+    "block_name": "ranking_dashboard_probe",
+    "target_dir": "/home/deploy/ai_media_os/generic_block_template/blocks/ranking_dashboard_probe",
+    "files": [
+      "/home/deploy/ai_media_os/generic_block_template/blocks/ranking_dashboard_probe/README.md",
+      "/home/deploy/ai_media_os/generic_block_template/blocks/ranking_dashboard_probe/run.py"
+    ],
+    "scaffold_only": true,
+    "created_at": "2026-06-13T05:54:57.213519+00:00"
+  },
+  {
+    "status": "PASS",
+    "block_name": "demo_block",
+    "target_dir": "/tmp/tmpzs1oa_n9/demo_block",
+    "files": [
+      "/tmp/tmpzs1oa_n9/demo_block/README.md",
+      "/tmp/tmpzs1oa_n9/demo_block/run.py"
+    ],
+    "scaffold_only": true,
+    "created_at": "2026-06-13T05:55:29.148825+00:00"
+  },
+  {
+    "status": "PASS",
+    "block_name": "dashboard_seed_block",
+    "target_dir": "/home/deploy/ai_media_os/generic_block_template/blocks/dashboard_seed_block",
+    "files": [
+      "/home/deploy/ai_media_os/generic_block_template/blocks/dashboard_seed_block/README.md",
+      "/home/deploy/ai_media_os/generic_block_template/blocks/dashboard_seed_block/run.py"
+    ],
+    "scaffold_only": true,
+    "created_at": "2026-06-13T05:55:29.165375+00:00"
+  },
+  {
+    "status": "PASS",
+    "block_name": "demo_block",
+    "target_dir": "/tmp/tmppcrojieq/demo_block",
+    "files": [
+      "/tmp/tmppcrojieq/demo_block/README.md",
+      "/tmp/tmppcrojieq/demo_block/run.py"
+    ],
+    "scaffold_only": true,
+    "created_at": "2026-06-13T05:58:23.771379+00:00"
+  },
+  {
+    "status": "WARN",
+    "reason": "block already exists",
+    "block_name": "dashboard_seed_block",
+    "target_dir": "/home/deploy/ai_media_os/generic_block_template/blocks/dashboard_seed_block",
+    "scaffold_only": true,
+    "created_at": "2026-06-13T05:58:23.785995+00:00"
+  },
+  {
+    "status": "WARN",
+    "reason": "block already exists",
+    "block_name": "ranking_dashboard_probe",
+    "target_dir": "/home/deploy/ai_media_os/generic_block_template/blocks/ranking_dashboard_probe",
+    "scaffold_only": true,
+    "created_at": "2026-06-13T05:58:23.786207+00:00"
+  },
+  {
+    "status": "PASS",
+    "block_name": "demo_block",
+    "target_dir": "/tmp/tmp2l32_kaw/demo_block",
+    "files": [
+      "/tmp/tmp2l32_kaw/demo_block/README.md",
+      "/tmp/tmp2l32_kaw/demo_block/run.py"
+    ],
+    "scaffold_only": true,
+    "created_at": "2026-06-13T06:02:17.366840+00:00"
+  },
+  {
+    "status": "WARN",
+    "reason": "block already exists",
+    "block_name": "dashboard_seed_block",
+    "target_dir": "/home/deploy/ai_media_os/generic_block_template/blocks/dashboard_seed_block",
+    "scaffold_only": true,
+    "created_at": "2026-06-13T06:02:17.385451+00:00"
+  },
+  {
+    "status": "WARN",
+    "reason": "block already exists",
+    "block_name": "ranking_dashboard_probe",
+    "target_dir": "/home/deploy/ai_media_os/generic_block_template/blocks/ranking_dashboard_probe",
+    "scaffold_only": true,
+    "created_at": "2026-06-13T06:02:17.385690+00:00"
+  },
+  {
+    "status": "PASS",
+    "block_name": "demo_block",
+    "target_dir": "/tmp/tmpwa6bs1tp/demo_block",
+    "files": [
+      "/tmp/tmpwa6bs1tp/demo_block/README.md",
+      "/tmp/tmpwa6bs1tp/demo_block/run.py"
+    ],
+    "scaffold_only": true,
+    "created_at": "2026-06-13T06:17:52.995226+00:00"
+  },
+  {
+    "status": "WARN",
+    "reason": "block already exists",
+    "block_name": "dashboard_seed_block",
+    "target_dir": "/home/deploy/ai_media_os/generic_block_template/blocks/dashboard_seed_block",
+    "scaffold_only": true,
+    "created_at": "2026-06-13T06:17:53.009533+00:00"
+  },
+  {
+    "status": "WARN",
+    "reason": "block already exists",
+    "block_name": "ranking_dashboard_probe",
+    "target_dir": "/home/deploy/ai_media_os/generic_block_template/blocks/ranking_dashboard_probe",
+    "scaffold_only": true,
+    "created_at": "2026-06-13T06:17:53.009841+00:00"
+  },
+  {
+    "status": "PASS",
+    "block_name": "demo_block",
+    "target_dir": "/tmp/tmp0majd2dc/demo_block",
+    "files": [
+      "/tmp/tmp0majd2dc/demo_block/README.md",
+      "/tmp/tmp0majd2dc/demo_block/run.py"
+    ],
+    "scaffold_only": true,
+    "created_at": "2026-06-13T06:18:08.663519+00:00"
+  },
+  {
+    "status": "WARN",
+    "reason": "block already exists",
+    "block_name": "dashboard_seed_block",
+    "target_dir": "/home/deploy/ai_media_os/generic_block_template/blocks/dashboard_seed_block",
+    "scaffold_only": true,
+    "created_at": "2026-06-13T06:18:08.677403+00:00"
+  },
+  {
+    "status": "WARN",
+    "reason": "block already exists",
+    "block_name": "ranking_dashboard_probe",
+    "target_dir": "/home/deploy/ai_media_os/generic_block_template/blocks/ranking_dashboard_probe",
+    "scaffold_only": true,
+    "created_at": "2026-06-13T06:18:08.677715+00:00"
+  },
+  {
+    "status": "PASS",
+    "block_name": "demo_block",
+    "target_dir": "/tmp/tmpdye30xqr/demo_block",
+    "files": [
+      "/tmp/tmpdye30xqr/demo_block/README.md",
+      "/tmp/tmpdye30xqr/demo_block/run.py"
+    ],
+    "scaffold_only": true,
+    "created_at": "2026-06-13T06:24:11.252778+00:00"
+  },
+  {
+    "status": "WARN",
+    "reason": "block already exists",
+    "block_name": "dashboard_seed_block",
+    "target_dir": "/home/deploy/ai_media_os/generic_block_template/blocks/dashboard_seed_block",
+    "scaffold_only": true,
+    "created_at": "2026-06-13T06:24:11.269888+00:00"
+  },
+  {
+    "status": "WARN",
+    "reason": "block already exists",
+    "block_name": "ranking_dashboard_probe",
+    "target_dir": "/home/deploy/ai_media_os/generic_block_template/blocks/ranking_dashboard_probe",
+    "scaffold_only": true,
+    "created_at": "2026-06-13T06:24:11.270266+00:00"
+  },
+  {
+    "status": "PASS",
+    "block_name": "sale_flash_block",
+    "target_dir": "/home/deploy/ai_media_os/generic_block_template/blocks/sale_flash_block",
+    "files": [
+      "/home/deploy/ai_media_os/generic_block_template/blocks/sale_flash_block/README.md",
+      "/home/deploy/ai_media_os/generic_block_template/blocks/sale_flash_block/run.py"
+    ],
+    "scaffold_only": true,
+    "created_at": "2026-06-13T06:26:08.558582+00:00"
+  },
+  {
+    "status": "PASS",
+    "block_name": "demo_block",
+    "target_dir": "/tmp/tmpuc5y4sou/demo_block",
+    "files": [
+      "/tmp/tmpuc5y4sou/demo_block/README.md",
+      "/tmp/tmpuc5y4sou/demo_block/run.py"
+    ],
+    "scaffold_only": true,
+    "created_at": "2026-06-13T06:26:31.859338+00:00"
+  },
+  {
+    "status": "WARN",
+    "reason": "block already exists",
+    "block_name": "dashboard_seed_block",
+    "target_dir": "/home/deploy/ai_media_os/generic_block_template/blocks/dashboard_seed_block",
+    "scaffold_only": true,
+    "created_at": "2026-06-13T06:26:31.880654+00:00"
+  },
+  {
+    "status": "WARN",
+    "reason": "block already exists",
+    "block_name": "ranking_dashboard_probe",
+    "target_dir": "/home/deploy/ai_media_os/generic_block_template/blocks/ranking_dashboard_probe",
+    "scaffold_only": true,
+    "created_at": "2026-06-13T06:26:31.881031+00:00"
+  },
+  {
+    "status": "PASS",
+    "block_name": "demo_block",
+    "target_dir": "/tmp/tmp8c6app1z/demo_block",
+    "files": [
+      "/tmp/tmp8c6app1z/demo_block/README.md",
+      "/tmp/tmp8c6app1z/demo_block/run.py"
+    ],
+    "scaffold_only": true,
+    "created_at": "2026-06-13T06:29:50.258392+00:00"
+  },
+  {
+    "status": "WARN",
+    "reason": "block already exists",
+    "block_name": "dashboard_seed_block",
+    "target_dir": "/home/deploy/ai_media_os/generic_block_template/blocks/dashboard_seed_block",
+    "scaffold_only": true,
+    "created_at": "2026-06-13T06:29:50.273406+00:00"
+  },
+  {
+    "status": "WARN",
+    "reason": "block already exists",
+    "block_name": "ranking_dashboard_probe",
+    "target_dir": "/home/deploy/ai_media_os/generic_block_template/blocks/ranking_dashboard_probe",
+    "scaffold_only": true,
+    "created_at": "2026-06-13T06:29:50.273756+00:00"
+  }
+]

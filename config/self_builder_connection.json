@@ -1,0 +1,10 @@
+{
+  "active_connector": "LOCAL_SELF_BUILDER",
+  "allowed_connectors": [
+    "LOCAL_SELF_BUILDER"
+  ],
+  "vps_connector_enabled": false,
+  "execution": "DRY_RUN",
+  "human_approval_required": true,
+  "auto_execute": false
+}

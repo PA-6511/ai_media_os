@@ -1,0 +1,12 @@
+phase: "15"
+risk_levels:
+  low:
+    description: "Safe DRY_RUN planning/reporting actions"
+  medium:
+    description: "File generation inside allowlist"
+  high:
+    description: "Any attempted out-of-scope or destructive operation"
+controls:
+  - "Block writes outside allowlist"
+  - "Never implement delete actions"
+  - "Record failures to JSON report"

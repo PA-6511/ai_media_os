@@ -1,0 +1,50 @@
+{
+  "schema_version": "ir12_core_decision_queue_v1",
+  "phase": "IR12",
+  "generated_at": "2026-05-23T14:49:57.363811+00:00",
+  "source_task_id": "ir12_pass_live_trial",
+  "quality_gate_judgment": "PASS",
+  "core_receive_rule": "ACCEPT_DRY_RUN_REVIEW_QUEUE",
+  "queue_item": {
+    "queue_item_id": "queue_ir12_pass_live_trial_pass",
+    "source_task_id": "ir12_pass_live_trial",
+    "quality_gate_judgment": "PASS",
+    "core_receive_rule": "ACCEPT_DRY_RUN_REVIEW_QUEUE",
+    "queue_state": "READY_FOR_DRY_RUN_REVIEW",
+    "hold_reason": null,
+    "requires_human_review": false,
+    "evidence_preservation_required": false,
+    "execution_allowed": false,
+    "created_at": "2026-05-23T14:49:57.363484+00:00",
+    "updated_at": "2026-05-23T14:49:57.363484+00:00"
+  },
+  "state_transitions": [
+    {
+      "from": "NEW",
+      "to": "RECEIVED",
+      "event": "receiver_report_ingested",
+      "at": "2026-05-23T14:49:57.363484+00:00"
+    },
+    {
+      "from": "RECEIVED",
+      "to": "READY_FOR_DRY_RUN_REVIEW",
+      "event": "judgment_pass_mapped",
+      "at": "2026-05-23T14:49:57.363484+00:00"
+    }
+  ],
+  "queue_validation_result": "PASS",
+  "queue_validation_failed_checks": [],
+  "queue_validation_warnings": [],
+  "execution_policy": {
+    "execute": false,
+    "reason": "ir12_queue_simulation_audit_only"
+  },
+  "audit_log_path": "generic_block_ai/reports/ir12_core_decision_queue_audit.log",
+  "safeguards": {
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "external_write_executed": false,
+    "actual_auto_execute": false,
+    "production_release": false
+  }
+}

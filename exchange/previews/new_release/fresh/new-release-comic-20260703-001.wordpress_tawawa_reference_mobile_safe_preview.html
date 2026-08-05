@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>M24 スマートフォン安全プレビュー</title>
+<style>
+#ebook-tawawa-reference-192,
+#ebook-tawawa-reference-192 * {
+  box-sizing: border-box;
+}
+
+#ebook-tawawa-reference-192 {
+  display: grid;
+  gap: 1.35rem;
+  width: 100%;
+  max-width: 860px;
+  margin-inline: auto;
+}
+
+#ebook-tawawa-reference-192 .tawawa-reference-main-card,
+#ebook-tawawa-reference-192 .tawawa-reference-description,
+#ebook-tawawa-reference-192 .tawawa-reference-details,
+#ebook-tawawa-reference-192 .tawawa-reference-notice {
+  width: 100%;
+  margin: 0;
+  border: 1px solid #dedede;
+  border-radius: 0.9rem;
+  background: #ffffff;
+}
+
+#ebook-tawawa-reference-192 .tawawa-reference-main-card {
+  display: grid;
+  grid-template-columns: minmax(150px, 180px) minmax(0, 1fr);
+  gap: 1.5rem;
+  align-items: center;
+  padding: 1.35rem;
+}
+
+#ebook-tawawa-reference-192 .tawawa-reference-cover {
+  min-width: 0;
+}
+
+#ebook-tawawa-reference-192 .tawawa-reference-cover figure {
+  margin: 0;
+}
+
+#ebook-tawawa-reference-192 .tawawa-reference-cover img {
+  display: block;
+  width: 100%;
+  max-width: 180px;
+  height: auto;
+  margin-inline: auto;
+  border-radius: 0.25rem;
+}
+
+#ebook-tawawa-reference-192 .tawawa-reference-actions {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+#ebook-tawawa-reference-192 .tawawa-reference-pr {
+  margin: 0;
+  padding: 0.58rem 0.72rem;
+  border-left: 4px solid #ff9f1a;
+  background: #fff8ec;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.55;
+}
+
+#ebook-tawawa-reference-192 .tawawa-reference-stores {
+  display: grid;
+  gap: 0.75rem;
+}
+
+#ebook-tawawa-reference-192 .tawawa-reference-stores > * {
+  display: flex;
+  width: 100%;
+  min-height: 3.15rem;
+  margin: 0;
+  padding: 0.72rem 1rem;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 999px;
+  box-shadow: 0 8px 16px rgb(0 0 0 / 8%);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.4;
+  text-align: center;
+  text-decoration: none;
+}
+
+#ebook-tawawa-reference-192 .ls-store-amazon {
+  background: linear-gradient(90deg, #ff9800, #ffb544);
+  color: #111111;
+}
+
+#ebook-tawawa-reference-192 .ls-store-kobo {
+  background: linear-gradient(90deg, #d90000, #e93636);
+  color: #ffffff;
+}
+
+#ebook-tawawa-reference-192 .ls-store-dmm {
+  background: linear-gradient(90deg, #2468e8, #4b86ef);
+  color: #ffffff;
+}
+
+#ebook-tawawa-reference-192 .ls-store-disabled {
+  cursor: not-allowed;
+  opacity: 0.62;
+}
+
+#ebook-tawawa-reference-192 .tawawa-reference-description {
+  padding: 1.15rem 1.25rem;
+  border-color: #efc88d;
+  background: #fffaf1;
+}
+
+#ebook-tawawa-reference-192 .tawawa-reference-description p {
+  margin: 0;
+  line-height: 1.75;
+}
+
+#ebook-tawawa-reference-192 .tawawa-reference-details {
+  padding: 1.15rem 1.25rem;
+  background: #fbfbfb;
+}
+
+#ebook-tawawa-reference-192 .tawawa-reference-details ul {
+  display: grid;
+  gap: 0.65rem;
+  margin: 0;
+  padding-left: 1.3rem;
+}
+
+#ebook-tawawa-reference-192 .tawawa-reference-details li {
+  margin: 0;
+  line-height: 1.65;
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+
+#ebook-tawawa-reference-192 .tawawa-reference-details strong {
+  display: inline;
+  white-space: nowrap;
+}
+
+#ebook-tawawa-reference-192 .tawawa-reference-notice {
+  padding: 0.9rem 1rem;
+  border: 0;
+  border-left: 5px solid #c9c9c9;
+  border-radius: 0.45rem;
+  background: #f5f5f5;
+  font-size: 0.9rem;
+  line-height: 1.65;
+}
+
+@media (max-width: 699px) {
+  #ebook-tawawa-reference-192 {
+    gap: 1rem;
+  }
+
+  #ebook-tawawa-reference-192 .tawawa-reference-main-card {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.1rem;
+    padding: 1rem;
+  }
+
+  #ebook-tawawa-reference-192 .tawawa-reference-cover img {
+    width: min(68vw, 240px);
+    max-width: 100%;
+  }
+
+  #ebook-tawawa-reference-192 .tawawa-reference-actions {
+    gap: 0.75rem;
+  }
+
+  #ebook-tawawa-reference-192 .tawawa-reference-stores > * {
+    min-height: 3rem;
+    font-size: 0.98rem;
+  }
+
+  #ebook-tawawa-reference-192 .tawawa-reference-description,
+  #ebook-tawawa-reference-192 .tawawa-reference-details {
+    padding: 1rem;
+  }
+}
+
+
+body {
+  margin: 0;
+  padding: 1.25rem;
+  background: #f2f3f5;
+  color: #202124;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+}
+
+.preview-page {
+  width: min(100%, 430px);
+  margin-inline: auto;
+  padding: 2.4rem;
+  border-radius: 0.8rem;
+  background: #ffffff;
+}
+
+.preview-theme-title {
+  width: min(100%, 900px);
+  margin: 0 auto 1.4rem;
+  padding: 0.9rem 1rem;
+  border-left: 6px solid #ff9f1a;
+  border-radius: 0.4rem;
+  background: #fffaf3;
+  font-size: 1.5rem;
+}
+
+.preview-theme-note {
+  width: min(100%, 900px);
+  margin: -0.65rem auto 1.3rem;
+  color: #666666;
+  font-size: 0.82rem;
+  text-align: right;
+}
+
+.preview-safety {
+  width: min(100%, 900px);
+  margin: 0 auto 1.25rem;
+  padding: 0.7rem 0.85rem;
+  border-radius: 0.4rem;
+  background: #eef5ff;
+  font-size: 0.82rem;
+}
+
+.preview-content {
+  margin-inline: auto;
+}
+
+#ebook-tawawa-reference-192 a {
+  pointer-events: none !important;
+  cursor: not-allowed !important;
+}
+
+
+.preview-content {
+  width: min(100%, 390px);
+}
+
+#ebook-tawawa-reference-192 .tawawa-reference-main-card {
+  grid-template-columns: minmax(0, 1fr) !important;
+}
+
+#ebook-tawawa-reference-192 .tawawa-reference-cover img {
+  width: min(68vw, 240px) !important;
+}
+
+
+</style>
+</head>
+<body data-preview-mode="mobile">
+<div class="preview-page">
+  <h1 class="preview-theme-title">ダークギャザリング 第20巻｜配信開始</h1>
+  <p class="preview-theme-note">タイトル領域はWordPressテーマ側・更新対象外</p>
+  <p class="preview-safety">
+    安全プレビュー：外部リンクは無効、外部画像はプレースホルダーです。
+  </p>
+  <main class="preview-content">
+    <section id="ebook-tawawa-reference-192" class="tawawa-reference-layout" data-layout-version="TAWAWA-REFERENCE-V1" data-wordpress-post-id="192">
+  <div class="tawawa-reference-main-card">
+    <div class="tawawa-reference-cover">
+<figure class="ls-book-cover">
+      <img alt="ダークギャザリング 第20巻 書影" loading="lazy" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MDAiIGhlaWdodD0iODYwIiB2aWV3Qm94PSIwIDAgNjAwIDg2MCI+CjxyZWN0IHdpZHRoPSI2MDAiIGhlaWdodD0iODYwIiBmaWxsPSIjZjJmMmYyIi8+CjxyZWN0IHg9IjIwIiB5PSIyMCIgd2lkdGg9IjU2MCIgaGVpZ2h0PSI4MjAiIHJ4PSIxOCIgZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSIjYzhjOGM4IiBzdHJva2Utd2lkdGg9IjQiLz4KPHRleHQgeD0iMzAwIiB5PSI0MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjM2IiBmaWxsPSIjMzMzMzMzIj7mm7jlvbHjg5fjg6zjg5Pjg6Xjg7w8L3RleHQ+Cjx0ZXh0IHg9IjMwMCIgeT0iNDU1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMiIgZmlsbD0iIzY2NjY2NiI+5aSW6YOo55S75YOP6YCa5L+h44Gq44GXPC90ZXh0Pgo8L3N2Zz4=" data-preview-asset-state="embedded-placeholder" data-preview-asset-fingerprint="92355c98f5a2405a25358ee21387ec4ac2bca2bdf7b40a0df3bd4739f48b5d7e">
+    </figure>
+    </div>
+    <div class="tawawa-reference-actions">
+      <p class="tawawa-reference-pr" role="note">PR：このページにはアフィリエイト広告が含まれます。</p>
+      <div class="tawawa-reference-stores ls-store-buttons" aria-label="電子書籍ストア">
+    <span class="ls-store-btn ls-store-amazon ls-store-disabled" aria-disabled="true">Amazonで確認（リンク準備中）</span>
+    <span class="ls-store-btn ls-store-kobo ls-store-disabled" aria-disabled="true">楽天Koboで確認（リンク準備中）</span>
+    <a class="ls-store-btn ls-store-dmm" rel="nofollow sponsored noopener" href="#preview-disabled" aria-disabled="true" tabindex="-1">DMMブックスで確認</a>
+  </div>
+    </div>
+  </div>
+  <div class="tawawa-reference-description">
+    <p><strong>ダークギャザリング 第20巻</strong>が配信開始です。</p>
+  </div>
+  <div class="tawawa-reference-details">
+  <ul>
+    <li><strong>作品名：</strong>ダークギャザリング</li>
+    <li><strong>価格：</strong>616円（税込）</li>
+    <li><strong>作者：</strong>近藤憲一</li>
+    <li><strong>出版社：</strong>集英社</li>
+    <li><strong>発売日：</strong>2026-07-03</li>
+  </ul>
+  </div>
+  <div class="tawawa-reference-notice" role="note">※本ページはプロモーションを含みます。価格・配信状況は各ストアで確認してください。</div>
+</section>
+
+  </main>
+</div>
+</body>
+</html>

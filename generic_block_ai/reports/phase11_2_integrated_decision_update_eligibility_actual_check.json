@@ -1,0 +1,69 @@
+{
+  "_meta": {
+    "phase": "11-2",
+    "phase_name": "integrated_decision 更新可否の実測確認",
+    "version": "1.0",
+    "created_date": "2026-05-12",
+    "status": "PASS_DESIGN_ONLY",
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only",
+    "description": "human review 実記入版の検証結果を受けて、Phase 10-2 の integrated_decision を更新できるかを実測確認する。"
+  },
+  "references": [
+    "generic_block_ai/reports/phase10_2_app_tests_implementation_go_nogo_actual_decision.json",
+    "generic_block_ai/reports/phase10_5_integrated_decision_go_activation_conditions_detailed_design.json",
+    "generic_block_ai/reports/phase10_8_integrated_decision_go_update_procedure_design.json",
+    "generic_block_ai/reports/phase11_1_human_review_completed_record_validation.json"
+  ],
+  "eligibility_checks": [
+    {
+      "check_id": "EC-01",
+      "check": "phase11_1.actual_validation_result.record_completed == true"
+    },
+    {
+      "check_id": "EC-02",
+      "check": "phase11_1.actual_validation_result.signature_present == true"
+    },
+    {
+      "check_id": "EC-03",
+      "check": "phase11_1.actual_validation_result.safety_boundary_all_true == true"
+    },
+    {
+      "check_id": "EC-04",
+      "check": "phase11_1.actual_validation_result.unresolved_items_empty == true"
+    },
+    {
+      "check_id": "EC-05",
+      "check": "production_status remains NO_GO"
+    }
+  ],
+  "actual_check_result": {
+    "app_gate_update_eligible": false,
+    "tests_gate_update_eligible": false,
+    "integrated_decision_update_eligible": false,
+    "current_integrated_decision": "NO_GO",
+    "reason": "Phase 11-1 の実測検証が未完了のため、integrated_decision 更新可否はまだ確定しない。"
+  },
+  "blocked_actions": [
+    "core_ai_real_send",
+    "external_api_call",
+    "wordpress_operation",
+    "cron_registration",
+    "auto_execute",
+    "auto_post",
+    "auto_update",
+    "auto_delete",
+    "auto_export",
+    "production_execution"
+  ],
+  "phase_decision": {
+    "phase11_2_status": "PASS_DESIGN_ONLY",
+    "app_implementation_status": "NO_GO",
+    "tests_implementation_status": "NO_GO",
+    "note": "integrated_decision 更新可否の実測確認テンプレートであり、現時点では NO_GO を維持する。"
+  }
+}

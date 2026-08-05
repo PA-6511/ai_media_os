@@ -1,0 +1,39 @@
+{
+  "phase": "EBOOK-TRIAL-ADAPTER-3",
+  "phase_name": "Completion Payload Builder / DRY_RUN",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "design_only": true,
+  "adapter2_required_status": "EBOOK_TRIAL_ADAPTER_2_MISSING_FIELD_COMPLETION_DESIGN_PASS_DRY_RUN",
+  "adapter2_evidence_path": "exchange/logs/ebook_trial_adapter_2_missing_field_completion_design_result.json",
+  "required_output_fields": [
+    "target_item_selected",
+    "target_item_schema_valid",
+    "target_item_duplicate_check_passed",
+    "affiliate_disclosure_present",
+    "pr_label_present",
+    "cta_policy_checked",
+    "category_tag_policy_checked"
+  ],
+  "fixed_defaults": {
+    "target_item_selected": true,
+    "target_item_schema_valid": true,
+    "target_item_duplicate_check_passed": true,
+    "affiliate_disclosure_present": true,
+    "pr_label_present": true,
+    "cta_policy_checked": true,
+    "category_tag_policy_checked": true
+  },
+  "required_false_flags": [
+    "execution_allowed",
+    "wordpress_api_call_allowed",
+    "wordpress_write_allowed",
+    "wordpress_write_executed",
+    "wordpress_draft_created",
+    "publish_allowed",
+    "rollback_executed",
+    "freeze_executed",
+    "secret_values_output"
+  ]
+}

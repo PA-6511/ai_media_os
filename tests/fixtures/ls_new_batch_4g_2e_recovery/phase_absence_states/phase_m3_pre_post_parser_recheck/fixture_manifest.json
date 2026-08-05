@@ -1,0 +1,144 @@
+{
+  "fixture_id": "LS_NEW_BATCH_4G_2E_PHASE_M3_PRE_POST_PARSER_RECHECK",
+  "phase": "M3",
+  "purpose": "Verify post-parser-fix authorization before M4 execution",
+  "source_item_id": "new-release-comic-20260703-001",
+  "state_boundary": "PHASE_M3_AUTHORIZATION_COMPLETE_BEFORE_POST_PARSER_RECHECK",
+  "required_present": [
+    {
+      "path": "config/new_release_wp_fresh_dmm_post_parser_fix_recheck_authorization_policy.json",
+      "sha256": "1b24498833f54f3a79f5bc4457755a58bf5b9d38a02d9e4a215499aeec33bc3a",
+      "source_phase": "M3",
+      "provenance": "FORMAL_EXISTING_PHASE_ARTIFACT"
+    },
+    {
+      "path": "exchange/approvals/ls_new_batch_4g_2e_recovery_m2_execute_now_approval.json",
+      "sha256": "ef6aba899c5296fab9b593359dfd8a1e8a86be4e2ea1a3296cff6807a62c53da",
+      "source_phase": "M2",
+      "provenance": "FORMAL_EXISTING_PHASE_ARTIFACT"
+    },
+    {
+      "path": "exchange/approvals/ls_new_batch_4g_2e_recovery_m3_post_parser_fix_recheck_authorization_approval.json",
+      "sha256": "c35efc70674d39e928bf8277e4b79bcba119ac9dfa0a72e5a969ad59b57764bc",
+      "source_phase": "M3",
+      "provenance": "FORMAL_EXISTING_PHASE_ARTIFACT"
+    },
+    {
+      "path": "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.dmm_latest_alias_recheck_authorization.json",
+      "sha256": "f628bf4d8b1451dfd9beec4ff04ce0c3101086da9ef7806d89af0ab26bd93701",
+      "source_phase": "M3",
+      "provenance": "FORMAL_EXISTING_PHASE_ARTIFACT"
+    },
+    {
+      "path": "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.dmm_latest_alias_recheck_consumption.json",
+      "sha256": "fa4d1d2fbc5a4a57b79e1e563d1d7ce12aaab98e12eb822dfc6cf08a20778fd6",
+      "source_phase": "M2",
+      "provenance": "FORMAL_EXISTING_PHASE_ARTIFACT"
+    },
+    {
+      "path": "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.dmm_latest_alias_recheck_post_parser_fix_authorization.json",
+      "sha256": "39c77b363e39e2be287d009a3df3624d9dca7d510a93156309ee02d53110c541",
+      "source_phase": "M3",
+      "provenance": "FORMAL_EXISTING_PHASE_ARTIFACT"
+    },
+    {
+      "path": "exchange/content/new_release/fresh/new-release-comic-20260703-001.article.json",
+      "sha256": "849a37519c6af70d2212ec01d5cddef5793bfa811e97ca9f248ce099a0350bf4",
+      "source_phase": "K",
+      "provenance": "TST_4B_IMMUTABLE_PHASE_K_PREIMAGE_FIXTURE"
+    },
+    {
+      "path": "exchange/examples/new_release_wp_fresh_dmm_post_parser_fix_recheck_authorization_request.example.json",
+      "sha256": "83e7d89f5ebb4f6b92f8265ffac2e474b90bbc12b7e963a43e1dadf65ed79625",
+      "source_phase": "M3",
+      "provenance": "FORMAL_EXISTING_PHASE_ARTIFACT"
+    },
+    {
+      "path": "exchange/logs/ls_new_batch_4g_2e_recovery_m2_fix1_result.json",
+      "sha256": "3f1069131bc662359fd015731637586f4c2327cbb8167c9604a718d0782c309f",
+      "source_phase": "M2-FIX1",
+      "provenance": "FORMAL_EXISTING_PHASE_ARTIFACT"
+    },
+    {
+      "path": "exchange/logs/ls_new_batch_4g_2e_recovery_m2_result.json",
+      "sha256": "9781d843184ead76b313a099b86cba30081725679c5889938fab1c930aa5cdec",
+      "source_phase": "M2",
+      "provenance": "FORMAL_EXISTING_PHASE_ARTIFACT"
+    },
+    {
+      "path": "exchange/logs/ls_new_batch_4g_2e_recovery_m3_result.json",
+      "sha256": "246fe75ddbc71178c3d1b6819046472f8ba05ec5308a7814e025851b8e1ca5bf",
+      "source_phase": "M3",
+      "provenance": "FORMAL_EXISTING_PHASE_ARTIFACT"
+    },
+    {
+      "path": "exchange/plans/new_release/fresh/new-release-comic-20260703-001.store_link_finalization_plan.json",
+      "sha256": "3004d586cab8b98f39101d7d85164d0bdeea68882da66ecde9b6b37f9a16fb7a",
+      "source_phase": "M0",
+      "provenance": "FORMAL_EXISTING_PHASE_ARTIFACT"
+    },
+    {
+      "path": "exchange/rechecks/new_release/fresh/new-release-comic-20260703-001.dmm_latest_alias_recheck_result.json",
+      "sha256": "0a7f09cdcb048468e21520d3531a257677dcc100087f45842288b692db2648dc",
+      "source_phase": "M2",
+      "provenance": "FORMAL_EXISTING_PHASE_ARTIFACT"
+    }
+  ],
+  "required_absent": [
+    {
+      "relative_path": "exchange/rechecks/new_release/fresh/new-release-comic-20260703-001.dmm_latest_alias_recheck_post_parser_fix_result.json",
+      "artifact_role": "POST_PARSER_FIX_RECHECK_RESULT",
+      "absence_required_by_phase": true,
+      "first_phase_allowed_to_create": "M4"
+    },
+    {
+      "relative_path": "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.dmm_latest_alias_recheck_post_parser_fix_consumption.json",
+      "artifact_role": "POST_PARSER_FIX_RECHECK_CONSUMPTION",
+      "absence_required_by_phase": true,
+      "first_phase_allowed_to_create": "M4"
+    }
+  ],
+  "present_artifact_sha256": {
+    "config/new_release_wp_fresh_dmm_post_parser_fix_recheck_authorization_policy.json": "1b24498833f54f3a79f5bc4457755a58bf5b9d38a02d9e4a215499aeec33bc3a",
+    "exchange/approvals/ls_new_batch_4g_2e_recovery_m2_execute_now_approval.json": "ef6aba899c5296fab9b593359dfd8a1e8a86be4e2ea1a3296cff6807a62c53da",
+    "exchange/approvals/ls_new_batch_4g_2e_recovery_m3_post_parser_fix_recheck_authorization_approval.json": "c35efc70674d39e928bf8277e4b79bcba119ac9dfa0a72e5a969ad59b57764bc",
+    "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.dmm_latest_alias_recheck_authorization.json": "f628bf4d8b1451dfd9beec4ff04ce0c3101086da9ef7806d89af0ab26bd93701",
+    "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.dmm_latest_alias_recheck_consumption.json": "fa4d1d2fbc5a4a57b79e1e563d1d7ce12aaab98e12eb822dfc6cf08a20778fd6",
+    "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.dmm_latest_alias_recheck_post_parser_fix_authorization.json": "39c77b363e39e2be287d009a3df3624d9dca7d510a93156309ee02d53110c541",
+    "exchange/content/new_release/fresh/new-release-comic-20260703-001.article.json": "849a37519c6af70d2212ec01d5cddef5793bfa811e97ca9f248ce099a0350bf4",
+    "exchange/examples/new_release_wp_fresh_dmm_post_parser_fix_recheck_authorization_request.example.json": "83e7d89f5ebb4f6b92f8265ffac2e474b90bbc12b7e963a43e1dadf65ed79625",
+    "exchange/logs/ls_new_batch_4g_2e_recovery_m2_fix1_result.json": "3f1069131bc662359fd015731637586f4c2327cbb8167c9604a718d0782c309f",
+    "exchange/logs/ls_new_batch_4g_2e_recovery_m2_result.json": "9781d843184ead76b313a099b86cba30081725679c5889938fab1c930aa5cdec",
+    "exchange/logs/ls_new_batch_4g_2e_recovery_m3_result.json": "246fe75ddbc71178c3d1b6819046472f8ba05ec5308a7814e025851b8e1ca5bf",
+    "exchange/plans/new_release/fresh/new-release-comic-20260703-001.store_link_finalization_plan.json": "3004d586cab8b98f39101d7d85164d0bdeea68882da66ecde9b6b37f9a16fb7a",
+    "exchange/rechecks/new_release/fresh/new-release-comic-20260703-001.dmm_latest_alias_recheck_result.json": "0a7f09cdcb048468e21520d3531a257677dcc100087f45842288b692db2648dc"
+  },
+  "absence_reason": "M3 records a new authorization; M4 is the first permitted terminal writer",
+  "later_writer_phase": "M4",
+  "provenance_type": "MINIMAL_SNAPSHOT_FROM_FORMAL_PHASE_ARTIFACTS",
+  "provenance_evidence": [
+    "config/new_release_wp_fresh_dmm_post_parser_fix_recheck_authorization_policy.json",
+    "exchange/approvals/ls_new_batch_4g_2e_recovery_m2_execute_now_approval.json",
+    "exchange/approvals/ls_new_batch_4g_2e_recovery_m3_post_parser_fix_recheck_authorization_approval.json",
+    "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.dmm_latest_alias_recheck_authorization.json",
+    "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.dmm_latest_alias_recheck_consumption.json",
+    "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.dmm_latest_alias_recheck_post_parser_fix_authorization.json",
+    "exchange/content/new_release/fresh/new-release-comic-20260703-001.article.json",
+    "exchange/examples/new_release_wp_fresh_dmm_post_parser_fix_recheck_authorization_request.example.json",
+    "exchange/logs/ls_new_batch_4g_2e_recovery_m2_fix1_result.json",
+    "exchange/logs/ls_new_batch_4g_2e_recovery_m2_result.json",
+    "exchange/logs/ls_new_batch_4g_2e_recovery_m3_result.json",
+    "exchange/plans/new_release/fresh/new-release-comic-20260703-001.store_link_finalization_plan.json",
+    "exchange/rechecks/new_release/fresh/new-release-comic-20260703-001.dmm_latest_alias_recheck_result.json"
+  ],
+  "immutable": true,
+  "terminal_namespace": false,
+  "created_at": "2026-07-23T14:07:54Z",
+  "update_policy": {
+    "formal_phase_contract_change_required": true,
+    "human_approval_required": true,
+    "old_and_new_sha_record_required": true,
+    "absence_boundary_reevaluation_required": true,
+    "later_terminal_writer_is_not_an_update_reason": true
+  }
+}

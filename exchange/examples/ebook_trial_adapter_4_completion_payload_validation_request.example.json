@@ -1,0 +1,17 @@
+{
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "design_only": true,
+  "execution_allowed": false,
+  "wordpress_api_call_allowed": false,
+  "wordpress_write_allowed": false,
+  "wordpress_write_executed": false,
+  "wordpress_draft_created": false,
+  "publish_allowed": false,
+  "rollback_executed": false,
+  "freeze_executed": false,
+  "secret_values_output": false,
+  "one_shot_lock_exists_simulated": false,
+  "operator_note": "Adapter-3 completion payload preflight contract check only"
+}

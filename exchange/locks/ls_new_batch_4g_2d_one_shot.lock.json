@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-2D",
+  "lock_id": "ls-new-batch-4g-2d-one-shot",
+  "state": "CONSUMED_COMPLETED_BLOCKED",
+  "reserved_at_utc": "2026-07-10T15:43:45.532486+00:00",
+  "approval_label": "APPROVED_FOR_ONE_SHOT_READ_ONLY_CATEGORY_CANDIDATE_SEARCH_ONLY",
+  "approval_evidence_digest_sha256": "339b07d6c44d9fedaedad3fe9abf77ac00c039d86adca5715890130232910bc5",
+  "approval_label_consumed": true,
+  "http_request_limit": 1,
+  "http_attempt_limit": 1,
+  "retry_allowed": false,
+  "execution_complete": true,
+  "completed_at_utc": "2026-07-10T15:43:46.490101+00:00",
+  "result_status": "BLOCKED_WORDPRESS_CATEGORY_CANDIDATE_LIST_EMPTY",
+  "http_request_attempt_count": 1
+}

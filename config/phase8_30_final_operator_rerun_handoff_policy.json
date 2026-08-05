@@ -1,0 +1,51 @@
+{
+  "phase": "Phase 8-30",
+  "name": "final_operator_rerun_handoff_policy",
+  "policy_status": "FINAL_OPERATOR_HANDOFF_ONLY",
+  "production_status": "NO_GO",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "human_approval_required": true,
+  "handoff_is_execution_permission": false,
+  "commands_executed_in_this_phase": false,
+  "wordpress_api_call_allowed": false,
+  "wordpress_write_executed": false,
+  "publish_allowed": false,
+  "auto_post": false,
+  "target_item_count": 1,
+  "required_evidence": [
+    "exchange/logs/phase8_26_credential_provisioned_declaration_result.json",
+    "exchange/logs/phase8_27_credential_ready_reevaluation_sequence.json",
+    "exchange/logs/phase8_28_manual_rerun_dry_command_checklist_result.json",
+    "exchange/logs/phase8_29_one_time_rerun_execution_guard_result.json"
+  ],
+  "ready_statuses": {
+    "phase8_26": "CREDENTIALS_DECLARED_PROVISIONED_NO_SECRET_OUTPUT",
+    "phase8_27": "REEVALUATION_SEQUENCE_READY_BUT_NOT_EXECUTED",
+    "phase8_28": "PASS_DRY_COMMAND_CHECKLIST_ONLY",
+    "phase8_29": "ONE_TIME_RERUN_GUARD_READY_BUT_NOT_EXECUTED"
+  },
+  "blocked_statuses": [
+    "CREDENTIALS_DECLARED_NOT_READY_NO_SECRET_OUTPUT",
+    "REEVALUATION_SEQUENCE_NOT_READY_CREDENTIALS_MISSING",
+    "ONE_TIME_RERUN_GUARD_BLOCKED_CREDENTIALS_MISSING"
+  ],
+  "planned_manual_commands_if_ready": [
+    "python3 scripts/validate_phase8_6_wordpress_credentials_readiness.py",
+    "python3 scripts/validate_phase8_7_rerun_approval_review.py",
+    "python3 scripts/validate_phase8_8_final_credentialed_live_preflight.py",
+    "python3 scripts/run_phase8_9_first_one_item_wordpress_draft_create_rerun.py",
+    "python3 scripts/generate_phase8_10_post_rerun_closure_report.py"
+  ],
+  "forbidden_command_patterns": [
+    "curl -X POST",
+    "curl -u",
+    "requests.post(",
+    "wp post create",
+    "wp-json/wp/v2/posts",
+    "export WORDPRESS_APP_PASSWORD=",
+    "WORDPRESS_APP_PASSWORD="
+  ],
+  "allowed_next_step_if_ready": "Human operator may manually rerun existing Phase 8-6 to Phase 8-10 commands exactly once",
+  "allowed_next_step_if_blocked": "Keep NO_GO and do not rerun until credentials are ready"
+}

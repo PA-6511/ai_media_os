@@ -1,0 +1,111 @@
+{
+  "schema_version": "ir48_destination_human_review_result_intake_v1",
+  "phase": "IR48",
+  "generated_at": "2026-05-24T03:34:02.810634+00:00",
+  "source_task_id": "ir48_live_trial",
+  "release_candidate_id": "rc_20260523T155148Z_ir26_live_trial_b940393b490b",
+  "final_submission_decision": "READY_FOR_SUBMISSION_SUMMARY",
+  "overall_approval_decision": "APPROVE_DRY_RUN",
+  "overall_submission_gate_decision": "READY_FOR_REVIEW",
+  "overall_review_queue_approval_decision": "READY_FOR_HUMAN_REVIEW",
+  "overall_human_review_result": "APPROVE",
+  "overall_intake_action": "Human review intake recorded destination approvals.",
+  "validation_result": "PASS",
+  "validation_failed_checks": [],
+  "validation_warnings": [],
+  "summary": {
+    "destination_count": 3,
+    "approve_count": 3,
+    "request_fix_count": 0,
+    "reject_count": 0,
+    "abort_ack_count": 0
+  },
+  "destination_human_review_result_intake": [
+    {
+      "destination": "compliance_archive",
+      "review_queue_approval_decision": "READY_FOR_HUMAN_REVIEW",
+      "human_review_result": "APPROVE",
+      "reviewer_role": "human_queue_reviewer",
+      "integrity_result": "PASS",
+      "review_item_ids": [
+        "compliance_archive-R1",
+        "compliance_archive-R2"
+      ],
+      "review_notes": [
+        "queue approved for human review intake"
+      ],
+      "evidence_reference_links": {
+        "hash_manifest": "generic_block_ai/reports/ir42_destination_human_event_chain_evidence_bundle_compliance_archive_ir42_live_trial/destination_human_event_chain_hash_manifest.json",
+        "review_summary": "generic_block_ai/reports/ir42_destination_human_event_chain_evidence_bundle_compliance_archive_ir42_live_trial/destination_human_event_chain_review_summary.md",
+        "gate_report": "generic_block_ai/reports/ir44_destination_evidence_bundle_submission_gate_report_ir44_live_trial.json"
+      },
+      "recorded_at": "2026-05-24T03:34:02.810351+00:00",
+      "approval_reasons": [
+        "integrity passed and queue ready for human review"
+      ],
+      "intake_record_path": "generic_block_ai/reports/ir48_destination_human_review_result_intake_ir48_live_trial/compliance_archive_human_review_result.json"
+    },
+    {
+      "destination": "internal_review_board",
+      "review_queue_approval_decision": "READY_FOR_HUMAN_REVIEW",
+      "human_review_result": "APPROVE",
+      "reviewer_role": "human_queue_reviewer",
+      "integrity_result": "PASS",
+      "review_item_ids": [
+        "internal_review_board-R1",
+        "internal_review_board-R2"
+      ],
+      "review_notes": [
+        "queue approved for human review intake"
+      ],
+      "evidence_reference_links": {
+        "hash_manifest": "generic_block_ai/reports/ir42_destination_human_event_chain_evidence_bundle_internal_review_board_ir42_live_trial/destination_human_event_chain_hash_manifest.json",
+        "review_summary": "generic_block_ai/reports/ir42_destination_human_event_chain_evidence_bundle_internal_review_board_ir42_live_trial/destination_human_event_chain_review_summary.md",
+        "gate_report": "generic_block_ai/reports/ir44_destination_evidence_bundle_submission_gate_report_ir44_live_trial.json"
+      },
+      "recorded_at": "2026-05-24T03:34:02.810500+00:00",
+      "approval_reasons": [
+        "integrity passed and queue ready for human review"
+      ],
+      "intake_record_path": "generic_block_ai/reports/ir48_destination_human_review_result_intake_ir48_live_trial/internal_review_board_human_review_result.json"
+    },
+    {
+      "destination": "regulatory_audit",
+      "review_queue_approval_decision": "READY_FOR_HUMAN_REVIEW",
+      "human_review_result": "APPROVE",
+      "reviewer_role": "human_queue_reviewer",
+      "integrity_result": "PASS",
+      "review_item_ids": [
+        "regulatory_audit-R1",
+        "regulatory_audit-R2"
+      ],
+      "review_notes": [
+        "queue approved for human review intake"
+      ],
+      "evidence_reference_links": {
+        "hash_manifest": "generic_block_ai/reports/ir42_destination_human_event_chain_evidence_bundle_regulatory_audit_ir42_live_trial/destination_human_event_chain_hash_manifest.json",
+        "review_summary": "generic_block_ai/reports/ir42_destination_human_event_chain_evidence_bundle_regulatory_audit_ir42_live_trial/destination_human_event_chain_review_summary.md",
+        "gate_report": "generic_block_ai/reports/ir44_destination_evidence_bundle_submission_gate_report_ir44_live_trial.json"
+      },
+      "recorded_at": "2026-05-24T03:34:02.810572+00:00",
+      "approval_reasons": [
+        "integrity passed and queue ready for human review"
+      ],
+      "intake_record_path": "generic_block_ai/reports/ir48_destination_human_review_result_intake_ir48_live_trial/regulatory_audit_human_review_result.json"
+    }
+  ],
+  "artifacts": {
+    "intake_root": "generic_block_ai/reports/ir48_destination_human_review_result_intake_ir48_live_trial",
+    "destination_human_review_result_intake": "generic_block_ai/reports/ir48_destination_human_review_result_intake_ir48_live_trial/destination_human_review_result_intake.json",
+    "destination_human_review_result_intake_summary": "generic_block_ai/reports/ir48_destination_human_review_result_intake_ir48_live_trial/destination_human_review_result_intake_summary.md",
+    "completion_report": "reports/implementation_restart_phase48_completion_report.json"
+  },
+  "safeguards": {
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "network_transmission_executed": false,
+    "production_release": false
+  }
+}

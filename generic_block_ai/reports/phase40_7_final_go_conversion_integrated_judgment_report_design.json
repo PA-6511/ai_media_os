@@ -1,0 +1,28 @@
+{
+  "_meta": {
+    "phase": "40-7",
+    "created": "2026-05-14T00:00:00Z",
+    "author": "system",
+    "status": "PASS_DESIGN_ONLY",
+    "reports_only": true
+  },
+  "scope": "GO変換可否の統合最終判定レポート設計",
+  "governance": {
+    "production_status": "NO_GO",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "report": {
+    "description": "GO変換可否の統合最終判定レポート設計。実処理開始や権限付与は一切行わず、統合判定レポート設計のみ。",
+    "invariants": [
+      "NO_GO 維持",
+      "NOT_GRANTED 維持",
+      "reports only"
+    ],
+    "actions": [],
+    "notes": [
+      "この設計ファイルは統合判定レポート設計のみを目的とし、実際のGO変換や権限付与は一切行わない。"
+    ]
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "_meta": {
+    "phase": 363,
+    "purpose": "manual_validation",
+    "generated_at": "2026-05-23T03:54:28Z",
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "auto_execute_allowed": false,
+    "requires_human_approval": true
+  },
+  "overall_result": "PASS",
+  "validation_result": "ALL_PASS",
+  "validated_files": 6,
+  "validations": [
+    {
+      "target": "phase363_1_phase362_completion_evidence_receipt_and_consistency_confirmation.json",
+      "result": "PASS",
+      "failed_checks": [],
+      "warnings": []
+    },
+    {
+      "target": "phase363_2_post_lock_final_maintenance_completion_state_final_confirmation_design.json",
+      "result": "PASS",
+      "failed_checks": [],
+      "warnings": []
+    },
+    {
+      "target": "phase363_3_actual_process_start_no_go_continuation.json",
+      "result": "PASS",
+      "failed_checks": [],
+      "warnings": []
+    },
+    {
+      "target": "phase363_4_post_lock_final_maintenance_completion_state_final_confirmation_no_go_reinforcement.json",
+      "result": "PASS",
+      "failed_checks": [],
+      "warnings": []
+    },
+    {
+      "target": "phase363_5_post_lock_final_maintenance_completion_state_final_confirmation_not_granted_reinforcement.json",
+      "result": "PASS",
+      "failed_checks": [],
+      "warnings": []
+    },
+    {
+      "target": "phase363_6_actual_process_start_no_go_reinforcement.json",
+      "result": "PASS",
+      "failed_checks": [],
+      "warnings": []
+    }
+  ]
+}

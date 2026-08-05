@@ -1,0 +1,81 @@
+{
+  "phase_id": "21-2",
+  "phase_name": "App/Tests Implementation Start GO Candidate Pre-Measurement Final Safety Confirmation Design",
+  "phase_japanese_name": "app/tests 実装開始GO候補の実測前最終安全確認設計",
+  "purpose": "Design the final pre-measurement safety confirmation for implementation-start GO candidates without changing NO_GO operational state",
+  "layer": "pre_measurement_final_gate_layer",
+  "design_category": "reports_only",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only"
+  },
+  "phase_21_2_scope": {
+    "scope_1_pre_measurement_safety_checks": {
+      "scope_id": "PRE_MEASUREMENT_SAFETY_CHECKS",
+      "checks": {
+        "check_PM1": "Phase 20 completion evidence receipt status is PASS_DESIGN_ONLY",
+        "check_PM2": "No contradiction in integrated_decision / receiver_validator_permission / dual_gate",
+        "check_PM3": "No app/ or tests/ implementation change detected",
+        "check_PM4": "No production execution traces exist",
+        "check_PM5": "Human review request payload is complete"
+      },
+      "all_checks_required": true
+    },
+    "scope_2_gate_interpretation": {
+      "scope_id": "GATE_INTERPRETATION",
+      "rules": {
+        "rule_GI1": "If any PM check fails, status = PRE_MEASUREMENT_SAFETY_NOT_CLEARED",
+        "rule_GI2": "Even if all PM checks pass, this phase does not issue implementation GO",
+        "rule_GI3": "Implementation start remains NO_GO until actual measurement judgment in Phase 21-3"
+      }
+    },
+    "scope_3_report_structure": {
+      "scope_id": "REPORT_STRUCTURE",
+      "sections": {
+        "section_1_header": {
+          "report_id": "PHASE21_2_PRE_MEAS_SAFETY_<UTC_TIMESTAMP>",
+          "report_type": "app_tests_impl_start_go_candidate_pre_measurement_final_safety_confirmation",
+          "generated_at_utc": "RFC3339",
+          "generated_by": "authority_identifier"
+        },
+        "section_2_check_results": {
+          "PM1": "PASS | FAIL",
+          "PM2": "PASS | FAIL",
+          "PM3": "PASS | FAIL",
+          "PM4": "PASS | FAIL",
+          "PM5": "PASS | FAIL"
+        },
+        "section_3_determination": {
+          "pre_measurement_safety_status": "PRE_MEASUREMENT_SAFETY_CLEARED | PRE_MEASUREMENT_SAFETY_NOT_CLEARED",
+          "implementation_start_authorization": "NOT_GRANTED"
+        }
+      }
+    }
+  },
+  "phase_21_2_governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "state_invariants": {
+      "integrated_decision": "NO_GO",
+      "receiver_validator_permission": "NOT_EFFECTIVE",
+      "dual_gate": "LOCKED",
+      "app_implementation_status": "NO_GO",
+      "tests_implementation_status": "NO_GO",
+      "production_status": "NO_GO"
+    }
+  }
+}

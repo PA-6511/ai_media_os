@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M0-FIX1",
+  "status": "PASS_M0_ARTICLE_STORE_NAVIGATION_SCHEMA_KEY_REFERENCE_CORRECTED",
+  "decision": "STORE_URL_ABSENCE_CHECK_ALIGNED_WITH_GENERATED_ARTICLE_SCHEMA",
+  "issue": {
+    "exception": "KeyError: store_urls_included",
+    "incorrect_reference": "article.store_navigation.store_urls_included",
+    "correct_reference": "article.store_navigation.verification_source_urls_included",
+    "semantic_change": false,
+    "approved_scope_expanded": false
+  },
+  "patched_files": {
+    "builder": {
+      "path": "scripts/build_ls_new_batch_4g_2e_recovery_m0.py",
+      "before_sha256": "f7ba7b452ba0752f2322e4154e5bc1e1fd3ac66936e6bcd34cf516fde83b281c",
+      "after_sha256": "cf62a8f54528c814b8d26cad0ec4ba521120dc1128ebd7925e15e5b0b5be6b36"
+    },
+    "test": {
+      "path": "tests/test_build_ls_new_batch_4g_2e_recovery_m0.py",
+      "before_sha256": "e4f1ba828aa35cd05be92b07a992f1d95fc1fd759a12a6afb1618044ec5035a4",
+      "after_sha256": "8f50a1c1f712a185a42e5ff51914d0a0bc51e1fe712e40e99d175d02c0082b6b"
+    }
+  },
+  "m0_outputs": {
+    "plan_path": "exchange/plans/new_release/fresh/new-release-comic-20260703-001.store_link_finalization_plan.json",
+    "plan_file_sha256": "3004d586cab8b98f39101d7d85164d0bdeea68882da66ecde9b6b37f9a16fb7a",
+    "result_path": "exchange/logs/ls_new_batch_4g_2e_recovery_m0_result.json",
+    "result_file_sha256": "b1cd75e4101435c86c6f8eff8802c436bfa695a1aacc26e95251a1d7bdffe1f2",
+    "m0_status": "PASS_FRESH_STORE_LINK_FINALIZATION_PLAN_FIXED_NO_LINK_GENERATION_NO_NETWORK"
+  },
+  "source_artifacts_modified": false,
+  "final_affiliate_links_generated": false,
+  "dmm_recheck_performed": false,
+  "article_url_injection_performed": false,
+  "fresh_payload_created": false,
+  "production_category_id_payload_injected": false,
+  "network_connection_performed": false,
+  "wordpress_access_performed": false,
+  "production_status": "NO_GO",
+  "fixed_at_utc": "2026-07-11T02:53:46.589309+00:00",
+  "fix_evidence_digest_sha256": "c78cfcfe7c4160c46c98b8970cf8acbaabec1371cfe0a618e5616f2a2f71b22c"
+}

@@ -1,0 +1,91 @@
+{
+  "phase": "PHASE8_ADAPTER_ROUTE_HOLD_EVIDENCE_INDEX",
+  "generated_at": "2026-06-15T14:10:45.052795+00:00",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "hold_state": "HOLD",
+  "baseline_locked": true,
+  "items": [
+    {
+      "key": "adapter1",
+      "path": "exchange/logs/ebook_trial_adapter_1_readiness_result.json",
+      "exists": true,
+      "status": "EBOOK_TRIAL_ADAPTER_1_GAP_FOUND_BLOCKED_NO_EXECUTION"
+    },
+    {
+      "key": "adapter2",
+      "path": "exchange/logs/ebook_trial_adapter_2_missing_field_completion_design_result.json",
+      "exists": true,
+      "status": "EBOOK_TRIAL_ADAPTER_2_MISSING_FIELD_COMPLETION_DESIGN_PASS_DRY_RUN"
+    },
+    {
+      "key": "adapter3",
+      "path": "exchange/logs/ebook_trial_adapter_3_completion_payload_builder_result.json",
+      "exists": true,
+      "status": "EBOOK_TRIAL_ADAPTER_3_COMPLETION_PAYLOAD_BUILT_DRY_RUN_NO_EXECUTION"
+    },
+    {
+      "key": "adapter4",
+      "path": "exchange/logs/ebook_trial_adapter_4_completion_payload_validation_result.json",
+      "exists": true,
+      "status": "EBOOK_TRIAL_ADAPTER_4_PREFLIGHT_CONTRACT_PASS_DRY_RUN_NO_EXECUTION"
+    },
+    {
+      "key": "adapter5",
+      "path": "exchange/logs/ebook_trial_adapter_5_phase8_38_request_mapping_result.json",
+      "exists": true,
+      "status": "EBOOK_TRIAL_ADAPTER_5_PHASE8_38_REQUEST_MAPPING_PASS_DRY_RUN_NO_EXECUTION"
+    },
+    {
+      "key": "adapter6",
+      "path": "exchange/logs/ebook_trial_adapter_6_baseline_lock_result.json",
+      "exists": true,
+      "status": "EBOOK_TRIAL_ADAPTER_6_BASELINE_LOCK_PASS_HOLD_NO_EXECUTION"
+    },
+    {
+      "key": "phase8_38a",
+      "path": "exchange/logs/phase8_38a_adapter5_to_phase8_38_preflight_reconnection_baseline_lock_result.json",
+      "exists": true,
+      "status": "PHASE8_38A_ADAPTER5_TO_PHASE8_38_RECONNECTION_BASELINE_LOCK_PASS_HOLD_NO_EXECUTION"
+    },
+    {
+      "key": "phase8_39a",
+      "path": "exchange/logs/phase8_39a_adapter_route_abort_rollback_freeze_simulation_check_result.json",
+      "exists": true,
+      "status": "PHASE8_39A_ADAPTER_ROUTE_ROLLBACK_FREEZE_SIMULATION_PASS_HOLD_NO_EXECUTION"
+    },
+    {
+      "key": "phase8_40a",
+      "path": "exchange/logs/phase8_40a_adapter_route_overall_no_go_reaggregation_result.json",
+      "exists": true,
+      "status": "PHASE8_40A_ADAPTER_ROUTE_OVERALL_NO_GO_FIXED"
+    },
+    {
+      "key": "phase8_40b",
+      "path": "exchange/logs/phase8_40b_adapter_route_final_hold_baseline_lock_result.json",
+      "exists": true,
+      "status": "PHASE8_40B_ADAPTER_ROUTE_FINAL_HOLD_BASELINE_LOCK_PASS_NO_EXECUTION"
+    },
+    {
+      "key": "phase8_38_from_adapter5",
+      "path": "exchange/logs/phase8_38_first_one_item_trial_preflight_from_adapter5_result.json",
+      "exists": true,
+      "status": "PHASE8_38_FIRST_ONE_ITEM_TRIAL_PREFLIGHT_READY_NO_EXECUTION"
+    },
+    {
+      "key": "adapter5_mapped_request",
+      "path": "exchange/logs/ebook_trial_adapter_5_phase8_38_mapped_request.json",
+      "exists": true,
+      "status": null
+    },
+    {
+      "key": "creators_api_tracking",
+      "path": "exchange/logs/creators_api_eligibility_tracking.json",
+      "exists": true,
+      "status": "EXTERNAL_TRACKING_REQUIRED"
+    }
+  ],
+  "missing": [],
+  "next_action": "KEEP_HOLD_AND_MONITOR"
+}

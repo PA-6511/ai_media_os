@@ -1,0 +1,74 @@
+{
+  "_meta": {
+    "phase": "13-7",
+    "phase_name": "human review 実入力受入後の最終反映手順設計",
+    "version": "1.0",
+    "created_date": "2026-05-12",
+    "status": "PASS_DESIGN_ONLY",
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only",
+    "description": "受け入れた human review 実入力を、Phase 13 の受入フローで最終反映する順序と停止点を固定する。"
+  },
+  "references": [
+    "generic_block_ai/reports/phase13_4_human_review_actual_input_format_validation_rules_design.json",
+    "generic_block_ai/reports/phase13_5_human_review_actual_input_evidence_lock_rules_design.json",
+    "generic_block_ai/reports/phase13_6_human_review_input_return_for_revision_rules_design.json"
+  ],
+  "final_reflection_sequence": [
+    {
+      "step_id": "PR-01",
+      "target": "format_validation_template",
+      "action": "形式検証結果を確定する"
+    },
+    {
+      "step_id": "PR-02",
+      "target": "checklist_result_template",
+      "action": "入力検証チェックリスト結果を更新する"
+    },
+    {
+      "step_id": "PR-03",
+      "target": "evidence_lock_template",
+      "action": "必要証跡の固定状態を更新する"
+    },
+    {
+      "step_id": "PR-04",
+      "target": "return_template",
+      "action": "差し戻し要否を確定し、差し戻しが無ければ最終反映準備完了とする"
+    }
+  ],
+  "hard_stops": [
+    "format_valid == false",
+    "all_checks_passed == false",
+    "all_evidence_locked == false",
+    "returned_for_revision == true",
+    "production_status != NO_GO"
+  ],
+  "current_state": {
+    "reflection_ready": true,
+    "reflection_executed": false,
+    "app_implementation_status": "NO_GO",
+    "tests_implementation_status": "NO_GO"
+  },
+  "blocked_actions": [
+    "core_ai_real_send",
+    "external_api_call",
+    "wordpress_operation",
+    "cron_registration",
+    "auto_execute",
+    "auto_post",
+    "auto_update",
+    "auto_delete",
+    "auto_export",
+    "production_execution"
+  ],
+  "phase_decision": {
+    "phase13_7_status": "PASS_DESIGN_ONLY",
+    "app_implementation_status": "NO_GO",
+    "tests_implementation_status": "NO_GO",
+    "note": "最終反映手順の設計のみ。実装開始許可は含まない。"
+  }
+}

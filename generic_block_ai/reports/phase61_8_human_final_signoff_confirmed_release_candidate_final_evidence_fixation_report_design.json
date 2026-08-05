@@ -1,0 +1,38 @@
+{
+  "_meta": {
+    "phase": "61-8",
+    "phase_name": "最終解除候補の人間最終サインオフ入力層",
+    "layer": "最終証跡固定層 (final evidence fixation layer)",
+    "title": "人間最終サインオフ済み解除候補の最終証跡固定レポート設計",
+    "created": "2026-05-15",
+    "author": "governance-framework",
+    "status": "PASS_DESIGN_ONLY",
+    "reports_only": true
+  },
+  "scope": "Phase 61-7 の統合最終判定結果に基づき，manual_release_go / actual_process_start_go の人間最終サインオフ済み解除候補の最終証跡を改ざん不可形式で固定するレポートを設計層で定義する。内容：(1) 各解除候補の確認済み状態（NOT_GRANTED 維持または差し戻し），(2) 署名・時刻・ハッシュ等の証跡要件，(3) production_status = 'NO_GO' と execution_start = 'NO_GO' 維持確認，(4) Phase 61-9 への進行条件。",
+  "governance": {
+    "phase61_4_to_61_6_status": "PASS_DESIGN_ONLY",
+    "phase61_human_final_signoff_input_reinforcement_status": "PASS_DESIGN_ONLY",
+    "production_status": "NO_GO",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "execution_start": "NO_GO",
+    "changed_area": "reports only"
+  },
+  "report": {
+    "description": "Phase 61-8 では，Phase 61-7 の統合最終判定結果に基づき，人間最終サインオフ済み解除候補の最終証跡を固定するレポート設計を行う。証跡固定は reports-only で実施され，解除許可または実処理開始許可を含まない。",
+    "invariants": [
+      "NO_GO 維持：証跡固定時点で production_status = 'NO_GO' を維持",
+      "実処理開始 NO_GO 維持：execution_start = 'NO_GO' を維持",
+      "NOT_GRANTED 維持：manual_release_go / actual_process_start_go は NOT_GRANTED を証跡として固定",
+      "改ざん不可：証跡は署名・時刻・ハッシュ等で改ざん不可性を担保",
+      "reports only：全証跡固定は設計層の報告書形式で実施"
+    ],
+    "actions": [],
+    "notes": [
+      "Phase 61-8 は設計工程であり，解除許可工程ではない。",
+      "実処理開始許可は含まれない。",
+      "証跡固定は Phase 61-9 完了宣言の前提。"
+    ]
+  }
+}

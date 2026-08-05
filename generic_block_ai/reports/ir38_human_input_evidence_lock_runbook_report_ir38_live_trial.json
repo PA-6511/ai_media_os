@@ -1,0 +1,127 @@
+{
+  "schema_version": "ir38_human_input_evidence_lock_runbook_v1",
+  "phase": "IR38",
+  "generated_at": "2026-05-24T02:29:01.988608+00:00",
+  "source_task_id": "ir38_live_trial",
+  "release_candidate_id": "rc_20260523T155148Z_ir26_live_trial_b940393b490b",
+  "final_submission_decision": "READY_FOR_SUBMISSION_SUMMARY",
+  "overall_approval_decision": "APPROVE_DRY_RUN",
+  "overall_runbook_action": "Collect approver records and lock evidence for dry-run approval path.",
+  "validation_result": "PASS",
+  "validation_failed_checks": [],
+  "validation_warnings": [],
+  "summary": {
+    "destination_count": 3,
+    "approve_dry_run_count": 3,
+    "human_review_required_count": 0,
+    "reject_count": 0,
+    "abort_count": 0,
+    "approver_record_required_count": 3
+  },
+  "destination_human_input_evidence_lock": [
+    {
+      "destination": "regulatory_audit",
+      "approval_decision": "APPROVE_DRY_RUN",
+      "human_input": {
+        "required_fields": [
+          "approver_id",
+          "approver_role",
+          "approval_action",
+          "approval_timestamp_utc",
+          "approval_comment"
+        ],
+        "allowed_actions": [
+          "approve",
+          "request_fix"
+        ],
+        "input_format": "json_record"
+      },
+      "approver_record_required": true,
+      "evidence_lock_steps": [
+        "Freeze destination decision record and approver input snapshot.",
+        "Store immutable digest for runbook payload and destination manifest refs.",
+        "Persist lock timestamp and operator metadata in audit trail."
+      ],
+      "return_or_abort_lock_steps": [
+        "No return path triggered; keep dry-run approvals locked until next phase handoff."
+      ],
+      "source_reasons": [],
+      "source_warnings": [],
+      "manifest_path": "generic_block_ai/reports/ir34_destination_submission_packages_ir34_live_trial/regulatory_audit/destination_package_manifest.json"
+    },
+    {
+      "destination": "internal_review_board",
+      "approval_decision": "APPROVE_DRY_RUN",
+      "human_input": {
+        "required_fields": [
+          "approver_id",
+          "approver_role",
+          "approval_action",
+          "approval_timestamp_utc",
+          "approval_comment"
+        ],
+        "allowed_actions": [
+          "approve",
+          "request_fix"
+        ],
+        "input_format": "json_record"
+      },
+      "approver_record_required": true,
+      "evidence_lock_steps": [
+        "Freeze destination decision record and approver input snapshot.",
+        "Store immutable digest for runbook payload and destination manifest refs.",
+        "Persist lock timestamp and operator metadata in audit trail."
+      ],
+      "return_or_abort_lock_steps": [
+        "No return path triggered; keep dry-run approvals locked until next phase handoff."
+      ],
+      "source_reasons": [],
+      "source_warnings": [],
+      "manifest_path": "generic_block_ai/reports/ir34_destination_submission_packages_ir34_live_trial/internal_review_board/destination_package_manifest.json"
+    },
+    {
+      "destination": "compliance_archive",
+      "approval_decision": "APPROVE_DRY_RUN",
+      "human_input": {
+        "required_fields": [
+          "approver_id",
+          "approver_role",
+          "approval_action",
+          "approval_timestamp_utc",
+          "approval_comment"
+        ],
+        "allowed_actions": [
+          "approve",
+          "request_fix"
+        ],
+        "input_format": "json_record"
+      },
+      "approver_record_required": true,
+      "evidence_lock_steps": [
+        "Freeze destination decision record and approver input snapshot.",
+        "Store immutable digest for runbook payload and destination manifest refs.",
+        "Persist lock timestamp and operator metadata in audit trail."
+      ],
+      "return_or_abort_lock_steps": [
+        "No return path triggered; keep dry-run approvals locked until next phase handoff."
+      ],
+      "source_reasons": [],
+      "source_warnings": [],
+      "manifest_path": "generic_block_ai/reports/ir34_destination_submission_packages_ir34_live_trial/compliance_archive/destination_package_manifest.json"
+    }
+  ],
+  "artifacts": {
+    "runbook_root": "generic_block_ai/reports/ir38_human_input_evidence_lock_runbook_ir38_live_trial",
+    "destination_human_input_evidence_lock_runbook": "generic_block_ai/reports/ir38_human_input_evidence_lock_runbook_ir38_live_trial/destination_human_input_evidence_lock_runbook.json",
+    "destination_human_input_evidence_lock_summary": "generic_block_ai/reports/ir38_human_input_evidence_lock_runbook_ir38_live_trial/destination_human_input_evidence_lock_summary.md",
+    "completion_report": "reports/implementation_restart_phase38_completion_report.json"
+  },
+  "safeguards": {
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "network_transmission_executed": false,
+    "production_release": false
+  }
+}

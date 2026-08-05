@@ -1,0 +1,22 @@
+{
+  "phase": "N-1",
+  "name": "n1_vps_connectivity_monitor_policy",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "human_approval_required": true,
+  "wordpress_write_executed": false,
+  "wordpress_post_created": false,
+  "external_state_change": false,
+  "executor_action_allowed": false,
+  "network_observation_only": true,
+  "communication_test_only": true,
+  "targets": [
+    {
+      "host": "github.com",
+      "https_url": "https://github.com",
+      "tcp_port": 443,
+      "icmp_required": false
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M25",
+  "document_role": "SERIES_BACKLIST_COVER_AFFILIATE_CAROUSEL_FUTURE_REQUIREMENT",
+  "requirement_id": "SERIES_BACKLIST_COVER_AFFILIATE_CAROUSEL_V1",
+  "recommended_implementation_phase_id": "LS-NEW-SERIES-BACKLIST-1",
+  "status": "FUTURE_REQUIREMENT_RECORDED_NOT_IMPLEMENTED",
+  "scope": {
+    "series_backlist_volume_display": true,
+    "cover_image_per_volume": true,
+    "affiliate_route_per_volume": true,
+    "desktop_display": "HORIZONTAL_MULTI_VOLUME_CAROUSEL_OR_LIST",
+    "mobile_display": "HORIZONTAL_SWIPE_OR_LIMITED_VISIBLE_CARDS"
+  },
+  "required_volume_fields": [
+    "volume_number",
+    "cover_image",
+    "product_title",
+    "release_date",
+    "amazon_affiliate_route",
+    "rakuten_kobo_affiliate_route",
+    "dmm_affiliate_route",
+    "link_state",
+    "cover_source"
+  ],
+  "required_rendering_controls": {
+    "image_lazy_loading": true,
+    "descriptive_alt_text": true,
+    "volume_number_visible": true,
+    "duplicate_volume_prevention": true,
+    "broken_link_click_prevention": true,
+    "responsive_card_sizing": true,
+    "horizontal_overflow_control": true
+  },
+  "required_governance_controls": {
+    "pr_before_first_affiliate_interaction": true,
+    "cover_and_destination_product_match_validation": true,
+    "volume_and_destination_product_match_validation": true,
+    "full_affiliate_url_normal_output_allowed": false,
+    "affiliate_identifier_normal_output_allowed": false,
+    "credential_output_allowed": false,
+    "automatic_permanent_rule_from_single_edit_allowed": false
+  },
+  "store_interaction_policy": {
+    "preferred_default": "SELECT_VOLUME_THEN_SELECT_AVAILABLE_STORE",
+    "single_verified_store_direct_link_allowed": true,
+    "unverified_or_broken_route_clickable": false
+  },
+  "current_m24_rendered_html_modified": false,
+  "current_m24_css_modified": false,
+  "current_m24_update_payload_modified": false,
+  "included_in_current_wordpress_update": false,
+  "implementation_authorized": false,
+  "network_connection_performed": false,
+  "wordpress_access_performed": false,
+  "authorization_issued": false,
+  "production_status": "NO_GO",
+  "recorded_at_utc": "2026-07-11T15:17:34.497350+00:00",
+  "future_requirement_digest_sha256": "bfa2e1b69c1d5cfe3999ac0048539d1d4b01d60e9ba9d452a8e65176a5d028a4"
+}

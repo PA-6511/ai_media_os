@@ -1,0 +1,25 @@
+{
+  "package_type": "test_report",
+  "source": "local_self_builder",
+  "target": "ebook_affiliate_block",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "human_approval_required": true,
+  "risk_level": "LOW",
+  "auto_post": false,
+  "auto_update": false,
+  "auto_delete": false,
+  "auto_export": false,
+  "tests": {
+    "schema_check": "PASS",
+    "link_check": "WARN",
+    "wp_post": "NOT_EXECUTED",
+    "secret_access_check": "PASS",
+    "dangerous_operation_check": "PASS"
+  },
+  "notes": [
+    "WordPress REST API 書き込みは未実行",
+    ".env / secrets / credentials には未アクセス",
+    "link_check はサンプルURL未設定のため WARN"
+  ]
+}

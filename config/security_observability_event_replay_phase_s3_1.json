@@ -1,0 +1,108 @@
+{
+  "phase_id": "PHASE_S3_1",
+  "phase_name": "dry_run_observability_event_replay",
+  "status": "DESIGN_ONLY",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "human_approval_required": true,
+  "detector_only": true,
+  "recommendation_only": true,
+  "executor_action_allowed": false,
+  "event_replay_enabled": true,
+  "event_replay_mode": "DRY_RUN_ONLY",
+  "event_source": "exchange/examples/security_observability_phase_s3_event_batch.example.json",
+  "known_api_intents": [
+    "openai_monitor",
+    "wordpress_read",
+    "slack_dry_run_notice",
+    "github_read"
+  ],
+  "denied_api_intents": [
+    "wordpress_write",
+    "wordpress_publish",
+    "wordpress_update",
+    "wordpress_delete",
+    "slack_live_notice",
+    "github_secret_update",
+    "github_actions_trigger",
+    "openai_key_rotation",
+    "external_revoke"
+  ],
+  "observe_intents": [
+    "env_file_metadata_check",
+    "secret_presence_check",
+    "credential_owner_check",
+    "rotation_policy_reference_check"
+  ],
+  "denied_intents": [
+    "env_file_content_read",
+    "secret_value_echo",
+    "token_value_echo",
+    "plaintext_secret_logging",
+    "prod_secret_usage_without_human_approval"
+  ],
+  "freeze_recommendation_allowed": true,
+  "human_review_recommendation_allowed": true,
+  "executor_action_recommendation_allowed": false,
+  "freeze_execution_allowed": false,
+  "revoke_execution_allowed": false,
+  "isolation_execution_allowed": false,
+  "process_kill_allowed": false,
+  "scheduler_stop_allowed": false,
+  "wordpress_write_allowed": false,
+  "external_api_call_allowed": false,
+  "thresholds": {
+    "retry_count_warn": 3,
+    "retry_count_fail": 5,
+    "retry_count_abort": 10,
+    "queue_depth_warn": 20,
+    "queue_depth_fail": 50,
+    "queue_depth_abort": 100,
+    "cron_runs_per_hour_warn": 3,
+    "cron_runs_per_hour_fail": 6,
+    "cron_runs_per_hour_abort": 12,
+    "duplicate_run_warn": 1,
+    "duplicate_run_fail": 2,
+    "duplicate_run_abort": 3
+  },
+  "state_change_executed": false,
+  "freeze_executed": false,
+  "revoke_executed": false,
+  "isolation_executed": false,
+  "process_kill_executed": false,
+  "scheduler_stop_executed": false,
+  "wordpress_write_executed": false,
+  "external_api_call_executed": false,
+  "expected_event_results": {
+    "scheduler_retry_loop_sample": "WARN",
+    "wordpress_publish_intent_sample": "FAIL",
+    "unknown_external_api_intent_sample": "WARN",
+    "env_secret_echo_intent_sample": "FAIL",
+    "process_duplicate_runner_sample": "FAIL"
+  },
+  "expected_recommendations": {
+    "scheduler_retry_loop_sample": {
+      "freeze_recommendation": true,
+      "human_review_recommendation": true
+    },
+    "wordpress_publish_intent_sample": {
+      "freeze_recommendation": true,
+      "human_review_recommendation": true
+    },
+    "unknown_external_api_intent_sample": {
+      "freeze_recommendation": false,
+      "human_review_recommendation": true
+    },
+    "env_secret_echo_intent_sample": {
+      "freeze_recommendation": true,
+      "human_review_recommendation": true
+    },
+    "process_duplicate_runner_sample": {
+      "freeze_recommendation": true,
+      "human_review_recommendation": true
+    }
+  },
+  "shared_abort_conditions_source": "scripts/security_abort_conditions_shared_s2.py",
+  "s3_common_source": "scripts/security_phase_s3_common.py",
+  "next_step": "prepare_cross_phase_security_audit_view"
+}

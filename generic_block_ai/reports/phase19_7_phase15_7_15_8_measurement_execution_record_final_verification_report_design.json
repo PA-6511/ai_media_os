@@ -1,0 +1,231 @@
+{
+  "phase_id": "19-7",
+  "phase_name": "Phase 15-7 / 15-8 Measurement Execution Record Final Verification Report Design",
+  "phase_japanese_name": "Phase 15-7/15-8 測定実行記録の最終検証レポート設計",
+  "purpose": "Design the final verification report that aggregates Phase 19-1 through 19-6 validation outcomes for each measurement execution record, producing a consolidated FINAL_RECORD_VERIFIED or FINAL_RECORD_REJECTED determination for use in the Phase 19-8 dual-gate unlock judgment",
+  "layer": "measurement_execution_record_layer",
+  "design_category": "reports_only",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only"
+  },
+  "phase_19_7_scope": {
+    "scope_1_report_inputs": {
+      "scope_id": "REPORT_INPUTS",
+      "description": "Define the inputs aggregated into the final verification report",
+      "required_inputs": {
+        "input_1_phase19_1_execution_record": {
+          "input_id": "INPUT_EXEC_RECORD_PHASE15_7",
+          "source": "Phase 19-1 measurement execution record template (filled)",
+          "required_fields_confirmed": [
+            "execution_record_id",
+            "phase_id (15-7)",
+            "section_1 through section_5 all present",
+            "7 execution steps completed",
+            "integrated_decision_result (GO | NO_GO)"
+          ]
+        },
+        "input_2_phase19_2_execution_record": {
+          "input_id": "INPUT_EXEC_RECORD_PHASE15_8",
+          "source": "Phase 19-2 measurement execution record template (filled)",
+          "required_fields_confirmed": [
+            "execution_record_id",
+            "phase_id (15-8)",
+            "section_1 through section_5 all present",
+            "phase_15_7_dependency_confirmed (true)",
+            "receiver_validator_permission_result (EFFECTIVE | NOT_EFFECTIVE)"
+          ]
+        },
+        "input_3_phase19_3_cross_validation": {
+          "input_id": "INPUT_CROSS_VALIDATION",
+          "source": "Phase 19-3 cross-validation template (filled)",
+          "required_fields_confirmed": [
+            "cross_validation_id",
+            "5 cross-checks completed",
+            "dual_gate_unlock_status (DUAL_GATE_UNLOCKED | DUAL_GATE_LOCKED)"
+          ]
+        },
+        "input_4_phase19_4_format_validation": {
+          "input_id": "INPUT_FORMAT_VALIDATION",
+          "source": "Phase 19-4 format validation rules result",
+          "required_fields_confirmed": [
+            "format_validation_id",
+            "phase15_7_record_format_result (FORMAT_VALIDATION_PASS | FAIL)",
+            "phase15_8_record_format_result (FORMAT_VALIDATION_PASS | FAIL)"
+          ]
+        },
+        "input_5_phase19_5_evidence_locks": {
+          "input_id": "INPUT_EVIDENCE_LOCKS",
+          "source": "Phase 19-5 evidence lock entries for Phase 19-1 and 19-2 records",
+          "required_fields_confirmed": [
+            "lock_id for Phase 15-7 record",
+            "lock_id for Phase 15-8 record",
+            "record_evidence_hash_sha256_plus (both)",
+            "authority_lock_signature.revocation_status = ACTIVE (both)",
+            "tamper_detection_status (all TD_1 through TD_5 passed)"
+          ]
+        },
+        "input_6_phase19_6_deficiency_log": {
+          "input_id": "INPUT_DEFICIENCY_LOG",
+          "source": "Phase 19-6 deficiency return/HALT log",
+          "required_fields_confirmed": [
+            "No open RETURN notices (all resolved or none issued)",
+            "No active HOLD conditions",
+            "No HALT conditions triggered",
+            "deficiency_log_status (CLEAR)"
+          ]
+        }
+      }
+    },
+    "scope_2_verification_aggregation": {
+      "scope_id": "VERIFICATION_AGGREGATION",
+      "description": "Define the aggregation logic combining all phase 19-1 through 19-6 outcomes",
+      "aggregation_checks": {
+        "check_A1": {
+          "check_id": "CHECK_PHASE19_1_RECORD_PRESENT",
+          "description": "Phase 19-1 execution record exists, format validated, and evidence locked",
+          "pass_condition": "execution_record_id present AND format=PASS AND lock present AND TD_1-5 all PASS",
+          "fail_outcome": "RECORD_INCOMPLETE → FINAL_RECORD_REJECTED"
+        },
+        "check_A2": {
+          "check_id": "CHECK_PHASE19_2_RECORD_PRESENT",
+          "description": "Phase 19-2 execution record exists, format validated, and evidence locked",
+          "pass_condition": "execution_record_id present AND format=PASS AND lock present AND TD_1-5 all PASS",
+          "fail_outcome": "RECORD_INCOMPLETE → FINAL_RECORD_REJECTED"
+        },
+        "check_A3": {
+          "check_id": "CHECK_CROSS_VALIDATION_PASS",
+          "description": "Phase 19-3 cross-validation completed and dual-gate status determined",
+          "pass_condition": "cross_validation_id present AND 5 cross-checks all passed AND dual_gate_unlock_status determined",
+          "fail_outcome": "CROSS_VALIDATION_INCOMPLETE → FINAL_RECORD_REJECTED"
+        },
+        "check_A4": {
+          "check_id": "CHECK_NO_OPEN_DEFICIENCIES",
+          "description": "Phase 19-6 deficiency log shows no open issues",
+          "pass_condition": "deficiency_log_status = CLEAR (no open RETURN, HOLD, or HALT)",
+          "fail_outcome": "OPEN_DEFICIENCY → FINAL_RECORD_REJECTED"
+        },
+        "check_A5": {
+          "check_id": "CHECK_INTEGRATED_DECISION_RESULT",
+          "description": "Confirm integrated_decision_result from Phase 19-1 record",
+          "pass_values": ["GO", "NO_GO"],
+          "extraction": "Extract and record the actual measurement result value",
+          "note": "Both GO and NO_GO are valid completed results; this is the actual measurement outcome"
+        },
+        "check_A6": {
+          "check_id": "CHECK_RECEIVER_VALIDATOR_PERMISSION_RESULT",
+          "description": "Confirm receiver_validator_permission_result from Phase 19-2 record",
+          "pass_values": ["EFFECTIVE", "NOT_EFFECTIVE"],
+          "extraction": "Extract and record the actual measurement result value",
+          "note": "Both EFFECTIVE and NOT_EFFECTIVE are valid completed results; this is the actual measurement outcome"
+        },
+        "check_A7": {
+          "check_id": "CHECK_DUAL_GATE_STATUS",
+          "description": "Confirm dual_gate_unlock_status from Phase 19-3",
+          "pass_values": ["DUAL_GATE_UNLOCKED", "DUAL_GATE_LOCKED"],
+          "extraction": "Extract and record the actual cross-validation outcome",
+          "note": "DUAL_GATE_UNLOCKED only if integrated_decision=GO AND receiver_validator_permission=EFFECTIVE"
+        }
+      }
+    },
+    "scope_3_final_report_structure": {
+      "scope_id": "FINAL_REPORT_STRUCTURE",
+      "description": "Design the structure of the final verification report document",
+      "report_structure": {
+        "header": {
+          "report_id": "FINVERIFY_PHASE19_<UTC_TIMESTAMP>",
+          "report_type": "measurement_execution_record_final_verification",
+          "phase_coverage": ["19-1", "19-2", "19-3", "19-4", "19-5", "19-6"],
+          "report_generated_utc": "RFC 3339",
+          "report_generated_by_authority": "identifier"
+        },
+        "section_1_input_record_references": {
+          "phase15_7_execution_record_id": "from Phase 19-1",
+          "phase15_8_execution_record_id": "from Phase 19-2",
+          "phase19_3_cross_validation_id": "from Phase 19-3",
+          "phase19_4_format_validation_id": "from Phase 19-4",
+          "phase19_5_lock_id_phase15_7": "from Phase 19-5",
+          "phase19_5_lock_id_phase15_8": "from Phase 19-5",
+          "phase19_6_deficiency_log_status": "CLEAR | HAS_OPEN_ITEMS"
+        },
+        "section_2_check_results": {
+          "check_A1_result": "PASS | FAIL",
+          "check_A2_result": "PASS | FAIL",
+          "check_A3_result": "PASS | FAIL",
+          "check_A4_result": "PASS | FAIL",
+          "check_A5_integrated_decision_extracted": "GO | NO_GO",
+          "check_A6_receiver_validator_permission_extracted": "EFFECTIVE | NOT_EFFECTIVE",
+          "check_A7_dual_gate_status_extracted": "DUAL_GATE_UNLOCKED | DUAL_GATE_LOCKED",
+          "all_checks_pass": true
+        },
+        "section_3_measurement_result_summary": {
+          "integrated_decision_actual_result": "GO | NO_GO (actual measured value)",
+          "receiver_validator_permission_actual_result": "EFFECTIVE | NOT_EFFECTIVE (actual measured value)",
+          "dual_gate_unlock_status": "DUAL_GATE_UNLOCKED | DUAL_GATE_LOCKED",
+          "measurement_completion_status": "BOTH_PHASES_COMPLETE | ONE_OR_MORE_INCOMPLETE"
+        },
+        "section_4_final_determination": {
+          "final_verification_status": "FINAL_RECORD_VERIFIED | FINAL_RECORD_REJECTED",
+          "determination_basis": "All checks A1-A7 passed (FINAL_RECORD_VERIFIED) OR one or more checks failed (FINAL_RECORD_REJECTED)",
+          "next_action": {
+            "if_FINAL_RECORD_VERIFIED": "Proceed to Phase 19-8 dual-gate unlock judgment",
+            "if_FINAL_RECORD_REJECTED": "Route to Phase 19-6 return/HALT procedure; list failing checks"
+          }
+        },
+        "section_5_report_evidence_hash": {
+          "report_canonical_hash_sha256_plus": "SHA-256+ of canonical report JSON (sections 1-4)",
+          "report_authority_signature": {
+            "algorithm": "RSA-2048 or ECDSA-256",
+            "signature_value": "Base64",
+            "signer_authority_id": "identifier",
+            "signed_at_utc": "RFC 3339"
+          }
+        }
+      }
+    },
+    "scope_4_rejection_remediation_routing": {
+      "scope_id": "REJECTION_REMEDIATION",
+      "description": "Define routing for FINAL_RECORD_REJECTED outcomes",
+      "rejection_routing": {
+        "check_A1_or_A2_fails": "Route to Phase 19-4/19-5/19-6 per failing sub-check",
+        "check_A3_fails": "Route to Phase 19-3 re-execution",
+        "check_A4_fails": "Resolve open Phase 19-6 deficiencies first",
+        "any_check_fails": "Do NOT proceed to Phase 19-8 until FINAL_RECORD_VERIFIED obtained",
+        "re_verification": "After remediation, re-run Phase 19-7 verification report from scratch"
+      }
+    }
+  },
+  "phase_19_7_governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "state_invariants": {
+      "integrated_decision": "NO_GO",
+      "receiver_validator_permission": "NOT_EFFECTIVE",
+      "app_implementation_status": "NO_GO",
+      "tests_implementation_status": "NO_GO"
+    },
+    "phase_19_7_completion_criteria": [
+      "6 input sources defined and required fields specified",
+      "7 aggregation checks (A1-A7) designed",
+      "5-section final report structure designed",
+      "Rejection routing to Phase 19-6 designed",
+      "All JSON validation passed",
+      "No changes to app/ or tests/ directories",
+      "All state invariants maintained"
+    ]
+  }
+}

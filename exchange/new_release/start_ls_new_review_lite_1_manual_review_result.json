@@ -1,0 +1,51 @@
+{
+  "phase": "LS-NEW-REVIEW-LITE-1",
+  "document_type": "START_LS_NEW_REVIEW_LITE_1_MANUAL_WORDPRESS_DRAFT_REVIEW_RESULT",
+  "status": "LSNEW_REVIEW_LITE_1_MANUAL_REVIEW_PASSED_NO_PUBLISH",
+  "execution_mode": "MANUAL_REVIEW_RECORD_ONLY_NO_WP_CALL",
+  "production_status": "DRAFT_REVIEW_PASSED_PUBLISH_NOT_EXECUTED",
+
+  "previous_phase": "LS-NEW-EXEC-LITE-2",
+  "previous_status": "LSNEW_EXEC_LITE_2_CREATED_DRAFT_EVIDENCE_FIXED",
+
+  "content_item_id": "new-comic-001",
+  "title": "月曜日のたわわ",
+  "volume": "第15巻",
+  "created_post_id": 185,
+  "created_post_link": "https://hoshido.jp/?p=185",
+  "created_post_status": "draft",
+
+  "manual_review_completed": true,
+  "manual_review_result": "PASS",
+  "reviewed_in_wordpress_admin": true,
+
+  "title_display_confirmed": true,
+  "body_display_confirmed": true,
+  "amazon_link_visible": true,
+  "pr_disclosure_visible": true,
+  "draft_status_confirmed": true,
+  "publish_not_executed_confirmed": true,
+
+  "wordpress_api_call_executed_in_this_step": false,
+  "wordpress_write_executed_in_this_step": false,
+  "wordpress_publish_executed": false,
+  "wordpress_update_executed": false,
+  "wordpress_delete_executed": false,
+
+  "credential_env_read_executed": false,
+  "credential_value_output": false,
+  "credential_secret_output": false,
+  "authorization_header_output": false,
+  "basic_auth_output": false,
+  "base64_auth_output": false,
+
+  "post119_update_executed": false,
+  "post183_update_executed": false,
+  "draft_create_rerun_allowed": false,
+  "publish_rerun_allowed": false,
+
+  "ready_for_publish_decision_lite": true,
+  "ready_for_publish": false,
+  "recommended_next_action": "BEGIN_LS_NEW_PUBLISH_DECISION_LITE",
+  "errors": []
+}

@@ -1,0 +1,61 @@
+{
+  "status": "PASS",
+  "phase": "SFB-10B",
+  "generated_at": "2026-06-14T04:38:38.932876+00:00",
+  "block_name": "sale_flash_block",
+  "baseline_name": "sale_flash_block_v1_pre_production_baseline_locked",
+  "baseline_locked": true,
+  "production_status": "NO_GO",
+  "mode": "DRY_RUN",
+  "checks": {
+    "required_reports_present": true,
+    "missing_reports": [],
+    "phase_status_all_pass": true,
+    "phase_statuses": {
+      "sfb1_normalized": "PASS",
+      "sfb2_quality_gate": "PASS",
+      "sfb3_article_payload": "PASS",
+      "sfb4_human_handoff": "PASS",
+      "sfb5_wordpress_handoff": "PASS",
+      "sfb6_wordpress_payload_validation": "PASS",
+      "sfb6b_baseline_lock": "PASS",
+      "sfb7_final_human_approval": "PASS",
+      "sfb8_dry_run_evidence": "PASS",
+      "sfb8b_execution_baseline_lock": "PASS",
+      "sfb9_final_signoff_archive": "PASS",
+      "sfb10_governance_boundary_review": "PASS"
+    },
+    "production_status_no_go": true,
+    "no_external_communication": true,
+    "final_human_gate_status": "READY_FOR_FINAL_HUMAN_GATE",
+    "final_human_gate_ready": true,
+    "wordpress_dry_run_execution_gate": "READY_FOR_DRY_RUN_ONLY",
+    "wordpress_dry_run_execution_gate_ready": true,
+    "simulated_execution_count": 1,
+    "simulated_execution_count_ready": true,
+    "governance_boundary_review_ready": true,
+    "approval_token_consumed": false,
+    "approval_label_consumed": false,
+    "human_approval_consumed": false,
+    "wordpress_write_executed": false
+  },
+  "summary": {
+    "validated_range": "SFB-1 to SFB-10",
+    "stop_point": "SFB complete to pre-production, boundary remains closed",
+    "next_recommended_phase": "HOLD"
+  },
+  "source_reports": {
+    "sfb1_normalized": "/home/deploy/ai_media_os/generic_block_template/blocks/sale_flash_block/logs/normalized_sale_candidates.json",
+    "sfb2_quality_gate": "/home/deploy/ai_media_os/generic_block_template/blocks/sale_flash_block/logs/sale_review_quality_gate.json",
+    "sfb3_article_payload": "/home/deploy/ai_media_os/generic_block_template/blocks/sale_flash_block/logs/sale_article_payloads.json",
+    "sfb4_human_handoff": "/home/deploy/ai_media_os/generic_block_template/blocks/sale_flash_block/logs/sale_human_review_handoff.json",
+    "sfb5_wordpress_handoff": "/home/deploy/ai_media_os/generic_block_template/blocks/sale_flash_block/logs/wordpress_draft_handoff.json",
+    "sfb6_wordpress_payload_validation": "/home/deploy/ai_media_os/generic_block_template/blocks/sale_flash_block/logs/wordpress_draft_payload_validation.json",
+    "sfb6b_baseline_lock": "/home/deploy/ai_media_os/generic_block_template/blocks/sale_flash_block/logs/sale_flash_block_baseline_lock_report.json",
+    "sfb7_final_human_approval": "/home/deploy/ai_media_os/generic_block_template/blocks/sale_flash_block/logs/final_human_approval_package.json",
+    "sfb8_dry_run_evidence": "/home/deploy/ai_media_os/generic_block_template/blocks/sale_flash_block/logs/wordpress_dry_run_execution_evidence.json",
+    "sfb8b_execution_baseline_lock": "/home/deploy/ai_media_os/generic_block_template/blocks/sale_flash_block/logs/sale_flash_block_dry_run_execution_baseline_lock_report.json",
+    "sfb9_final_signoff_archive": "/home/deploy/ai_media_os/generic_block_template/blocks/sale_flash_block/logs/final_signoff_archive.json",
+    "sfb10_governance_boundary_review": "/home/deploy/ai_media_os/generic_block_template/blocks/sale_flash_block/logs/governance_boundary_review.json"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "schema_version": "ir22_submission_profile_v1",
+  "phase": "IR22",
+  "generated_at": "2026-05-23T15:35:26.289234+00:00",
+  "source_task_id": "ir22_live_audit",
+  "profile_name": "audit_submission",
+  "profile_description": "Full audit submission profile with all completion reports and core logs.",
+  "required_patterns": [
+    "generic_block_ai/reports/implementation_restart_phase1[2-9]_completion_report.json",
+    "generic_block_ai/reports/ir12_core_decision_queue_audit.log",
+    "generic_block_ai/reports/ir13_manual_approval_audit.log",
+    "generic_block_ai/reports/ir17_role_policy_change_audit.log",
+    "generic_block_ai/reports/ir19_policy_drift_detector_report_*.json"
+  ],
+  "selected_artifacts": [
+    "generic_block_ai/reports/implementation_restart_phase12_completion_report.json",
+    "generic_block_ai/reports/implementation_restart_phase13_completion_report.json",
+    "generic_block_ai/reports/implementation_restart_phase14_completion_report.json",
+    "generic_block_ai/reports/implementation_restart_phase15_completion_report.json",
+    "generic_block_ai/reports/implementation_restart_phase16_completion_report.json",
+    "generic_block_ai/reports/implementation_restart_phase17_completion_report.json",
+    "generic_block_ai/reports/implementation_restart_phase18_completion_report.json",
+    "generic_block_ai/reports/implementation_restart_phase19_completion_report.json",
+    "generic_block_ai/reports/ir12_core_decision_queue_audit.log",
+    "generic_block_ai/reports/ir13_manual_approval_audit.log",
+    "generic_block_ai/reports/ir17_role_policy_change_audit.log",
+    "generic_block_ai/reports/ir19_policy_drift_detector_report_ir19_live_trial.json"
+  ],
+  "missing_patterns": [],
+  "counts": {
+    "selected": 12,
+    "missing_patterns": 0
+  },
+  "validation_result": "PASS",
+  "validation_failed_checks": [],
+  "validation_warnings": [],
+  "safeguards": {
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "production_release": false
+  }
+}

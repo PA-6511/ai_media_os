@@ -1,0 +1,23 @@
+{
+  "template_name": "START_LS_REUSABLE_PUBLISH_CHAIN_ITEM_TEMPLATE",
+  "schema_version": "1.0.0",
+  "content_item_id": "",
+  "target_post_id": null,
+  "target_post_link": "",
+  "payload_title": "",
+  "payload_asin": "",
+  "expected_pre_publish_status": "draft",
+  "target_publish_status": "publish",
+  "public_url": "",
+  "public_rest_url": "",
+  "human_review_required": true,
+  "execution_allowed_initially": false,
+  "post119_update_forbidden": true,
+  "credential_env_read_allowed_initially": false,
+  "wordpress_write_allowed_initially": false,
+  "actual_publish_requires_separated_phase": true,
+  "actual_publish_requires_explicit_human_approval": true,
+  "post_publish_verification_required": true,
+  "chain_closure_required": true,
+  "get_only_monitor_required": true
+}

@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ai-media-os.local/schemas/review_result.schema.json",
+  "title": "Review Result",
+  "type": "object",
+  "required": [
+    "package_type",
+    "mode",
+    "execution",
+    "status"
+  ],
+  "properties": {
+    "package_type": {
+      "type": "string",
+      "minLength": 1
+    },
+    "mode": {
+      "type": "string",
+      "enum": ["CONNECTION_TEST"]
+    },
+    "execution": {
+      "type": "string",
+      "enum": ["DRY_RUN"]
+    },
+    "status": {
+      "type": "string",
+      "enum": ["PASS", "WARN", "FAIL", "ABORT"]
+    },
+    "reason": {
+      "type": "string",
+      "minLength": 1
+    },
+    "summary_reason": {
+      "type": "string",
+      "minLength": 1
+    },
+    "decision": {
+      "type": "string",
+      "minLength": 1
+    },
+    "reviewer": {
+      "type": "string"
+    },
+    "reviewer_is_human": {
+      "type": "boolean"
+    },
+    "manual_decision_recorded": {
+      "type": "boolean"
+    },
+    "human_review_required": {
+      "type": "boolean",
+      "const": true
+    },
+    "production_status": {
+      "type": "string",
+      "enum": ["NO_GO"]
+    },
+    "auto_post": {
+      "type": "boolean",
+      "const": false
+    },
+    "auto_update": {
+      "type": "boolean",
+      "const": false
+    },
+    "auto_delete": {
+      "type": "boolean",
+      "const": false
+    },
+    "auto_export": {
+      "type": "boolean",
+      "const": false
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "enum": ["WARN", "FAIL", "ABORT"]
+          }
+        },
+        "required": ["status"]
+      },
+      "then": {
+        "required": ["reason"]
+      }
+    }
+  ],
+  "additionalProperties": true
+}

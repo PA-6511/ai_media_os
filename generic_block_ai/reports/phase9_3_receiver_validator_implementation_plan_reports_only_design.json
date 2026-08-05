@@ -1,0 +1,66 @@
+{
+  "_meta": {
+    "phase": "9-3",
+    "phase_name": "receiver validator 実装計画の reports-only 設計",
+    "version": "1.0",
+    "created_date": "2026-05-12",
+    "status": "PASS_DESIGN_ONLY",
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only",
+    "description": "receiver validator 実装計画を、実装着手せず reports-only で設計する。"
+  },
+  "design_scope": {
+    "in_scope": [
+      "実装対象モジュールの責務整理",
+      "入力検証ルール設計",
+      "出力スキーマ設計",
+      "エラーハンドリング設計",
+      "テスト観点設計"
+    ],
+    "out_of_scope": [
+      "app/ 配下の実装追加",
+      "tests/ 配下の実装追加",
+      "validator 実行",
+      "外部接続",
+      "本番反映"
+    ]
+  },
+  "implementation_plan_design": {
+    "module_candidates": [
+      "receiver_validator.py",
+      "validator_runner.py",
+      "safety_guard integration"
+    ],
+    "input_validation_focus": [
+      "必須フィールド存在確認",
+      "列挙値チェック",
+      "安全境界フィールド固定値チェック"
+    ],
+    "output_contract_focus": [
+      "decision",
+      "reasoning",
+      "safety_flags",
+      "timestamp",
+      "matched_conditions"
+    ],
+    "test_plan_outline": {
+      "unit_tests": "validation and schema assertions",
+      "negative_tests": "invalid payload and forbidden-state checks",
+      "safety_tests": "OBSERVE/dry_run/NO_GO boundary enforcement"
+    }
+  },
+  "phase_gate_statement": {
+    "phase9_design_start_consideration": "ALLOWED",
+    "phase9_app_implementation_permission": "NO_GO",
+    "rule": "Phase 9 は設計のみ進行可能。app実装開始は別ゲート判定まで禁止。"
+  },
+  "completion_criteria": [
+    "reports-only で実装計画が定義されている",
+    "NO_GO 境界と禁止事項が明記されている",
+    "実装着手を伴わないことが明記されている"
+  ]
+}

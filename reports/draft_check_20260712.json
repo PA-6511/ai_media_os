@@ -1,0 +1,90 @@
+{
+  "report_timestamp": "2026-07-11T17:00:01.669014+00:00",
+  "total_drafted": 2,
+  "checks": [
+    {
+      "post_id": 24,
+      "post_title": "API成功確認",
+      "check_timestamp": "2026-07-11T17:00:01.669290+00:00",
+      "checks": {
+        "content_quality": {
+          "result": "FAIL",
+          "details": [
+            "本文が空です"
+          ]
+        },
+        "urls": {
+          "result": "WARN",
+          "details": [
+            "URL が見つかりません"
+          ]
+        },
+        "cta": {
+          "result": "WARN",
+          "details": [
+            "CTA（ボタン/リンク）が見つかりません"
+          ]
+        },
+        "pr_notice": {
+          "result": "WARN",
+          "details": [
+            "PR/広告表記が見つかりません"
+          ]
+        },
+        "featured_image": {
+          "result": "WARN",
+          "details": [
+            "アイキャッチが未設定です"
+          ]
+        }
+      },
+      "final_result": "FAIL",
+      "recommendation": "公開不可: content_quality"
+    },
+    {
+      "post_id": 25,
+      "post_title": "自動投稿テスト 2026-02-15 22:05:04",
+      "check_timestamp": "2026-07-11T17:00:01.669320+00:00",
+      "checks": {
+        "content_quality": {
+          "result": "WARN",
+          "details": [
+            "本文が短い（30文字、推奨100以上）",
+            "見出し（h2/h3）が見つかりません"
+          ]
+        },
+        "urls": {
+          "result": "WARN",
+          "details": [
+            "URL が見つかりません"
+          ]
+        },
+        "cta": {
+          "result": "WARN",
+          "details": [
+            "CTA（ボタン/リンク）が見つかりません"
+          ]
+        },
+        "pr_notice": {
+          "result": "WARN",
+          "details": [
+            "PR/広告表記が見つかりません"
+          ]
+        },
+        "featured_image": {
+          "result": "WARN",
+          "details": [
+            "アイキャッチが未設定です"
+          ]
+        }
+      },
+      "final_result": "PASS_WITH_WARNS",
+      "recommendation": "修正推奨: content_quality, urls, cta, pr_notice, featured_image"
+    }
+  ],
+  "summary": {
+    "PASS_ALL": 0,
+    "PASS_WITH_WARNS": 1,
+    "FAIL": 1
+  }
+}

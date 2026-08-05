@@ -268,10 +268,11 @@ python3 tools/preview_sale_candidates.py --input path/to/candidates.json
 - 全スキップ判定の動作確認済み（skip_expired / skip_duplicate）
 - 詳細仕様: セクション7-B 参照
 
-47-C（設計完了・実装待ち）: 手動承認付き1件投入
+47-C（実装＋安全確認済み / 本番投入前確認）: 手動承認付き1件投入
 - YES入力必須（大文字完全一致）
 - approved 候補を最大1件のみ status=NEW で Sheets に書き込む
 - 解禁条件: 47-B が 3日連続正常 かつ Sheets 疎通確認済み
+- 解禁確認: 2026-05-16 時点で 3日連続OK + tools/diagnose_sheets.py 実行OK
 - 詳細仕様: docs/ENQUEUE_47C_DESIGN.md 参照
 
 47-D（後段）: 複数件拡張
@@ -297,5 +298,5 @@ python3 tools/preview_sale_candidates.py --input path/to/candidates.json
 - [x] Sheets・WordPress への書き込みが一切行われない
 - [x] docs に使い方が記載されている
 
-47-C（実装待ち）:
+47-C（本番投入前確認）:
 - 詳細は docs/ENQUEUE_47C_DESIGN.md セクション8 参照

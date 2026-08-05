@@ -1,0 +1,26 @@
+# LS-NEW-BATCH-4G-2E-RECOVERY-M13
+
+- Status: `PASS_WORDPRESS_DRAFT_CREATED_ONE_SHOT_AUTHORIZATION_CONSUMED_NO_PUBLISH_NO_RETRY`
+- Decision: `WORDPRESS_DRAFT_CREATED_READY_FOR_POST_EXECUTION_EVIDENCE_AND_HUMAN_REVIEW`
+- Error code: `None`
+- Authorization consumed: `true`
+- Authorization reuse allowed: `false`
+- Automatic retry allowed: `false`
+- Automatic reissue allowed: `false`
+- Duplicate candidate count: `0`
+- Duplicate exact match count: `0`
+- Duplicate detected: `false`
+- WordPress create POST count: `1`
+- WordPress response received: `true`
+- HTTP status: `201`
+- WordPress post ID: `192`
+- Draft status verified: `true`
+- Category ID 10 verified: `true`
+- Title exact match: `true`
+- Content exact match: `true`
+- Created draft count: `1`
+- Full response output: `false`
+- WordPress published: `false`
+- Manual review required: `false`
+- Production status: `NO_GO`
+- Ready for WordPress publish: `false`

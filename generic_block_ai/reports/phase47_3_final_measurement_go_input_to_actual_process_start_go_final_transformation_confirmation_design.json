@@ -1,0 +1,37 @@
+{
+  "_meta": {
+    "phase": "47-3",
+    "phase_name": "最終実測GO入力・発効最終変換確認層",
+    "layer": "受領/確認層 (receipt and confirmation layer)",
+    "title": "最終実測GO入力から actual_process_start_go 発効への最終変換確認設計",
+    "created": "2026-05-14",
+    "author": "governance-framework",
+    "status": "PASS_DESIGN_ONLY",
+    "reports_only": true
+  },
+  "scope": "Phase 47-1 で受領・整合確認された Phase 46 完了証跡に基づいて、最終実測GO入力から actual_process_start_go_authorization が実測で GO 状態（'GRANTED'）に到達する最終変換確認プロセスを 設計層で定義する。確認対象：(1) 最終実測GO入力値がテンプレットに完全に合致しているか（manual_release_go よりも厳格）、(2) 全検証ポイントで合格（GO）状態であるか（manual_release_go よりも高い基準）、(3) バックトラッキングルールで戻すべき不合格項目がないか（manual_release_go よりも厳格）、(4) ABORT条件に該当する重大検出がないか（より多くの ABORT条件を含む）、(5) 上記が全て合格した場合、actual_process_start_go_authorization: 'GRANTED' への変換が確定するか。",
+  "governance": {
+    "production_status": "NO_GO",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "report": {
+    "description": "Phase 47-3 では、最終実測GO入力から actual_process_start_go_authorization を 'GRANTED' に発効させるための最終変換確認プロセスを 設計層で定義する。Phase 47-2 と異なり、actual_process_start_go は より厳格な基準で設計されている。(1) 入力値テンプレット適合性確認（厳格版）：最終実測GO入力値が Phase 46-3 で設計された actual_process_start_go 用テンプレット（manual_release_go 用よりも厳格）に完全に合致しているか を確認する。わずかな偏差も許容しない。入力値が不完全な場合は、即座に 'NOT_GRANTED' で戻される。(2) 全検証ポイント合格確認（高い基準版）：Phase 46-5 で設計された全検証ポイント（メタデータ整合性、権限確認、最後の安全弁チェック、追加の安全弁など）で GO（合格）判定が下されているか を確認する。manual_release_go よりも高い基準で評価される。(3) バックトラッキング合否判定（厳格版）：Phase 46-6 で設計されたバックトラッキングルール（actual_process_start_go 用、より厳格）に基づいて、不合格で戻すべき項目がないか を確認する。より多くの項目が戻す対象となる可能性がある。不合格項目がある場合は、即座に 'NOT_GRANTED' に戻される。(4) ABORT条件該当確認（拡大版）：Phase 46-7 で設計された ABORT条件のうち、actual_process_start_go 用に拡大・強化された条件（より低い閾値を含む）に該当する事項がないか を確認する。ABORT条件に該当する場合、即座に Phase 47 全体が 'NO_GO' に戻される。(5) 変換確定判定：上記 (1)～(4) が全て合格した場合のみ、actual_process_start_go_authorization: 'GRANTED' への変換が確定することを設計層で宣言する。これらの確認は全て 設計層（reports only）で行われ、実処理開始許可を含まない。",
+    "invariants": [
+      "NO_GO 維持（ABORT時）：ABORT条件該当時は即座に production_status = 'NO_GO' を再宣言",
+      "NOT_GRANTED 維持（不合格時）：テンプレット不適合時・検証不合格時・バックトラッキング該当時は actual_process_start_go_authorization = 'NOT_GRANTED' のままである",
+      "GRANTED 発効条件（厳格版）：上記全て合格時のみ actual_process_start_go_authorization: 'GRANTED' への変換が確定（manual_release_go より厳しい）",
+      "reports only：確認プロセス全体は報告書形式で実装される"
+    ],
+    "actions": [],
+    "notes": [
+      "Phase 47-3 は 設計層のみで実装される",
+      "actual_process_start_go_authorization の発効基準は manual_release_go_authorization より厳格",
+      "テンプレット適合性・検証ポイント・バックトラッキング・ABORT条件が全て manual_release_go より高い基準",
+      "いずれかの段階で不合格 → NOT_GRANTED のまま",
+      "ABORT条件該当 → Phase 47 全体 NO_GO に戻される",
+      "実処理開始は NO_GO のまま（変換確定まで）"
+    ]
+  }
+}

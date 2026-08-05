@@ -1,0 +1,79 @@
+{
+  "series": "N-1_to_N-9",
+  "n6_n9_required_count": 4,
+  "n6_n9_found_count": 4,
+  "n6_n9_missing_count": 0,
+  "n1_n5_required_count": 5,
+  "n1_n5_found_count": 5,
+  "overall_status": "PASS_DRY_RUN_ONLY",
+  "production_status": "NO_GO",
+  "execution": "DRY_RUN",
+  "mode": "CONNECTION_TEST",
+  "human_approval_required": true,
+  "wordpress_write_executed": false,
+  "github_push_executed": false,
+  "slack_message_sent": false,
+  "system_restart_executed": false,
+  "executed_external_changes": 0,
+  "n6_n9_evidence": [
+    {
+      "phase": "N-6",
+      "path": "/home/deploy/ai_media_os/exchange/logs/n6_continuous_monitoring_dry_run_result.json",
+      "found": true,
+      "status": "PASS"
+    },
+    {
+      "phase": "N-7",
+      "path": "/home/deploy/ai_media_os/exchange/logs/n7_cron_lock_guard_result.json",
+      "found": true,
+      "status": "PASS"
+    },
+    {
+      "phase": "N-8",
+      "path": "/home/deploy/ai_media_os/exchange/logs/n8_log_rotation_check_result.json",
+      "found": true,
+      "status": "PASS"
+    },
+    {
+      "phase": "N-9",
+      "path": "/home/deploy/ai_media_os/exchange/logs/n9_post_reboot_recovery_simulation_result.json",
+      "found": true,
+      "status": "PASS"
+    }
+  ],
+  "n1_n5_reference": [
+    {
+      "phase": "N-1",
+      "path": "/home/deploy/ai_media_os/exchange/logs/n1_vps_connectivity_result.json",
+      "found": true,
+      "status": "PASS"
+    },
+    {
+      "phase": "N-2",
+      "path": "/home/deploy/ai_media_os/exchange/logs/n2_wordpress_api_stability_result.json",
+      "found": true,
+      "status": "PASS"
+    },
+    {
+      "phase": "N-3",
+      "path": "/home/deploy/ai_media_os/exchange/logs/n3_slack_path_stability_result.json",
+      "found": true,
+      "status": "PASS"
+    },
+    {
+      "phase": "N-4",
+      "path": "/home/deploy/ai_media_os/exchange/logs/n4_github_connectivity_result.json",
+      "found": true,
+      "status": "PASS"
+    },
+    {
+      "phase": "N-5",
+      "path": "/home/deploy/ai_media_os/exchange/logs/n5_recovery_simulation_result.json",
+      "found": true,
+      "status": "PASS"
+    }
+  ],
+  "warn_list": [],
+  "fail_list": [],
+  "generated_at": "2026-05-31T14:00:24.244335+00:00"
+}

@@ -1,0 +1,128 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M24",
+  "policy_id": "WORDPRESS_TAWAWA_REFERENCE_LAYOUT_REVISION_POLICY_V1",
+  "operation_mode": "LOCAL_REFERENCE_LAYOUT_REVISION_AND_SAFE_PREVIEW_GENERATION_ONLY",
+  "content_item_id": "new-release-comic-20260703-001",
+  "wordpress_post_id": 192,
+  "required_approval_label": "WORDPRESS_TAWAWA_REFERENCE_LAYOUT_REVISION_APPROVED",
+  "reference_layout_contract": {
+    "reference_type": "HUMAN_PROVIDED_TAWAWA_SCREENSHOT",
+    "wordpress_theme_title_area_is_outside_update_payload": true,
+    "desktop": {
+      "main_card_layout": "TWO_COLUMN",
+      "left_column": [
+        "cover_image"
+      ],
+      "right_column_order": [
+        "pr_disclosure",
+        "amazon_button",
+        "rakuten_kobo_button",
+        "dmm_button"
+      ],
+      "lower_section_order": [
+        "short_distribution_description",
+        "work_detail_list",
+        "promotion_notice"
+      ]
+    },
+    "mobile": {
+      "main_card_layout": "SINGLE_COLUMN",
+      "order": [
+        "cover_image",
+        "pr_disclosure",
+        "amazon_button",
+        "rakuten_kobo_button",
+        "dmm_button",
+        "short_distribution_description",
+        "work_detail_list",
+        "promotion_notice"
+      ]
+    },
+    "main_card_contains_work_details": false,
+    "work_details_must_be_separate_lower_box": true,
+    "pr_before_first_affiliate_interaction": true
+  },
+  "visual_contract": {
+    "page_background": "LIGHT_NEUTRAL",
+    "content_background": "WHITE",
+    "rounded_cards": true,
+    "thin_neutral_borders": true,
+    "desktop_cover_width_px": 180,
+    "desktop_button_layout": "FULL_WIDTH_VERTICAL_STACK",
+    "amazon_color_role": "ORANGE",
+    "rakuten_kobo_color_role": "RED",
+    "dmm_color_role": "BLUE",
+    "short_description_box_role": "LIGHT_CREAM",
+    "work_detail_box_role": "LIGHT_GRAY",
+    "promotion_notice_box_role": "NEUTRAL_GRAY",
+    "excessive_whitespace_allowed": false,
+    "fragmented_character_wrapping_allowed": false
+  },
+  "update_contract": {
+    "allowed_request_fields": [
+      "content",
+      "comment_status"
+    ],
+    "target_comment_status": "closed",
+    "title_update_allowed": false,
+    "status_update_allowed": false,
+    "categories_update_allowed": false,
+    "slug_update_allowed": false,
+    "excerpt_update_allowed": false,
+    "execution_allowed": false
+  },
+  "store_contract": {
+    "existing_store_element_html_must_be_preserved": true,
+    "existing_url_multiset_must_be_preserved": true,
+    "amazon_current_state_must_be_preserved": true,
+    "rakuten_kobo_current_state_must_be_preserved": true,
+    "dmm_active_anchor_must_be_preserved": true,
+    "new_external_url_allowed": false,
+    "safe_preview_external_links_allowed": false,
+    "safe_preview_external_assets_allowed": false,
+    "full_store_url_normal_output_allowed": false,
+    "affiliate_identifier_normal_output_allowed": false
+  },
+  "source_evidence_contract": {
+    "article_file_sha256": "de2739c8ae1aa4a50973b983964b05844086a2187b9ef337383ad6fa7123697d",
+    "source_payload_file_sha256": "30a70be4110e863a85e2896f69f5b3e51d814a6fd82d5489f899d8a244166d8f",
+    "source_payload_digest_sha256": "2ab27b59305dbae98f997ca3a460400298152f173ef605b534df922c187411c6",
+    "m22_fix2_result_digest_sha256": "4e0f6e33cef8ad7ceaea7ce0cd453b3a8bbeb1c9ba0fade71b499b6fea794a5c",
+    "m22_fix2_rendered_content_sha256": "86ebae8e7f0c550ed6ee4726164a654269e9f2c6c64ac268945dac9714d31d30",
+    "m22_fix2_update_payload_digest_sha256": "864e33958393fefcf1b2c10ec7e3d85bf42648393f681386a88f19048585e487",
+    "m22_fix2_rollback_digest_sha256": "60ac4fe5182e412014bcbd291ca52af1e516e7061722e608b39a34c284dbfcf5",
+    "m23_result_digest_sha256": "0a5592abc57008922d9a47512f213a6a88f821d11e255d881a91e9ea557edb9e",
+    "m23_review_preparation_digest_sha256": "0cfc80e7df031b7eb1005f14c6527881da88828f246bf3669820fe0ee49f89ff"
+  },
+  "human_review_boundary": {
+    "reference_layout_revision_human_approved": true,
+    "generated_layout_human_review_completed": false,
+    "generated_layout_human_review_verdict": "NOT_RECORDED",
+    "automatic_approval_allowed": false
+  },
+  "execution_boundary": {
+    "network_connection_allowed": false,
+    "dns_resolution_allowed": false,
+    "http_request_allowed": false,
+    "wordpress_access_allowed": false,
+    "wordpress_get_allowed": false,
+    "wordpress_write_allowed": false,
+    "wordpress_update_allowed": false,
+    "wordpress_republish_allowed": false,
+    "wordpress_delete_allowed": false,
+    "authorization_issue_allowed": false,
+    "authorization_consumption_allowed": false,
+    "authorization_reuse_allowed": false,
+    "automatic_retry_allowed": false,
+    "automatic_reissue_allowed": false,
+    "x_post_allowed": false
+  },
+  "next_gate": {
+    "ready_for_tawawa_reference_layout_human_review": true,
+    "ready_for_wordpress_update_authorization_gate": false,
+    "ready_for_wordpress_update": false,
+    "ready_for_wordpress_publish": false
+  },
+  "production_status": "NO_GO"
+}

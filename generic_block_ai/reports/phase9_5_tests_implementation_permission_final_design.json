@@ -1,0 +1,59 @@
+{
+  "_meta": {
+    "phase": "9-5",
+    "phase_name": "tests実装許可条件の最終設計",
+    "version": "1.0",
+    "created_date": "2026-05-12",
+    "status": "PASS_DESIGN_ONLY",
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only",
+    "description": "tests 実装着手を許可する条件を設計し、app実装許可ゲートと独立して扱う。"
+  },
+  "references": [
+    "generic_block_ai/reports/phase9_2_pre_app_implementation_final_safety_gate_design.json",
+    "generic_block_ai/reports/phase9_3_receiver_validator_implementation_plan_reports_only_design.json",
+    "generic_block_ai/reports/phase9_4_receiver_validator_app_implementation_permission_final_design.json"
+  ],
+  "tests_permission_conditions": [
+    {
+      "id": "TIP-01",
+      "condition": "安全境界固定値（OBSERVE/dry_run/NO_GO）がテスト前提として定義済み",
+      "required": true
+    },
+    {
+      "id": "TIP-02",
+      "condition": "禁止アクションの負荷・否定ケースがテスト計画に含まれる",
+      "required": true
+    },
+    {
+      "id": "TIP-03",
+      "condition": "テスト実行が外部接続なしで完結する設計である",
+      "required": true
+    },
+    {
+      "id": "TIP-04",
+      "condition": "テスト失敗時の差し戻しルールが定義されている",
+      "required": true
+    },
+    {
+      "id": "TIP-05",
+      "condition": "human review の承認フローが設計されている",
+      "required": true
+    }
+  ],
+  "decision_matrix": {
+    "all_conditions_satisfied": "GO_CANDIDATE_FOR_SEPARATE_GATE",
+    "partial_conditions": "PENDING",
+    "any_safety_violation": "NO_GO",
+    "critical_violation": "ABORT"
+  },
+  "current_phase_decision": {
+    "phase9_design_status": "PASS_DESIGN_ONLY",
+    "phase9_tests_implementation_permission": "NO_GO",
+    "reason": "本フェーズは tests実装許可条件の設計のみ。実装許可は別ゲート判定まで確定しない。"
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "schema_version": "ir192_final_reference_consistency_reverification_registry_v1",
+  "phase": "IR192",
+  "generated_at": "2026-05-26T13:19:47.285316+00:00",
+  "source_task_id": "ir191_195_batch",
+  "validation_result": "PASS",
+  "validation_failed_checks": [],
+  "validation_warnings": [],
+  "final_reference_consistency_reverification_registry": {
+    "registry_id": "ir192_registry_ir191_195_batch_20260526T131947Z",
+    "generated_at": "2026-05-26T13:19:47.285310+00:00",
+    "source_task_id": "ir191_195_batch",
+    "new_cycle_id": "IR71_PLUS_CYCLE_A",
+    "registry_entries": [
+      {
+        "archive_item_id": "archive_1",
+        "source_phase": "IR186",
+        "source_content": "Retention Refix Evidence Snapshot",
+        "final_reverification_status": "FINAL_CONSISTENT_REFERENCE_ONLY",
+        "change_detected": false
+      },
+      {
+        "archive_item_id": "archive_2",
+        "source_phase": "IR187",
+        "source_content": "Reference Consistency Terminal Registry",
+        "final_reverification_status": "FINAL_CONSISTENT_REFERENCE_ONLY",
+        "change_detected": false
+      },
+      {
+        "archive_item_id": "archive_3",
+        "source_phase": "IR188",
+        "source_content": "Terminal Digest Refix",
+        "final_reverification_status": "FINAL_CONSISTENT_REFERENCE_ONLY",
+        "change_detected": false
+      },
+      {
+        "archive_item_id": "archive_4",
+        "source_phase": "IR189",
+        "source_content": "Dry-Run Terminal Audit Attestation",
+        "final_reverification_status": "FINAL_CONSISTENT_REFERENCE_ONLY",
+        "change_detected": false
+      },
+      {
+        "archive_item_id": "archive_5",
+        "source_phase": "IR190",
+        "source_content": "Phase 186-190 Completion Bundle",
+        "final_reverification_status": "FINAL_CONSISTENT_REFERENCE_ONLY",
+        "change_detected": false
+      }
+    ],
+    "entry_count": 5,
+    "all_final_consistent_reference_only": true,
+    "unlock_eligible": false,
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "registry_hash": "128ca32c31043af4c46fbb8df606954e595c87a91b7ddfa9300a31f7444a8eda",
+  "safety_gate_snapshot": {
+    "dry_run": "maintained",
+    "OBSERVE": "maintained",
+    "submission_execution_blocked": true,
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "network_transmission_executed": false,
+    "production_release": false,
+    "GitHub_push": "未実行"
+  }
+}

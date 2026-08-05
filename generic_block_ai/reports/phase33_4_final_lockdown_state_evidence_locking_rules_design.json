@@ -1,0 +1,90 @@
+{
+  "phase_id": "33-4",
+  "phase_name": "Final Lockdown State Evidence Locking Rules Design",
+  "phase_japanese_name": "最終ロックダウン状態確認結果の証跡固定ルール設計",
+  "purpose": "Design evidence locking rules for final lockdown state confirmation before any actual process start.",
+  "layer": "pre_execution_start_lockdown_layer",
+  "design_category": "reports_only",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "operation_transition_go_authorization": "NOT_GRANTED",
+    "production_reflection_go_authorization": "NOT_GRANTED",
+    "freeze_release_go_authorization": "NOT_GRANTED",
+    "execution_start_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "phase_33_4_scope": {
+    "scope_1_input_contract": {
+      "scope_id": "INPUT_CONTRACT",
+      "required_inputs": {
+        "phase33_3_boundary_status": "PASS | FAIL"
+      }
+    },
+    "scope_2_evidence_locking_rules": {
+      "scope_id": "EVIDENCE_LOCKING_RULES",
+      "rules": {
+        "rule_P33E1": "Receive final lockdown boundary evidence from Phase 33-3",
+        "rule_P33E2": "Apply cryptographic signature or hash to the lockdown report",
+        "rule_P33E3": "Lock the report with timestamp and authority signature",
+        "rule_P33E4": "Create immutable audit trail for all lockdown derivations",
+        "rule_P33E5": "If locking fails, immediately signal ABORT and maintain NO_GO"
+      }
+    },
+    "scope_3_report_structure": {
+      "scope_id": "REPORT_STRUCTURE",
+      "sections": {
+        "section_1_header": {
+          "report_id": "PHASE33_4_LOCKDOWN_EVIDENCE_LOCKING_<UTC_TIMESTAMP>",
+          "report_type": "final_lockdown_state_evidence_locking",
+          "generated_at_utc": "RFC3339",
+          "generated_by": "authority_identifier"
+        },
+        "section_2_judgment_input": {
+          "boundary_status_from_P33_3": "PASS | FAIL"
+        },
+        "section_3_locking_process": {
+          "cryptographic_signature_applied": "YES | NO",
+          "hash_computed": "SHA256_HEX | NONE",
+          "timestamp_locked": "RFC3339 | NONE",
+          "authority_signature": "PRESENT | ABSENT"
+        },
+        "section_4_locking_judgment": {
+          "evidence_lock_status": "LOCKED | UNLOCK_FAILED",
+          "production_status": "NO_GO",
+          "operation_transition_go_authorization": "NOT_GRANTED",
+          "production_reflection_go_authorization": "NOT_GRANTED",
+          "freeze_release_go_authorization": "NOT_GRANTED",
+          "execution_start_go_authorization": "NOT_GRANTED"
+        }
+      }
+    }
+  },
+  "phase_33_4_governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "state_invariants": {
+      "app_implementation_status": "NO_GO",
+      "tests_implementation_status": "NO_GO",
+      "production_status": "NO_GO",
+      "operation_transition_go_authorization": "NOT_GRANTED",
+      "production_reflection_go_authorization": "NOT_GRANTED",
+      "freeze_release_go_authorization": "NOT_GRANTED",
+      "execution_start_go_authorization": "NOT_GRANTED",
+      "changed_area": "reports only"
+    }
+  }
+}

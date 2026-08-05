@@ -1,0 +1,59 @@
+{
+  "package_type": "phase8_11_manual_draft_review",
+  "phase": "Phase 8-11",
+  "mode": "MANUAL_REVIEW_ONLY",
+  "execution": "NO_WRITE",
+  "source": "human_operator",
+  "reviewer": "manual_human_reviewer",
+  "reviewed_at_utc": "2026-06-04T13:25:00+00:00",
+  "target": {
+    "wordpress_post_id": 114,
+    "expected_status": "draft"
+  },
+  "checklist": {
+    "draft_exists_and_is_draft": true,
+    "title_is_expected": true,
+    "content_has_no_break_or_blank_or_dangerous_html": true,
+    "affiliate_or_pr_disclosure_present": true,
+    "links_are_intended": false,
+    "still_not_published": true
+  },
+  "review_notes": {
+    "summary": "Draft exists and remains unpublished. Title is visible and matches the expected sample draft. Body is not empty and no dangerous HTML issue is visible on screen. PR/ad disclosure is present. Body still contains preflight/test wording and is not production-ready. Affiliate/product link was not confirmed on screen. Keep publish/update/delete/export prohibited.",
+    "fix_requests": [
+      "Replace preflight/test wording with production-ready body text.",
+      "Add or verify intended affiliate/product links.",
+      "Re-run manual visual check before any publish decision."
+    ]
+  },
+  "decision": "REQUEST_FIX",
+  "decision_choices": [
+    "APPROVE_DRAFT_REVIEW_ONLY",
+    "REQUEST_FIX",
+    "REJECT",
+    "ABORT"
+  ],
+  "prohibited_operations_confirmed": {
+    "publish": true,
+    "update": true,
+    "delete": true,
+    "export": true,
+    "additional_retry": true,
+    "auto_post": true,
+    "systemctl_restart": true,
+    "systemctl_daemon_reload": true
+  },
+  "safety_flags": {
+    "wordpress_write_executed": false,
+    "publish_allowed": false,
+    "update_allowed": false,
+    "delete_allowed": false,
+    "export_allowed": false,
+    "auto_post": false,
+    "auto_update": false,
+    "auto_delete": false,
+    "auto_export": false
+  },
+  "next_step_if_approved": "prepare_phase8_11_manual_inspection_result_without_publish",
+  "production_status": "NO_GO"
+}

@@ -1,0 +1,313 @@
+{
+  "phase_identifier": "18-2",
+  "phase_title": "Phase 15-7 測定ワークフロー実行直前チェック設計",
+  "phase_purpose": "Phase 15-7（integrated_decision 実測ワークフロー）をいよいよ実行する直前に、最後のチェック項目を実行するための詳細仕様を設計する。Phase 17-6 の実行前条件チェックと異なり、Phase 18-2 は実運用直前（秒単位、実行数秒前）に実行される直前チェックである。ワークフロー環境、測定スコープ、権限者最終承認、非常停止条件、リアルタイム状態確認を含む。",
+  "execution_context": "reports-only design phase; design of Phase 15-7 pre-execution final check procedures only, no actual measurement workflow execution yet",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only"
+  },
+  "governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "safety_rule": "All blocked_actions remain strictly prohibited. Phase 18-2 pre-execution check design is design-only; no actual measurement workflow execution occurs. No app/tests implementation permitted.",
+    "hard_stop_condition": "This phase is design-only. No actual Phase 15-7 measurement execution occurs."
+  },
+  "phase15_7_pre_execution_check_purpose": {
+    "purpose": "Final safety checks immediately before Phase 15-7 integrated_decision measurement execution; verify environment health, scope precision, authorization currency, and critical stop conditions",
+    "check_timing": "Executed 10-60 seconds before Phase 15-7 starts; if any check fails, execution halts",
+    "check_scope": [
+      "Workflow environment health (code, dependencies, configuration)",
+      "Measurement target precision (what will be measured)",
+      "Authorization currency (Phase 17-8 signature still valid)",
+      "Critical safety conditions (no security incidents, no resource failures)",
+      "Real-time system state (integrated_decision still NO_GO, no external changes)"
+    ],
+    "failure_response": "Stop execution immediately; log failure; alert authority; preserve forensic evidence; request remedial action"
+  },
+  "phase15_7_pre_execution_check_procedure_set": {
+    "check_group_1_workflow_environment_health": {
+      "group_name": "Phase 15-7 Measurement Workflow Environment Health",
+      "purpose": "Verify Phase 15-7 measurement workflow code and runtime environment are healthy and ready to execute",
+      "checks": [
+        {
+          "check_id": "PC_WF_CODE_ACCESSIBLE",
+          "check_name": "Phase 15-7 Workflow Code Accessible",
+          "check_description": "Verify Phase 15-7 measurement workflow code is deployed, accessible, and not corrupted since last verification",
+          "check_method": "Compute hash of workflow code and compare with last known good hash",
+          "if_pass": "Code is in expected state; proceed to next check",
+          "if_fail": "HALT: Code not accessible or has been modified; forensic investigation required"
+        },
+        {
+          "check_id": "PC_WF_CONFIG_VALID",
+          "check_name": "Phase 15-7 Workflow Configuration Valid",
+          "check_description": "Verify Phase 15-7 workflow configuration is present, valid, and contains correct parameters",
+          "check_method": "Parse workflow configuration JSON; validate all required fields are present",
+          "if_pass": "Configuration is valid; proceed to next check",
+          "if_fail": "HALT: Configuration missing or invalid; measurement cannot execute"
+        },
+        {
+          "check_id": "PC_WF_RUNTIME_READY",
+          "check_name": "Phase 15-7 Runtime Environment Ready",
+          "check_description": "Verify runtime environment (process, memory, CPU, file handles) is healthy",
+          "check_method": "Check system resources: free memory > threshold, CPU available, file descriptor limits not exceeded",
+          "if_pass": "Runtime environment is healthy; proceed to next check",
+          "if_fail": "HALT: Runtime resource insufficient; measurement execution forbidden"
+        },
+        {
+          "check_id": "PC_WF_DEPENDENCIES_HEALTHY",
+          "check_name": "Phase 15-7 External Dependencies Healthy",
+          "check_description": "Verify all external dependencies (API endpoints, databases, file systems) are accessible and responsive",
+          "check_method": "Ping/health check each external dependency; verify response time within acceptable range",
+          "if_pass": "All dependencies healthy; proceed to next check",
+          "if_fail": "HALT: One or more dependencies unhealthy; measurement execution forbidden"
+        }
+      ]
+    },
+    "check_group_2_measurement_scope_precision": {
+      "group_name": "Phase 15-7 Measurement Scope Precision",
+      "purpose": "Confirm measurement target (integrated_decision), measurement method, and measurement time are precisely defined",
+      "checks": [
+        {
+          "check_id": "PC_SCOPE_TARGET",
+          "check_name": "Measurement Target Precisely Defined",
+          "check_description": "Verify measurement target is unambiguous: 'Measure current value of integrated_decision from system state'",
+          "check_method": "Confirm workflow parameter: target == 'integrated_decision' (hardcoded, no ambiguity)",
+          "if_pass": "Target is precise; proceed to next check",
+          "if_fail": "HALT: Target is ambiguous; cannot proceed without clear measurement scope"
+        },
+        {
+          "check_id": "PC_SCOPE_METHOD",
+          "check_name": "Measurement Method Defined",
+          "check_description": "Verify measurement method (how integrated_decision value will be obtained) is specified",
+          "check_method": "Confirm workflow parameter: method == [read from system state] or equivalent",
+          "if_pass": "Method is defined; proceed to next check",
+          "if_fail": "HALT: Measurement method not specified; cannot measure without clear procedure"
+        },
+        {
+          "check_id": "PC_SCOPE_TIME",
+          "check_name": "Measurement Time Specified",
+          "check_description": "Verify measurement will occur at specific moment (now, or scheduled timestamp within next 60 seconds)",
+          "check_method": "Confirm workflow parameter: measurement_time is set and is current or near-future",
+          "if_pass": "Time is specified; proceed to next check",
+          "if_fail": "HALT: Measurement time not specified; cannot measure without timestamp"
+        },
+        {
+          "check_id": "PC_SCOPE_AUTHORITY",
+          "check_name": "Measurement Authority Confirmed",
+          "check_description": "Verify Phase 15-7 measurement is authorized to execute by recognized authority or delegation chain",
+          "check_method": "Verify Phase 17-8 authorization certificate has valid signature and phase15_7_authorized == true",
+          "if_pass": "Authority is confirmed; proceed to next check",
+          "if_fail": "HALT: Authorization missing or invalid; measurement execution forbidden"
+        }
+      ]
+    },
+    "check_group_3_authorization_currency": {
+      "group_name": "Phase 17-8 Authorization Currency",
+      "purpose": "Verify Phase 17-8 final authorization grant (digital signature) is still current and valid",
+      "checks": [
+        {
+          "check_id": "PC_AUTH_SIGNATURE_VALID",
+          "check_name": "Phase 17-8 Authorization Signature Valid",
+          "check_description": "Verify Phase 17-8 authorization certificate signature is cryptographically valid",
+          "check_method": "Verify RSA-2048 or ECDSA signature using authority public key",
+          "if_pass": "Signature is valid; proceed to next check",
+          "if_fail": "HALT: Signature invalid or tampered with; security incident; measurement execution forbidden"
+        },
+        {
+          "check_id": "PC_AUTH_TIMESTAMP_CURRENT",
+          "check_name": "Phase 17-8 Authorization Timestamp Current",
+          "check_description": "Verify authorization timestamp is recent (within last 24 hours or authority-specified validity window)",
+          "check_method": "Compare current UTC time with authorization_timestamp; if (now - auth_timestamp) < validity_duration, PASS",
+          "if_pass": "Authorization is current; proceed to next check",
+          "if_fail": "HALT: Authorization is stale; request fresh authorization from authority before proceeding"
+        },
+        {
+          "check_id": "PC_AUTH_NO_REVOCATION",
+          "check_name": "No Authority Revocation Order",
+          "check_description": "Verify authority has not issued revocation or cancellation order since authorization was granted",
+          "check_method": "Check audit trail and authority command queue for revocation orders after authorization_timestamp",
+          "if_pass": "No revocation detected; proceed to next check",
+          "if_fail": "HALT: Authority revocation order detected; measurement execution forbidden"
+        },
+        {
+          "check_id": "PC_AUTH_PHASE15_7_AUTHORIZED",
+          "check_name": "Phase 15-7 Specifically Authorized",
+          "check_description": "Verify Phase 17-8 authorization certificate explicitly authorizes Phase 15-7 execution",
+          "check_method": "Check authorization_scope == 'PHASE_15_7_AND_15_8' or 'PHASE_15_7_ONLY'",
+          "if_pass": "Phase 15-7 is authorized; proceed to next check",
+          "if_fail": "HALT: Phase 15-7 is not authorized in authorization certificate; measurement execution forbidden"
+        }
+      ]
+    },
+    "check_group_4_critical_safety_conditions": {
+      "group_name": "Critical Safety Conditions",
+      "purpose": "Verify no critical safety condition is violated that would make execution unsafe",
+      "checks": [
+        {
+          "check_id": "PC_SAFETY_NO_SECURITY_INCIDENT",
+          "check_name": "No Active Security Incident",
+          "check_description": "Verify no security incident (tampering, breach, intrusion) is active",
+          "check_method": "Check security incident log for active entries; verify no tampering alerts in last 5 minutes",
+          "if_pass": "No security incident; proceed to next check",
+          "if_fail": "HALT: Active security incident detected; measurement execution forbidden until incident resolved"
+        },
+        {
+          "check_id": "PC_SAFETY_NO_RESOURCE_FAILURE",
+          "check_name": "No Critical Resource Failure",
+          "check_description": "Verify no critical system resource failure is preventing execution",
+          "check_method": "Check: free memory > 100MB, disk free > 1GB, CPU load < 90%, file descriptors available",
+          "if_pass": "All resources healthy; proceed to next check",
+          "if_fail": "HALT: Critical resource failure detected; measurement execution forbidden"
+        },
+        {
+          "check_id": "PC_SAFETY_NO_NETWORK_FAILURE",
+          "check_name": "Network Connectivity Healthy",
+          "check_description": "Verify network connectivity to all required external systems is healthy",
+          "check_method": "Ping external dependencies; verify response times within tolerance",
+          "if_pass": "Network healthy; proceed to next check",
+          "if_fail": "HALT: Network failure detected; measurement execution forbidden"
+        },
+        {
+          "check_id": "PC_SAFETY_NO_AUTHORITY_HALT_ORDER",
+          "check_name": "No Authority Halt Order",
+          "check_description": "Verify authority has not issued halt or emergency stop order",
+          "check_method": "Check authority command queue and alert system for halt orders",
+          "if_pass": "No halt order detected; proceed to next check",
+          "if_fail": "HALT: Authority halt order detected; measurement execution forbidden"
+        }
+      ]
+    },
+    "check_group_5_realtime_system_state": {
+      "group_name": "Real-Time System State Verification",
+      "purpose": "Verify current system state has not changed in ways that would invalidate measurement",
+      "checks": [
+        {
+          "check_id": "PC_STATE_INTEGRATED_DECISION_STILL_NO_GO",
+          "check_name": "integrated_decision State Still NO_GO",
+          "check_description": "Verify integrated_decision == NO_GO (has not been changed to GO by external process)",
+          "check_method": "Read current integrated_decision value from system state",
+          "if_pass": "integrated_decision == NO_GO as expected; proceed to next check",
+          "if_fail": "CONDITIONAL: If integrated_decision changed to GO, may indicate Phase 15-7 already executed; verify execution status. If changed by external process, HALT and investigate"
+        },
+        {
+          "check_id": "PC_STATE_APP_TESTS_STILL_NO_GO",
+          "check_name": "app/tests Implementation Status Still NO_GO",
+          "check_description": "Verify app_implementation_status == NO_GO and tests_implementation_status == NO_GO (no unauthorized implementation)",
+          "check_method": "Check git status or implementation registry for any new app or tests files/changes",
+          "if_pass": "No implementation detected; proceed to next check",
+          "if_fail": "HALT: Unauthorized implementation detected; security incident; measurement execution forbidden"
+        },
+        {
+          "check_id": "PC_STATE_PHASE17_ARTIFACTS_UNCHANGED",
+          "check_name": "Phase 17 Artifacts Unchanged",
+          "check_description": "Verify Phase 17 completion artifacts have not been modified since Phase 18-1 receipt verification",
+          "check_method": "Recompute hashes of all 9 Phase 17 artifacts; compare with stored hashes from Phase 18-1",
+          "if_pass": "All artifacts unchanged; proceed to next check",
+          "if_fail": "HALT: Phase 17 artifacts have been modified; tampering suspected; forensic investigation required"
+        },
+        {
+          "check_id": "PC_STATE_CLOCK_SYNCHRONIZED",
+          "check_name": "System Clock Synchronized",
+          "check_description": "Verify system clock is synchronized with authoritative time source (NTP or similar)",
+          "check_method": "Check NTP sync status; verify clock skew < 1 second",
+          "if_pass": "Clock synchronized; proceed to completion",
+          "if_fail": "HALT: Clock not synchronized; measurement timing unreliable; cannot proceed"
+        }
+      ]
+    }
+  },
+  "phase15_7_pre_execution_check_evaluation_logic": {
+    "evaluation_algorithm": {
+      "step_1_check_group_1": "Execute all 4 checks in Group 1 (Workflow Environment Health); if any fails, HALT immediately",
+      "step_2_check_group_2": "Execute all 4 checks in Group 2 (Measurement Scope Precision); if any fails, HALT immediately",
+      "step_3_check_group_3": "Execute all 4 checks in Group 3 (Authorization Currency); if any fails, HALT immediately",
+      "step_4_check_group_4": "Execute all 4 checks in Group 4 (Critical Safety Conditions); if any fails, HALT immediately",
+      "step_5_check_group_5": "Execute all 4 checks in Group 5 (Real-Time System State); if any fails, HALT immediately",
+      "step_6_all_checks_passed": "If all 5 groups passed (20 checks total), proceed to Phase 15-7 measurement execution"
+    },
+    "failure_response": "If any check fails: (1) log failure immediately, (2) halt workflow execution, (3) alert authority, (4) preserve forensic evidence, (5) await authority remedial action"
+  },
+  "phase15_7_pre_execution_check_result_record": {
+    "record_id": "PHASE_15_7_PRE_EXECUTION_CHECK_RESULT_v1",
+    "record_elements": {
+      "check_initiation_timestamp": "ISO8601 UTC when pre-execution check began",
+      "check_completion_timestamp": "ISO8601 UTC when pre-execution check completed",
+      "check_group_results": {
+        "group_1_environment_health": {
+          "group_status": "ALL_CHECKS_PASSED or CHECK_FAILED",
+          "individual_check_results": "Array of 4 checks with pass/fail status"
+        },
+        "group_2_scope_precision": {
+          "group_status": "ALL_CHECKS_PASSED or CHECK_FAILED",
+          "individual_check_results": "Array of 4 checks with pass/fail status"
+        },
+        "group_3_authorization_currency": {
+          "group_status": "ALL_CHECKS_PASSED or CHECK_FAILED",
+          "individual_check_results": "Array of 4 checks with pass/fail status"
+        },
+        "group_4_critical_safety": {
+          "group_status": "ALL_CHECKS_PASSED or CHECK_FAILED",
+          "individual_check_results": "Array of 4 checks with pass/fail status"
+        },
+        "group_5_realtime_state": {
+          "group_status": "ALL_CHECKS_PASSED or CHECK_FAILED",
+          "individual_check_results": "Array of 4 checks with pass/fail status"
+        }
+      },
+      "overall_pre_execution_check_result": "ALL_CHECKS_PASSED or CHECK_FAILED_AT_GROUP_X",
+      "halt_reason_if_failed": "If failed, narrative description of which check failed and why",
+      "execution_decision": "PROCEED_TO_PHASE_15_7_EXECUTION or HALT_DO_NOT_EXECUTE",
+      "forensic_evidence_reference": "If halted due to failure, reference to forensic evidence location"
+    }
+  },
+  "phase_dependencies": {
+    "depends_on": [
+      "Phase 18-1: Phase 17 completion receipt (provides Phase 17 foundation for pre-execution checks)"
+    ],
+    "feeds_into": [
+      "Phase 15-7: integrated_decision measurement workflow (receives pre-execution check clearance)"
+    ]
+  },
+  "design_review_checklist": [
+    "Phase 15-7 pre-execution check purpose clearly stated (direct-before-execution timing)",
+    "Check timing (10-60 seconds before execution) specified",
+    "5 check groups (environment, scope, authorization, safety, realtime state) designed",
+    "Each group contains 4 checks (20 checks total)",
+    "Each check has clear pass/fail criteria and response",
+    "Evaluation algorithm: all groups must pass, any failure halts",
+    "Failure response procedure documented",
+    "Pre-execution check result record structure defined",
+    "All blocked actions remain in governance",
+    "production_status remains NO_GO (hardcoded)",
+    "Phase dependencies are accurate"
+  ],
+  "completion_gate": {
+    "gate_condition": "Phase 15-7 pre-execution check procedures (5 groups × 4 checks = 20 checks) approved AND evaluation logic finalized",
+    "approval_required": "Human technical reviewer + Phase 18 design authority + Phase 15-7 measurement sponsor",
+    "prerequisite_for": "Phase 15-7 measurement workflow can execute only after all 20 pre-execution checks PASS"
+  },
+  "status": {
+    "phase_status": "DESIGN_ONLY",
+    "actual_phase15_7_pre_execution_check_status": "NOT_YET_STARTED",
+    "integrated_decision_status": "NO_GO",
+    "receiver_validator_implementation_permission_status": "NOT_EFFECTIVE",
+    "app_implementation_status": "NO_GO",
+    "tests_implementation_status": "NO_GO",
+    "production_status": "NO_GO"
+  }
+}

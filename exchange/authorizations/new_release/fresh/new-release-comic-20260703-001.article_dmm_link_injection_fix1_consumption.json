@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0.0",
+  "document_role": "DMM_ARTICLE_LINK_INJECTION_FIX1_AUTHORIZATION_CONSUMPTION",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M9-FIX1",
+  "content_item_id": "new-release-comic-20260703-001",
+  "consumption_attempt_id": "4548aba7-7236-4782-a302-faea6576959d",
+  "source_authorization_id": "DMM_ARTICLE_LINK_INJECTION_FIX1_ONE_SHOT_AUTHORIZATION_V1",
+  "source_authorization_digest_sha256": "c25ddfa1023038f057ef0d403a00ffe1443f15097f8fc89c6402c7113d37b630",
+  "authorization_consumed": true,
+  "execution_boundary_crossed": true,
+  "consumed_before_article_mutation": true,
+  "authorization_reuse_allowed": false,
+  "automatic_retry_allowed": false,
+  "automatic_reissue_allowed": false,
+  "article_preimage_sha256": "849a37519c6af70d2212ec01d5cddef5793bfa811e97ca9f248ce099a0350bf4",
+  "secret_link_fingerprint_sha256": "f01572020caf88cd0a017e0e739bc492394fa275eeac0e346328adba0fd99141",
+  "full_final_url_present": false,
+  "affiliate_identifier_present": false,
+  "network_connection_performed": false,
+  "wordpress_access_performed": false,
+  "consumed_at_utc": "2026-07-11T07:37:13.139266+00:00",
+  "consumption_evidence_digest_sha256": "d798a6b22539964f260105a41bd412d2b8959ee65f61b28eb79faae9a25885d9"
+}

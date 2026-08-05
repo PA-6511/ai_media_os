@@ -1,0 +1,77 @@
+{
+  "_meta": {
+    "phase": "13-6",
+    "phase_name": "不備・矛盾・署名欠落時の差し戻しルール設計",
+    "version": "1.0",
+    "created_date": "2026-05-12",
+    "status": "PASS_DESIGN_ONLY",
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only",
+    "description": "human review 実入力に不備・矛盾・署名欠落がある場合の差し戻し条件と記録方法を固定する。"
+  },
+  "references": [
+    "generic_block_ai/reports/phase12_4_human_review_completed_input_gap_and_conflict_detection_rules_design.json",
+    "generic_block_ai/reports/phase13_4_human_review_actual_input_format_validation_rules_design.json",
+    "generic_block_ai/reports/phase13_5_human_review_actual_input_evidence_lock_rules_design.json"
+  ],
+  "return_for_revision_rules": [
+    {
+      "rule_id": "RFR-01",
+      "condition": "reviewer.signature is empty",
+      "classification": "SIGNATURE_MISSING",
+      "effect": "return for revision"
+    },
+    {
+      "rule_id": "RFR-02",
+      "condition": "format_valid == false",
+      "classification": "FORMAT_ERROR",
+      "effect": "return for revision"
+    },
+    {
+      "rule_id": "RFR-03",
+      "condition": "all_checks_passed == false",
+      "classification": "VALIDATION_FAILURE",
+      "effect": "return for revision"
+    },
+    {
+      "rule_id": "RFR-04",
+      "condition": "conflicts_found == true",
+      "classification": "CONFLICT_DETECTED",
+      "effect": "manual recheck and return"
+    },
+    {
+      "rule_id": "RFR-05",
+      "condition": "forbidden_mutations detected or production_status changed",
+      "classification": "SAFETY_VIOLATION",
+      "effect": "abort acceptance and return"
+    }
+  ],
+  "return_template": {
+    "returned_for_revision": false,
+    "return_reasons": [],
+    "overall_result": "PENDING",
+    "reason": "実入力差し戻し判定前のため未確定。"
+  },
+  "blocked_actions": [
+    "core_ai_real_send",
+    "external_api_call",
+    "wordpress_operation",
+    "cron_registration",
+    "auto_execute",
+    "auto_post",
+    "auto_update",
+    "auto_delete",
+    "auto_export",
+    "production_execution"
+  ],
+  "phase_decision": {
+    "phase13_6_status": "PASS_DESIGN_ONLY",
+    "app_implementation_status": "NO_GO",
+    "tests_implementation_status": "NO_GO",
+    "note": "差し戻しルールの設計のみ。実装開始や GO 更新は含まない。"
+  }
+}

@@ -1,0 +1,139 @@
+{
+  "policy_name": "PR_WARN_BACKFILL_VALID_UNTIL_REACTION_HANDLER_POLICY",
+  "phase": "PR_WARN_BACKFILL_PHASE1Y_VALID_UNTIL_REACTION_HANDLER_POLICY",
+  "mode": "DESIGN_ONLY_NO_EXECUTION",
+  "target_post_id": 101,
+  "target_title": "呪術廻戦は何巻まで出てる？最新巻・関連情報まとめ",
+  "soft_expiry_threshold_minutes": 10,
+  "reaction_timeout_minutes": 2,
+  "busy_fallback_enabled": true,
+  "busy_fallback_action": "READ_ONLY_REVALIDATION",
+  "auto_resnapshot_allowed": true,
+  "auto_active_approval_refresh_allowed": true,
+  "auto_active_approval_refresh_constraints": {
+    "approved_must_remain_false": true,
+    "wordpress_live_write_allowed_must_remain_false": true,
+    "created_for_execution_must_remain_false": true,
+    "allowed_changed_fields_must_equal": ["content"],
+    "max_live_updates_must_equal": 1,
+    "wordpress_write_allowed": false,
+    "live_execution_allowed": false
+  },
+  "wordpress_get_allowed_only_during_revalidation": true,
+  "wordpress_post_put_patch_delete_allowed": false,
+  "wordpress_write_allowed": false,
+  "approved_true_allowed": false,
+  "live_execution_allowed": false,
+  "human_approval_required_for_approved_true": true,
+  "human_approval_required_for_live_write": true,
+  "reaction_states": [
+    "VALID",
+    "SOFT_EXPIRING",
+    "REACTION_PENDING",
+    "REACTION_BUSY",
+    "HARD_EXPIRED",
+    "REVALIDATING",
+    "RESNAPSHOT_READY",
+    "REVALIDATION_ABORT"
+  ],
+  "transition_rules": [
+    {
+      "from": "VALID",
+      "condition": "remaining_minutes >= soft_expiry_threshold_minutes",
+      "to": "ALLOW_NEXT_PHASE"
+    },
+    {
+      "from": "VALID",
+      "condition": "0 < remaining_minutes < soft_expiry_threshold_minutes",
+      "to": "SOFT_EXPIRING"
+    },
+    {
+      "from": "SOFT_EXPIRING",
+      "condition": "reaction_target_available",
+      "to": "REACTION_PENDING"
+    },
+    {
+      "from": "REACTION_PENDING",
+      "condition": "reaction_timeout_minutes_elapsed_or_target_busy",
+      "to": "REACTION_BUSY"
+    },
+    {
+      "from": "REACTION_BUSY",
+      "condition": "busy_fallback_enabled",
+      "to": "REVALIDATING"
+    },
+    {
+      "from": "HARD_EXPIRED",
+      "condition": "valid_until <= now",
+      "to": "REVALIDATING"
+    },
+    {
+      "from": "REVALIDATING",
+      "condition": "all_read_only_revalidation_checks_pass",
+      "to": "RESNAPSHOT_READY"
+    },
+    {
+      "from": "REVALIDATING",
+      "condition": "any_read_only_revalidation_check_fails",
+      "to": "REVALIDATION_ABORT"
+    }
+  ],
+  "revalidation_checks": {
+    "fetched_post_id_equals_target_post_id": true,
+    "status_from_wp_must_be": "draft",
+    "modified_must_match_rollback_snapshot": true,
+    "content_hash_must_match_rollback_snapshot": true,
+    "payload_changed_fields_must_equal": ["content"],
+    "active_approval_approved_must_be_false": true,
+    "active_approval_wordpress_live_write_allowed_must_be_false": true,
+    "active_approval_created_for_execution_must_be_false": true
+  },
+  "allowed_revalidation_actions": [
+    "READ_ACTIVE_APPROVAL",
+    "READ_ROLLBACK_SNAPSHOT",
+    "READ_PAYLOAD_PREVIEW",
+    "WORDPRESS_READ_ONLY_GET",
+    "CREATE_RERUN_SNAPSHOT",
+    "CREATE_REVALIDATION_RESULT",
+    "CREATE_REVALIDATION_REPORT"
+  ],
+  "allowed_refresh_actions_after_revalidation_pass": [
+    "UPDATE_ACTIVE_APPROVAL_REFERENCE_ONLY",
+    "SET_APPROVED_FALSE",
+    "SET_WORDPRESS_LIVE_WRITE_ALLOWED_FALSE",
+    "SET_CREATED_FOR_EXECUTION_FALSE",
+    "SET_RESNAPSHOT_REQUIRED_BEFORE_LIVE_BY_VALID_UNTIL",
+    "CREATE_REFRESH_RESULT",
+    "CREATE_REFRESH_REPORT"
+  ],
+  "prohibited_actions": [
+    "WORDPRESS_POST",
+    "WORDPRESS_PUT",
+    "WORDPRESS_PATCH",
+    "WORDPRESS_DELETE",
+    "WORDPRESS_WRITE",
+    "PUBLISH",
+    "STATUS_CHANGE",
+    "APPROVED_TRUE",
+    "WORDPRESS_LIVE_WRITE_ALLOWED_TRUE",
+    "CREATED_FOR_EXECUTION_TRUE",
+    "FINAL_APPROVAL_TRUE_CREATION",
+    "LIVE_EXECUTION",
+    "DISPLAY_SNAPSHOT_BODY",
+    "DISPLAY_PAYLOAD_BODY",
+    "DISPLAY_SECRETS",
+    "COMMIT",
+    "PUSH"
+  ],
+  "next_phase_after_policy": "Phase 1S-FINAL-APPROVAL-TRUE-PREP-RERUN3",
+  "if_current_valid_until_expired": "Phase 1N-RERUN",
+  "implementation_status": {
+    "reaction_monitor_created": false,
+    "notification_sender_created": false,
+    "auto_revalidation_runner_created": false,
+    "wordpress_api_called_in_this_phase": false,
+    "wordpress_write_executed": false,
+    "live_execution_executed": false,
+    "approved_true_created": false
+  }
+}

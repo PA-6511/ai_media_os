@@ -1,0 +1,59 @@
+{
+  "phase": "Phase 8-25",
+  "phase_name": "Category Only Update Closure Report for post_id 115",
+  "status": "PHASE8_25_CATEGORY_ONLY_UPDATE_VERIFIED_PENDING_HUMAN_REVIEW",
+  "decision": "CLOSURE_REPORTED_NO_ADDITIONAL_WRITE",
+  "target_post_id": 115,
+  "production_status": "CATEGORY_ONLY_UPDATE_ONLY",
+  "closure_report_created": true,
+  "verified_from_phase8_24": {
+    "status": "PHASE8_24_CATEGORY_ONLY_UPDATE_EXECUTED_PENDING_HUMAN_REVIEW",
+    "post_id": 115,
+    "post_status": "draft",
+    "categories_updated_to": [
+      13
+    ],
+    "tags_updated": false,
+    "title_update_executed": false,
+    "body_update_executed": false,
+    "publish_executed": false,
+    "delete_executed": false,
+    "safety_violations": []
+  },
+  "category_only_update_executed": true,
+  "categories_updated_to": [
+    13
+  ],
+  "post_id": 115,
+  "post_status": "draft",
+  "post_link": "https://hoshido.jp/?p=115",
+  "tags_updated": false,
+  "title_update_executed": false,
+  "body_update_executed": false,
+  "publish_executed": false,
+  "delete_executed": false,
+  "additional_wordpress_write_executed_in_phase8_25": false,
+  "wordpress_api_call_attempted": false,
+  "wordpress_write_executed": false,
+  "wordpress_draft_updated": false,
+  "bulk_operation_executed": false,
+  "export_executed": false,
+  "rollback_executed": false,
+  "freeze_executed": false,
+  "human_review_required": true,
+  "secret_values_output": false,
+  "secret_values_written": false,
+  "errors": [],
+  "warnings": [],
+  "safety_violations": [],
+  "evidence_summary": [
+    {
+      "path": "exchange/logs/phase8_24_category_only_update_post_115_execution_result.json",
+      "exists": true,
+      "status": "PHASE8_24_CATEGORY_ONLY_UPDATE_EXECUTED_PENDING_HUMAN_REVIEW"
+    }
+  ],
+  "next_step": "manual_wp_admin_visual_check_category_is_sales_info",
+  "reviewed_at_utc": "2026-06-09T13:47:49+00:00",
+  "checked_at": "2026-06-09T13:47:50.497584+00:00"
+}

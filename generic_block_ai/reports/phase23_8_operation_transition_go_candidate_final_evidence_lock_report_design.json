@@ -1,0 +1,85 @@
+{
+  "phase_id": "23-8",
+  "phase_name": "Operation Transition GO Candidate Final Evidence Lock Report Design",
+  "phase_japanese_name": "運用移行GO候補の最終証跡固定レポート設計",
+  "purpose": "Design final evidence locking for operation-transition GO candidates after integrated measured judgment",
+  "layer": "operation_transition_actual_measurement_reinforcement_layer",
+  "design_category": "reports_only",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "operation_transition_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "phase_23_8_scope": {
+    "scope_1_candidate_package": {
+      "scope_id": "CANDIDATE_PACKAGE",
+      "required_items": [
+        "phase23_7_operation_transition_go_no_go_actual_measurement_integrated_final_judgment_report_design.json",
+        "operation_transition_measured_judgment_evidence_ids",
+        "final_human_approval_signature_payload",
+        "phase23_4_lock_record_reference"
+      ]
+    },
+    "scope_2_final_locking_process": {
+      "scope_id": "FINAL_LOCKING_PROCESS",
+      "steps": {
+        "step_OLF1": "Canonicalize full GO candidate package",
+        "step_OLF2": "Compute SHA-256 package hash",
+        "step_OLF3": "Sign hash with authority key and signer metadata",
+        "step_OLF4": "Append signed record to immutable audit trail",
+        "step_OLF5": "Roundtrip verify hash and signature integrity",
+        "step_OLF6": "If any step fails, lock_status = LOCK_FAILED and operation_transition_go_authorization = NOT_GRANTED"
+      }
+    },
+    "scope_3_lock_report_structure": {
+      "scope_id": "LOCK_REPORT_STRUCTURE",
+      "sections": {
+        "section_1_header": {
+          "report_id": "PHASE23_8_OP_TRANSITION_GO_CANDIDATE_LOCK_<UTC_TIMESTAMP>",
+          "report_type": "operation_transition_go_candidate_final_evidence_lock",
+          "generated_at_utc": "RFC3339",
+          "generated_by": "authority_identifier"
+        },
+        "section_2_manifest": {
+          "manifest_complete": true,
+          "item_count": "integer"
+        },
+        "section_3_integrity_results": {
+          "operation_transition_go_candidate_hash": "hex",
+          "signature_verification": "PASS | FAIL",
+          "audit_append_status": "PASS | FAIL",
+          "tamper_check_status": "PASS | FAIL"
+        },
+        "section_4_lock_determination": {
+          "lock_status": "LOCK_CONFIRMED | LOCK_FAILED",
+          "operation_transition_go_authorization": "GRANTED | NOT_GRANTED",
+          "production_status": "NO_GO"
+        }
+      }
+    }
+  },
+  "phase_23_8_governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "state_invariants": {
+      "app_implementation_status": "NO_GO",
+      "tests_implementation_status": "NO_GO",
+      "production_status": "NO_GO",
+      "changed_area": "reports only"
+    }
+  }
+}

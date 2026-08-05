@@ -1,0 +1,12 @@
+{
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "scenarios": [
+    "service_check_after_reboot",
+    "stale_lock_cleanup",
+    "environment_variable_recheck",
+    "wordpress_api_reconnect",
+    "github_reconnect"
+  ]
+}

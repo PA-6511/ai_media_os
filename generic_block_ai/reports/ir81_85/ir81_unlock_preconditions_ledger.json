@@ -1,0 +1,65 @@
+{
+  "schema_version": "ir81_unlock_preconditions_ledger_v1",
+  "phase": "IR81",
+  "generated_at": "2026-05-24T14:32:03.874425+00:00",
+  "source_task_id": "ir81_85_live_trial",
+  "validation_result": "PASS",
+  "validation_failed_checks": [],
+  "validation_warnings": [],
+  "unlock_preconditions_ledger": {
+    "ledger_id": "ir81_ledger_ir81_85_live_trial_20260524T143203Z",
+    "generated_at": "2026-05-24T14:32:03.874406+00:00",
+    "source_task_id": "ir81_85_live_trial",
+    "new_cycle_id": "IR71_PLUS_CYCLE_A",
+    "unlock_preconditions": [
+      {
+        "item": "explicit_go_decision_recorded",
+        "required": true,
+        "satisfied": false
+      },
+      {
+        "item": "named_release_approver_recorded",
+        "required": true,
+        "satisfied": false
+      },
+      {
+        "item": "safety_gate_redeclaration_completed",
+        "required": true,
+        "satisfied": false
+      },
+      {
+        "item": "full_test_matrix_reexecuted",
+        "required": true,
+        "satisfied": false
+      },
+      {
+        "item": "external_execution_authorized",
+        "required": true,
+        "satisfied": false
+      }
+    ],
+    "unlock_ready": false,
+    "ledger_scope": "preconditions_definition_only",
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "ledger_hash": "bee6685350a9f94e9fb89b24796c342a9cd28835644d8dabfd6ec1c76fad69b7",
+  "safety_gate_snapshot": {
+    "dry_run": "maintained",
+    "OBSERVE": "maintained",
+    "submission_execution_blocked": true,
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "network_transmission_executed": false,
+    "production_release": false,
+    "GitHub_push": "未実行"
+  }
+}

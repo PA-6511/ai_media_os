@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M17",
+  "policy_id": "WORDPRESS_PUBLICATION_FINAL_ONE_SHOT_EXECUTION_POLICY_V1",
+  "operation_mode": "ONE_AUTHENTICATED_GET_THEN_ONE_PUBLICATION_POST",
+  "content_item_id": "new-release-comic-20260703-001",
+  "wordpress_post_id": 192,
+  "pre_publication_contract": {
+    "maximum_get_request_count": 1,
+    "required_current_status": "draft",
+    "required_title": "ダークギャザリング 第20巻｜配信開始",
+    "required_category_id": 10,
+    "title_exact_match_required": true,
+    "content_exact_match_required": true
+  },
+  "publication_authorization_contract": {
+    "authorization_id": "WORDPRESS_PUBLICATION_ONE_SHOT_AUTHORIZATION_V1",
+    "authorization_file_sha256": "0b8eb340f4551497e99d91dc64ab5d47c149efb098d50ebf6cf981d416624e58",
+    "authorization_digest_sha256": "3af20632d3fabe77f04e795318406ecd0ad9bd7b6d2eb60646e82f108556cc9e",
+    "single_use": true,
+    "required_initial_consumed_state": false,
+    "authorization_reuse_allowed": false,
+    "automatic_retry_allowed": false,
+    "automatic_reissue_allowed": false,
+    "maximum_publish_count": 1,
+    "consume_immediately_before_publication_post": true
+  },
+  "source_evidence_contract": {
+    "m17_pre_network_result_digest_sha256": "f2650043127b69ef5d6cc1b539a7f2fe523f2d53d53ea0cfdd37b0b81a6b8944",
+    "m16_result_digest_sha256": "9eda577486ceaf77be2baf0346cf7152ff3e5113bd091625715e487224c3150a",
+    "m15_result_digest_sha256": "03d777e3e34c4d68c4b55027db87f7b20cee59f947640f3d68b125d6c79f5b06",
+    "m15_human_review_digest_sha256": "be8aafa191df793ecbe2695b662378fef078ce42ae4169a93651a9d2b6141d4c",
+    "payload_file_sha256": "30a70be4110e863a85e2896f69f5b3e51d814a6fd82d5489f899d8a244166d8f",
+    "payload_digest_sha256": "2ab27b59305dbae98f997ca3a460400298152f173ef605b534df922c187411c6",
+    "article_file_sha256": "de2739c8ae1aa4a50973b983964b05844086a2187b9ef337383ad6fa7123697d"
+  },
+  "connection_contract": {
+    "required_scheme": "https",
+    "required_host": "hoshido.jp",
+    "explicit_port_allowed": false,
+    "userinfo_allowed": false,
+    "fragment_allowed": false,
+    "proxy_use_allowed": false,
+    "redirect_allowed": false,
+    "automatic_retry_allowed": false,
+    "maximum_get_request_count": 1,
+    "maximum_publication_post_count": 1
+  },
+  "publication_request_contract": {
+    "method": "POST",
+    "rest_path": "/wp-json/wp/v2/posts/192",
+    "allowed_json_fields": [
+      "status"
+    ],
+    "status": "publish",
+    "title_field_allowed": false,
+    "content_field_allowed": false,
+    "categories_field_allowed": false,
+    "expected_success_http_status": 200
+  },
+  "prohibited_operations": {
+    "title_change": true,
+    "content_change": true,
+    "category_change": true,
+    "post_delete": true,
+    "post_recreation": true,
+    "media_operation": true,
+    "authorization_reuse": true,
+    "automatic_retry": true,
+    "automatic_reissue": true,
+    "x_post": true
+  },
+  "post_execution_boundary": {
+    "production_status": "NO_GO",
+    "post_publication_evidence_review_required": true
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "phase": "Phase 8-5",
+  "status": "FIRST_DRAFT_NOT_EXECUTED",
+  "publish_allowed": false,
+  "update_allowed": false,
+  "delete_allowed": false,
+  "auto_post": false,
+  "auto_update": false,
+  "auto_delete": false,
+  "auto_export": false,
+  "human_review_required": true,
+  "post_id": null,
+  "post_status": null,
+  "freeze_required": false,
+  "evidence_summary": [
+    {
+      "path": "exchange/logs/phase8_1_explicit_human_approval_result.json",
+      "exists": true,
+      "status": "APPROVAL_FILE_VALID_FOR_PREFLIGHT_ONLY"
+    },
+    {
+      "path": "exchange/logs/phase8_2_final_live_preflight_result.json",
+      "exists": true,
+      "status": "FINAL_PREFLIGHT_PASS_READY_FOR_PHASE8_3_SINGLE_DRAFT_CREATE"
+    },
+    {
+      "path": "exchange/logs/phase8_3_first_one_item_wordpress_draft_create_result.json",
+      "exists": true,
+      "status": "NOT_EXECUTED_MISSING_CREDENTIALS"
+    },
+    {
+      "path": "exchange/logs/phase8_4_post_execution_verification_result.json",
+      "exists": true,
+      "status": "NOT_EXECUTED_CONFIRMED"
+    }
+  ],
+  "errors": [],
+  "warnings": [],
+  "safety_violations": [],
+  "allowed_next_step": "Provide credentials or keep NO_GO, then rerun Phase 8-3 only after approval",
+  "checked_at": "2026-05-27T14:18:32.129728+00:00"
+}

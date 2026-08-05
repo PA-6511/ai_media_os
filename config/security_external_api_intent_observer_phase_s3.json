@@ -1,0 +1,48 @@
+{
+  "phase_id": "PHASE_S3",
+  "detector_name": "external_api_intent_observer",
+  "status": "DESIGN_ONLY",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "human_approval_required": true,
+  "detector_only": true,
+  "recommendation_only": true,
+  "executor_action_allowed": false,
+  "external_api_mode": "OBSERVE_ONLY",
+  "external_api_call_allowed": false,
+  "external_api_call_executed": false,
+  "destructive_api_call_allowed": false,
+  "sample_intent": "openai_monitor",
+  "known_api_intents": [
+    "openai_monitor",
+    "wordpress_read",
+    "slack_dry_run_notice",
+    "github_read"
+  ],
+  "denied_api_intents": [
+    "wordpress_write",
+    "wordpress_publish",
+    "wordpress_update",
+    "wordpress_delete",
+    "slack_live_notice",
+    "github_secret_update",
+    "github_actions_trigger",
+    "openai_key_rotation",
+    "external_revoke"
+  ],
+  "recommendations": {
+    "allow_freeze_recommendation": true,
+    "allow_human_review_recommendation": true,
+    "allow_api_permission_review_recommendation": true
+  },
+  "actions": {
+    "external_api_call_execute": false,
+    "auto_freeze_execute": false,
+    "auto_revoke_execute": false
+  },
+  "state_change_executed": false,
+  "freeze_executed": false,
+  "revoke_executed": false,
+  "isolation_executed": false,
+  "wordpress_write_executed": false
+}

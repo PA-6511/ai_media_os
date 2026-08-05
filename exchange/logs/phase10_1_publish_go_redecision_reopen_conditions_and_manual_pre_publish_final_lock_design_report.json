@@ -1,0 +1,103 @@
+{
+  "package_type": "phase10_1_publish_go_redecision_reopen_conditions_and_manual_pre_publish_final_lock_design_report",
+  "phase": "Phase 10-1",
+  "title": "Phase 10-1 Reopen Conditions and Manual Pre-Publish Final Lock Design Report",
+  "status": "PASS",
+  "phase10_1_design_status": "PASS",
+  "design_scope": "reopen_conditions_and_manual_pre_publish_final_lock_design_only",
+  "source_report": "exchange/logs/phase9_5_publish_go_redecision_route_no_go_maintenance_closure_report.json",
+  "current_decision": "KEEP_NO_GO",
+  "phase9_2_decision": "KEEP_NO_GO",
+  "wordpress_draft_id": 110,
+  "target_draft_status": "draft",
+  "publish_candidate_unlocked_for_operator": false,
+  "wordpress_publish_execution": "NO_GO",
+  "wordpress_write_executed": false,
+  "production_status": "NO_GO",
+  "reopen_conditions": [
+    "phase9_5 closure report remains PASS",
+    "current_decision is explicitly changed by a human reviewer",
+    "approval token APPROVE_PUBLISH_ONE_TIME_MANUAL_ONLY is newly issued",
+    "approval token is valid within 30 minutes",
+    "one-time publish scope is explicitly confirmed",
+    "target draft id remains 110 and status remains draft",
+    "publish/update/delete/export remain disabled until explicit manual unlock",
+    "rollback path is manually confirmed before any publish attempt",
+    "all prohibited automation paths remain NO_GO",
+    "manual operator identity and timestamp are recorded"
+  ],
+  "manual_pre_publish_final_lock_design": {
+    "lock_state_default": "LOCKED",
+    "unlock_trigger": "human_manual_go_redecision_only",
+    "unlock_scope": "one_time_manual_publish_only",
+    "approval_token_name": "APPROVE_PUBLISH_ONE_TIME_MANUAL_ONLY",
+    "token_expiry_minutes": 30,
+    "max_publish_count": 1,
+    "requires_human_reviewer": true,
+    "requires_pre_publish_checklist": true,
+    "relock_required_after_attempt": true
+  },
+  "still_forbidden": [
+    "wordpress_publish",
+    "wordpress_update_existing_post",
+    "wordpress_delete_post",
+    "wordpress_export",
+    "wordpress_bulk_post",
+    "cron_automation",
+    "github_actions_trigger",
+    "slack_production_notification",
+    "vps_self_builder_execution",
+    "env_or_secrets_or_credentials_auto_edit"
+  ],
+  "validation_checks": [
+    {
+      "check": "phase9_5_status=PASS",
+      "passed": true,
+      "actual": "PASS"
+    },
+    {
+      "check": "phase9_5_current_decision=KEEP_NO_GO",
+      "passed": true,
+      "actual": "KEEP_NO_GO"
+    },
+    {
+      "check": "publish_candidate_unlocked_for_operator=false",
+      "passed": true,
+      "actual": false
+    },
+    {
+      "check": "wordpress_publish_execution=NO_GO",
+      "passed": true,
+      "actual": "NO_GO"
+    },
+    {
+      "check": "wordpress_write_executed=false",
+      "passed": true,
+      "actual": false
+    },
+    {
+      "check": "production_status=NO_GO",
+      "passed": true,
+      "actual": "NO_GO"
+    },
+    {
+      "check": "wordpress_draft_id=110",
+      "passed": true,
+      "actual": 110
+    },
+    {
+      "check": "target_draft_status=draft",
+      "passed": true,
+      "actual": "draft"
+    }
+  ],
+  "validation_passed": true,
+  "summary": {
+    "phase9_closed_safely": true,
+    "reopen_route_designed": true,
+    "manual_pre_publish_final_lock_designed": true,
+    "publish_still_not_executed": true
+  },
+  "next_step": "phase10_2_manual_redecision_input_and_final_lock_validation_design",
+  "created_at": "2026-05-09T16:57:24.763648+00:00"
+}

@@ -1,0 +1,89 @@
+{
+  "_meta": {
+    "phase": "8-9D",
+    "phase_name": "要再確認差分5件の採用/保留判定",
+    "version": "1.0",
+    "created_date": "2026-05-12",
+    "status": "PASS_WITH_SCOPE_CAVEAT",
+    "production_status": "NO_GO",
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "changed_area": "reports only",
+    "description": "Phase 8-9C で要再確認となった5件を、採用/保留/別枠/停止で分類した判定レポート。"
+  },
+  "inputs": {
+    "from_phase8_9c": "generic_block_ai/reports/phase8_9c_app_tests_existing_diff_labeling_audit.json",
+    "target_files": [
+      "generic_block_ai/app/block_contract.py",
+      "generic_block_ai/app/block_runner.py",
+      "generic_block_ai/app/safety_guard.py",
+      "generic_block_ai/tests/test_manifest.py",
+      "generic_block_ai/tests/conftest.py"
+    ]
+  },
+  "decision_categories": {
+    "category_1": "前工程の正当差分として採用",
+    "category_2": "保留",
+    "category_3": "別枠管理",
+    "category_4": "危険要素ありとして停止"
+  },
+  "file_decisions": [
+    {
+      "path": "generic_block_ai/app/block_contract.py",
+      "decision": "前工程の正当差分として採用",
+      "reason": "operation_mode の必須化追加であり、OBSERVE 固定の安全境界強化。外部接続や実送信を有効化する変更は含まない。"
+    },
+    {
+      "path": "generic_block_ai/app/block_runner.py",
+      "decision": "前工程の正当差分として採用",
+      "reason": "validate_runtime_configuration を追加し、実行前に安全設定逸脱をエラー化する防御的変更。"
+    },
+    {
+      "path": "generic_block_ai/app/safety_guard.py",
+      "decision": "前工程の正当差分として採用",
+      "reason": "OBSERVE/dry_run/human approval/auto_execute禁止を明示検証する関数追加で、安全境界チェック強化。"
+    },
+    {
+      "path": "generic_block_ai/tests/test_manifest.py",
+      "decision": "前工程の正当差分として採用",
+      "reason": "manifest.operation_mode == OBSERVE のアサート追加で、安全境界をテストで固定する補強。"
+    },
+    {
+      "path": "generic_block_ai/tests/conftest.py",
+      "decision": "別枠管理",
+      "reason": "テスト実行パス調整の共通設定であり、Phase 8-7〜8-9 reports 成果物とは直接無関係のため別枠で継続管理。"
+    }
+  ],
+  "decision_summary": {
+    "adopt_count": 4,
+    "hold_count": 0,
+    "separate_track_count": 1,
+    "stop_risky_count": 0
+  },
+  "safety_recheck": {
+    "core_ai_real_send": "not_detected",
+    "external_api_call": "not_detected",
+    "wordpress_operation_execution": "not_detected",
+    "cron_registration_execution": "not_detected",
+    "production_execution_enable": "not_detected",
+    "result": "危険要素ありとして停止すべき差分は検出なし"
+  },
+  "phase_status": {
+    "phase8_reports_status": "PASS_DESIGN_ONLY",
+    "workspace_overall_status": "WARN",
+    "phase8_final_gate_design_status": "PASS_DESIGN_ONLY_WITH_SCOPE_CAVEAT",
+    "production_status": "NO_GO"
+  },
+  "fixed_interpretation": {
+    "phase8_9_go_meaning": "Phase 9 設計開始の検討可",
+    "phase8_9_go_not_meaning": "app 実装開始許可",
+    "app_implementation_permission": "Phase 9 側の別ゲートで判断"
+  },
+  "next_step": {
+    "recommended": "別枠管理1件(conftest.py)の取り扱いを Phase 9 事前整備項目として記録する。",
+    "do_not": [
+      "削除",
+      "巻き戻し"
+    ]
+  }
+}

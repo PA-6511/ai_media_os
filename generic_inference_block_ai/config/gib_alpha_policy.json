@@ -1,0 +1,36 @@
+{
+  "schema_version": "gib.alpha.policy.v0.1",
+  "block_id": "GIB",
+  "version": "alpha0",
+  "phase": "GIB-alpha0-design-only",
+  "status": "DESIGN_ONLY",
+  "production_status": "NO_GO",
+  "execution_mode": "DRY_RUN_ONLY",
+  "execution_allowed": false,
+  "external_network_allowed": false,
+  "credential_access_allowed": false,
+  "wordpress_write_allowed": false,
+  "systemd_operation_allowed": false,
+  "model_runtime_enabled": false,
+  "real_llm_call_allowed": false,
+  "allowed_task_types": [
+    "phase_log_summary",
+    "validator_result_explain",
+    "product_summary",
+    "social_post_draft",
+    "article_outline",
+    "compliance_classify",
+    "security_log_explain"
+  ],
+  "prohibited_actions": [
+    "credential_access",
+    "wordpress_write",
+    "external_api_call",
+    "systemd_operation",
+    "real_llm_call",
+    "go_nogo_decision"
+  ],
+  "report_write_scope": [
+    "generic_inference_block_ai/reports"
+  ]
+}

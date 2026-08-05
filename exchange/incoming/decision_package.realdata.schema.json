@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ai-media-os.local/schemas/decision_package.realdata.schema.json",
+  "title": "Decision Package (Real Data, Phase 5-1)",
+  "type": "object",
+  "required": [
+    "package_type",
+    "source",
+    "target",
+    "mode",
+    "execution",
+    "human_approval_required",
+    "risk_level",
+    "auto_post",
+    "auto_update",
+    "auto_delete",
+    "auto_export",
+    "self_builder_origin"
+  ],
+  "properties": {
+    "package_type": {"const": "decision_package"},
+    "source": {"type": "string", "minLength": 1},
+    "target": {"type": "string", "minLength": 1},
+    "mode": {"const": "CONNECTION_TEST"},
+    "execution": {"const": "DRY_RUN"},
+    "human_approval_required": {"const": true},
+    "risk_level": {"type": "string", "enum": ["LOW", "MEDIUM", "HIGH"]},
+    "auto_post": {"const": false},
+    "auto_update": {"const": false},
+    "auto_delete": {"const": false},
+    "auto_export": {"const": false},
+    "self_builder_origin": {
+      "type": "object",
+      "required": ["type", "location", "execution_allowed", "vps_migration_ready"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["LOCAL_SELF_BUILDER", "VPS_SELF_BUILDER"]
+        },
+        "location": {
+          "type": "string",
+          "enum": ["local", "vps"]
+        },
+        "execution_allowed": {
+          "type": "boolean",
+          "const": false
+        },
+        "vps_migration_ready": {
+          "type": "boolean"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {"type": {"const": "VPS_SELF_BUILDER"}}
+          },
+          "then": {
+            "properties": {
+              "location": {"const": "vps"},
+              "vps_migration_ready": {"const": true}
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {"type": {"const": "LOCAL_SELF_BUILDER"}}
+          },
+          "then": {
+            "properties": {
+              "location": {"const": "local"}
+            }
+          }
+        }
+      ]
+    }
+  },
+  "additionalProperties": true
+}

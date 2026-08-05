@@ -1,0 +1,53 @@
+{
+  "phase": "Phase 8-50B",
+  "status": "SNAPSHOT_GENERATED_DRY_RUN_ONLY",
+  "generated_at": "2026-06-21T01:29:32.824630+00:00",
+  "execution_mode": "DRY_RUN_ONLY",
+  "production_status": "NO_GO",
+  "amazon_api_call_allowed": false,
+  "wordpress_write_allowed": false,
+  "publish_allowed": false,
+  "approval_token_consumed": false,
+  "item_count": 2,
+  "items": [
+    {
+      "asin": "B0DUMMY001",
+      "canonical_item_id": "amazon_jp:B0DUMMY001",
+      "title": "Sample Volume 1",
+      "author": "Sample Author",
+      "volume": "1",
+      "release_date": "2026-06-01",
+      "manual_affiliate_url": "https://www.amazon.co.jp/dp/B0DUMMY001?tag=exampletag-22",
+      "notes": "manual sample item 1",
+      "phase": "Phase 8-50-MANUAL",
+      "source_mode": "manual",
+      "migration_status": "manual_active",
+      "api_verified": false,
+      "human_review_status": "pending",
+      "wordpress_status": "not_created"
+    },
+    {
+      "asin": "B0DUMMY002",
+      "canonical_item_id": "amazon_jp:B0DUMMY002",
+      "title": "Sample Volume 2",
+      "author": "Sample Author",
+      "volume": "2",
+      "release_date": "2026-07-01",
+      "manual_affiliate_url": "https://www.amazon.co.jp/dp/B0DUMMY002?tag=exampletag-22",
+      "notes": "manual sample item 2",
+      "phase": "Phase 8-50-MANUAL",
+      "source_mode": "manual",
+      "migration_status": "manual_active",
+      "api_verified": false,
+      "human_review_status": "pending",
+      "wordpress_status": "not_created"
+    }
+  ],
+  "checksum": "8300f27564100eba04a4635b0c841b4a21f89e55ebc40f9041b2bfaf76b7b284",
+  "next_phase_lock_state": {
+    "phase": "Phase 8-51-MIGRATION-SKELETON",
+    "execution_state": "UNEXECUTED",
+    "lock": "NOT_STARTED_LOCKED",
+    "execution_allowed": false
+  }
+}

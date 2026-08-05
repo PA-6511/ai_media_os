@@ -1,0 +1,36 @@
+{
+  "schema_version": "ir33_submission_package_recomposition_rules_v1",
+  "phase": "IR33",
+  "generated_at": "2026-05-23T16:22:25.357007+00:00",
+  "release_candidate_id": "rc_20260523T155148Z_ir26_live_trial_b940393b490b",
+  "rules": [
+    {
+      "id": "R1",
+      "name": "preserve_release_candidate_id",
+      "description": "Reuse release_candidate_id for dry-run resubmission summaries unless IR26 is reissued."
+    },
+    {
+      "id": "R2",
+      "name": "rebuild_attachment_list",
+      "description": "Always regenerate attachment_list when narrative/index/reviewer summary changes."
+    },
+    {
+      "id": "R3",
+      "name": "refresh_signature_sheet",
+      "description": "Signature sheet date/signature fields are blanked and reissued for each resubmission cycle."
+    },
+    {
+      "id": "R4",
+      "name": "no_external_submission",
+      "description": "External transmission remains prohibited in IR33 dry-run."
+    }
+  ],
+  "safeguards": {
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "production_release": false,
+    "network_transmission_executed": false
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-C",
+  "approval_id": "ls-new-batch-4g-2e-recovery-c-human-category-selection",
+  "approval_label": "CATEGORY_INDEX_HUMAN_REVIEW_APPROVED",
+  "approved_by": "HUMAN_OPERATOR",
+  "human_explicit_approval": true,
+  "approved_at_utc": "2026-07-10T16:09:46.114057+00:00",
+  "selection": {
+    "category_id": 10,
+    "category_name": "最新巻",
+    "category_slug": "%e6%9c%80%e6%96%b0%e5%b7%bb",
+    "category_purpose": "コミック新刊・新巻配信開始記事",
+    "source_category_digest_sha256": "0a152459f2cf4e4908bc5a46df28923b7e3a64c8165f1c50d13a4195f66f3f82",
+    "source_category_index_digest_sha256": "4f8f9ff7dea3fda16bcdf7eae5bea7a4da576fa8dc606a4fde0df34790cde439",
+    "human_selected": true,
+    "automatic_selection_performed": false,
+    "category_mapping_fixed": false,
+    "payload_injection_allowed": false,
+    "wordpress_write_allowed": false
+  },
+  "source_result_digest_sha256": "803ae802e7be4ae0255ada6a896837c8a793d5e82ee0c90f9b04efa589fc201d",
+  "source_lock_digest_sha256": "a27c3fab643ff1a64e63f927a14e892abafa2d4a8526f182bbe9dfacee1b3d07",
+  "approval_recorded": true,
+  "approval_reuse_allowed": false,
+  "selection_change_requires_new_approval": true,
+  "execution_allowed": false,
+  "approval_evidence_digest_sha256": "f618f13c276b52b0937e6a46b8b94ca79092f081ac929a870684e2240e1774dc"
+}

@@ -1,0 +1,116 @@
+{
+  "phase_id": "38-3",
+  "phase_name": "Actual Process Start GO/NO_GO Final Measurement Approval Template Design",
+  "phase_japanese_name": "actual_process_start_go / NO_GO 最終実測承認テンプレート設計",
+  "purpose": "Design a final measurement approval template for actual_process_start_go or NO_GO judgment without granting execution authorization.",
+  "layer": "actual_process_start_go_final_measurement_approval_layer",
+  "design_category": "reports_only",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "operation_transition_go_authorization": "NOT_GRANTED",
+    "production_reflection_go_authorization": "NOT_GRANTED",
+    "freeze_release_go_authorization": "NOT_GRANTED",
+    "execution_start_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "phase_38_3_scope": {
+    "scope_1_input_contract": {
+      "scope_id": "INPUT_CONTRACT",
+      "required_inputs": {
+        "phase38_2_pre_measurement_safety_status": "PASS | FAIL",
+        "phase37_overall_status": "PASS_DESIGN_ONLY",
+        "actual_process_start_go_authorization": "NOT_GRANTED"
+      }
+    },
+    "scope_2_approval_template_rules": {
+      "scope_id": "APPROVAL_TEMPLATE_RULES",
+      "rules": {
+        "rule_P38T1": "Template supports only judgment recording and evidence traceability",
+        "rule_P38T2": "GO judgment candidate does not automatically grant actual_process_start_go_authorization",
+        "rule_P38T3": "NO_GO judgment must explicitly preserve NOT_GRANTED authorizations",
+        "rule_P38T4": "Missing mandatory evidence forces NO_GO",
+        "rule_P38T5": "All outputs are reports-only and non-executable"
+      }
+    },
+    "scope_3_report_structure": {
+      "scope_id": "REPORT_STRUCTURE",
+      "sections": {
+        "section_1_header": {
+          "report_id": "PHASE38_3_ACTUAL_PROCESS_START_GO_NO_GO_FINAL_MEASUREMENT_APPROVAL_TEMPLATE_<UTC_TIMESTAMP>",
+          "report_type": "actual_process_start_go_no_go_final_measurement_approval_template",
+          "generated_at_utc": "RFC3339",
+          "generated_by": "authority_identifier"
+        },
+        "section_2_measurement_inputs": {
+          "required_evidence_set": [
+            "phase37_1_to_37_9_reports",
+            "phase38_1_evidence_receipt_report",
+            "phase38_2_pre_measurement_final_safety_report"
+          ],
+          "evidence_integrity_status": "PASS | FAIL",
+          "missing_evidence": [
+            "NONE | evidence_identifier"
+          ]
+        },
+        "section_3_judgment_template": {
+          "candidate_judgment": "ACTUAL_PROCESS_START_GO | NO_GO",
+          "judgment_basis_summary": "TEXT",
+          "risk_assessment": "LOW | MEDIUM | HIGH",
+          "final_measurement_decision": "PENDING_HUMAN_APPROVAL | REJECTED"
+        },
+        "section_4_authorization_guardrails": {
+          "actual_process_start_go_authorization": "NOT_GRANTED",
+          "manual_release_go_authorization": "NOT_GRANTED",
+          "execution_start_go_authorization": "NOT_GRANTED",
+          "grant_action_required_separate_phase": true
+        },
+        "section_5_state_confirmation": {
+          "app_implementation_status": "NO_GO",
+          "tests_implementation_status": "NO_GO",
+          "production_status": "NO_GO",
+          "operation_transition_go_authorization": "NOT_GRANTED",
+          "production_reflection_go_authorization": "NOT_GRANTED",
+          "freeze_release_go_authorization": "NOT_GRANTED",
+          "execution_start_go_authorization": "NOT_GRANTED",
+          "actual_process_start_go_authorization": "NOT_GRANTED",
+          "manual_release_go_authorization": "NOT_GRANTED",
+          "changed_area": "reports only"
+        }
+      }
+    }
+  },
+  "phase_38_3_governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution",
+      "manual_release_execution",
+      "actual_process_start_execution"
+    ],
+    "state_invariants": {
+      "app_implementation_status": "NO_GO",
+      "tests_implementation_status": "NO_GO",
+      "production_status": "NO_GO",
+      "operation_transition_go_authorization": "NOT_GRANTED",
+      "production_reflection_go_authorization": "NOT_GRANTED",
+      "freeze_release_go_authorization": "NOT_GRANTED",
+      "execution_start_go_authorization": "NOT_GRANTED",
+      "actual_process_start_go_authorization": "NOT_GRANTED",
+      "manual_release_go_authorization": "NOT_GRANTED",
+      "changed_area": "reports only"
+    }
+  }
+}

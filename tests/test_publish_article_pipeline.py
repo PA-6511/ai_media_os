@@ -90,3 +90,37 @@ def test_publish_article_dry_run_does_not_enqueue_retry(monkeypatch) -> None:
 
     assert calls["enqueue"] == 0
     assert calls["should_retry"] == 0
+
+
+def test_enforce_wp_prepublish_quality_appends_pr_block_at_end() -> None:
+    article = {
+        "article_type": "work_article",
+        "content": (
+            "<p>本文です。</p>\n"
+            '<p><a href="https://example.com/item">公式ページで詳細を確認する</a></p>\n'
+            "<p><small>価格・キャンペーン情報は掲載時点の内容です。最新情報は各ストアでご確認ください。</small></p>"
+        ),
+    }
+
+    result = pipeline.enforce_wp_prepublish_quality(article)
+    content = result["content"]
+    pr_block = "<p><strong>PR</strong> 本記事にはプロモーションが含まれます。</p>"
+
+    assert content.endswith(pr_block)
+    assert content.count(pr_block) == 1
+
+
+def test_enforce_wp_prepublish_quality_keeps_existing_pr_block_without_duplication() -> None:
+    pr_block = "<p><strong>PR</strong> 本記事にはプロモーションが含まれます。</p>"
+    article = {
+        "article_type": "work_article",
+        "content": (
+            pr_block
+            + "\n<p>本文です。</p>\n"
+            + '<p><a href="https://example.com/item">公式ページで詳細を確認する</a></p>\n'
+            + "<p><small>価格・キャンペーン情報は掲載時点の内容です。最新情報は各ストアでご確認ください。</small></p>"
+        ),
+    }
+
+    result = pipeline.enforce_wp_prepublish_quality(article)
+    assert result["content"].count(pr_block) == 1

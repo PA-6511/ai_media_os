@@ -1,0 +1,23 @@
+{
+  "package_type": "phase7_1_vps_connection_policy_validation_result",
+  "phase": "Phase 7-1",
+  "status": "PASS",
+  "reason": "vps connection test policy is valid and safe",
+  "policy_valid": true,
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "human_review_required": true,
+  "auto_execute": false,
+  "allow_remote_write": false,
+  "allow_remote_delete": false,
+  "allow_remote_command_exec": false,
+  "allowed_checks": [
+    "ping",
+    "tcp_22",
+    "ssh_banner",
+    "ssh_auth_dry_run",
+    "latency_sample"
+  ],
+  "created_at": "2026-05-24T04:29:50.161147+00:00"
+}

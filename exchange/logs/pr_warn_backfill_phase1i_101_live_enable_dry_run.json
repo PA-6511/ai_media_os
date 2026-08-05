@@ -1,0 +1,42 @@
+{
+  "phase": "PR_WARN_BACKFILL_PHASE1I",
+  "mode": "DRY_RUN_WITH_WRITE_DISABLED",
+  "status": "PASS_LIVE_ENABLE_DESIGN_DRY_RUN_ONLY",
+  "target_post_id": 101,
+  "approved_file_currently_allows_write": true,
+  "final_live_approval_required": true,
+  "final_live_approval_created_as_example_only": true,
+  "wordpress_read_executed": false,
+  "wordpress_write_executed": false,
+  "live_execution_executed": false,
+  "update_count": 0,
+  "proposed_changed_fields": [
+    "content"
+  ],
+  "forbidden_changed_fields": [
+    "title",
+    "status",
+    "slug",
+    "link",
+    "categories",
+    "tags",
+    "featured_media",
+    "publish",
+    "excerpt",
+    "author",
+    "date"
+  ],
+  "snapshot_required": true,
+  "pre_live_resnapshot_required": true,
+  "rollback_snapshot_available": true,
+  "live_write_runner_required_next_phase": true,
+  "next_required_phase": "Phase 1J or Phase 1I-FIX",
+  "no_update_guarantee": true,
+  "generated_from": {
+    "approval_file": "exchange/human_review/pr_warn_backfill_phase1_101_human_approval.approved.json",
+    "snapshot_file": "exchange/logs/pr_warn_backfill_phase1g_101_pre_live_snapshot.json",
+    "snapshot_result_file": "exchange/logs/pr_warn_backfill_phase1g_101_readonly_snapshot_result.json",
+    "phase1f_dry_run_file": "exchange/logs/pr_warn_backfill_phase1f_live_route_101_dry_run.json",
+    "phase1h_report": "reports/pr_warn_backfill_phase1h_live_enable_preflight.md"
+  }
+}

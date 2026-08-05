@@ -1,0 +1,18 @@
+{
+  "phase": "LS-6S",
+  "document_type": "MANUAL_PUBLISH_FINAL_PREFLIGHT_LOCK",
+  "status": "MANUAL_PUBLISH_FINAL_PREFLIGHT_LOCKED_NO_PUBLISH",
+  "locked": true,
+  "post_id": 183,
+  "target_post_status": "draft",
+  "approval_label": "APPROVED_FOR_SEPARATE_MANUAL_PUBLISH_APPROVAL_GATE_ONLY",
+  "approval_label_consumed": false,
+  "manual_publish_allowed_by_this_phase": false,
+  "manual_publish_execution_allowed_by_this_phase": false,
+  "manual_publish_executed": false,
+  "rerun_allowed": false,
+  "ls6oc1_rerun_executed": false,
+  "requires_next_phase": "LS-6T",
+  "requires_separate_execute_now_confirmation": true,
+  "publish_execution_still_blocked": true
+}

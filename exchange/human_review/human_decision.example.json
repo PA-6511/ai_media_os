@@ -1,0 +1,17 @@
+{
+  "package_type": "human_decision",
+  "source": "human_operator",
+  "target": "core_consensus_ai",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "human_approval_required": true,
+  "decision": "APPROVE_DRY_RUN_ONLY",
+  "reason": "DRY_RUN接続試験としてのみ承認。本番反映は許可しない。",
+  "auto_post": false,
+  "auto_update": false,
+  "auto_delete": false,
+  "auto_export": false,
+  "wordpress_write_executed": false,
+  "slack_notification_executed": false,
+  "github_actions_triggered": false
+}

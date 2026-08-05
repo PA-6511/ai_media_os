@@ -1,0 +1,28 @@
+{
+  "phase": "LS-7A",
+  "status": "LS7A_HUMAN_REVIEW_DO_NOT_PUBLISH_EVIDENCE_RECORDED",
+  "execution_mode": "REVIEW_ONLY",
+  "production_status": "NO_GO",
+  "post_id": 119,
+  "post_status": "draft",
+  "technical_creation_result": "PASS",
+  "review_status": "DO_NOT_PUBLISH_SAMPLE_PAYLOAD",
+  "publish_decision": "DO_NOT_PUBLISH",
+  "manual_publish_allowed": false,
+  "requires_payload_rebuild": true,
+  "wordpress_api_call_executed": false,
+  "wordpress_write_executed": false,
+  "wordpress_draft_creation_executed": false,
+  "wordpress_existing_post_update_executed": false,
+  "publish_executed": false,
+  "delete_executed": false,
+  "approval_token_consumed": false,
+  "ls6b_rerun_executed": false,
+  "next_phase": {
+    "phase": "LS-6C",
+    "execution_allowed": false,
+    "purpose": "Real Draft Payload Rebuild DRY_RUN"
+  },
+  "errors": [],
+  "generated_at": "2026-06-21T12:06:58.633026+00:00"
+}

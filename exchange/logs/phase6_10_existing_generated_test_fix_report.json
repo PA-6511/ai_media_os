@@ -1,0 +1,23 @@
+{
+  "phase": "Phase 6-10",
+  "name": "existing_generated_test_indentation_fix",
+  "status": "PASS",
+  "target_file": "generic_block_ai/reports/generated_skeleton_affiliate_block/tests/test_manifest.py",
+  "production_status": "NO_GO",
+  "wordpress_draft_creation": "NO_GO",
+  "wordpress_write_executed": false,
+  "auto_post": false,
+  "auto_update": false,
+  "auto_delete": false,
+  "auto_export": false,
+  "publish_allowed": false,
+  "fixed_issue": "IndentationError",
+  "phase6_hardening_pack_unchanged": true,
+  "py_compile_target": "OK",
+  "target_pytest": "OK",
+  "phase6_added_tests": "OK",
+  "generic_block_ai_tests": "OK",
+  "full_pytest": "OK",
+  "remaining_errors": [],
+  "next_step": "Phase 7-1 ELIGIBLE single controlled run design"
+}

@@ -1,0 +1,32 @@
+{
+  "phase": "Implementation Restart Phase 20",
+  "status": "COMPLETED",
+  "generated_at": "2026-05-23T15:27:09.325067+00:00",
+  "schema_version": "ir20_cross_phase_evidence_bundle_v1",
+  "test_result": {
+    "focused_tests": {
+      "passed": 4,
+      "failed": 0
+    },
+    "full_regression": {
+      "passed": 180,
+      "failed": 0
+    }
+  },
+  "validation_result": "PASS",
+  "included_artifact_count": 29,
+  "missing_required_artifact_count": 0,
+  "artifacts": {
+    "bundle_report": "generic_block_ai/reports/ir20_cross_phase_evidence_bundle_ir20_live_trial.json",
+    "manifest": "generic_block_ai/reports/ir20_evidence_pack_ir20_live_trial/manifest.json",
+    "sha256_manifest": "generic_block_ai/reports/ir20_evidence_pack_ir20_live_trial/sha256_manifest.json",
+    "completion_report": "reports/implementation_restart_phase20_completion_report.json"
+  },
+  "safeguards": {
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "production_release": false
+  }
+}

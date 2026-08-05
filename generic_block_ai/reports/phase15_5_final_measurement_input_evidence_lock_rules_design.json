@@ -1,0 +1,67 @@
+{
+  "_meta": {
+    "phase": "15-5",
+    "phase_name": "最終実測入力の証跡固定ルール設計",
+    "version": "1.0",
+    "created_date": "2026-05-13",
+    "status": "PASS_DESIGN_ONLY",
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only",
+    "description": "最終実測入力に基づく判定前に、必要証跡を固定して判定根拠を再現可能にする。"
+  },
+  "references": [
+    "generic_block_ai/reports/phase14_5_receiver_validator_permission_candidate_evidence_lock_rules_design.json",
+    "generic_block_ai/reports/phase15_4_final_measurement_input_format_validation_rules_design.json",
+    "generic_block_ai/reports/phase15_3_go_candidate_to_measured_go_pre_promotion_final_acceptance_gate_design.json"
+  ],
+  "evidence_lock_rules": [
+    {
+      "rule_id": "MLR-01",
+      "required_evidence": "format validation result",
+      "lock_condition": "integrated_input_valid == true and permission_input_valid == true"
+    },
+    {
+      "rule_id": "MLR-02",
+      "required_evidence": "assessment/feasibility basis",
+      "lock_condition": "assessment_basis and feasibility_basis are non-empty when GO/EFFECTIVE candidates appear"
+    },
+    {
+      "rule_id": "MLR-03",
+      "required_evidence": "pre-promotion gate result",
+      "lock_condition": "gate_result_template is updated"
+    },
+    {
+      "rule_id": "MLR-04",
+      "required_evidence": "safety invariants",
+      "lock_condition": "production_status == NO_GO and blocked_actions remain prohibited"
+    }
+  ],
+  "evidence_lock_template": {
+    "all_measurement_evidence_locked": false,
+    "missing_evidence": [],
+    "overall_result": "PENDING",
+    "reason": "最終実測入力の検証が未完了のため証跡固定は未完了。"
+  },
+  "blocked_actions": [
+    "core_ai_real_send",
+    "external_api_call",
+    "wordpress_operation",
+    "cron_registration",
+    "auto_execute",
+    "auto_post",
+    "auto_update",
+    "auto_delete",
+    "auto_export",
+    "production_execution"
+  ],
+  "phase_decision": {
+    "phase15_5_status": "PASS_DESIGN_ONLY",
+    "app_implementation_status": "NO_GO",
+    "tests_implementation_status": "NO_GO",
+    "note": "最終実測入力の証跡固定ルール設計のみ。実装開始は含まない。"
+  }
+}

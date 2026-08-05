@@ -1,0 +1,20 @@
+{
+  "phase": "PR_WARN_BACKFILL_PHASE1O_REACTION_REFRESH6_ACTIVE_APPROVAL",
+  "status": "PASS_REACTION_ACTIVE_APPROVAL_REFRESH6_NO_WRITE",
+  "target_post_id": 101,
+  "approval_state": "REFRESHED_NOT_APPROVED",
+  "approved": false,
+  "wordpress_live_write_allowed": false,
+  "created_for_execution": false,
+  "required_pre_live_snapshot_path": "exchange/logs/pr_warn_backfill_phase1n_reaction_rerun6_101_pre_live_resnapshot.json",
+  "required_pre_live_snapshot_result_path": "exchange/logs/pr_warn_backfill_phase1n_reaction_rerun6_101_pre_live_resnapshot_result.json",
+  "pre_live_snapshot_valid_until": "2026-06-20T17:37:37.072949+00:00",
+  "valid_until_deprecated": true,
+  "valid_until_used_as_execution_gate": false,
+  "replacement_gate": "IMMEDIATE_PRE_WRITE_GET_MATCH",
+  "wordpress_write_executed": false,
+  "live_execution_executed": false,
+  "approved_true_created": false,
+  "approval_consumed": false,
+  "next_required_phase": "Phase 1W-ONE-POST-LIVE-WRITE-RERUN"
+}

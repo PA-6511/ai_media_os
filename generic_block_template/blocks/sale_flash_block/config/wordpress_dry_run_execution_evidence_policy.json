@@ -1,0 +1,18 @@
+{
+  "block_name": "sale_flash_block",
+  "phase": "SFB-8",
+  "mode": "DRY_RUN",
+  "production_status": "NO_GO",
+  "external_api_allowed": false,
+  "external_network_allowed": false,
+  "wordpress_write_allowed": false,
+  "publish_allowed": false,
+  "update_allowed": false,
+  "delete_allowed": false,
+  "export_allowed": false,
+  "input_final_human_approval_package": "logs/final_human_approval_package.json",
+  "input_wordpress_draft_handoff": "logs/wordpress_draft_handoff.json",
+  "output_json": "logs/wordpress_dry_run_execution_evidence.json",
+  "output_markdown": "logs/wordpress_dry_run_execution_evidence.md",
+  "required_execution_gate": "READY_FOR_DRY_RUN_ONLY"
+}

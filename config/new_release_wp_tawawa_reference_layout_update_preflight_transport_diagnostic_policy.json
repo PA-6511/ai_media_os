@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M27-FIX1",
+  "policy_id": "WORDPRESS_TAWAWA_REFERENCE_LAYOUT_UPDATE_PREFLIGHT_TRANSPORT_DIAGNOSTIC_POLICY_V1",
+  "operation_mode": "LOCAL_TRANSPORT_FAILURE_DIAGNOSTIC_AND_REVISED_RUNNER_GENERATION_ONLY",
+  "content_item_id": "new-release-comic-20260703-001",
+  "wordpress_post_id": 192,
+  "required_approval_label": "WORDPRESS_TAWAWA_REFERENCE_LAYOUT_UPDATE_PREFLIGHT_TRANSPORT_DIAGNOSTIC_APPROVED",
+  "diagnostic_contract": {
+    "read_saved_m27_snapshot": true,
+    "read_saved_m27_result": true,
+    "extract_safe_exception_type": true,
+    "infer_failure_stage_from_saved_flags": true,
+    "compare_prior_successful_get_runner": true,
+    "generate_revised_get_only_runner": true,
+    "generate_local_mock_tests": true,
+    "generate_non_execution_next_request_plan": true
+  },
+  "secret_output_contract": {
+    "credential_value_output_allowed": false,
+    "username_output_allowed": false,
+    "full_url_output_allowed": false,
+    "authorization_header_output_allowed": false,
+    "wordpress_content_output_allowed": false,
+    "affiliate_identifier_output_allowed": false
+  },
+  "source_preservation_contract": {
+    "m27_result_modification_allowed": false,
+    "m27_snapshot_modification_allowed": false,
+    "m27_runner_modification_allowed": false,
+    "m26_authorization_modification_allowed": false,
+    "m24_rendered_content_modification_allowed": false,
+    "m24_update_payload_modification_allowed": false,
+    "m25_human_review_modification_allowed": false,
+    "rollback_evidence_modification_allowed": false
+  },
+  "network_boundary": {
+    "dns_resolution_allowed": false,
+    "network_connection_allowed": false,
+    "http_request_allowed": false,
+    "wordpress_access_allowed": false,
+    "wordpress_write_allowed": false,
+    "wordpress_update_allowed": false,
+    "wordpress_republish_allowed": false,
+    "wordpress_delete_allowed": false,
+    "authorization_consumption_allowed": false,
+    "authorization_reuse_allowed": false,
+    "automatic_retry_allowed": false,
+    "automatic_reissue_allowed": false,
+    "x_post_allowed": false
+  },
+  "revised_runner_contract": {
+    "method": "GET",
+    "maximum_request_count": 1,
+    "redirect_following_allowed": false,
+    "automatic_retry_allowed": false,
+    "safe_exception_type_recording": true,
+    "safe_failure_stage_recording": true,
+    "explicit_future_network_approval_environment_gate_required": true,
+    "current_phase_execution_allowed": false
+  },
+  "next_gate": {
+    "required_phase": "LS-NEW-BATCH-4G-2E-RECOVERY-M27-FIX1-RETRY-APPROVAL",
+    "ready_for_network_retry_approval_on_success": true,
+    "ready_for_wordpress_update": false
+  },
+  "production_status": "NO_GO"
+}

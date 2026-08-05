@@ -1,0 +1,57 @@
+{
+  "phase_id": "PHASE_S3",
+  "event_batch_type": "DRY_RUN_OBSERVABILITY_INPUT",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "human_approval_required": true,
+  "dry_run_only": true,
+  "recommendation_only": true,
+  "executor_action_allowed": false,
+  "events": [
+    {
+      "event_id": "scheduler_retry_loop_sample",
+      "event_type": "scheduler_anomaly",
+      "retry_count": 4,
+      "queue_depth": 10,
+      "cron_runs_per_hour": 1,
+      "duplicate_runs": 0,
+      "expected_result": "WARN"
+    },
+    {
+      "event_id": "wordpress_publish_intent_sample",
+      "event_type": "wordpress_write_intent",
+      "intent": "publish_intent",
+      "wordpress_write_executed": false,
+      "expected_result": "FAIL"
+    },
+    {
+      "event_id": "unknown_external_api_intent_sample",
+      "event_type": "external_api_intent",
+      "intent": "unknown_api_call",
+      "external_api_call_executed": false,
+      "expected_result": "WARN"
+    },
+    {
+      "event_id": "env_secret_echo_intent_sample",
+      "event_type": "env_access_intent",
+      "intent": "secret_value_echo",
+      "secret_value_output_allowed": false,
+      "expected_result": "FAIL"
+    },
+    {
+      "event_id": "process_duplicate_runner_sample",
+      "event_type": "process_anomaly",
+      "intent": "duplicated_runner",
+      "process_kill_executed": false,
+      "expected_result": "FAIL"
+    }
+  ],
+  "actions": {
+    "freeze_executed": false,
+    "revoke_executed": false,
+    "isolation_executed": false,
+    "wordpress_write_executed": false,
+    "external_api_call_executed": false,
+    "state_change_executed": false
+  }
+}

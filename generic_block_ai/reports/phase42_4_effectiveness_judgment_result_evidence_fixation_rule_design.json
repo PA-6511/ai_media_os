@@ -1,0 +1,33 @@
+{
+  "_meta": {
+    "phase": "42-4",
+    "phase_name": "最終承認後・発効可否確認層",
+    "layer": "補強層 (reinforcement layer)",
+    "title": "発効可否判定結果の証跡固定ルール設計",
+    "created": "2026-05-14",
+    "author": "governance-framework",
+    "status": "PASS_DESIGN_ONLY",
+    "reports_only": true
+  },
+  "scope": "Phase 42-2 / 42-3 で実施された manual_release_go_authorization / actual_process_start_go_authorization の発効可否判定の結果に対して、以下の証跡固定ルールを設計する：(1) Phase 42-2 / 42-3 の判定プロセス全体（二重承認設計適切性、分離確認、権限要件、発効時検証ポイント）の記録を改ざん不可の報告形式で固定、(2) 発効可能と判定された場合のみその理由と根拠を詳細に記録、(3) 発効不可と判定された場合は理由を詳細に分類記録、(4) 判定結果と Phase 41-9 完了宣言との対応関係を記録。",
+  "governance": {
+    "production_status": "NO_GO",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "report": {
+    "description": "Phase 42-4 では、Phase 42-2 / 42-3 で実施された発効可否判定に対して、証跡固定ルールを 設計層で定義する。(1) 判定プロセス全体の記録固定：各検証テンプレットの実施結果を改ざん不可のレポート形式で固定する。(2) 発効可能時の記録：manual_release_go_authorization / actual_process_start_go_authorization が発効可能と判定された場合、その根拠を詳細に記録する。(3) 発効不可時の記録：発効不可と判定された場合、不可理由を詳細に分類記録する。(4) Phase 41-9 との対応記録：判定結果が Phase 41 の完了宣言とどう対応しているか を記録する。これらのルールは全て 設計層（reports only）で実装される。",
+    "invariants": [
+      "NO_GO 維持：証跡固定プロセスを通じて production_status = 'NO_GO' は維持される",
+      "NOT_GRANTED 維持：証跡固定プロセスを通じて manual_release_go_authorization / actual_process_start_go_authorization は 'NOT_GRANTED' のままである",
+      "reports only：証跡固定ルール全体は報告書形式で実装される"
+    ],
+    "actions": [],
+    "notes": [
+      "Phase 42-4 は 設計層のみで実装される",
+      "証跡固定は reports only",
+      "実処理開始は NO_GO のまま"
+    ]
+  }
+}

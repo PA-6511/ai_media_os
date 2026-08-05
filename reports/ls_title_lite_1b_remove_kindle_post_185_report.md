@@ -1,0 +1,21 @@
+# LS-TITLE-LITE-1B Remove Kindle Label Report
+
+- Phase: LS-TITLE-LITE-1B
+- Status: LS_TITLE_LITE_1B_BLOCKED_ALREADY_UPDATED
+- Target post ID: 185
+- Old title: None
+- New title: 月曜日のたわわ 第15巻｜配信開始
+- Title update only: true
+- Content update executed: false
+- Slug update executed: false
+- Store block update executed: false
+- Info card update executed: false
+- Cover update executed: false
+- WordPress post update executed: false
+- Credential env read executed: false
+- Credential value output: false
+- Secret output: false
+- Authorization output: false
+- Response body output: false
+- One-shot title update consumed: false
+- Ready for visual check: false

@@ -1,0 +1,19 @@
+{
+  "phase": "Phase 6-6",
+  "status": "PASS_DRY_RUN_ONLY",
+  "production_status": "NO_GO",
+  "wordpress_write_executed": false,
+  "checked_fields": [
+    "title",
+    "body",
+    "product_name",
+    "affiliate_links",
+    "cta",
+    "category",
+    "tags",
+    "pr_notice"
+  ],
+  "errors": [],
+  "warnings": [],
+  "next_step": "phase6_7_slack_approval_dry_run"
+}

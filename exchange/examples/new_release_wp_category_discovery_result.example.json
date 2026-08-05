@@ -1,0 +1,86 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4D",
+  "policy_id": "NEW_RELEASE_WP_READ_ONLY_CATEGORY_DISCOVERY_POLICY_V1",
+  "discovery_package_id": "wp-category-discovery-example-20260717",
+  "source_preexecution_package_id": "wp-production-category-pending-example-20260717",
+  "batch_id": "example-20260717",
+  "template_contract_id": "POST185_STANDARD_TEMPLATE_V1_FIXED",
+  "source_preexecution_package_digest_sha256": "1fe6f740f16f556112e3eaa24e683418249c2f5c1c3825f081ffbb3ed560524f",
+  "discovery_mode": "LOCAL_FIXTURE_ONLY",
+  "catalog_identity": {
+    "source_type": "LOCAL_FIXTURE",
+    "site_identity": "LOCAL_TEST_SITE_ONLY",
+    "fetched_at": "2026-07-10T22:00:00+09:00",
+    "production_usable": false
+  },
+  "discovery_summary": {
+    "expected_category_count": 1,
+    "matched_category_count": 1,
+    "all_categories_matched": true,
+    "production_category_ids_present": false,
+    "production_category_ids_usable": false,
+    "fixture_candidates_present": true,
+    "fixture_candidates_applied_to_payload": false
+  },
+  "discovery_results": [
+    {
+      "category_slug": "comic-new-release",
+      "category_name": "コミック新刊",
+      "match_state": "MATCHED_FIXTURE_ONLY",
+      "candidate_fixture_category_id": 990001,
+      "fixture_post_count": 0,
+      "discovery_source": "LOCAL_FIXTURE",
+      "production_usable": false,
+      "payload_injection_allowed": false,
+      "human_verification_required": true
+    }
+  ],
+  "item_discovery_links": [
+    {
+      "item_id": "example-20260717-001",
+      "category_slug": "comic-new-release",
+      "category_name": "コミック新刊",
+      "source_wordpress_category_id": null,
+      "candidate_fixture_category_id": 990001,
+      "candidate_state": "FIXTURE_ONLY_NOT_APPLIED",
+      "source_pending_payload_digest_sha256": "18b49e0b1ae03d7ad177e45afc0d23a27ff2c484106d66e8704f4eb845116618",
+      "production_payload_modified": false,
+      "production_usable": false,
+      "execution_allowed": false
+    }
+  ],
+  "preexecution_gate": {
+    "state": "BLOCKED_FIXTURE_DISCOVERY_NOT_PRODUCTION",
+    "read_only_design_verified": true,
+    "production_read_only_lookup_completed": false,
+    "production_category_resolution_completed": false,
+    "execution_approval_issued": false,
+    "approval_token": null,
+    "execution_allowed": false
+  },
+  "execution_boundary": {
+    "credential_read_allowed": false,
+    "wordpress_api_call_allowed": false,
+    "wordpress_category_lookup_allowed": false,
+    "wordpress_database_read_allowed": false,
+    "wordpress_database_write_allowed": false,
+    "wordpress_write_allowed": false,
+    "wordpress_publish_allowed": false,
+    "x_post_allowed": false,
+    "external_api_call_allowed": false,
+    "execution_approval_issued": false,
+    "approval_token_present": false,
+    "execution_allowed": false,
+    "production_status": "NO_GO",
+    "safety_state": "READ_ONLY_DISCOVERY_DESIGN_ONLY"
+  },
+  "verified_checks": [
+    "source_phase_identity",
+    "source_preexecution_digest_verified",
+    "source_pending_payload_digests_verified",
+    "source_category_ids_absent",
+    "source_preexecution_gate_closed"
+  ],
+  "discovery_package_digest_sha256": "ba643626f6b35b7df2df9419561e21e8724db4e5755b9d0456fa725740cc80ec"
+}

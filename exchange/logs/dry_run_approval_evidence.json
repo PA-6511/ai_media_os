@@ -1,0 +1,38 @@
+{
+  "package_type": "dry_run_approval_evidence",
+  "phase": "Phase 4-7",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "human_approval_required": true,
+  "status": "PASS",
+  "decision": "APPROVE_DRY_RUN_ONLY",
+  "decision_status": "PASS",
+  "decision_next_step": "record_dry_run_evidence",
+  "summary": "DRY_RUN接続試験としてのみ承認。本文番反映・投稿・更新・削除・外部出力は未許可。",
+  "source_files": {
+    "validation_result": "exchange/logs/validation_result.json",
+    "review_required": "exchange/human_review/review_required.json",
+    "human_decision_result": "exchange/logs/human_decision_result.json"
+  },
+  "safety_flags": {
+    "auto_post": false,
+    "auto_update": false,
+    "auto_delete": false,
+    "auto_export": false,
+    "wordpress_write_executed": false,
+    "slack_notification_executed": false,
+    "github_actions_triggered": false
+  },
+  "allowed_next_step": "record_only_no_production_action",
+  "forbidden_actions": [
+    "wordpress_production_post",
+    "wordpress_production_update",
+    "article_delete",
+    "external_export",
+    "github_actions_trigger",
+    "slack_notification",
+    "cron_change",
+    "env_or_secret_access"
+  ],
+  "created_at": "2026-05-05T05:04:11.223630+00:00"
+}

@@ -1,0 +1,366 @@
+{
+  "schema_version": "ir180_phase_176_180_completion_bundle_v1",
+  "phase": "IR180",
+  "generated_at": "2026-05-26T12:53:34.316361+00:00",
+  "source_task_id": "ir176_180_batch",
+  "new_cycle_id": "IR71_PLUS_CYCLE_A",
+  "ir176_result": {
+    "schema_version": "ir176_periodic_reverification_timeline_snapshot_v1",
+    "phase": "IR176",
+    "generated_at": "2026-05-26T12:53:34.315183+00:00",
+    "source_task_id": "ir176_180_batch",
+    "validation_result": "PASS",
+    "validation_failed_checks": [],
+    "validation_warnings": [],
+    "periodic_reverification_timeline_snapshot": {
+      "snapshot_id": "ir176_snapshot_ir176_180_batch_20260526T125334Z",
+      "generated_at": "2026-05-26T12:53:34.314819+00:00",
+      "source_task_id": "ir176_180_batch",
+      "new_cycle_id": "IR71_PLUS_CYCLE_A",
+      "timeline_entries": [
+        {
+          "timeline_item_id": "timeline_1",
+          "timeline_position": 1,
+          "source_phase": "IR171",
+          "source_content": "Periodic Reverification Snapshot",
+          "timeline_status": "FIXED",
+          "change_detected": false
+        },
+        {
+          "timeline_item_id": "timeline_2",
+          "timeline_position": 2,
+          "source_phase": "IR172",
+          "source_content": "Zero-Change Audit Registry",
+          "timeline_status": "FIXED",
+          "change_detected": false
+        },
+        {
+          "timeline_item_id": "timeline_3",
+          "timeline_position": 3,
+          "source_phase": "IR173",
+          "source_content": "Tracking Digest Refix",
+          "timeline_status": "FIXED",
+          "change_detected": false
+        },
+        {
+          "timeline_item_id": "timeline_4",
+          "timeline_position": 4,
+          "source_phase": "IR174",
+          "source_content": "DRY_RUN Continuity Evidence",
+          "timeline_status": "FIXED",
+          "change_detected": false
+        },
+        {
+          "timeline_item_id": "timeline_5",
+          "timeline_position": 5,
+          "source_phase": "IR175",
+          "source_content": "Phase 171-175 Completion Bundle",
+          "timeline_status": "FIXED",
+          "change_detected": false
+        }
+      ],
+      "entry_count": 5,
+      "timeline_fixed": true,
+      "unlock_eligible": false,
+      "safety_gate_snapshot": {
+        "dry_run": "maintained",
+        "OBSERVE": "maintained",
+        "submission_execution_blocked": true,
+        "execution_policy_execute": false,
+        "external_write_executed": false,
+        "network_transmission_executed": false,
+        "production_release": false,
+        "GitHub_push": "未実行"
+      }
+    },
+    "snapshot_hash": "517d62acde6c0b8f91a9a8354f1789c0c7e90350d7b3c9570140332c2a2516db",
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "ir177_result": {
+    "schema_version": "ir177_reaudit_reference_index_closure_v1",
+    "phase": "IR177",
+    "generated_at": "2026-05-26T12:53:34.315842+00:00",
+    "source_task_id": "ir176_180_batch",
+    "validation_result": "PASS",
+    "validation_failed_checks": [],
+    "validation_warnings": [],
+    "reaudit_reference_index_closure": {
+      "registry_id": "ir177_registry_ir176_180_batch_20260526T125334Z",
+      "generated_at": "2026-05-26T12:53:34.315833+00:00",
+      "source_task_id": "ir176_180_batch",
+      "new_cycle_id": "IR71_PLUS_CYCLE_A",
+      "index_entries": [
+        {
+          "timeline_item_id": "timeline_1",
+          "timeline_position": 1,
+          "source_phase": "IR171",
+          "index_status": "CLOSED_REFERENCE_ONLY",
+          "change_detected": false
+        },
+        {
+          "timeline_item_id": "timeline_2",
+          "timeline_position": 2,
+          "source_phase": "IR172",
+          "index_status": "CLOSED_REFERENCE_ONLY",
+          "change_detected": false
+        },
+        {
+          "timeline_item_id": "timeline_3",
+          "timeline_position": 3,
+          "source_phase": "IR173",
+          "index_status": "CLOSED_REFERENCE_ONLY",
+          "change_detected": false
+        },
+        {
+          "timeline_item_id": "timeline_4",
+          "timeline_position": 4,
+          "source_phase": "IR174",
+          "index_status": "CLOSED_REFERENCE_ONLY",
+          "change_detected": false
+        },
+        {
+          "timeline_item_id": "timeline_5",
+          "timeline_position": 5,
+          "source_phase": "IR175",
+          "index_status": "CLOSED_REFERENCE_ONLY",
+          "change_detected": false
+        }
+      ],
+      "entry_count": 5,
+      "all_closed_reference_only": true,
+      "unlock_eligible": false,
+      "safety_gate_snapshot": {
+        "dry_run": "maintained",
+        "OBSERVE": "maintained",
+        "submission_execution_blocked": true,
+        "execution_policy_execute": false,
+        "external_write_executed": false,
+        "network_transmission_executed": false,
+        "production_release": false,
+        "GitHub_push": "未実行"
+      }
+    },
+    "registry_hash": "af2c3d2e8613145271504671746f3dbfc9e65f1d864092daeed50a7b9f647769",
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "ir178_result": {
+    "schema_version": "ir178_timeline_digest_refix_v1",
+    "phase": "IR178",
+    "generated_at": "2026-05-26T12:53:34.316046+00:00",
+    "source_task_id": "ir176_180_batch",
+    "validation_result": "PASS",
+    "validation_failed_checks": [],
+    "validation_warnings": [],
+    "timeline_digest_refix": {
+      "digest_id": "ir178_digest_ir176_180_batch_20260526T125334Z",
+      "generated_at": "2026-05-26T12:53:34.316042+00:00",
+      "source_task_id": "ir176_180_batch",
+      "new_cycle_id": "IR71_PLUS_CYCLE_A",
+      "digest_entries": [
+        {
+          "timeline_item_id": "timeline_1",
+          "source_phase": "IR171",
+          "digest_id": "a034999b074f2b146fa9493a2d606c6e9aa7b1815b26ffc39cdeb6bd5c6fc571",
+          "digest_status": "TIMELINE_DIGEST_REFIXED"
+        },
+        {
+          "timeline_item_id": "timeline_2",
+          "source_phase": "IR172",
+          "digest_id": "f4a8cc055427397e2d62fa6b4dac83c39a392c4ea86894cfd38d0fc4985063ec",
+          "digest_status": "TIMELINE_DIGEST_REFIXED"
+        },
+        {
+          "timeline_item_id": "timeline_3",
+          "source_phase": "IR173",
+          "digest_id": "e8d944cb9069592a9982ef9a25fc3ee6088d1cb1db56f610f283aa91aadfeb66",
+          "digest_status": "TIMELINE_DIGEST_REFIXED"
+        },
+        {
+          "timeline_item_id": "timeline_4",
+          "source_phase": "IR174",
+          "digest_id": "cbb6af25da4c9af8afa3ff96293db0742505e595eab49a3ebb2f809750c426af",
+          "digest_status": "TIMELINE_DIGEST_REFIXED"
+        },
+        {
+          "timeline_item_id": "timeline_5",
+          "source_phase": "IR175",
+          "digest_id": "0eb10bb888a89bc5ca95da3d63fd449efde2081b78a3746e24a87e57632d141c",
+          "digest_status": "TIMELINE_DIGEST_REFIXED"
+        }
+      ],
+      "entry_count": 5,
+      "timeline_digest_refix_ready": true,
+      "unlock_eligible": false,
+      "safety_gate_snapshot": {
+        "dry_run": "maintained",
+        "OBSERVE": "maintained",
+        "submission_execution_blocked": true,
+        "execution_policy_execute": false,
+        "external_write_executed": false,
+        "network_transmission_executed": false,
+        "production_release": false,
+        "GitHub_push": "未実行"
+      }
+    },
+    "digest_hash": "3de6e27cf3df81f64088d88847a1c25194575f032ce29cf6f5d9b5870ffc7a1e",
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "ir179_result": {
+    "schema_version": "ir179_dry_run_timeline_closure_attestation_v1",
+    "phase": "IR179",
+    "generated_at": "2026-05-26T12:53:34.316212+00:00",
+    "source_task_id": "ir176_180_batch",
+    "dry_run_timeline_closure_attestation_decision": "PROHIBITION_CONTINUITY_FINALIZED_DRY_RUN_ONLY",
+    "gate_action": "Dry-run timeline closure attestation confirmed.",
+    "validation_result": "PASS",
+    "validation_failed_checks": [],
+    "validation_warnings": [],
+    "dry_run_timeline_closure_attestation": {
+      "attestation_id": "ir179_attestation_ir176_180_batch_20260526T125334Z",
+      "generated_at": "2026-05-26T12:53:34.316209+00:00",
+      "source_task_id": "ir176_180_batch",
+      "decision": "PROHIBITION_CONTINUITY_FINALIZED_DRY_RUN_ONLY",
+      "unlock_prohibited": true,
+      "timeline_closure_attested": true,
+      "safety_gate_snapshot": {
+        "dry_run": "maintained",
+        "OBSERVE": "maintained",
+        "submission_execution_blocked": true,
+        "execution_policy_execute": false,
+        "external_write_executed": false,
+        "network_transmission_executed": false,
+        "production_release": false,
+        "GitHub_push": "未実行"
+      }
+    },
+    "attestation_hash": "9c64d43fda72ebe7785b9f116dcf466c980e1bacb9f54c868908d2bc4da4531b",
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "test_summary": {
+    "focused": {
+      "passed": 6,
+      "failed": 0
+    },
+    "adjacent": {
+      "passed": 12,
+      "failed": 0
+    },
+    "scoped": {
+      "passed": 512,
+      "failed": 0
+    }
+  },
+  "live_summary": {
+    "ir176": "PASS",
+    "ir177": "PASS",
+    "ir178": "PASS",
+    "ir179": "PASS",
+    "ir180": "PASS"
+  },
+  "safety_gate_summary": {
+    "dry_run": "maintained",
+    "OBSERVE": "maintained",
+    "submission_execution_blocked": true,
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "network_transmission_executed": false,
+    "production_release": false,
+    "GitHub_push": "未実行"
+  },
+  "completion_table": [
+    {
+      "phase": "IR176",
+      "content": "Periodic Reverification Timeline Snapshot",
+      "focused": "PASS",
+      "adjacent": "PASS",
+      "scoped": "PASS",
+      "live": "PASS",
+      "judgement": "完了"
+    },
+    {
+      "phase": "IR177",
+      "content": "Re-Audit Reference Index Closure",
+      "focused": "PASS",
+      "adjacent": "PASS",
+      "scoped": "PASS",
+      "live": "PASS",
+      "judgement": "完了"
+    },
+    {
+      "phase": "IR178",
+      "content": "Timeline Digest Refix",
+      "focused": "PASS",
+      "adjacent": "PASS",
+      "scoped": "PASS",
+      "live": "PASS",
+      "judgement": "完了"
+    },
+    {
+      "phase": "IR179",
+      "content": "Dry-Run Timeline Closure Attestation",
+      "focused": "PASS",
+      "adjacent": "PASS",
+      "scoped": "PASS",
+      "live": "PASS",
+      "judgement": "完了"
+    },
+    {
+      "phase": "IR180",
+      "content": "Phase 176-180 Completion Bundle",
+      "focused": "PASS",
+      "adjacent": "PASS",
+      "scoped": "PASS",
+      "live": "PASS",
+      "judgement": "完了"
+    }
+  ],
+  "final_decision": "PROHIBITION_CONTINUITY_FINALIZED_DRY_RUN_ONLY",
+  "prohibition_continuity_finalized": true,
+  "delta_closure_pending": true,
+  "artifacts": {
+    "ir176_periodic_reverification_timeline_snapshot": "generic_block_ai/reports/ir176_180/ir176_periodic_reverification_timeline_snapshot.json",
+    "ir177_reaudit_reference_index_closure": "generic_block_ai/reports/ir176_180/ir177_reaudit_reference_index_closure.json",
+    "ir178_timeline_digest_refix": "generic_block_ai/reports/ir176_180/ir178_timeline_digest_refix.json",
+    "ir179_dry_run_timeline_closure_attestation": "generic_block_ai/reports/ir176_180/ir179_dry_run_timeline_closure_attestation.json",
+    "ir180_completion_bundle": "generic_block_ai/reports/ir176_180/ir180_completion_bundle.json",
+    "ir176_180_live_status": "generic_block_ai/reports/ir176_180/ir176_180_live_status.md",
+    "ir176_180_completion_table": "generic_block_ai/reports/ir176_180/ir176_180_completion_table.md"
+  },
+  "external_write_executed": false
+}

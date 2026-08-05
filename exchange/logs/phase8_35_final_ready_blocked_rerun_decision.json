@@ -1,0 +1,47 @@
+{
+  "phase": "Phase 8-35",
+  "status": "READY_FOR_EXISTING_PHASE8_6_TO_8_10_MANUAL_RERUN_BUT_NOT_EXECUTED",
+  "production_status": "NO_GO",
+  "wordpress_api_call_allowed": false,
+  "wordpress_write_executed": false,
+  "publish_allowed": false,
+  "decision_is_execution_permission": false,
+  "commands_executed_in_this_phase": false,
+  "phase8_6_to_8_10_executed": false,
+  "target_item_count": 1,
+  "planned_manual_commands": [
+    "python3 scripts/validate_phase8_6_wordpress_credentials_readiness.py",
+    "python3 scripts/validate_phase8_7_rerun_approval_review.py",
+    "python3 scripts/validate_phase8_8_final_credentialed_live_preflight.py",
+    "python3 scripts/run_phase8_9_first_one_item_wordpress_draft_create_rerun.py",
+    "python3 scripts/generate_phase8_10_post_rerun_closure_report.py"
+  ],
+  "secret_values_written": false,
+  "evidence_summary": [
+    {
+      "path": "exchange/logs/phase8_31_secret_safe_credential_procedure_result.json",
+      "exists": true,
+      "status": "PASS_PROCEDURE_ONLY"
+    },
+    {
+      "path": "exchange/logs/phase8_32_provisioned_declaration_overlay_result.json",
+      "exists": true,
+      "status": "OVERLAY_CREDENTIALS_DECLARED_PROVISIONED_NO_SECRET_OUTPUT"
+    },
+    {
+      "path": "exchange/logs/phase8_33_post_provision_env_recheck_result.json",
+      "exists": true,
+      "status": "POST_PROVISION_ENV_READY_NO_SECRET_OUTPUT"
+    },
+    {
+      "path": "exchange/logs/phase8_34_one_time_manual_rerun_lock.json",
+      "exists": true,
+      "status": "ONE_TIME_RERUN_LOCK_READY_BUT_NOT_EXECUTED"
+    }
+  ],
+  "errors": [],
+  "warnings": [],
+  "safety_violations": [],
+  "allowed_next_step": "Human operator may manually rerun existing Phase 8-6 to Phase 8-10 commands exactly once",
+  "checked_at": "2026-06-14T00:16:46.393131+00:00"
+}

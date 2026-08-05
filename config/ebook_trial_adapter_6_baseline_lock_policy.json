@@ -1,0 +1,34 @@
+{
+  "phase": "EBOOK-TRIAL-ADAPTER-6",
+  "phase_name": "Adapter Chain Baseline Lock / HOLD",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "hold_state": "HOLD",
+  "required_statuses": {
+    "adapter1": "EBOOK_TRIAL_ADAPTER_1_GAP_FOUND_BLOCKED_NO_EXECUTION",
+    "adapter2": "EBOOK_TRIAL_ADAPTER_2_MISSING_FIELD_COMPLETION_DESIGN_PASS_DRY_RUN",
+    "adapter3": "EBOOK_TRIAL_ADAPTER_3_COMPLETION_PAYLOAD_BUILT_DRY_RUN_NO_EXECUTION",
+    "adapter4": "EBOOK_TRIAL_ADAPTER_4_PREFLIGHT_CONTRACT_PASS_DRY_RUN_NO_EXECUTION",
+    "adapter5": "EBOOK_TRIAL_ADAPTER_5_PHASE8_38_REQUEST_MAPPING_PASS_DRY_RUN_NO_EXECUTION"
+  },
+  "required_reports": {
+    "adapter1": "exchange/logs/ebook_trial_adapter_1_readiness_result.json",
+    "adapter2": "exchange/logs/ebook_trial_adapter_2_missing_field_completion_design_result.json",
+    "adapter3": "exchange/logs/ebook_trial_adapter_3_completion_payload_builder_result.json",
+    "adapter4": "exchange/logs/ebook_trial_adapter_4_completion_payload_validation_result.json",
+    "adapter5": "exchange/logs/ebook_trial_adapter_5_phase8_38_request_mapping_result.json",
+    "adapter5_mapped_request": "exchange/logs/ebook_trial_adapter_5_phase8_38_mapped_request.json"
+  },
+  "required_false_flags": [
+    "execution_allowed",
+    "wordpress_api_call_allowed",
+    "wordpress_write_allowed",
+    "wordpress_write_executed",
+    "wordpress_draft_created",
+    "publish_allowed",
+    "rollback_executed",
+    "freeze_executed",
+    "secret_values_output"
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "_meta": {
+    "phase": "52-3",
+    "phase_name": "ロールバック確認層",
+    "layer": "actual_process_start_go ロールバック確認設計層 (actual_process_start_go rollback confirmation design layer)",
+    "title": "actual_process_start_go 最終解除候補のロールバック可能性確認設計",
+    "created": "2026-05-15",
+    "author": "governance-framework",
+    "status": "PASS_DESIGN_ONLY",
+    "reports_only": true
+  },
+  "scope": "Phase 52-1 で受領・整合確認された Phase 51 完了証跡をもとに，actual_process_start_go の最終解除候補についてロールバック可能性の有無・条件を設計層で定義する。内容：(1) actual_process_start_go の NOT_GRANTED 維持状態の再確認，(2) ロールバック可能性の有無・条件，(3) production_status = 'NO_GO' の維持確認，(4) Phase 53 以降への進行条件の明示。",
+  "governance": {
+    "production_status": "NO_GO",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "report": {
+    "description": "Phase 52-3 では，Phase 52-1 で受領・整合確認された Phase 51 完了証跡をもとに，actual_process_start_go の最終解除候補についてロールバック可能性の有無・条件を設計層で定義する。(1) actual_process_start_go の NOT_GRANTED 維持状態の再確認，(2) ロールバック可能性の有無・条件，(3) production_status = 'NO_GO' の維持確認，(4) Phase 53 以降への進行条件の明示。これらは全て reports-only で実装され，実処理開始許可は含まれない。",
+    "invariants": [
+      "NO_GO 維持：ロールバック確認時点で production_status = 'NO_GO' を維持",
+      "NOT_GRANTED 維持：actual_process_start_go の NOT_GRANTED 状態を再確認",
+      "ロールバック条件明示：ロールバック可能性の有無・条件を明確に記載",
+      "reports only：全ロールバック確認設計は設計層の報告書形式で実施"
+    ],
+    "actions": [],
+    "notes": [
+      "Phase 52-3 は設計層のみで実装される（reports-only）",
+      "実処理開始許可は含まれない",
+      "actual_process_start_go の NOT_GRANTED 維持が前提"
+    ]
+  }
+}

@@ -1,0 +1,5 @@
+greenlet==3.5.3 --hash=sha256:9bcd2d72ccd70a1ec68ba6ef93e7fbb4420ef9997dabc7010d893bd4015e0bec
+slack_bolt==1.29.0 --hash=sha256:1835b66b778158f3af0da77603aa18d7dfd82fd9b9a985e25c752f95050ab826
+slack_sdk==3.43.0 --hash=sha256:4b6557c65577fc172f685af218b811f9f3b4909e24cddd839ada09565f10c585
+SQLAlchemy==2.0.51 --hash=sha256:2e54ff2dd657f2e3e0fbf2b097db1182f7bfea263eca4353f00065bae2a67c3d
+typing_extensions==4.16.0 --hash=sha256:481caa481374e813c1b176ada14e97f1f67a4539ce9cfeb3f350d78d6370c2e8

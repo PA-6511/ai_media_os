@@ -1,0 +1,16 @@
+{
+  "phase": "N-4",
+  "name": "n4_github_connectivity_policy",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "human_approval_required": true,
+  "wordpress_write_executed": false,
+  "wordpress_post_created": false,
+  "external_state_change": false,
+  "executor_action_allowed": false,
+  "network_observation_only": true,
+  "communication_test_only": true,
+  "forbidden_operations": ["push", "merge", "write", "delete", "branch_create"],
+  "allowed_operations": ["remote_check", "read_only_communication", "ls_remote", "clone_dry_run"]
+}

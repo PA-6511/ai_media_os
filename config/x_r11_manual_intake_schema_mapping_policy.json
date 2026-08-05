@@ -1,0 +1,41 @@
+{
+  "phase": "X-R11-PRODUCTION-CANDIDATE-1-IMPORT-PREP-SCHEMA-MAPPING",
+  "status": "SCHEMA_MAPPING_FIXED_NO_EXECUTION",
+  "version": 1,
+  "ebook_items": {
+    "source_name": "x_r11_manual_intake",
+    "source_item_id_source": "candidate.intake_id",
+    "item_type_mapping": {
+      "comic": "tankobon",
+      "light_novel": "light_novel",
+      "general_book": "general_book"
+    },
+    "publisher_column": "publisher_name",
+    "author_column": "author_name"
+  },
+  "store_offers": {
+    "store_item_id_strategy": {
+      "rakuten_kobo": "FINAL_PATH_SEGMENT",
+      "fallback": "STORE_NAME_PLUS_URL_SHA256"
+    },
+    "plain_retail_url_column": "product_url",
+    "affiliate_url_before_tracking_verification": null,
+    "last_checked_at_source": "IMPORT_PREP_GENERATED_AT_UTC"
+  },
+  "candidate_specific_resolution": {
+    "candidate_digest_sha256": "d233e7afa9a33dab0c9ee797f2ee6ebde6f29809075cf7419ec0bf98af3294fd",
+    "source_name": "x_r11_manual_intake",
+    "source_item_id": "x-r11-real-20260717-noa-senpai-11",
+    "item_type": "tankobon",
+    "store_name": "rakuten_kobo",
+    "store_item_id": "6ffa7a8daf403477a5936eb1279e0478"
+  },
+  "execution_controls": {
+    "database_import_allowed": false,
+    "database_write": false,
+    "wordpress_write": false,
+    "normal_x_fb_write_allowed": false,
+    "production_execution": false,
+    "production_status": "NO_GO"
+  }
+}

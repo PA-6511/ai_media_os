@@ -1,0 +1,97 @@
+{
+  "phase_id": "24-6",
+  "phase_name": "Pre-Operation Transition Rollback Activation and Final ABORT Conditions Design",
+  "phase_japanese_name": "運用移行前ロールバック発動・最終ABORT条件設計",
+  "purpose": "Design rollback activation and final ABORT conditions that must be enforced before any operation transition measurement application",
+  "layer": "pre_operation_transition_isolation_and_rollback_boundary_reinforcement_layer",
+  "design_category": "reports_only",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "operation_transition_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "phase_24_6_scope": {
+    "scope_1_abort_categories": {
+      "scope_id": "ABORT_CATEGORIES",
+      "categories": {
+        "RA1": "critical isolation boundary breach remains unresolved",
+        "RA2": "rollback/halt trigger RH1-RH6 is active",
+        "RA3": "isolation audit evidence lock integrity failure",
+        "RA4": "unauthorized production-side mutation or execution trace detected",
+        "RA5": "human approval invalid, revoked, or missing",
+        "RA6": "state invariant mismatch across transition artifacts",
+        "RA7": "boundary violation IV1-IV5 unresolved",
+        "RA8": "unclassified critical safety risk requiring mandatory halt"
+      }
+    },
+    "scope_2_response_rules": {
+      "scope_id": "RESPONSE_RULES",
+      "rules": {
+        "rule_RA1": "If any RA1-RA8 is TRIGGERED, transition_status = ABORTED",
+        "rule_RA2": "Force rollback_activated = true",
+        "rule_RA3": "Force operation_transition_go_authorization = NOT_GRANTED",
+        "rule_RA4": "Force production_status = NO_GO",
+        "rule_RA5": "Require human clearance and clean re-audit before re-entry"
+      }
+    },
+    "scope_3_report_structure": {
+      "scope_id": "REPORT_STRUCTURE",
+      "sections": {
+        "section_1_header": {
+          "report_id": "PHASE24_6_PRE_OPERATION_ROLLBACK_ABORT_<UTC_TIMESTAMP>",
+          "report_type": "pre_operation_transition_rollback_activation_and_final_abort_conditions",
+          "generated_at_utc": "RFC3339",
+          "generated_by": "authority_identifier"
+        },
+        "section_2_abort_condition_evaluation": {
+          "RA1": "TRIGGERED | NOT_TRIGGERED",
+          "RA2": "TRIGGERED | NOT_TRIGGERED",
+          "RA3": "TRIGGERED | NOT_TRIGGERED",
+          "RA4": "TRIGGERED | NOT_TRIGGERED",
+          "RA5": "TRIGGERED | NOT_TRIGGERED",
+          "RA6": "TRIGGERED | NOT_TRIGGERED",
+          "RA7": "TRIGGERED | NOT_TRIGGERED",
+          "RA8": "TRIGGERED | NOT_TRIGGERED"
+        },
+        "section_3_final_judgment": {
+          "transition_status": "ABORTED | NOT_ABORTED",
+          "rollback_activated": "true | false",
+          "operation_transition_go_authorization": "NOT_GRANTED",
+          "production_status": "NO_GO"
+        },
+        "section_4_state_reconfirmation": {
+          "app_implementation_status": "NO_GO",
+          "tests_implementation_status": "NO_GO",
+          "production_status": "NO_GO",
+          "operation_transition_go_authorization": "NOT_GRANTED",
+          "changed_area": "reports only"
+        }
+      }
+    }
+  },
+  "phase_24_6_governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "state_invariants": {
+      "app_implementation_status": "NO_GO",
+      "tests_implementation_status": "NO_GO",
+      "production_status": "NO_GO",
+      "operation_transition_go_authorization": "NOT_GRANTED",
+      "changed_area": "reports only"
+    }
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-D",
+  "policy_id": "NEW_RELEASE_WP_PRODUCTION_CATEGORY_MAPPING_FIXATION_POLICY_V1",
+  "source_phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-C",
+  "template_contract_id": "POST185_STANDARD_TEMPLATE_V1_FIXED",
+  "operation_mode": "APPROVED_PRODUCTION_CATEGORY_MAPPING_FIXATION_ONLY",
+  "source_contract": {
+    "required_source_status": "PASS_CATEGORY_INDEX_HUMAN_REVIEW_RECORDED_NO_NETWORK",
+    "required_source_decision": "CATEGORY_ID_10_LATEST_VOLUME_SELECTED_BY_HUMAN_MAPPING_NOT_FIXED",
+    "required_human_review_approval_label": "CATEGORY_INDEX_HUMAN_REVIEW_APPROVED",
+    "required_selected_category_id": 10,
+    "required_selected_category_name": "最新巻",
+    "required_selected_category_purpose": "コミック新刊・新巻配信開始記事",
+    "required_human_selection_recorded": true,
+    "required_category_mapping_fixed": false,
+    "required_payload_injected": false,
+    "required_wordpress_write_performed": false,
+    "required_http_request_performed": false
+  },
+  "mapping_fixation_approval_contract": {
+    "required_approval_label": "PRODUCTION_CATEGORY_MAPPING_FIXATION_APPROVED",
+    "approval_evidence_path": "exchange/approvals/ls_new_batch_4g_2e_recovery_d_mapping_fixation_approval.json",
+    "human_explicit_approval_required": true,
+    "approved_category_id": 10,
+    "approved_category_name": "最新巻",
+    "approved_category_purpose": "コミック新刊・新巻配信開始記事",
+    "approval_reuse_for_different_mapping_allowed": false,
+    "mapping_change_requires_new_human_approval": true,
+    "execution_authorization_included": false
+  },
+  "mapping_contract": {
+    "mapping_id": "COMIC_NEW_RELEASE_LATEST_VOLUME_TO_WP_CATEGORY_10",
+    "article_scope_id": "COMIC_NEW_RELEASE_LATEST_VOLUME_DISTRIBUTION_START",
+    "article_scope_label": "コミック新刊・新巻配信開始記事",
+    "production_category_id": 10,
+    "production_category_name": "最新巻",
+    "mapping_source": "HUMAN_REVIEW_APPROVED_REAL_WORDPRESS_CATEGORY_INDEX",
+    "mapping_fixed": true,
+    "automatic_mapping_performed": false,
+    "mapping_change_allowed_without_new_approval": false,
+    "payload_binding_allowed_in_current_phase": false,
+    "production_category_id_payload_injection_allowed": false,
+    "wordpress_write_allowed": false
+  },
+  "mapping_artifact": {
+    "path": "config/new_release_wp_production_category_mapping.json",
+    "exclusive_semantic_identity_required": true,
+    "existing_matching_artifact_may_be_verified": true,
+    "existing_mismatched_artifact_must_block": true,
+    "digest_required": true
+  },
+  "current_phase_access": {
+    "credential_file_metadata_read_allowed": false,
+    "credential_file_content_read_allowed": false,
+    "environment_variable_read_allowed": false,
+    "authorization_header_construction_allowed": false,
+    "dns_resolution_allowed": false,
+    "network_connection_allowed": false,
+    "tls_connection_allowed": false,
+    "http_request_allowed": false,
+    "wordpress_response_read_allowed": false
+  },
+  "execution_boundary": {
+    "credential_value_output_allowed": false,
+    "environment_variable_export_allowed": false,
+    "dns_resolution_allowed": false,
+    "network_connection_allowed": false,
+    "tls_connection_allowed": false,
+    "wordpress_api_call_allowed": false,
+    "wordpress_category_creation_allowed": false,
+    "wordpress_write_allowed": false,
+    "wordpress_publish_allowed": false,
+    "production_payload_modification_allowed": false,
+    "production_category_id_payload_injection_allowed": false,
+    "wordpress_draft_preparation_allowed": false,
+    "wordpress_draft_creation_allowed": false,
+    "execution_allowed": false,
+    "production_status": "NO_GO",
+    "safety_state": "PRODUCTION_CATEGORY_MAPPING_FIXED_PAYLOAD_NOT_BOUND"
+  },
+  "next_phase": {
+    "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-E",
+    "name": "Production Category Payload Binding Gate",
+    "execution_allowed": false
+  }
+}

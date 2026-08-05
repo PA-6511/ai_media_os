@@ -1,0 +1,14 @@
+{
+  "generic_block_ai/reports/implementation_restart_phase12_completion_report.json": "f7e7b4f6737fd62025c100c84558e128ba4b735789e87eff22708f2f00427221",
+  "generic_block_ai/reports/implementation_restart_phase13_completion_report.json": "3c06ecf1f79e289f191fd9a52657c29ac31dcf8f10fa8969a05ee752385d146a",
+  "generic_block_ai/reports/implementation_restart_phase14_completion_report.json": "7bee68e67f6209345f3cdde1e7685e676a27b5995825e4b67eb569819cc9a348",
+  "generic_block_ai/reports/implementation_restart_phase15_completion_report.json": "2785294c27205133483262bba70753a8756c05495ddaa132fb723ee61601f5ae",
+  "generic_block_ai/reports/implementation_restart_phase16_completion_report.json": "033b5b142c8a0ee62e32c46c4ef25214bc0bcc0448b48d9fdfd51f095e72ea2f",
+  "generic_block_ai/reports/implementation_restart_phase17_completion_report.json": "c5587299192a14b9a2ce3e08d268feb2129078413d1faedce583543e006f8061",
+  "generic_block_ai/reports/implementation_restart_phase18_completion_report.json": "d43506a28b3a7083d4b7d4f13a95e12c68e6bb4e21475bbdb347018076dac16a",
+  "generic_block_ai/reports/implementation_restart_phase19_completion_report.json": "19323be9c6874f9efa5f7c0ca953dd8b48c466f88ebd2f73d2c08541fc876297",
+  "generic_block_ai/reports/ir12_core_decision_queue_audit.log": "33f221799ca072ad50d96a6b18503ae6932156cb129531a4ef51ddb297b5cd15",
+  "generic_block_ai/reports/ir13_manual_approval_audit.log": "0fc6167c5c24239168261ae84ef6bfe4e990b227af927198e2c6a119e488db28",
+  "generic_block_ai/reports/ir17_role_policy_change_audit.log": "bba0a7dd7e4d2d305c04ec4a5dfe57aaafe5ad9b42c91ce1e132d8f358a96c01",
+  "generic_block_ai/reports/ir19_policy_drift_detector_report_ir19_live_trial.json": "52777733d36b0c984f067a7b68898d4c7a481a0c872b52566e3461f044b73663"
+}

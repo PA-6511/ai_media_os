@@ -1,0 +1,19 @@
+{
+  "package_type": "phase6_3_release_decision_rules_validation_result",
+  "phase": "Phase 6-3",
+  "status": "PASS",
+  "reason": "release decision rules design is valid and keeps NO_GO for real draft creation",
+  "rules_ready": true,
+  "rules_status": "DESIGN_ONLY",
+  "production_status": "NO_GO",
+  "wordpress_draft_creation": "NO_GO",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "wordpress_write_executed": false,
+  "auto_post": false,
+  "auto_update": false,
+  "auto_delete": false,
+  "auto_export": false,
+  "next_step": "phase6_4_controlled_unlock_plan_design",
+  "created_at": "2026-05-05T05:30:50.248950+00:00"
+}

@@ -1,0 +1,18 @@
+{
+  "action": "REVIEW",
+  "feedback_id": "x-fb-example-20260717-101",
+  "human_edited_text": "『サンプル作品 第1巻』は7月17日発売。各電子書籍ストアの価格を記事でまとめています。",
+  "edit_reason_labels": [
+    "INFORMATION_PRIORITY_WRONG",
+    "CTA_TOO_STRONG"
+  ],
+  "edit_reason_note": null,
+  "wording_labels": [
+    "TITLE_FIRST",
+    "INFORMATIONAL_TONE",
+    "ARTICLE_CTA",
+    "NO_EMOJI",
+    "NO_HASHTAG"
+  ],
+  "human_rating": 4
+}

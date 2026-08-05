@@ -1,0 +1,29 @@
+{
+  "phase": "Phase 8-42",
+  "status": "PHASE8_42_APPROVAL_GATE_DEFINED_NO_EXECUTION",
+  "production_status": "NO_GO",
+  "execution": "DRY_RUN",
+  "execution_allowed": false,
+  "actual_go_decision_issued": false,
+  "wordpress_api_call_allowed": false,
+  "wordpress_write_executed": false,
+  "wordpress_draft_created": false,
+  "secret_values_output": false,
+  "approval_gate_is_execution_permission": false,
+  "commands_executed_in_this_phase": false,
+  "phase8_6_to_8_10_executed": false,
+  "target_item_count": 1,
+  "decision": "DEFINE_GATE_ONLY_NO_EXECUTION",
+  "errors": [],
+  "warnings": [],
+  "safety_violations": [],
+  "evidence_summary": [
+    {
+      "path": "exchange/logs/phase8_41_manual_inspection_and_draft_evidence_review_result.json",
+      "exists": true,
+      "status": "PHASE8_41_MANUAL_INSPECTION_AND_DRAFT_EVIDENCE_REVIEW_PASS_NO_EXECUTION"
+    }
+  ],
+  "allowed_next_step": "Require separate final execution run phase that consumes APPROVED_FOR_ONE_SHOT_DRAFT_CREATION_ONLY label",
+  "checked_at": "2026-06-14T00:26:40.365928+00:00"
+}

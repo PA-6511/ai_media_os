@@ -1,0 +1,77 @@
+{
+  "_meta": {
+    "phase": "11-4",
+    "phase_name": "human review 実記入後の不備検出ルール設計",
+    "version": "1.0",
+    "created_date": "2026-05-12",
+    "status": "PASS_DESIGN_ONLY",
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only",
+    "description": "human review 実記入後に、署名漏れ・必須項目欠落・安全境界逸脱を検出するためのルールを固定する。"
+  },
+  "references": [
+    "generic_block_ai/reports/phase11_1_human_review_completed_record_validation.json",
+    "generic_block_ai/reports/phase10_4_human_review_signature_required_fields_final_check.json",
+    "generic_block_ai/reports/phase10_7_human_review_post_entry_update_procedure_design.json"
+  ],
+  "defect_detection_rules": [
+    {
+      "rule_id": "DDR-01",
+      "defect": "review_record.reviewer.signature が空",
+      "severity": "BLOCKER",
+      "effect": "integrated_decision remains NO_GO"
+    },
+    {
+      "rule_id": "DDR-02",
+      "defect": "review_record.reviewer.role != human_reviewer",
+      "severity": "BLOCKER",
+      "effect": "validation fails"
+    },
+    {
+      "rule_id": "DDR-03",
+      "defect": "required_fields のいずれかが未記入",
+      "severity": "BLOCKER",
+      "effect": "record_completed = false"
+    },
+    {
+      "rule_id": "DDR-04",
+      "defect": "safety_boundary_verification に false がある",
+      "severity": "BLOCKER",
+      "effect": "integrated_decision update forbidden"
+    },
+    {
+      "rule_id": "DDR-05",
+      "defect": "unresolved_items が空でない",
+      "severity": "MAJOR",
+      "effect": "eligibility pending"
+    }
+  ],
+  "detection_outcome_template": {
+    "blocking_defects_found": false,
+    "major_defects_found": false,
+    "detected_defects": [],
+    "overall_result": "PENDING"
+  },
+  "blocked_actions": [
+    "core_ai_real_send",
+    "external_api_call",
+    "wordpress_operation",
+    "cron_registration",
+    "auto_execute",
+    "auto_post",
+    "auto_update",
+    "auto_delete",
+    "auto_export",
+    "production_execution"
+  ],
+  "phase_decision": {
+    "phase11_4_status": "PASS_DESIGN_ONLY",
+    "app_implementation_status": "NO_GO",
+    "tests_implementation_status": "NO_GO",
+    "note": "不備検出ルールの設計のみ。実装や GO 判定は含まない。"
+  }
+}

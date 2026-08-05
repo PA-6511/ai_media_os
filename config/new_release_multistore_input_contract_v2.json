@@ -1,0 +1,40 @@
+{
+  "schema_version": "2.0.0",
+  "phase_id": "LS-NEW-BATCH-MULTISTORE-V2-IMPORT",
+  "input_contract_id": "FRESH_NEW_RELEASE_COMIC_MULTISTORE_INPUT_V2",
+  "source_schema_id": "NEW_RELEASE_BATCH_MULTISTORE_INPUT_SCHEMA_V2",
+  "article_type": "electronic_book_new_release",
+  "wordpress_status": "draft",
+  "required_store": "rakuten_kobo",
+  "optional_stores": [
+    "dmm_books",
+    "amazon_kindle"
+  ],
+  "optional_store_rule": "include_only_when_verified",
+  "dmm_verified_status_prefixes": [
+    "AUTO_APPROVED",
+    "MANUAL_VERIFIED"
+  ],
+  "amazon_verified_statuses": [
+    "MANUAL_VERIFIED",
+    "ASIN_LINK_GENERATED",
+    "AUTO_APPROVED",
+    "AUTO_APPROVED_MANUAL_LINK"
+  ],
+  "amazon_verified_status_prefixes": [
+    "AUTO_APPROVED",
+    "MANUAL_VERIFIED"
+  ],
+  "dmm_latest_url_forbidden": true,
+  "amazon_asin_pattern": "^[A-Za-z0-9]{10}$",
+  "required_link_rel": "nofollow sponsored noopener",
+  "pr_disclosure_required": true,
+  "price_notice_disclosure_required": true,
+  "external_network_performed": false,
+  "wordpress_write_performed": false,
+  "wordpress_publish_performed": false,
+  "human_review_required_before_write": true,
+  "single_episode_forbidden": true,
+  "available_store_count_validation": true,
+  "path_traversal_forbidden": true
+}

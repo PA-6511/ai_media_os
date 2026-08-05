@@ -1,0 +1,35 @@
+{
+  "_meta": {
+    "phase": "51-4",
+    "phase_name": "リリース直前再検証層",
+    "layer": "manual_release_go 証跡固定設計層 (manual_release_go evidence fixation design layer)",
+    "title": "manual_release_go リリース直前再検証結果の証跡固定ルール設計",
+    "created": "2026-05-14",
+    "author": "governance-framework",
+    "status": "PASS_DESIGN_ONLY",
+    "reports_only": true
+  },
+  "scope": "Phase 51-2 で再検証された manual_release_go の最終解除候補について，リリース直前再検証結果を改ざん不可の証跡として固定するルールを設計層で定義する。証跡内容：(1) manual_release_go の NOT_GRANTED 維持状態・再検証時刻・署名者，(2) 証跡・監査記録の整合性，(3) production_status = 'NO_GO' の維持確認，(4) 証跡固定後の状態変更不可ルール。",
+  "governance": {
+    "production_status": "NO_GO",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "report": {
+    "description": "Phase 51-4 では，Phase 51-2 で再検証された manual_release_go の最終解除候補について，リリース直前再検証結果を改ざん不可の証跡として固定するルールを設計層で定義する。(1) manual_release_go の NOT_GRANTED 維持状態・再検証時刻・署名者を記録，(2) 証跡・監査記録の整合性を確認，(3) production_status = 'NO_GO' の維持確認，(4) 証跡固定後の状態変更不可ルール。これらは全て reports-only で実装され，実処理開始許可は含まれない。",
+    "invariants": [
+      "NO_GO 維持：証跡固定時点で production_status = 'NO_GO' を維持",
+      "NOT_GRANTED 維持：manual_release_go の NOT_GRANTED 状態を証跡として固定",
+      "改ざん不可：証跡はタイムスタンプ・署名等で改ざん不可性を担保",
+      "証跡固定後の変更不可：証跡固定後は状態変更不可",
+      "reports only：全証跡固定ルールは設計層の報告書形式で実施"
+    ],
+    "actions": [],
+    "notes": [
+      "Phase 51-4 は設計層のみで実装される（reports-only）",
+      "実処理開始許可は含まれない",
+      "証跡固定後の状態変更は一切不可"
+    ]
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "phase": "SFB-15B",
+  "phase_name": "Dashboard Operations Baseline Lock",
+  "mode": "DRY_RUN",
+  "production_status": "NO_GO",
+  "hold_state": "HOLD",
+  "external_api_allowed": false,
+  "external_network_allowed": false,
+  "wordpress_write_allowed": false,
+  "approval_token_consumption_allowed": false,
+  "required_json_reports": {
+    "sfb13_diff_report": "logs/sfb_13_csv_import_diff_report.json",
+    "sfb14_dashboard": "logs/sfb_14_dashboard_aggregation.json",
+    "sfb15_operations_readiness": "logs/sfb_15_dashboard_operations_readiness.json"
+  },
+  "expected_status": {
+    "sfb13_diff_report": [
+      "SFB13_CSV_IMPORT_DIFF_REPORT_READY"
+    ],
+    "sfb14_dashboard": [
+      "SFB14_DASHBOARD_AGGREGATION_READY",
+      "SFB14_DASHBOARD_AGGREGATION_READY_WITH_WARNINGS",
+      "SFB14_DASHBOARD_AGGREGATION_WARN_MISSING_ARTIFACTS"
+    ],
+    "sfb15_operations_readiness": [
+      "SFB15_DASHBOARD_OPERATIONS_RUNBOOK_LOCK_READY"
+    ]
+  },
+  "required_files": {
+    "sfb13t_test_lock": "tests/test_sfb13_diff_report_test_lock.py",
+    "sfb14_test_lock": "tests/test_generate_sfb14_dashboard_aggregation.py",
+    "sfb14c_warn_guard_test": "tests/test_sfb14c_mapping_warn_guard.py",
+    "sfb15_test_lock": "tests/test_sfb15_dashboard_operations_runbook_lock.py"
+  },
+  "output": {
+    "report_json": "logs/sfb_15b_dashboard_operations_baseline_lock_report.json",
+    "report_md": "logs/sfb_15b_dashboard_operations_baseline_lock_report.md"
+  }
+}

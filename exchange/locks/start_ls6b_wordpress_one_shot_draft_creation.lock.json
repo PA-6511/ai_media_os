@@ -1,0 +1,9 @@
+{
+  "phase": "LS-6B",
+  "locked": true,
+  "reason": "ONE_SHOT_DRAFT_ALREADY_CREATED",
+  "post_id": 119,
+  "post_status": "draft",
+  "approval_label": "APPROVED_FOR_ONE_SHOT_DRAFT_CREATION_ONLY",
+  "rerun_allowed": false
+}

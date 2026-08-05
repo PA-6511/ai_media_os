@@ -1,0 +1,21 @@
+{
+  "phase": "LS-NEW-13",
+  "document_type": "START_LS_NEW13_PRE_EXECUTION_CHECKLIST",
+  "status": "LSNEW13_PRE_EXECUTION_CHECKLIST_READY_NO_EXECUTION",
+  "check_items": {
+    "ls_new12_authenticated_read_validated": true,
+    "payload_source_confirmed": true,
+    "payload_status_is_draft": true,
+    "target_post_id_is_null": true,
+    "target_post_id_allocated": false,
+    "post119_update_forbidden": true,
+    "post183_update_forbidden": true,
+    "rollback_boundary_available": true,
+    "freeze_boundary_available": true,
+    "separate_execution_approval_required": true,
+    "wordpress_write_not_executed": true,
+    "wordpress_draft_not_created": true,
+    "execution_allowed": false
+  },
+  "all_required_checks_passed": true
+}

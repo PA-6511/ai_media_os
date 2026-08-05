@@ -1,0 +1,55 @@
+{
+  "phase": "Phase 8-14",
+  "status": "PHASE8_14_CORRECTED_CANDIDATE_REVIEW_REQUEST_FIX",
+  "decision": "REQUEST_FIX",
+  "reason": "corrected candidate is structurally improved, but placeholder product links remain and category/tag plan is not fixed yet",
+  "production_status": "NO_GO",
+  "execution": "MANUAL_REVIEW_ONLY",
+  "target_post_id": 115,
+  "checklist": {
+    "candidate_exists": true,
+    "title_ok": true,
+    "body_ok": false,
+    "affiliate_disclosure_ok": true,
+    "pr_label_ok": true,
+    "cta_ok": true,
+    "category_tag_ok": false,
+    "safe_to_update_existing_draft_later": false
+  },
+  "action": "request_fix",
+  "manual_review_notes": [
+    "preflight/test wording has been removed",
+    "PR and affiliate disclosure are present",
+    "official and affiliate URLs are still placeholders and must be replaced before any update planning",
+    "category/tag policy for this post is not yet explicitly defined"
+  ],
+  "wordpress_api_call_allowed": false,
+  "wordpress_api_call_attempted": false,
+  "wordpress_write_allowed": false,
+  "wordpress_write_executed": false,
+  "wordpress_draft_updated": false,
+  "publish_allowed": false,
+  "publish_executed": false,
+  "update_allowed": false,
+  "update_executed": false,
+  "delete_allowed": false,
+  "delete_executed": false,
+  "auto_post": false,
+  "timer_enable_allowed": false,
+  "systemd_enable_start_allowed": false,
+  "human_review_required": true,
+  "evidence_summary": [
+    {
+      "path": "exchange/logs/phase8_13_corrected_draft_candidate_dry_run_post_115_result.json",
+      "exists": true,
+      "status": "PHASE8_13_CORRECTED_DRAFT_CANDIDATE_DRY_RUN_READY"
+    }
+  ],
+  "next_step": "regenerate corrected candidate in DRY_RUN with real links and explicit category/tag plan",
+  "errors": [],
+  "warnings": [],
+  "policy_violations": [],
+  "safety_violations": [],
+  "reviewed_at_utc": "2026-06-09T13:24:42+00:00",
+  "checked_at": "2026-06-09T13:24:43.915616+00:00"
+}

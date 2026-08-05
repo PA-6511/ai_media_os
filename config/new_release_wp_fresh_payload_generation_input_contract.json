@@ -1,0 +1,86 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-F",
+  "contract_id": "FRESH_NEW_RELEASE_COMIC_DRAFT_INPUT_V1",
+  "template_contract_id": "POST185_STANDARD_TEMPLATE_V1_FIXED",
+  "article_scope_id": "COMIC_NEW_RELEASE_LATEST_VOLUME_DISTRIBUTION_START",
+  "article_scope_label": "コミック新刊・新巻配信開始記事",
+  "required_top_level_fields": [
+    "content_item_id",
+    "work_title",
+    "volume_label",
+    "article_title",
+    "release_date",
+    "author_name",
+    "publisher_name",
+    "article_type",
+    "wordpress_status",
+    "content_source",
+    "store_links",
+    "cover",
+    "price",
+    "affiliate_disclosure_required",
+    "categories_initial_state",
+    "legacy_post185_reference"
+  ],
+  "content_item_id_pattern": "^new-release-comic-[0-9]{8}-[0-9]{3}$",
+  "fixed_article_type": "COMIC_NEW_RELEASE_LATEST_VOLUME_DISTRIBUTION_START",
+  "fixed_wordpress_status": "draft",
+  "release_date_format": "YYYY-MM-DD",
+  "article_title_rules": {
+    "required_suffix": "｜配信開始",
+    "forbidden_fragments": [
+      "Kindle版"
+    ],
+    "multistore_title_required": true
+  },
+  "content_source_contract": {
+    "source_type_required": true,
+    "source_reference_required": true,
+    "human_verified_required": true,
+    "copy_paste_explanation_allowed": false,
+    "fabricated_information_allowed": false
+  },
+  "store_link_contract": {
+    "required_store_ids": [
+      "amazon",
+      "rakuten_kobo",
+      "dmm_books"
+    ],
+    "url_required_for_each_store": true,
+    "required_verification_state": "VERIFIED",
+    "fabricated_url_allowed": false
+  },
+  "cover_contract": {
+    "image_url_required": true,
+    "source_required": true,
+    "required_verification_state": "VERIFIED"
+  },
+  "price_contract": {
+    "price_text_required": true,
+    "currency": "JPY",
+    "observed_at_required": true,
+    "required_verification_state": "VERIFIED"
+  },
+  "affiliate_disclosure_required": true,
+  "categories_initial_states_allowed": [
+    "ABSENT",
+    "EMPTY_LIST"
+  ],
+  "categories_value_before_binding_allowed": false,
+  "legacy_post185_reference_allowed": false,
+  "human_review_required_before_payload_generation": true,
+  "source_root": "exchange/payloads/new_release/fresh",
+  "existing_file_overwrite_allowed": false,
+  "category_id_10_injection_allowed_during_generation": false,
+  "source_plan_id": "FRESH_NEW_RELEASE_PAYLOAD_OFFLINE_CATEGORY_BINDING_PLAN_V1",
+  "source_plan_artifact_digest_sha256": "e7cee302af303c87367865d7eeb965ee45de128f92a62c21ef2cd90c135793f8",
+  "approval_label": "FRESH_PAYLOAD_GENERATION_INPUT_GATE_APPROVED",
+  "approval_evidence_digest_sha256": "671e2b997e9bad0c53c90f5ec637dd444be243cf7bc8a025464714d03827e69b",
+  "article_input_registered": false,
+  "fresh_payload_created": false,
+  "execution_allowed": false,
+  "production_status": "NO_GO",
+  "input_contract_fixed_at_utc": "2026-07-10T16:36:40.550386+00:00",
+  "input_contract_digest_sha256": "1f5dad97e9dbffae612647b17af673e7feb63763e1aca461688e0db03a22b450"
+}

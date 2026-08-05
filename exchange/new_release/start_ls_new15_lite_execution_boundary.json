@@ -1,0 +1,19 @@
+{
+  "phase": "LS-NEW-15-LITE",
+  "document_type": "START_LS_NEW15_LITE_EXECUTION_BOUNDARY",
+  "status": "LSNEW15_LITE_EXECUTION_BOUNDARY_LOCKED_NO_EXECUTION",
+  "one_shot_execution_count_target": 1,
+  "one_shot_execution_actual_count": 0,
+  "post_status_target": "draft",
+  "target_post_id": null,
+  "target_post_id_allocated": false,
+  "wordpress_api_call_allowed": false,
+  "wordpress_write_allowed": false,
+  "wordpress_draft_create_allowed": false,
+  "wordpress_publish_allowed": false,
+  "credential_env_read_allowed": false,
+  "post119_update_forbidden": true,
+  "post183_update_forbidden": true,
+  "rerun_allowed": false,
+  "publish_rerun_allowed": false
+}

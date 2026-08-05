@@ -1,0 +1,84 @@
+{
+  "schema_version": "ir79_legacy_reference_linkage_verifier_v1",
+  "phase": "IR79",
+  "generated_at": "2026-05-24T14:18:45.582291+00:00",
+  "source_task_id": "ir76_80_live_trial",
+  "legacy_reference_linkage_decision": "GOVERNANCE_READY_DRY_RUN_ONLY",
+  "gate_action": "Legacy linkage verified as reference-only under dry-run governance.",
+  "validation_result": "PASS",
+  "validation_failed_checks": [],
+  "validation_warnings": [],
+  "linkage_verification": {
+    "verification_id": "ir79_link_ir76_80_live_trial_20260524T141845Z",
+    "generated_at": "2026-05-24T14:18:45.582285+00:00",
+    "source_task_id": "ir76_80_live_trial",
+    "new_cycle_id": "IR71_PLUS_CYCLE_A",
+    "linkage_records": [
+      {
+        "artifact_key": "ir71_75_completion_table",
+        "artifact_ref": "generic_block_ai/reports/ir71_75/ir71_75_completion_table.md",
+        "linkage_mode": "reference_only",
+        "mutation_allowed": false
+      },
+      {
+        "artifact_key": "ir71_75_live_status",
+        "artifact_ref": "generic_block_ai/reports/ir71_75/ir71_75_live_status.md",
+        "linkage_mode": "reference_only",
+        "mutation_allowed": false
+      },
+      {
+        "artifact_key": "ir71_new_cycle_design_gate_report",
+        "artifact_ref": "generic_block_ai/reports/ir71_75/ir71_new_cycle_design_gate_report.json",
+        "linkage_mode": "reference_only",
+        "mutation_allowed": false
+      },
+      {
+        "artifact_key": "ir72_cycle_approver_attestation_report",
+        "artifact_ref": "generic_block_ai/reports/ir71_75/ir72_cycle_approver_attestation_report.json",
+        "linkage_mode": "reference_only",
+        "mutation_allowed": false
+      },
+      {
+        "artifact_key": "ir73_dry_run_unlock_policy_declaration",
+        "artifact_ref": "generic_block_ai/reports/ir71_75/ir73_dry_run_unlock_policy_declaration.json",
+        "linkage_mode": "reference_only",
+        "mutation_allowed": false
+      },
+      {
+        "artifact_key": "ir74_legacy_artifact_freeze_registry_report",
+        "artifact_ref": "generic_block_ai/reports/ir71_75/ir74_legacy_artifact_freeze_registry_report.json",
+        "linkage_mode": "reference_only",
+        "mutation_allowed": false
+      },
+      {
+        "artifact_key": "ir75_completion_bundle",
+        "artifact_ref": "generic_block_ai/reports/ir71_75/ir75_completion_bundle.json",
+        "linkage_mode": "reference_only",
+        "mutation_allowed": false
+      }
+    ],
+    "linkage_scope": "reference_only",
+    "gate_decision": "GOVERNANCE_READY_DRY_RUN_ONLY",
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "verification_hash": "f024d36a00bc234a7b3ce7bb66ff58c1a55ba1f36b877dba4ded8fc10e16023a",
+  "safety_gate_snapshot": {
+    "dry_run": "maintained",
+    "OBSERVE": "maintained",
+    "submission_execution_blocked": true,
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "network_transmission_executed": false,
+    "production_release": false,
+    "GitHub_push": "未実行"
+  }
+}

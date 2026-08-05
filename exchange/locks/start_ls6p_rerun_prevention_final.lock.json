@@ -1,0 +1,18 @@
+{
+  "phase": "LS-6P",
+  "document_type": "RERUN_PREVENTION_FINAL_LOCK",
+  "status": "RERUN_PREVENTION_FINALIZED",
+  "locked": true,
+  "rerun_allowed": false,
+  "ls6oc1_rerun_allowed": false,
+  "ls6oc1_rerun_executed": false,
+  "target_post_id": 183,
+  "target_post_status": "draft",
+  "created_count": 1,
+  "reason": "One-shot WordPress draft creation already completed and validated.",
+  "next_phase": {
+    "phase": "LS-6Q",
+    "manual_review_required": true,
+    "manual_publish_allowed_by_this_phase": false
+  }
+}

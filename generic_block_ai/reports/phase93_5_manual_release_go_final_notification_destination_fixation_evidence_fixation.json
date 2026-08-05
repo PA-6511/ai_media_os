@@ -1,0 +1,17 @@
+{
+  "_meta": {
+    "phase": 93,
+    "sub_phase": 5,
+    "status": "PASS_DESIGN_ONLY",
+    "reports_only": true,
+    "layer": "evidence_fixation",
+    "title": "manual_release_go 最終通知先固定設計（証跡固定）"
+  },
+  "governance": {
+    "production_status": "NO_GO",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "execution_start": "NO_GO",
+    "changed_area": "reports only"
+  }
+}

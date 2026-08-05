@@ -1,0 +1,43 @@
+{
+  "dry_run": true,
+  "wordpress_post_must_not_be_called": true,
+  "status": "draft",
+  "title": "【DRY_RUN候補】Phase 5-1 real-data schema normal sample",
+  "content": "# 【DRY_RUN候補】Phase 5-1 real-data schema normal sample\n\n## 作品概要\n『【DRY_RUN候補】Phase 5-1 real-data schema normal sample』は、テンポの良い展開と読みやすさが魅力の作品です。\n概要: これは WordPress 下書き候補です。まだ投稿は実行されません。 概要: Phase 5-1 real-data schema normal sample リスクレベル: LOW 本番投稿: 未実行 本番更新: 未実行 外部Expor\nネタバレを避けながら、購入判断に役立つポイントを整理しています。\n\n## こんな人におすすめ\n- 短時間で『【DRY_RUN候補】Phase 5-1 real-data schema normal sample』の雰囲気を掴みたい人\n- 次に読む電子書籍を探している人\n- 失敗しにくい作品選びをしたい人\n- レビューの要点を先に確認したい人\n\n## 見どころ\n- 導入が分かりやすく、最初の1話から入りやすい\n- 中盤以降の展開にメリハリがあり、読み進めやすい\n- 印象に残るキャラクター描写がある\n- 読後に感想を共有したくなる構成\n\n## 読者評価ポイント\n- テンポ: 間延びしにくく読みやすい\n- 没入感: 世界観に入り込みやすい\n- 満足度: 続きが気になる構成\n\n## よくある質問\nQ. 初心者でも読めますか？\nA. 公式情報をご確認ください。\nQ. 完結していますか？\nA. 公式情報をご確認ください。\nQ. アニメ化されていますか？\nA. 公式情報をご確認ください。\n\n## 関連作品\n- 関連作品情報は準備中です。公式情報をご確認ください。\n\n## 関連記事\n- 関連記事は準備中です。公開後に随時更新します。\n\n## この作品が刺さる読者\n- 幅広い読者におすすめ\n\n## 購入はこちら\n公式情報をご確認ください\n\n## PR表記\n本記事には広告が含まれています。",
+  "categories_hint": [
+    "電子書籍",
+    "セール"
+  ],
+  "tags_hint": [
+    "Kindle",
+    "漫画",
+    "セール"
+  ],
+  "affiliate_url": "公式情報をご確認ください",
+  "item_id": "",
+  "meta": {
+    "source_builder": {
+      "type": "LOCAL_SELF_BUILDER",
+      "location": "local",
+      "execution_allowed": false,
+      "vps_migration_ready": false
+    },
+    "generated_at": "2026-05-05T05:15:29.080287+00:00",
+    "seo_version": "v1",
+    "generated_sections": [
+      "title",
+      "works_overview",
+      "recommend_for",
+      "highlights",
+      "reader_rating_points",
+      "faq",
+      "related_works",
+      "related_articles",
+      "reader_profiles",
+      "purchase_link",
+      "pr_disclosure"
+    ],
+    "reader_profile_version": "v1"
+  },
+  "_note": "このファイルはdry-run用のpayload候補です。WordPress REST APIへのPOSTは禁止。"
+}

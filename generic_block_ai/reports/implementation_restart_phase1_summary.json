@@ -1,0 +1,80 @@
+{
+  "_meta": {
+    "phase": "implementation_restart_1",
+    "status": "PLAN_READY",
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "auto_execute_allowed": false,
+    "requires_human_approval": true
+  },
+  "baseline": {
+    "latest_confirmed_phase": 381,
+    "test_command": "python3 -m pytest -q generic_block_ai/tests",
+    "test_result": "44 passed",
+    "external_operations_executed": false
+  },
+  "goals": [
+    "move from evidence-loop to implementation delivery",
+    "retain strict safety guardrails",
+    "produce review-ready proposal outputs"
+  ],
+  "tasks": [
+    {
+      "id": "IR1-T1",
+      "title": "action classification layer",
+      "targets": [
+        "generic_block_ai/app/safety_guard.py",
+        "generic_block_ai/tests/test_safety_guard.py"
+      ],
+      "acceptance": "allow/block/needs_review classification tested",
+      "safety": "forbidden actions always blocked"
+    },
+    {
+      "id": "IR1-T2",
+      "title": "decision context enrichment",
+      "targets": [
+        "generic_block_ai/app/block_runner.py",
+        "generic_block_ai/app/result_schema.py",
+        "generic_block_ai/tests/test_result_schema.py"
+      ],
+      "acceptance": "reason_codes and review fields validated",
+      "safety": "actual_execution remains false"
+    },
+    {
+      "id": "IR1-T3",
+      "title": "review package builder",
+      "targets": [
+        "generic_block_ai/app/main.py",
+        "generic_block_ai/app/review_package_builder.py"
+      ],
+      "acceptance": "cli generates local review package json",
+      "safety": "no network or external side effects"
+    },
+    {
+      "id": "IR1-T4",
+      "title": "integration adapter interfaces",
+      "targets": [
+        "generic_block_ai/app/integrations/"
+      ],
+      "acceptance": "wordpress/github adapters are dry-run stubs",
+      "safety": "no mutation operations allowed"
+    },
+    {
+      "id": "IR1-T5",
+      "title": "safety regression suite expansion",
+      "targets": [
+        "generic_block_ai/tests/"
+      ],
+      "acceptance": "negative tests for each guardrail",
+      "safety": "policy relaxation fails by default"
+    }
+  ],
+  "guardrails": {
+    "production_status": "NO_GO",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "execution_start": "NO_GO",
+    "external_reflection": "disabled"
+  },
+  "next_step": "start IR1-T1 implementation and tests"
+}

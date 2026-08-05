@@ -1,0 +1,39 @@
+{
+  "_meta": {
+    "phase": 109,
+    "status": "PASS_DESIGN_ONLY",
+    "reports_only": true,
+    "title": "Phase 109 進捗管理レポート"
+  },
+  "governance": {
+    "production_status": "NO_GO",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "execution_start": "NO_GO",
+    "changed_area": "reports only"
+  },
+  "progress": {
+    "phase109_final_release_candidate_reports_only_post_overall_final_recovery_procedure_confirmation_layer_status": "PASS_DESIGN_ONLY",
+    "phase109_1_to_109_6_status": "PASS_DESIGN_ONLY",
+    "phase109_recovery_procedure_confirmation_reinforcement_status": "PASS_DESIGN_ONLY",
+    "phase109_7_to_109_9_status": "PASS_DESIGN_ONLY",
+    "phase109_overall_status": "PASS_DESIGN_ONLY"
+  },
+  "next_steps": [
+    {
+      "phase": 110,
+      "sub_phase": 1,
+      "description": "Phase 109 完了証跡の受領・整合確認"
+    },
+    {
+      "phase": 110,
+      "sub_phase": 2,
+      "description": "manual_release_go 最終解除候補 reports-only 総括後の最終復旧担当確認設計"
+    },
+    {
+      "phase": 110,
+      "sub_phase": 3,
+      "description": "actual_process_start_go 最終解除候補 reports-only 総括後の最終復旧担当確認設計"
+    }
+  ]
+}

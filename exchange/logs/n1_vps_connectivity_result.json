@@ -1,0 +1,53 @@
+{
+  "phase": "N-1",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "human_approval_required": true,
+  "wordpress_write_executed": false,
+  "wordpress_post_created": false,
+  "external_state_change": false,
+  "executor_action_allowed": false,
+  "network_observation_only": true,
+  "communication_test_only": true,
+  "checked_at": "2026-05-31T13:19:48.001929+00:00",
+  "status": "PASS",
+  "reachable": true,
+  "targets": [
+    {
+      "host": "github.com",
+      "resolved": true,
+      "latency_ms": {
+        "dns": 5.03,
+        "tcp": 10.42,
+        "https": 60.29,
+        "icmp": 27.81
+      },
+      "reachable": true,
+      "status": "PASS",
+      "http_status": 200,
+      "checks": {
+        "dns": {
+          "ok": true,
+          "reason": null
+        },
+        "tcp": {
+          "ok": true,
+          "reason": null,
+          "port": 443
+        },
+        "https": {
+          "ok": true,
+          "reason": null,
+          "url": "https://github.com"
+        },
+        "icmp": {
+          "ok": true,
+          "reason": null,
+          "required": false
+        }
+      }
+    }
+  ],
+  "target_count": 1
+}

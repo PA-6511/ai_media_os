@@ -1,0 +1,20 @@
+{
+  "phase": "N-7",
+  "name": "n7_cron_lock_guard_policy",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "human_approval_required": true,
+  "wordpress_write_executed": false,
+  "wordpress_post_created": false,
+  "external_state_change": false,
+  "executor_action_allowed": false,
+  "network_observation_only": true,
+  "communication_test_only": true,
+  "lock_write_forbidden": false,
+  "lock_delete_forbidden": false,
+  "lock_mechanism": "file_lock",
+  "lock_path_pattern": "exchange/locks/n_series_monitor.lock",
+  "stale_lock_threshold_seconds": 3600,
+  "duplicate_run_check": true
+}

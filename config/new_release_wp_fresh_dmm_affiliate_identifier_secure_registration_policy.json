@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M6-CRED1",
+  "policy_id": "DMM_AFFILIATE_IDENTIFIER_SECURE_REGISTRATION_POLICY_V1",
+  "operation_mode": "INTERACTIVE_SECRET_REGISTRATION_ONLY",
+  "credential_target": {
+    "path": "/etc/ai-media-os/credential.env",
+    "key": "DMM_AFFILIATE_ID",
+    "required_mode": "0600",
+    "required_owner": "ORIGINAL_EXECUTION_USER",
+    "symlink_allowed": false,
+    "existing_key_allowed": false,
+    "duplicate_key_allowed": false,
+    "atomic_replacement_required": true
+  },
+  "input_contract": {
+    "input_source": "CONTROLLING_TTY_HIDDEN_INPUT",
+    "confirmation_input_required": true,
+    "shell_argument_allowed": false,
+    "environment_variable_input_allowed": false,
+    "stdin_pipe_input_allowed": false,
+    "value_output_allowed": false,
+    "value_logging_allowed": false,
+    "value_evidence_persistence_allowed": false,
+    "required_regex": "^[A-Za-z0-9]+-[0-9]{3}$"
+  },
+  "rejection_contract": {
+    "empty_value_rejected": true,
+    "whitespace_rejected": true,
+    "url_value_rejected": true,
+    "dummy_value_rejected": true,
+    "sample_value_rejected": true,
+    "official_example_value_rejected": true,
+    "placeholder_value_rejected": true,
+    "post185_reference_rejected": true,
+    "input_mismatch_rejected": true
+  },
+  "evidence_contract": {
+    "secret_value_persistence_allowed": false,
+    "one_way_commitment_allowed": true,
+    "commitment_algorithm": "PBKDF2-HMAC-SHA256",
+    "commitment_iterations": 600000,
+    "salt_persistence_allowed": true
+  },
+  "execution_boundary": {
+    "credential_registration_allowed": true,
+    "m6_authorization_creation_allowed": false,
+    "network_connection_allowed": false,
+    "dns_resolution_allowed": false,
+    "http_request_allowed": false,
+    "dmm_recheck_allowed": false,
+    "final_affiliate_link_generation_allowed": false,
+    "article_modification_allowed": false,
+    "article_url_injection_allowed": false,
+    "fresh_payload_creation_allowed": false,
+    "wordpress_access_allowed": false,
+    "wordpress_write_allowed": false,
+    "wordpress_publish_allowed": false,
+    "execution_allowed": false,
+    "production_status": "NO_GO",
+    "safety_state": "SECRET_REGISTRATION_ONLY"
+  },
+  "next_phase": {
+    "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M6",
+    "name": "DMM Final Affiliate Link Generation Authorization Gate Retry",
+    "execution_allowed": false
+  }
+}

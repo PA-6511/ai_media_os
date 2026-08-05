@@ -1,0 +1,103 @@
+{
+  "phase_id": "38-2",
+  "phase_name": "Actual Process Start GO Candidate Pre-Measurement Final Safety Confirmation Design",
+  "phase_japanese_name": "actual_process_start_go候補の実測前最終安全確認",
+  "purpose": "Design pre-measurement final safety confirmation for actual_process_start_go candidate based on Phase 37 completion evidence.",
+  "layer": "actual_process_start_go_final_measurement_approval_layer",
+  "design_category": "reports_only",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "operation_transition_go_authorization": "NOT_GRANTED",
+    "production_reflection_go_authorization": "NOT_GRANTED",
+    "freeze_release_go_authorization": "NOT_GRANTED",
+    "execution_start_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "phase_38_2_scope": {
+    "scope_1_input_contract": {
+      "scope_id": "INPUT_CONTRACT",
+      "required_inputs": {
+        "phase38_1_evidence_receipt_status": "PASS",
+        "phase37_overall_status": "PASS_DESIGN_ONLY",
+        "actual_process_start_go_authorization": "NOT_GRANTED"
+      }
+    },
+    "scope_2_pre_measurement_safety_rules": {
+      "scope_id": "PRE_MEASUREMENT_SAFETY_RULES",
+      "rules": {
+        "rule_P38S1": "Reconfirm all NO_GO and NOT_GRANTED invariants before final measurement",
+        "rule_P38S2": "Reject any implicit authorization grant from completion declarations",
+        "rule_P38S3": "Require explicit evidence completeness for final measurement inputs",
+        "rule_P38S4": "If any safety check fails, keep actual_process_start_go_authorization as NOT_GRANTED",
+        "rule_P38S5": "No production or execution action is allowed in this phase"
+      }
+    },
+    "scope_3_report_structure": {
+      "scope_id": "REPORT_STRUCTURE",
+      "sections": {
+        "section_1_header": {
+          "report_id": "PHASE38_2_ACTUAL_PROCESS_START_PRE_MEASUREMENT_FINAL_SAFETY_<UTC_TIMESTAMP>",
+          "report_type": "actual_process_start_go_candidate_pre_measurement_final_safety_confirmation",
+          "generated_at_utc": "RFC3339",
+          "generated_by": "authority_identifier"
+        },
+        "section_2_safety_summary": {
+          "invariants_reconfirmed": "PASS | FAIL",
+          "implicit_grant_detected": "YES | NO",
+          "evidence_completeness": "COMPLETE | INCOMPLETE"
+        },
+        "section_3_safety_judgment": {
+          "pre_measurement_safety_status": "PASS | FAIL",
+          "actual_process_start_status": "GO_CANDIDATE | NO_GO",
+          "actual_process_start_go_authorization": "NOT_GRANTED"
+        },
+        "section_4_state_confirmation": {
+          "app_implementation_status": "NO_GO",
+          "tests_implementation_status": "NO_GO",
+          "production_status": "NO_GO",
+          "operation_transition_go_authorization": "NOT_GRANTED",
+          "production_reflection_go_authorization": "NOT_GRANTED",
+          "freeze_release_go_authorization": "NOT_GRANTED",
+          "execution_start_go_authorization": "NOT_GRANTED",
+          "actual_process_start_go_authorization": "NOT_GRANTED",
+          "manual_release_go_authorization": "NOT_GRANTED",
+          "changed_area": "reports only"
+        }
+      }
+    }
+  },
+  "phase_38_2_governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution",
+      "manual_release_execution",
+      "actual_process_start_execution"
+    ],
+    "state_invariants": {
+      "app_implementation_status": "NO_GO",
+      "tests_implementation_status": "NO_GO",
+      "production_status": "NO_GO",
+      "operation_transition_go_authorization": "NOT_GRANTED",
+      "production_reflection_go_authorization": "NOT_GRANTED",
+      "freeze_release_go_authorization": "NOT_GRANTED",
+      "execution_start_go_authorization": "NOT_GRANTED",
+      "actual_process_start_go_authorization": "NOT_GRANTED",
+      "manual_release_go_authorization": "NOT_GRANTED",
+      "changed_area": "reports only"
+    }
+  }
+}

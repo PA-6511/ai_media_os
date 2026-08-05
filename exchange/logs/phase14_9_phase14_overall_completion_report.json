@@ -1,0 +1,44 @@
+{
+  "package_type": "phase14_9_phase14_overall_completion_report",
+  "phase": "Phase 14-9",
+  "title": "Phase 14-9 Phase 14 Overall Completion Report",
+  "status": "PASS",
+  "phase14_overall_status": "PASS",
+  "phase_range": "Phase 14-1 through Phase 14-8",
+  "current_decision": "KEEP_NO_GO",
+  "publish_candidate_unlocked_for_operator": false,
+  "wordpress_publish_execution": "NO_GO",
+  "wordpress_write_executed": false,
+  "production_status": "NO_GO",
+  "wordpress_draft_id": 110,
+  "target_draft_status": "draft",
+  "phase_statuses": {
+    "14-1": "PASS",
+    "14-2": "PASS",
+    "14-3": "PASS",
+    "14-4": "PASS",
+    "14-5": "PASS",
+    "14-6": "PASS",
+    "14-7": "PASS",
+    "14-8": "PASS"
+  },
+  "still_forbidden": [
+    "wordpress_publish",
+    "wordpress_update_existing_post",
+    "wordpress_delete_post",
+    "wordpress_export",
+    "wordpress_bulk_post",
+    "cron_automation",
+    "github_actions_trigger",
+    "slack_production_notification",
+    "vps_self_builder_execution",
+    "env_or_secrets_or_credentials_auto_edit"
+  ],
+  "summary": {
+    "phase14_completed_without_execute_live": true,
+    "phase14_no_go_boundary_maintained": true,
+    "phase15_start_conditions_can_be_designed": true
+  },
+  "next_step": "phase15_1_start_conditions_check_design",
+  "created_at": "2026-05-10T04:26:09.162088+00:00"
+}

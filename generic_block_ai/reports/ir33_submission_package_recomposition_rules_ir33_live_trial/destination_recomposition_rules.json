@@ -1,0 +1,55 @@
+{
+  "schema_version": "ir33_submission_package_recomposition_rules_v1",
+  "phase": "IR33",
+  "generated_at": "2026-05-23T16:22:25.356819+00:00",
+  "release_candidate_id": "rc_20260523T155148Z_ir26_live_trial_b940393b490b",
+  "final_submission_decision": "READY_FOR_SUBMISSION_SUMMARY",
+  "destinations": {
+    "regulatory_audit": {
+      "required_templates": [
+        "submission_cover",
+        "attachment_list",
+        "confirmation_signature_sheet"
+      ],
+      "optional_templates": [
+        "review_template"
+      ],
+      "priority": 1
+    },
+    "internal_review_board": {
+      "required_templates": [
+        "submission_cover",
+        "review_template"
+      ],
+      "optional_templates": [
+        "attachment_list",
+        "confirmation_signature_sheet"
+      ],
+      "priority": 2
+    },
+    "compliance_archive": {
+      "required_templates": [
+        "submission_cover",
+        "attachment_list",
+        "confirmation_signature_sheet",
+        "review_template"
+      ],
+      "optional_templates": [],
+      "priority": 3
+    }
+  },
+  "template_refs": {
+    "submission_cover": "generic_block_ai/reports/ir32_submission_audit_template_pack_ir32_live_trial/submission_cover.md",
+    "attachment_list": "generic_block_ai/reports/ir32_submission_audit_template_pack_ir32_live_trial/attachment_list.json",
+    "confirmation_signature_sheet": "generic_block_ai/reports/ir32_submission_audit_template_pack_ir32_live_trial/confirmation_signature_sheet.md",
+    "review_template": "generic_block_ai/reports/ir32_submission_audit_template_pack_ir32_live_trial/review_template.md"
+  },
+  "safeguards": {
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "production_release": false,
+    "network_transmission_executed": false
+  }
+}

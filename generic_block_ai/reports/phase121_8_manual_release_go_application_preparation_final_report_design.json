@@ -1,0 +1,15 @@
+{
+  "_meta": {
+    "phase": 121,
+    "status": "PASS_DESIGN_ONLY",
+    "reports_only": true
+  },
+  "governance": {
+    "production_status": "NO_GO",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "execution_start": "NO_GO",
+    "changed_area": "reports only"
+  },
+  "description": "Phase 121-8: manual_release_go 承認申請準備の最終証跡固定・完了宣言レポート設計"
+}

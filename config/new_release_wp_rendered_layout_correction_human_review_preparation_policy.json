@@ -1,0 +1,76 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M23",
+  "policy_id": "WORDPRESS_RENDERED_LAYOUT_CORRECTION_HUMAN_REVIEW_PREPARATION_POLICY_V1",
+  "operation_mode": "LOCAL_SAFE_VISUAL_REVIEW_PREPARATION_ONLY",
+  "content_item_id": "new-release-comic-20260703-001",
+  "wordpress_post_id": 192,
+  "required_approval_label": "WORDPRESS_RENDERED_LAYOUT_CORRECTION_HUMAN_REVIEW_PREPARATION_APPROVED",
+  "review_scope": {
+    "desktop_two_column_layout": true,
+    "mobile_single_column_layout": true,
+    "cover_position_and_spacing": true,
+    "store_button_position_and_order": true,
+    "pr_disclosure_visibility": true,
+    "responsive_detail_width_wrapping_and_whitespace": true,
+    "comment_status_closed": true,
+    "request_fields_content_and_comment_status_only": true
+  },
+  "safe_preview_contract": {
+    "full_source_store_url_allowed": false,
+    "affiliate_identifier_allowed": false,
+    "external_link_interaction_allowed": false,
+    "external_asset_request_allowed": false,
+    "external_images_must_use_embedded_placeholder": true,
+    "store_confirmation_fields": [
+      "host",
+      "state",
+      "url_fingerprint_sha256"
+    ],
+    "desktop_preview_forced": true,
+    "mobile_preview_forced": true,
+    "preview_files_mode": "0600"
+  },
+  "source_evidence_contract": {
+    "m22_fix2_result_digest_sha256": "4e0f6e33cef8ad7ceaea7ce0cd453b3a8bbeb1c9ba0fade71b499b6fea794a5c",
+    "m22_fix2_failure_chain_digest_sha256": "d2fb20c22d98edd7c685681fc8aad69c8e418c7c9536cfdaeca2a3c10196d598",
+    "m22_fix2_rollback_digest_sha256": "60ac4fe5182e412014bcbd291ca52af1e516e7061722e608b39a34c284dbfcf5",
+    "m22_fix2_update_payload_digest_sha256": "864e33958393fefcf1b2c10ec7e3d85bf42648393f681386a88f19048585e487",
+    "current_content_html_sha256": "c5851f15e4eb477038dca512c8990068736a306cf4fb8c207036a3186119f436",
+    "rendered_content_html_sha256": "86ebae8e7f0c550ed6ee4726164a654269e9f2c6c64ac268945dac9714d31d30",
+    "scoped_css_sha256": "a77f2bc010432322a754006e97fa4bf2190fccb881cc2c361edd9e2f4bddec43"
+  },
+  "human_review_boundary": {
+    "human_review_completed": false,
+    "human_review_verdict": "NOT_RECORDED",
+    "automatic_approval_allowed": false,
+    "automatic_authorization_allowed": false
+  },
+  "execution_boundary": {
+    "network_connection_allowed": false,
+    "dns_resolution_allowed": false,
+    "http_request_allowed": false,
+    "wordpress_access_allowed": false,
+    "wordpress_get_allowed": false,
+    "wordpress_write_allowed": false,
+    "wordpress_update_allowed": false,
+    "wordpress_republish_allowed": false,
+    "wordpress_delete_allowed": false,
+    "authorization_issue_allowed": false,
+    "authorization_consumption_allowed": false,
+    "authorization_reuse_allowed": false,
+    "automatic_retry_allowed": false,
+    "automatic_reissue_allowed": false,
+    "m22_rerun_allowed": false,
+    "m22_fix1_rerun_allowed": false,
+    "m22_fix2_rerun_allowed": false,
+    "x_post_allowed": false
+  },
+  "next_gate": {
+    "ready_for_human_visual_review": true,
+    "ready_for_wordpress_update_authorization_gate": false,
+    "ready_for_wordpress_update": false,
+    "ready_for_wordpress_publish": false
+  },
+  "production_status": "NO_GO"
+}

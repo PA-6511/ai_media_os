@@ -1,0 +1,50 @@
+{
+  "_meta": {
+    "template_version": "1.0",
+    "phase": "3.5-12",
+    "purpose": "review_queue_validator_template",
+    "created_at": "2026-05-12",
+    "status": "TEMPLATE_ONLY",
+    "note": "このファイルは検証ルール定義の雛形です。実際のqueue処理・自動dequeue・外部出力は一切行いません。"
+  },
+  "target_template": "reports/phase35_review_queue_template.json",
+  "required_fields": [
+    {"path": "_meta.status",                             "expected_type": "string"},
+    {"path": "queue_metadata.block_id",                  "expected_type": "string"},
+    {"path": "queue_metadata.mode",                      "expected_type": "string",  "allowed_values": ["dry_run"]},
+    {"path": "queue_metadata.operation_mode",            "expected_type": "string",  "allowed_values": ["OBSERVE"]},
+    {"path": "queue_metadata.auto_process_allowed",      "expected_type": "boolean", "must_be": false},
+    {"path": "queue_metadata.requires_human_approval",   "expected_type": "boolean", "must_be": true},
+    {"path": "queue_policy.auto_approve",                "expected_type": "boolean", "must_be": false},
+    {"path": "queue_policy.auto_reject_after_days",      "expected_type": "null"},
+    {"path": "queue_policy.escalation_enabled",          "expected_type": "boolean", "must_be": false}
+  ],
+  "forbidden_values": [
+    {"path": "queue_metadata.mode",           "forbidden": ["live", "production", "execute"]},
+    {"path": "queue_metadata.operation_mode", "forbidden": ["EXECUTE", "WRITE", "PUBLISH"]},
+    {"path": "queue_policy.forbidden_auto_actions", "must_contain": [
+      "auto_dequeue",
+      "auto_execute",
+      "auto_publish",
+      "batch_approve_without_review"
+    ]}
+  ],
+  "safety_checks": [
+    "mode が dry_run 以外は REJECT",
+    "operation_mode が OBSERVE 以外は REJECT",
+    "auto_process_allowed が true は REJECT",
+    "auto_approve が true は REJECT",
+    "requires_human_approval が false は REJECT",
+    "escalation_enabled が true は WARN（承認フロー外エスカレーション禁止）",
+    "forbidden_auto_actions に必須4項目が揃っていない場合は WARN"
+  ],
+  "validation_result_schema": {
+    "validation_id": "__FILL_IN__",
+    "target_file": "__FILL_IN__",
+    "validated_at": "__FILL_IN__",
+    "result": "PASS | WARN | FAIL",
+    "failed_checks": [],
+    "warnings": [],
+    "validated_by": "__FILL_IN__"
+  }
+}

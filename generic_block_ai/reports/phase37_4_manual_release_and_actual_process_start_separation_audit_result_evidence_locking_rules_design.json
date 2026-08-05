@@ -1,0 +1,99 @@
+{
+  "phase_id": "37-4",
+  "phase_name": "Manual Release and Actual Process Start Separation Audit Result Evidence Locking Rules Design",
+  "phase_japanese_name": "manual_release_go / actual_process_start_go 分離監査結果の証跡固定ルール設計",
+  "purpose": "Design evidence locking rules for manual_release_go and actual_process_start_go separation audit results.",
+  "layer": "post_manual_release_pre_actual_process_start_boundary_confirmation_layer",
+  "design_category": "reports_only",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "operation_transition_go_authorization": "NOT_GRANTED",
+    "production_reflection_go_authorization": "NOT_GRANTED",
+    "freeze_release_go_authorization": "NOT_GRANTED",
+    "execution_start_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "phase_37_4_scope": {
+    "scope_1_input_contract": {
+      "scope_id": "INPUT_CONTRACT",
+      "required_inputs": {
+        "phase37_3_reconfirmation_result": "GO_CANDIDATE | NO_GO"
+      }
+    },
+    "scope_2_evidence_locking_rules": {
+      "scope_id": "EVIDENCE_LOCKING_RULES",
+      "rules": {
+        "rule_P37E1": "Receive separation audit result from Phase 37-2 and reconfirmation result from Phase 37-3",
+        "rule_P37E2": "Apply cryptographic signature or hash to audit result report",
+        "rule_P37E3": "Lock report with timestamp and authority signature",
+        "rule_P37E4": "Create immutable audit trail for all separation derivations",
+        "rule_P37E5": "If locking fails, signal ABORT and maintain NO_GO"
+      }
+    },
+    "scope_3_report_structure": {
+      "scope_id": "REPORT_STRUCTURE",
+      "sections": {
+        "section_1_header": {
+          "report_id": "PHASE37_4_SEPARATION_AUDIT_EVIDENCE_LOCKING_<UTC_TIMESTAMP>",
+          "report_type": "manual_release_and_actual_process_start_separation_audit_result_evidence_locking",
+          "generated_at_utc": "RFC3339",
+          "generated_by": "authority_identifier"
+        },
+        "section_2_audit_input": {
+          "audit_status_from_P37_2": "PASS | FAIL",
+          "reconfirmation_result_from_P37_3": "GO_CANDIDATE | NO_GO"
+        },
+        "section_3_locking_process": {
+          "cryptographic_signature_applied": "YES | NO",
+          "hash_computed": "SHA256_HEX | NONE",
+          "timestamp_locked": "RFC3339 | NONE",
+          "authority_signature": "PRESENT | ABSENT"
+        },
+        "section_4_locking_judgment": {
+          "evidence_lock_status": "LOCKED | UNLOCK_FAILED",
+          "production_status": "NO_GO",
+          "operation_transition_go_authorization": "NOT_GRANTED",
+          "production_reflection_go_authorization": "NOT_GRANTED",
+          "freeze_release_go_authorization": "NOT_GRANTED",
+          "execution_start_go_authorization": "NOT_GRANTED",
+          "actual_process_start_go_authorization": "NOT_GRANTED",
+          "manual_release_go_authorization": "NOT_GRANTED"
+        }
+      }
+    }
+  },
+  "phase_37_4_governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution",
+      "manual_release_execution",
+      "actual_process_start_execution"
+    ],
+    "state_invariants": {
+      "app_implementation_status": "NO_GO",
+      "tests_implementation_status": "NO_GO",
+      "production_status": "NO_GO",
+      "operation_transition_go_authorization": "NOT_GRANTED",
+      "production_reflection_go_authorization": "NOT_GRANTED",
+      "freeze_release_go_authorization": "NOT_GRANTED",
+      "execution_start_go_authorization": "NOT_GRANTED",
+      "actual_process_start_go_authorization": "NOT_GRANTED",
+      "manual_release_go_authorization": "NOT_GRANTED",
+      "changed_area": "reports only"
+    }
+  }
+}

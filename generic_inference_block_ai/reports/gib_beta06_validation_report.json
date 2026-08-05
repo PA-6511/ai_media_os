@@ -1,0 +1,32 @@
+{
+  "schema_version": "gib.beta06.validation_report.v0.1",
+  "block_id": "GIB",
+  "beta_version": "beta0.6",
+  "final_status": "PASS_DRY_RUN_BETA06_ENV_PREP_CHECK_NO_GENERATE",
+  "status": "DRY_RUN_ENV_PREP_ONLY",
+  "production_status": "NO_GO",
+  "runtime_target": "ollama",
+  "guardrails_ok": true,
+  "guardrail_issues": [],
+  "ready_conditions_ok": false,
+  "missing_true_conditions": [
+    "ollama_binary_found"
+  ],
+  "violated_false_conditions": [],
+  "ready_for_connecting_stage": false,
+  "no_generate_call_required": true,
+  "localhost_only_required": true,
+  "allowlist_enforced": true,
+  "beta05_snapshot": {
+    "final_status": "PASS_DRY_RUN_BETA05_LOCAL_OLLAMA_PREFLIGHT_NO_GENERATE_CALL",
+    "ollama_binary_found": false,
+    "all_endpoints_valid": true,
+    "model_allowed": true,
+    "forbidden_host_rejected": true,
+    "generate_api_called": false,
+    "chat_api_called": false,
+    "real_llm_call_allowed": false,
+    "execution_allowed": false,
+    "production_status": "NO_GO"
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "phase": "Phase 7-14",
+  "status": "READY_FOR_PHASE8_HUMAN_APPROVAL_BUT_NO_GO",
+  "production_status": "NO_GO",
+  "wordpress_draft_creation": "NO_GO",
+  "wordpress_write_executed": false,
+  "wordpress_api_call_allowed": false,
+  "publish_allowed": false,
+  "approve_draft_create_only_currently_allowed": false,
+  "unlock_in_this_phase": false,
+  "final_report_is_execution_permission": false,
+  "evidence_summary": [
+    {
+      "path": "exchange/logs/phase7_10_human_unlock_decision_result.json",
+      "exists": true,
+      "status": "PASS_REVIEW_ONLY_NO_GO"
+    },
+    {
+      "path": "exchange/logs/phase7_11_approve_draft_create_only_token_validation_result.json",
+      "exists": true,
+      "status": "TOKEN_READY_BUT_LOCKED"
+    },
+    {
+      "path": "exchange/logs/phase7_12_one_item_draft_execution_plan_result.json",
+      "exists": true,
+      "status": "EXECUTION_PLAN_READY_BUT_NO_GO"
+    },
+    {
+      "path": "exchange/logs/phase7_13_operator_runbook_validation_result.json",
+      "exists": true,
+      "status": "PASS_RUNBOOK_ONLY"
+    }
+  ],
+  "errors": [],
+  "warnings": [],
+  "safety_violations": [],
+  "allowed_next_step": "Phase 8-1 explicit human approval file for one-item controlled WordPress draft creation",
+  "blocked_next_steps": [
+    "auto_publish",
+    "bulk_posting",
+    "wordpress_update",
+    "wordpress_delete",
+    "external_export",
+    "vps_self_builder_execution"
+  ],
+  "checked_at": "2026-05-27T14:01:26.435851+00:00"
+}

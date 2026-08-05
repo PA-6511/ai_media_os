@@ -1,0 +1,29 @@
+{
+  "schema_version": "gib.beta07.ready_simulation.v0.1",
+  "beta_version": "beta0.7",
+  "status": "DRY_RUN_READY_SIMULATION_ONLY",
+  "production_status": "NO_GO",
+  "runtime_target": "ollama",
+  "real_llm_call_allowed": false,
+  "execution_allowed": false,
+  "generate_call_allowed": false,
+  "chat_call_allowed": false,
+  "auto_connect_on_ready": false,
+  "required_true_conditions_for_ready": [
+    "ollama_binary_found",
+    "all_endpoints_valid",
+    "model_allowed",
+    "forbidden_host_rejected"
+  ],
+  "required_false_conditions_for_ready": [
+    "generate_api_called",
+    "chat_api_called"
+  ],
+  "simulation_overrides": {
+    "ollama_binary_found": true
+  },
+  "artifact_policy": {
+    "report_write_scope": ["generic_inference_block_ai/reports"],
+    "reports_only": true
+  }
+}

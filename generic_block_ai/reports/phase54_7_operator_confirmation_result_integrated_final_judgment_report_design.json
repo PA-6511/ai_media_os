@@ -1,0 +1,34 @@
+{
+  "_meta": {
+    "phase": "54-7",
+    "phase_name": "オペレーター確認層",
+    "layer": "統合最終判定層 (integrated final judgment layer)",
+    "title": "オペレーター確認結果の統合最終判定レポート設計",
+    "created": "2026-05-15",
+    "author": "governance-framework",
+    "status": "PASS_DESIGN_ONLY",
+    "reports_only": true
+  },
+  "scope": "Phase 54-2〜54-6 で設計されたオペレーター確認入力・証跡固定・差し戻し/NO_GO維持ルールを統合し，manual_release_go / actual_process_start_go の最終解除候補に対する統合最終判定を設計層でレポートする。判定内容：(1) 各解除候補の確認結果（NOT_GRANTED 維持または差し戻し），(2) 不整合有無，(3) production_status = 'NO_GO' 維持確認，(4) Phase 54-8 への進行条件。",
+  "governance": {
+    "production_status": "NO_GO",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "report": {
+    "description": "Phase 54-7 では，Phase 54-2〜54-6 で設計されたオペレーター確認入力・証跡固定・差し戻し/NO_GO維持ルールを統合し，manual_release_go / actual_process_start_go の最終解除候補に対する統合最終判定を設計層でレポートする。(1) 各解除候補の確認結果（NOT_GRANTED 維持または差し戻し），(2) 不整合有無，(3) production_status = 'NO_GO' 維持確認，(4) Phase 54-8 への進行条件。これらは全て reports-only で実装され，実処理開始許可は含まれない。",
+    "invariants": [
+      "NO_GO 維持：統合最終判定時点で production_status = 'NO_GO' を維持",
+      "NOT_GRANTED 維持：manual_release_go / actual_process_start_go の NOT_GRANTED 状態を維持",
+      "不整合管理：不整合検出時は差し戻し判定と再確認を必須化",
+      "reports only：全統合最終判定は設計層の報告書形式で実施"
+    ],
+    "actions": [],
+    "notes": [
+      "Phase 54-7 は設計層のみで実装される（reports-only）",
+      "実処理開始許可は含まれない",
+      "統合最終判定は Phase 54-8/54-9 の前提"
+    ]
+  }
+}

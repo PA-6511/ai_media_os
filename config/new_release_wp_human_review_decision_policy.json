@@ -1,0 +1,82 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4B",
+  "policy_id": "NEW_RELEASE_WP_HUMAN_REVIEW_DECISION_POLICY_V1",
+  "source_phase_id": "LS-NEW-BATCH-4A",
+  "template_contract_id": "POST185_STANDARD_TEMPLATE_V1_FIXED",
+  "required_item_checks": [
+    "title",
+    "volume_label",
+    "release_date",
+    "publisher",
+    "authors",
+    "cover_image",
+    "store_links",
+    "prices",
+    "pr_disclosure",
+    "category",
+    "mobile_preview"
+  ],
+  "allowed_item_decisions": [
+    "APPROVE_FOR_DRAFT_PRE_EXECUTION",
+    "REJECT"
+  ],
+  "allowed_overall_decisions": [
+    "APPROVE_FOR_DRAFT_PRE_EXECUTION",
+    "REJECT"
+  ],
+  "review_rules": {
+    "reviewer_required": true,
+    "reviewed_at_required": true,
+    "timezone_required": true,
+    "explicit_confirmation_required": true,
+    "required_confirmation": "I_CONFIRM_REVIEW_COMPLETED",
+    "all_checks_true_required_for_approval": true,
+    "rejection_note_required": true,
+    "source_resolved_package_digest_required": true,
+    "source_resolved_payload_digest_required": true
+  },
+  "label_rules": {
+    "review_label_generation_allowed": true,
+    "execution_approval_label_generation_allowed": false,
+    "example_approval_label": "REVIEW_APPROVED_EXAMPLE_ONLY_NOT_EXECUTABLE",
+    "production_review_label": "REVIEW_APPROVED_PRE_EXECUTION_NO_TOKEN",
+    "rejection_label": "HUMAN_REVIEW_REJECTED"
+  },
+  "example_mode_rules": {
+    "resolution_mode": "EXAMPLE_ONLY",
+    "review_recording_allowed": true,
+    "production_execution_allowed": false,
+    "execution_approval_issued": false,
+    "approval_token_allowed": false
+  },
+  "integrity": {
+    "source_package_mutation_allowed": false,
+    "source_package_digest_verification_required": true,
+    "source_payload_digest_verification_required": true,
+    "review_package_digest_required": true
+  },
+  "execution_boundary": {
+    "local_json_read_allowed": true,
+    "local_review_record_write_allowed": true,
+    "human_review_recording_allowed": true,
+    "credential_read_allowed": false,
+    "wordpress_api_call_allowed": false,
+    "wordpress_category_lookup_allowed": false,
+    "wordpress_write_allowed": false,
+    "wordpress_publish_allowed": false,
+    "x_api_call_allowed": false,
+    "x_post_allowed": false,
+    "external_api_call_allowed": false,
+    "execution_approval_issued": false,
+    "approval_token_generation_allowed": false,
+    "execution_allowed": false,
+    "production_status": "NO_GO",
+    "safety_state": "HUMAN_REVIEW_RECORD_ONLY"
+  },
+  "next_phase": {
+    "phase_id": "LS-NEW-BATCH-4C",
+    "name": "Production Category Resolution and Pre-Execution Gate",
+    "execution_allowed": false
+  }
+}

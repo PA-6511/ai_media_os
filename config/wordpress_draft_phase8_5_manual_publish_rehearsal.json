@@ -1,0 +1,116 @@
+{
+  "package_type": "wordpress_draft_phase8_5_manual_publish_rehearsal",
+  "phase": "Phase 8-5",
+  "label": "WordPress手動公開リハーサル設計",
+  "design_status": "DESIGN_ONLY",
+  "wordpress_post_enabled": false,
+  "real_write_enabled": false,
+  "production_status": "NO_GO",
+  "wordpress_publish_execution": "NO_GO",
+  "wordpress_write_executed": false,
+  "target_draft": {
+    "wordpress_draft_id": 110,
+    "expected_status": "draft",
+    "source_logs": [
+      "exchange/logs/phase7_6_wordpress_draft_creation_overall_completion_report.json",
+      "exchange/logs/phase8_4_publish_execution_protocol_validation_result.json"
+    ]
+  },
+  "rehearsal_purpose": "公開直前手順を実行せずに手動リハーサルする設計を定義する。Phase 8-5 では公開操作を実行しない。",
+  "rehearsal_steps": [
+    {
+      "id": "rh_01",
+      "step": "Phase 8-4 公開実行プロトコルが PASS であることを確認",
+      "mandatory": true
+    },
+    {
+      "id": "rh_02",
+      "step": "Phase 8-3 公開ゲートが PASS であることを確認",
+      "mandatory": true
+    },
+    {
+      "id": "rh_03",
+      "step": "Phase 8-2 手動レビュー decision=APPROVE を確認",
+      "mandatory": true
+    },
+    {
+      "id": "rh_04",
+      "step": "対象下書きIDと status=draft を再確認",
+      "mandatory": true
+    },
+    {
+      "id": "rh_05",
+      "step": "承認トークン名・有効期限・1件制限を口頭で読み合わせ",
+      "mandatory": true
+    },
+    {
+      "id": "rh_06",
+      "step": "公開実行コマンドは打たず、実行前チェックのみを再現",
+      "mandatory": true
+    },
+    {
+      "id": "rh_07",
+      "step": "中止条件7件を順に確認し、該当時の停止動作を確認",
+      "mandatory": true
+    },
+    {
+      "id": "rh_08",
+      "step": "証跡ログ保存先と記録項目を確認",
+      "mandatory": true
+    },
+    {
+      "id": "rh_09",
+      "step": "公開後再ロック手順を再確認",
+      "mandatory": true
+    },
+    {
+      "id": "rh_10",
+      "step": "公開以外の禁止操作（更新/削除/Export/自動化）を再確認",
+      "mandatory": true
+    }
+  ],
+  "rehearsal_constraints": {
+    "execute_publish": false,
+    "execute_update": false,
+    "execute_delete": false,
+    "execute_export": false,
+    "execute_bulk": false,
+    "execute_cron": false,
+    "human_reviewer_required": true,
+    "token_name": "APPROVE_PUBLISH_ONE_TIME_MANUAL_ONLY",
+    "token_expiry_minutes": 30,
+    "publish_count_limit": 1
+  },
+  "abort_conditions": [
+    "draft_id_mismatch",
+    "status_not_draft",
+    "token_missing_or_expired",
+    "reviewer_not_human",
+    "precheck_failed",
+    "unexpected_execution_attempt_detected",
+    "safety_constraint_violation"
+  ],
+  "forbidden_actions_in_phase8_5": [
+    "wordpress_rest_publish_post",
+    "wordpress_rest_update_existing_post",
+    "wordpress_rest_delete_post",
+    "wordpress_rest_bulk_post",
+    "external_export",
+    "cron_automation",
+    "github_actions_trigger",
+    "slack_production_notification",
+    "vps_self_builder_execution",
+    "env_secret_auto_edit"
+  ],
+  "rehearsal_result": {
+    "description": "Phase 8-5 は手動公開リハーサル設計のみ。READYでも公開実行は NO_GO 維持。",
+    "result_values": [
+      "MANUAL_PUBLISH_REHEARSAL_DESIGN_READY",
+      "MANUAL_PUBLISH_REHEARSAL_NEEDS_FIX",
+      "MANUAL_PUBLISH_REHEARSAL_BLOCKED"
+    ],
+    "current_result": "MANUAL_PUBLISH_REHEARSAL_DESIGN_READY"
+  },
+  "next_step": "phase8_6_pre_publish_final_readiness_design_only",
+  "note": "Design-only phase. Keep publish NO_GO."
+}

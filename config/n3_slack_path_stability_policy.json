@@ -1,0 +1,16 @@
+{
+  "phase": "N-3",
+  "name": "n3_slack_path_stability_policy",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "human_approval_required": true,
+  "wordpress_write_executed": false,
+  "wordpress_post_created": false,
+  "external_state_change": false,
+  "executor_action_allowed": false,
+  "network_observation_only": true,
+  "communication_test_only": true,
+  "slack_message_sent": false,
+  "webhook_send_allowed": false
+}

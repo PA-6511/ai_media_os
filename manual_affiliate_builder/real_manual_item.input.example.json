@@ -1,0 +1,19 @@
+{
+  "phase": "LS-6C",
+  "input_status": "EXAMPLE_NOT_ACTUAL_INPUT",
+  "item": {
+    "title": "MANUAL_REQUIRED",
+    "author": "MANUAL_REQUIRED",
+    "volume": "MANUAL_REQUIRED",
+    "release_date": "MANUAL_REQUIRED",
+    "asin": "MANUAL_REQUIRED",
+    "affiliate_tag": "MANUAL_REQUIRED",
+    "summary": "MANUAL_REQUIRED",
+    "purchase_url": "MANUAL_REQUIRED",
+    "category": "MANUAL_REQUIRED",
+    "tags": [
+      "MANUAL_REQUIRED"
+    ]
+  },
+  "note": "Copy this file to real_manual_item.input.json and replace all MANUAL_REQUIRED values with real manually reviewed item data. This example must not be treated as actual input."
+}

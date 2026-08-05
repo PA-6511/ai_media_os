@@ -1,0 +1,42 @@
+{
+  "block_name": "sale_flash_block",
+  "phase": "SFB-4",
+  "mode": "DRY_RUN",
+  "production_status": "NO_GO",
+  "external_api_allowed": false,
+  "external_network_allowed": false,
+  "wordpress_write_allowed": false,
+  "creators_api_allowed": false,
+  "amazon_scraping_allowed": false,
+  "publish_allowed": false,
+  "update_allowed": false,
+  "delete_allowed": false,
+  "export_allowed": false,
+  "human_approval_required": true,
+  "human_approval_consumed": false,
+  "input_article_payload_log": "logs/sale_article_payloads.json",
+  "output_json": "logs/sale_human_review_handoff.json",
+  "output_markdown": "logs/sale_human_review_handoff.md",
+  "adopt_review_buckets": [
+    "ready_high_priority"
+  ],
+  "needs_fix_review_buckets": [
+    "needs_asin_confirmation"
+  ],
+  "excluded_review_buckets": [
+    "needs_metadata_fix",
+    "duplicate_review",
+    "blocked_or_invalid"
+  ],
+  "required_checks": [
+    "pr_disclosure_present",
+    "link_candidate_present",
+    "sns_post_candidate_present",
+    "human_review_required",
+    "no_price_claim",
+    "no_discount_claim",
+    "safety_flags_no_go"
+  ],
+  "handoff_status_default": "NOT_REVIEWED",
+  "final_publish_decision_allowed": false
+}

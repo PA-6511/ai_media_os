@@ -1,0 +1,59 @@
+{
+  "phase": "LS-NEW-5",
+  "name": "Human Review Gate",
+  "japanese_name": "新刊コミック購入ナビ 人間レビューゲート",
+  "execution_mode": "HUMAN_REVIEW_GATE_ONLY_NO_EXECUTION",
+  "production_status": "WAITING_FOR_HUMAN_REVIEW_NO_EXECUTION",
+  "required_previous_phase": {
+    "ls_new4_result": "exchange/runtime/start_ls_new4_purchase_navigation_payload_dry_run_result.json",
+    "ls_new4_validation_result": "exchange/logs/start_ls_new4_purchase_navigation_payload_dry_run_validation_result.json",
+    "required_ls_new4_status": "LSNEW4_PURCHASE_NAVIGATION_PAYLOAD_DRY_RUN_PASSED_NO_EXECUTION",
+    "required_ls_new4_validation_status": "LSNEW4_PURCHASE_NAVIGATION_PAYLOAD_DRY_RUN_VALIDATED_NO_EXECUTION",
+    "required_ready_for_ls_new_5_human_review": true,
+    "required_execution_allowed": false
+  },
+  "review_gate_policy": {
+    "human_review_required": true,
+    "human_review_completed": false,
+    "human_approved": false,
+    "approval_label_consumed": false,
+    "approval_label_required_for_next": "APPROVED_FOR_LS_NEW_6_WP_DRAFT_PAYLOAD_PREP_ONLY",
+    "auto_approval_allowed": false,
+    "ai_self_approval_allowed": false,
+    "dry_run_only": true,
+    "wordpress_payload_review_allowed": true,
+    "x_payload_review_allowed": true,
+    "wordpress_api_call_allowed": false,
+    "wordpress_write_allowed": false,
+    "wordpress_draft_create_allowed": false,
+    "x_api_call_allowed": false,
+    "x_post_allowed": false,
+    "external_fetch_allowed": false,
+    "execution_allowed": false
+  },
+  "content_review_policy": {
+    "purchase_navigation_media_required": true,
+    "work_explanation_media_allowed": false,
+    "long_work_explanation_required": false,
+    "synopsis_required": false,
+    "official_synopsis_copy_allowed": false,
+    "store_description_copy_allowed": false,
+    "publisher_description_copy_allowed": false,
+    "review_copy_allowed": false,
+    "user_comment_copy_allowed": false,
+    "catchcopy_copy_allowed": false,
+    "external_media_description_copy_allowed": false,
+    "affiliate_disclosure_required": true,
+    "external_fetch_notice_required": true,
+    "simple_x_post_under_280_required": true,
+    "pr_hashtag_required": true,
+    "url_placeholder_allowed": true
+  },
+  "next_phase": {
+    "recommended_next_action": "WAIT_FOR_HUMAN_REVIEW_DECISION",
+    "recommended_next_phase_options": [
+      "LS-NEW-5-DECISION",
+      "LS-MON-2"
+    ]
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "phase": "LS-NEW-4",
+  "name": "Purchase Navigation Payload Dry Run",
+  "japanese_name": "新刊コミック購入ナビ payload DRY_RUN",
+  "execution_mode": "PURCHASE_NAVIGATION_PAYLOAD_DRY_RUN_ONLY_NO_EXTERNAL_FETCH",
+  "production_status": "NO_EXECUTION_PURCHASE_NAVIGATION_PAYLOAD_DRY_RUN_ONLY",
+  "required_previous_phase": {
+    "ls_new3_result": "exchange/runtime/start_ls_new3_candidate_evidence_dry_run_result.json",
+    "ls_new3_validation_result": "exchange/logs/start_ls_new3_candidate_evidence_dry_run_validation_result.json",
+    "required_ls_new3_status": "LSNEW3_CANDIDATE_EVIDENCE_DRY_RUN_PASSED_NO_EXECUTION",
+    "required_ls_new3_validation_status": "LSNEW3_CANDIDATE_EVIDENCE_DRY_RUN_VALIDATED_NO_EXECUTION",
+    "required_ready_for_ls_new_4": true,
+    "required_execution_allowed": false
+  },
+  "payload_policy": {
+    "dry_run_only": true,
+    "no_external_fetch": true,
+    "evidence_from_ls_new3_only": true,
+    "wordpress_payload_preview_allowed": true,
+    "wordpress_api_call_allowed": false,
+    "wordpress_write_allowed": false,
+    "wordpress_draft_create_allowed": false,
+    "x_payload_preview_allowed": true,
+    "x_api_call_allowed": false,
+    "x_post_allowed": false,
+    "source_url_fetch_allowed": false,
+    "price_lookup_allowed": false,
+    "point_reward_lookup_allowed": false,
+    "delivery_status_lookup_allowed": false,
+    "reservation_status_lookup_allowed": false,
+    "asin_lookup_allowed": false,
+    "isbn_lookup_allowed": false,
+    "candidate_selection_allowed": false,
+    "ls_next1_fill_update_allowed": false,
+    "execution_allowed": false
+  },
+  "content_policy": {
+    "media_type": "purchase_navigation_media",
+    "work_explanation_media_allowed": false,
+    "long_work_explanation_required": false,
+    "synopsis_required": false,
+    "official_synopsis_copy_allowed": false,
+    "store_description_copy_allowed": false,
+    "publisher_description_copy_allowed": false,
+    "review_copy_allowed": false,
+    "user_comment_copy_allowed": false,
+    "catchcopy_copy_allowed": false,
+    "external_media_description_copy_allowed": false,
+    "short_original_comment_allowed": true,
+    "purchase_navigation_only": true
+  },
+  "next_phase": {
+    "recommended_next_action_valid": "BEGIN_LS_NEW_5_HUMAN_REVIEW_GATE",
+    "recommended_next_phase_options_valid": [
+      "LS-NEW-5",
+      "LS-MON-2"
+    ]
+  },
+  "outputs": {
+    "wp_payload": "exchange/new_release/start_ls_new4_wp_purchase_navigation_payload_dry_run.json",
+    "wp_preview": "exchange/new_release/start_ls_new4_wp_purchase_navigation_payload_preview.md",
+    "x_payload": "exchange/new_release/start_ls_new4_x_post_payload_dry_run.json",
+    "validation_summary": "exchange/new_release/start_ls_new4_payload_validation_summary.json",
+    "result": "exchange/runtime/start_ls_new4_purchase_navigation_payload_dry_run_result.json",
+    "lock": "exchange/locks/start_ls_new4_purchase_navigation_payload_dry_run.lock.json",
+    "run_result": "exchange/logs/start_ls_new4_purchase_navigation_payload_dry_run_result.json",
+    "validation_result": "exchange/logs/start_ls_new4_purchase_navigation_payload_dry_run_validation_result.json",
+    "run_report": "reports/start_ls_new4_purchase_navigation_payload_dry_run_report.md",
+    "validation_report": "reports/start_ls_new4_purchase_navigation_payload_dry_run_validation_report.md"
+  }
+}

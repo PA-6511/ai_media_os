@@ -1,0 +1,32 @@
+{
+  "phase": "Implementation Restart Phase 17",
+  "status": "COMPLETED",
+  "generated_at": "2026-05-23T15:12:31.471787+00:00",
+  "schema_version": "ir17_role_policy_versioning_v1",
+  "test_result": {
+    "focused_tests": {
+      "passed": 5,
+      "failed": 0
+    },
+    "full_regression": {
+      "passed": 166,
+      "failed": 0
+    }
+  },
+  "validation_result": "PASS",
+  "validation_failed_check_count": 0,
+  "validation_warning_count": 0,
+  "role_policy_hash": "aec46ac5fdbb9b7d46415f299f82d4ed7b8212fb89e225079ac86bc14d94d76f",
+  "ir15_alignment_checked_reports": 4,
+  "artifacts": {
+    "versioning_report": "generic_block_ai/reports/ir17_role_policy_versioning_report_ir17_live_trial.json",
+    "completion_report": "reports/implementation_restart_phase17_completion_report.json"
+  },
+  "safeguards": {
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "production_release": false
+  }
+}

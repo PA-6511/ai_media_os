@@ -1,0 +1,64 @@
+{
+  "phase": "Phase 7-1",
+  "name": "eligible_single_controlled_run_policy",
+  "status": "ELIGIBLE_DRY_RUN_ONLY",
+  "production_status": "NO_GO",
+  "wordpress_draft_creation": "NO_GO",
+  "wordpress_write_executed": false,
+  "auto_post": false,
+  "auto_update": false,
+  "auto_delete": false,
+  "auto_export": false,
+  "publish_allowed": false,
+  "eligible_is_execution_permission": false,
+  "target_item_count": 1,
+  "human_approval_required": true,
+  "approve_draft_create_only_currently_allowed": false,
+  "phase6_evidence_checked": [
+    {
+      "path": "exchange/logs/phase6_5_execution_spec_validation_result.json",
+      "exists": true,
+      "status": "PASS_DRY_RUN_ONLY"
+    },
+    {
+      "path": "exchange/logs/phase6_6_quality_gate_validation_result.json",
+      "exists": true,
+      "status": "PASS_DRY_RUN_ONLY"
+    },
+    {
+      "path": "exchange/logs/phase6_7_slack_approval_dry_run_result.json",
+      "exists": true,
+      "status": "PASS_DRY_RUN_ONLY"
+    },
+    {
+      "path": "exchange/logs/phase6_8_runbook_validation_result.json",
+      "exists": true,
+      "status": "PASS_DRY_RUN_ONLY"
+    },
+    {
+      "path": "exchange/logs/phase6_9_hardening_preflight_report.json",
+      "exists": true,
+      "status": "PASS_DRY_RUN_ONLY"
+    },
+    {
+      "path": "exchange/logs/phase6_10_existing_generated_test_fix_report.json",
+      "exists": true,
+      "status": "PASS"
+    }
+  ],
+  "errors": [],
+  "warnings": [],
+  "safety_violations": [],
+  "freeze_required": false,
+  "allowed_next_step": "Phase 7-2 APPROVE_DRAFT_CREATE_ONLY pre-unlock review design only",
+  "blocked_next_steps": [
+    "wordpress_draft_create",
+    "wordpress_publish",
+    "wordpress_update",
+    "wordpress_delete",
+    "bulk_posting",
+    "external_export",
+    "vps_self_builder_execution"
+  ],
+  "checked_at": "2026-05-27T13:01:58.411188+00:00"
+}

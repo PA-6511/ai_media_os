@@ -1,0 +1,37 @@
+{
+  "phase": "Phase 7-12",
+  "name": "one_item_draft_execution_plan_policy",
+  "policy_status": "DRY_RUN_PLAN_ONLY",
+  "production_status": "NO_GO",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "human_approval_required": true,
+  "execution_plan_is_execution_permission": false,
+  "approve_draft_create_only_currently_allowed": false,
+  "unlock_in_this_phase": false,
+  "wordpress_draft_creation": "NO_GO",
+  "wordpress_write_executed": false,
+  "wordpress_api_call_allowed": false,
+  "publish_allowed": false,
+  "target_item_count": 1,
+  "required_evidence": [
+    "exchange/logs/phase7_11_approve_draft_create_only_token_validation_result.json"
+  ],
+  "required_phase7_11_status": "TOKEN_READY_BUT_LOCKED",
+  "plan_generation_allowed": true,
+  "payload_generation_allowed": true,
+  "payload_write_allowed": false,
+  "dangerous_operations": {
+    "auto_post": false,
+    "auto_update": false,
+    "auto_delete": false,
+    "auto_export": false,
+    "publish_allowed": false,
+    "wordpress_write_executed": false,
+    "wordpress_api_call_allowed": false,
+    "bulk_execution": false,
+    "external_write": false,
+    "vps_self_builder_execution": false
+  },
+  "allowed_next_step": "Phase 7-13 first controlled WordPress draft creation operator runbook"
+}

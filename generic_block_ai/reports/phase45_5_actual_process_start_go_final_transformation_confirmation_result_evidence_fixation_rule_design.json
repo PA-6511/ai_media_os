@@ -1,0 +1,40 @@
+{
+  "_meta": {
+    "phase": "45-5",
+    "phase_name": "手動最終確認後・発効可否分離確認層",
+    "layer": "補強層 (reinforcement layer)",
+    "title": "actual_process_start_go 最終変換確認結果の証跡固定ルール設計",
+    "created": "2026-05-14",
+    "author": "governance-framework",
+    "status": "PASS_DESIGN_ONLY",
+    "reports_only": true
+  },
+  "scope": "Phase 45-3 で実施された actual_process_start_go_authorization への最終変換可否判定の結果に対して、以下の証跡固定ルールを設計する：(1) Phase 45-3 の判定プロセス全体（権限確認・厳格レベル、フォーマット完全性、整合性、異常チェック、実行不可境界リスク解消確認）の記録を改ざん不可の報告形式で固定、(2) GRANTED 変換可能と判定された場合のみその理由と根拠を詳細に記録（厳格条件が全て満たされたことを明記）、(3) GRANTED 変換不可と判定された場合は不可理由（権限不足・フォーマット不完全・矛盾・異常・リスク残存・その他）を詳細に分類記録、(4) 変換判定と Phase 44-7 の統合最終判定との対応関係を記録、(5) 変換判定と Phase 45-2 manual_release_go 判定の関係性を記録（actual_process_start_go が manual_release_go より厳格であることを明記）、(6) 次フェーズ（Phase 45-6 差し戻しルール、Phase 45-7～45-9 の最終判定）に向けた証跡チェーンの完全性を保証。",
+  "governance": {
+    "production_status": "NO_GO",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "report": {
+    "description": "Phase 45-5 では、Phase 45-3 で実施された actual_process_start_go_authorization の最終変換可否判定に対して、証跡固定ルールを 設計層で定義する。(1) 判定プロセス全体の記録固定：Phase 45-3 で実施された 5つの判定項目（権限確認・厳格レベル、フォーマット完全性、整合性、異常チェック、実行不可境界リスク解消確認）の各々の結果を改ざん不可のレポート形式で固定する。各判定項目について、検査内容・判定基準・判定結果を記録する。特に権限レベルについては manual_release_go より厳格であることを明記する。(2) GRANTED 変換可能時の記録：actual_process_start_go_authorization を 'NOT_GRANTED' から 'GRANTED' に変換することが可能と判定された場合、その理由（全5項目合格）と根拠（具体的な確認内容）を詳細に記録する。記録形式は以後改ざん不可の報告書とする。特に実行不可境界リスク解消の詳細と根拠を強調して記録する。(3) GRANTED 変換不可時の記録：actual_process_start_go_authorization 変換不可と判定された場合、その理由を詳細に分類記録する。分類：①権限不足（確認者権限レベルの記録、required level との比較）、②フォーマット不完全（不完全な項目の詳細）、③整合性矛盾（矛盾内容の詳細）、④異常検出（異常種別・詳細）、⑤リスク残存（Phase 43-7 で検出されたリスク項目の中で残存しているもの、詳細）、⑥その他（理由の詳細）。(4) Phase 44-7 との対応記録：Phase 45-3 の変換可否判定結果が Phase 44-7 の統合最終判定とどのように対応しているか を記録し、整合性を保証する。(5) Phase 45-2 との関係性記録：actual_process_start_go_authorization の変換可否判定が manual_release_go_authorization よりも厳格であること（権限要件が高い、リスク確認が追加される）を明記し、2つの判定が独立していることを記録する。(6) 証跡チェーン完全性保証：Phase 41-1 から Phase 45-5 までの全プロセス記録が揃っていることを確認し、欠落がないことを報告書で証明する。これらのルールは全て 設計層（reports only）で実装され、実処理開始許可を含まない。",
+    "invariants": [
+      "NO_GO 維持：証跡固定プロセス全体を通じて production_status = 'NO_GO' は維持される",
+      "NOT_GRANTED 維持：証跡固定プロセスを通じて actual_process_start_go_authorization は 'NOT_GRANTED' のまま（変換不可時は特に明確）",
+      "reports only：証跡固定ルール全体は報告書形式で実装され、実処理への権限付与を含まない",
+      "改ざん防止：固定された証跡は以後 Phase でも変更されない（immutable）",
+      "厳格性記録：actual_process_start_go が manual_release_go より厳格であることが全ての記録に反映される",
+      "分類記録：変換不可時の理由は 6つの分類で完全に記録される"
+    ],
+    "actions": [],
+    "notes": [
+      "Phase 45-5 は 設計層のみで実装される（実処理開始許可ではない）",
+      "actual_process_start_go の証跡固定ルールは reports only であり、生産環境コード変更を含まない",
+      "Phase 45-4 の manual_release_go 判定と並行進行する",
+      "GRANTED 変換可能という記録 ≠ 実際の GRANTED 発効（Phase 45-7～45-9 で最終判定）",
+      "actual_process_start_go は manual_release_go より権限・条件が厳格（この関係性は全て記録に反映）",
+      "変換不可の場合も詳細に記録し、NO_GO を明確に記録する",
+      "実処理開始は NO_GO のまま"
+    ]
+  }
+}

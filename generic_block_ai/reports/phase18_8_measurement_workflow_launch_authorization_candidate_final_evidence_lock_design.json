@@ -1,0 +1,297 @@
+{
+  "phase_id": "18-8",
+  "phase_name": "Measurement Workflow Launch Authorization Candidate Final Evidence Lock Report Design",
+  "phase_japanese_name": "測定ワークフロー起動許可候補の最終証跡固定レポート設計",
+  "purpose": "Design the final evidence locking and authorization signature workflow for Phase 18-7 final judgment, establishing immutable record of pre-execution readiness declaration before Phase 15-7 and 15-8 measurement workflow launch authorization",
+  "layer": "pre_measurement_execution_gate_layer",
+  "design_category": "reports_only",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only"
+  },
+  "phase_18_8_scope": {
+    "scope_1_launch_authorization_preparation": {
+      "scope_id": "PREPARE_LAUNCH_AUTHORIZATION",
+      "description": "Prepare Phase 18-7 final judgment result for authority review and authorization signature",
+      "preparation_procedure": {
+        "step_1_receive_phase18_7_judgment": {
+          "step_id": "RECEIVE_JUDGMENT",
+          "action": "Receive Phase 18-7 final judgment report with 6 sections (aggregates, evidence verification, failure remediation, abort conditions, judgment declaration)",
+          "judgment_content_to_verify": [
+            "Phase 18-2 results (Phase 15-7 checks: READY_TO_EXECUTE | HOLD | HALT)",
+            "Phase 18-3 results (Phase 15-8 checks: READY_TO_EXECUTE | HOLD | HALT)",
+            "Phase 18-4 evidence lock verification (hash, signature, audit trail integrity)",
+            "Phase 18-5 failure remediation status (none, in progress, completed, escalated)",
+            "Phase 18-6 abort conditions status (clear, detected)",
+            "Final judgment: PROCEED | HOLD | HALT"
+          ],
+          "validation_gate": "Phase 18-7 report must be complete, consistent, and signed by executing authority"
+        },
+        "step_2_serialize_judgment_for_locking": {
+          "step_id": "SERIALIZE_FOR_LOCKING",
+          "action": "Serialize Phase 18-7 final judgment into canonical JSON format for hash computation",
+          "serialization_rules": [
+            "JSON fields in alphabetical order (deterministic serialization)",
+            "No whitespace variations (use compact JSON with no extra spaces)",
+            "All timestamps in RFC 3339 format",
+            "All hashes in hexadecimal (lowercase)"
+          ],
+          "output": "canonical_judgment_json (string, for hashing)"
+        },
+        "step_3_compute_judgment_evidence_hash": {
+          "step_id": "COMPUTE_JUDGMENT_HASH",
+          "action": "Compute SHA-256+ hash of serialized Phase 18-7 final judgment",
+          "hash_algorithm": "SHA-256+ (minimum; SHA-3-256 / Blake2b-256 preferred)",
+          "hash_input": "canonical_judgment_json from step_2",
+          "hash_output": "judgment_evidence_hash (hexadecimal, 64+ characters)",
+          "verification": "Hash must be deterministic; re-serialization and re-hashing must produce identical hash"
+        },
+        "step_4_create_launch_authorization_candidate_record": {
+          "step_id": "CREATE_AUTHORIZATION_CANDIDATE",
+          "action": "Create immutable launch authorization candidate record (awaiting authority signature)",
+          "record_structure": {
+            "candidate_id": "LAUNC_CAND_PHASE15_[7|8]_<UTC_TIMESTAMP>_<RANDOM_NONCE>",
+            "phase_18_7_reference": "phase18_7_phase15_7_15_8_pre_execution_final_judgment_report_design.json",
+            "judgment_evidence_hash": "SHA-256+ hash of Phase 18-7 judgment",
+            "final_judgment": "PROCEED | HOLD | HALT (from Phase 18-7 section_6)",
+            "timestamp_candidate_created_utc": "RFC 3339 format",
+            "phase_15_7_authorization_status": "PENDING_AUTHORITY_REVIEW (for Phase 15-7 launch authorization)",
+            "phase_15_8_authorization_status": "PENDING_AUTHORITY_REVIEW (for Phase 15-8 launch authorization)",
+            "authority_reviewer_expected_role": "Technical authority who approved Phase 18-2 and Phase 18-3 (or escalated authority)",
+            "awaiting_signature": true,
+            "signature_pending_since_utc": "RFC 3339 format"
+          }
+        }
+      }
+    },
+    "scope_2_authority_review_and_signature": {
+      "scope_id": "AUTHORITY_REVIEW_SIGNATURE",
+      "description": "Authority review of Phase 18-7 final judgment and digital signature generation",
+      "authority_review_procedure": {
+        "step_1_authority_receives_candidate": {
+          "step_id": "AUTHORITY_RECEIVES",
+          "action": "Authority receives launch authorization candidate with Phase 18-7 judgment for review",
+          "review_checklist": [
+            "Phase 18-2 check results: all 8 checks reviewed, status understood",
+            "Phase 18-3 check results: all 8+ checks reviewed, Phase 15-7 integration understood",
+            "Phase 18-4 evidence locks: integrity verified (hash, signature, audit trail)",
+            "Phase 18-5 remediation status: failures (if any) remediated or escalated appropriately",
+            "Phase 18-6 abort conditions: all clear or detected conditions documented",
+            "Phase 18-7 final judgment rationale: decision logic (Precedence 1/2/3) verified as correct"
+          ]
+        },
+        "step_2_authority_decision_options": {
+          "step_id": "AUTHORITY_DECISION",
+          "action": "Authority makes authorization decision based on review",
+          "decision_options": [
+            {
+              "option": 1,
+              "decision": "AUTHORIZE_FULL",
+              "condition": "Phase 18-7 final judgment = PROCEED AND all review checks pass",
+              "meaning": "Authority approves launch of both Phase 15-7 AND Phase 15-8 measurement workflows",
+              "signature_scope": "Full launch authorization"
+            },
+            {
+              "option": 2,
+              "decision": "AUTHORIZE_PHASE_15_7_ONLY",
+              "condition": "Phase 15-7 checks READY but Phase 15-8 blockers or Phase 15-7 dependency concerns exist",
+              "meaning": "Authority approves Phase 15-7 launch only (sequential mode). Phase 15-8 deferred pending Phase 15-7 results.",
+              "signature_scope": "Phase 15-7 launch authorization only"
+            },
+            {
+              "option": 3,
+              "decision": "AUTHORIZE_PHASE_15_8_ONLY",
+              "condition": "Phase 15-8 checks READY but Phase 15-7 blockers or resource constraints exist",
+              "meaning": "Authority approves Phase 15-8 launch only. Phase 15-7 deferred.",
+              "signature_scope": "Phase 15-8 launch authorization only"
+            },
+            {
+              "option": 4,
+              "decision": "WITHHOLD_AUTHORIZATION",
+              "condition": "Phase 18-7 final judgment = HOLD or HALT, or authority decides additional review needed",
+              "meaning": "Authority witholds authorization. Defer launch or escalate to higher authority.",
+              "signature_scope": "Withhold decision (no measurement execution)"
+            }
+          ]
+        },
+        "step_3_authority_documents_decision": {
+          "step_id": "DOCUMENT_DECISION",
+          "action": "Authority documents authorization decision with rationale",
+          "documentation_content": {
+            "decision": "AUTHORIZE_FULL | AUTHORIZE_PHASE_15_7_ONLY | AUTHORIZE_PHASE_15_8_ONLY | WITHHOLD",
+            "authority_identifier": "Unique name/ID of approving authority",
+            "decision_rationale": "Explanation of why this decision was made (e.g., all gates clear, some blockers present, risk assessment)",
+            "decision_timestamp_utc": "RFC 3339 format",
+            "authority_signature_algorithm": "RSA-2048 or ECDSA-256",
+            "signature_validity_period": {
+              "valid_from_utc": "RFC 3339 format",
+              "valid_to_utc": "RFC 3339 format (typically 24-48 hours)"
+            }
+          }
+        }
+      }
+    },
+    "scope_3_digital_signature_generation": {
+      "scope_id": "DIGITAL_SIGNATURE",
+      "description": "Generate authority digital signature for launch authorization",
+      "signature_procedure": {
+        "step_1_signature_input_preparation": {
+          "step_id": "PREPARE_SIGNATURE_INPUT",
+          "action": "Prepare input data for digital signature",
+          "signature_input_components": [
+            "candidate_id (LAUNC_CAND_PHASE15_*)",
+            "judgment_evidence_hash (SHA-256+ of Phase 18-7 judgment)",
+            "final_judgment (PROCEED | HOLD | HALT)",
+            "authority_decision (AUTHORIZE_FULL | ... | WITHHOLD)",
+            "decision_timestamp_utc",
+            "authority_identifier"
+          ],
+          "signature_input_format": "Concatenated string or canonical JSON: <candidate_id>::<judgment_hash>::<final_judgment>::<decision>::<timestamp>::<authority>"
+        },
+        "step_2_sign_with_authority_private_key": {
+          "step_id": "SIGN_DATA",
+          "action": "Authority signs prepared input using private key",
+          "algorithm": "RSA-2048 with SHA-256 or ECDSA-256 with SHA-256",
+          "signature_output": "signature_value (Base64-encoded)",
+          "signature_metadata": {
+            "signature_algorithm": "RSA-2048 or ECDSA-256",
+            "signature_hash_algorithm": "SHA-256",
+            "signer_public_key_identifier": "Fingerprint or ID of signer's public key (for verification)"
+          }
+        },
+        "step_3_create_signed_authorization_record": {
+          "step_id": "CREATE_SIGNED_RECORD",
+          "action": "Create signed authorization record",
+          "signed_record_structure": {
+            "signed_authorization_id": "LAUTH_SIGNED_PHASE15_[7|8]_<UTC_TIMESTAMP>_<RANDOM_NONCE>",
+            "candidate_id_reference": "LAUNC_CAND_PHASE15_*",
+            "final_judgment": "PROCEED | HOLD | HALT",
+            "authority_decision": "AUTHORIZE_FULL | AUTHORIZE_PHASE_15_7_ONLY | AUTHORIZE_PHASE_15_8_ONLY | WITHHOLD",
+            "authority_identifier": "Unique name/ID",
+            "decision_timestamp_utc": "RFC 3339",
+            "decision_rationale": "Authority's explanation",
+            "signature_value": "Base64-encoded RSA/ECDSA signature",
+            "signature_algorithm": "RSA-2048 or ECDSA-256",
+            "signature_hash_algorithm": "SHA-256",
+            "signer_public_key_id": "For verification",
+            "signature_valid_from_utc": "RFC 3339",
+            "signature_valid_to_utc": "RFC 3339 (expiry)",
+            "revocation_status": "ACTIVE | REVOKED | EXPIRED (updated dynamically)"
+          }
+        },
+        "step_4_store_signed_record_in_audit_trail": {
+          "step_id": "STORE_SIGNED_RECORD",
+          "action": "Store signed authorization record in immutable audit trail",
+          "storage_location": "generic_block_ai/reports/audit_trail_phase18_8_launch_authorization.json (append-only array)",
+          "access_control": "Read-only; Write-only via Phase 18-8 signature procedure"
+        }
+      }
+    },
+    "scope_4_launch_authorization_verification": {
+      "scope_id": "AUTHORIZATION_VERIFICATION",
+      "description": "Verify signed launch authorization is valid and ready for Phase 15-7/15-8 launch execution",
+      "verification_procedure": {
+        "step_1_signature_validity_verification": {
+          "step_id": "VERIFY_SIGNATURE",
+          "action": "Verify authority signature is cryptographically valid",
+          "verification_steps": [
+            "Retrieve signer's public key using signer_public_key_id",
+            "Reconstruct signature input (candidate_id::judgment_hash::decision::timestamp::authority)",
+            "Use public key to verify signature matches reconstructed input",
+            "Verify signature algorithm matches declared (RSA-2048 or ECDSA-256)"
+          ],
+          "verification_outcome": "SIGNATURE_VALID | SIGNATURE_INVALID | SIGNATURE_VERIFICATION_FAILED"
+        },
+        "step_2_authority_validity_verification": {
+          "step_id": "VERIFY_AUTHORITY",
+          "action": "Verify authority was valid at time of signature",
+          "verification_checks": [
+            "Confirm authority identifier exists in authorization system",
+            "Confirm authority was ACTIVE at decision_timestamp_utc (not revoked, disabled, deactivated)",
+            "Confirm authority has permission to approve Phase 15-7 and/or Phase 15-8 execution",
+            "Confirm authority's public key was valid for signing at decision_timestamp_utc"
+          ],
+          "verification_outcome": "AUTHORITY_VALID | AUTHORITY_REVOKED | AUTHORITY_PERMISSION_INVALID"
+        },
+        "step_3_signature_expiry_verification": {
+          "step_id": "VERIFY_EXPIRY",
+          "action": "Verify signature has not expired and is still within validity period",
+          "verification_check": "Confirm current_utc < signature_valid_to_utc AND signature_valid_from_utc <= current_utc",
+          "verification_outcome": "SIGNATURE_CURRENT | SIGNATURE_EXPIRED"
+        },
+        "step_4_revocation_status_verification": {
+          "step_id": "VERIFY_REVOCATION",
+          "action": "Verify signature has not been revoked or superseded",
+          "revocation_check": "Query revocation authority for signature_id to confirm revocation_status = ACTIVE",
+          "verification_outcome": "SIGNATURE_ACTIVE | SIGNATURE_REVOKED | SIGNATURE_SUPERSEDED"
+        },
+        "step_5_authorization_decision_consistency": {
+          "step_id": "VERIFY_DECISION_CONSISTENCY",
+          "action": "Verify authorized workflows match Phase 18-7 judgment",
+          "consistency_checks": [
+            "If Phase 18-7 PROCEED: Authority decision must be AUTHORIZE_FULL | AUTHORIZE_[15_7|15_8]_ONLY",
+            "If Phase 18-7 HOLD: Authority decision must be WITHHOLD or approved after remediation",
+            "If Phase 18-7 HALT: Authority decision must be WITHHOLD"
+          ],
+          "verification_outcome": "DECISION_CONSISTENT | DECISION_INCONSISTENT"
+        }
+      },
+      "verification_outcomes": {
+        "all_checks_pass": {
+          "outcome": "LAUNCH_AUTHORIZATION_VERIFIED_VALID",
+          "action": "Signed authorization is cryptographically valid and authority intact. Ready for Phase 15-7/15-8 launch."
+        },
+        "signature_verification_fails": {
+          "outcome": "SIGNATURE_CRYPTOGRAPHICALLY_INVALID",
+          "action": "ABORT. Signature tampering suspected. Require fresh signature from authority."
+        },
+        "authority_revoked_or_invalid": {
+          "outcome": "AUTHORITY_INVALID",
+          "action": "ABORT. Authority revoked or invalid. Require new signature from current valid authority."
+        },
+        "signature_expired": {
+          "outcome": "AUTHORIZATION_EXPIRED",
+          "action": "ABORT. Authorization expired. Require fresh signature from authority within current time window."
+        },
+        "decision_inconsistent": {
+          "outcome": "DECISION_INCONSISTENCY_DETECTED",
+          "action": "ABORT. Authority decision conflicts with Phase 18-7 judgment. Authority review and re-signature required."
+        }
+      }
+    }
+  },
+  "phase_18_8_governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "state_invariants": {
+      "integrated_decision": "NO_GO",
+      "receiver_validator_permission": "NOT_EFFECTIVE",
+      "app_implementation_status": "NO_GO",
+      "tests_implementation_status": "NO_GO"
+    },
+    "phase_18_8_completion_criteria": [
+      "Launch authorization preparation procedure (4 steps) designed",
+      "Authority review and signature procedure (3 steps) designed",
+      "Digital signature generation procedure (4 steps) designed",
+      "Launch authorization verification procedure (5 verification steps) designed",
+      "4 signature verification outcomes with appropriate actions designed",
+      "All JSON validation passed",
+      "No changes to app/ or tests/ directories",
+      "All state invariants maintained"
+    ]
+  }
+}

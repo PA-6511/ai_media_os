@@ -1,0 +1,49 @@
+{
+  "phase": "AB-T0",
+  "name": "Auto Builder Token Efficiency Layer v1",
+  "status": "DESIGN_ONLY",
+  "production_status": "NO_GO",
+  "execution_status": "NO_EXECUTION",
+  "dry_run_only": true,
+  "external_api_call_allowed": false,
+  "wordpress_write_allowed": false,
+  "production_write_allowed": false,
+  "credential_output_allowed": false,
+  "live_execution_allowed": false,
+  "copilot_agent_default_allowed": false,
+  "max_files_per_ai_context": 5,
+  "max_lines_per_file_excerpt": 120,
+  "git_diff_full_paste_allowed": false,
+  "pytest_full_log_paste_allowed": false,
+  "evidence_index_full_paste_allowed": false,
+  "report_full_regeneration_allowed": false,
+  "allowed_ai_context_inputs": [
+    "phase closure card",
+    "repository snapshot digest",
+    "file manifest",
+    "diff digest",
+    "error-only log",
+    "safety rule pack"
+  ],
+  "forbidden_ai_context_inputs": [
+    "full repository dump",
+    "full git diff",
+    "full pytest log",
+    "full evidence index",
+    "credential files",
+    "unrelated historical phase reports"
+  ],
+  "safety_rule_pack_id": "SAFETY_RULE_PACK_AB_V1",
+  "safety_rule_pack": {
+    "production_write_allowed": false,
+    "wordpress_write_allowed": false,
+    "external_api_call_allowed": false,
+    "credential_output_allowed": false,
+    "live_execution_allowed": false,
+    "dry_run_only": true,
+    "evidence_only": true,
+    "next_phase_forward_execution": false,
+    "secret_reading_allowed": false,
+    "secret_printing_allowed": false
+  }
+}

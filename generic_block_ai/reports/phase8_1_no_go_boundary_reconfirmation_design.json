@@ -1,0 +1,256 @@
+{
+  "_meta": {
+    "phase": "8-1",
+    "phase_name": "Phase 8 実装開始前の NO-GO 境界再確認",
+    "version": "1.0",
+    "status": "DESIGN_ONLY",
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "created_date": "2026-05-12",
+    "scope": "Phase 7 完了直後に、Phase 8 設計開始前に安全境界を最終再確認",
+    "description": "Phase 7-6 で『Phase 8 設計開始: GO』が決定されたが、app/ 実装は別ゲート。本段階では Phase 8 全体を通じて maintenance される安全境界（OBSERVE/dry_run/NO_GO/禁止アクション）を明確に再確認する。Phase 8-1〜8-3 は全て reports 配下の設計のみで、app/tests 実装なし。"
+  },
+  "phase_8_1_purpose": {
+    "section_name": "Phase 8-1 の目的",
+    "purpose_statement": "Phase 7 完了と Phase 8 設計開始の間に、安全境界が『継続』「追加制限なし」「変化なし」であることを明確に確認し、Phase 8-2/3 の設計ベースライン を固定する。",
+    "critical_reconfirmation_items": [
+      "production_status = NO_GO は Phase 8 全体を通じて継続。app 実装ゲートはまだ来ていない。",
+      "operation_mode = OBSERVE は Phase 8 全体を通じて hardcoding。変更禁止。",
+      "execution = dry_run は Phase 8 全体を通じて hardcoding。変更禁止。",
+      "10 個禁止アクションは Phase 8 全体を通じて永続ブロック。追加許可なし。",
+      "Phase 8-1〜8-3 は全て reports 配下の設計のみ。app/ / tests/ 実装なし。",
+      "Phase 8 中も『human_approval 必須』『auto_execute 禁止』の状態継続。"
+    ]
+  },
+  "phase_7_to_phase_8_transition_recap": {
+    "section_name": "Phase 7 → Phase 8 遷移の正確な理解",
+    "phase_7_6_final_decision": {
+      "decision_type": "GO - Phase 8 設計開始許可",
+      "decision_meaning": "Phase 7-1 ~ 7-3, 7-4, 7-5 の実装前準備設計が完全に完成したため、Phase 8 設計を開始することを許可する。ただしこれは『app/ 実装許可』ではない。",
+      "NOT_what_it_means": "app/ receiver_validator.py の実装を今すぐ開始せよ、ではない。",
+      "what_it_means": "Phase 8-1〜8-3 で安全性再確認・実装差分設計・app/tests ゲート設計を進める許可。"
+    },
+    "phase_8_implementation_permission": {
+      "current_status": "NO_GO",
+      "reason": "Phase 8-1〜8-3 で設計を完了し、安全性ゲートをクリアして初めて『app/ 実装許可』となる。",
+      "gate_location": "Phase 8-3 の app/tests 実装ゲート最終判定設計で、GO/NO_GO を判定する。",
+      "NOT_determined_yet": true
+    }
+  },
+  "safety_boundary_reconfirmation_detail": {
+    "section_name": "安全境界の詳細再確認",
+    "reconfirmation_item_1": {
+      "item": "production_status = NO_GO",
+      "source_phase": "Phase 6-9 declaration",
+      "phase_7_inheritance": "Phase 7-1〜7-6 で継続",
+      "phase_8_status": "継続（app 実装ゲート通過まで変更なし）",
+      "enforcement_mechanism": "Phase 8-2/3 設計で hardcoding 要件として再明記",
+      "change_allowed": false,
+      "override_allowed": false,
+      "override_permission_level": "NEVER"
+    },
+    "reconfirmation_item_2": {
+      "item": "operation_mode = OBSERVE",
+      "source_phase": "Phase 6-9 declaration",
+      "phase_7_inheritance": "Phase 7-1〜7-6 で継続",
+      "phase_8_status": "継続（hardcoding 要件）",
+      "enforcement_mechanism": "Phase 7-5 HW-01 要件 / Phase 8-2 実装差分設計に反映",
+      "change_allowed": false,
+      "override_allowed": false,
+      "override_permission_level": "NEVER"
+    },
+    "reconfirmation_item_3": {
+      "item": "execution = dry_run",
+      "source_phase": "Phase 6-9 declaration",
+      "phase_7_inheritance": "Phase 7-1〜7-6 で継続",
+      "phase_8_status": "継続（hardcoding 要件）",
+      "enforcement_mechanism": "Phase 7-5 HW-02 要件 / Phase 8-2 実装差分設計に反映",
+      "change_allowed": false,
+      "override_allowed": false,
+      "override_permission_level": "NEVER"
+    },
+    "reconfirmation_item_4": {
+      "item": "requires_human_approval = true",
+      "source_phase": "Phase 6-9 declaration",
+      "phase_7_inheritance": "Phase 7-1〜7-6 で継続",
+      "phase_8_status": "継続（Phase 8 中は human 署名なし実行パスなし）",
+      "enforcement_mechanism": "Phase 8-2 実装差分設計 / Phase 8-3 app/tests ゲート設計に反映",
+      "change_allowed": false,
+      "override_allowed": false,
+      "override_permission_level": "NEVER"
+    },
+    "reconfirmation_item_5": {
+      "item": "auto_execute_allowed = false",
+      "source_phase": "Phase 6-9 declaration",
+      "phase_7_inheritance": "Phase 7-1〜7-6 で継続",
+      "phase_8_status": "継続（Phase 8 中も自動実行禁止）",
+      "enforcement_mechanism": "Phase 8-2 実装差分設計 / Phase 8-3 app/tests ゲート設計に反映",
+      "change_allowed": false,
+      "override_allowed": false,
+      "override_permission_level": "NEVER"
+    },
+    "reconfirmation_item_6_blocked_actions": {
+      "item": "10 個禁止アクション（BA-01〜BA-10）",
+      "blocked_actions_list": [
+        "core_ai_real_send",
+        "external_api_call",
+        "wordpress_operation",
+        "cron_registration",
+        "auto_execute",
+        "auto_post",
+        "auto_update",
+        "auto_delete",
+        "auto_export",
+        "production_execution"
+      ],
+      "source_phase": "Phase 5 / Phase 6 / Phase 7-5",
+      "phase_8_status": "永続ブロック（Phase 8 全体を通じて追加許可なし）",
+      "enforcement_mechanism": "Phase 8-2 実装差分設計で各 BA-01〜10 の防止機構を hardcoding",
+      "additional_permissions_allowed": false,
+      "bypass_allowed": false,
+      "override_permission_level": "NEVER"
+    }
+  },
+  "phase_8_design_scope_clarification": {
+    "section_name": "Phase 8-1〜8-3 の設計範囲明確化",
+    "phase_8_1_scope": {
+      "phase": "8-1",
+      "name": "NO-GO 境界再確認",
+      "implementation_type": "DESIGN_ONLY",
+      "artifact_type": "reports (JSON)",
+      "app_implementation": false,
+      "tests_implementation": false
+    },
+    "phase_8_2_scope": {
+      "phase": "8-2",
+      "name": "receiver validator 実装差分最小設計",
+      "implementation_type": "DESIGN_ONLY",
+      "artifact_type": "reports (JSON)",
+      "expected_content": [
+        "app/ 実装で必須の hardcoding 項目（operation_mode / execution / production_status / requires_human_approval / auto_execute_allowed）",
+        "app/ 実装で必須の blocked actions enforcement （BA-01〜BA-10）",
+        "app/ 実装で必須の input/output/error validation logic",
+        "app/ 実装で必須の logging/audit trail"
+      ],
+      "app_implementation": false,
+      "tests_implementation": false
+    },
+    "phase_8_3_scope": {
+      "phase": "8-3",
+      "name": "app/tests 実装ゲート最終判定設計",
+      "implementation_type": "DESIGN_ONLY",
+      "artifact_type": "reports (JSON)",
+      "expected_content": [
+        "app/tests 実装開始の GO/NO_GO/CONDITIONAL_GO/ABORT 判定条件",
+        "Phase 8-2 実装差分設計に対する適合性チェックリスト",
+        "pytest suite の計画（実装なし、計画のみ）",
+        "Phase 9 への遷移条件"
+      ],
+      "app_implementation": false,
+      "tests_implementation": false
+    },
+    "critical_constraint": "Phase 8-1〜8-3 はすべて reports 配下の JSON 設計のみ。app/ / tests/ に実装を追加してはいけない。"
+  },
+  "phase_8_safety_continuity_enforcement": {
+    "section_name": "Phase 8 全体の安全性継続維持方法",
+    "enforcement_method_1": {
+      "method": "hardcoding 要件の double-check",
+      "description": "Phase 8-2 で『app/ 実装時に hardcoding すべき項目』を明確に列挙し、Phase 8-3 で『実装設計がそれに準拠しているか』を checklist で確認。",
+      "who": "Phase 8-1〜8-3 設計者"
+    },
+    "enforcement_method_2": {
+      "method": "blocked actions 永続性の確認",
+      "description": "Phase 8-2 で『10 個禁止アクション各々について、app/ 実装でどのように防止するか』を明記。Phase 8-3 で『設計がそれに準拠しているか』を確認。",
+      "who": "Phase 8-1〜8-3 設計者"
+    },
+    "enforcement_method_3": {
+      "method": "Phase 8-3 app/tests ゲート設計で app 実装許可条件を明確化",
+      "description": "Phase 8-3 で『app/ 実装を許可するための条件リスト』を作成。その条件をクリアして初めて『app/ 実装許可: GO』が決定される。",
+      "who": "Phase 8-3 設計者"
+    },
+    "enforcement_method_4": {
+      "method": "git status による監視",
+      "description": "Phase 8-1〜8-3 進行中に app/ / tests/ に誤って実装が追加されていないか、定期的に確認。",
+      "who": "Phase 8 実行者"
+    }
+  },
+  "phase_8_1_completion_criteria": {
+    "section_name": "Phase 8-1 完了判定基準",
+    "criterion_1": {
+      "criterion": "production_status = NO_GO の継続確認",
+      "status": "SATISFIED",
+      "evidence": "本設計ファイル内で明記"
+    },
+    "criterion_2": {
+      "criterion": "operation_mode = OBSERVE の hardcoding 継続確認",
+      "status": "SATISFIED",
+      "evidence": "本設計ファイル内で明記 + Phase 7-5 HW-01 reference"
+    },
+    "criterion_3": {
+      "criterion": "execution = dry_run の hardcoding 継続確認",
+      "status": "SATISFIED",
+      "evidence": "本設計ファイル内で明記 + Phase 7-5 HW-02 reference"
+    },
+    "criterion_4": {
+      "criterion": "10 個禁止アクション永続ブロック確認",
+      "status": "SATISFIED",
+      "evidence": "本設計ファイル内で BA-01〜BA-10 列挙"
+    },
+    "criterion_5": {
+      "criterion": "Phase 8-1〜8-3 は reports 設計のみであることを確認",
+      "status": "SATISFIED",
+      "evidence": "本設計ファイル内で明記"
+    },
+    "criterion_6": {
+      "criterion": "app/ 実装許可はまだ決定されていないことを確認",
+      "status": "SATISFIED",
+      "evidence": "本設計ファイル内で『app/ 実装は Phase 8-3 で別ゲート判定』と明記"
+    },
+    "phase_8_1_completion_status": "PASS_DESIGN_ONLY"
+  },
+  "next_phase_gates": {
+    "section_name": "Phase 8-2 / 8-3 へのゲート",
+    "phase_8_2_entry_preconditions": [
+      "Phase 8-1 が PASS_DESIGN_ONLY で complete",
+      "安全性再確認が全 6 criteria で SATISFIED"
+    ],
+    "phase_8_2_purpose": "Phase 7-5 gate と Phase 8-1 re-confirmation を踏まえ、『app/ 実装で必ず hardcoding / enforcement すべき項目』を最小限の差分として設計",
+    "phase_8_3_entry_preconditions": [
+      "Phase 8-1 が PASS_DESIGN_ONLY で complete",
+      "Phase 8-2 が PASS_DESIGN_ONLY で complete"
+    ],
+    "phase_8_3_purpose": "Phase 8-2 実装差分設計に基づき、『app/ 実装を許可するための最終ゲート条件』を設計し、GO/NO_GO を判定する",
+    "phase_9_entry_preconditions": [
+      "Phase 8-1 が PASS_DESIGN_ONLY",
+      "Phase 8-2 が PASS_DESIGN_ONLY",
+      "Phase 8-3 が PASS_DESIGN_ONLY で『app/ 実装許可: GO』が決定された場合のみ"
+    ]
+  },
+  "critical_warnings": {
+    "section_name": "Phase 8-1〜8-3 の重要注意事項",
+    "warning_1": {
+      "warning": "app/ 実装許可と Phase 8 設計開始許可を混同しない",
+      "clarification": "Phase 7-6 で決定されたのは『Phase 8 設計開始: GO』であり、『app/ 実装許可: GO』ではない。"
+    },
+    "warning_2": {
+      "warning": "Phase 8-1〜8-3 中に誤って app/ / tests/ に実装を追加しない",
+      "check": "git status で定期確認。reports/ のみが untracked files であること。"
+    },
+    "warning_3": {
+      "warning": "production_status = NO_GO を絶対に変更しない",
+      "enforcement": "Phase 8-3 で app/ 実装許可 GO が決定されても、production_status は NO_GO のままである。本番環境への反映はさらに後のフェーズ。"
+    },
+    "warning_4": {
+      "warning": "10 個禁止アクションに『例外』『試験的許可』『限定的解除』を加えない",
+      "enforcement": "Phase 8-1〜8-3 全体を通じて、BA-01〜BA-10 は『永続』『絶対』『例外なし』。"
+    },
+    "warning_5": {
+      "warning": "OBSERVE / dry_run / human_approval 要件を weakening しない",
+      "enforcement": "Phase 8-2 実装差分設計で『これらの要件を minimize してもいいか』と考えてはいけない。",
+      "acceptable": false
+    }
+  }
+}

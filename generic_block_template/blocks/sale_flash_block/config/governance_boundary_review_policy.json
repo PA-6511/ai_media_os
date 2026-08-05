@@ -1,0 +1,18 @@
+{
+  "block_name": "sale_flash_block",
+  "phase": "SFB-10",
+  "mode": "DRY_RUN",
+  "production_status": "NO_GO",
+  "external_api_allowed": false,
+  "external_network_allowed": false,
+  "wordpress_write_allowed": false,
+  "publish_allowed": false,
+  "update_allowed": false,
+  "delete_allowed": false,
+  "export_allowed": false,
+  "input_final_signoff_archive": "logs/final_signoff_archive.json",
+  "input_dry_run_execution_baseline_lock": "logs/sale_flash_block_dry_run_execution_baseline_lock_report.json",
+  "output_json": "logs/governance_boundary_review.json",
+  "output_markdown": "logs/governance_boundary_review.md",
+  "execution_blocked": true
+}

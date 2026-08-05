@@ -1,0 +1,60 @@
+{
+  "schema_version": "ir36_destination_approval_gate_matrix_v1",
+  "phase": "IR36",
+  "generated_at": "2026-05-24T02:18:22.864499+00:00",
+  "source_task_id": "ir36_live_trial",
+  "release_candidate_id": "rc_20260523T155148Z_ir26_live_trial_b940393b490b",
+  "final_submission_decision": "READY_FOR_SUBMISSION_SUMMARY",
+  "source_validation_result": "PASS",
+  "overall_approval_decision": "APPROVE_DRY_RUN",
+  "validation_failed_checks": [],
+  "validation_warnings": [],
+  "summary": {
+    "destination_count": 3,
+    "approve_dry_run_count": 3,
+    "human_review_required_count": 0,
+    "reject_count": 0,
+    "abort_count": 0,
+    "global_abort": false
+  },
+  "decisions": [
+    {
+      "destination": "regulatory_audit",
+      "approval_decision": "APPROVE_DRY_RUN",
+      "reasons": [],
+      "warnings": [],
+      "source_validation_result": "PASS",
+      "manifest_path": "generic_block_ai/reports/ir34_destination_submission_packages_ir34_live_trial/regulatory_audit/destination_package_manifest.json"
+    },
+    {
+      "destination": "internal_review_board",
+      "approval_decision": "APPROVE_DRY_RUN",
+      "reasons": [],
+      "warnings": [],
+      "source_validation_result": "PASS",
+      "manifest_path": "generic_block_ai/reports/ir34_destination_submission_packages_ir34_live_trial/internal_review_board/destination_package_manifest.json"
+    },
+    {
+      "destination": "compliance_archive",
+      "approval_decision": "APPROVE_DRY_RUN",
+      "reasons": [],
+      "warnings": [],
+      "source_validation_result": "PASS",
+      "manifest_path": "generic_block_ai/reports/ir34_destination_submission_packages_ir34_live_trial/compliance_archive/destination_package_manifest.json"
+    }
+  ],
+  "artifacts": {
+    "matrix_root": "generic_block_ai/reports/ir36_destination_approval_gate_matrix_ir36_live_trial",
+    "destination_approval_gate_matrix": "generic_block_ai/reports/ir36_destination_approval_gate_matrix_ir36_live_trial/destination_approval_gate_matrix.json",
+    "destination_approval_summary": "generic_block_ai/reports/ir36_destination_approval_gate_matrix_ir36_live_trial/destination_approval_summary.json",
+    "completion_report": "reports/implementation_restart_phase36_completion_report.json"
+  },
+  "safeguards": {
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "network_transmission_executed": false,
+    "production_release": false
+  }
+}

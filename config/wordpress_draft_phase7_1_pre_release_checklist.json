@@ -1,0 +1,172 @@
+{
+  "package_type": "wordpress_draft_phase7_1_pre_release_checklist",
+  "phase": "Phase 7-1",
+  "label": "WordPress実下書き作成 手動解放前チェックリスト",
+  "design_status": "DESIGN_ONLY",
+  "wordpress_post_enabled": false,
+  "real_write_enabled": false,
+  "production_status": "NO_GO",
+  "wordpress_draft_creation": "NO_GO",
+  "wordpress_write_executed": false,
+  "checklist_purpose": "本チェックリストは、将来1件限定の実下書き作成へ進める前に人間が手動で確認すべき全項目を定義する。チェックが完了するまでWordPress REST APIへのPOSTは禁止。",
+
+  "prerequisite_phase_checks": [
+    {
+      "id": "pre_01",
+      "check": "Phase 6 overall_status が COMPLETE_DESIGN_ONLY であること",
+      "source": "exchange/logs/phase6_completion_report.json",
+      "expected_value": "COMPLETE_DESIGN_ONLY",
+      "mandatory": true
+    },
+    {
+      "id": "pre_02",
+      "check": "Phase 6-9 manual_unlock_status が DESIGN_ONLY であること",
+      "source": "exchange/logs/phase6_9_manual_unlock_protocol_validation_result.json",
+      "expected_value": "DESIGN_ONLY",
+      "mandatory": true
+    },
+    {
+      "id": "pre_03",
+      "check": "Phase 6-8 final_decision が NO_GO_DESIGN_LOCK であること",
+      "source": "exchange/logs/phase6_8_final_unlock_go_no_go_result.json",
+      "expected_value": "NO_GO_DESIGN_LOCK",
+      "mandatory": true
+    },
+    {
+      "id": "pre_04",
+      "check": "Phase 5 overall_status が PASS_DRY_RUN_ONLY_WITH_WARN または PASS_DRY_RUN_ONLY であること",
+      "source": "exchange/logs/phase5_overall_completion_report.json",
+      "expected_values": ["PASS_DRY_RUN_ONLY_WITH_WARN", "PASS_DRY_RUN_ONLY"],
+      "mandatory": true
+    }
+  ],
+
+  "environment_checks": [
+    {
+      "id": "env_01",
+      "check": "WordPress REST API エンドポイントに疎通確認済み（curl GET /wp-json/wp/v2/posts で 200 応答）",
+      "method": "manual_curl_get_only",
+      "mandatory": true,
+      "note": "GET のみ。POSTは禁止。"
+    },
+    {
+      "id": "env_02",
+      "check": "WP_USERNAME / WP_APP_PASSWORD が有効なアプリパスワードであること",
+      "method": "manual_verify_credentials",
+      "mandatory": true
+    },
+    {
+      "id": "env_03",
+      "check": "投稿ユーザーのロールが Editor 以上であること",
+      "method": "manual_verify_wp_user_role",
+      "mandatory": true
+    },
+    {
+      "id": "env_04",
+      "check": ".env または secrets に WP_USERNAME / WP_APP_PASSWORD が正しく設定済みであること",
+      "method": "manual_verify_env",
+      "mandatory": true
+    }
+  ],
+
+  "content_quality_checks": [
+    {
+      "id": "cq_01",
+      "check": "投稿対象の下書き候補が Phase 5 バリデーションを PASS していること",
+      "source": "exchange/logs/wordpress_draft_candidate_review.json",
+      "mandatory": true
+    },
+    {
+      "id": "cq_02",
+      "check": "affiliateタグが正しく設定されており、不正なリンクが含まれていないこと",
+      "method": "manual_review",
+      "mandatory": true
+    },
+    {
+      "id": "cq_03",
+      "check": "content 内の URL が全て有効であること（404・リダイレクト切れがないこと）",
+      "method": "manual_review",
+      "mandatory": true
+    },
+    {
+      "id": "cq_04",
+      "check": "WARN 項目が全て解消または許容済みであること",
+      "method": "manual_review",
+      "mandatory": true
+    },
+    {
+      "id": "cq_05",
+      "check": "下書き候補が1件のみであること（複数件を一度に処理しない）",
+      "mandatory": true
+    }
+  ],
+
+  "safety_checks": [
+    {
+      "id": "sf_01",
+      "check": "レビュー担当者が自動エージェントではなく人間であること",
+      "mandatory": true
+    },
+    {
+      "id": "sf_02",
+      "check": "承認トークン APPROVE_MANUAL_UNLOCK_DRAFT_CREATE_ONLY が発行済みかつ有効期限内（30分以内）であること",
+      "mandatory": true
+    },
+    {
+      "id": "sf_03",
+      "check": "status=draft であることを実行前に再確認すること（publish / future / pending は禁止）",
+      "mandatory": true
+    },
+    {
+      "id": "sf_04",
+      "check": "GitHub Actions による自動実行が無効化されていること",
+      "mandatory": true
+    },
+    {
+      "id": "sf_05",
+      "check": "cron / スケジューラによる自動実行が存在しないこと",
+      "mandatory": true
+    },
+    {
+      "id": "sf_06",
+      "check": "VPS_SELF_BUILDER による自動実行が禁止されていること",
+      "mandatory": true
+    },
+    {
+      "id": "sf_07",
+      "check": "ロールバック手順（手動削除）を事前に確認済みであること",
+      "method": "manual_verify",
+      "mandatory": true
+    },
+    {
+      "id": "sf_08",
+      "check": "実行後に exchange/logs へ証跡を保存する準備が整っていること",
+      "mandatory": true
+    }
+  ],
+
+  "forbidden_actions_on_checklist_pass": [
+    "wordpress_rest_post_bulk",
+    "wordpress_rest_put",
+    "wordpress_rest_patch",
+    "publish_post",
+    "update_existing_post",
+    "delete_post",
+    "external_export",
+    "github_actions_trigger",
+    "slack_production_notification",
+    "cron_automation",
+    "env_secret_auto_edit",
+    "vps_self_builder_execution"
+  ],
+
+  "checklist_pass_condition": {
+    "description": "全 mandatory=true 項目が確認済みの場合のみ CHECKLIST_PASS とする",
+    "result_values": ["CHECKLIST_PASS", "CHECKLIST_INCOMPLETE", "CHECKLIST_BLOCKED"],
+    "current_result": "CHECKLIST_INCOMPLETE",
+    "reason": "Phase 7-1 は設計段階。実チェックは人間が実施するまで CHECKLIST_INCOMPLETE 維持。"
+  },
+
+  "next_step": "phase7_2_single_draft_create_execution_dry_run",
+  "note": "チェックリストが全項目 PASS かつ人間承認トークン有効の場合のみ Phase 7-2 への進行を検討する。自動進行は禁止。"
+}

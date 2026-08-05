@@ -1,0 +1,38 @@
+{
+  "schema_version": "gib.beta07.validation_report.v0.1",
+  "block_id": "GIB",
+  "beta_version": "beta0.7",
+  "final_status": "PASS_DRY_RUN_BETA07_READY_SIM_NO_AUTOCONNECT",
+  "status": "DRY_RUN_READY_SIMULATION_ONLY",
+  "production_status": "NO_GO",
+  "runtime_target": "ollama",
+  "real_llm_call_allowed": false,
+  "execution_allowed": false,
+  "generate_call_allowed": false,
+  "chat_call_allowed": false,
+  "base_ready_conditions_ok": false,
+  "simulated_ready_conditions_ok": true,
+  "auto_connect_on_ready": false,
+  "auto_connect_triggered": false,
+  "simulation_overrides": {
+    "ollama_binary_found": true
+  },
+  "simulated_state": {
+    "final_status": "PASS_DRY_RUN_BETA05_LOCAL_OLLAMA_PREFLIGHT_NO_GENERATE_CALL",
+    "ollama_binary_found": true,
+    "all_endpoints_valid": true,
+    "model_allowed": true,
+    "forbidden_host_rejected": true,
+    "generate_api_called": false,
+    "chat_api_called": false,
+    "real_llm_call_allowed": false,
+    "execution_allowed": false,
+    "production_status": "NO_GO"
+  },
+  "beta06_snapshot": {
+    "final_status": "PASS_DRY_RUN_BETA06_ENV_PREP_CHECK_NO_GENERATE",
+    "ready_conditions_ok": false,
+    "ready_for_connecting_stage": false,
+    "production_status": "NO_GO"
+  }
+}

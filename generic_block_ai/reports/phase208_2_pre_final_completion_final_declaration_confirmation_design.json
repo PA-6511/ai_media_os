@@ -1,0 +1,15 @@
+{
+  "_meta": {
+    "phase": 208,
+    "status": "PASS_DESIGN_ONLY",
+    "reports_only": true
+  },
+  "governance": {
+    "production_status": "NO_GO",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "execution_start": "NO_GO",
+    "changed_area": "reports only"
+  },
+  "description": "Pre-final completion final declaration confirmation design: This process designs the confirmation layer for the final completion declaration, to be performed after the preparation for the final declaration is complete and before any manual_release_go application is submitted."
+}

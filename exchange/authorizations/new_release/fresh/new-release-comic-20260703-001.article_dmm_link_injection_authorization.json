@@ -1,0 +1,74 @@
+{
+  "schema_version": "1.0.0",
+  "document_role": "DMM_ARTICLE_LINK_INJECTION_ONE_SHOT_AUTHORIZATION",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M8-FIX1",
+  "content_item_id": "new-release-comic-20260703-001",
+  "authorization_id": "DMM_ARTICLE_LINK_INJECTION_ONE_SHOT_AUTHORIZATION_V1",
+  "approval_label": "DMM_ARTICLE_RESERVED_SLOT_HTML_VALIDATOR_FIX_APPROVED",
+  "authorized_operation": "ONE_SHOT_ARTICLE_DMM_LINK_INJECTION_AND_SLOT_ACTIVATION",
+  "human_review_binding": {
+    "path": "exchange/reviews/new_release/fresh/new-release-comic-20260703-001.dmm_final_affiliate_link_human_review.json",
+    "review_verdict": "APPROVED_NO_CHANGE_REQUIRED",
+    "review_digest_sha256": "764fa0e5b3eea9cd09369995c78b6b0598c66aca17f66f80e3391d4654d932a4"
+  },
+  "article_preimage_binding": {
+    "path": "exchange/content/new_release/fresh/new-release-comic-20260703-001.article.json",
+    "file_sha256": "849a37519c6af70d2212ec01d5cddef5793bfa811e97ca9f248ce099a0350bf4",
+    "required_slot_tag": "span",
+    "required_class_tokens": [
+      "ls-store-btn",
+      "ls-store-dmm",
+      "ls-store-disabled"
+    ],
+    "required_aria_disabled": "true",
+    "required_text": "DMMブックスで確認（再確認待ち）"
+  },
+  "secret_link_binding": {
+    "path": "exchange/links/new_release/fresh/new-release-comic-20260703-001.dmm_final_affiliate_link_generation_result.json",
+    "file_sha256": "c5a70d9804a4e2dfd91049ee20bdda5379abf3e1fe3c25b0fb8cbd5fa587faa0",
+    "artifact_digest_sha256": "4807e0a6d8a8416a936bafa978ba4f90d43ae7d304322bbd6a6ababcb2cd2db6",
+    "final_url_fingerprint_sha256": "f01572020caf88cd0a017e0e739bc492394fa275eeac0e346328adba0fd99141",
+    "required_mode": "0600",
+    "full_final_url_present": false,
+    "affiliate_identifier_present": false
+  },
+  "historical_bindings": {
+    "m7_consumption_digest_sha256": "9d6a8ba944747d1df2d039075a2f511fdf88215a81cc4b867c9d184313b0efcc",
+    "m6_authorization_digest_sha256": "0607dd3774aa592369a1a22ac2692372ad57d70fe3a70d5eee387d47a27ec3f5",
+    "m5_human_review_digest_sha256": "92c59e79b7f8ff9b3dae934d1912f5249ccd4ce0c754cb5a5070e0b8264be892",
+    "cred1_result_digest_sha256": "7a173b74bef53781a3b2fe2e2cc2d3f363a096b937508c241d454311d072ec7e"
+  },
+  "required_mutation_contract": {
+    "only_dmm_slot_may_change": true,
+    "replace_span_with_anchor": true,
+    "activated_label": "DMMブックスで確認",
+    "anchor_target": "_blank",
+    "anchor_rel": "nofollow sponsored noopener",
+    "remove_disabled_class": true,
+    "remove_aria_disabled": true,
+    "amazon_slot_modification_allowed": false,
+    "rakuten_kobo_slot_modification_allowed": false,
+    "title_modification_allowed": false,
+    "body_copy_modification_allowed": false,
+    "image_modification_allowed": false,
+    "price_metadata_modification_allowed": false
+  },
+  "single_use": true,
+  "authorization_consumed": false,
+  "authorization_reuse_allowed": false,
+  "automatic_retry_allowed": false,
+  "actual_injection_requires_execute_now_approval": true,
+  "actual_injection_allowed": false,
+  "planned_execution_phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M9",
+  "planned_consumption_path": "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.article_dmm_link_injection_consumption.json",
+  "network_connection_performed": false,
+  "article_modified": false,
+  "article_url_injection_performed": false,
+  "article_dmm_slot_activated": false,
+  "payload_created": false,
+  "wordpress_access_performed": false,
+  "execution_allowed": false,
+  "production_status": "NO_GO",
+  "authorized_at_utc": "2026-07-11T06:38:30.174551+00:00",
+  "authorization_digest_sha256": "d274eaf6bd14c95ac43031fbff296d0d47e6051dbb4231407327d376f93fec7f"
+}

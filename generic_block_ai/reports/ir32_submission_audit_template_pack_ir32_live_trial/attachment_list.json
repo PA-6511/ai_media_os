@@ -1,0 +1,31 @@
+{
+  "schema_version": "ir32_submission_audit_template_pack_v1",
+  "phase": "IR32",
+  "generated_at": "2026-05-23T16:18:18.612332+00:00",
+  "release_candidate_id": "rc_20260523T155148Z_ir26_live_trial_b940393b490b",
+  "attachments": [
+    {
+      "name": "submission_audit_narrative",
+      "path": "generic_block_ai/reports/ir31_submission_audit_narrative_ir31_live_trial/submission_audit_narrative.md",
+      "required": true
+    },
+    {
+      "name": "submission_audit_index",
+      "path": "generic_block_ai/reports/ir31_submission_audit_narrative_ir31_live_trial/submission_audit_index.json",
+      "required": true
+    },
+    {
+      "name": "reviewer_summary",
+      "path": "generic_block_ai/reports/ir31_submission_audit_narrative_ir31_live_trial/reviewer_summary.json",
+      "required": true
+    }
+  ],
+  "safeguards": {
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "production_release": false,
+    "network_transmission_executed": false
+  }
+}

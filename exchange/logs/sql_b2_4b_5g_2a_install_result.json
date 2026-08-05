@@ -1,0 +1,54 @@
+{
+  "phase": "SQL-B2-4B-5G-2A",
+  "result": "PASS_READINESS_DB_AND_UNIT_INSTALL",
+  "recorded_at": "2026-07-14T13:54:48.510270+00:00",
+  "git": {
+    "branch": "feature/sql-b2-4b-slack-production-readiness",
+    "commit": "351ed0ad947cce4b6b645f896bf31c64065a998b",
+    "commit_short": "351ed0a"
+  },
+  "readiness_database": {
+    "path": "/var/lib/ai-media-os-slack-readiness/ebook_affiliate_readiness.db",
+    "directory_mode": "700",
+    "database_mode": "600",
+    "owner": "deploy",
+    "group": "deploy",
+    "symbolic_link": false,
+    "production_database_same_file": false,
+    "quick_check": "ok",
+    "required_table_count": 2,
+    "approval_request_count": 0
+  },
+  "systemd": {
+    "unit": "ai-media-os-slack-approval-readiness.service",
+    "installed_path": "/etc/systemd/system/ai-media-os-slack-approval-readiness.service",
+    "repository_unit_matches": true,
+    "load_state": "loaded",
+    "active_state": "inactive",
+    "sub_state": "dead",
+    "unit_file_state": "disabled",
+    "installed": true,
+    "enabled": false,
+    "started": false,
+    "slack_mode": "DRY_RUN",
+    "production_database_allowed": false,
+    "security_exposure_score": 2.9,
+    "security_exposure_label": "OK",
+    "unit_verify_exit": 0,
+    "unit_specific_verify_errors": false
+  },
+  "production_database": {
+    "path": "/home/deploy/ai_media_os/data/database/ebook_affiliate.db",
+    "sha256_before": "a4c5c6b3c9f016cd745cdb9c531c807fe5bc4a3ac28f9422609dfa96cd7b37d8",
+    "sha256_after": "a4c5c6b3c9f016cd745cdb9c531c807fe5bc4a3ac28f9422609dfa96cd7b37d8",
+    "sha256_match": true,
+    "approval_request_count": 0,
+    "mutated": false
+  },
+  "governance": {
+    "production_status": "NO_GO",
+    "safety_state": "READINESS_UNIT_INSTALLED_DISABLED",
+    "production_slack_approval_allowed": false,
+    "automatic_start_allowed": false
+  }
+}

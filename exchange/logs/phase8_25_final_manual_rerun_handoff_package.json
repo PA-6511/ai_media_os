@@ -1,0 +1,40 @@
+{
+  "phase": "Phase 8-25",
+  "status": "HANDOFF_BLOCKED_CREDENTIALS_MISSING",
+  "production_status": "NO_GO",
+  "wordpress_api_call_allowed": false,
+  "wordpress_write_executed": false,
+  "publish_allowed": false,
+  "handoff_package_is_execution_permission": false,
+  "commands_executed_in_this_phase": false,
+  "target_item_count": 1,
+  "planned_manual_commands": [],
+  "secret_values_written": false,
+  "evidence_summary": [
+    {
+      "path": "exchange/logs/phase8_21_manual_credential_completion_checklist_result.json",
+      "exists": true,
+      "status": "PASS_CHECKLIST_ONLY"
+    },
+    {
+      "path": "exchange/logs/phase8_22_credential_ready_path_switch_result.json",
+      "exists": true,
+      "status": "CREDENTIAL_READY_PATH_NOT_AVAILABLE_MISSING_CREDENTIALS"
+    },
+    {
+      "path": "exchange/logs/phase8_23_pre_rerun_safety_snapshot.json",
+      "exists": true,
+      "status": "SAFETY_SNAPSHOT_NOT_READY_CREDENTIALS_MISSING"
+    },
+    {
+      "path": "exchange/logs/phase8_24_operator_go_no_go_result.json",
+      "exists": true,
+      "status": "OPERATOR_NO_GO_CREDENTIALS_MISSING"
+    }
+  ],
+  "errors": [],
+  "warnings": [],
+  "safety_violations": [],
+  "allowed_next_step": "Keep NO_GO and do not rerun until credentials are ready",
+  "checked_at": "2026-05-28T12:52:29.354136+00:00"
+}

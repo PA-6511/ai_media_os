@@ -1,0 +1,93 @@
+{
+  "phase_id": "30-4",
+  "phase_name": "Final Manual Approval Result Evidence Locking Rules Design",
+  "phase_japanese_name": "最終手動承認結果の証跡固定ルール設計",
+  "purpose": "Design immutable evidence-locking rules for final manual approval results before freeze-release and execution-start gate progression.",
+  "layer": "pre_execution_start_manual_approval_and_freeze_release_boundary_reinforcement_layer",
+  "design_category": "reports_only",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "manual_execution_start_approval": "REQUIRED",
+    "manual_execution_start_approval_status": "PENDING",
+    "auto_execute_allowed": false,
+    "operation_transition_go_authorization": "NOT_GRANTED",
+    "production_reflection_go_authorization": "NOT_GRANTED",
+    "freeze_release_go_authorization": "NOT_GRANTED",
+    "execution_start_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "phase_30_4_scope": {
+    "scope_1_input_contract": {
+      "scope_id": "INPUT_CONTRACT",
+      "required_inputs": {
+        "phase30_1_to_30_3_status": "PASS_DESIGN_ONLY",
+        "phase30_pre_execution_manual_approval_and_freeze_release_boundary_status": "PASS_DESIGN_ONLY"
+      }
+    },
+    "scope_2_locking_rules": {
+      "scope_id": "LOCKING_RULES",
+      "rules": {
+        "rule_M30L1": "Canonicalize final manual approval payload before hashing",
+        "rule_M30L2": "Compute SHA-256 hash and record as manual_approval_result_hash",
+        "rule_M30L3": "Sign hash with authority signature metadata",
+        "rule_M30L4": "Append signed record to immutable append-only audit trail",
+        "rule_M30L5": "Perform roundtrip hash/signature verification after append",
+        "rule_M30L6": "If verification fails, lock_status = LOCK_FAILED and all GO authorizations remain NOT_GRANTED"
+      }
+    },
+    "scope_3_report_structure": {
+      "scope_id": "REPORT_STRUCTURE",
+      "sections": {
+        "section_1_header": {
+          "report_id": "PHASE30_4_MANUAL_APPROVAL_RESULT_LOCK_<UTC_TIMESTAMP>",
+          "report_type": "final_manual_approval_result_evidence_lock",
+          "generated_at_utc": "RFC3339",
+          "generated_by": "authority_identifier"
+        },
+        "section_2_lock_inputs": {
+          "manual_approval_id": "MANUAL_APPROVAL_RESULT_<UTC_TIMESTAMP>",
+          "input_integrity_status": "PASS | FAIL"
+        },
+        "section_3_integrity_results": {
+          "manual_approval_result_hash": "hex",
+          "signature_verification": "PASS | FAIL",
+          "audit_append_status": "PASS | FAIL",
+          "tamper_check_status": "PASS | FAIL"
+        },
+        "section_4_lock_determination": {
+          "lock_status": "LOCK_CONFIRMED | LOCK_FAILED",
+          "manual_execution_start_approval_status": "APPROVED | PENDING | REJECTED",
+          "freeze_release_go_authorization": "GRANTED | NOT_GRANTED",
+          "execution_start_go_authorization": "GRANTED | NOT_GRANTED"
+        }
+      }
+    }
+  },
+  "phase_30_4_governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "state_invariants": {
+      "app_implementation_status": "NO_GO",
+      "tests_implementation_status": "NO_GO",
+      "production_status": "NO_GO",
+      "operation_transition_go_authorization": "NOT_GRANTED",
+      "production_reflection_go_authorization": "NOT_GRANTED",
+      "freeze_release_go_authorization": "NOT_GRANTED",
+      "execution_start_go_authorization": "NOT_GRANTED",
+      "changed_area": "reports only"
+    }
+  }
+}

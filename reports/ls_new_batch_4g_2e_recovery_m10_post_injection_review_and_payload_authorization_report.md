@@ -1,0 +1,27 @@
+# LS-NEW-BATCH-4G-2E-RECOVERY-M10
+
+- Status: `PASS_POST_INJECTION_ARTICLE_HUMAN_REVIEW_APPROVED_FRESH_PAYLOAD_AUTHORIZATION_FIXED_NO_PAYLOAD_NO_NETWORK`
+- Review verdict: `APPROVED_NO_CHANGE_REQUIRED`
+- Article postimage SHA verified: `true`
+- Article preimage inverse reconstruction verified: `true`
+- Non-DMM structure unchanged: `true`
+- DMM active anchor verified: `true`
+- Decoded href exact binding verified: `true`
+- Store navigation verified: `true`
+- Category mapping ID: `COMIC_NEW_RELEASE_LATEST_VOLUME_TO_WP_CATEGORY_10`
+- Category ID: `10`
+- Category name: `最新巻`
+- Template ID: `POST185_STANDARD_TEMPLATE_V1_FIXED`
+- Payload authorization single use: `true`
+- Payload authorization consumed: `false`
+- Payload authorization reuse allowed: `false`
+- Automatic retry allowed: `false`
+- Automatic reissue allowed: `false`
+- Full final URL output: `false`
+- Affiliate identifier output: `false`
+- Article modified: `false`
+- Payload created: `false`
+- Network accessed: `false`
+- WordPress accessed: `false`
+- Production status: `NO_GO`
+- Ready for M11 execute-now gate: `true`

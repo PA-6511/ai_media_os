@@ -1,0 +1,18 @@
+{
+  "phase": "LS-NEW-4",
+  "document_type": "START_LS_NEW4_PAYLOAD_VALIDATION_SUMMARY",
+  "wp_payload_valid": true,
+  "x_payload_valid": true,
+  "purchase_navigation_media": true,
+  "work_explanation_media": false,
+  "official_synopsis_copy_included": false,
+  "store_description_copy_included": false,
+  "review_copy_included": false,
+  "x_post_under_280": true,
+  "external_fetch_executed": false,
+  "wordpress_write_executed": false,
+  "x_post_executed": false,
+  "ready_for_ls_new_5_human_review": true,
+  "execution_allowed": false,
+  "errors": []
+}

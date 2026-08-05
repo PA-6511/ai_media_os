@@ -1,0 +1,83 @@
+{
+  "phase": "X-R11-MANUAL-REAL-SOURCE-INTAKE-PREP",
+  "status": "MANUAL_REAL_SOURCE_INTAKE_POLICY_FIXED",
+  "version": 1,
+  "encoding": "utf-8-sig",
+  "delimiter": ",",
+  "maximum_rows": 1,
+  "header": [
+    "intake_id",
+    "title",
+    "volume_label",
+    "release_date",
+    "publisher",
+    "authors",
+    "category",
+    "source_discovery_url",
+    "publisher_confirmation_url",
+    "amazon_url",
+    "rakuten_kobo_url",
+    "dmm_url",
+    "description_mode",
+    "human_review_state"
+  ],
+  "required_fields": [
+    "intake_id",
+    "title",
+    "release_date",
+    "publisher",
+    "category",
+    "source_discovery_url",
+    "publisher_confirmation_url",
+    "description_mode",
+    "human_review_state"
+  ],
+  "allowed_categories": [
+    "comic",
+    "light_novel",
+    "general_book"
+  ],
+  "required_description_mode": "MINIMAL",
+  "required_human_review_state": "NOT_REVIEWED",
+  "retail_url_fields": [
+    "amazon_url",
+    "rakuten_kobo_url",
+    "dmm_url"
+  ],
+  "minimum_valid_retail_url_count": 1,
+  "placeholder_hosts": [
+    "example.com",
+    "www.example.com",
+    "example.org",
+    "www.example.org",
+    "example.net",
+    "www.example.net",
+    "localhost",
+    "127.0.0.1",
+    "::1"
+  ],
+  "synthetic_title_tokens": [
+    "sample",
+    "test",
+    "dummy",
+    "demo",
+    "fixture",
+    "サンプル",
+    "テスト",
+    "ダミー",
+    "デモ",
+    "検証用",
+    "動作確認"
+  ],
+  "production_controls": {
+    "automatic_selection_allowed": false,
+    "database_import_allowed": false,
+    "workflow_update_allowed": false,
+    "approval_request_creation_allowed": false,
+    "wordpress_draft_creation_allowed": false,
+    "normal_x_fb_write_allowed": false,
+    "x_api_call_allowed": false,
+    "x_post_allowed": false,
+    "production_status": "NO_GO"
+  }
+}

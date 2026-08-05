@@ -1,0 +1,308 @@
+{
+  "_meta": {
+    "phase": "8-4",
+    "phase_name": "Phase 8-3 gate evaluation 実施設計",
+    "version": "1.0",
+    "status": "DESIGN_ONLY",
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "created_date": "2026-05-12",
+    "scope": "Phase 8-3 で定義された 9 sections × 136 points の ゲート評価を『実際にどのように実行するか』の具体的な手順設計",
+    "description": "Phase 8-2 実装差分設計に対して、Phase 8-3 で定義された評価基準（G8301 ~ G8309）を用いて、実際に scoring を行うための evaluator 向けガイドラインとチェックリスト。"
+  },
+  "phase_8_4_overview": {
+    "section_name": "Phase 8-4 の位置付け",
+    "purpose": "Phase 8-3 gate design で定義された 9 sections の評価を『実行可能な手順』に変換する設計段階",
+    "evaluation_flow": "Phase 8-2 design → Phase 8-4 evaluator guideline → Phase 8-3 gate scoring → Phase 8-5 human review"
+  },
+  "gate_evaluation_workflow": {
+    "section_name": "Gate evaluation の全体ワークフロー",
+    "workflow_steps": [
+      {
+        "step": 1,
+        "step_name": "Evaluator 準備",
+        "activities": [
+          "Phase 8-3 gate design (phase8_3_app_tests_implementation_gate_design.json) を読み込む",
+          "Phase 8-2 実装差分設計 (phase8_2_receiver_validator_implementation_difference_design.json) を読み込む",
+          "本 Phase 8-4 evaluator guideline を確認する"
+        ]
+      },
+      {
+        "step": 2,
+        "step_name": "Section G8301 ~ G8307 を順序に scoring する",
+        "activities": [
+          "G8301: hardcoding constants 評価 (max 15 points)",
+          "G8302: blocked actions enforcement 評価 (max 25 points)",
+          "G8303: input validation logic 評価 (max 9 points)",
+          "G8304: output specification 評価 (max 10 points)",
+          "G8305: logging & error handling 評価 (max 18 points)",
+          "G8306: minimal files list 評価 (max 6 points)",
+          "G8307: test plan 評価 (max 25 points)"
+        ]
+      },
+      {
+        "step": 3,
+        "step_name": "Section G8308 ~ G8309 を consistency check scoring",
+        "activities": [
+          "G8308: hardcoding と blocked actions の consistency 評価 (max 20 points)",
+          "G8309: Phase 7-5 gate 要件との整合性 評価 (max 8 points)"
+        ]
+      },
+      {
+        "step": 4,
+        "step_name": "Total score を計算し、gate decision を決定",
+        "activities": [
+          "Total score = G8301 + ... + G8309",
+          "decision_threshold に基づいて GO / CONDITIONAL_GO / NO_GO / ABORT を判定",
+          "Phase 8-4 gate evaluation result report を作成"
+        ]
+      },
+      {
+        "step": 5,
+        "step_name": "Phase 8-5 へ gate evaluation result を入力",
+        "activities": [
+          "Phase 8-4 gate evaluation report を Phase 8-5 human review input として使用",
+          "human reviewer が app/tests 実装許可を最終決定"
+        ]
+      }
+    ]
+  },
+  "evaluator_guideline_g8301": {
+    "section_id": "G8301",
+    "section_name": "hardcoding constants の完全性確認",
+    "max_score": 15,
+    "evaluation_criteria": [
+      {
+        "criterion_id": "G8301-01",
+        "criterion": "5 個の hardcoding constants が全て『CRITICAL』『change_allowed=false』『override_permission_level=NEVER』と明記されているか",
+        "evaluation_checklist": [
+          "Phase 8-2 MID-A section を開く",
+          "HW-01（OPERATION_MODE）: hardcoding_level = 'CRITICAL' か？ change_allowed = false か？",
+          "HW-02（EXECUTION）: hardcoding_level = 'CRITICAL' か？ change_allowed = false か？",
+          "HW-03（PRODUCTION_STATUS）: hardcoding_level = 'CRITICAL' か？ change_allowed = false か？",
+          "HW-04（REQUIRES_HUMAN_APPROVAL）: hardcoding_level = 'CRITICAL' か？ change_allowed = false か？",
+          "HW-05（AUTO_EXECUTE_ALLOWED）: hardcoding_level = 'CRITICAL' か？ change_allowed = false か？",
+          "すべて OK なら score = 5。1 つでも不足なら score = 0"
+        ],
+        "score_if_pass": 5,
+        "score_if_fail": 0
+      },
+      {
+        "criterion_id": "G8301-02",
+        "criterion": "5 個定数の値が『OBSERVE』『dry_run』『NO_GO』『True』『False』と正確に指定されているか",
+        "evaluation_checklist": [
+          "HW-01.value = \"'OBSERVE'\" か？",
+          "HW-02.value = \"'dry_run'\" か？",
+          "HW-03.value = \"'NO_GO'\" か？",
+          "HW-04.value = \"True\" か？",
+          "HW-05.value = \"False\" か？",
+          "すべて OK なら score = 5。1 つでも不正確なら score = 0"
+        ],
+        "score_if_pass": 5,
+        "score_if_fail": 0
+      },
+      {
+        "criterion_id": "G8301-03",
+        "criterion": "code_example で assertions が hardcoding 値に対して記述されているか",
+        "evaluation_checklist": [
+          "Phase 8-2 MID-A の code_example section を確認",
+          "assert OPERATION_MODE == 'OBSERVE' が記載されているか？",
+          "assert EXECUTION == 'dry_run' が記載されているか？",
+          "assert PRODUCTION_STATUS == 'NO_GO' が記載されているか？",
+          "assert REQUIRES_HUMAN_APPROVAL == True が記載されているか？",
+          "assert AUTO_EXECUTE_ALLOWED == False が記載されているか？",
+          "すべて記載されているなら score = 5。1 つでも不足なら score = 0"
+        ],
+        "score_if_pass": 5,
+        "score_if_fail": 0
+      }
+    ],
+    "section_scoring_logic": "G8301-01 + G8301-02 + G8301-03 = total G8301 score (max 15)"
+  },
+  "evaluator_guideline_g8302": {
+    "section_id": "G8302",
+    "section_name": "blocked actions enforcement の完全性確認",
+    "max_score": 25,
+    "evaluation_criteria": [
+      {
+        "criterion_id": "G8302-01",
+        "criterion": "10 個禁止アクション（BA-01〜BA-10）が全て『enforcement_point / check_code / fallback_behavior』と記述されているか",
+        "evaluation_checklist": [
+          "Phase 8-2 MID-B の examples section を開く",
+          "各 BA-01〜BA-10 について、3 つのフィールドが present か確認：",
+          "  - enforcement_point (実装位置)",
+          "  - check_code (チェック実装例)",
+          "  - fallback_behavior (エラー時動作)",
+          "10 個全てに 3 フィールド記載されているなら score = 10。1 つでも不足なら score = 0"
+        ],
+        "score_if_pass": 10,
+        "score_if_fail": 0
+      },
+      {
+        "criterion_id": "G8302-02",
+        "criterion": "各 enforcement が『exception raise / mock response / blocking』など concrete な手段で記述されているか",
+        "evaluation_checklist": [
+          "BA-01 check_code: exception raise が明記されているか？",
+          "BA-02 check_code: mock response または exception が明記されているか？",
+          "BA-03 ~ BA-10: 各々に concrete な enforcement mechanism が記載されているか？",
+          "10 個全てに concrete な mechanism 記載されているなら score = 10。不具体なら score = 0"
+        ],
+        "score_if_pass": 10,
+        "score_if_fail": 0
+      },
+      {
+        "criterion_id": "G8302-03",
+        "criterion": "enforcement_coverage が『100% (BA-01 ~ BA-10)』と明記されているか",
+        "evaluation_checklist": [
+          "Phase 8-2 MID-B section の『enforcement_coverage』フィールドを確認",
+          "'100% (BA-01 ~ BA-10)' と明記されているか？",
+          "記載されているなら score = 5。なければ score = 0"
+        ],
+        "score_if_pass": 5,
+        "score_if_fail": 0
+      }
+    ],
+    "section_scoring_logic": "G8302-01 + G8302-02 + G8302-03 = total G8302 score (max 25)"
+  },
+  "evaluator_guideline_g8303_to_g8307": {
+    "section_name": "G8303 ~ G8307 簡潔評価ガイド",
+    "g8303_guideline": {
+      "section_id": "G8303",
+      "section_name": "input validation logic の完全性確認",
+      "max_score": 9,
+      "quick_evaluation": [
+        "Phase 8-2 MID-C section を確認",
+        "IV-01 (decision_package): 5+ checks 記載されているか？",
+        "IV-02 (observation): 5 checks 記載されているか？",
+        "IV-03 (phase6_conditions): 4 checks 記載されているか？",
+        "3 categories 全てに sufficient checks 記載：score = 9。不足：score = 0"
+      ]
+    },
+    "g8304_guideline": {
+      "section_id": "G8304",
+      "section_name": "output specification の完全性確認",
+      "max_score": 10,
+      "quick_evaluation": [
+        "Phase 8-2 MID-D output_schema を確認",
+        "5 fields (decision_type / reasoning / timestamp / matched_conditions / safety_flags) 全て記載：5 points",
+        "safety_flags に 5 フラグ (operation_mode / execution / production_status / requires_human_approval / auto_execute_allowed) 全て記載：5 points",
+        "total score = max 10"
+      ]
+    },
+    "g8305_guideline": {
+      "section_id": "G8305",
+      "section_name": "logging & error handling の完全性確認",
+      "max_score": 18,
+      "quick_evaluation": [
+        "Phase 8-2 MID-E を確認",
+        "logging_requirements: 6 events (validator_init / input_validation_started / safety_check_performed / decision_reached / error_detected / safety_violation_detected) 全て記載：6 points",
+        "各 event に log_fields + log_level 記載：6 points",
+        "error_handling_pattern で 3 パターン (validation_error / safety_boundary_violation / timestamp_invalid) 定義：6 points",
+        "total score = max 18"
+      ]
+    },
+    "g8306_guideline": {
+      "section_id": "G8306",
+      "section_name": "minimal files list の適切性",
+      "max_score": 6,
+      "quick_evaluation": [
+        "Phase 8-2 implementation_minimal_files を確認",
+        "3 ファイル (receiver_validator.py / config / runner) 記載：3 points",
+        "各ファイルに purpose / estimated_loc / required_sections 記載：3 points",
+        "total score = max 6"
+      ]
+    },
+    "g8307_guideline": {
+      "section_id": "G8307",
+      "section_name": "test plan の適切性",
+      "max_score": 25,
+      "quick_evaluation": [
+        "Phase 8-2 implementation_minimal_test_plan を確認",
+        "total_test_count = 86 か？ 7 categories か？：10 points",
+        "各 category に test_count + examples 記載されているか？：10 points",
+        "test_coverage_goal: 95%+ 明記されているか？：5 points",
+        "total score = max 25"
+      ]
+    }
+  },
+  "evaluator_guideline_g8308_g8309": {
+    "section_name": "G8308 ~ G8309 整合性評価ガイド",
+    "g8308_guideline": {
+      "section_id": "G8308",
+      "section_name": "hardcoding と blocked actions の consistency check",
+      "max_score": 20,
+      "evaluation_checklist": [
+        "Phase 8-2 MID-A と MID-B を cross-check",
+        "例）MID-A で operation_mode = OBSERVE hardcoding → MID-B で BA-01/02/03 enforcement で operation_mode が参照されているか？",
+        "例）MID-A で execution = dry_run hardcoding → MID-B で各 BA enforcement で execution check が含まれているか？",
+        "矛盾なし：score = 20。矛盾検出：score = 0"
+      ]
+    },
+    "g8309_guideline": {
+      "section_id": "G8309",
+      "section_name": "Phase 7-5 gate 要件との整合性確認",
+      "max_score": 8,
+      "evaluation_checklist": [
+        "Phase 7-5 の 8 セクション（hardcoding / blocked_actions / input_validation / output_validation / error_handling / logging / test_coverage / documentation）",
+        "各々に対して、Phase 8-2 が design を提供しているか cross-check：",
+        "  - HW-01〜05 hardcoding → MID-A で design ✓",
+        "  - BA-01〜10 blocked actions → MID-B で design ✓",
+        "  - input validation → MID-C で design ✓",
+        "  - output → MID-D で design ✓",
+        "  - error handling / logging → MID-E で design ✓",
+        "  - test plan → test_plan section で design ✓",
+        "  - documentation → (MID-A〜E に含まれている) ✓",
+        "8 セクション全て coverage：score = 8。不足：score = 0"
+      ]
+    }
+  },
+  "gate_scoring_summary_template": {
+    "section_name": "Gate scoring 結果テンプレート",
+    "scoring_table": {
+      "G8301_score": "= G8301-01 + G8301-02 + G8301-03 (max 15)",
+      "G8302_score": "= G8302-01 + G8302-02 + G8302-03 (max 25)",
+      "G8303_score": "= 9 or 0",
+      "G8304_score": "= 10 or 0",
+      "G8305_score": "= 18 or 0",
+      "G8306_score": "= 6 or 0",
+      "G8307_score": "= 25 or 0 (中間値 20, 15 可)",
+      "G8308_score": "= 20 or 0",
+      "G8309_score": "= 8 or 0",
+      "TOTAL_SCORE": "G8301 + G8302 + ... + G8309"
+    },
+    "decision_criteria": {
+      "GO": "TOTAL_SCORE >= 130",
+      "CONDITIONAL_GO": "100 <= TOTAL_SCORE < 130",
+      "NO_GO": "TOTAL_SCORE < 100",
+      "ABORT": "any section score = 0 (critical missing)"
+    }
+  },
+  "evaluator_role_and_responsibilities": {
+    "section_name": "Evaluator の役割と責任",
+    "role_definition": "Phase 8-2 実装差分設計が、Phase 8-3 で定義された 136 point 評価システムを満たしているか、客観的に評価する",
+    "responsibilities": [
+      "公平性: evaluator は bias を持たず、objective に scoring する",
+      "完全性: 9 sections 全てを評価し、どれかを skip しない",
+      "記録: 各 section の scoring 根拠を明確に記録する",
+      "整合性: Phase 7-5 gate 要件との整合性を常に確認する",
+      "安全性: operation_mode / execution / production_status / banned actions の要件が maintain されているか確認する"
+    ]
+  },
+  "phase_8_4_completion_criteria": {
+    "section_name": "Phase 8-4 完了判定基準",
+    "criterion_1": "Gate evaluation workflow が 5 steps で明確に定義されている → SATISFIED",
+    "criterion_2": "G8301〜G8309 の 9 sections 各々について、evaluator guideline が具体的に記述されている → SATISFIED",
+    "criterion_3": "scoring summary template が定義され、決定基準 (GO/CONDITIONAL_GO/NO_GO/ABORT) が明記されている → SATISFIED",
+    "criterion_4": "evaluator の role と responsibilities が明確に定義されている → SATISFIED",
+    "phase_8_4_completion_status": "PASS_DESIGN_ONLY"
+  },
+  "next_phase_transition": {
+    "section_name": "Phase 8-5 へのスムーズな遷移",
+    "phase_8_4_output": "Gate evaluation result (total score + decision + section scoring details)",
+    "phase_8_5_input": "Phase 8-4 gate evaluation result",
+    "phase_8_5_purpose": "human reviewer が Phase 8-4 gate evaluation result を踏まえ、『app/tests 実装許可を GO/NO_GO/CONDITIONAL_GO/ABORT で最終判定』するためのテンプレート"
+  }
+}

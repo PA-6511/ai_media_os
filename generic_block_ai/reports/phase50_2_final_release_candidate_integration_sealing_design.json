@@ -1,0 +1,35 @@
+{
+  "_meta": {
+    "phase": "50-2",
+    "phase_name": "発効・実処理開始層",
+    "layer": "統合封印設計層 (integration sealing design layer)",
+    "title": "manual_release_go / actual_process_start_go 最終解除候補の統合封印設計",
+    "created": "2026-05-14",
+    "author": "governance-framework",
+    "status": "PASS_DESIGN_ONLY",
+    "reports_only": true
+  },
+  "scope": "Phase 49 完了証跡の受領・整合確認を経て，manual_release_go / actual_process_start_go の最終解除候補を統合的に封印（integrate & seal）する設計ルールを定義する。封印内容：(1) 各解除候補の最終状態（NOT_GRANTED）を改ざん不可の形式で封印，(2) Phase 50 以降で解除候補の状態が変更されないことの保証，(3) 封印解除条件・監査要件の明示，(4) 封印設計の監査証跡化。",
+  "governance": {
+    "production_status": "NO_GO",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "report": {
+    "description": "Phase 50-2 では，Phase 49 完了証跡の受領・整合確認を経て，manual_release_go / actual_process_start_go の最終解除候補を統合的に封印する設計ルールを定義する。(1) manual_release_go / actual_process_start_go の最終状態（NOT_GRANTED）を改ざん不可の形式で封印，(2) Phase 50 以降で解除候補の状態が変更されないことの保証，(3) 封印解除条件・監査要件の明示，(4) 封印設計の監査証跡化。これらは全て reports-only で実装され，実処理開始許可は含まれない。",
+    "invariants": [
+      "NO_GO 維持：封印時点で production_status = 'NO_GO' を維持",
+      "NOT_GRANTED 維持：manual_release_go / actual_process_start_go の NOT_GRANTED 状態を封印",
+      "改ざん不可：封印設計はタイムスタンプ・署名等で改ざん不可性を担保",
+      "封印解除条件：解除は厳格な監査・再設計プロセスを経てのみ可能",
+      "reports only：全封印設計は設計層の報告書形式で実施"
+    ],
+    "actions": [],
+    "notes": [
+      "Phase 50-2 は設計層のみで実装される（reports-only）",
+      "実処理開始許可は含まれない",
+      "封印解除には厳格な監査・再設計が必要"
+    ]
+  }
+}

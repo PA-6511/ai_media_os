@@ -1,0 +1,25 @@
+{
+  "phase": "Phase 8-50A",
+  "phase_name": "Manual Affiliate Builder Evidence Index Registration",
+  "status": "PHASE8_50A_EVIDENCE_REGISTRATION_PASS_DRY_RUN_ONLY",
+  "checked_at": "2026-06-15T14:41:25.546395+00:00",
+  "execution_mode": "DRY_RUN_ONLY",
+  "production_status": "NO_GO",
+  "amazon_api_call_allowed": false,
+  "wordpress_write_allowed": false,
+  "publish_allowed": false,
+  "approval_token_consumed": false,
+  "manual_phase_locked_status": "PASS_DRY_RUN_ONLY",
+  "manual_phase_artifacts": {
+    "manual_report": "reports/phase8_50_manual_affiliate_builder_report.md",
+    "preview_json": "exchange/logs/phase8_50_manual_wp_draft_payload_preview.json",
+    "preview_markdown": "reports/phase8_50_manual_wp_draft_payload_preview.md"
+  },
+  "next_phase": {
+    "phase": "Phase 8-51-MIGRATION-SKELETON",
+    "execution_state": "UNEXECUTED",
+    "lock": "NOT_STARTED_LOCKED",
+    "execution_allowed": false
+  },
+  "next_action": "KEEP_HOLD_AND_MONITOR"
+}

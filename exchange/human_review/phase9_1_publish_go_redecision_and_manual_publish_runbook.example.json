@@ -1,0 +1,49 @@
+{
+  "package_type": "phase9_1_publish_go_redecision_and_manual_publish_runbook",
+  "phase": "Phase 9-1",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "source": "human_operator",
+  "reviewer": "manual_human_reviewer",
+  "reviewer_is_human": true,
+  "reviewed_at": "REPLACE_WITH_ACTUAL_REVIEW_TIME",
+  "decision": "KEEP_NO_GO",
+  "decision_choices": [
+    "GO_PUBLISH_ONE_TIME_MANUAL_ONLY",
+    "KEEP_NO_GO",
+    "REQUEST_FIX",
+    "ABORT"
+  ],
+  "approval_token": "NONE",
+  "wordpress_draft_id": 110,
+  "manual_confirmation": {
+    "phase8_11_pass_confirmed": false,
+    "target_draft_id_confirmed": false,
+    "target_status_draft_confirmed": false,
+    "human_reviewer_confirmed": false,
+    "token_constraints_confirmed": false,
+    "manual_publish_only_confirmed": false,
+    "phase9_1_no_publish_execution_confirmed": false
+  },
+  "review_notes": {
+    "summary": "Phase 9-1 prepares runbook only. No publish execution is allowed in this phase.",
+    "fix_requests": []
+  },
+  "safety_flags": {
+    "publish_allowed": false,
+    "update_allowed": false,
+    "delete_allowed": false,
+    "export_allowed": false,
+    "wordpress_post_enabled": false,
+    "real_write_enabled": false,
+    "wordpress_write_executed": false,
+    "auto_post": false,
+    "auto_update": false,
+    "auto_delete": false,
+    "auto_export": false,
+    "github_actions_triggered": false,
+    "slack_notification_executed": false,
+    "vps_self_builder_executed": false,
+    "env_or_secrets_modified": false
+  }
+}

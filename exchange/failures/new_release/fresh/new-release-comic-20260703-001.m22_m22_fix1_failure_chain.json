@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M22-FIX2",
+  "document_role": "M22_AND_M22_FIX1_FAILURE_CHAIN",
+  "content_item_id": "new-release-comic-20260703-001",
+  "wordpress_post_id": 192,
+  "failures": [
+    {
+      "failed_phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M22",
+      "classification": "STYLE_ELEMENT_TEXT_FALSE_POSITIVE",
+      "pytest_passed_count": 7,
+      "pytest_failed_count": 1,
+      "temporary_result_digest_sha256": "613db1031948407ec473821eb39b4455a27e9e070ebc90f690b40b0e09584f3b",
+      "temporary_result_is_final": false,
+      "temporary_result_adopted": false,
+      "rerun_performed": false
+    },
+    {
+      "failed_phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M22-FIX1",
+      "classification": "RESULT_SCHEMA_FIELD_NAME_MISMATCH",
+      "pytest_passed_count": 8,
+      "pytest_failed_count": 1,
+      "failed_test": "test_no_external_or_authorization_operation",
+      "generated_field_name": "previous_m22_rerun_performed",
+      "incorrect_test_field_name": "original_m22_rerun_performed",
+      "exception_type": "KeyError",
+      "temporary_result_digest_sha256": "d4f6bb83ba112644d27b0e422537d3c3a328788b66b33dd747c94588840e35ef",
+      "temporary_result_is_final": false,
+      "temporary_result_adopted": false,
+      "rerun_performed": false
+    }
+  ],
+  "canonical_result_field_name": "previous_m22_rerun_performed",
+  "deprecated_result_field_name": "original_m22_rerun_performed",
+  "deprecated_result_field_allowed": false,
+  "fix_phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M22-FIX2",
+  "network_connection_performed": false,
+  "wordpress_access_performed": false,
+  "wordpress_update_performed": false,
+  "recorded_at_utc": "2026-07-11T13:00:49.981627+00:00",
+  "failure_chain_digest_sha256": "d2fb20c22d98edd7c685681fc8aad69c8e418c7c9536cfdaeca2a3c10196d598"
+}

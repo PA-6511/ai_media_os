@@ -1,0 +1,11 @@
+{
+  "phase": "LS-NEW-9",
+  "document_type": "START_LS_NEW9_SEPARATE_EXECUTION_APPROVAL_DECISION_TEMPLATE",
+  "instructions": "Human reviewer must fill this manually. AI must not auto-approve.",
+  "allowed_approval_label": "APPROVED_FOR_LS_NEW_9_SEPARATE_EXECUTION_APPROVAL_GATE_ONLY",
+  "human_approval_completed": false,
+  "human_approved_for_execution": false,
+  "approval_label": "",
+  "reviewer_notes": "",
+  "execution_allowed": false
+}

@@ -1,0 +1,47 @@
+{
+  "phase": "Phase 8-11",
+  "status": "PHASE8_11_REQUEST_FIX",
+  "decision": "REQUEST_FIX",
+  "reason": "manual review completed: draft creation succeeded, but body content is preflight/sample text and not production-ready",
+  "target_post_id": 115,
+  "target_expected_status": "draft",
+  "checklist": {
+    "draft_exists": true,
+    "status_is_draft": true,
+    "title_ok": true,
+    "body_ok": false,
+    "affiliate_disclosure_ok": true,
+    "pr_label_ok": true,
+    "no_publish_confirmed": true
+  },
+  "all_checklist_items_passed": false,
+  "manual_review_result": "request_fix",
+  "manual_review_summary": {
+    "technical_result": "success",
+    "quality_result": "request_fix",
+    "evidence": {
+      "post_id": 115,
+      "title": "サンプル漫画 1巻 セール紹介",
+      "author": "ai_publisher",
+      "status": "draft"
+    },
+    "body_issue": "body contains preflight/test wording, not production-ready article content"
+  },
+  "reviewer": "manual_human_reviewer",
+  "reviewed_at_utc": "2026-06-09T13:21:17+00:00",
+  "publish_allowed": false,
+  "update_allowed": false,
+  "delete_allowed": false,
+  "export_allowed": false,
+  "auto_post": false,
+  "production_status": "NO_GO",
+  "wordpress_api_call_attempted": false,
+  "wordpress_write_executed": false,
+  "additional_retry_allowed": true,
+  "next_step": "Phase 8-12 manual inspection evidence save and request_fix fixation",
+  "errors": [],
+  "warnings": [],
+  "policy_violations": [],
+  "safety_violations": [],
+  "checked_at": "2026-06-09T13:21:18.361032+00:00"
+}

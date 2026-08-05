@@ -1,0 +1,85 @@
+{
+  "phase_id": "30-2",
+  "phase_name": "Pre-Execution Start Final Manual Approval Gate Design",
+  "phase_japanese_name": "実行開始前の最終手動承認ゲート設計",
+  "purpose": "Design mandatory final manual approval gate rules before any freeze release or execution-start authorization.",
+  "layer": "pre_execution_start_manual_approval_and_freeze_release_boundary_layer",
+  "design_category": "reports_only",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "manual_execution_start_approval": "REQUIRED",
+    "manual_execution_start_approval_status": "PENDING",
+    "auto_execute_allowed": false,
+    "operation_transition_go_authorization": "NOT_GRANTED",
+    "production_reflection_go_authorization": "NOT_GRANTED",
+    "freeze_release_go_authorization": "NOT_GRANTED",
+    "execution_start_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "phase_30_2_scope": {
+    "scope_1_input_contract": {
+      "scope_id": "INPUT_CONTRACT",
+      "required_inputs": {
+        "phase30_1_evidence_receipt_status": "PASS_DESIGN_ONLY"
+      }
+    },
+    "scope_2_manual_approval_gate_rules": {
+      "scope_id": "MANUAL_APPROVAL_GATE_RULES",
+      "rules": {
+        "rule_P30M1": "Manual approver identity must be verified and active",
+        "rule_P30M2": "Approval scope must explicitly include freeze release gate and execution start gate",
+        "rule_P30M3": "No implicit or inherited approval is allowed",
+        "rule_P30M4": "If approval is missing, expired, or invalid, keep all authorizations NOT_GRANTED",
+        "rule_P30M5": "All approval artifacts must be evidence-locked before next phase"
+      }
+    },
+    "scope_3_report_structure": {
+      "scope_id": "REPORT_STRUCTURE",
+      "sections": {
+        "section_1_header": {
+          "report_id": "PHASE30_2_MANUAL_APPROVAL_GATE_<UTC_TIMESTAMP>",
+          "report_type": "pre_execution_start_final_manual_approval_gate",
+          "generated_at_utc": "RFC3339",
+          "generated_by": "authority_identifier"
+        },
+        "section_2_manual_approval_summary": {
+          "approver_identity_verification": "PASS | FAIL",
+          "approval_scope_validation": "PASS | FAIL",
+          "approval_validity": "VALID | INVALID | EXPIRED"
+        },
+        "section_3_gate_judgment": {
+          "manual_execution_start_approval_status": "APPROVED | PENDING | REJECTED",
+          "freeze_release_go_authorization": "GRANTED | NOT_GRANTED",
+          "execution_start_go_authorization": "GRANTED | NOT_GRANTED"
+        }
+      }
+    }
+  },
+  "phase_30_2_governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "state_invariants": {
+      "app_implementation_status": "NO_GO",
+      "tests_implementation_status": "NO_GO",
+      "production_status": "NO_GO",
+      "operation_transition_go_authorization": "NOT_GRANTED",
+      "production_reflection_go_authorization": "NOT_GRANTED",
+      "freeze_release_go_authorization": "NOT_GRANTED",
+      "execution_start_go_authorization": "NOT_GRANTED",
+      "changed_area": "reports only"
+    }
+  }
+}

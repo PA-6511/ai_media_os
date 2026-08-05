@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0.0",
+  "schema_id": "NEW_RELEASE_BATCH_INPUT_SCHEMA_V1",
+  "template_contract_id": "POST185_STANDARD_TEMPLATE_V1_FIXED",
+  "batch_id": "example-20260717",
+  "record_count": 1,
+  "item_status_counts": {
+    "STORE_PAGE_NOT_FOUND": 1
+  },
+  "records": [
+    {
+      "source_row_number": 2,
+      "batch_id": "example-20260717",
+      "item_id": "example-20260717-001",
+      "title": "サンプル作品",
+      "volume_label": "第1巻",
+      "release_date": "2026-07-17",
+      "publisher": "サンプル出版社",
+      "authors": [
+        "著者A",
+        "著者B"
+      ],
+      "category": "comic",
+      "source": {
+        "discovery": "manual",
+        "publisher_confirmation_url": null
+      },
+      "store_links": {
+        "amazon": null,
+        "rakuten_kobo": null,
+        "dmm": null
+      },
+      "prices_jpy": {
+        "amazon": null,
+        "rakuten_kobo": null,
+        "dmm": null
+      },
+      "image": {
+        "source": "none",
+        "url": null
+      },
+      "description_mode": "minimal",
+      "x_post_required": true,
+      "wordpress_status": "draft",
+      "idempotency_key": "31267334165c56bf3943942c28f012c16f0d7f03b894bd40f9e7e468e7861bf0",
+      "item_status": "STORE_PAGE_NOT_FOUND"
+    }
+  ],
+  "execution_boundary": {
+    "wordpress_write_allowed": false,
+    "wordpress_publish_allowed": false,
+    "x_post_allowed": false,
+    "external_api_call_allowed": false,
+    "production_status": "NO_GO",
+    "safety_state": "DRY_RUN_ONLY"
+  }
+}

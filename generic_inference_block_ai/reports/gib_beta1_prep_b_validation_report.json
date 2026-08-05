@@ -1,0 +1,37 @@
+{
+  "schema_version": "gib.beta1.prep_b.validation_report.v0.1",
+  "block_id": "GIB",
+  "phase": "beta1_prep_b",
+  "report_type": "BETA1_PREP_B_APPROVAL_PROTOCOL_REPORTS_ONLY",
+  "final_status": "PASS_REPORTS_ONLY_BETA1_PREP_B_APPROVAL_PROTOCOL_FIXED",
+  "status": "DRY_RUN_BETA1_PREP_B_APPROVAL_PROTOCOL_ONLY",
+  "production_status": "NO_GO",
+  "output_scope": "generic_inference_block_ai/reports",
+  "real_llm_call_allowed": false,
+  "execution_allowed": false,
+  "generate_call_allowed": false,
+  "chat_call_allowed": false,
+  "can_execute_now": false,
+  "prerequisites_ok": true,
+  "prerequisite_issues": [],
+  "protocol_ok": true,
+  "protocol_issues": [],
+  "non_execution_ok": true,
+  "non_execution_issues": [],
+  "approval_protocol": {
+    "required_identifiers": [
+      "APPROVAL_TOKEN_ID",
+      "CHANGE_MANAGEMENT_ID"
+    ],
+    "identifier_reference_rules": {
+      "approval_token": "^APR-[0-9]{8}-[A-Z0-9]{6}$",
+      "change_management_id": "^CHG-[0-9]{8}-[A-Z0-9]{4}$"
+    },
+    "manual_only": true,
+    "auto_execute_after_approval": false
+  },
+  "pre_beta1_references": {
+    "beta1_prep_final_status": "PASS_DRY_RUN_BETA1_PREP_RUNBOOK_FIXED",
+    "beta1_prep_a_final_status": "PASS_REPORTS_ONLY_BETA1_PREP_AUDIT_INDEX_FIXED"
+  }
+}

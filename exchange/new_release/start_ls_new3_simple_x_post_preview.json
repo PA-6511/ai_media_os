@@ -1,0 +1,14 @@
+{
+  "phase": "LS-NEW-3",
+  "document_type": "START_LS_NEW3_SIMPLE_X_POST_PREVIEW",
+  "generated": true,
+  "x_post_executed": false,
+  "template_source": "LS-NEW-2 simple template",
+  "post_text": "配信開始です\n#PR #Amazonmanga #Kindle #比村奇石\n『月曜日のたわわ』第15巻\n\nURL",
+  "character_count": 56,
+  "under_280": true,
+  "contains_pr": true,
+  "contains_title": true,
+  "contains_author_hashtag": true,
+  "contains_url_placeholder": true
+}

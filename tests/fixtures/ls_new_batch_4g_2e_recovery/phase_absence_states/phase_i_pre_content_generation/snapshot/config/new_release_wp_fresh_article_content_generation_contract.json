@@ -1,0 +1,100 @@
+{
+  "schema_version": "1.0.0",
+  "document_role": "FRESH_NEW_RELEASE_ARTICLE_CONTENT_GENERATION_CONTRACT",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-I",
+  "contract_id": "FRESH_NEW_RELEASE_COMIC_CONTENT_GENERATION_V1",
+  "template_contract_id": "POST185_STANDARD_TEMPLATE_V1_FIXED",
+  "content_item_id": "new-release-comic-20260703-001",
+  "work_title": "ダークギャザリング",
+  "volume_label": "第20巻",
+  "article_title": "ダークギャザリング 第20巻｜配信開始",
+  "output_language": "ja-JP",
+  "wordpress_status": "draft",
+  "reserved_output_path": "exchange/content/new_release/fresh/new-release-comic-20260703-001.article.json",
+  "output_document_role": "OFFLINE_FRESH_NEW_RELEASE_ARTICLE_CONTENT_DRAFT",
+  "template_contract": {
+    "template_contract_id": "POST185_STANDARD_TEMPLATE_V1_FIXED",
+    "existing_template_structure_must_be_used": true,
+    "template_structure_redefinition_allowed": false
+  },
+  "advertising_disclosure": {
+    "required": true,
+    "allowed_labels": [
+      "PR",
+      "広告"
+    ],
+    "must_appear_before_store_navigation": true,
+    "omission_allowed": false
+  },
+  "factuality_rules": {
+    "verified_source_only": true,
+    "fabricated_information_allowed": false,
+    "fabricated_synopsis_allowed": false,
+    "fabricated_story_detail_allowed": false,
+    "fabricated_discount_allowed": false,
+    "fabricated_point_return_allowed": false,
+    "fabricated_campaign_allowed": false,
+    "fabricated_inventory_allowed": false,
+    "fabricated_release_date_allowed": false,
+    "fabricated_price_allowed": false,
+    "copy_paste_explanation_allowed": false,
+    "unsupported_superlative_claim_allowed": false
+  },
+  "verified_metadata": {
+    "release_date": "2026-07-03",
+    "author_name": "近藤憲一",
+    "publisher_name": "集英社",
+    "price_amount": 616,
+    "price_text": "616円（税込）",
+    "price_currency": "JPY",
+    "amazon_asin": "B0H3N7QK5K",
+    "rakuten_kobo_product_number": "4972000159519",
+    "dmm_series_id": "861056"
+  },
+  "source_retention": {
+    "publisher_source_required": true,
+    "store_source_references_required": true,
+    "store_identifiers_required": true,
+    "price_observation_time_required": true,
+    "cover_source_required": true,
+    "source_evidence_removal_allowed": false
+  },
+  "store_link_rules": {
+    "registered_links_are_verification_sources_only": true,
+    "registered_links_are_final_affiliate_links": false,
+    "final_affiliate_link_generation_allowed": false
+  },
+  "dmm_recheck_rules": {
+    "latest_alias_recheck_requirement_inherited": true,
+    "latest_alias_recheck_completed": false,
+    "network_recheck_allowed_in_current_phase": false,
+    "dmm_url_rendering_before_recheck_allowed": false,
+    "dmm_final_link_use_before_recheck_allowed": false,
+    "recheck_required_before_payload_generation": true
+  },
+  "source_lineage": {
+    "article_input_path": "exchange/inputs/new_release/fresh/new-release-comic-20260703-001.input.json",
+    "article_input_digest_sha256": "341e5a5dbad8aee79a3ac7ccba69a3b9592d165b24b9ef0f20ba40361e1726f2",
+    "human_review_path": "exchange/reviews/new_release/fresh/new-release-comic-20260703-001.human_review.json",
+    "human_review_digest_sha256": "32eed5052f0074698b5cf98d2b516524b7cbe47605630bf0698a79fec69b26f5",
+    "content_generation_gate_approval_digest_sha256": "76fff360a5ea63b81fdf0d5ee9dc2ae279b8290bbb9b5db490d84b693e8c66f3"
+  },
+  "source_registration_overwrite_allowed": false,
+  "human_review_artifact_overwrite_allowed": false,
+  "content_output_overwrite_allowed": false,
+  "categories_field_allowed": false,
+  "article_content_generated": false,
+  "content_output_created": false,
+  "fresh_payload_created": false,
+  "payload_binding_complete": false,
+  "production_category_id_payload_injected": false,
+  "network_access_performed": false,
+  "wordpress_access_performed": false,
+  "wordpress_write_performed": false,
+  "wordpress_draft_created": false,
+  "execution_allowed": false,
+  "production_status": "NO_GO",
+  "safety_state": "CONTENT_GENERATION_CONTRACT_FIXED_AWAITING_OFFLINE_GENERATION_APPROVAL",
+  "contract_fixed_at_utc": "2026-07-11T01:41:16.923055+00:00",
+  "content_generation_contract_digest_sha256": "1811f8cf1805cb3177ac70fb5e8e52d0ec3084a9bc4d226e1782383b5ea6833a"
+}

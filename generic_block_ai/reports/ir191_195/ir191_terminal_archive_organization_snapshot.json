@@ -1,0 +1,76 @@
+{
+  "schema_version": "ir191_terminal_archive_organization_snapshot_v1",
+  "phase": "IR191",
+  "generated_at": "2026-05-26T13:19:47.285043+00:00",
+  "source_task_id": "ir191_195_batch",
+  "validation_result": "PASS",
+  "validation_failed_checks": [],
+  "validation_warnings": [],
+  "terminal_archive_organization_snapshot": {
+    "snapshot_id": "ir191_snapshot_ir191_195_batch_20260526T131947Z",
+    "generated_at": "2026-05-26T13:19:47.285024+00:00",
+    "source_task_id": "ir191_195_batch",
+    "new_cycle_id": "IR71_PLUS_CYCLE_A",
+    "archive_entries": [
+      {
+        "archive_item_id": "archive_1",
+        "source_phase": "IR186",
+        "source_content": "Retention Refix Evidence Snapshot",
+        "archive_status": "ORGANIZED_LONG_TERM",
+        "change_detected": false
+      },
+      {
+        "archive_item_id": "archive_2",
+        "source_phase": "IR187",
+        "source_content": "Reference Consistency Terminal Registry",
+        "archive_status": "ORGANIZED_LONG_TERM",
+        "change_detected": false
+      },
+      {
+        "archive_item_id": "archive_3",
+        "source_phase": "IR188",
+        "source_content": "Terminal Digest Refix",
+        "archive_status": "ORGANIZED_LONG_TERM",
+        "change_detected": false
+      },
+      {
+        "archive_item_id": "archive_4",
+        "source_phase": "IR189",
+        "source_content": "Dry-Run Terminal Audit Attestation",
+        "archive_status": "ORGANIZED_LONG_TERM",
+        "change_detected": false
+      },
+      {
+        "archive_item_id": "archive_5",
+        "source_phase": "IR190",
+        "source_content": "Phase 186-190 Completion Bundle",
+        "archive_status": "ORGANIZED_LONG_TERM",
+        "change_detected": false
+      }
+    ],
+    "entry_count": 5,
+    "archive_organization_ready": true,
+    "unlock_eligible": false,
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "snapshot_hash": "31b443fe4a8c1068b0004129d26dadbfb6db9ff644fd0c2b06eba59ade1a4301",
+  "safety_gate_snapshot": {
+    "dry_run": "maintained",
+    "OBSERVE": "maintained",
+    "submission_execution_blocked": true,
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "network_transmission_executed": false,
+    "production_release": false,
+    "GitHub_push": "未実行"
+  }
+}

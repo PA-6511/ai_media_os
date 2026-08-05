@@ -1,0 +1,98 @@
+<!-- wp:html -->
+<article
+  class="ebook-new-release-article"
+  data-template-contract="X_R11_LOCAL_WORDPRESS_DRAFT_TEMPLATE_V1"
+>
+  <aside
+    class="ebook-pr-disclosure"
+    aria-label="広告について"
+  >
+    <p>
+      ※本記事にはアフィリエイトリンクが含まれます。
+    </p>
+  </aside>
+
+  <header class="ebook-new-release-header">
+    <p class="ebook-new-release-label">
+      コミック新刊
+    </p>
+
+    <h2 class="ebook-book-title">
+      {{title}} {{volume_label}}
+    </h2>
+
+    <p class="ebook-release-summary">
+      {{release_date_display}}配信開始の電子書籍です。
+    </p>
+  </header>
+
+  <div class="ebook-book-overview">
+    <figure class="ebook-cover-image">
+      <img
+        src="{{cover_image_url}}"
+        alt="{{cover_image_alt}}"
+        loading="lazy"
+        decoding="async"
+      >
+    </figure>
+
+    <dl class="ebook-book-metadata">
+      <div class="ebook-book-metadata-row">
+        <dt>作品名</dt>
+        <dd>{{title}}</dd>
+      </div>
+
+      <div class="ebook-book-metadata-row">
+        <dt>巻数</dt>
+        <dd>{{volume_label}}</dd>
+      </div>
+
+      <div class="ebook-book-metadata-row">
+        <dt>著者</dt>
+        <dd>{{author_name}}</dd>
+      </div>
+
+      <div class="ebook-book-metadata-row">
+        <dt>出版社</dt>
+        <dd>{{publisher_name}}</dd>
+      </div>
+
+      <div class="ebook-book-metadata-row">
+        <dt>配信日</dt>
+        <dd>{{release_date_display}}</dd>
+      </div>
+    </dl>
+  </div>
+
+  <section
+    class="price-cards"
+    aria-label="販売情報"
+  >
+    <div class="price-card price-card-rakuten-kobo">
+      <h3>楽天Kobo</h3>
+
+      <p class="price-card-note">
+        最新価格・ポイント還元・キャンペーンは販売ページでご確認ください。
+      </p>
+    </div>
+  </section>
+
+  <nav
+    class="store-buttons"
+    aria-label="電子書籍ストア"
+  >
+    <a
+      class="store-button store-button-rakuten-kobo"
+      href="{{rakuten_affiliate_url}}"
+      target="_blank"
+      rel="sponsored nofollow noopener noreferrer"
+    >
+      楽天Koboで確認する
+    </a>
+  </nav>
+
+  <p class="ebook-store-information-note">
+    価格、配信状況、ポイント還元およびキャンペーン内容は変更される場合があります。
+  </p>
+</article>
+<!-- /wp:html -->

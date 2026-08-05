@@ -1,0 +1,104 @@
+{
+  "schema_version": "ir41_destination_human_event_chain_integrity_v1",
+  "phase": "IR41",
+  "generated_at": "2026-05-24T02:43:32.714616+00:00",
+  "source_task_id": "ir41_live_trial",
+  "release_candidate_id": "rc_20260523T155148Z_ir26_live_trial_b940393b490b",
+  "final_submission_decision": "READY_FOR_SUBMISSION_SUMMARY",
+  "overall_approval_decision": "APPROVE_DRY_RUN",
+  "overall_integrity_action": "Destination human event chain integrity verified across hash, sequence, actor, and lock state.",
+  "validation_result": "PASS",
+  "validation_failed_checks": [],
+  "validation_warnings": [],
+  "summary": {
+    "destination_count": 3,
+    "integrity_pass_count": 3,
+    "integrity_fail_count": 0,
+    "sequence_integrity_pass_count": 3,
+    "actor_integrity_pass_count": 3,
+    "lock_state_integrity_pass_count": 3,
+    "hash_integrity_pass_count": 3
+  },
+  "destination_human_event_chain_integrity": [
+    {
+      "destination": "regulatory_audit",
+      "chain": [
+        {
+          "sequence_no": 1,
+          "event": "APPROVE",
+          "actor_id": "HUMAN_APPROVER_REQUIRED",
+          "lock_state": "EVIDENCE_LOCKED_APPROVED",
+          "chain_hash": "881a2d751cb9d3b45841b1f671e4984b6ca97e0bacceb57bdd4704c0747b7821"
+        }
+      ],
+      "integrity_checks": {
+        "sequence_integrity_ok": true,
+        "event_integrity_ok": true,
+        "actor_integrity_ok": true,
+        "lock_state_integrity_ok": true,
+        "hash_integrity_ok": true
+      },
+      "integrity_result": "PASS",
+      "failed_reasons": [],
+      "manifest_path": "generic_block_ai/reports/ir34_destination_submission_packages_ir34_live_trial/regulatory_audit/destination_package_manifest.json"
+    },
+    {
+      "destination": "internal_review_board",
+      "chain": [
+        {
+          "sequence_no": 1,
+          "event": "APPROVE",
+          "actor_id": "HUMAN_APPROVER_REQUIRED",
+          "lock_state": "EVIDENCE_LOCKED_APPROVED",
+          "chain_hash": "072ad9c550d8e7ff74ab1a6e662a1b0344e5d7f696e52ec0ccbf9478d061e8e8"
+        }
+      ],
+      "integrity_checks": {
+        "sequence_integrity_ok": true,
+        "event_integrity_ok": true,
+        "actor_integrity_ok": true,
+        "lock_state_integrity_ok": true,
+        "hash_integrity_ok": true
+      },
+      "integrity_result": "PASS",
+      "failed_reasons": [],
+      "manifest_path": "generic_block_ai/reports/ir34_destination_submission_packages_ir34_live_trial/internal_review_board/destination_package_manifest.json"
+    },
+    {
+      "destination": "compliance_archive",
+      "chain": [
+        {
+          "sequence_no": 1,
+          "event": "APPROVE",
+          "actor_id": "HUMAN_APPROVER_REQUIRED",
+          "lock_state": "EVIDENCE_LOCKED_APPROVED",
+          "chain_hash": "fbf166942a72e7496df4c6db872d2402cf9434f92ef335d788e6b1998f1e9a55"
+        }
+      ],
+      "integrity_checks": {
+        "sequence_integrity_ok": true,
+        "event_integrity_ok": true,
+        "actor_integrity_ok": true,
+        "lock_state_integrity_ok": true,
+        "hash_integrity_ok": true
+      },
+      "integrity_result": "PASS",
+      "failed_reasons": [],
+      "manifest_path": "generic_block_ai/reports/ir34_destination_submission_packages_ir34_live_trial/compliance_archive/destination_package_manifest.json"
+    }
+  ],
+  "artifacts": {
+    "integrity_root": "generic_block_ai/reports/ir41_destination_human_event_chain_integrity_ir41_live_trial",
+    "destination_human_event_chain_integrity": "generic_block_ai/reports/ir41_destination_human_event_chain_integrity_ir41_live_trial/destination_human_event_chain_integrity.json",
+    "destination_human_event_chain_integrity_summary": "generic_block_ai/reports/ir41_destination_human_event_chain_integrity_ir41_live_trial/destination_human_event_chain_integrity_summary.md",
+    "completion_report": "reports/implementation_restart_phase41_completion_report.json"
+  },
+  "safeguards": {
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "network_transmission_executed": false,
+    "production_release": false
+  }
+}

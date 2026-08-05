@@ -1,0 +1,21 @@
+{
+  "package_type": "phase9_1_publish_go_redecision_manual_publish_runbook_generation_result",
+  "phase": "Phase 9-1",
+  "status": "PASS",
+  "reason": "phase9_1 runbook generated while maintaining no-go and no-write",
+  "runbook_generated": true,
+  "runbook_json": "/home/deploy/ai_media_os/exchange/logs/phase9_1_publish_go_redecision_manual_publish_runbook.json",
+  "runbook_md": "/home/deploy/ai_media_os/exchange/logs/phase9_1_publish_go_redecision_manual_publish_runbook.md",
+  "phase8_reference": "/home/deploy/ai_media_os/exchange/logs/phase8_11_pre_publish_no_go_overall_completion_report.json",
+  "target_draft_id": 110,
+  "target_draft_status": "draft",
+  "decision": "KEEP_NO_GO",
+  "publish_execution_started": false,
+  "wordpress_publish_execution": "NO_GO",
+  "wordpress_write_executed": false,
+  "production_status": "NO_GO",
+  "fixed_manual_procedure_count": 10,
+  "forbidden_in_phase9_1_count": 10,
+  "next_step": "phase9_2_validate_go_redecision_input_and_manual_publish_gate",
+  "created_at": "2026-07-29T14:26:19.870146+00:00"
+}

@@ -1,0 +1,176 @@
+{
+  "phase": "PR WARN Backfill Phase 0",
+  "date": "2026-06-14",
+  "input": "reports/pr_warn_reclassification_20260614_sample.csv",
+  "target_rule": "classification=existing_draft_backfill AND wp_content_has_pr=no",
+  "total_reclassification_rows": 6,
+  "target_count": 6,
+  "dry_run_candidates_with_change": 6,
+  "dry_run_candidates_without_change": 0,
+  "wordpress_write_executed": false,
+  "next_gate": {
+    "requires_human_approval": true,
+    "initial_live_limit": 1,
+    "post_check_required": "rerun draft_check and confirm pr_notice WARN decrease"
+  },
+  "targets": [
+    {
+      "post_id": 101,
+      "title": "呪術廻戦は何巻まで出てる？最新巻・関連情報まとめ",
+      "classification": "existing_draft_backfill",
+      "source_age": "修正前生成",
+      "generation_route": "with_links",
+      "source_file": "data/items/manga_0001_volume_guide_article_output_with_links.json",
+      "source_file_found": true,
+      "source_html_has_pr_before": false,
+      "dry_run_would_change": true,
+      "dry_run_strategy": "insert_after_h1",
+      "proposed_notice_html": "<p class=\"pr-notice\">※本記事にはアフィリエイト広告（PR）が含まれます。</p>",
+      "diff_preview": [
+        "--- original",
+        "+++ backfill_candidate",
+        "@@ -1,4 +1,4 @@",
+        "-<h1>呪術廻戦は何巻まで出てる？最新巻・関連情報まとめ</h1>",
+        "+<h1>呪術廻戦は何巻まで出てる？最新巻・関連情報まとめ</h1><p class=\"pr-notice\">※本記事にはアフィリエイト広告（PR）が含まれます。</p>",
+        " <h2>結論</h2><p>この記事では「呪術廻戦 何巻まで」について、最新の巻数情報と配信状況を整理します。</p>",
+        " <div class=\"release-alert-box\"><h2>最新巻速報</h2><p>最新刊は<strong>25巻</strong>です。</p><p>発売日 / 配信日: <strong>2026-05-02</strong></p><p>現在の配信状態: <strong>配信中</strong></p><p class=\"release-updated-notice\">※ 新刊情報が更新されました。最新情報を優先して確認してください。</p></div>",
+        " <h2>前巻からの更新ポイント</h2><p>前巻: <strong>25巻</strong> → 最新巻: <strong>25巻</strong></p><p>前巻発売日: 2026-05-01 → 最新発売日: 2026-05-02</p>"
+      ],
+      "safety": {
+        "wordpress_write_executed": false,
+        "human_approval_required": true,
+        "mode": "DRY_RUN_ONLY"
+      }
+    },
+    {
+      "post_id": 96,
+      "title": "無職転生全巻まとめ買いガイド",
+      "classification": "existing_draft_backfill",
+      "source_age": "修正前生成",
+      "generation_route": "with_links",
+      "source_file": "data/items/lightnovel_0001_summary_article_output_with_links.json",
+      "source_file_found": true,
+      "source_html_has_pr_before": false,
+      "dry_run_would_change": true,
+      "dry_run_strategy": "insert_after_h1",
+      "proposed_notice_html": "<p class=\"pr-notice\">※本記事にはアフィリエイト広告（PR）が含まれます。</p>",
+      "diff_preview": [
+        "--- original",
+        "+++ backfill_candidate",
+        "@@ -1 +1 @@",
+        "-<h1>無職転生全巻まとめ買いガイド</h1><h2>結論</h2><p>この記事では「無職転生 全巻」についてわかりやすく整理します。</p><p>まず結論から確認していきます。</p><h2>全巻情報</h2><p>まとめ買いを考えている方向けに全巻情報を整理します。</p><h2>まとめ買いメリット</h2><p>一気読みしたい場合は全巻購入のメリットがあります。</p><h2>関連記事</h2><p>関連情報として他の記事もあわせて確認できます。</p><p>続き・全巻・セール情報も参考になります。</p><h2>購入リンク</h2><p>気になる巻は電子書籍ストアで確認してください。</p><p>お得なセール対象になっている場合もあります。</p><div class=\"cta-box\"><p>まとめ買いしたい方は全巻セットや各巻リンクを確認してください。</p></div><div class=\"related-links\"><h2>関連記事</h2><ul><li><a href=\"/related/無職転生-何巻まで\">無職転生 何巻まで</a></li><li><a href=\"/related/無職転生-最新巻\">無職転生 最新巻</a></li><li><a href=\"/related/無職転生-セール\">無職転生 セール</a></li></ul></div>",
+        "+<h1>無職転生全巻まとめ買いガイド</h1><p class=\"pr-notice\">※本記事にはアフィリエイト広告（PR）が含まれます。</p><h2>結論</h2><p>この記事では「無職転生 全巻」についてわかりやすく整理します。</p><p>まず結論から確認していきます。</p><h2>全巻情報</h2><p>まとめ買いを考えている方向けに全巻情報を整理します。</p><h2>まとめ買いメリット</h2><p>一気読みしたい場合は全巻購入のメリットがあります。</p><h2>関連記事</h2><p>関連情報として他の記事もあわせて確認できます。</p><p>続き・全巻・セール情報も参考になります。</p><h2>購入リンク</h2><p>気になる巻は電子書籍ストアで確認してください。</p><p>お得なセール対象になっている場合もあります。</p><div class=\"cta-box\"><p>まとめ買いしたい方は全巻セットや各巻リンクを確認してください。</p></div><div class=\"related-links\"><h2>関連記事</h2><ul><li><a href=\"/related/無職転生-何巻まで\">無職転生 何巻まで</a></li><li><a href=\"/related/無職転生-最新巻\">無職転生 最新巻</a></li><li><a href=\"/related/無職転生-セール\">無職転生 セール</a></li></ul></div>"
+      ],
+      "safety": {
+        "wordpress_write_executed": false,
+        "human_approval_required": true,
+        "mode": "DRY_RUN_ONLY"
+      }
+    },
+    {
+      "post_id": 95,
+      "title": "葬送のフリーレン全巻まとめ買いガイド",
+      "classification": "existing_draft_backfill",
+      "source_age": "修正前生成",
+      "generation_route": "with_links",
+      "source_file": "data/items/manga_0002_summary_article_output_with_links.json",
+      "source_file_found": true,
+      "source_html_has_pr_before": false,
+      "dry_run_would_change": true,
+      "dry_run_strategy": "insert_after_h1",
+      "proposed_notice_html": "<p class=\"pr-notice\">※本記事にはアフィリエイト広告（PR）が含まれます。</p>",
+      "diff_preview": [
+        "--- original",
+        "+++ backfill_candidate",
+        "@@ -1 +1 @@",
+        "-<h1>葬送のフリーレン全巻まとめ買いガイド</h1><h2>結論</h2><p>この記事では「葬送のフリーレン 全巻」についてわかりやすく整理します。</p><p>まず結論から確認していきます。</p><h2>全巻情報</h2><p>まとめ買いを考えている方向けに全巻情報を整理します。</p><h2>まとめ買いメリット</h2><p>一気読みしたい場合は全巻購入のメリットがあります。</p><h2>関連記事</h2><p>関連情報として他の記事もあわせて確認できます。</p><p>続き・全巻・セール情報も参考になります。</p><h2>購入リンク</h2><p>気になる巻は電子書籍ストアで確認してください。</p><p>お得なセール対象になっている場合もあります。</p><div class=\"cta-box\"><p>まとめ買いしたい方は全巻セットや各巻リンクを確認してください。</p></div><div class=\"related-links\"><h2>関連記事</h2><ul><li><a href=\"/related/葬送のフリーレン-何巻まで\">葬送のフリーレン 何巻まで</a></li><li><a href=\"/related/葬送のフリーレン-最新巻\">葬送のフリーレン 最新巻</a></li><li><a href=\"/related/葬送のフリーレン-セール\">葬送のフリーレン セール</a></li></ul></div>",
+        "+<h1>葬送のフリーレン全巻まとめ買いガイド</h1><p class=\"pr-notice\">※本記事にはアフィリエイト広告（PR）が含まれます。</p><h2>結論</h2><p>この記事では「葬送のフリーレン 全巻」についてわかりやすく整理します。</p><p>まず結論から確認していきます。</p><h2>全巻情報</h2><p>まとめ買いを考えている方向けに全巻情報を整理します。</p><h2>まとめ買いメリット</h2><p>一気読みしたい場合は全巻購入のメリットがあります。</p><h2>関連記事</h2><p>関連情報として他の記事もあわせて確認できます。</p><p>続き・全巻・セール情報も参考になります。</p><h2>購入リンク</h2><p>気になる巻は電子書籍ストアで確認してください。</p><p>お得なセール対象になっている場合もあります。</p><div class=\"cta-box\"><p>まとめ買いしたい方は全巻セットや各巻リンクを確認してください。</p></div><div class=\"related-links\"><h2>関連記事</h2><ul><li><a href=\"/related/葬送のフリーレン-何巻まで\">葬送のフリーレン 何巻まで</a></li><li><a href=\"/related/葬送のフリーレン-最新巻\">葬送のフリーレン 最新巻</a></li><li><a href=\"/related/葬送のフリーレン-セール\">葬送のフリーレン セール</a></li></ul></div>"
+      ],
+      "safety": {
+        "wordpress_write_executed": false,
+        "human_approval_required": true,
+        "mode": "DRY_RUN_ONLY"
+      }
+    },
+    {
+      "post_id": 94,
+      "title": "呪術廻戦全巻まとめ買いガイド",
+      "classification": "existing_draft_backfill",
+      "source_age": "修正前生成",
+      "generation_route": "with_links",
+      "source_file": "data/items/manga_0001_summary_article_output_with_links.json",
+      "source_file_found": true,
+      "source_html_has_pr_before": false,
+      "dry_run_would_change": true,
+      "dry_run_strategy": "insert_after_h1",
+      "proposed_notice_html": "<p class=\"pr-notice\">※本記事にはアフィリエイト広告（PR）が含まれます。</p>",
+      "diff_preview": [
+        "--- original",
+        "+++ backfill_candidate",
+        "@@ -1 +1 @@",
+        "-<h1>呪術廻戦全巻まとめ買いガイド</h1><h2>結論</h2><p>この記事では「呪術廻戦 全巻」についてわかりやすく整理します。</p><p>まず結論から確認していきます。</p><h2>全巻情報</h2><p>まとめ買いを考えている方向けに全巻情報を整理します。</p><h2>まとめ買いメリット</h2><p>一気読みしたい場合は全巻購入のメリットがあります。</p><h2>関連記事</h2><p>関連情報として他の記事もあわせて確認できます。</p><p>続き・全巻・セール情報も参考になります。</p><h2>購入リンク</h2><p>気になる巻は電子書籍ストアで確認してください。</p><p>お得なセール対象になっている場合もあります。</p><div class=\"cta-box\"><p>まとめ買いしたい方は全巻セットや各巻リンクを確認してください。</p></div><div class=\"related-links\"><h2>関連記事</h2><ul><li><a href=\"/related/呪術廻戦-何巻まで\">呪術廻戦 何巻まで</a></li><li><a href=\"/related/呪術廻戦-最新巻\">呪術廻戦 最新巻</a></li><li><a href=\"/related/呪術廻戦-セール\">呪術廻戦 セール</a></li></ul></div>",
+        "+<h1>呪術廻戦全巻まとめ買いガイド</h1><p class=\"pr-notice\">※本記事にはアフィリエイト広告（PR）が含まれます。</p><h2>結論</h2><p>この記事では「呪術廻戦 全巻」についてわかりやすく整理します。</p><p>まず結論から確認していきます。</p><h2>全巻情報</h2><p>まとめ買いを考えている方向けに全巻情報を整理します。</p><h2>まとめ買いメリット</h2><p>一気読みしたい場合は全巻購入のメリットがあります。</p><h2>関連記事</h2><p>関連情報として他の記事もあわせて確認できます。</p><p>続き・全巻・セール情報も参考になります。</p><h2>購入リンク</h2><p>気になる巻は電子書籍ストアで確認してください。</p><p>お得なセール対象になっている場合もあります。</p><div class=\"cta-box\"><p>まとめ買いしたい方は全巻セットや各巻リンクを確認してください。</p></div><div class=\"related-links\"><h2>関連記事</h2><ul><li><a href=\"/related/呪術廻戦-何巻まで\">呪術廻戦 何巻まで</a></li><li><a href=\"/related/呪術廻戦-最新巻\">呪術廻戦 最新巻</a></li><li><a href=\"/related/呪術廻戦-セール\">呪術廻戦 セール</a></li></ul></div>"
+      ],
+      "safety": {
+        "wordpress_write_executed": false,
+        "human_approval_required": true,
+        "mode": "DRY_RUN_ONLY"
+      }
+    },
+    {
+      "post_id": 93,
+      "title": "無職転生は何巻まで出てる？最新巻・関連情報まとめ",
+      "classification": "existing_draft_backfill",
+      "source_age": "修正前生成",
+      "generation_route": "with_links",
+      "source_file": "data/items/lightnovel_0001_volume_guide_article_output_with_links.json",
+      "source_file_found": true,
+      "source_html_has_pr_before": false,
+      "dry_run_would_change": true,
+      "dry_run_strategy": "insert_after_h1",
+      "proposed_notice_html": "<p class=\"pr-notice\">※本記事にはアフィリエイト広告（PR）が含まれます。</p>",
+      "diff_preview": [
+        "--- original",
+        "+++ backfill_candidate",
+        "@@ -1 +1 @@",
+        "-<h1>無職転生は何巻まで出てる？最新巻・関連情報まとめ</h1><h2>結論</h2><p>この記事では「無職転生 何巻まで」についてわかりやすく整理します。</p><p>まず結論から確認していきます。</p><h2>現在の巻数情報</h2><p>無職転生は何巻まで出てる？最新巻・関連情報まとめ に関する現在の巻数情報を確認していきます。</p><p>最新の刊行状況は公式ストアや出版社情報もあわせて確認してください。</p><h2>最新巻情報</h2><p>最新巻の発売状況や配信状況をチェックしておくと安心です。</p><p>続きをすぐ読みたい場合は電子書籍ストアの在庫も確認しましょう。</p><h2>関連記事</h2><p>関連情報として他の記事もあわせて確認できます。</p><p>続き・全巻・セール情報も参考になります。</p><h2>購入リンク</h2><p>気になる巻は電子書籍ストアで確認してください。</p><p>お得なセール対象になっている場合もあります。</p><div class=\"cta-box\"><p>続きが気になる方はKindleで最新巻を確認してください。</p></div><div class=\"related-links\"><h2>関連記事</h2><ul><li><a href=\"/related/無職転生-最新巻\">無職転生 最新巻</a></li><li><a href=\"/related/無職転生-全巻\">無職転生 全巻</a></li><li><a href=\"/related/無職転生-セール\">無職転生 セール</a></li></ul></div>",
+        "+<h1>無職転生は何巻まで出てる？最新巻・関連情報まとめ</h1><p class=\"pr-notice\">※本記事にはアフィリエイト広告（PR）が含まれます。</p><h2>結論</h2><p>この記事では「無職転生 何巻まで」についてわかりやすく整理します。</p><p>まず結論から確認していきます。</p><h2>現在の巻数情報</h2><p>無職転生は何巻まで出てる？最新巻・関連情報まとめ に関する現在の巻数情報を確認していきます。</p><p>最新の刊行状況は公式ストアや出版社情報もあわせて確認してください。</p><h2>最新巻情報</h2><p>最新巻の発売状況や配信状況をチェックしておくと安心です。</p><p>続きをすぐ読みたい場合は電子書籍ストアの在庫も確認しましょう。</p><h2>関連記事</h2><p>関連情報として他の記事もあわせて確認できます。</p><p>続き・全巻・セール情報も参考になります。</p><h2>購入リンク</h2><p>気になる巻は電子書籍ストアで確認してください。</p><p>お得なセール対象になっている場合もあります。</p><div class=\"cta-box\"><p>続きが気になる方はKindleで最新巻を確認してください。</p></div><div class=\"related-links\"><h2>関連記事</h2><ul><li><a href=\"/related/無職転生-最新巻\">無職転生 最新巻</a></li><li><a href=\"/related/無職転生-全巻\">無職転生 全巻</a></li><li><a href=\"/related/無職転生-セール\">無職転生 セール</a></li></ul></div>"
+      ],
+      "safety": {
+        "wordpress_write_executed": false,
+        "human_approval_required": true,
+        "mode": "DRY_RUN_ONLY"
+      }
+    },
+    {
+      "post_id": 92,
+      "title": "葬送のフリーレンは何巻まで出てる？最新巻・関連情報まとめ",
+      "classification": "existing_draft_backfill",
+      "source_age": "修正前生成",
+      "generation_route": "with_links",
+      "source_file": "data/items/manga_0002_volume_guide_article_output_with_links.json",
+      "source_file_found": true,
+      "source_html_has_pr_before": false,
+      "dry_run_would_change": true,
+      "dry_run_strategy": "insert_after_h1",
+      "proposed_notice_html": "<p class=\"pr-notice\">※本記事にはアフィリエイト広告（PR）が含まれます。</p>",
+      "diff_preview": [
+        "--- original",
+        "+++ backfill_candidate",
+        "@@ -1 +1 @@",
+        "-<h1>葬送のフリーレンは何巻まで出てる？最新巻・関連情報まとめ</h1><h2>結論</h2><p>この記事では「葬送のフリーレン 何巻まで」についてわかりやすく整理します。</p><p>まず結論から確認していきます。</p><h2>現在の巻数情報</h2><p>葬送のフリーレンは何巻まで出てる？最新巻・関連情報まとめ に関する現在の巻数情報を確認していきます。</p><p>最新の刊行状況は公式ストアや出版社情報もあわせて確認してください。</p><h2>最新巻情報</h2><p>最新巻の発売状況や配信状況をチェックしておくと安心です。</p><p>続きをすぐ読みたい場合は電子書籍ストアの在庫も確認しましょう。</p><h2>関連記事</h2><p>関連情報として他の記事もあわせて確認できます。</p><p>続き・全巻・セール情報も参考になります。</p><h2>購入リンク</h2><p>気になる巻は電子書籍ストアで確認してください。</p><p>お得なセール対象になっている場合もあります。</p><div class=\"cta-box\"><p>続きが気になる方はKindleで最新巻を確認してください。</p></div><div class=\"related-links\"><h2>関連記事</h2><ul><li><a href=\"/related/葬送のフリーレン-最新巻\">葬送のフリーレン 最新巻</a></li><li><a href=\"/related/葬送のフリーレン-全巻\">葬送のフリーレン 全巻</a></li><li><a href=\"/related/葬送のフリーレン-セール\">葬送のフリーレン セール</a></li></ul></div>",
+        "+<h1>葬送のフリーレンは何巻まで出てる？最新巻・関連情報まとめ</h1><p class=\"pr-notice\">※本記事にはアフィリエイト広告（PR）が含まれます。</p><h2>結論</h2><p>この記事では「葬送のフリーレン 何巻まで」についてわかりやすく整理します。</p><p>まず結論から確認していきます。</p><h2>現在の巻数情報</h2><p>葬送のフリーレンは何巻まで出てる？最新巻・関連情報まとめ に関する現在の巻数情報を確認していきます。</p><p>最新の刊行状況は公式ストアや出版社情報もあわせて確認してください。</p><h2>最新巻情報</h2><p>最新巻の発売状況や配信状況をチェックしておくと安心です。</p><p>続きをすぐ読みたい場合は電子書籍ストアの在庫も確認しましょう。</p><h2>関連記事</h2><p>関連情報として他の記事もあわせて確認できます。</p><p>続き・全巻・セール情報も参考になります。</p><h2>購入リンク</h2><p>気になる巻は電子書籍ストアで確認してください。</p><p>お得なセール対象になっている場合もあります。</p><div class=\"cta-box\"><p>続きが気になる方はKindleで最新巻を確認してください。</p></div><div class=\"related-links\"><h2>関連記事</h2><ul><li><a href=\"/related/葬送のフリーレン-最新巻\">葬送のフリーレン 最新巻</a></li><li><a href=\"/related/葬送のフリーレン-全巻\">葬送のフリーレン 全巻</a></li><li><a href=\"/related/葬送のフリーレン-セール\">葬送のフリーレン セール</a></li></ul></div>"
+      ],
+      "safety": {
+        "wordpress_write_executed": false,
+        "human_approval_required": true,
+        "mode": "DRY_RUN_ONLY"
+      }
+    }
+  ],
+  "notes": [
+    "This artifact is design and dry-run only.",
+    "No WordPress draft update was executed.",
+    "Diff preview is generated from local source content_html only."
+  ]
+}

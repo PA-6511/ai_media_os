@@ -1,0 +1,92 @@
+{
+  "phase_id": "23-5",
+  "phase_name": "Operation Transition GO Rejection and NO-GO Maintenance Rules Design",
+  "phase_japanese_name": "運用移行GO不可時の差し戻し・NO_GO維持ルール設計",
+  "purpose": "Design rejection routing and NO_GO maintenance rules for operation-transition GO candidates when measured conditions are not satisfied",
+  "layer": "operation_transition_actual_measurement_reinforcement_layer",
+  "design_category": "reports_only",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "operation_transition_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "phase_23_5_scope": {
+    "scope_1_rejection_categories": {
+      "scope_id": "REJECTION_CATEGORIES",
+      "categories": {
+        "OR1": "minimum condition NOT_MET in Phase 23-3",
+        "OR2": "judgment evidence lock failure in Phase 23-4",
+        "OR3": "signature invalid, revoked, or expired",
+        "OR4": "boundary separation violation detected",
+        "OR5": "human final approval missing or inactive"
+      }
+    },
+    "scope_2_return_and_maintenance_rules": {
+      "scope_id": "RETURN_AND_MAINTENANCE_RULES",
+      "rules": {
+        "rule_ORM1": "Any OR1-OR5 triggers operation_transition_go_authorization = NOT_GRANTED",
+        "rule_ORM2": "Force production_status = NO_GO while unresolved_rejections_count > 0",
+        "rule_ORM3": "Route remediation to Phase 23-3 or Phase 23-4 based on rejection category",
+        "rule_ORM4": "Maintain app_implementation_status and tests_implementation_status as NO_GO until clean re-measurement",
+        "rule_ORM5": "Escalate to HALT_REVIEW_REQUIRED after repeated rejection threshold"
+      }
+    },
+    "scope_3_report_structure": {
+      "scope_id": "REPORT_STRUCTURE",
+      "sections": {
+        "section_1_header": {
+          "report_id": "PHASE23_5_OP_TRANSITION_NO_GO_MAINTENANCE_<UTC_TIMESTAMP>",
+          "report_type": "operation_transition_go_rejection_and_no_go_maintenance",
+          "generated_at_utc": "RFC3339",
+          "generated_by": "authority_identifier"
+        },
+        "section_2_rejection_summary": {
+          "triggered_categories": [
+            "OR1",
+            "OR2",
+            "OR3",
+            "OR4",
+            "OR5"
+          ],
+          "unresolved_rejections_count": "integer"
+        },
+        "section_3_maintenance_state": {
+          "app_implementation_status": "NO_GO",
+          "tests_implementation_status": "NO_GO",
+          "production_status": "NO_GO",
+          "operation_transition_go_authorization": "NOT_GRANTED",
+          "changed_area": "reports only"
+        },
+        "section_4_next_actions": {
+          "remediation_route": "Phase 23-3 / 23-4",
+          "re_measurement_required": true
+        }
+      }
+    }
+  },
+  "phase_23_5_governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "state_invariants": {
+      "app_implementation_status": "NO_GO",
+      "tests_implementation_status": "NO_GO",
+      "production_status": "NO_GO",
+      "operation_transition_go_authorization": "NOT_GRANTED",
+      "changed_area": "reports only"
+    }
+  }
+}

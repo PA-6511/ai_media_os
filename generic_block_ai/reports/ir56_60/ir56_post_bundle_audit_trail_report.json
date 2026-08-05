@@ -1,0 +1,91 @@
+{
+  "schema_version": "ir56_post_bundle_audit_trail_recorder_v1",
+  "phase": "IR56",
+  "generated_at": "2026-05-24T12:51:47.502326+00:00",
+  "source_task_id": "ir56_60_live_trial",
+  "validation_result": "PASS",
+  "validation_failed_checks": [],
+  "validation_warnings": [],
+  "audit_trail_entry": {
+    "audit_trail_id": "audit_ir56_60_live_trial_20260524T125147Z",
+    "recorded_at": "2026-05-24T12:51:47.502225+00:00",
+    "source_phase": "IR55",
+    "source_task_id": "ir56_60_live_trial",
+    "final_decision_recorded": "READY_FOR_DRY_RUN_HANDOFF_ONLY",
+    "completion_table_snapshot": [
+      {
+        "phase": "IR51",
+        "content": "Handoff Integrity Verifier",
+        "focused": "PASS",
+        "adjacent": "PASS",
+        "scoped": "PASS",
+        "live": "PASS",
+        "judgement": "完了"
+      },
+      {
+        "phase": "IR52",
+        "content": "Release Packet Builder",
+        "focused": "PASS",
+        "adjacent": "PASS",
+        "scoped": "PASS",
+        "live": "PASS",
+        "judgement": "完了"
+      },
+      {
+        "phase": "IR53",
+        "content": "Release Packet Verifier",
+        "focused": "PASS",
+        "adjacent": "PASS",
+        "scoped": "PASS",
+        "live": "PASS",
+        "judgement": "完了"
+      },
+      {
+        "phase": "IR54",
+        "content": "Final No-External-Submit Gate",
+        "focused": "PASS",
+        "adjacent": "PASS",
+        "scoped": "PASS",
+        "live": "PASS",
+        "judgement": "完了"
+      },
+      {
+        "phase": "IR55",
+        "content": "Phase 51-55 Completion Bundle",
+        "focused": "PASS",
+        "adjacent": "PASS",
+        "scoped": "PASS",
+        "live": "PASS",
+        "judgement": "完了"
+      }
+    ],
+    "live_summary_snapshot": {
+      "ir51": "PASS",
+      "ir52": "PASS",
+      "ir53": "PASS",
+      "ir54": "PASS",
+      "ir55": "PASS"
+    },
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "audit_trail_hash": "ef7c32245475e8b79c7a7e97636563c073ca26e3ad843f8d58f804cdb9c2b77c",
+  "safety_gate_snapshot": {
+    "dry_run": "maintained",
+    "OBSERVE": "maintained",
+    "submission_execution_blocked": true,
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "network_transmission_executed": false,
+    "production_release": false,
+    "GitHub_push": "未実行"
+  }
+}

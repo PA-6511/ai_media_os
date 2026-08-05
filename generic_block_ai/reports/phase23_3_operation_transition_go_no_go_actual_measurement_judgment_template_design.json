@@ -1,0 +1,100 @@
+{
+  "phase_id": "23-3",
+  "phase_name": "Operation Transition GO/NO-GO Actual Measurement Judgment Template Design",
+  "phase_japanese_name": "運用移行GO/NO-GO 実測判定テンプレート設計",
+  "purpose": "Design the actual-measurement judgment template for operation transition GO/NO-GO decisions with strict separation from implementation-start GO",
+  "layer": "operation_transition_actual_measurement_judgment_template_layer",
+  "design_category": "reports_only",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only"
+  },
+  "phase_23_3_scope": {
+    "scope_1_minimum_conditions_template": {
+      "scope_id": "MINIMUM_CONDITIONS_TEMPLATE",
+      "conditions": {
+        "condition_1": "operation-transition independent audit evidence = VALID",
+        "condition_2": "boundary separation checks = PASS",
+        "condition_3": "pre-operation ABORT checks = NOT_TRIGGERED",
+        "condition_4": "all required lock records and signatures = VALID",
+        "condition_5": "human final approval signature for operation transition = VALID and ACTIVE"
+      },
+      "evaluation_values": "MET | NOT_MET"
+    },
+    "scope_2_judgment_rules": {
+      "scope_id": "JUDGMENT_RULES",
+      "rules": {
+        "rule_OJ1": "If condition_1 through condition_5 are all MET, operation_transition_go = GO",
+        "rule_OJ2": "If any condition is NOT_MET, operation_transition_go = NO_GO",
+        "rule_OJ3": "Any integrity failure, missing evidence, or invalid signature forces NO_GO"
+      }
+    },
+    "scope_3_template_sections": {
+      "scope_id": "TEMPLATE_SECTIONS",
+      "sections": {
+        "section_1_header": {
+          "judgment_id": "OP_TRANSITION_MEASURED_JUDGMENT_<UTC_TIMESTAMP>",
+          "template_version": "1.0.0",
+          "generated_at_utc": "RFC3339",
+          "generated_by": "authority_identifier"
+        },
+        "section_2_measurement_inputs": {
+          "evidence_ids": [
+            "operation_transition_independent_audit_evidence_id",
+            "boundary_separation_evidence_id",
+            "pre_operation_abort_evidence_id",
+            "lock_records_and_signatures_evidence_id",
+            "operation_transition_human_approval_evidence_id"
+          ]
+        },
+        "section_3_condition_evaluation": {
+          "condition_1": "MET | NOT_MET",
+          "condition_2": "MET | NOT_MET",
+          "condition_3": "MET | NOT_MET",
+          "condition_4": "MET | NOT_MET",
+          "condition_5": "MET | NOT_MET"
+        },
+        "section_4_final_determination": {
+          "operation_transition_go": "GO | NO_GO",
+          "production_status": "GO | NO_GO",
+          "app_implementation_status": "NO_GO | GO",
+          "tests_implementation_status": "NO_GO | GO",
+          "reason_summary": "human-readable reason"
+        }
+      }
+    },
+    "scope_4_default_fixed_state": {
+      "scope_id": "DEFAULT_FIXED_STATE",
+      "default_state_until_measured": {
+        "app_implementation_status": "NO_GO",
+        "tests_implementation_status": "NO_GO",
+        "production_status": "NO_GO",
+        "changed_area": "reports only"
+      }
+    }
+  },
+  "phase_23_3_governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "state_invariants": {
+      "app_implementation_status": "NO_GO",
+      "tests_implementation_status": "NO_GO",
+      "production_status": "NO_GO",
+      "changed_area": "reports only"
+    }
+  }
+}

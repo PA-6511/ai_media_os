@@ -1,0 +1,19 @@
+{
+  "block_name": "sale_flash_block",
+  "production_status": "NO_GO",
+  "current_stage": "API_NOT_ELIGIBLE_MANUAL_INTAKE",
+  "creators_api_migration_allowed": false,
+  "migration_steps": [
+    "ASIN補完だけCreators API",
+    "商品タイトル確認だけCreators API",
+    "画像・著者・出版社情報をCreators API",
+    "価格・割引率をCreators API",
+    "セール判定をCreators API中心へ移行"
+  ],
+  "migration_gate": {
+    "require_creators_api_eligible": true,
+    "require_human_approval": true,
+    "require_single_controlled_run": true,
+    "require_final_freeze_restore": true
+  }
+}

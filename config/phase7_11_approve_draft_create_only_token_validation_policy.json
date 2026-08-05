@@ -1,0 +1,48 @@
+{
+  "phase": "Phase 7-11",
+  "name": "approve_draft_create_only_token_validation_policy",
+  "policy_status": "DESIGN_ONLY",
+  "production_status": "NO_GO",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "human_approval_required": true,
+  "token_validation_is_activation": false,
+  "approve_draft_create_only_currently_allowed": false,
+  "unlock_in_this_phase": false,
+  "wordpress_draft_creation": "NO_GO",
+  "wordpress_write_executed": false,
+  "wordpress_api_call_allowed": false,
+  "publish_allowed": false,
+  "required_evidence": [
+    "exchange/logs/phase7_10_human_unlock_decision_result.json"
+  ],
+  "required_phase7_10_status": "PASS_REVIEW_ONLY_NO_GO",
+  "token_rules": {
+    "token_name": "APPROVE_DRAFT_CREATE_ONLY",
+    "token_may_be_requested_in_future_phase": true,
+    "token_may_be_activated_in_phase7_11": false,
+    "token_is_execution_permission_in_phase7_11": false,
+    "requires_target_item_count": 1,
+    "requires_human_approval_file": true,
+    "requires_final_preflight": true,
+    "requires_freeze_path": true
+  },
+  "dangerous_operations": {
+    "auto_post": false,
+    "auto_update": false,
+    "auto_delete": false,
+    "auto_export": false,
+    "publish_allowed": false,
+    "wordpress_write_executed": false,
+    "wordpress_api_call_allowed": false,
+    "bulk_execution": false,
+    "external_write": false,
+    "vps_self_builder_execution": false
+  },
+  "decision_rules": {
+    "all_conditions_met": "TOKEN_READY_BUT_LOCKED",
+    "missing_condition": "TOKEN_NOT_READY",
+    "safety_violation": "ABORT"
+  },
+  "allowed_next_step": "Phase 7-12 one-item controlled draft creation execution plan DRY_RUN"
+}

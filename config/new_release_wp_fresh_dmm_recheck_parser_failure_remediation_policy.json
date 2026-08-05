@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M2-FIX1",
+  "policy_id": "DMM_RECHECK_PARSER_NULL_SAFE_REMEDIATION_POLICY_V1",
+  "source_phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M2",
+  "operation_mode": "APPROVED_OFFLINE_PARSER_REMEDIATION_ONLY",
+  "content_item_id": "new-release-comic-20260703-001",
+  "approved_correction": {
+    "target_file": "scripts/execute_ls_new_batch_4g_2e_recovery_m2.py",
+    "target_component": "MinimalPageParser.handle_starttag",
+    "historical_exception": "AttributeError: 'NoneType' object has no attribute 'lower'",
+    "incorrect_behavior": "property属性とname属性の両方が欠落したmeta要素でNone.lowerが実行される",
+    "required_behavior": "property属性とname属性の両方が欠落した場合は空文字として処理する",
+    "semantic_scope_expansion_allowed": false
+  },
+  "required_regression_coverage": [
+    "META_WITHOUT_PROPERTY_OR_NAME",
+    "META_ATTRIBUTE_VALUE_NONE",
+    "NORMAL_META_PROPERTY",
+    "NORMAL_META_NAME",
+    "CANONICAL_LINK",
+    "JSON_LD",
+    "COMPLETE_IDENTITY_EXTRACTION"
+  ],
+  "historical_evidence_preservation": {
+    "m2_result_modification_allowed": false,
+    "m2_recheck_result_modification_allowed": false,
+    "m2_consumption_evidence_modification_allowed": false,
+    "m2_execute_approval_modification_allowed": false,
+    "m1_authorization_modification_allowed": false,
+    "response_body_sha256_modification_allowed": false,
+    "historical_failure_reclassification_allowed": false
+  },
+  "execution_boundary": {
+    "parser_source_patch_allowed": true,
+    "regression_test_creation_allowed": true,
+    "fix_evidence_creation_allowed": true,
+    "new_recheck_authorization_creation_allowed": false,
+    "existing_authorization_reuse_allowed": false,
+    "network_connection_allowed": false,
+    "http_request_allowed": false,
+    "dns_resolution_allowed": false,
+    "dmm_recheck_allowed": false,
+    "final_affiliate_link_generation_allowed": false,
+    "article_modification_allowed": false,
+    "article_url_injection_allowed": false,
+    "fresh_payload_creation_allowed": false,
+    "payload_binding_allowed": false,
+    "production_category_id_payload_injection_allowed": false,
+    "wordpress_access_allowed": false,
+    "wordpress_write_allowed": false,
+    "wordpress_publish_allowed": false,
+    "production_status": "NO_GO",
+    "safety_state": "OFFLINE_PARSER_REMEDIATION_ONLY"
+  },
+  "next_phase": {
+    "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M3",
+    "name": "Fresh DMM Recheck Authorization After Parser Remediation",
+    "execution_allowed": false,
+    "human_approval_required": true
+  }
+}

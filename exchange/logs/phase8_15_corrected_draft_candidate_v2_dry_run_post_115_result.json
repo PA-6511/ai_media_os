@@ -1,0 +1,80 @@
+{
+  "phase": "Phase 8-15",
+  "status": "PHASE8_15_CORRECTED_CANDIDATE_V2_DRY_RUN_READY",
+  "decision": "DRY_RUN_CANDIDATE_V2_GENERATED",
+  "reason": "generated corrected draft candidate v2 with placeholder URLs removed and category/tag policy fixed, without any WordPress API call",
+  "production_status": "NO_GO",
+  "mode": "CORRECTED_DRAFT_CANDIDATE_V2",
+  "execution": "DRY_RUN",
+  "target_post_id": 115,
+  "previous_phase_status": "PHASE8_14_CORRECTED_CANDIDATE_REVIEW_REQUEST_FIX",
+  "manual_review_result": "request_fix",
+  "corrected_draft_candidate_v2_generated": true,
+  "placeholder_url_removed": true,
+  "category_tag_policy_fixed": true,
+  "human_review_required": true,
+  "proposal_v2": {
+    "target_post_id": 115,
+    "proposed_title": "サンプル漫画 1巻 セール紹介【PR】",
+    "proposed_body_markdown": "【PR】この記事にはプロモーションが含まれます。アフィリエイトプログラムを利用しています。\n\n## サンプル漫画 1巻 セール概要\n期間限定の割引情報を、初めて読む方向けに要点を絞って整理しました。\n\n## この記事でわかること\n- 1巻セールが向いている読者像\n- 購入前に確認すべきポイント\n- 公式商品ページとアフィリエイト導線\n\n## 商品リンク\n- 公式商品ページ: https://www.amazon.co.jp/dp/B0FTZ75PWH\n- アフィリエイトリンク: https://www.amazon.co.jp/dp/B0FTZ75PWH?tag=ktkr77-22&linkCode=ll1\n\n## 注意点\n- 価格・ポイント還元・キャンペーン期間は変動する場合があります。\n- 購入前に販売ページで最新表示を必ず確認してください。\n\n## まとめ\n1巻をお得に試したい方は、上記リンク先で条件を確認したうえで判断してください。\n",
+    "link_policy": {
+      "placeholder_urls_present": false,
+      "official_url_type": "amazon_product_page",
+      "affiliate_url_type": "amazon_associates_tagged_link",
+      "affiliate_tag": "ktkr77-22",
+      "unset_reason": "none"
+    },
+    "category_tag_policy": {
+      "categories": [
+        "セール情報",
+        "漫画"
+      ],
+      "tags": [
+        "サンプル漫画",
+        "1巻",
+        "PR",
+        "アフィリエイト"
+      ],
+      "policy_note": "カテゴリ2件・タグ4件を固定案として採用し、手動レビューで最終確認する"
+    },
+    "fix_focus": [
+      "placeholder URL の完全排除",
+      "PR/アフィリエイト表記の維持",
+      "カテゴリ/タグ方針の明文化",
+      "公開・更新に繋がる処理を行わない"
+    ]
+  },
+  "wordpress_api_call_attempted": false,
+  "wordpress_write_executed": false,
+  "wordpress_draft_updated": false,
+  "publish_executed": false,
+  "update_executed": false,
+  "delete_executed": false,
+  "bulk_operation_executed": false,
+  "export_executed": false,
+  "auto_post": false,
+  "publish_allowed": false,
+  "update_allowed": false,
+  "delete_allowed": false,
+  "timer_enable_allowed": false,
+  "systemd_enable_start_allowed": false,
+  "evidence_summary": [
+    {
+      "path": "exchange/logs/phase8_13_corrected_draft_candidate_dry_run_post_115_result.json",
+      "exists": true,
+      "status": "PHASE8_13_CORRECTED_DRAFT_CANDIDATE_DRY_RUN_READY"
+    },
+    {
+      "path": "exchange/logs/phase8_14_corrected_candidate_manual_review_post_115_result.json",
+      "exists": true,
+      "status": "PHASE8_14_CORRECTED_CANDIDATE_REVIEW_REQUEST_FIX"
+    }
+  ],
+  "next_step": "phase8_16_corrected_candidate_v2_manual_review",
+  "errors": [],
+  "warnings": [],
+  "policy_violations": [],
+  "safety_violations": [],
+  "reviewed_at_utc": "2026-06-09T13:25:52+00:00",
+  "checked_at": "2026-06-09T13:25:53.359630+00:00"
+}

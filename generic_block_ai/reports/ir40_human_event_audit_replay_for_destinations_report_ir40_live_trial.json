@@ -1,0 +1,109 @@
+{
+  "schema_version": "ir40_human_event_audit_replay_for_destinations_v1",
+  "phase": "IR40",
+  "generated_at": "2026-05-24T02:37:42.657032+00:00",
+  "source_task_id": "ir40_live_trial",
+  "release_candidate_id": "rc_20260523T155148Z_ir26_live_trial_b940393b490b",
+  "final_submission_decision": "READY_FOR_SUBMISSION_SUMMARY",
+  "overall_approval_decision": "APPROVE_DRY_RUN",
+  "overall_audit_action": "Replay integrity verified for event order, approver record, and evidence lock continuity.",
+  "validation_result": "PASS",
+  "validation_failed_checks": [],
+  "validation_warnings": [],
+  "summary": {
+    "destination_count": 3,
+    "audit_pass_count": 3,
+    "audit_fail_count": 0,
+    "event_sequence_replay_count": 3,
+    "approver_record_integrity_pass_count": 3,
+    "evidence_lock_integrity_pass_count": 3
+  },
+  "destination_human_event_audit_replay": [
+    {
+      "destination": "regulatory_audit",
+      "selected_event": "APPROVE",
+      "replay_sequence": [
+        "APPROVE"
+      ],
+      "replay_trace": {
+        "from_state": "EVIDENCE_LOCK_ACTIVE",
+        "to_state": "EVIDENCE_LOCKED_APPROVED",
+        "expected_to_state": "EVIDENCE_LOCKED_APPROVED",
+        "transition_applied": true,
+        "replayed_at": "2026-05-24T02:37:42.656714+00:00"
+      },
+      "audit_checks": {
+        "event_order_ok": true,
+        "event_allowed_ok": true,
+        "state_mapping_ok": true,
+        "approver_record_ok": true,
+        "evidence_lock_ok": true
+      },
+      "audit_result": "PASS",
+      "failed_reasons": [],
+      "manifest_path": "generic_block_ai/reports/ir34_destination_submission_packages_ir34_live_trial/regulatory_audit/destination_package_manifest.json"
+    },
+    {
+      "destination": "internal_review_board",
+      "selected_event": "APPROVE",
+      "replay_sequence": [
+        "APPROVE"
+      ],
+      "replay_trace": {
+        "from_state": "EVIDENCE_LOCK_ACTIVE",
+        "to_state": "EVIDENCE_LOCKED_APPROVED",
+        "expected_to_state": "EVIDENCE_LOCKED_APPROVED",
+        "transition_applied": true,
+        "replayed_at": "2026-05-24T02:37:42.656742+00:00"
+      },
+      "audit_checks": {
+        "event_order_ok": true,
+        "event_allowed_ok": true,
+        "state_mapping_ok": true,
+        "approver_record_ok": true,
+        "evidence_lock_ok": true
+      },
+      "audit_result": "PASS",
+      "failed_reasons": [],
+      "manifest_path": "generic_block_ai/reports/ir34_destination_submission_packages_ir34_live_trial/internal_review_board/destination_package_manifest.json"
+    },
+    {
+      "destination": "compliance_archive",
+      "selected_event": "APPROVE",
+      "replay_sequence": [
+        "APPROVE"
+      ],
+      "replay_trace": {
+        "from_state": "EVIDENCE_LOCK_ACTIVE",
+        "to_state": "EVIDENCE_LOCKED_APPROVED",
+        "expected_to_state": "EVIDENCE_LOCKED_APPROVED",
+        "transition_applied": true,
+        "replayed_at": "2026-05-24T02:37:42.656747+00:00"
+      },
+      "audit_checks": {
+        "event_order_ok": true,
+        "event_allowed_ok": true,
+        "state_mapping_ok": true,
+        "approver_record_ok": true,
+        "evidence_lock_ok": true
+      },
+      "audit_result": "PASS",
+      "failed_reasons": [],
+      "manifest_path": "generic_block_ai/reports/ir34_destination_submission_packages_ir34_live_trial/compliance_archive/destination_package_manifest.json"
+    }
+  ],
+  "artifacts": {
+    "replay_root": "generic_block_ai/reports/ir40_human_event_audit_replay_for_destinations_ir40_live_trial",
+    "destination_human_event_audit_replay": "generic_block_ai/reports/ir40_human_event_audit_replay_for_destinations_ir40_live_trial/destination_human_event_audit_replay.json",
+    "destination_human_event_audit_summary": "generic_block_ai/reports/ir40_human_event_audit_replay_for_destinations_ir40_live_trial/destination_human_event_audit_summary.md",
+    "completion_report": "reports/implementation_restart_phase40_completion_report.json"
+  },
+  "safeguards": {
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "network_transmission_executed": false,
+    "production_release": false
+  }
+}

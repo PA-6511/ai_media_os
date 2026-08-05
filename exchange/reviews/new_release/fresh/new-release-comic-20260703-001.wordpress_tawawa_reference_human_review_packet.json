@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M24",
+  "document_role": "TAWAWA_REFERENCE_LAYOUT_HUMAN_REVIEW_PACKET",
+  "wordpress_post_id": 192,
+  "human_review_status": "AWAITING_VISUAL_REVIEW",
+  "human_review_completed": false,
+  "human_review_verdict": "NOT_RECORDED",
+  "desktop_preview_path": "exchange/previews/new_release/fresh/new-release-comic-20260703-001.wordpress_tawawa_reference_desktop_safe_preview.html",
+  "desktop_preview_sha256": "454d688f6e32beb83340c27b65dfead421c41ff19aece5910b5aae93ae424469",
+  "mobile_preview_path": "exchange/previews/new_release/fresh/new-release-comic-20260703-001.wordpress_tawawa_reference_mobile_safe_preview.html",
+  "mobile_preview_sha256": "6e3b3a3c12b171377ab9505386609dcac4c8292f60aaac9e30e13fa2fca68c0a",
+  "review_targets": [
+    "DESKTOP_COVER_LEFT_BUTTONS_RIGHT",
+    "PR_BEFORE_FIRST_STORE_BUTTON",
+    "BUTTONS_VERTICAL_EQUAL_WIDTH",
+    "DESCRIPTION_SEPARATE_LOWER_BOX",
+    "DETAILS_SEPARATE_LOWER_BOX",
+    "NOTICE_SEPARATE_LOWER_BOX",
+    "MOBILE_SINGLE_COLUMN_NO_HORIZONTAL_SCROLL",
+    "EXCESS_WHITESPACE_NOT_PRESENT",
+    "TEXT_WRAPPING_NATURAL",
+    "COMMENT_STATUS_CLOSED",
+    "UPDATE_FIELDS_CONTENT_AND_COMMENT_STATUS_ONLY"
+  ],
+  "comment_status_target": "closed",
+  "allowed_update_fields": [
+    "content",
+    "comment_status"
+  ],
+  "safe_preview_external_links_active": false,
+  "safe_preview_external_assets_requested": false,
+  "ready_for_tawawa_reference_layout_human_review": true,
+  "ready_for_wordpress_update_authorization_gate": false,
+  "production_status": "NO_GO",
+  "created_at_utc": "2026-07-11T14:18:40.539511+00:00",
+  "review_packet_digest_sha256": "9866fa3be4b25bdfa30033c8f17f57b2cc5c5b8c0cc1710faaa6530940c61f66"
+}

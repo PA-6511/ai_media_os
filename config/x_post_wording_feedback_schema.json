@@ -1,0 +1,130 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "X-FB-0",
+  "schema_id": "X_POST_WORDING_FEEDBACK_SCHEMA_V1",
+  "purpose": "Preserve AI-generated, human-reviewed, and actually-posted X wording for future feedback learning.",
+  "required_identity_fields": [
+    "record_version",
+    "feedback_id",
+    "article_item_id",
+    "template_id",
+    "record_stage"
+  ],
+  "record_stages": [
+    "DRAFT_GENERATED",
+    "HUMAN_REVIEWED",
+    "POSTED",
+    "METRICS_RECORDED"
+  ],
+  "wording_label_groups": {
+    "structure": [
+      "TITLE_FIRST",
+      "RELEASE_DATE_FIRST",
+      "PRICE_FIRST",
+      "STORE_BENEFIT_FIRST",
+      "SHORT_SUMMARY",
+      "ARTICLE_CTA",
+      "STORE_DIRECT_CTA"
+    ],
+    "tone": [
+      "SOFT_TONE",
+      "INFORMATIONAL_TONE",
+      "EXCITED_TONE",
+      "MINIMAL_TONE"
+    ],
+    "decoration": [
+      "NO_EMOJI",
+      "LOW_EMOJI",
+      "NO_HASHTAG",
+      "ONE_HASHTAG",
+      "MULTIPLE_HASHTAGS"
+    ]
+  },
+  "edit_reason_labels": [
+    "UNNATURAL_JAPANESE",
+    "TOO_ADVERTISING_LIKE",
+    "TOO_LONG",
+    "TOO_SHORT",
+    "REDUNDANT",
+    "INFORMATION_PRIORITY_WRONG",
+    "TITLE_NOT_PROMINENT",
+    "PRICE_NOT_NEEDED",
+    "CTA_TOO_STRONG",
+    "CTA_TOO_WEAK",
+    "TONE_MISMATCH",
+    "FACTUAL_CORRECTION",
+    "FORMAT_CORRECTION",
+    "OTHER"
+  ],
+  "posting_adjustment_labels": [
+    "LAST_MINUTE_WORDING_EDIT",
+    "URL_ADDED",
+    "HASHTAG_ADDED",
+    "EMOJI_ADDED",
+    "FORMAT_ADJUSTED",
+    "FACTUAL_CORRECTION",
+    "OTHER"
+  ],
+  "review_statuses": [
+    "UNREVIEWED",
+    "HUMAN_REVIEWED",
+    "POSTED_UNMEASURED",
+    "METRICS_PARTIAL",
+    "METRICS_COMPLETE",
+    "ARCHIVED"
+  ],
+  "metric_fields": [
+    "impressions",
+    "likes",
+    "reposts",
+    "replies",
+    "bookmarks",
+    "link_clicks"
+  ],
+  "normalization": {
+    "unicode_normalization": "NFKC",
+    "normalize_line_endings": true,
+    "trim_outer_whitespace": true,
+    "preserve_internal_line_breaks": true,
+    "empty_optional_text_to_null": true,
+    "duplicate_labels_forbidden": true
+  },
+  "invariants": {
+    "generated_text_required": true,
+    "human_reviewed_text_required_from_stage": "HUMAN_REVIEWED",
+    "actually_posted_text_required_from_stage": "POSTED",
+    "posted_at_required_from_stage": "POSTED",
+    "metric_observed_at_required_from_stage": "METRICS_RECORDED",
+    "edited_record_requires_edit_reason": true,
+    "unedited_record_requires_identical_generated_and_reviewed_text": true,
+    "posting_text_difference_requires_adjustment_label": true,
+    "negative_metrics_forbidden": true,
+    "unknown_metrics_must_be_null": true
+  },
+  "change_control": {
+    "source_text_snapshots_must_be_preserved": true,
+    "silent_overwrite_allowed": false,
+    "record_version_required": true,
+    "superseding_record_must_reference_previous_feedback_id": true,
+    "single_feedback_case_must_not_become_permanent_rule": true,
+    "rule_promotion_requires_separate_review": true
+  },
+  "execution_boundary": {
+    "design_only": true,
+    "local_json_read_allowed": true,
+    "normalized_json_write_allowed": true,
+    "x_api_call_allowed": false,
+    "x_post_allowed": false,
+    "wordpress_write_allowed": false,
+    "external_api_call_allowed": false,
+    "automatic_rule_update_allowed": false,
+    "algorithm_research_handoff_allowed": false,
+    "production_status": "NO_GO",
+    "safety_state": "DRY_RUN_ONLY"
+  },
+  "next_phase": {
+    "phase_id": "X-FB-1",
+    "name": "Manual Feedback Record Operation",
+    "execution_allowed": false
+  }
+}

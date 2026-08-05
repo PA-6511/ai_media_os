@@ -1,0 +1,45 @@
+{
+  "phase": "LS-NEW-7",
+  "name": "WP Draft Runner Prep",
+  "japanese_name": "新刊コミック購入ナビ WordPress下書きrunner準備",
+  "execution_mode": "WP_DRAFT_RUNNER_PREP_ONLY_NO_EXECUTION",
+  "production_status": "NO_EXECUTION_WP_DRAFT_RUNNER_PREP_ONLY",
+  "required_previous_phase": {
+    "ls_new6_result": "exchange/runtime/start_ls_new6_wp_draft_payload_prep_result.json",
+    "ls_new6_validation_result": "exchange/logs/start_ls_new6_wp_draft_payload_prep_validation_result.json",
+    "required_ls_new6_status": "LSNEW6_WP_DRAFT_PAYLOAD_PREP_READY_NO_EXECUTION",
+    "required_ls_new6_validation_status": "LSNEW6_WP_DRAFT_PAYLOAD_PREP_VALIDATED_NO_EXECUTION",
+    "required_ready_for_ls_new_7": true,
+    "required_execution_allowed": false,
+    "required_wordpress_api_call_executed": false,
+    "required_wordpress_write_executed": false,
+    "required_wordpress_draft_created": false,
+    "required_target_post_id_allocated": false
+  },
+  "runner_prep_policy": {
+    "runner_prep_allowed": true,
+    "runner_execution_allowed": false,
+    "wordpress_api_call_allowed": false,
+    "wordpress_write_allowed": false,
+    "wordpress_draft_create_allowed": false,
+    "wordpress_publish_allowed": false,
+    "external_fetch_allowed": false,
+    "x_api_call_allowed": false,
+    "x_post_allowed": false,
+    "credential_env_read_allowed": false,
+    "credential_existence_check_allowed": false,
+    "target_post_id_allocation_allowed": false,
+    "approval_label_consumption_allowed": false,
+    "execution_allowed": false
+  },
+  "safety_policy": {
+    "blocked_until_explicit_approval": true,
+    "separate_execution_command_required": true,
+    "final_preflight_required": true,
+    "human_approval_required_before_any_wp_call": true,
+    "credential_read_requires_later_phase": true,
+    "draft_creation_requires_later_phase": true,
+    "post119_forbidden": true,
+    "post183_forbidden": true
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "package_type": "exchange_connection_dry_run_result",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "human_approval_required": true,
+  "source_builder": {
+    "type": "LOCAL_SELF_BUILDER",
+    "location": "local",
+    "execution_allowed": false,
+    "vps_migration_ready": false,
+    "source_file": "/home/deploy/ai_media_os/exchange/incoming/decision_package.realdata.normal.example.json"
+  },
+  "human_review_required": true,
+  "auto_post": false,
+  "auto_update": false,
+  "auto_delete": false,
+  "auto_export": false,
+  "wordpress_write_executed": false,
+  "slack_notification_executed": false,
+  "github_actions_triggered": false,
+  "overall_status": "WARN",
+  "results": [
+    {
+      "file": "/home/deploy/ai_media_os/exchange/incoming/decision_package.realdata.normal.example.json",
+      "status": "PASS",
+      "issues": [],
+      "warnings": [],
+      "package_type": "decision_package",
+      "path": "/home/deploy/ai_media_os/exchange/incoming/decision_package.realdata.normal.example.json"
+    },
+    {
+      "file": "/home/deploy/ai_media_os/exchange/incoming/patch_proposal.example.json",
+      "status": "PASS",
+      "issues": [],
+      "warnings": [],
+      "package_type": "patch_proposal",
+      "path": "/home/deploy/ai_media_os/exchange/incoming/patch_proposal.example.json"
+    },
+    {
+      "file": "/home/deploy/ai_media_os/exchange/incoming/test_report.example.json",
+      "status": "WARN",
+      "issues": [],
+      "warnings": [
+        "tests.link_check='WARN'",
+        "tests.wp_post='NOT_EXECUTED'"
+      ],
+      "package_type": "test_report",
+      "path": "/home/deploy/ai_media_os/exchange/incoming/test_report.example.json"
+    }
+  ],
+  "created_at": "2026-05-05T05:13:41.489958+00:00",
+  "next_step": "human_review"
+}

@@ -1,0 +1,255 @@
+{
+  "phase": "Phase 8-24A",
+  "phase_name": "Taxonomy ID Discovery for Category/Tag Only Update (NO_WRITE)",
+  "status": "PHASE8_24A_TAXONOMY_ID_DISCOVERY_READY_NO_WRITE",
+  "target_post_id": 115,
+  "production_status": "NO_GO",
+  "execution": "NO_WRITE_DISCOVERY",
+  "update_scope": "category_tags_only",
+  "title_update_allowed": false,
+  "body_update_allowed": false,
+  "publish_allowed": false,
+  "delete_allowed": false,
+  "wordpress_api_call_attempted": true,
+  "wordpress_write_executed": false,
+  "wordpress_draft_updated": false,
+  "publish_executed": false,
+  "update_executed": false,
+  "delete_executed": false,
+  "bulk_operation_executed": false,
+  "export_executed": false,
+  "rollback_executed": false,
+  "freeze_executed": false,
+  "secret_values_output": false,
+  "secret_values_written": false,
+  "human_approval_required_before_update": true,
+  "taxonomy_inventory": {
+    "categories": [
+      {
+        "id": 1,
+        "name": "未分類",
+        "slug": "uncategorized"
+      },
+      {
+        "id": 4,
+        "name": "巻数ガイド",
+        "slug": "%e5%b7%bb%e6%95%b0%e3%82%ac%e3%82%a4%e3%83%89"
+      },
+      {
+        "id": 10,
+        "name": "最新巻",
+        "slug": "%e6%9c%80%e6%96%b0%e5%b7%bb"
+      },
+      {
+        "id": 12,
+        "name": "全巻まとめ",
+        "slug": "%e5%85%a8%e5%b7%bb%e3%81%be%e3%81%a8%e3%82%81"
+      },
+      {
+        "id": 13,
+        "name": "セール情報",
+        "slug": "%e3%82%bb%e3%83%bc%e3%83%ab%e6%83%85%e5%a0%b1"
+      },
+      {
+        "id": 15,
+        "name": "作品紹介",
+        "slug": "%e4%bd%9c%e5%93%81%e7%b4%b9%e4%bb%8b"
+      }
+    ],
+    "tags": [
+      {
+        "id": 5,
+        "name": "呪術廻戦",
+        "slug": "%e5%91%aa%e8%a1%93%e5%bb%bb%e6%88%a6"
+      },
+      {
+        "id": 6,
+        "name": "巻数ガイド",
+        "slug": "%e5%b7%bb%e6%95%b0%e3%82%ac%e3%82%a4%e3%83%89"
+      },
+      {
+        "id": 7,
+        "name": "最新巻",
+        "slug": "%e6%9c%80%e6%96%b0%e5%b7%bb"
+      },
+      {
+        "id": 8,
+        "name": "全巻",
+        "slug": "%e5%85%a8%e5%b7%bb"
+      },
+      {
+        "id": 9,
+        "name": "セール",
+        "slug": "%e3%82%bb%e3%83%bc%e3%83%ab"
+      },
+      {
+        "id": 11,
+        "name": "何巻まで",
+        "slug": "%e4%bd%95%e5%b7%bb%e3%81%be%e3%81%a7"
+      },
+      {
+        "id": 14,
+        "name": "評価",
+        "slug": "%e8%a9%95%e4%be%a1"
+      },
+      {
+        "id": 16,
+        "name": "作品紹介",
+        "slug": "%e4%bd%9c%e5%93%81%e7%b4%b9%e4%bb%8b"
+      },
+      {
+        "id": 17,
+        "name": "葬送のフリーレン",
+        "slug": "%e8%91%ac%e9%80%81%e3%81%ae%e3%83%95%e3%83%aa%e3%83%bc%e3%83%ac%e3%83%b3"
+      },
+      {
+        "id": 18,
+        "name": "無職転生",
+        "slug": "%e7%84%a1%e8%81%b7%e8%bb%a2%e7%94%9f"
+      },
+      {
+        "id": 20,
+        "name": "WordPress",
+        "slug": "wordpress"
+      },
+      {
+        "id": 21,
+        "name": "下書き投稿テスト作品 何巻まで",
+        "slug": "%e4%b8%8b%e6%9b%b8%e3%81%8d%e6%8a%95%e7%a8%bf%e3%83%86%e3%82%b9%e3%83%88%e4%bd%9c%e5%93%81-%e4%bd%95%e5%b7%bb%e3%81%be%e3%81%a7"
+      },
+      {
+        "id": 22,
+        "name": "下書き投稿テスト作品 最新巻",
+        "slug": "%e4%b8%8b%e6%9b%b8%e3%81%8d%e6%8a%95%e7%a8%bf%e3%83%86%e3%82%b9%e3%83%88%e4%bd%9c%e5%93%81-%e6%9c%80%e6%96%b0%e5%b7%bb"
+      },
+      {
+        "id": 23,
+        "name": "下書き投稿テスト作品 セール",
+        "slug": "%e4%b8%8b%e6%9b%b8%e3%81%8d%e6%8a%95%e7%a8%bf%e3%83%86%e3%82%b9%e3%83%88%e4%bd%9c%e5%93%81-%e3%82%bb%e3%83%bc%e3%83%ab"
+      },
+      {
+        "id": 24,
+        "name": "品質補強テスト作品 何巻まで",
+        "slug": "%e5%93%81%e8%b3%aa%e8%a3%9c%e5%bc%b7%e3%83%86%e3%82%b9%e3%83%88%e4%bd%9c%e5%93%81-%e4%bd%95%e5%b7%bb%e3%81%be%e3%81%a7"
+      },
+      {
+        "id": 25,
+        "name": "品質補強テスト作品 最新巻",
+        "slug": "%e5%93%81%e8%b3%aa%e8%a3%9c%e5%bc%b7%e3%83%86%e3%82%b9%e3%83%88%e4%bd%9c%e5%93%81-%e6%9c%80%e6%96%b0%e5%b7%bb"
+      },
+      {
+        "id": 26,
+        "name": "品質補強テスト作品 セール",
+        "slug": "%e5%93%81%e8%b3%aa%e8%a3%9c%e5%bc%b7%e3%83%86%e3%82%b9%e3%83%88%e4%bd%9c%e5%93%81-%e3%82%bb%e3%83%bc%e3%83%ab"
+      },
+      {
+        "id": 27,
+        "name": "cron",
+        "slug": "cron"
+      },
+      {
+        "id": 28,
+        "name": "Cron Queue Route Test 何巻まで",
+        "slug": "cron-queue-route-test-%e4%bd%95%e5%b7%bb%e3%81%be%e3%81%a7"
+      },
+      {
+        "id": 29,
+        "name": "Cron Queue Route Test 最新巻",
+        "slug": "cron-queue-route-test-%e6%9c%80%e6%96%b0%e5%b7%bb"
+      },
+      {
+        "id": 30,
+        "name": "Cron Queue Route Test セール",
+        "slug": "cron-queue-route-test-%e3%82%bb%e3%83%bc%e3%83%ab"
+      },
+      {
+        "id": 31,
+        "name": "楽天Kobo",
+        "slug": "%e6%a5%bd%e5%a4%a9kobo"
+      },
+      {
+        "id": 32,
+        "name": "セールテスト 何巻まで",
+        "slug": "%e3%82%bb%e3%83%bc%e3%83%ab%e3%83%86%e3%82%b9%e3%83%88-%e4%bd%95%e5%b7%bb%e3%81%be%e3%81%a7"
+      },
+      {
+        "id": 33,
+        "name": "セールテスト 最新巻",
+        "slug": "%e3%82%bb%e3%83%bc%e3%83%ab%e3%83%86%e3%82%b9%e3%83%88-%e6%9c%80%e6%96%b0%e5%b7%bb"
+      },
+      {
+        "id": 34,
+        "name": "セールテスト セール",
+        "slug": "%e3%82%bb%e3%83%bc%e3%83%ab%e3%83%86%e3%82%b9%e3%83%88-%e3%82%bb%e3%83%bc%e3%83%ab"
+      },
+      {
+        "id": 35,
+        "name": "セールテスト 全巻",
+        "slug": "%e3%82%bb%e3%83%bc%e3%83%ab%e3%83%86%e3%82%b9%e3%83%88-%e5%85%a8%e5%b7%bb"
+      },
+      {
+        "id": 36,
+        "name": "DMMブックス",
+        "slug": "dmm%e3%83%96%e3%83%83%e3%82%af%e3%82%b9"
+      },
+      {
+        "id": 37,
+        "name": "転生したらスライムだった件",
+        "slug": "%e8%bb%a2%e7%94%9f%e3%81%97%e3%81%9f%e3%82%89%e3%82%b9%e3%83%a9%e3%82%a4%e3%83%a0%e3%81%a0%e3%81%a3%e3%81%9f%e4%bb%b6"
+      },
+      {
+        "id": 38,
+        "name": "ブルーロック",
+        "slug": "%e3%83%96%e3%83%ab%e3%83%bc%e3%83%ad%e3%83%83%e3%82%af"
+      },
+      {
+        "id": 39,
+        "name": "名探偵",
+        "slug": "%e5%90%8d%e6%8e%a2%e5%81%b5"
+      },
+      {
+        "id": 40,
+        "name": "コナン 何巻まで",
+        "slug": "%e3%82%b3%e3%83%8a%e3%83%b3-%e4%bd%95%e5%b7%bb%e3%81%be%e3%81%a7"
+      },
+      {
+        "id": 41,
+        "name": "コナン 最新巻",
+        "slug": "%e3%82%b3%e3%83%8a%e3%83%b3-%e6%9c%80%e6%96%b0%e5%b7%bb"
+      },
+      {
+        "id": 42,
+        "name": "コナン セール",
+        "slug": "%e3%82%b3%e3%83%8a%e3%83%b3-%e3%82%bb%e3%83%bc%e3%83%ab"
+      }
+    ]
+  },
+  "target_post_current_taxonomy_ids": {
+    "categories": [
+      1
+    ],
+    "tags": []
+  },
+  "suggested_ids_for_next_go": {
+    "category_ids": [
+      13
+    ],
+    "tag_ids": []
+  },
+  "api_status": {
+    "categories_status_code": 200,
+    "tags_status_code": 200,
+    "post_status_code": 200
+  },
+  "errors": [],
+  "warnings": [
+    "missing_category_name:漫画",
+    "missing_tag_name:サンプル漫画",
+    "missing_tag_name:1巻",
+    "missing_tag_name:PR",
+    "missing_tag_name:アフィリエイト"
+  ],
+  "safety_violations": [],
+  "next_step": "WAIT_FOR_EXPLICIT_HUMAN_GO_WITH_CATEGORY_TAG_IDS_BEFORE_PHASE8_24_CATEGORY_TAG_ONLY_UPDATE",
+  "checked_at": "2026-06-09T13:44:16.358766+00:00"
+}

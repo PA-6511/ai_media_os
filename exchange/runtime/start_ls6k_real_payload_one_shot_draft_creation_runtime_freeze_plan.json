@@ -1,0 +1,32 @@
+{
+  "phase": "LS-6K",
+  "document_type": "RUNTIME_FREEZE_PLAN",
+  "status": "RUNTIME_FREEZE_PLAN_DEFINED_NO_EXECUTION",
+  "runtime_freeze_required": true,
+  "runtime_freeze_applied_by_this_phase": false,
+  "runtime_freeze_restored_by_this_phase": false,
+  "purpose": "Define freeze-before and freeze-after requirements for a future one-shot WordPress draft creation.",
+  "freeze_before_execution": {
+    "required": true,
+    "must_block_repeated_execution": true,
+    "must_block_publish": true,
+    "must_block_existing_post_update": true,
+    "must_block_non_target_payload": true,
+    "must_record_pre_execution_state": true
+  },
+  "freeze_after_execution": {
+    "required": true,
+    "must_restore_no_go_state": true,
+    "must_record_post_execution_state": true,
+    "must_record_new_post_id_only_if_created": true,
+    "must_not_publish": true,
+    "must_not_schedule": true
+  },
+  "current_phase_execution": {
+    "runtime_freeze_applied": false,
+    "runtime_freeze_restored": false,
+    "wordpress_api_call_executed": false,
+    "wordpress_write_executed": false,
+    "actual_execution_executed": false
+  }
+}

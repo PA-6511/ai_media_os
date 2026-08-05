@@ -1,0 +1,23 @@
+{
+  "phase": "71-2",
+  "title": "manual_release_go 最終承認結果の受領・発効分離設計",
+  "_meta": {
+    "status": "PASS_DESIGN_ONLY",
+    "reports_only": true
+  },
+  "checks": [
+    { "id": "manual_final_approval_received", "result": "PASS" },
+    { "id": "manual_effectuation_separation_designed", "result": "PASS" }
+  ],
+  "governance": {
+    "production_status": "NO_GO",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "execution_start": "NO_GO",
+    "changed_area": "reports only"
+  },
+  "summary": {
+    "result": "PASS",
+    "fixed_value_check": "PASS"
+  }
+}

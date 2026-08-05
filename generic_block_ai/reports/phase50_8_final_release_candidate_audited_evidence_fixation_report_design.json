@@ -1,0 +1,34 @@
+{
+  "_meta": {
+    "phase": "50-8",
+    "phase_name": "発効・実処理開始層",
+    "layer": "監査済み証跡固定層 (audited evidence fixation layer)",
+    "title": "最終解除候補の監査済み証跡固定レポート設計",
+    "created": "2026-05-14",
+    "author": "governance-framework",
+    "status": "PASS_DESIGN_ONLY",
+    "reports_only": true
+  },
+  "scope": "Phase 50-7 で監査統合最終判定された最終解除候補（manual_release_go / actual_process_start_go）について，監査済み証跡を改ざん不可の形式で固定するレポートを設計層で定義する。証跡内容：(1) 各解除候補の監査済み状態（NOT_GRANTED 維持 or 差し戻し/ABORT），(2) 監査証跡・署名・時刻，(3) production_status = 'NO_GO' の維持確認，(4) Phase 50-9 への進行条件。",
+  "governance": {
+    "production_status": "NO_GO",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "report": {
+    "description": "Phase 50-8 では，Phase 50-7 で監査統合最終判定された最終解除候補（manual_release_go / actual_process_start_go）について，監査済み証跡を改ざん不可の形式で固定するレポートを設計層で定義する。(1) 各解除候補の監査済み状態（NOT_GRANTED 維持 or 差し戻し/ABORT），(2) 監査証跡・署名・時刻，(3) production_status = 'NO_GO' の維持確認，(4) Phase 50-9 への進行条件。これらは全て reports-only で実装され，実処理開始許可は含まれない。",
+    "invariants": [
+      "NO_GO 維持：監査済み証跡固定時点で production_status = 'NO_GO' を維持",
+      "NOT_GRANTED 維持：manual_release_go / actual_process_start_go の NOT_GRANTED 状態を監査済み証跡として固定",
+      "改ざん不可：証跡はタイムスタンプ・署名等で改ざん不可性を担保",
+      "reports only：全監査済み証跡固定は設計層の報告書形式で実施"
+    ],
+    "actions": [],
+    "notes": [
+      "Phase 50-8 は設計層のみで実装される（reports-only）",
+      "実処理開始許可は含まれない",
+      "監査済み証跡固定は Phase 50-9 の完了宣言の前提"
+    ]
+  }
+}

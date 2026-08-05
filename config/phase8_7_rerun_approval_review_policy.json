@@ -1,0 +1,73 @@
+{
+  "phase": "Phase 8-7",
+  "name": "rerun_approval_review_policy",
+  "policy_status": "RERUN_REVIEW_ONLY",
+  "production_status": "NO_GO",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "human_approval_required": true,
+  "rerun_review_is_execution_permission": false,
+  "wordpress_api_call_allowed": false,
+  "wordpress_write_executed": false,
+  "publish_allowed": false,
+  "target_item_count": 1,
+  "required_evidence": [
+    "exchange/logs/phase8_1_explicit_human_approval_result.json",
+    "exchange/logs/phase8_5_first_controlled_draft_completion_report.json",
+    "exchange/logs/phase8_6_wordpress_credentials_readiness_result.json"
+  ],
+  "required_statuses": {
+    "phase8_1": "APPROVAL_FILE_VALID_FOR_PREFLIGHT_ONLY",
+    "phase8_5": "FIRST_DRAFT_NOT_EXECUTED"
+  },
+  "allowed_credential_statuses": [
+    "CREDENTIALS_READY_NO_SECRET_OUTPUT",
+    "CREDENTIALS_NOT_READY_NO_SECRET_OUTPUT"
+  ],
+  "allowed_decisions": [
+    "ACKNOWLEDGE_RERUN_REVIEW_ONLY",
+    "REQUEST_FIX",
+    "REJECT",
+    "ABORT"
+  ],
+  "forbidden_decisions": [
+    "APPROVE_PUBLISH",
+    "APPROVE_UPDATE",
+    "APPROVE_DELETE",
+    "APPROVE_BULK_RUN",
+    "APPROVE_EXPORT"
+  ],
+  "required_acknowledgements": [
+    "acknowledged_previous_not_executed",
+    "acknowledged_single_item_only",
+    "acknowledged_draft_only",
+    "acknowledged_no_publish",
+    "acknowledged_no_update",
+    "acknowledged_no_delete",
+    "acknowledged_no_bulk",
+    "acknowledged_no_auto_cleanup",
+    "acknowledged_manual_review_after_creation"
+  ],
+  "approval_scope_required": {
+    "rerun_preflight_only": true,
+    "draft_create_only": false,
+    "publish": false,
+    "update": false,
+    "delete": false,
+    "bulk": false,
+    "external_export": false
+  },
+  "dangerous_operations": {
+    "auto_post": false,
+    "auto_update": false,
+    "auto_delete": false,
+    "auto_export": false,
+    "publish_allowed": false,
+    "wordpress_api_call_allowed": false,
+    "wordpress_write_executed": false,
+    "bulk_execution": false,
+    "external_write": false,
+    "vps_self_builder_execution": false
+  },
+  "allowed_next_step": "Phase 8-8 final credentialed live-preflight"
+}

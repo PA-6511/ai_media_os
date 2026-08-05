@@ -1,0 +1,63 @@
+{
+  "phase": "Phase 6-7",
+  "decision_name": "wordpress_draft_unlock_readiness_decision_design",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "decision_status": "DESIGN_ONLY",
+  "production_status": "NO_GO",
+  "wordpress_draft_creation": "NO_GO",
+  "real_write_enabled": false,
+  "readiness_result": "READINESS_DESIGN_PASS",
+  "required_phase_checks": [
+    "phase6_1_release_policy_validation_result.status == PASS",
+    "phase6_2_preflight_gate_validation_result.status == PASS",
+    "phase6_3_release_decision_rules_validation_result.status == PASS",
+    "phase6_4_controlled_unlock_plan_validation_result.status == PASS",
+    "phase6_5_execution_spec_validation_result.status == PASS",
+    "phase6_6_pre_execution_rehearsal_validation_result.status == PASS"
+  ],
+  "warn_review_requirements": {
+    "phase5_warn_handling_confirmed": true,
+    "affiliate_tag_warn_handling_confirmed": true,
+    "content_url_missing_warn_handling_confirmed": true,
+    "explicit_human_override_required_for_warn": true
+  },
+  "readiness_logic": {
+    "all_phase_checks_must_pass": true,
+    "warn_handling_must_be_documented": true,
+    "real_write_must_remain_disabled": true,
+    "wordpress_write_executed_must_be_false": true,
+    "result_when_all_conditions_met": "READINESS_DESIGN_PASS",
+    "result_when_any_condition_missing": "READINESS_DESIGN_BLOCK"
+  },
+  "hard_block_conditions": [
+    "phase_check_missing_or_failed == true",
+    "warn_handling_not_confirmed == true",
+    "real_write_enabled == true",
+    "wordpress_write_executed == true",
+    "wordpress_rest_post_attempted == true",
+    "wordpress_rest_put_patch_attempted == true",
+    "publish_attempted == true",
+    "update_existing_post_attempted == true",
+    "delete_post_attempted == true",
+    "external_export_attempted == true",
+    "github_actions_trigger_attempted == true",
+    "slack_production_notification_attempted == true",
+    "vps_self_builder_execution_attempted == true",
+    "env_secret_credential_auto_edit_attempted == true"
+  ],
+  "forbidden_actions": [
+    "wordpress_rest_post",
+    "wordpress_rest_put_patch",
+    "publish_post",
+    "update_existing_post",
+    "delete_post",
+    "bulk_posting",
+    "external_export",
+    "github_actions_trigger",
+    "slack_production_notification",
+    "cron_automation",
+    "env_secret_auto_edit",
+    "vps_self_builder_execution"
+  ]
+}

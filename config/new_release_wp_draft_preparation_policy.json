@@ -1,0 +1,93 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4",
+  "policy_id": "NEW_RELEASE_WP_DRAFT_PREPARATION_POLICY_V1",
+  "source_phase_id": "LS-NEW-BATCH-3",
+  "integration_evidence_phase_id": "LS-NEW-BATCH-3A",
+  "template_contract_id": "POST185_STANDARD_TEMPLATE_V1_FIXED",
+  "batch_limits": {
+    "minimum_items": 1,
+    "maximum_items": 5
+  },
+  "required_article_fields": [
+    "post_title",
+    "post_name",
+    "post_status",
+    "category_slug",
+    "category_name",
+    "uncategorized_assigned",
+    "template_id",
+    "description_mode",
+    "post_excerpt",
+    "content_html",
+    "metadata"
+  ],
+  "payload_rules": {
+    "wordpress_status": "draft",
+    "template_id": "POST185_STANDARD_TEMPLATE_V1",
+    "description_mode": "minimal",
+    "uncategorized_allowed": false,
+    "category_id_resolution_required": true,
+    "category_id_must_remain_null_in_this_phase": true,
+    "duplicate_prevention_required": true,
+    "idempotency_key_required": true,
+    "payload_digest_required": true,
+    "batch_digest_required": true
+  },
+  "html_rules": {
+    "required_markers": [
+      "ebook-new-release-article",
+      "ebook-pr-disclosure",
+      "ebook-cover-image",
+      "ebook-price-card",
+      "ebook-store-button"
+    ],
+    "prohibited_elements": [
+      "script",
+      "iframe",
+      "form",
+      "object",
+      "embed"
+    ],
+    "https_links_required": true,
+    "affiliate_rel_tokens_required": [
+      "nofollow",
+      "sponsored",
+      "noopener"
+    ],
+    "https_image_required": true
+  },
+  "store_button_order": [
+    "amazon",
+    "rakuten_kobo",
+    "dmm"
+  ],
+  "approval_gate": {
+    "required": true,
+    "initial_state": "NOT_APPROVED",
+    "human_approval_required": true,
+    "approval_token_required_for_future_execution": true,
+    "approval_token_generation_allowed": false,
+    "silent_approval_allowed": false
+  },
+  "execution_boundary": {
+    "local_json_read_allowed": true,
+    "local_preparation_write_allowed": true,
+    "credential_read_allowed": false,
+    "wordpress_api_call_allowed": false,
+    "wordpress_category_lookup_allowed": false,
+    "wordpress_write_allowed": false,
+    "wordpress_publish_allowed": false,
+    "x_api_call_allowed": false,
+    "x_post_allowed": false,
+    "external_api_call_allowed": false,
+    "execution_allowed": false,
+    "production_status": "NO_GO",
+    "safety_state": "PREPARATION_ONLY"
+  },
+  "next_phase": {
+    "phase_id": "LS-NEW-BATCH-4A",
+    "name": "Category Resolution and Human Review Gate",
+    "execution_allowed": false
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "schema_version": "ir11_core_receiver_v1",
+  "phase": "IR11",
+  "generated_at": "2026-05-23T14:43:44.223137+00:00",
+  "source_task_id": "ir11_warn_live_trial",
+  "quality_gate_judgment": "WARN",
+  "core_receive_rule": "HUMAN_REVIEW_REQUIRED",
+  "validation_result": "PASS",
+  "validation_failed_checks": [],
+  "validation_warnings": [],
+  "sub_validations": {
+    "phase_decision_package": {
+      "result": "PASS",
+      "failed_checks": [],
+      "warnings": []
+    },
+    "warn_human_review_package": {
+      "result": "PASS",
+      "failed_checks": [],
+      "warnings": []
+    },
+    "abort_evidence_bundle": {
+      "result": "PASS",
+      "failed_checks": [],
+      "warnings": []
+    }
+  },
+  "safeguards": {
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "external_write_executed": false,
+    "actual_auto_execute": false,
+    "production_release": false
+  }
+}

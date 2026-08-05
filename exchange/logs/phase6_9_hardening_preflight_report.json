@@ -1,0 +1,44 @@
+{
+  "phase": "Phase 6-9",
+  "overall_status": "PASS_DRY_RUN_ONLY",
+  "final_judgment": "PASS_DRY_RUN_ONLY",
+  "production_status": "NO_GO",
+  "wordpress_draft_creation": "NO_GO",
+  "wordpress_write_executed": false,
+  "auto_post": false,
+  "auto_update": false,
+  "auto_delete": false,
+  "auto_export": false,
+  "publish_allowed": false,
+  "human_approval_required": true,
+  "evidence_summary": [
+    {
+      "path": "exchange/logs/phase6_5_execution_spec_validation_result.json",
+      "status": "PASS_DRY_RUN_ONLY"
+    },
+    {
+      "path": "exchange/logs/phase6_6_quality_gate_validation_result.json",
+      "status": "PASS_DRY_RUN_ONLY"
+    },
+    {
+      "path": "exchange/logs/phase6_7_slack_approval_dry_run_result.json",
+      "status": "PASS_DRY_RUN_ONLY"
+    },
+    {
+      "path": "exchange/logs/phase6_8_runbook_validation_result.json",
+      "status": "PASS_DRY_RUN_ONLY"
+    }
+  ],
+  "errors": [],
+  "warnings": [],
+  "blocked_next_steps": [
+    "auto_publish",
+    "bulk_posting",
+    "wordpress_update",
+    "wordpress_delete",
+    "external_export",
+    "vps_self_builder_execution"
+  ],
+  "allowed_next_step": "Phase 7 design or ELIGIBLE single controlled run preparation only",
+  "checked_at": "2026-05-26T13:57:42.879819+00:00"
+}

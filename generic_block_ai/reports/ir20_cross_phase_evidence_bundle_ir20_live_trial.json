@@ -1,0 +1,20 @@
+{
+  "schema_version": "ir20_cross_phase_evidence_bundle_v1",
+  "phase": "IR20",
+  "generated_at": "2026-05-23T15:27:09.324950+00:00",
+  "source_task_id": "ir20_live_trial",
+  "validation_result": "PASS",
+  "pack_dir": "generic_block_ai/reports/ir20_evidence_pack_ir20_live_trial",
+  "manifest_path": "generic_block_ai/reports/ir20_evidence_pack_ir20_live_trial/manifest.json",
+  "sha256_manifest_path": "generic_block_ai/reports/ir20_evidence_pack_ir20_live_trial/sha256_manifest.json",
+  "readme_path": "generic_block_ai/reports/ir20_evidence_pack_ir20_live_trial/README.md",
+  "included_artifact_count": 29,
+  "missing_required_artifact_count": 0,
+  "safeguards": {
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "production_release": false
+  }
+}

@@ -1,0 +1,2 @@
+source_name,source_item_id,title,isbn,volume_label,author,publisher,release_date,item_type,store_name,store_item_id,item_url,affiliate_url,price,discount_rate,point_rate
+rakuten_kobo,RK-TEST-001,テストコミック 第1巻,9780000000001,第1巻,テスト著者,テスト出版社,2026-07-14,tankobon,rakuten_kobo,RK-TEST-001,https://example.com/item/1,https://example.com/affiliate/1,770,10,5

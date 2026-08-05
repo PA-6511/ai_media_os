@@ -1,0 +1,35 @@
+{
+  "phase": "Phase 8-3",
+  "status": "NOT_EXECUTED_MISSING_CREDENTIALS",
+  "production_status": "LIMITED_DRAFT_CREATE_ONLY",
+  "wordpress_draft_creation": "ALLOW_ONE_DRAFT_ONLY",
+  "wordpress_api_call_allowed": true,
+  "wordpress_api_call_attempted": false,
+  "wordpress_write_executed": false,
+  "publish_allowed": false,
+  "target_item_count": 1,
+  "post_id": null,
+  "post_status": null,
+  "post_link": null,
+  "freeze_required": false,
+  "human_review_required": true,
+  "evidence_summary": [
+    {
+      "path": "exchange/logs/phase8_1_explicit_human_approval_result.json",
+      "exists": true,
+      "status": "APPROVAL_FILE_VALID_FOR_PREFLIGHT_ONLY"
+    },
+    {
+      "path": "exchange/logs/phase8_2_final_live_preflight_result.json",
+      "exists": true,
+      "status": "FINAL_PREFLIGHT_PASS_READY_FOR_PHASE8_3_SINGLE_DRAFT_CREATE"
+    }
+  ],
+  "errors": [],
+  "warnings": [
+    "missing env: WORDPRESS_BASE_URL, WORDPRESS_USERNAME, WORDPRESS_APP_PASSWORD"
+  ],
+  "safety_violations": [],
+  "allowed_next_step": "Phase 8-4 post-execution evidence verification and freeze-on-mismatch",
+  "checked_at": "2026-05-27T14:18:31.974133+00:00"
+}

@@ -1,0 +1,36 @@
+{
+  "phase": "Phase 8-33",
+  "status": "POST_PROVISION_ENV_READY_NO_SECRET_OUTPUT",
+  "production_status": "NO_GO",
+  "wordpress_api_call_allowed": false,
+  "wordpress_write_executed": false,
+  "publish_allowed": false,
+  "recheck_is_execution_permission": false,
+  "commands_executed_in_this_phase": false,
+  "phase8_6_to_8_10_executed": false,
+  "target_item_count": 1,
+  "credentials": {
+    "WORDPRESS_BASE_URL": {
+      "exists": true
+    },
+    "WORDPRESS_USERNAME": {
+      "exists": true
+    },
+    "WORDPRESS_APP_PASSWORD": {
+      "exists": true
+    }
+  },
+  "secret_values_written": false,
+  "evidence_summary": [
+    {
+      "path": "exchange/logs/phase8_32_provisioned_declaration_overlay_result.json",
+      "exists": true,
+      "status": "OVERLAY_CREDENTIALS_DECLARED_PROVISIONED_NO_SECRET_OUTPUT"
+    }
+  ],
+  "errors": [],
+  "warnings": [],
+  "safety_violations": [],
+  "allowed_next_step": "Phase 8-34 one-time manual rerun token / lock package",
+  "checked_at": "2026-06-08T15:35:55.718890+00:00"
+}

@@ -1,0 +1,17 @@
+{
+  "request_version": 1,
+  "phase_id": "LS-NEW-BATCH-4A",
+  "package_id": "wp-draft-prep-example-20260717",
+  "batch_id": "example-20260717",
+  "resolution_mode": "EXAMPLE_ONLY",
+  "resolutions": [
+    {
+      "category_slug": "comic-new-release",
+      "category_name": "コミック新刊",
+      "wordpress_category_id": 900001,
+      "resolution_source": "EXAMPLE_FIXTURE",
+      "verified_at": "2026-07-10T12:00:00+09:00",
+      "evidence_note": "LS-NEW-BATCH-4Aのローカル統合試験専用ID。実WordPressでは使用禁止。"
+    }
+  ]
+}

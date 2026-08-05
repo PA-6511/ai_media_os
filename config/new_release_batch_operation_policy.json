@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-0",
+  "policy_id": "NEW_RELEASE_BATCH_OPERATION_POLICY_V1",
+  "template_contract_id": "POST185_STANDARD_TEMPLATE_V1_FIXED",
+  "target_initial_operation_date": "2026-07-17",
+  "initial_operation": {
+    "minimum_items": 3,
+    "maximum_items": 5,
+    "wordpress_default_status": "draft",
+    "human_review_required": true,
+    "individual_publish_required": true
+  },
+  "batch_safety": {
+    "duplicate_detection_required": true,
+    "idempotency_key_required": true,
+    "evidence_required": true,
+    "rollback_pointer_required": true,
+    "stop_on_single_item_failure": false,
+    "stop_on_systemic_failure": true
+  },
+  "systemic_failure_conditions": [
+    "template_contract_mismatch",
+    "credential_failure",
+    "wordpress_authentication_failure",
+    "global_css_integrity_failure",
+    "duplicate_control_failure",
+    "evidence_write_failure"
+  ],
+  "item_statuses": [
+    "READY_FOR_DRAFT",
+    "NEEDS_PRICE_CONFIRMATION",
+    "NEEDS_RELEASE_DATE_CONFIRMATION",
+    "MISSING_IMAGE",
+    "STORE_PAGE_NOT_FOUND",
+    "DUPLICATE_SUSPECTED",
+    "EXCLUDED"
+  ],
+  "execution_boundary": {
+    "batch_execution_allowed": false,
+    "wordpress_write_allowed": false,
+    "wordpress_publish_allowed": false,
+    "production_status": "NO_GO",
+    "safety_state": "DRY_RUN_ONLY"
+  }
+}

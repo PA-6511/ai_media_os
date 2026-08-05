@@ -1,0 +1,174 @@
+{
+  "schema_version": "1.0.0",
+  "document_role": "FRESH_STORE_LINK_FINALIZATION_PLAN",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M0",
+  "plan_id": "DARK_GATHERING_VOLUME_20_STORE_LINK_FINALIZATION_PLAN_V1",
+  "content_item_id": "new-release-comic-20260703-001",
+  "article_identity": {
+    "article_title": "ダークギャザリング 第20巻｜配信開始",
+    "work_title": "ダークギャザリング",
+    "volume_label": "第20巻"
+  },
+  "source_content_review": {
+    "review_decision": "APPROVED_NO_CHANGE_REQUIRED",
+    "content_approved_for_store_link_finalization_gate": true
+  },
+  "store_order": [
+    "amazon",
+    "rakuten_kobo",
+    "dmm_books"
+  ],
+  "common_link_contract": {
+    "scheme": "https",
+    "target": "_blank",
+    "required_rel_tokens": [
+      "nofollow",
+      "sponsored",
+      "noopener"
+    ],
+    "dummy_url_allowed": false,
+    "placeholder_url_allowed": false,
+    "javascript_url_allowed": false,
+    "data_url_allowed": false,
+    "url_userinfo_allowed": false,
+    "verification_source_url_may_be_used_as_final_link": false,
+    "product_identity_binding_required": true,
+    "human_review_required_after_finalization": true
+  },
+  "stores": {
+    "amazon": {
+      "order": 1,
+      "display_name": "Amazon",
+      "identifier": {
+        "type": "ASIN",
+        "value": "B0H3N7QK5K"
+      },
+      "verification_source": {
+        "url": "https://www.amazon.co.jp/dp/B0H3N7QK5K",
+        "url_kind": "STABLE_PRODUCT_URL",
+        "role": "PRODUCT_VERIFICATION_SOURCE_NOT_FINAL_AFFILIATE_LINK",
+        "verification_state": "VERIFIED",
+        "is_final_affiliate_link": false
+      },
+      "finalization": {
+        "status": "PLANNED_NOT_EXECUTED",
+        "method": "APPROVED_AMAZON_AFFILIATE_PROVIDER_OR_APPROVED_MANUAL_BUILDER",
+        "hardcoded_affiliate_tag_allowed": false,
+        "product_binding_rule": "FINAL_DESTINATION_MUST_MATCH_ASIN_B0H3N7QK5K",
+        "legacy_post185_link_reuse_allowed": false,
+        "final_affiliate_url": null,
+        "ready": false
+      },
+      "failure_action": "HIDE_STORE_SLOT_AND_RETURN_TO_HUMAN_REVIEW"
+    },
+    "rakuten_kobo": {
+      "order": 2,
+      "display_name": "楽天Kobo",
+      "identifier": {
+        "type": "RAKUTEN_KOBO_PRODUCT_NUMBER",
+        "value": "4972000159519"
+      },
+      "verification_source": {
+        "url": "https://books.rakuten.co.jp/rk/2d876b43205136b7a0d36a78cec5bf46/",
+        "url_kind": "STABLE_PRODUCT_URL",
+        "role": "PRODUCT_VERIFICATION_SOURCE_NOT_FINAL_AFFILIATE_LINK",
+        "verification_state": "VERIFIED",
+        "is_final_affiliate_link": false
+      },
+      "finalization": {
+        "status": "PLANNED_NOT_EXECUTED",
+        "method": "APPROVED_RAKUTEN_AFFILIATE_DEEPLINK_BUILDER",
+        "required_final_host": "hb.afl.rakuten.co.jp",
+        "destination_product_binding_rule": "DESTINATION_MUST_MATCH_REGISTERED_RAKUTEN_KOBO_PRODUCT",
+        "legacy_post185_link_reuse_allowed": false,
+        "final_affiliate_url": null,
+        "ready": false
+      },
+      "failure_action": "HIDE_STORE_SLOT_NO_DUMMY_URL"
+    },
+    "dmm_books": {
+      "order": 3,
+      "display_name": "DMMブックス",
+      "identifier": {
+        "type": "DMM_SERIES_ID",
+        "value": "861056"
+      },
+      "verification_source": {
+        "url": "https://book.dmm.com/product/861056/latest/",
+        "url_kind": "SERIES_LATEST_ALIAS",
+        "role": "PRODUCT_VERIFICATION_SOURCE_NOT_FINAL_AFFILIATE_LINK",
+        "verification_state": "VERIFIED",
+        "is_final_affiliate_link": false
+      },
+      "recheck": {
+        "required": true,
+        "completed": false,
+        "mode": "ONE_SHOT_READ_ONLY_GET",
+        "network_authorization_required": true,
+        "expected_work_title": "ダークギャザリング",
+        "expected_volume_label": "第20巻",
+        "expected_author_name": "近藤憲一",
+        "expected_publisher_name": "集英社",
+        "canonical_product_resolution_required": true,
+        "series_latest_alias_may_be_final_link": false,
+        "recheck_result_path": null
+      },
+      "finalization": {
+        "status": "BLOCKED_AWAITING_DMM_RECHECK",
+        "method": "APPROVED_DMM_AFFILIATE_LINK_BUILDER_AFTER_RECHECK",
+        "required_final_host": "al.dmm.com",
+        "affiliate_id_source": "APPROVED_NONSECRET_CONFIGURATION_ONLY",
+        "legacy_post185_link_reuse_allowed": false,
+        "final_affiliate_url": null,
+        "ready": false
+      },
+      "failure_action": "HIDE_DMM_SLOT_AND_RETURN_TO_HUMAN_REVIEW"
+    }
+  },
+  "failure_contract": {
+    "product_identity_mismatch": "HIDE_STORE_SLOT_AND_RETURN_TO_HUMAN_REVIEW",
+    "verification_source_unreachable": "KEEP_ARTICLE_UNCHANGED_AND_RETURN_TO_REVIEW",
+    "affiliate_conversion_failure": "HIDE_FAILED_STORE_SLOT_NO_DUMMY_URL",
+    "invalid_final_host": "REJECT_FINAL_LINK_AND_RETURN_TO_REVIEW",
+    "invalid_scheme": "REJECT_FINAL_LINK_AND_RETURN_TO_REVIEW",
+    "missing_required_rel_token": "REJECT_RENDERING_AND_RETURN_TO_REVIEW",
+    "dmm_latest_alias_mismatch": "HIDE_DMM_SLOT_AND_RETURN_TO_HUMAN_REVIEW",
+    "dmm_canonical_product_unresolved": "HIDE_DMM_SLOT_AND_KEEP_DMM_LINK_UNAVAILABLE",
+    "all_store_links_unavailable": "BLOCK_PAYLOAD_GENERATION",
+    "partial_store_links_available": "REQUIRE_EXPLICIT_HUMAN_APPROVAL_BEFORE_PAYLOAD",
+    "minimum_valid_final_link_count_for_future_payload": 1,
+    "unresolved_store_slot_rendering_allowed": false
+  },
+  "current_state": {
+    "verification_source_urls_recorded": true,
+    "verification_source_urls_injected_into_article": false,
+    "final_affiliate_links_generated": false,
+    "final_affiliate_links_validated": false,
+    "final_affiliate_links_injected_into_article": false,
+    "dmm_latest_alias_recheck_completed": false,
+    "generated_article_modified": false,
+    "content_review_modified": false,
+    "consumption_evidence_modified": false,
+    "fresh_payload_created": false,
+    "production_category_id_payload_injected": false,
+    "network_access_performed": false,
+    "wordpress_access_performed": false,
+    "wordpress_write_performed": false,
+    "execution_allowed": false,
+    "production_status": "NO_GO",
+    "safety_state": "STORE_LINK_FINALIZATION_PLAN_FIXED_AWAITING_DMM_RECHECK_AUTHORIZATION"
+  },
+  "source_lineage": {
+    "content_human_review_artifact_digest_sha256": "823b1d9b0babd276c7ba1e9ff35a5d6e981f4d7f268e895db08590f365fbf532",
+    "generated_article_artifact_digest_sha256": "7e2da10675d4efb384267e478ba6d2c90716b2ef14865325507285107507ec86",
+    "consumption_evidence_artifact_digest_sha256": "3f00327697d4d3e4a66a0cca5e46bd5efa889eb413c194192529cd42db4bf9aa",
+    "article_input_artifact_digest_sha256": "341e5a5dbad8aee79a3ac7ccba69a3b9592d165b24b9ef0f20ba40361e1726f2"
+  },
+  "next_gate": {
+    "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M1",
+    "required_action": "EXPLICIT_DMM_ONE_SHOT_READ_ONLY_RECHECK_AUTHORIZATION",
+    "network_allowed": false
+  },
+  "plan_fixed_at_utc": "2026-07-11T02:53:45.974415+00:00",
+  "store_link_finalization_plan_digest_sha256": "1c18c3184c2db2c8a4a37aeab07ad97451a731c5340e98dcd5dc0cf5d4db3443"
+}

@@ -1,0 +1,72 @@
+{
+  "phase": "LS-NEW-4",
+  "document_type": "START_LS_NEW4_WP_PURCHASE_NAVIGATION_PAYLOAD_DRY_RUN",
+  "generated": true,
+  "wordpress_write_executed": false,
+  "wordpress_api_call_executed": false,
+  "post_status_target": "draft",
+  "content_type": "new_release_comic",
+  "media_type": "purchase_navigation_media",
+  "candidate_identity": {
+    "content_item_id": "new-comic-001",
+    "title": "月曜日のたわわ",
+    "volume": "第15巻",
+    "author": "比村奇石",
+    "publisher": "講談社",
+    "release_date": "2026-07-06",
+    "asin": "B0H6DQLPPB",
+    "isbn": "978-4065442296"
+  },
+  "post_title": "【2026-07-06発売】月曜日のたわわ 第15巻 電子書籍ストア候補",
+  "body_markdown": "# 【2026-07-06発売】月曜日のたわわ 第15巻 電子書籍ストア候補\n\nこのページは、新刊コミック『月曜日のたわわ』第15巻の発売日・販売ストア候補を整理する購入ナビ用DRY_RUNです。\n\n## 基本情報\n\n- 作品名: 月曜日のたわわ\n- 巻数: 第15巻\n- 作者: 比村奇石\n- 出版社: 講談社\n- 発売日: 2026-07-06\n- ASIN: B0H6DQLPPB\n- ISBN: 978-4065442296\n\n## 販売ストア候補\n\n- 出版社公式: URL入力あり / 未取得\n- Kindle: URL入力あり / 未取得\n- 楽天Kobo: URL入力あり / 未取得\n- DMMブックス: URL入力あり / 未取得\n- ebookjapan: URL未入力\n- BookLive: URL未入力\n\n## 確認状態\n\nこのpayloadは人間入力値とLS-NEW-3証跡のみを元にしたDRY_RUNです。\n外部サイト取得、価格確認、還元率確認、配信状態確認は実行していません。\n\n## PR表記\n\nこのページにはPR・アフィリエイトリンクを含む場合があります。\n",
+  "affiliate_disclosure": "このページにはPR・アフィリエイトリンクを含む場合があります。",
+  "external_fetch_notice": "このpayloadは人間入力値とLS-NEW-3証跡のみを元にしたDRY_RUNです。外部サイト取得、価格確認、還元率確認、配信状態確認は実行していません。",
+  "store_candidate_list": [
+    {
+      "store": "出版社公式",
+      "url_present": true,
+      "verification_status": "DRY_RUN_NOT_FETCHED"
+    },
+    {
+      "store": "Kindle",
+      "url_present": true,
+      "verification_status": "DRY_RUN_NOT_FETCHED"
+    },
+    {
+      "store": "楽天Kobo",
+      "url_present": true,
+      "verification_status": "DRY_RUN_NOT_FETCHED"
+    },
+    {
+      "store": "DMMブックス",
+      "url_present": true,
+      "verification_status": "DRY_RUN_NOT_FETCHED"
+    },
+    {
+      "store": "ebookjapan",
+      "url_present": false,
+      "verification_status": "NOT_PROVIDED"
+    },
+    {
+      "store": "BookLive",
+      "url_present": false,
+      "verification_status": "NOT_PROVIDED"
+    }
+  ],
+  "content_policy": {
+    "work_explanation_required": false,
+    "long_work_explanation_required": false,
+    "synopsis_required": false,
+    "official_synopsis_copy_included": false,
+    "store_description_copy_included": false,
+    "publisher_description_copy_included": false,
+    "review_copy_included": false
+  },
+  "safety": {
+    "external_fetch_executed": false,
+    "http_get_executed": false,
+    "wordpress_api_call_executed": false,
+    "wordpress_write_executed": false,
+    "execution_allowed": false
+  }
+}

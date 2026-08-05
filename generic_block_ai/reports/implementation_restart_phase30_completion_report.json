@@ -1,0 +1,40 @@
+{
+  "phase": "Implementation Restart Phase 30",
+  "status": "COMPLETED",
+  "generated_at": "2026-05-23T16:10:10.509272+00:00",
+  "schema_version": "ir30_submission_decision_summary_v1",
+  "test_result": {
+    "focused_tests": {
+      "passed": 6,
+      "failed": 0
+    },
+    "full_regression": {
+      "passed": 235,
+      "failed": 0
+    }
+  },
+  "validation_result": "PASS",
+  "release_candidate_id": "rc_20260523T155148Z_ir26_live_trial_b940393b490b",
+  "final_submission_decision": "READY_FOR_SUBMISSION_SUMMARY",
+  "validation_failed_check_count": 0,
+  "validation_warning_count": 0,
+  "summary": {
+    "final_submission_decision": "READY_FOR_SUBMISSION_SUMMARY",
+    "reason_count": 1,
+    "failed_check_count": 0,
+    "warning_count": 0,
+    "send_allowed_invariant_ok": true
+  },
+  "artifacts": {
+    "decision_report": "generic_block_ai/reports/ir30_submission_decision_summary_report_ir30_live_trial.json",
+    "completion_report": "reports/implementation_restart_phase30_completion_report.json"
+  },
+  "safeguards": {
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "production_release": false,
+    "network_transmission_executed": false
+  }
+}

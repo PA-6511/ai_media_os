@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ai-media-os.local/schemas/decision_reason.schema.json",
+  "title": "Decision Reason Rules",
+  "type": "object",
+  "required": [
+    "status"
+  ],
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": ["PASS", "WARN", "FAIL", "ABORT"]
+    },
+    "reason": {
+      "type": "string",
+      "minLength": 1
+    },
+    "summary_reason": {
+      "type": "string",
+      "minLength": 1
+    },
+    "human_review_required": {
+      "type": "boolean",
+      "const": true
+    },
+    "production_status": {
+      "type": "string",
+      "enum": ["NO_GO"]
+    },
+    "execution": {
+      "type": "string",
+      "enum": ["DRY_RUN"]
+    },
+    "auto_post": {
+      "type": "boolean",
+      "const": false
+    },
+    "auto_update": {
+      "type": "boolean",
+      "const": false
+    },
+    "auto_delete": {
+      "type": "boolean",
+      "const": false
+    },
+    "auto_export": {
+      "type": "boolean",
+      "const": false
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "enum": ["WARN", "FAIL", "ABORT"]
+          }
+        },
+        "required": ["status"]
+      },
+      "then": {
+        "required": ["reason"]
+      }
+    }
+  ],
+  "additionalProperties": true
+}

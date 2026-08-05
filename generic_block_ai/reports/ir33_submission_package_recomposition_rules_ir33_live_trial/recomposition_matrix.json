@@ -1,0 +1,27 @@
+{
+  "schema_version": "ir33_submission_package_recomposition_rules_v1",
+  "phase": "IR33",
+  "generated_at": "2026-05-23T16:22:25.357119+00:00",
+  "release_candidate_id": "rc_20260523T155148Z_ir26_live_trial_b940393b490b",
+  "final_submission_decision": "READY_FOR_SUBMISSION_SUMMARY",
+  "matrix": [
+    {
+      "destination": "regulatory_audit",
+      "required_count": 3,
+      "optional_count": 1,
+      "priority": 1
+    },
+    {
+      "destination": "internal_review_board",
+      "required_count": 2,
+      "optional_count": 2,
+      "priority": 2
+    },
+    {
+      "destination": "compliance_archive",
+      "required_count": 4,
+      "optional_count": 0,
+      "priority": 3
+    }
+  ]
+}

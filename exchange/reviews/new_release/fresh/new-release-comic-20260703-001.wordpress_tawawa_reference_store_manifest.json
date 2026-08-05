@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M24",
+  "document_role": "TAWAWA_REFERENCE_LAYOUT_SAFE_STORE_MANIFEST",
+  "wordpress_post_id": 192,
+  "stores": [
+    {
+      "store": "amazon",
+      "source_state": "disabled_no_source_link",
+      "safe_preview_state": "disabled",
+      "host": null,
+      "url_fingerprint_sha256": null
+    },
+    {
+      "store": "rakuten_kobo",
+      "source_state": "disabled_no_source_link",
+      "safe_preview_state": "disabled",
+      "host": null,
+      "url_fingerprint_sha256": null
+    },
+    {
+      "store": "dmm",
+      "source_state": "active_source_link",
+      "safe_preview_state": "disabled",
+      "host": "al.dmm.com",
+      "url_fingerprint_sha256": "f01572020caf88cd0a017e0e739bc492394fa275eeac0e346328adba0fd99141"
+    }
+  ],
+  "full_store_url_present": false,
+  "affiliate_identifier_present": false,
+  "created_at_utc": "2026-07-11T14:18:40.535852+00:00",
+  "store_manifest_digest_sha256": "87dee1cb1dc8e4fc7d4bf4efd752659d32d9d319e2d03290a32df2f4b23bfa85"
+}

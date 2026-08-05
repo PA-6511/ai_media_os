@@ -1,0 +1,25 @@
+{
+  "schema_version": "gib.beta095.validation_report.v0.1",
+  "block_id": "GIB",
+  "beta_version": "beta0.95",
+  "final_status": "PASS_DRY_RUN_BETA095_APPROVAL_EVIDENCE_FORMAT_ONLY",
+  "status": "DRY_RUN_APPROVAL_EVIDENCE_FORMAT_ONLY",
+  "production_status": "NO_GO",
+  "manual_approval_required": true,
+  "real_llm_call_allowed": false,
+  "execution_allowed": false,
+  "generate_call_allowed": false,
+  "chat_call_allowed": false,
+  "token_format_valid": true,
+  "change_id_format_valid": true,
+  "secret_value_handling_allowed": false,
+  "beta09_prereq_ok": true,
+  "beta09_prereq_issues": [],
+  "beta09_snapshot": {
+    "final_status": "PASS_DRY_RUN_BETA09_FIRST_CALL_HANDOFF_NO_EXECUTION",
+    "production_status": "NO_GO",
+    "can_execute_now": false,
+    "target_runtime": "ollama",
+    "target_model": "gemma-4-qat-e2b"
+  }
+}

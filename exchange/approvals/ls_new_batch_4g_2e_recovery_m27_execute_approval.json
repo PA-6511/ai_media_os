@@ -1,0 +1,78 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M27-EXECUTE",
+  "approval_id": "wordpress-tawawa-reference-layout-update-one-shot-execution-approved-v1",
+  "approval_label": "WORDPRESS_TAWAWA_REFERENCE_LAYOUT_UPDATE_ONE_SHOT_EXECUTION_APPROVED",
+  "approved_by": "HUMAN_OPERATOR",
+  "human_explicit_approval": true,
+  "approved_at_utc": "2026-07-11T16:55:57.724695+00:00",
+  "content_item_id": "new-release-comic-20260703-001",
+  "wordpress_post_id": 192,
+  "approved_operation": "ONE_AUTHENTICATED_WORDPRESS_POST_UPDATE",
+  "maximum_post_request_count": 1,
+  "allowed_update_fields": [
+    "content",
+    "comment_status"
+  ],
+  "target_comment_status": "closed",
+  "redirect_following_approved": false,
+  "automatic_retry_approved": false,
+  "second_post_approved": false,
+  "authorization_reuse_approved": false,
+  "automatic_reissue_approved": false,
+  "delete_approved": false,
+  "x_post_approved": false,
+  "backlist_carousel_included_approved": false,
+  "consume_authorization_before_transport_call": true,
+  "consume_confirmation_before_transport_call": true,
+  "credential_value_output_approved": false,
+  "username_output_approved": false,
+  "full_url_output_approved": false,
+  "authorization_header_output_approved": false,
+  "wordpress_content_output_approved": false,
+  "affiliate_identifier_output_approved": false,
+  "source_bindings": {
+    "execute_now_confirmation": {
+      "path": "exchange/confirmations/new_release/fresh/new-release-comic-20260703-001.wordpress_tawawa_reference_layout_update_execute_now_confirmation.json",
+      "file_sha256": "97f50edb23955d296a60e6575bc6dc3a88225f01320fd96ee97bb6efb8db524e"
+    },
+    "execute_now_result": {
+      "path": "exchange/logs/ls_new_batch_4g_2e_recovery_m27_execute_now_confirmation_result.json",
+      "file_sha256": "52048012a18eaa8abf1e3e09ad15e84db5799b43ac939e4b2cd2d8d1ea9906ea"
+    },
+    "preflight_snapshot": {
+      "path": "exchange/preflight/new_release/fresh/new-release-comic-20260703-001.wordpress_revised_single_get_retry_snapshot.json",
+      "file_sha256": "353644a0bbc401d2d04fcfaae211f4f55c8a837a749b817cdafc13d3b3e648b4"
+    },
+    "preflight_result": {
+      "path": "exchange/logs/ls_new_batch_4g_2e_recovery_m27_fix1_retry_approval_result.json",
+      "file_sha256": "faabe33ce3e5cc6b077b4bc36d46dcbe7712d4e39914a716a77e1084a0970309"
+    },
+    "authorization": {
+      "path": "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.wordpress_tawawa_reference_layout_update_one_shot_authorization.json",
+      "file_sha256": "400072ed25aacfcddc64f77989c2935e20f6eacc907c73e47ccfc20cbbff59b8"
+    },
+    "rendered": {
+      "path": "exchange/rendered/new_release/fresh/new-release-comic-20260703-001.wordpress_tawawa_reference_layout_v1.html",
+      "file_sha256": "dc938ae164c70130a5fb27692d71c97cc367a8985c44c2c333801b337ee6caf4"
+    },
+    "payload": {
+      "path": "exchange/payloads/new_release/fresh/new-release-comic-20260703-001.wordpress_tawawa_reference_layout_update_payload_v1.json",
+      "file_sha256": "f0408094164e1bfee02fe399390fbb86e252e70592710c50735af2872c29ae16"
+    },
+    "human_review": {
+      "path": "exchange/reviews/new_release/fresh/new-release-comic-20260703-001.wordpress_tawawa_reference_layout_human_review_approved.json",
+      "file_sha256": "24f01655b6d18feeb749b2c0e41e4cf3fde910b91c761d26a3ff860257d0afee"
+    },
+    "backlist_requirement": {
+      "path": "exchange/requirements/new_release/fresh/new-release-comic-20260703-001.wordpress_backlist_cover_affiliate_carousel_future_requirement.json",
+      "file_sha256": "500a35b046a24e68d4877ce520030daf7ef2cb48ff9105c3ff9038ffc350422c"
+    },
+    "rollback": {
+      "path": "exchange/rollback/new_release/fresh/new-release-comic-20260703-001.wordpress_layout_correction_current_content_rollback_fix2.json",
+      "file_sha256": "a85be565e80c730673179323b64dd0c69bca317fc5a670c3afccf74f9cc487cd"
+    }
+  },
+  "production_status": "NO_GO",
+  "approval_evidence_digest_sha256": "6781bc768e6c7c588a1501c634662ef7fe607deddb0f5e7e6f15cb9bca7c0c84"
+}

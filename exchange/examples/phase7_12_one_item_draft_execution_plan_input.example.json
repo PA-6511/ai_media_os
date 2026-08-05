@@ -1,0 +1,42 @@
+{
+  "phase": "Phase 7-12",
+  "source": "ONE_ITEM_DRAFT_EXECUTION_PLAN_DRY_RUN",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "target_item_count": 1,
+  "candidate_id": "phase7_1_sample_candidate_001",
+  "title": "サンプル漫画 1巻 セール紹介",
+  "body": "PR：本記事には広告が含まれます。これはPhase 7-12の実行計画DRY_RUN用本文です。WordPress APIは呼びません。",
+  "category": "電子書籍",
+  "tags": [
+    "漫画",
+    "セール",
+    "電子書籍"
+  ],
+  "affiliate_links": [
+    {
+      "store": "amazon",
+      "url": "https://example.com/affiliate/sample"
+    }
+  ],
+  "cta": [
+    {
+      "label": "Amazonで見る",
+      "url": "https://example.com/affiliate/sample"
+    }
+  ],
+  "safety_flags": {
+    "production_status": "NO_GO",
+    "wordpress_draft_creation": "NO_GO",
+    "wordpress_write_executed": false,
+    "wordpress_api_call_allowed": false,
+    "publish_allowed": false,
+    "auto_post": false,
+    "auto_update": false,
+    "auto_delete": false,
+    "auto_export": false,
+    "bulk_execution": false,
+    "external_write": false,
+    "vps_self_builder_execution": false
+  }
+}

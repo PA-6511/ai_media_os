@@ -1,0 +1,13 @@
+{
+  "phase": "LS-NEW-13",
+  "document_type": "START_LS_NEW13_DRAFT_CREATION_COMMAND_PREP_VALIDATION_RESULT",
+  "validation_status": "LSNEW13_DRAFT_CREATION_COMMAND_PREP_VALIDATED_NO_EXECUTION",
+  "run_status": "LSNEW13_DRAFT_CREATION_COMMAND_PREP_READY_NO_EXECUTION",
+  "recommended_next_action": "BEGIN_LS_NEW_14_SEPARATE_DRAFT_CREATION_EXECUTION_APPROVAL_GATE_NO_EXECUTION",
+  "recommended_next_phase_options": [
+    "LS-NEW-14",
+    "LS-MON-2"
+  ],
+  "errors": [],
+  "generated_at": "2026-07-05T04:34:11.154577+00:00"
+}

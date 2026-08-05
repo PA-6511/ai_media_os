@@ -1,0 +1,42 @@
+{
+  "phase": "Phase 8-29",
+  "name": "one_time_rerun_execution_guard_policy",
+  "policy_status": "GUARD_VALIDATION_ONLY",
+  "production_status": "NO_GO",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "human_approval_required": true,
+  "guard_is_execution_permission": false,
+  "commands_executed_in_this_phase": false,
+  "wordpress_api_call_allowed": false,
+  "wordpress_write_executed": false,
+  "publish_allowed": false,
+  "auto_post": false,
+  "target_item_count": 1,
+  "max_manual_rerun_count": 1,
+  "required_evidence": [
+    "exchange/logs/phase8_27_credential_ready_reevaluation_sequence.json",
+    "exchange/logs/phase8_28_manual_rerun_dry_command_checklist_result.json"
+  ],
+  "ready_statuses": {
+    "phase8_27": "REEVALUATION_SEQUENCE_READY_BUT_NOT_EXECUTED",
+    "phase8_28": "PASS_DRY_COMMAND_CHECKLIST_ONLY"
+  },
+  "not_ready_statuses": [
+    "REEVALUATION_SEQUENCE_NOT_READY_CREDENTIALS_MISSING",
+    "REEVALUATION_SEQUENCE_NOT_READY"
+  ],
+  "guard_required_flags": {
+    "target_item_count": 1,
+    "max_manual_rerun_count": 1,
+    "publish_allowed": false,
+    "auto_post": false,
+    "auto_update": false,
+    "auto_delete": false,
+    "auto_export": false,
+    "commands_executed_in_this_phase": false,
+    "wordpress_api_call_allowed": false,
+    "wordpress_write_executed": false
+  },
+  "allowed_next_step": "Phase 8-30 final operator handoff for existing Phase 8-6 to Phase 8-10 rerun"
+}

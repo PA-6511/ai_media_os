@@ -1,0 +1,48 @@
+{
+  "phase": "LS-NEW-5",
+  "document_type": "START_LS_NEW5_HUMAN_REVIEW_CHECKLIST_TEMPLATE",
+  "candidate_identity_review": {
+    "title_checked": false,
+    "volume_checked": false,
+    "author_checked": false,
+    "publisher_checked": false,
+    "release_date_checked": false,
+    "asin_checked": false,
+    "isbn_checked": false
+  },
+  "wordpress_payload_review": {
+    "post_title_checked": false,
+    "body_markdown_checked": false,
+    "purchase_navigation_media_checked": false,
+    "affiliate_disclosure_checked": false,
+    "external_fetch_notice_checked": false,
+    "no_synopsis_copy_checked": false,
+    "no_review_copy_checked": false,
+    "no_long_work_explanation_checked": false
+  },
+  "x_payload_review": {
+    "post_text_checked": false,
+    "under_280_checked": false,
+    "contains_pr_checked": false,
+    "contains_title_checked": false,
+    "contains_author_hashtag_checked": false,
+    "contains_url_placeholder_checked": false
+  },
+  "safety_review": {
+    "wordpress_api_not_executed_checked": false,
+    "wordpress_write_not_executed_checked": false,
+    "x_api_not_executed_checked": false,
+    "x_post_not_executed_checked": false,
+    "external_fetch_not_executed_checked": false,
+    "credential_env_not_read_checked": false,
+    "secret_not_output_checked": false,
+    "post119_not_updated_checked": false,
+    "post183_not_updated_checked": false
+  },
+  "human_decision": {
+    "human_review_completed": false,
+    "human_approved": false,
+    "approval_label": "",
+    "reviewer_notes": ""
+  }
+}

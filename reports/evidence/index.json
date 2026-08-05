@@ -1,0 +1,66 @@
+{
+  "schema_version": "phase_evidence_index_v1.1",
+  "updated_at_utc": "2026-07-18T14:27:42.331720+00:00",
+  "entries": [
+    {
+      "name": "valid_until_scope_reduction_policy_report",
+      "path": "reports/valid_until_scope_reduction_policy_report.md",
+      "status": "PASS_DESIGN_ONLY_NO_EXECUTION",
+      "purpose": "Design-only scope reduction report for valid_until usage"
+    },
+    {
+      "name": "phase8_adapter_route_hold_evidence_index",
+      "path": "exchange/logs/phase8_adapter_route_hold_evidence_index.json",
+      "status": "ACTIVE",
+      "purpose": "Adapter-1..6 and Phase8-38A/39A/40A/40B consolidated evidence index"
+    },
+    {
+      "name": "phase8_40b_final_hold_lock",
+      "path": "exchange/logs/phase8_40b_adapter_route_final_hold_baseline_lock_result.json",
+      "status": "PASS_NO_EXECUTION",
+      "purpose": "Final HOLD baseline lock for adapter route"
+    },
+    {
+      "name": "creators_api_eligibility_tracking",
+      "path": "exchange/logs/creators_api_eligibility_tracking.json",
+      "status": "EXTERNAL_TRACKING_REQUIRED",
+      "purpose": "External eligibility state tracking without enabling production API"
+    },
+    {
+      "name": "credential_env_non_secret_readiness",
+      "path": "exchange/logs/credential_env_non_secret_readiness_check.json",
+      "status": "READY_NON_SECRET_CHECK_PASS",
+      "purpose": "Non-secret env readiness evidence (existence, permission, key presence only)"
+    },
+    {
+      "name": "phase8_40b_monitoring_cycle_diff_check",
+      "path": "exchange/logs/phase8_40b_monitoring_cycle_diff_check_result.json",
+      "status": "MONITOR_1_PHASE8_40B_HOLD_DIFF_CHECK_PASS",
+      "purpose": "Monitoring cycle drift detection against Phase8-40B HOLD baseline"
+    },
+    {
+      "name": "phase8_50_manual_affiliate_builder",
+      "path": "reports/phase8_50_manual_affiliate_builder_report.md",
+      "status": "PASS_DRY_RUN_ONLY",
+      "purpose": "Manual affiliate fallback operation without Amazon API and without WordPress write"
+    },
+    {
+      "name": "phase8_50a_manual_affiliate_evidence_registration",
+      "path": "exchange/logs/phase8_50a_manual_affiliate_builder_evidence_registration_result.json",
+      "status": "PHASE8_50A_EVIDENCE_REGISTRATION_PASS_DRY_RUN_ONLY",
+      "purpose": "Fixes Phase8-50 as PASS_DRY_RUN_ONLY and locks Phase8-51-MIGRATION-SKELETON as unexecuted"
+    },
+    {
+      "name": "phase8_50b_manual_affiliate_hardening_pack",
+      "path": "exchange/logs/phase8_50b_manual_affiliate_builder_hardening_result.json",
+      "status": "PHASE8_50B_HARDENING_PASS_DRY_RUN_ONLY",
+      "purpose": "Hardens manual affiliate builder for CSV conversion, lint, checklist, and snapshot while keeping NO_GO/DRY_RUN_ONLY"
+    },
+    {
+      "name": "x_r12_slack_draft_review_closeout_evidence_pack",
+      "path": "exchange/diagnostics/x_draft_module/x_r12_closeout_evidence_index_registration/20260718T142742Z-136310/x_r12_closeout_evidence_index_registration_result.json",
+      "purpose": "X-R12 Slack draft review delivery, one-shot delivery approval and execution, retrospective APPROVE review, immutable locks, and terminal NO_GO closeout evidence",
+      "status": "PASS_X_R12_CLOSEOUT_EVIDENCE_INDEX_REGISTERED"
+    }
+  ]
+}

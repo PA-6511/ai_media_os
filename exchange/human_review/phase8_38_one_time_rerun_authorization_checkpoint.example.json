@@ -1,0 +1,32 @@
+{
+  "review_id": "phase8_38_one_time_rerun_authorization_checkpoint_001",
+  "phase": "Phase 8-38",
+  "operator": "human",
+  "decision": "AUTHORIZE_ONE_TIME_MANUAL_RERUN_HANDOFF_ONLY",
+  "target_item_count": 1,
+  "max_manual_rerun_count": 1,
+  "candidate_id": "phase7_1_sample_candidate_001",
+  "acknowledged_authorization_not_execution": true,
+  "acknowledged_manual_rerun_only": true,
+  "acknowledged_one_time_only": true,
+  "acknowledged_no_api_call_in_phase8_38": true,
+  "acknowledged_no_phase8_6_to_8_10_execution_in_phase8_38": true,
+  "acknowledged_single_item_only": true,
+  "acknowledged_draft_only": true,
+  "acknowledged_no_publish": true,
+  "acknowledged_no_update": true,
+  "acknowledged_no_delete": true,
+  "acknowledged_no_bulk": true,
+  "acknowledged_no_secret_output": true,
+  "secret_values_included": false,
+  "approval_scope": {
+    "one_time_manual_rerun_handoff_only": true,
+    "draft_create_only": false,
+    "publish": false,
+    "update": false,
+    "delete": false,
+    "bulk": false,
+    "external_export": false
+  },
+  "note": "Authorization checkpoint only. This is not execution permission."
+}

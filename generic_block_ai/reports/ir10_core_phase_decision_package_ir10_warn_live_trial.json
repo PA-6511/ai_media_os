@@ -1,0 +1,74 @@
+{
+  "schema_version": "ir10_core_phase_decision_v1",
+  "quality_gate_judgment": "WARN",
+  "mapping_rule": {
+    "recommended_decision": "REQUIRE_HUMAN_REVIEW",
+    "core_receive_rule": "HUMAN_REVIEW_REQUIRED",
+    "reason": "quality_gate_warn_requires_human_review"
+  },
+  "quality_metrics_snapshot": {
+    "quality_score": 85,
+    "risk_balance": 90,
+    "review_readiness": "needs_human_review",
+    "candidate_count": 2,
+    "pass_count": 1,
+    "warn_count": 1,
+    "fail_count": 0,
+    "abort_count": 0
+  },
+  "core_phase_decision_package": {
+    "_meta": {
+      "schema_version": "handshake_v1",
+      "purpose": "core_ai_handshake",
+      "generated_at": "2026-05-23T14:36:51.921364+00:00",
+      "source_task_id": "ir10_warn_live_trial_ir10",
+      "source_block_id": "affiliate_block",
+      "source_version": "0.1.0"
+    },
+    "handshake_contract": {
+      "connection_test_mode": true,
+      "connection_scope": "decision_package_handoff_only",
+      "operation_mode": "OBSERVE",
+      "execution": "dry_run",
+      "requires_human_approval": true,
+      "auto_execute_allowed": false,
+      "transport": "none",
+      "external_api_call": false
+    },
+    "connection_status": "HANDSHAKE_PENDING_REVIEW",
+    "source_summary": {
+      "status": "success",
+      "decision": "human_review",
+      "summary": "ir10 mapped from quality_gate_judgment=WARN",
+      "task_id": "ir10_warn_live_trial_ir10"
+    },
+    "decision_package": {
+      "recommended_decision": "REQUIRE_HUMAN_REVIEW",
+      "reason": "quality_gate_warn_requires_human_review",
+      "quality_score": 85,
+      "risk_balance": 90,
+      "review_readiness": "needs_human_review",
+      "policy_version": "ir10-quality-gate-mapping-v1",
+      "policy_hash": "0e995087dc2dab310da100e4c201743db4dcc55eaecd691a6ee63e719d9e168c",
+      "signoff_actor": "ir10_phase_decision_mapper"
+    },
+    "validation_expectations": {
+      "must_not_trigger_execution": true,
+      "must_not_create_external_request": true,
+      "must_not_change_runtime_mode": true,
+      "must_preserve_no_go_status": true,
+      "core_ai_expected_behavior": "observe_and_return_assessment_only"
+    },
+    "safeguards": {
+      "actual_auto_approve": false,
+      "actual_auto_execute": false,
+      "external_write_executed": false,
+      "production_release": false,
+      "requires_human_signoff": true
+    }
+  },
+  "validation_result": "PASS",
+  "validation_failed_checks": [],
+  "validation_warnings": [],
+  "external_write_executed": false
+}

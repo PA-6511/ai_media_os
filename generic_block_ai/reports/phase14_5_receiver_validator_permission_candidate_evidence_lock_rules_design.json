@@ -1,0 +1,67 @@
+{
+  "_meta": {
+    "phase": "14-5",
+    "phase_name": "receiver validator 実装許可候補の証跡固定ルール設計",
+    "version": "1.0",
+    "created_date": "2026-05-12",
+    "status": "PASS_DESIGN_ONLY",
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only",
+    "description": "receiver validator 実装許可候補を判定する前に、必要証跡を固定するルールを定義する。"
+  },
+  "references": [
+    "generic_block_ai/reports/phase14_3_receiver_validator_permission_candidate_pre_effective_assessment.json",
+    "generic_block_ai/reports/phase14_4_integrated_decision_update_candidate_convergence_rules_design.json",
+    "generic_block_ai/reports/phase12_5_integrated_decision_go_update_evidence_lock_rules_design.json"
+  ],
+  "evidence_lock_rules": [
+    {
+      "rule_id": "PCL-01",
+      "required_evidence": "convergence result",
+      "lock_condition": "convergence_complete == true"
+    },
+    {
+      "rule_id": "PCL-02",
+      "required_evidence": "integrated decision candidate basis",
+      "lock_condition": "applied_rules is non-empty"
+    },
+    {
+      "rule_id": "PCL-03",
+      "required_evidence": "pre-effective assessment result",
+      "lock_condition": "pre_effective_result is not empty"
+    },
+    {
+      "rule_id": "PCL-04",
+      "required_evidence": "safety invariants",
+      "lock_condition": "production_status == NO_GO and blocked_actions remain prohibited"
+    }
+  ],
+  "evidence_lock_template": {
+    "all_candidate_evidence_locked": false,
+    "missing_evidence": [],
+    "overall_result": "PENDING",
+    "reason": "候補収束の実測更新前のため、証跡固定は未完了。"
+  },
+  "blocked_actions": [
+    "core_ai_real_send",
+    "external_api_call",
+    "wordpress_operation",
+    "cron_registration",
+    "auto_execute",
+    "auto_post",
+    "auto_update",
+    "auto_delete",
+    "auto_export",
+    "production_execution"
+  ],
+  "phase_decision": {
+    "phase14_5_status": "PASS_DESIGN_ONLY",
+    "app_implementation_status": "NO_GO",
+    "tests_implementation_status": "NO_GO",
+    "note": "許可候補の証跡固定ルール設計のみ。実装許可の発効は含まない。"
+  }
+}

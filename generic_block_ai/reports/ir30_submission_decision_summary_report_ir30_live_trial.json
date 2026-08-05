@@ -1,0 +1,31 @@
+{
+  "schema_version": "ir30_submission_decision_summary_v1",
+  "phase": "IR30",
+  "generated_at": "2026-05-23T16:10:10.508967+00:00",
+  "source_task_id": "ir30_live_trial",
+  "release_candidate_id": "rc_20260523T155148Z_ir26_live_trial_b940393b490b",
+  "final_submission_decision": "READY_FOR_SUBMISSION_SUMMARY",
+  "validation_result": "PASS",
+  "validation_failed_checks": [],
+  "validation_warnings": [],
+  "summary": {
+    "final_submission_decision": "READY_FOR_SUBMISSION_SUMMARY",
+    "reason_count": 1,
+    "failed_check_count": 0,
+    "warning_count": 0,
+    "send_allowed_invariant_ok": true
+  },
+  "artifacts": {
+    "ir29_submission_report": "generic_block_ai/reports/ir29_release_candidate_submission_dryrun_report_ir29_live_trial.json",
+    "submission_decision_table": "generic_block_ai/reports/ir30_submission_decision_table_ir30_live_trial.json",
+    "completion_report": "reports/implementation_restart_phase30_completion_report.json"
+  },
+  "safeguards": {
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "production_release": false,
+    "network_transmission_executed": false
+  }
+}

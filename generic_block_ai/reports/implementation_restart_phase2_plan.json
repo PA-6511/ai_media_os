@@ -1,0 +1,109 @@
+{
+  "_meta": {
+    "phase": "implementation_restart_2",
+    "status": "PLAN_READY",
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "auto_execute_allowed": false,
+    "requires_human_approval": true
+  },
+  "objective": "Improve generic_block_ai task generation precision while preserving strict safety guardrails.",
+  "scope": {
+    "in": [
+      "task generation quality improvements",
+      "candidate ranking and prioritization",
+      "deterministic review metadata",
+      "validator-aligned summary outputs"
+    ],
+    "out": [
+      "GitHub/WordPress/external API writes",
+      "production execution enablement",
+      "VPS unlock"
+    ]
+  },
+  "work_items": [
+    {
+      "id": "IR2-T1",
+      "title": "Task candidate scoring",
+      "deliverables": [
+        "impact_score",
+        "risk_score",
+        "confidence_score",
+        "priority_score"
+      ],
+      "acceptance": [
+        "deterministic ordering for same input",
+        "unit tests for score boundaries"
+      ]
+    },
+    {
+      "id": "IR2-T2",
+      "title": "Constraint-aware filtering",
+      "deliverables": [
+        "forbidden action filter",
+        "capability mismatch filter",
+        "missing context filter"
+      ],
+      "acceptance": [
+        "structured rejection reasons",
+        "branch coverage tests"
+      ]
+    },
+    {
+      "id": "IR2-T3",
+      "title": "Review-ready task package",
+      "deliverables": [
+        "scope",
+        "non_goals",
+        "risk_assessment",
+        "guardrail_checks",
+        "rollback_conditions",
+        "approval_required"
+      ],
+      "acceptance": [
+        "validator-compatible payload",
+        "required field failure tests"
+      ]
+    },
+    {
+      "id": "IR2-T4",
+      "title": "Quality metrics report",
+      "deliverables": [
+        "accepted_candidates",
+        "rejected_candidates",
+        "top_rejection_reasons",
+        "average_scores"
+      ],
+      "acceptance": [
+        "local JSON/MD output",
+        "no external side effects"
+      ]
+    },
+    {
+      "id": "IR2-T5",
+      "title": "Regression and safety net",
+      "deliverables": [
+        "dry_run invariant tests",
+        "OBSERVE invariant tests",
+        "NO_GO invariant tests",
+        "external_write_executed false invariant tests"
+      ],
+      "acceptance": [
+        "full suite green",
+        "negative test per invariant"
+      ]
+    }
+  ],
+  "guardrails": {
+    "production_status": "NO_GO",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "execution_start": "NO_GO",
+    "external_operations": "NOT_EXECUTED"
+  },
+  "validation_commands": [
+    "python3 -m pytest -q generic_block_ai/tests",
+    "python3 -m json.tool generic_block_ai/reports/implementation_restart_phase2_plan.json"
+  ],
+  "next_step": "Start IR2-T1 implementation"
+}

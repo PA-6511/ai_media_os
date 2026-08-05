@@ -1,0 +1,96 @@
+{
+  "phase_id": "32-6",
+  "phase_name": "Execution Start Direct Pre-ABORT Condition Design",
+  "phase_japanese_name": "実行開始直前の最終ABORT条件設計",
+  "purpose": "Design final ABORT conditions that must be checked immediately before execution_start authorization to prevent invalid start.",
+  "layer": "execution_start_go_actual_measurement_layer",
+  "design_category": "reports_only",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "operation_transition_go_authorization": "NOT_GRANTED",
+    "production_reflection_go_authorization": "NOT_GRANTED",
+    "freeze_release_go_authorization": "NOT_GRANTED",
+    "execution_start_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "phase_32_6_scope": {
+    "scope_1_input_contract": {
+      "scope_id": "INPUT_CONTRACT",
+      "required_inputs": {
+        "phase32_5_no_go_state_maintained": "YES",
+        "execution_start_candidate_status": "GO_CANDIDATE"
+      }
+    },
+    "scope_2_final_abort_conditions": {
+      "scope_id": "FINAL_ABORT_CONDITIONS",
+      "conditions": {
+        "condition_1": "Evidence lock integrity check fails",
+        "condition_2": "Unresolved Phase 31 or earlier phase NO_GO present",
+        "condition_3": "Timestamp or signature verification fails",
+        "condition_4": "Unauthorized entity attempts execution_start_go_authorization grant",
+        "condition_5": "System safety monitor reports anomaly",
+        "condition_6": "Phase 32-5 remediation plan incomplete"
+      },
+      "abort_rule": "If any condition_N detects true, execution_start_go_authorization remains NOT_GRANTED and system halts"
+    },
+    "scope_3_report_structure": {
+      "scope_id": "REPORT_STRUCTURE",
+      "sections": {
+        "section_1_header": {
+          "report_id": "PHASE32_6_EXECUTION_START_FINAL_ABORT_CONDITIONS_<UTC_TIMESTAMP>",
+          "report_type": "execution_start_direct_pre_abort_condition_design",
+          "generated_at_utc": "RFC3339",
+          "generated_by": "authority_identifier"
+        },
+        "section_2_abort_check_results": {
+          "evidence_lock_integrity": "PASS | FAIL",
+          "unresolved_no_go_present": "YES | NO",
+          "timestamp_signature_valid": "YES | NO",
+          "authorization_entity_valid": "YES | NO",
+          "safety_monitor_status": "OK | ANOMALY",
+          "remediation_plan_complete": "YES | NO"
+        },
+        "section_3_abort_judgment": {
+          "any_abort_condition_triggered": "YES | NO",
+          "execution_start_allowed": "NO | CONDITIONAL"
+        },
+        "section_4_state_final": {
+          "production_status": "NO_GO",
+          "operation_transition_go_authorization": "NOT_GRANTED",
+          "production_reflection_go_authorization": "NOT_GRANTED",
+          "freeze_release_go_authorization": "NOT_GRANTED",
+          "execution_start_go_authorization": "NOT_GRANTED"
+        }
+      }
+    }
+  },
+  "phase_32_6_governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution",
+      "execution_start_execution"
+    ],
+    "state_invariants": {
+      "app_implementation_status": "NO_GO",
+      "tests_implementation_status": "NO_GO",
+      "production_status": "NO_GO",
+      "operation_transition_go_authorization": "NOT_GRANTED",
+      "production_reflection_go_authorization": "NOT_GRANTED",
+      "freeze_release_go_authorization": "NOT_GRANTED",
+      "execution_start_go_authorization": "NOT_GRANTED",
+      "changed_area": "reports only"
+    }
+  }
+}

@@ -1,0 +1,181 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M13",
+  "document_role": "SECRET_WORDPRESS_DRAFT_CREATION_RESPONSE",
+  "content_item_id": "new-release-comic-20260703-001",
+  "execution_attempt_id": "fb8742ae-b59d-4f59-a4f0-f6eb279e6629",
+  "response_received": true,
+  "http_status": 201,
+  "final_response_url_verified": true,
+  "content_type": "application/json; charset=UTF-8",
+  "body_json": {
+    "id": 192,
+    "date": "2026-07-11T19:27:27",
+    "date_gmt": "2026-07-11T10:27:27",
+    "guid": {
+      "rendered": "https://hoshido.jp/?p=192",
+      "raw": "https://hoshido.jp/?p=192"
+    },
+    "modified": "2026-07-11T19:27:27",
+    "modified_gmt": "2026-07-11T10:27:27",
+    "password": "",
+    "slug": "",
+    "status": "draft",
+    "type": "post",
+    "link": "https://hoshido.jp/?p=192",
+    "title": {
+      "raw": "ダークギャザリング 第20巻｜配信開始",
+      "rendered": "ダークギャザリング 第20巻｜配信開始"
+    },
+    "content": {
+      "raw": "<div class=\"ebook-new-release-article\" data-template-id=\"POST185_STANDARD_TEMPLATE_V1\">\n  <p class=\"ebook-pr-disclosure\">【PR】本記事にはアフィリエイト広告を含みます。価格・配信状況は各ストアで確認してください。</p>\n  <div class=\"ebook-release-layout\">\n    <figure class=\"ls-book-cover\">\n      <img src=\"https://shop.r10s.jp/rakutenkobo-ebooks/cabinet/6485/2000020786485.jpg\" alt=\"ダークギャザリング 第20巻 書影\" loading=\"lazy\">\n    </figure>\n    <div class=\"ls-store-card\">\n      <ul>\n        <li><strong>作品名：</strong>ダークギャザリング</li>\n        <li><strong>価格：</strong>616円（税込）</li>\n        <li><strong>作者：</strong>近藤憲一</li>\n        <li><strong>出版社：</strong>集英社</li>\n        <li><strong>発売日：</strong>2026-07-03</li>\n      </ul>\n    </div>\n  </div>\n  <div class=\"ls-store-buttons\" aria-label=\"電子書籍ストア\">\n    <span class=\"ls-store-btn ls-store-amazon ls-store-disabled\" aria-disabled=\"true\">Amazonで確認（リンク準備中）</span>\n    <span class=\"ls-store-btn ls-store-kobo ls-store-disabled\" aria-disabled=\"true\">楽天Koboで確認（リンク準備中）</span>\n    <a class=\"ls-store-btn ls-store-dmm\" href=\"https://al.dmm.com/?lurl=https%3A%2F%2Fbook.dmm.com%2Fproduct%2F861056%2Fb950yshes32617%2F&amp;af_id=xuanyilugang-001&amp;ch=link_tool&amp;ch_id=link\" target=\"_blank\" rel=\"nofollow sponsored noopener\">DMMブックスで確認</a>\n  </div>\n</div>\n",
+      "rendered": "<div class=\"ebook-new-release-article\" data-template-id=\"POST185_STANDARD_TEMPLATE_V1\">\n<p class=\"ebook-pr-disclosure\">【PR】本記事にはアフィリエイト広告を含みます。価格・配信状況は各ストアで確認してください。</p>\n<div class=\"ebook-release-layout\">\n<figure class=\"ls-book-cover\">\n      <img decoding=\"async\" src=\"https://shop.r10s.jp/rakutenkobo-ebooks/cabinet/6485/2000020786485.jpg\" alt=\"ダークギャザリング 第20巻 書影\" loading=\"lazy\"><br />\n    </figure>\n<div class=\"ls-store-card\">\n<ul>\n<li><strong>作品名：</strong>ダークギャザリング</li>\n<li><strong>価格：</strong>616円（税込）</li>\n<li><strong>作者：</strong>近藤憲一</li>\n<li><strong>出版社：</strong>集英社</li>\n<li><strong>発売日：</strong>2026-07-03</li>\n</ul></div>\n</p></div>\n<div class=\"ls-store-buttons\" aria-label=\"電子書籍ストア\">\n    <span class=\"ls-store-btn ls-store-amazon ls-store-disabled\" aria-disabled=\"true\">Amazonで確認（リンク準備中）</span><br />\n    <span class=\"ls-store-btn ls-store-kobo ls-store-disabled\" aria-disabled=\"true\">楽天Koboで確認（リンク準備中）</span><br />\n    <a rel=\"nofollow sponsored noopener\" class=\"ls-store-btn ls-store-dmm\" href=\"https://al.dmm.com/?lurl=https%3A%2F%2Fbook.dmm.com%2Fproduct%2F861056%2Fb950yshes32617%2F&amp;af_id=xuanyilugang-001&amp;ch=link_tool&amp;ch_id=link\" target=\"_blank\">DMMブックスで確認</a>\n  </div>\n</div>\n",
+      "protected": false,
+      "block_version": 0
+    },
+    "excerpt": {
+      "raw": "",
+      "rendered": "<p>【PR】本記事にはアフィリエイト広告を含みます。価格・配信状況は各ストアで確認してください。 作品名：ダークギャザリング 価格：616円（税込） 作者：近藤憲一 出版社：集英社 発売日：2026-07-03 Amazon [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": {
+      "footnotes": ""
+    },
+    "categories": [
+      10
+    ],
+    "tags": [],
+    "permalink_template": "https://hoshido.jp/2026/07/11/%postname%/",
+    "generated_slug": "ダークギャザリング-第20巻｜配信開始",
+    "class_list": [
+      "post-192",
+      "post",
+      "type-post",
+      "status-draft",
+      "format-standard",
+      "hentry",
+      "category-10-post"
+    ],
+    "_links": {
+      "self": [
+        {
+          "href": "https://hoshido.jp/wp-json/wp/v2/posts/192",
+          "targetHints": {
+            "allow": [
+              "GET",
+              "POST",
+              "PUT",
+              "PATCH",
+              "DELETE"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://hoshido.jp/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://hoshido.jp/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://hoshido.jp/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://hoshido.jp/wp-json/wp/v2/comments?post=192"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://hoshido.jp/wp-json/wp/v2/posts/192/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://hoshido.jp/wp-json/wp/v2/media?parent=192"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://hoshido.jp/wp-json/wp/v2/categories?post=192"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://hoshido.jp/wp-json/wp/v2/tags?post=192"
+        }
+      ],
+      "wp:action-publish": [
+        {
+          "href": "https://hoshido.jp/wp-json/wp/v2/posts/192"
+        }
+      ],
+      "wp:action-unfiltered-html": [
+        {
+          "href": "https://hoshido.jp/wp-json/wp/v2/posts/192"
+        }
+      ],
+      "wp:action-sticky": [
+        {
+          "href": "https://hoshido.jp/wp-json/wp/v2/posts/192"
+        }
+      ],
+      "wp:action-assign-author": [
+        {
+          "href": "https://hoshido.jp/wp-json/wp/v2/posts/192"
+        }
+      ],
+      "wp:action-create-categories": [
+        {
+          "href": "https://hoshido.jp/wp-json/wp/v2/posts/192"
+        }
+      ],
+      "wp:action-assign-categories": [
+        {
+          "href": "https://hoshido.jp/wp-json/wp/v2/posts/192"
+        }
+      ],
+      "wp:action-create-tags": [
+        {
+          "href": "https://hoshido.jp/wp-json/wp/v2/posts/192"
+        }
+      ],
+      "wp:action-assign-tags": [
+        {
+          "href": "https://hoshido.jp/wp-json/wp/v2/posts/192"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  "body_base64": null,
+  "error_code": null,
+  "contains_potential_affiliate_content": true,
+  "mode_required": "0600",
+  "created_at_utc": "2026-07-11T10:27:28.012685+00:00",
+  "secret_response_digest_sha256": "ba820f4139e2f67ba037701a39dfc10eefc1020a9077f3ff4ae42b55d9b176cb"
+}

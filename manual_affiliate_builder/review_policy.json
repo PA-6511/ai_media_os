@@ -1,0 +1,25 @@
+{
+  "phase": "Phase 8-50B",
+  "phase_name": "Manual Affiliate Builder Hardening Pack",
+  "execution_mode": "DRY_RUN_ONLY",
+  "production_status": "NO_GO",
+  "amazon_api_call_allowed": false,
+  "wordpress_write_allowed": false,
+  "final_decision_options": [
+    "APPROVED_FOR_PREVIEW_ONLY",
+    "REJECTED_NEEDS_FIX",
+    "NO_DECISION"
+  ],
+  "required_item_checks": [
+    "ASIN確認",
+    "タイトル確認",
+    "著者確認",
+    "巻数確認",
+    "発売日確認",
+    "Amazon URL確認",
+    "affiliate tag確認",
+    "PR表記確認",
+    "投稿禁止確認",
+    "migration readiness確認"
+  ]
+}

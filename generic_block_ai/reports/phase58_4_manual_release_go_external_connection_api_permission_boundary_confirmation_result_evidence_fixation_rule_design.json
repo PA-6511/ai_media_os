@@ -1,0 +1,37 @@
+{
+  "_meta": {
+    "phase": "58-4",
+    "phase_name": "外部接続/API権限境界確認補強層",
+    "layer": "manual_release_go 外部接続/API権限境界確認結果の証跡固定ルール設計層 (manual_release_go external connection and API permission boundary confirmation result evidence fixation rule design layer)",
+    "title": "manual_release_go 外部接続/API権限境界確認結果の証跡固定ルール設計",
+    "created": "2026-05-15",
+    "author": "governance-framework",
+    "status": "PASS_DESIGN_ONLY",
+    "reports_only": true
+  },
+  "scope": "Phase 58-2 で定義した manual_release_go 最終解除候補の外部接続/API権限境界確認観点をもとに，確認結果を証跡として固定するルールを設計する。内容：(1) 証跡の必須項目（確認対象，判定，根拠，時刻，責任者）定義，(2) 証跡固定時の改ざん防止要件（署名，ハッシュ，保存先固定）定義，(3) 権限差分再評価時の追記・改訂履歴管理方式定義，(4) production_status = 'NO_GO'，manual_release_go_authorization = 'NOT_GRANTED'，actual_process_start_go_authorization = 'NOT_GRANTED'，execution_start = 'NO_GO' の維持確認。",
+  "governance": {
+    "production_status": "NO_GO",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "execution_start": "NO_GO",
+    "changed_area": "reports only"
+  },
+  "report": {
+    "description": "Phase 58-4 では，manual_release_go 外部接続/API権限境界確認結果の証跡固定ルールを設計層で定義する。これは確認結果の記録品質と改ざん耐性を担保する工程であり，解除許可・発効許可・実処理開始許可を行う工程ではない。",
+    "invariants": [
+      "NO_GO 維持：production_status = 'NO_GO' を維持",
+      "実処理開始 NO_GO 維持：execution_start = 'NO_GO' を維持",
+      "NOT_GRANTED 維持：manual_release_go / actual_process_start_go は NOT_GRANTED を維持",
+      "証跡固定：確認結果は必須項目・署名・ハッシュを含む固定形式で保存",
+      "差分履歴管理：追記・改訂の履歴を時系列で監査可能に保持",
+      "reports only：全設計は報告書形式で実施"
+    ],
+    "actions": [],
+    "notes": [
+      "Phase 58-4 は証跡固定ルール設計であり，manual_release_go の解除許可工程ではない。",
+      "manual_release_go_authorization は NOT_GRANTED を維持する。",
+      "実処理開始許可は含まれない。"
+    ]
+  }
+}

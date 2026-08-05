@@ -1,0 +1,55 @@
+{
+  "phase": "8-SVC-7",
+  "phase_name": "Unit/Timer Removal Rollback Design",
+  "status": "DESIGN_ONLY_NO_EXECUTION",
+  "production_status": "NO_GO",
+  "execution": "DRY_RUN",
+  "design_only": true,
+  "removal_targets": [
+    "/etc/systemd/system/ai-media-os-credential-ready-validator.service",
+    "/etc/systemd/system/ai-media-os-credential-ready-validator.timer"
+  ],
+  "required_runbook_sections": [
+    "## 1. Purpose",
+    "## 3. Removal Targets",
+    "## 4. Absolute Prohibitions in SVC-7",
+    "## 6. Removal Path A (No Activation Executed)",
+    "## 7. Removal Path B (Activation Executed Unexpectedly)",
+    "## 8. Pre/Post Daemon-Reload Difference Design",
+    "## 11. Final Judgment Rule",
+    "## 12. Next Step"
+  ],
+  "forbidden_patterns": [
+    "rm /etc/systemd/system/ai-media-os-credential-ready-validator.service",
+    "rm /etc/systemd/system/ai-media-os-credential-ready-validator.timer",
+    "systemctl daemon-reload",
+    "systemctl enable",
+    "systemctl start",
+    "systemctl restart",
+    "requests.post(",
+    "requests.put(",
+    "requests.patch(",
+    "requests.delete(",
+    "wp-json",
+    "WORDPRESS_APP_PASSWORD=",
+    "printenv",
+    "cat /etc/ai-media-os/credential.env",
+    "echo $WORDPRESS_"
+  ],
+  "activation_actions": {
+    "daemon_reload_executed": false,
+    "systemctl_enable_executed": false,
+    "systemctl_start_executed": false,
+    "systemctl_restart_executed": false
+  },
+  "execution_actions": {
+    "rm_executed": false,
+    "credential_env_created": false,
+    "secret_input_executed": false,
+    "phase8_29_to_8_40_rerun_executed": false,
+    "wordpress_api_call_attempted": false,
+    "wordpress_draft_created": false,
+    "wordpress_publish_executed": false
+  },
+  "allowed_next_step": "Controlled removal execution checkpoint"
+}

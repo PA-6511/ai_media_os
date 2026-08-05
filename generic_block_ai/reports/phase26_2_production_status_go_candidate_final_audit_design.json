@@ -1,0 +1,77 @@
+{
+  "phase_id": "26-2",
+  "phase_name": "Production Status GO Candidate Final Audit Design",
+  "phase_japanese_name": "production_status GO候補の最終監査設計",
+  "purpose": "Design final audit rules for production_status GO candidate before any authorization or implementation.",
+  "layer": "production_status_go_candidate_final_audit_layer",
+  "design_category": "reports_only",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "operation_transition_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "phase_26_2_scope": {
+    "scope_1_input_contract": {
+      "scope_id": "INPUT_CONTRACT",
+      "required_inputs": {
+        "phase26_1_evidence_receipt_status": "PASS_DESIGN_ONLY"
+      }
+    },
+    "scope_2_final_audit_rules": {
+      "scope_id": "FINAL_AUDIT_RULES",
+      "rules": {
+        "rule_P26A1": "Collect all GO candidate evidence from Phase 25",
+        "rule_P26A2": "Verify all evidence locks, signatures, and audit trails are intact",
+        "rule_P26A3": "Check for any unresolved NO_GO or ABORT conditions",
+        "rule_P26A4": "If all checks PASS, mark as GO_AUDIT_CANDIDATE; else, maintain NO_GO"
+      }
+    },
+    "scope_3_report_structure": {
+      "scope_id": "REPORT_STRUCTURE",
+      "sections": {
+        "section_1_header": {
+          "report_id": "PHASE26_2_GO_CANDIDATE_FINAL_AUDIT_<UTC_TIMESTAMP>",
+          "report_type": "production_status_go_candidate_final_audit",
+          "generated_at_utc": "RFC3339",
+          "generated_by": "authority_identifier"
+        },
+        "section_2_audit_summary": {
+          "evidence_lock_status": "LOCKED | UNLOCKED",
+          "signature_status": "VALID | INVALID",
+          "unresolved_no_go_count": "integer",
+          "abort_condition_triggered": "YES | NO"
+        },
+        "section_3_audit_judgment": {
+          "final_audit_status": "GO_AUDIT_CANDIDATE | NO_GO",
+          "production_status": "NO_GO",
+          "operation_transition_go_authorization": "NOT_GRANTED"
+        }
+      }
+    }
+  },
+  "phase_26_2_governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "state_invariants": {
+      "app_implementation_status": "NO_GO",
+      "tests_implementation_status": "NO_GO",
+      "production_status": "NO_GO",
+      "operation_transition_go_authorization": "NOT_GRANTED",
+      "changed_area": "reports only"
+    }
+  }
+}

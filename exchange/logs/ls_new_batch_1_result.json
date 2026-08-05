@@ -1,0 +1,35 @@
+{
+  "phase_id": "LS-NEW-BATCH-1",
+  "status": "PASS_DESIGN_ONLY_NO_EXECUTION",
+  "decision": "CSV_TO_NORMALIZED_JSON_INPUT_BASELINE_READY",
+  "schema_id": "NEW_RELEASE_BATCH_INPUT_SCHEMA_V1",
+  "template_contract_id": "POST185_STANDARD_TEMPLATE_V1_FIXED",
+  "input_path": "exchange/examples/new_release_batch_input.example.csv",
+  "normalized_output_path": "exchange/examples/new_release_batch_normalized.example.json",
+  "normalized_record_count": 1,
+  "item_status_counts": {
+    "STORE_PAGE_NOT_FOUND": 1
+  },
+  "verified_checks": [
+    "schema_phase_id",
+    "schema_identity",
+    "post185_contract_reference",
+    "header_and_field_definition",
+    "execution_boundary",
+    "csv_header_exact_match",
+    "required_field_validation",
+    "type_normalization",
+    "blank_to_null",
+    "duplicate_detection",
+    "idempotency_key_generation"
+  ],
+  "wordpress_write_allowed": false,
+  "wordpress_publish_allowed": false,
+  "x_post_allowed": false,
+  "external_api_call_allowed": false,
+  "production_status": "NO_GO",
+  "safety_state": "DRY_RUN_ONLY",
+  "ready_for_ls_new_batch_2": true,
+  "ready_for_x_fb_0": true,
+  "next_phase_execution_allowed": false
+}

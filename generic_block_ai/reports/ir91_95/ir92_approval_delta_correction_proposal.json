@@ -1,0 +1,65 @@
+{
+  "schema_version": "ir92_approval_delta_correction_proposal_v1",
+  "phase": "IR92",
+  "generated_at": "2026-05-24T14:43:33.220126+00:00",
+  "source_task_id": "ir91_95_live_trial",
+  "validation_result": "PASS",
+  "validation_failed_checks": [],
+  "validation_warnings": [],
+  "approval_delta_correction_proposal": {
+    "proposal_id": "ir92_proposal_ir91_95_live_trial_20260524T144333Z",
+    "generated_at": "2026-05-24T14:43:33.220120+00:00",
+    "source_task_id": "ir91_95_live_trial",
+    "new_cycle_id": "IR71_PLUS_CYCLE_A",
+    "correction_proposals": [
+      {
+        "item": "go_decision_document",
+        "proposal": "collect_go_decision_document_evidence",
+        "expected_outcome": "status moves from PLANNED to READY_FOR_REVIEW"
+      },
+      {
+        "item": "release_approver_signature",
+        "proposal": "collect_release_approver_signature_evidence",
+        "expected_outcome": "status moves from PLANNED to READY_FOR_REVIEW"
+      },
+      {
+        "item": "safety_redeclaration_record",
+        "proposal": "collect_safety_redeclaration_record_evidence",
+        "expected_outcome": "status moves from PLANNED to READY_FOR_REVIEW"
+      },
+      {
+        "item": "full_test_matrix_record",
+        "proposal": "collect_full_test_matrix_record_evidence",
+        "expected_outcome": "status moves from PLANNED to READY_FOR_REVIEW"
+      },
+      {
+        "item": "execution_authorization_record",
+        "proposal": "collect_execution_authorization_record_evidence",
+        "expected_outcome": "status moves from PLANNED to READY_FOR_REVIEW"
+      }
+    ],
+    "proposal_count": 5,
+    "ready_for_re_review": true,
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "proposal_hash": "ab984623d03fe9bf313a968cbc6e6cb65b67198dba8c8be4edc71d163d8fc3d5",
+  "safety_gate_snapshot": {
+    "dry_run": "maintained",
+    "OBSERVE": "maintained",
+    "submission_execution_blocked": true,
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "network_transmission_executed": false,
+    "production_release": false,
+    "GitHub_push": "未実行"
+  }
+}

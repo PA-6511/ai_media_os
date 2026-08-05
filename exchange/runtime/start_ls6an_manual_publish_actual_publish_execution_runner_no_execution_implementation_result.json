@@ -1,0 +1,15 @@
+{
+  "phase": "LS-6AN",
+  "document_type": "MANUAL_PUBLISH_ACTUAL_PUBLISH_EXECUTION_RUNNER_NO_EXECUTION_IMPLEMENTATION_RUNTIME",
+  "status": "MANUAL_PUBLISH_ACTUAL_PUBLISH_EXECUTION_RUNNER_NO_EXECUTION_IMPLEMENTATION_RECORDED_NO_PUBLISH",
+  "post_id": 183,
+  "post_link": "https://hoshido.jp/?p=183",
+  "returned_post_status": "draft",
+  "actual_publish_execution_runner_no_execution_implementation_ready": true,
+  "actual_publish_execution_runner_execution_enabled": false,
+  "actual_publish_execution_runner_executed": false,
+  "publish_execution_still_blocked": true,
+  "locked": true,
+  "errors": [],
+  "generated_at": "2026-07-04T08:05:27.013740+00:00"
+}

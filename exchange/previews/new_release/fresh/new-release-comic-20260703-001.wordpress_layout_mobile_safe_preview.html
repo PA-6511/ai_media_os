@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>M23 スマートフォン強制表示</title>
+<style>
+#ebook-product-192 {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.25rem;
+  align-items: start;
+  width: 100%;
+}
+
+#ebook-product-192,
+#ebook-product-192 * {
+  box-sizing: border-box;
+}
+
+#ebook-product-192 .ebook-product-card__cover {
+  min-width: 0;
+}
+
+#ebook-product-192 .ebook-product-card__cover .ls-book-cover {
+  margin: 0;
+}
+
+#ebook-product-192 .ebook-product-card__cover img {
+  display: block;
+  width: min(100%, 360px);
+  height: auto;
+  margin-inline: auto;
+}
+
+#ebook-product-192 .ebook-product-card__content {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+#ebook-product-192 .ebook-product-card__details {
+  order: 1;
+  display: grid;
+  width: 100%;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid #d8d8d8;
+  border-radius: 0.5rem;
+  background: #fff;
+}
+
+#ebook-product-192 .ebook-product-card__detail-row {
+  display: grid;
+  grid-template-columns: minmax(6.5rem, 32%) minmax(0, 1fr);
+  margin: 0;
+  border-bottom: 1px solid #e3e3e3;
+}
+
+#ebook-product-192 .ebook-product-card__detail-row:last-child {
+  border-bottom: 0;
+}
+
+#ebook-product-192 .ebook-product-card__detail-row dt,
+#ebook-product-192 .ebook-product-card__detail-row dd {
+  min-width: 0;
+  margin: 0;
+  padding: 0.72rem 0.85rem;
+  line-height: 1.6;
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+
+#ebook-product-192 .ebook-product-card__detail-row dt {
+  font-weight: 700;
+  background: #f6f6f6;
+}
+
+#ebook-product-192 .ebook-product-card__pr {
+  order: 2;
+  margin: 0;
+  padding: 0.62rem 0.78rem;
+  border: 1px solid #d8d8d8;
+  border-radius: 0.4rem;
+  background: #fafafa;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.55;
+}
+
+#ebook-product-192 .ebook-product-card__stores {
+  order: 3;
+  display: grid;
+  gap: 0.75rem;
+  margin: 0;
+}
+
+#ebook-product-192 .ebook-product-card__stores > * {
+  width: 100%;
+  margin: 0;
+}
+
+@media (max-width: 479px) {
+  #ebook-product-192 .ebook-product-card__detail-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  #ebook-product-192 .ebook-product-card__detail-row dt {
+    padding-bottom: 0.35rem;
+  }
+
+  #ebook-product-192 .ebook-product-card__detail-row dd {
+    padding-top: 0.35rem;
+  }
+}
+
+@media (min-width: 768px) {
+  #ebook-product-192 {
+    grid-template-columns: minmax(260px, 38%) minmax(0, 1fr);
+    gap: 2rem;
+  }
+
+  #ebook-product-192 .ebook-product-card__cover img {
+    width: 100%;
+    max-width: 360px;
+  }
+
+  #ebook-product-192 .ebook-product-card__pr {
+    order: 1;
+  }
+
+  #ebook-product-192 .ebook-product-card__stores {
+    order: 2;
+  }
+
+  #ebook-product-192 .ebook-product-card__details {
+    order: 3;
+  }
+
+  #ebook-product-192 .ebook-product-card__detail-row {
+    grid-template-columns: minmax(7rem, 28%) minmax(0, 1fr);
+  }
+}
+
+
+body {
+  margin: 0;
+  padding: 2rem;
+  background: #ececec;
+  color: #222;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+}
+
+.preview-header,
+.preview-safety,
+.preview-manifest,
+.preview-stage {
+  width: min(100%, 390px);
+  margin-inline: auto;
+}
+
+.preview-header,
+.preview-safety,
+.preview-manifest {
+  margin-bottom: 1.25rem;
+  padding: 1rem;
+  border: 1px solid #cfcfcf;
+  border-radius: 0.6rem;
+  background: #fff;
+}
+
+.preview-stage {
+  padding: 1.25rem;
+  border: 1px solid #bdbdbd;
+  border-radius: 0.7rem;
+  background: #fff;
+}
+
+.preview-safety {
+  font-weight: 700;
+}
+
+.preview-manifest {
+  overflow-x: auto;
+}
+
+.preview-manifest table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.preview-manifest th,
+.preview-manifest td {
+  padding: 0.55rem;
+  border: 1px solid #d7d7d7;
+  text-align: left;
+  vertical-align: top;
+}
+
+.preview-manifest code {
+  overflow-wrap: anywhere;
+}
+
+#ebook-product-192 a,
+#ebook-product-192 [aria-disabled="true"] {
+  pointer-events: none !important;
+  cursor: not-allowed !important;
+}
+
+#ebook-product-192 .ebook-product-card__stores > * {
+  display: block;
+  padding: 0.9rem;
+  border: 1px solid #bdbdbd;
+  border-radius: 0.5rem;
+  text-align: center;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+#ebook-product-192 .ls-store-disabled {
+  opacity: 0.55;
+}
+
+
+#ebook-product-192 {
+  grid-template-columns: minmax(0, 1fr) !important;
+}
+
+#ebook-product-192 .ebook-product-card__details {
+  order: 1 !important;
+}
+
+#ebook-product-192 .ebook-product-card__pr {
+  order: 2 !important;
+}
+
+#ebook-product-192 .ebook-product-card__stores {
+  order: 3 !important;
+}
+
+#ebook-product-192 .ebook-product-card__detail-row {
+  grid-template-columns: minmax(0, 1fr) !important;
+}
+
+
+</style>
+</head>
+<body data-preview-mode="mobile">
+<section class="preview-header">
+  <h1>M23 スマートフォン強制表示</h1>
+  <p>WordPress投稿ID192・人間レビュー専用ローカルプレビュー</p>
+</section>
+
+<section class="preview-safety">
+  外部リンクは無効化済みです。外部画像は埋込みプレースホルダーへ置換されています。
+  このファイルには完全なストアURLやアフィリエイト識別子を含めていません。
+</section>
+
+<section class="preview-manifest">
+  <h2>安全なストア導線確認</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>ストア</th>
+        <th>状態</th>
+        <th>ホスト</th>
+        <th>URLフィンガープリント</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>amazon</td><td>disabled_no_source_link</td><td>なし（リンク未設定）</td><td><code>なし</code></td></tr>
+<tr><td>rakuten_kobo</td><td>disabled_no_source_link</td><td>なし（リンク未設定）</td><td><code>なし</code></td></tr>
+<tr><td>dmm</td><td>active_source_link_disabled_in_safe_preview</td><td>al.dmm.com</td><td><code>f01572020caf88cd0a017e0e739bc492394fa275eeac0e346328adba0fd99141</code></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<main class="preview-stage">
+<div id="ebook-product-192" class="ebook-new-release-article ebook-product-card" data-template-id="POST185_STANDARD_TEMPLATE_V1" data-layout-version="M22-FIX2-SCHEMA-CONSISTENT-V1">
+  <div class="ebook-product-card__cover">
+<figure class="ls-book-cover">
+      <img alt="ダークギャザリング 第20巻 書影" loading="lazy" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iOTAwIiB2aWV3Qm94PSIwIDAgNjQwIDkwMCI+CjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iOTAwIiBmaWxsPSIjZjJmMmYyIi8+CjxyZWN0IHg9IjI0IiB5PSIyNCIgd2lkdGg9IjU5MiIgaGVpZ2h0PSI4NTIiIHJ4PSIxOCIgZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSIjYjhiOGI4IiBzdHJva2Utd2lkdGg9IjQiLz4KPHRleHQgeD0iMzIwIiB5PSI0MjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjM4IiBmaWxsPSIjMzMzMzMzIj7mm7jlvbHjg5fjg6zjg5Pjg6Xjg7w8L3RleHQ+Cjx0ZXh0IHg9IjMyMCIgeT0iNDgwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIyNCIgZmlsbD0iIzY2NjY2NiI+5aSW6YOo55S75YOP6YCa5L+h44KS54Sh5Yq55YyW44GX44Gm44GE44G+44GZPC90ZXh0Pgo8L3N2Zz4=" data-preview-asset-state="embedded-placeholder" data-preview-original-asset-fingerprint="92355c98f5a2405a25358ee21387ec4ac2bca2bdf7b40a0df3bd4739f48b5d7e">
+    </figure>
+  </div>
+  <div class="ebook-product-card__content">
+    <dl class="ebook-product-card__details">
+      <div class="ebook-product-card__detail-row">
+        <dt>作品名</dt>
+        <dd>ダークギャザリング</dd>
+      </div>
+      <div class="ebook-product-card__detail-row">
+        <dt>価格</dt>
+        <dd>616円（税込）</dd>
+      </div>
+      <div class="ebook-product-card__detail-row">
+        <dt>作者</dt>
+        <dd>近藤憲一</dd>
+      </div>
+      <div class="ebook-product-card__detail-row">
+        <dt>出版社</dt>
+        <dd>集英社</dd>
+      </div>
+      <div class="ebook-product-card__detail-row">
+        <dt>発売日</dt>
+        <dd>2026-07-03</dd>
+      </div>
+    </dl>
+    <p class="ebook-product-card__pr" role="note">PR：このページにはアフィリエイト広告が含まれます。</p>
+    <div class="ebook-product-card__stores ls-store-buttons" aria-label="電子書籍ストア">
+    <span class="ls-store-btn ls-store-amazon ls-store-disabled" aria-disabled="true">Amazonで確認（リンク準備中）</span>
+    <span class="ls-store-btn ls-store-kobo ls-store-disabled" aria-disabled="true">楽天Koboで確認（リンク準備中）</span>
+    <a class="ls-store-btn ls-store-dmm" rel="nofollow sponsored noopener" href="#preview-disabled" aria-disabled="true" tabindex="-1" data-preview-host="al.dmm.com" data-preview-url-fingerprint="f01572020caf88cd0a017e0e739bc492394fa275eeac0e346328adba0fd99141">DMMブックスで確認</a>
+  </div>
+  </div>
+</div>
+
+</main>
+</body>
+</html>

@@ -1,0 +1,105 @@
+{
+  "phase_id": "38-7",
+  "phase_name": "Actual Process Start GO/NO_GO Final Approval Integrated Judgment Report Design",
+  "phase_japanese_name": "actual_process_start_go / NO_GO 最終承認統合判定レポート設計",
+  "purpose": "Design integrated final judgment report for actual_process_start_go / NO_GO final approval layer, ensuring all state invariants and audit trails are preserved.",
+  "layer": "actual_process_start_go_final_approval_layer",
+  "design_category": "reports_only",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "operation_transition_go_authorization": "NOT_GRANTED",
+    "production_reflection_go_authorization": "NOT_GRANTED",
+    "freeze_release_go_authorization": "NOT_GRANTED",
+    "execution_start_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "phase_38_7_scope": {
+    "scope_1_input_contract": {
+      "scope_id": "INPUT_CONTRACT",
+      "required_inputs": {
+        "phase38_4_to_38_6_status": "PASS_DESIGN_ONLY",
+        "phase38_actual_process_start_final_approval_reinforcement_status": "PASS_DESIGN_ONLY"
+      }
+    },
+    "scope_2_synthesis_rules": {
+      "scope_id": "SYNTHESIS_RULES",
+      "rules": {
+        "rule_P38I1": "Synthesize all Phase 38-1 through Phase 38-6 judgments and results",
+        "rule_P38I2": "Verify evidence consistency across all sub-phases",
+        "rule_P38I3": "Confirm actual_process_start_go / NO_GO final approval layer status",
+        "rule_P38I4": "Verify all NO_GO/NOT_GRANTED invariants are maintained",
+        "rule_P38I5": "Create comprehensive final judgment with immutable audit trail"
+      }
+    },
+    "scope_3_report_structure": {
+      "scope_id": "REPORT_STRUCTURE",
+      "sections": {
+        "section_1_header": {
+          "report_id": "PHASE38_7_ACTUAL_PROCESS_START_GO_NO_GO_FINAL_APPROVAL_INTEGRATED_JUDGMENT_<UTC_TIMESTAMP>",
+          "report_type": "actual_process_start_go_no_go_final_approval_integrated_judgment",
+          "generated_at_utc": "RFC3339",
+          "generated_by": "authority_identifier"
+        },
+        "section_2_synthesis_summary": {
+          "phase38_1_status": "PASS_DESIGN_ONLY",
+          "phase38_2_status": "PASS_DESIGN_ONLY",
+          "phase38_3_status": "PASS_DESIGN_ONLY",
+          "phase38_4_status": "PASS_DESIGN_ONLY",
+          "phase38_5_status": "PASS_DESIGN_ONLY",
+          "phase38_6_status": "PASS_DESIGN_ONLY",
+          "evidence_consistency": "CONSISTENT | INCONSISTENT"
+        },
+        "section_3_final_approval_status": {
+          "actual_process_start_go_final_approval_status": "PASS_DESIGN_ONLY",
+          "boundary_violation_present": "YES | NO",
+          "abort_conditions_triggered": "YES | NO"
+        },
+        "section_4_invariant_confirmation": {
+          "production_status": "NO_GO",
+          "operation_transition_go_authorization": "NOT_GRANTED",
+          "production_reflection_go_authorization": "NOT_GRANTED",
+          "freeze_release_go_authorization": "NOT_GRANTED",
+          "execution_start_go_authorization": "NOT_GRANTED",
+          "actual_process_start_go_authorization": "NOT_GRANTED",
+          "manual_release_go_authorization": "NOT_GRANTED",
+          "changed_area": "reports only"
+        },
+        "section_5_final_judgment": {
+          "phase38_integrated_judgment": "PASS_DESIGN_ONLY"
+        }
+      }
+    }
+  },
+  "phase_38_7_governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution",
+      "manual_release_execution",
+      "actual_process_start_execution"
+    ],
+    "state_invariants": {
+      "production_status": "NO_GO",
+      "operation_transition_go_authorization": "NOT_GRANTED",
+      "production_reflection_go_authorization": "NOT_GRANTED",
+      "freeze_release_go_authorization": "NOT_GRANTED",
+      "execution_start_go_authorization": "NOT_GRANTED",
+      "actual_process_start_go_authorization": "NOT_GRANTED",
+      "manual_release_go_authorization": "NOT_GRANTED",
+      "changed_area": "reports only"
+    }
+  }
+}

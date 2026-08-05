@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-3A",
+  "policy_id": "NEW_RELEASE_READY_PREVIEW_INTEGRATION_POLICY_V1",
+  "source_phase_id": "LS-NEW-BATCH-3",
+  "template_contract_id": "POST185_STANDARD_TEMPLATE_V1_FIXED",
+  "expected_result": {
+    "source_record_count": 1,
+    "generated_item_count": 1,
+    "skipped_item_count": 0,
+    "source_classification": "READY_FOR_DRAFT",
+    "wordpress_status": "draft"
+  },
+  "required_html_elements": [
+    "ebook-new-release-article",
+    "ebook-pr-disclosure",
+    "ebook-cover-image",
+    "ebook-price-card",
+    "ebook-store-button",
+    "Amazon Kindle",
+    "楽天Kobo"
+  ],
+  "execution_boundary": {
+    "local_preview_write_allowed": true,
+    "local_json_write_allowed": true,
+    "external_api_call_allowed": false,
+    "web_scraping_allowed": false,
+    "wordpress_write_allowed": false,
+    "wordpress_publish_allowed": false,
+    "x_api_call_allowed": false,
+    "x_post_allowed": false,
+    "automatic_rule_update_allowed": false,
+    "production_status": "NO_GO",
+    "safety_state": "DRY_RUN_ONLY"
+  },
+  "next_phase": {
+    "phase_id": "LS-NEW-BATCH-4",
+    "execution_allowed": false
+  }
+}

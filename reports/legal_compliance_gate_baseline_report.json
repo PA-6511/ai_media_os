@@ -1,0 +1,43 @@
+{
+  "report_type": "legal_compliance_gate_baseline",
+  "phase": "L-2",
+  "recorded_at_utc": "2026-05-24T03:51:47Z",
+  "block_id": "legal_compliance_gate_ai",
+  "baseline_scope": "standalone_block_validation_before_core_integration",
+  "production_status": "NO_GO",
+  "execution": "DRY_RUN",
+  "summary": {
+    "implementation_status": "PASS_INITIAL_IMPLEMENTATION",
+    "core_role_preserved": true,
+    "block_role": "risk_detection_and_evidence_only",
+    "core_final_decision_required": true,
+    "human_review_required": true
+  },
+  "evidence": {
+    "pytest": {
+      "command": "pytest legal_compliance_gate_ai/tests -q",
+      "result": "6 passed",
+      "passed_count": 6,
+      "failed_count": 0
+    },
+    "scanner_run": {
+      "command": "python3 legal_compliance_gate_ai/run_legal_compliance_scan.py",
+      "status": "LEGAL_REVIEW_REQUIRED",
+      "detected_risks": [
+        "AFFILIATE_DISCLOSURE_REQUIRED",
+        "API_TERMS_CHECK_REQUIRED"
+      ]
+    },
+    "report_file": "legal_compliance_gate_ai/reports/legal_compliance_scan_result.json"
+  },
+  "safety_constraints": {
+    "no_external_communication": true,
+    "no_posting": true,
+    "no_deletion": true,
+    "no_updates": true,
+    "no_export": true,
+    "no_auto_shutdown": true
+  },
+  "next_phase": "L-3",
+  "next_action": "Add Core AI invocation point while preserving final decision authority in Core AI + Human Review"
+}

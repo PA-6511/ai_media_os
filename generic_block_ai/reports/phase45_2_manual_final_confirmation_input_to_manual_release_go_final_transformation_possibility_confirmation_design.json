@@ -1,0 +1,38 @@
+{
+  "_meta": {
+    "phase": "45-2",
+    "phase_name": "手動最終確認後・発効可否分離確認層",
+    "layer": "受領/確認層 (receipt and confirmation layer)",
+    "title": "手動最終確認入力から manual_release_go への最終変換可否確認設計",
+    "created": "2026-05-14",
+    "author": "governance-framework",
+    "status": "PASS_DESIGN_ONLY",
+    "reports_only": true
+  },
+  "scope": "Phase 45-1 で受領・整合確認された Phase 44 完了証跡に基づいて、以下の判定を設計する：手動最終確認入力の結果（合格/不合格/異常）が、manual_release_go_authorization を 'NOT_GRANTED' から 'GRANTED' へ変換するための条件を満たしているか否かを、設計層で確認する。判定基準：(1) 手動確認者が所定権限レベルを保持しているか、(2) 確認入力がフォーマット要件を完全に満たしているか、(3) 確認入力が Phase 43-9 / Phase 44-7 の最終判定と矛盾していないか、(4) NO_GO 維持ルール（Phase 44-6）で定義された異常条件に該当しないか。これら全ての条件を満たす場合のみ 'GRANTED 変換可能' と報告する。",
+  "governance": {
+    "production_status": "NO_GO",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "report": {
+    "description": "Phase 45-2 では、手動最終確認の結果に基づいて、manual_release_go_authorization を 'NOT_GRANTED' から 'GRANTED' へ変換することが可能であるか否かを判定するプロセスを 設計層で定義する。(1) 権限確認：手動確認者が Phase 44-5 で定義された権限レベル基準を満たしているか を再確認し、権限不足を検出した場合は 'GRANTED 変換不可' と報告する。(2) フォーマット完全性確認：手動最終確認入力が Phase 44-3 で設計されたフォーマット（確認項目、確認値、確認日時、確認者情報）を完全に満たしているか を再検証し、不完全を検出した場合は 'GRANTED 変換不可' と報告する。(3) 整合性確認：手動確認入力の内容が Phase 43-9 の実行不可境界確認最終判定および Phase 44-7 の統合最終判定と矛盾していないか を再確認し、矛盾を検出した場合は 'GRANTED 変換不可' と報告する。(4) 異常条件チェック：Phase 44-6 で定義された NO_GO 維持ルール（入力不完全・矛盾・権限不足・テンプレート逸脱・その他異常）のいずれかに該当しないか を再チェックし、異常を検出した場合は 'GRANTED 変換不可' と報告する。(5) 最終判定：上記全4項目を通過した場合のみ 'manual_release_go_authorization → GRANTED 変換可能' と報告し、1項目でも不合格の場合は 'GRANTED 変換不可' と報告する。このプロセスは全て 設計層（reports only）で実装され、実処理開始許可を含まない。変換不可の判定結果は自動的に production_status = 'NO_GO' を再確認する。",
+    "invariants": [
+      "NO_GO 維持：GRANTED 変換可否判定プロセスを通じて production_status = 'NO_GO' は維持される（変換不可の場合は特に明確に）",
+      "NOT_GRANTED 維持：GRANTED 変換不可と判定された場合、manual_release_go_authorization は 'NOT_GRANTED' のまま固定される",
+      "reports only：変換可否判定プロセス全体は報告書形式で実装され、実処理への権限付与を含まない",
+      "全条件必須：4つの判定項目（権限、フォーマット、整合性、異常チェック）全て合格が必須条件（1項目不合格で変換不可）",
+      "自動否定：異常検出時は自動的に GRANTED 変換不可を記録（例外なし）"
+    ],
+    "actions": [],
+    "notes": [
+      "Phase 45-2 は 設計層のみで実装される（実処理開始許可ではない）",
+      "manual_release_go_authorization 変換可否判定は reports only であり、生産環境コード変更を含まない",
+      "GRANTED 変換可能という判定 ≠ 実際の GRANTED 発効（Phase 45-3 と並行進行、Phase 46 以降で実測）",
+      "manual_release_go と actual_process_start_go は完全に独立して判定される（混在なし）",
+      "変換不可の場合も NO_GO を記録し、完全に分離された証跡として保持する",
+      "実処理開始は NO_GO のまま"
+    ]
+  }
+}

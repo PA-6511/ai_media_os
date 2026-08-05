@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-2D",
+  "approval_id": "ls-new-batch-4g-2d-human-one-shot-candidate-search-approval",
+  "approval_label": "APPROVED_FOR_ONE_SHOT_READ_ONLY_CATEGORY_CANDIDATE_SEARCH_ONLY",
+  "approved_by": "HUMAN_OPERATOR",
+  "human_explicit_approval": true,
+  "approved_at_utc": "2026-07-10T15:43:43.216290+00:00",
+  "approval_scope": {
+    "target_hostname": "hoshido.jp",
+    "maximum_http_requests": 1,
+    "maximum_attempts": 1,
+    "retry_allowed": false,
+    "method": "GET",
+    "rest_path": "/wp-json/wp/v2/categories",
+    "query_parameters": {
+      "search": "コミック新刊",
+      "per_page": 100,
+      "_fields": "id,slug,name,count"
+    },
+    "request_body": null,
+    "redirect_follow": false,
+    "proxy_use": false,
+    "tls_verification": true,
+    "candidate_list_recording_allowed": true,
+    "automatic_candidate_selection_allowed": false,
+    "automatic_category_mapping_allowed": false,
+    "wordpress_category_creation_allowed": false,
+    "wordpress_write_allowed": false,
+    "payload_modification_allowed": false
+  },
+  "source_candidate_search_scope_digest_sha256": "cac6fd4e30f4cfc4ad66466108dac1da38bef03c910674c061de170ccc1e3c29",
+  "source_authorization_package_digest_sha256": "5d239f38f4319b2634ea280175a9f30c8cd31b0a0e06b303fae9107494ea8f4d",
+  "source_package_phase_id": "LS-NEW-BATCH-4G-2C",
+  "approval_label_consumed": false,
+  "approval_reuse_allowed": false,
+  "execution_allowed": true,
+  "approval_evidence_digest_sha256": "339b07d6c44d9fedaedad3fe9abf77ac00c039d86adca5715890130232910bc5"
+}

@@ -1,0 +1,12 @@
+{
+  "status": "FAIL",
+  "reason": "status must be one of PASS/WARN/FAIL/ABORT",
+  "package_type": "decision_package",
+  "details": [
+    "status=None"
+  ],
+  "human_review_required": true,
+  "production_status": "NO_GO",
+  "created_at": "2026-05-24T04:09:46.501393+00:00",
+  "input_path": "exchange/incoming/decision_package.example.json"
+}

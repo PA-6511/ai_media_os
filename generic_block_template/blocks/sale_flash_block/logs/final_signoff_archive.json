@@ -1,0 +1,47 @@
+{
+  "status": "PASS",
+  "phase": "SFB-9",
+  "generated_at": "2026-06-14T04:38:38.927422+00:00",
+  "block_name": "sale_flash_block",
+  "mode": "DRY_RUN",
+  "production_status": "NO_GO",
+  "missing_inputs": [],
+  "baseline_locked": true,
+  "final_human_gate_status": "READY_FOR_FINAL_HUMAN_GATE",
+  "required_final_human_gate_status": "READY_FOR_FINAL_HUMAN_GATE",
+  "final_human_gate_ready": true,
+  "wordpress_dry_run_execution_gate": "READY_FOR_DRY_RUN_ONLY",
+  "required_dry_run_execution_gate": "READY_FOR_DRY_RUN_ONLY",
+  "dry_run_execution_gate_ready": true,
+  "approval_token_consumed": false,
+  "approval_label_consumed": false,
+  "human_approval_consumed": false,
+  "production_write_blocked": true,
+  "allow_production_write": false,
+  "external_api_called": false,
+  "external_network_called": false,
+  "wordpress_write_executed": false,
+  "publish_executed": false,
+  "update_executed": false,
+  "delete_executed": false,
+  "export_executed": false,
+  "signoff_ready": true,
+  "signoff_statements": {
+    "human_signoff_primary": "SFB-1..SFB-9 artifacts reviewed. DRY_RUN rehearsal is complete. Production WordPress write remains BLOCKED.",
+    "human_signoff_secondary": "Approval token/label are intentionally NOT consumed in SFB-9.",
+    "human_signoff_no_go_clause": "NO_GO is maintained until a separate production-governance phase approves write boundary change."
+  },
+  "approval_template": {
+    "token_label": "UNCONSUMED",
+    "approval_label": "UNCONSUMED",
+    "operator": "",
+    "ticket": "",
+    "comment": ""
+  },
+  "decision": {
+    "allow_wordpress_dry_run_execution": true,
+    "allow_wordpress_production_write": false,
+    "reason": "SFB-9 is sign-off wording design only; write boundary remains blocked"
+  },
+  "next_recommended_phase": "SFB-10: Governance-only production boundary review"
+}

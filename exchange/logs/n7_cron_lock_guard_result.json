@@ -1,0 +1,31 @@
+{
+  "phase": "N-7",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "human_approval_required": true,
+  "wordpress_write_executed": false,
+  "wordpress_post_created": false,
+  "external_state_change": false,
+  "executor_action_allowed": false,
+  "network_observation_only": true,
+  "communication_test_only": true,
+  "lock_written": false,
+  "lock_deleted": false,
+  "checked_at": "2026-05-31T14:00:11.439068+00:00",
+  "status": "PASS",
+  "lock_path": "/home/deploy/ai_media_os/exchange/locks/n_series_monitor.lock",
+  "lock_state": {
+    "lock_exists": false,
+    "age_seconds": null,
+    "is_stale": null,
+    "pid_in_lock": null,
+    "pid_alive": null
+  },
+  "acquire_simulation": {
+    "acquire_result": "WOULD_BLOCK",
+    "duplicate_detected": true,
+    "reason": "simulate_duplicate_enabled"
+  },
+  "duplicate_guard_functional": true
+}

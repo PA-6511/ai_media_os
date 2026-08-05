@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M27-FIX1",
+  "document_role": "M27_AUTHENTICATED_GET_TRANSPORT_FAILURE_DIAGNOSTIC",
+  "content_item_id": "new-release-comic-20260703-001",
+  "wordpress_post_id": 192,
+  "m27_preflight_passed": false,
+  "local_integrity_gate_passed": true,
+  "remote_failure_codes": [
+    "SINGLE_GET_REQUEST_FAILED"
+  ],
+  "safe_exception_type": "TimeoutError",
+  "failure_stage": "AFTER_REQUEST_SENT_BEFORE_RESPONSE_HEADERS",
+  "get_request_count": 1,
+  "non_get_request_count": 0,
+  "automatic_retry_count": 0,
+  "http_response_received": false,
+  "current_transport": "HTTP_CLIENT",
+  "current_transport_characteristics": {
+    "manual_https_connection": true,
+    "manual_getresponse_call": true,
+    "connection_close_header": true,
+    "safe_exception_message_suppressed": true
+  },
+  "prior_successful_result_found": false,
+  "prior_successful_result_path": null,
+  "prior_successful_runner_found": false,
+  "prior_successful_runner_path": null,
+  "prior_successful_runner_transport": null,
+  "revised_transport": "URLLIB_REQUEST",
+  "revised_transport_characteristics": {
+    "urllib_single_open": true,
+    "redirect_handler_blocks_redirects": true,
+    "automatic_retry_loop_absent": true,
+    "response_size_limit_present": true,
+    "accept_encoding_identity": true,
+    "connection_close_header": true,
+    "safe_exception_type_only": true,
+    "explicit_future_network_gate": true
+  },
+  "diagnostic_conclusion_codes": [
+    "LOCAL_ARTIFACT_INTEGRITY_PASSED",
+    "REQUEST_WAS_SENT",
+    "NO_HTTP_RESPONSE_HEADERS_RECEIVED",
+    "FAILURE_LOCALIZED_TO_RESPONSE_ACQUISITION_STAGE",
+    "M26_AUTHORIZATION_REMAINS_UNCONSUMED",
+    "REVISED_URLLIB_SINGLE_GET_TRANSPORT_GENERATED"
+  ],
+  "credential_value_stored": false,
+  "username_stored": false,
+  "full_url_stored": false,
+  "authorization_header_stored": false,
+  "wordpress_content_stored": false,
+  "dns_resolution_performed": false,
+  "network_connection_performed": false,
+  "http_request_performed": false,
+  "wordpress_access_performed": false,
+  "wordpress_write_performed": false,
+  "wordpress_update_performed": false,
+  "authorization_consumed": false,
+  "recorded_at_utc": "2026-07-11T16:16:11.719502+00:00",
+  "diagnostic_digest_sha256": "8c9830eb0aa607e50bc4133473fd6d30ee8658a776bedabbd91081a4046b72bd"
+}

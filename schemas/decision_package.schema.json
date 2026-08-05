@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ai-media-os.local/schemas/decision_package.schema.json",
+  "title": "Decision Package",
+  "type": "object",
+  "required": [
+    "package_type",
+    "source",
+    "target",
+    "mode",
+    "execution",
+    "human_approval_required",
+    "risk_level",
+    "auto_post",
+    "auto_update",
+    "auto_delete",
+    "auto_export"
+  ],
+  "properties": {
+    "package_type": {
+      "type": "string",
+      "const": "decision_package"
+    },
+    "source": {
+      "type": "string",
+      "minLength": 1
+    },
+    "target": {
+      "type": "string",
+      "minLength": 1
+    },
+    "mode": {
+      "type": "string",
+      "enum": ["CONNECTION_TEST"]
+    },
+    "execution": {
+      "type": "string",
+      "enum": ["DRY_RUN"]
+    },
+    "human_approval_required": {
+      "type": "boolean",
+      "const": true
+    },
+    "risk_level": {
+      "type": "string",
+      "enum": ["LOW", "MEDIUM", "HIGH"]
+    },
+    "summary": {
+      "type": "string"
+    },
+    "reason": {
+      "type": "string",
+      "minLength": 1
+    },
+    "summary_reason": {
+      "type": "string",
+      "minLength": 1
+    },
+    "decision": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["PASS", "WARN", "FAIL", "ABORT"]
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "next_step": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "auto_post": {
+      "type": "boolean",
+      "const": false
+    },
+    "auto_update": {
+      "type": "boolean",
+      "const": false
+    },
+    "auto_delete": {
+      "type": "boolean",
+      "const": false
+    },
+    "auto_export": {
+      "type": "boolean",
+      "const": false
+    },
+    "human_review_required": {
+      "type": "boolean",
+      "const": true
+    },
+    "production_status": {
+      "type": "string",
+      "enum": ["NO_GO"]
+    }
+  },
+  "additionalProperties": true
+}

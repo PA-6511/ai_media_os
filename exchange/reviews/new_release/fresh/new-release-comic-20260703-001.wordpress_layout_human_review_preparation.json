@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M23",
+  "document_role": "WORDPRESS_RENDERED_LAYOUT_HUMAN_REVIEW_PREPARATION",
+  "content_item_id": "new-release-comic-20260703-001",
+  "wordpress_post_id": 192,
+  "human_review_status": "AWAITING_VISUAL_REVIEW",
+  "human_review_completed": false,
+  "human_review_verdict": "NOT_RECORDED",
+  "review_targets": [
+    {
+      "review_id": "DESKTOP_TWO_COLUMN_LAYOUT",
+      "required": true,
+      "review_result": "NOT_RECORDED"
+    },
+    {
+      "review_id": "MOBILE_SINGLE_COLUMN_ORDER",
+      "required": true,
+      "review_result": "NOT_RECORDED"
+    },
+    {
+      "review_id": "COVER_SIZE_AND_SPACING",
+      "required": true,
+      "review_result": "NOT_RECORDED"
+    },
+    {
+      "review_id": "STORE_BUTTON_ORDER_AND_BALANCE",
+      "required": true,
+      "review_result": "NOT_RECORDED"
+    },
+    {
+      "review_id": "PR_DISCLOSURE_VISIBILITY",
+      "required": true,
+      "review_result": "NOT_RECORDED"
+    },
+    {
+      "review_id": "DETAIL_WIDTH_WRAPPING_WHITESPACE",
+      "required": true,
+      "review_result": "NOT_RECORDED"
+    },
+    {
+      "review_id": "COMMENT_STATUS_CLOSED",
+      "required": true,
+      "machine_verified": true,
+      "review_result": "NOT_RECORDED"
+    },
+    {
+      "review_id": "UPDATE_FIELDS_CONTENT_AND_COMMENT_STATUS_ONLY",
+      "required": true,
+      "machine_verified": true,
+      "review_result": "NOT_RECORDED"
+    }
+  ],
+  "desktop_preview_path": "exchange/previews/new_release/fresh/new-release-comic-20260703-001.wordpress_layout_desktop_safe_preview.html",
+  "desktop_preview_sha256": "910b848cdce593d61e966a7fd1faa73d573c4eea317965e71b8c26d95f831a51",
+  "mobile_preview_path": "exchange/previews/new_release/fresh/new-release-comic-20260703-001.wordpress_layout_mobile_safe_preview.html",
+  "mobile_preview_sha256": "76e9cf117640d414a866202a9f2ff42309f86ec4c23bd55d3d21b48b3dae3358",
+  "safe_store_manifest_path": "exchange/reviews/new_release/fresh/new-release-comic-20260703-001.wordpress_layout_safe_store_manifest.json",
+  "safe_store_manifest_digest_sha256": "e688bb33c090294143936be7e1341410e579fda5f72ed3ce461d2e9fb32e40ae",
+  "source_rendered_content_sha256": "86ebae8e7f0c550ed6ee4726164a654269e9f2c6c64ac268945dac9714d31d30",
+  "source_scoped_css_sha256": "a77f2bc010432322a754006e97fa4bf2190fccb881cc2c361edd9e2f4bddec43",
+  "source_update_payload_digest_sha256": "864e33958393fefcf1b2c10ec7e3d85bf42648393f681386a88f19048585e487",
+  "comment_status_target": "closed",
+  "allowed_update_fields": [
+    "content",
+    "comment_status"
+  ],
+  "safe_preview_external_links_active": false,
+  "safe_preview_external_assets_requested": false,
+  "full_store_url_present": false,
+  "affiliate_identifier_present": false,
+  "wordpress_access_performed": false,
+  "wordpress_update_performed": false,
+  "authorization_issued": false,
+  "ready_for_human_visual_review": true,
+  "ready_for_wordpress_update_authorization_gate": false,
+  "production_status": "NO_GO",
+  "created_at_utc": "2026-07-11T13:13:15.100637+00:00",
+  "review_preparation_digest_sha256": "0cfc80e7df031b7eb1005f14c6527881da88828f246bf3669820fe0ee49f89ff"
+}

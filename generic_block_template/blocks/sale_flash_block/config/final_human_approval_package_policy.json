@@ -1,0 +1,27 @@
+{
+  "block_name": "sale_flash_block",
+  "phase": "SFB-7",
+  "mode": "DRY_RUN",
+  "production_status": "NO_GO",
+  "external_api_allowed": false,
+  "external_network_allowed": false,
+  "wordpress_write_allowed": false,
+  "publish_allowed": false,
+  "update_allowed": false,
+  "delete_allowed": false,
+  "export_allowed": false,
+  "input_baseline_lock_log": "logs/sale_flash_block_baseline_lock_report.json",
+  "input_payload_validation_log": "logs/wordpress_draft_payload_validation.json",
+  "input_wordpress_draft_handoff_log": "logs/wordpress_draft_handoff.json",
+  "output_json": "logs/final_human_approval_package.json",
+  "output_markdown": "logs/final_human_approval_package.md",
+  "required_final_human_gate_status": "READY_FOR_FINAL_HUMAN_GATE",
+  "approval_template": {
+    "title": "Sale Flash Block Final Approval (DRY_RUN)",
+    "required_statement": "I reviewed SFB-1..SFB-7 package and approve DRY_RUN execution only.",
+    "forbidden_statement": "Any production WordPress write/publish/update/delete/export is forbidden.",
+    "operator_field": "approved_by",
+    "datetime_field": "approved_at_utc",
+    "ticket_field": "approval_ticket"
+  }
+}

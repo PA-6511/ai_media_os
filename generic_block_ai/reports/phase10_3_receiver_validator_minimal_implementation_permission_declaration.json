@@ -1,0 +1,51 @@
+{
+  "_meta": {
+    "phase": "10-3",
+    "phase_name": "receiver validator 最小実装許可宣言",
+    "version": "1.0",
+    "created_date": "2026-05-12",
+    "status": "PASS_DESIGN_ONLY",
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only",
+    "description": "receiver validator の最小実装を許可する宣言のテンプレート。phase10_2 の integrated_decision が GO になった後にのみ有効化する。"
+  },
+  "references": [
+    "generic_block_ai/reports/phase10_1_phase9_human_review_execution_record.json",
+    "generic_block_ai/reports/phase10_2_app_tests_implementation_go_nogo_actual_decision.json",
+    "generic_block_ai/reports/phase9_3_receiver_validator_implementation_plan_reports_only_design.json"
+  ],
+  "activation_preconditions": [
+    "phase10_2.current_decision.integrated_decision == 'GO'",
+    "phase10_1.review_record.reviewer.signature が記入済みである",
+    "phase10_1.review_record.safety_boundary_verification の全項目が true である"
+  ],
+  "minimal_implementation_scope": {
+    "target_file": "generic_block_ai/app/receiver_validator.py",
+    "scope_note": "Phase 8-2 MID-A〜E の設計に従った最小実装のみ",
+    "hardcoding_constants": [
+      "OPERATION_MODE = 'OBSERVE'",
+      "EXECUTION = 'dry_run'",
+      "PRODUCTION_STATUS = 'NO_GO'",
+      "REQUIRES_HUMAN_APPROVAL = True",
+      "AUTO_EXECUTE_ALLOWED = False"
+    ],
+    "blocked_actions_enforcement": "BA-01〜BA-10 全て例外raise",
+    "test_target": "generic_block_ai/tests/test_receiver_validator.py"
+  },
+  "current_permission": {
+    "declaration_status": "NOT_YET_ACTIVATED",
+    "reason": "phase10_2.integrated_decision が NO_GO のため、本宣言は未発効。",
+    "app_implementation_status": "NO_GO",
+    "tests_implementation_status": "NO_GO"
+  },
+  "phase_decision": {
+    "phase10_3_status": "PASS_DESIGN_ONLY",
+    "app_implementation_status": "NO_GO",
+    "tests_implementation_status": "NO_GO",
+    "note": "本成果物は許可宣言の設計のみ。phase10_2 GO 後に別途発効手続きが必要。"
+  }
+}

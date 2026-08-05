@@ -1,0 +1,67 @@
+{
+  "report_id": "phase35_existing_audit_report",
+  "phase": "Phase 3.5-1A",
+  "status": "WARN",
+  "target_path": "generic_block_ai",
+  "target_path_exists": true,
+  "target_path_is_new": false,
+  "tracked_files_count": 14,
+  "untracked_files_count": 2,
+  "dangerous_operations_detected": false,
+  "production_execution_detected": false,
+  "wordpress_or_external_api_detected": false,
+  "phase35_compatible": true,
+  "recommended_next_action": "Add OBSERVE as an explicit key in manifest, policy, and guard while preserving dry_run and human review constraints.",
+  "tracked_files": [
+    "generic_block_ai/__init__.py",
+    "generic_block_ai/app/__init__.py",
+    "generic_block_ai/app/block_contract.py",
+    "generic_block_ai/app/block_runner.py",
+    "generic_block_ai/app/main.py",
+    "generic_block_ai/app/result_schema.py",
+    "generic_block_ai/app/safety_guard.py",
+    "generic_block_ai/block_manifest.json",
+    "generic_block_ai/config/policy.json",
+    "generic_block_ai/logs/.gitkeep",
+    "generic_block_ai/reports/.gitkeep",
+    "generic_block_ai/tests/test_manifest.py",
+    "generic_block_ai/tests/test_result_schema.py",
+    "generic_block_ai/tests/test_safety_guard.py"
+  ],
+  "untracked_files": [
+    "generic_block_ai/README.md",
+    "generic_block_ai/evidence/.gitkeep"
+  ],
+  "findings": {
+    "safety_controls": [
+      "block_manifest.json enforces mode=dry_run",
+      "block_manifest.json sets requires_human_approval=true",
+      "block_manifest.json sets auto_execute_allowed=false",
+      "safety_guard.py blocks forbidden actions and publish_content/delete_data/change_config when disabled",
+      "block_contract.py rejects manifest.mode values other than dry_run"
+    ],
+    "risk_notes": [
+      "generic_block_ai already exists as a tracked implementation and is not a new minimal Phase 3.5 folder",
+      "OBSERVE is documented in README but is not yet enforced as an explicit manifest/policy/guard key",
+      "notify_slack and collect_data remain declared capabilities and should stay under review before any future extension"
+    ],
+    "dangerous_matches_reviewed": [
+      "delete/export/publish terms were found only in forbidden action definitions, disabled capability declarations, or safety tests",
+      "No requests.post/put/patch, subprocess, os.system, wp-json, cron, or crontab usage was found in tracked source files"
+    ]
+  },
+  "classification": {
+    "maintain_candidates": [
+      "generic_block_ai/block_manifest.json",
+      "generic_block_ai/config/policy.json",
+      "generic_block_ai/app/safety_guard.py",
+      "generic_block_ai/app/block_runner.py",
+      "generic_block_ai/app/block_contract.py"
+    ],
+    "review_candidates": [
+      "generic_block_ai/block_manifest.json"
+    ],
+    "isolate_candidates": []
+  },
+  "summary": "Existing generic_block_ai can continue under a WARN judgment for Phase 3.5 because execution remains dry_run and human-gated, but OBSERVE is not yet a first-class enforced key."
+}

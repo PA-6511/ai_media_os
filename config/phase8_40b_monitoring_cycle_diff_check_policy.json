@@ -1,0 +1,45 @@
+{
+  "phase": "MONITOR-1",
+  "phase_name": "Phase8-40B Monitoring Cycle Diff Check",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "hold_state": "HOLD",
+  "required_reports": {
+    "phase8_40b": "exchange/logs/phase8_40b_adapter_route_final_hold_baseline_lock_result.json",
+    "adapter_route_index": "exchange/logs/phase8_adapter_route_hold_evidence_index.json",
+    "credential_non_secret": "exchange/logs/credential_env_non_secret_readiness_check.json",
+    "creators_tracking": "exchange/logs/creators_api_eligibility_tracking.json",
+    "evidence_index": "reports/evidence/index.json",
+    "readiness_pack": "reports/trial_operation_master_readiness_pack.md"
+  },
+  "required_statuses": {
+    "phase8_40b": "PHASE8_40B_ADAPTER_ROUTE_FINAL_HOLD_BASELINE_LOCK_PASS_NO_EXECUTION",
+    "credential_non_secret": "READY_NON_SECRET_CHECK_PASS",
+    "creators_tracking": "EXTERNAL_TRACKING_REQUIRED"
+  },
+  "required_false_flags": [
+    "approval_token_consumed",
+    "execution_allowed",
+    "wordpress_api_call_allowed",
+    "wordpress_write_allowed",
+    "wordpress_write_executed",
+    "wordpress_draft_created",
+    "publish_allowed",
+    "rollback_executed",
+    "freeze_executed",
+    "secret_values_output"
+  ],
+  "required_evidence_index_names": [
+    "phase8_adapter_route_hold_evidence_index",
+    "phase8_40b_final_hold_lock",
+    "creators_api_eligibility_tracking",
+    "credential_env_non_secret_readiness"
+  ],
+  "required_readiness_pack_strings": [
+    "Phase8-40B: final HOLD baseline lock PASS",
+    "exchange/logs/phase8_adapter_route_hold_evidence_index.json",
+    "exchange/logs/credential_env_non_secret_readiness_check.json",
+    "Keep HOLD and monitor."
+  ]
+}

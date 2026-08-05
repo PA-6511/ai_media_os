@@ -1,0 +1,108 @@
+{
+  "phase_id": "35-6",
+  "phase_name": "Final Pre-ABORT Conditions for Manual Release and Actual Process Start Design",
+  "phase_japanese_name": "手動解除・実処理開始直前の最終ABORT条件設計",
+  "purpose": "Design final ABORT conditions immediately before manual release and actual process start.",
+  "layer": "pre_actual_process_start_final_safety_stop_and_manual_release_boundary_layer",
+  "design_category": "reports_only",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "operation_transition_go_authorization": "NOT_GRANTED",
+    "production_reflection_go_authorization": "NOT_GRANTED",
+    "freeze_release_go_authorization": "NOT_GRANTED",
+    "execution_start_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "phase_35_6_scope": {
+    "scope_1_input_contract": {
+      "scope_id": "INPUT_CONTRACT",
+      "required_inputs": {
+        "phase35_5_no_go_state_maintained": "YES",
+        "manual_release_go_candidate_status": "GO_CANDIDATE",
+        "actual_process_start_go_candidate_status": "GO_CANDIDATE"
+      }
+    },
+    "scope_2_final_abort_conditions": {
+      "scope_id": "FINAL_ABORT_CONDITIONS",
+      "conditions": {
+        "condition_1": "Evidence lock integrity check fails",
+        "condition_2": "Unresolved Phase 34 or earlier NO_GO exists",
+        "condition_3": "Timestamp or signature verification fails",
+        "condition_4": "Unauthorized entity attempts manual_release_go_authorization grant",
+        "condition_5": "Unauthorized entity attempts actual_process_start_go_authorization grant",
+        "condition_6": "Safety monitor reports anomaly",
+        "condition_7": "Remediation plan remains incomplete"
+      },
+      "abort_rule": "If any condition_N is true, manual_release_go_authorization and actual_process_start_go_authorization remain NOT_GRANTED and system halts"
+    },
+    "scope_3_report_structure": {
+      "scope_id": "REPORT_STRUCTURE",
+      "sections": {
+        "section_1_header": {
+          "report_id": "PHASE35_6_FINAL_PRE_ABORT_CONDITIONS_<UTC_TIMESTAMP>",
+          "report_type": "final_pre_abort_conditions_for_manual_release_and_actual_process_start",
+          "generated_at_utc": "RFC3339",
+          "generated_by": "authority_identifier"
+        },
+        "section_2_abort_check_results": {
+          "evidence_lock_integrity": "PASS | FAIL",
+          "unresolved_no_go_present": "YES | NO",
+          "timestamp_signature_valid": "YES | NO",
+          "manual_release_authority_valid": "YES | NO",
+          "actual_process_start_authority_valid": "YES | NO",
+          "safety_monitor_status": "OK | ANOMALY",
+          "remediation_plan_complete": "YES | NO"
+        },
+        "section_3_abort_judgment": {
+          "any_abort_condition_triggered": "YES | NO",
+          "manual_release_allowed": "NO | CONDITIONAL",
+          "actual_process_start_allowed": "NO | CONDITIONAL"
+        },
+        "section_4_state_final": {
+          "production_status": "NO_GO",
+          "operation_transition_go_authorization": "NOT_GRANTED",
+          "production_reflection_go_authorization": "NOT_GRANTED",
+          "freeze_release_go_authorization": "NOT_GRANTED",
+          "execution_start_go_authorization": "NOT_GRANTED",
+          "actual_process_start_go_authorization": "NOT_GRANTED",
+          "manual_release_go_authorization": "NOT_GRANTED",
+          "changed_area": "reports only"
+        }
+      }
+    }
+  },
+  "phase_35_6_governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution",
+      "manual_release_execution",
+      "actual_process_start_execution"
+    ],
+    "state_invariants": {
+      "app_implementation_status": "NO_GO",
+      "tests_implementation_status": "NO_GO",
+      "production_status": "NO_GO",
+      "operation_transition_go_authorization": "NOT_GRANTED",
+      "production_reflection_go_authorization": "NOT_GRANTED",
+      "freeze_release_go_authorization": "NOT_GRANTED",
+      "execution_start_go_authorization": "NOT_GRANTED",
+      "actual_process_start_go_authorization": "NOT_GRANTED",
+      "manual_release_go_authorization": "NOT_GRANTED",
+      "changed_area": "reports only"
+    }
+  }
+}

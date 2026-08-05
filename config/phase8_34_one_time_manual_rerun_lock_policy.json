@@ -1,0 +1,41 @@
+{
+  "phase": "Phase 8-34",
+  "name": "one_time_manual_rerun_lock_policy",
+  "policy_status": "LOCK_PACKAGE_ONLY",
+  "production_status": "NO_GO",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "human_approval_required": true,
+  "lock_is_execution_permission": false,
+  "commands_executed_in_this_phase": false,
+  "phase8_6_to_8_10_executed": false,
+  "wordpress_api_call_allowed": false,
+  "wordpress_write_executed": false,
+  "publish_allowed": false,
+  "target_item_count": 1,
+  "max_manual_rerun_count": 1,
+  "required_evidence": [
+    "exchange/logs/phase8_33_post_provision_env_recheck_result.json"
+  ],
+  "ready_env_status": "POST_PROVISION_ENV_READY_NO_SECRET_OUTPUT",
+  "not_ready_statuses": [
+    "POST_PROVISION_ENV_MISSING_NO_SECRET_OUTPUT",
+    "POST_PROVISION_ENV_NOT_READY_BY_DECLARATION"
+  ],
+  "non_secret_lock_fields": [
+    "phase",
+    "target_item_count",
+    "max_manual_rerun_count",
+    "commands_executed_in_this_phase",
+    "phase8_6_to_8_10_executed"
+  ],
+  "forbidden_lock_fields": [
+    "WORDPRESS_BASE_URL",
+    "WORDPRESS_USERNAME",
+    "WORDPRESS_APP_PASSWORD",
+    "authorization",
+    "password",
+    "secret"
+  ],
+  "allowed_next_step": "Phase 8-35 final READY/BLOCKED decision before manually rerunning existing Phase 8-6 to Phase 8-10"
+}

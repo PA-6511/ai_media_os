@@ -1,0 +1,84 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M27-PRE-NETWORK",
+  "policy_id": "WORDPRESS_TAWAWA_REFERENCE_LAYOUT_UPDATE_AUTHENTICATED_GET_PREFLIGHT_POLICY_V1",
+  "operation_mode": "AUTHENTICATED_GET_ONLY_SINGLE_REQUEST_PREFLIGHT",
+  "content_item_id": "new-release-comic-20260703-001",
+  "wordpress_post_id": 192,
+  "required_approval_label": "WORDPRESS_TAWAWA_REFERENCE_LAYOUT_UPDATE_AUTHENTICATED_PREFLIGHT_APPROVED",
+  "credential_contract": {
+    "credential_path": "/etc/ai-media-os/credential.env",
+    "required_keys": [
+      "WORDPRESS_BASE_URL",
+      "WORDPRESS_USERNAME",
+      "WORDPRESS_APP_PASSWORD"
+    ],
+    "credential_value_output_allowed": false,
+    "username_output_allowed": false,
+    "authorization_header_output_allowed": false,
+    "credential_file_content_digest_output_allowed": false
+  },
+  "network_contract": {
+    "scheme": "https",
+    "expected_host": "hoshido.jp",
+    "allowed_method": "GET",
+    "maximum_get_request_count": 1,
+    "redirect_following_allowed": false,
+    "automatic_retry_allowed": false,
+    "non_get_request_allowed": false,
+    "timeout_seconds": 25,
+    "maximum_response_bytes": 4194304
+  },
+  "wordpress_contract": {
+    "rest_post_id": 192,
+    "context": "edit",
+    "expected_current_status": "publish",
+    "expected_title": "ダークギャザリング 第20巻｜配信開始",
+    "expected_category_ids": [
+      10
+    ],
+    "current_comment_status_required_values": [
+      "open",
+      "closed"
+    ],
+    "expected_current_content_sha256": "c5851f15e4eb477038dca512c8990068736a306cf4fb8c207036a3186119f436",
+    "expected_update_content_sha256": "dc938ae164c70130a5fb27692d71c97cc367a8985c44c2c333801b337ee6caf4"
+  },
+  "artifact_binding_contract": {
+    "m24_update_payload_digest_sha256": "52ed18792454e5806b739059911c8117810cafcadacf35fb77429b608673cd60",
+    "m25_human_review_evidence_digest_sha256": "7fd7a9f0f5317435160010fac811b77d876f77919ad2b5905c6cdea82f8f1806",
+    "m25_backlist_future_requirement_digest_sha256": "bfa2e1b69c1d5cfe3999ac0048539d1d4b01d60e9ba9d452a8e65176a5d028a4",
+    "m26_authorization_digest_sha256": "d7f53a0eb02a037cde4b6ab71b4b026b79eb8c2d2c08a95a8bec5f1ad0b6e615",
+    "m26_result_digest_sha256": "c4aca489eabd70405c27a852eaf29400786b8b9054667cae59a5d0429af68c12",
+    "rollback_evidence_digest_sha256": "60ac4fe5182e412014bcbd291ca52af1e516e7061722e608b39a34c284dbfcf5",
+    "request_body_digest_sha256": "02f5f89d916e328f0b020ebfefafcb391e1c4b0a511d4b2277e37fa225fc81e7"
+  },
+  "authorization_state_contract": {
+    "authorization_issued": true,
+    "authorization_consumed": false,
+    "consumption_count": 0,
+    "single_use": true,
+    "maximum_update_count": 1,
+    "reuse_allowed": false,
+    "automatic_retry_allowed": false,
+    "automatic_reissue_allowed": false
+  },
+  "excluded_scope": {
+    "backlist_carousel_included": false,
+    "post_request_allowed": false,
+    "wordpress_write_allowed": false,
+    "wordpress_update_allowed": false,
+    "wordpress_republish_allowed": false,
+    "wordpress_delete_allowed": false,
+    "authorization_consumption_allowed": false,
+    "authorization_reuse_allowed": false,
+    "automatic_reissue_allowed": false,
+    "x_post_allowed": false
+  },
+  "next_gate": {
+    "required_phase": "LS-NEW-BATCH-4G-2E-RECOVERY-M27-EXECUTE-NOW-CONFIRMATION",
+    "ready_for_execute_now_confirmation_on_pass": true,
+    "ready_for_wordpress_update": false
+  },
+  "production_status": "NO_GO"
+}

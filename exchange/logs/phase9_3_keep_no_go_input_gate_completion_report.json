@@ -1,0 +1,107 @@
+{
+  "package_type": "phase9_3_keep_no_go_input_gate_completion_report",
+  "phase": "Phase 9-3",
+  "title": "Phase 9-3 KEEP_NO_GO Input Gate Completion Report",
+  "status": "PASS",
+  "keep_no_go_completion_status": "PASS",
+  "source_report": "exchange/logs/phase9_2_publish_go_redecision_input_gate_result.json",
+  "source_report_type": "phase9_2_publish_go_redecision_input_gate_result",
+  "phase9_2_decision": "KEEP_NO_GO",
+  "wordpress_draft_id": 110,
+  "target_draft_status": "draft",
+  "publish_candidate_unlocked_for_operator": false,
+  "wordpress_publish_execution": "NO_GO",
+  "wordpress_write_executed": false,
+  "production_status": "NO_GO",
+  "completion_validation_checks": [
+    {
+      "check": "input_phase=Phase 9-2",
+      "passed": true,
+      "actual": "Phase 9-2"
+    },
+    {
+      "check": "input_package_type=phase9_2_publish_go_redecision_input_gate_result",
+      "passed": true,
+      "actual": "phase9_2_publish_go_redecision_input_gate_result"
+    },
+    {
+      "check": "decision=KEEP_NO_GO",
+      "passed": true,
+      "actual": "KEEP_NO_GO"
+    },
+    {
+      "check": "publish_candidate_unlocked_for_operator=false",
+      "passed": true,
+      "actual": false
+    },
+    {
+      "check": "wordpress_publish_execution=NO_GO",
+      "passed": true,
+      "actual": "NO_GO"
+    },
+    {
+      "check": "wordpress_write_executed=false",
+      "passed": true,
+      "actual": false
+    },
+    {
+      "check": "publish_allowed=false",
+      "passed": true,
+      "actual": false
+    },
+    {
+      "check": "update_allowed=false",
+      "passed": true,
+      "actual": false
+    },
+    {
+      "check": "delete_allowed=false",
+      "passed": true,
+      "actual": false
+    },
+    {
+      "check": "export_allowed=false",
+      "passed": true,
+      "actual": false
+    },
+    {
+      "check": "auto_post=false",
+      "passed": true,
+      "actual": false
+    },
+    {
+      "check": "auto_update=false",
+      "passed": true,
+      "actual": false
+    },
+    {
+      "check": "auto_delete=false",
+      "passed": true,
+      "actual": false
+    },
+    {
+      "check": "auto_export=false",
+      "passed": true,
+      "actual": false
+    },
+    {
+      "check": "input_status=PASS",
+      "passed": true,
+      "actual": "PASS"
+    }
+  ],
+  "validation_passed": true,
+  "execution_prohibitions": {
+    "publish_allowed": false,
+    "update_allowed": false,
+    "delete_allowed": false,
+    "export_allowed": false,
+    "auto_post": false,
+    "auto_update": false,
+    "auto_delete": false,
+    "auto_export": false
+  },
+  "next_step": "maintain_no_go_or_manual_publish_go_redecision",
+  "reason": "KEEP_NO_GO redecision recorded; publish candidate remains locked",
+  "created_at": "2026-05-09T16:44:18.587600+00:00"
+}

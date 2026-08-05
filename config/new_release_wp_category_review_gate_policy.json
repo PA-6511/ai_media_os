@@ -1,0 +1,91 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4A",
+  "policy_id": "NEW_RELEASE_WP_CATEGORY_REVIEW_GATE_POLICY_V1",
+  "source_phase_id": "LS-NEW-BATCH-4",
+  "template_contract_id": "POST185_STANDARD_TEMPLATE_V1_FIXED",
+  "category_resolution": {
+    "required": true,
+    "one_resolution_per_category_slug": true,
+    "category_slug_exact_match_required": true,
+    "category_name_exact_match_required": true,
+    "wordpress_category_id_positive_integer_required": true,
+    "allowed_resolution_modes": [
+      "EXAMPLE_ONLY",
+      "PRODUCTION_MANUAL_VERIFIED"
+    ],
+    "allowed_resolution_sources": [
+      "EXAMPLE_FIXTURE",
+      "MANUAL_VERIFIED"
+    ],
+    "example_mode": {
+      "resolution_mode": "EXAMPLE_ONLY",
+      "required_source": "EXAMPLE_FIXTURE",
+      "minimum_category_id": 900000,
+      "maximum_category_id": 999999,
+      "production_usable": false
+    },
+    "production_manual_mode": {
+      "resolution_mode": "PRODUCTION_MANUAL_VERIFIED",
+      "required_source": "MANUAL_VERIFIED",
+      "evidence_note_required": true,
+      "verified_at_required": true,
+      "production_usable_after_review": true
+    }
+  },
+  "human_review_gate": {
+    "required": true,
+    "initial_review_status": "NOT_REVIEWED",
+    "required_item_checks": [
+      "title",
+      "volume_label",
+      "release_date",
+      "publisher",
+      "authors",
+      "cover_image",
+      "store_links",
+      "prices",
+      "pr_disclosure",
+      "category",
+      "mobile_preview"
+    ],
+    "allowed_item_decisions": [
+      "PENDING",
+      "APPROVE_FOR_DRAFT_PRE_EXECUTION",
+      "REJECT"
+    ],
+    "initial_item_decision": "PENDING",
+    "human_approval_required": true,
+    "approval_label_generation_allowed": false,
+    "approval_token_generation_allowed": false,
+    "silent_approval_allowed": false
+  },
+  "integrity": {
+    "source_batch_digest_verification_required": true,
+    "source_item_payload_digest_verification_required": true,
+    "resolved_payload_digest_required": true,
+    "resolved_package_digest_required": true,
+    "source_package_mutation_allowed": false
+  },
+  "execution_boundary": {
+    "local_json_read_allowed": true,
+    "local_gate_package_write_allowed": true,
+    "credential_read_allowed": false,
+    "wordpress_api_call_allowed": false,
+    "wordpress_category_lookup_allowed": false,
+    "wordpress_write_allowed": false,
+    "wordpress_publish_allowed": false,
+    "x_api_call_allowed": false,
+    "x_post_allowed": false,
+    "external_api_call_allowed": false,
+    "human_approval_issued": false,
+    "execution_allowed": false,
+    "production_status": "NO_GO",
+    "safety_state": "CATEGORY_RESOLUTION_AND_REVIEW_PREP_ONLY"
+  },
+  "next_phase": {
+    "phase_id": "LS-NEW-BATCH-4B",
+    "name": "Human Review Decision Recording",
+    "execution_allowed": false
+  }
+}

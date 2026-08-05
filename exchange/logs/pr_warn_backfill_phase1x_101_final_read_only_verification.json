@@ -1,0 +1,30 @@
+{
+  "phase": "PR_WARN_BACKFILL_PHASE1X_FINAL_READ_ONLY_VERIFICATION",
+  "status": "PASS_PHASE1X_FINAL_READ_ONLY_VERIFICATION",
+  "target_post_id": 101,
+  "fetched_post_id": 101,
+  "status_from_wp": "draft",
+  "modified": "2026-06-21T01:12:02",
+  "current_content_hash": "d4d5d9867334300c5ee7fedb22970cffd1805228f1cd242b5aa28b9b833f6a52",
+  "current_content_length": 1228,
+  "expected_after_content_hash": "d4d5d9867334300c5ee7fedb22970cffd1805228f1cd242b5aa28b9b833f6a52",
+  "final_checks": {
+    "fetched_post_id_ok": true,
+    "status_draft_ok": true,
+    "content_hash_matches_expected_after": true,
+    "phase1w_post_verify_pass": true,
+    "approval_consumed_true": true,
+    "true_file_update_count_1": true,
+    "active_false_still_false": true
+  },
+  "wordpress_read_executed": true,
+  "wordpress_read_method": "GET",
+  "wordpress_write_executed": false,
+  "post_put_patch_delete_executed": false,
+  "live_execution_executed": false,
+  "additional_update_count": 0,
+  "snapshot_body_displayed": false,
+  "payload_body_displayed": false,
+  "secrets_displayed": false,
+  "created_at": "2026-06-21T01:16:31.951641+00:00"
+}

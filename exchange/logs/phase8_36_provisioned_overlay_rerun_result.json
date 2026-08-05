@@ -1,0 +1,30 @@
+{
+  "phase": "Phase 8-36",
+  "status": "OVERLAY_RERUN_CREDENTIALS_DECLARED_PROVISIONED_NO_SECRET_OUTPUT",
+  "production_status": "NO_GO",
+  "wordpress_api_call_allowed": false,
+  "wordpress_write_executed": false,
+  "publish_allowed": false,
+  "overlay_rerun_is_execution_permission": false,
+  "commands_executed_in_this_phase": false,
+  "phase8_6_to_8_10_executed": false,
+  "target_item_count": 1,
+  "secret_values_written": false,
+  "evidence_summary": [
+    {
+      "path": "exchange/logs/phase8_31_secret_safe_credential_procedure_result.json",
+      "exists": true,
+      "status": "PASS_PROCEDURE_ONLY"
+    },
+    {
+      "path": "exchange/logs/phase8_35_final_ready_blocked_rerun_decision.json",
+      "exists": true,
+      "status": "READY_FOR_EXISTING_PHASE8_6_TO_8_10_MANUAL_RERUN_BUT_NOT_EXECUTED"
+    }
+  ],
+  "errors": [],
+  "warnings": [],
+  "safety_violations": [],
+  "allowed_next_step": "Phase 8-37 credential-ready revalidation after operator update",
+  "checked_at": "2026-06-08T15:35:55.859432+00:00"
+}

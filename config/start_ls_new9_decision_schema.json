@@ -1,0 +1,62 @@
+{
+  "schema_name": "START_LS_NEW9_DECISION_SCHEMA",
+  "schema_version": "1.0.0",
+  "phase": "LS-NEW-9-DECISION",
+  "execution_mode": "SEPARATE_EXECUTION_APPROVAL_DECISION_ONLY_NO_EXECUTION",
+  "allowed_approval_label": "APPROVED_FOR_LS_NEW_9_SEPARATE_EXECUTION_APPROVAL_GATE_ONLY",
+  "input_fields": [
+    "human_approval_completed",
+    "human_approved_for_execution",
+    "approval_label",
+    "reviewer_notes",
+    "execution_allowed",
+    "runner_execution_allowed",
+    "final_execution_command_created",
+    "ready_for_ls_new_10"
+  ],
+  "boolean_strict_fields": [
+    "human_approval_completed",
+    "human_approved_for_execution",
+    "execution_allowed",
+    "runner_execution_allowed",
+    "final_execution_command_created"
+  ],
+  "ignored_input_fields": [
+    "ready_for_ls_new_10"
+  ],
+  "output_fixed_fields": {
+    "execution_allowed": false,
+    "runner_execution_allowed": false,
+    "final_execution_command_created": false,
+    "approval_label_consumed": false
+  },
+  "ready_for_ls_new_10_logic": {
+    "human_approval_completed": true,
+    "human_approved_for_execution": true,
+    "approval_label_exact": "APPROVED_FOR_LS_NEW_9_SEPARATE_EXECUTION_APPROVAL_GATE_ONLY",
+    "input_execution_allowed": false,
+    "input_runner_execution_allowed": false,
+    "input_final_execution_command_created": false
+  },
+  "warnings": [
+    "input_execution_allowed_true_forced_false",
+    "input_runner_execution_allowed_true_forced_false",
+    "input_final_execution_command_created_true_forced_false",
+    "invalid_boolean_type"
+  ],
+  "safety": {
+    "no_runner_execution": true,
+    "no_final_execution_command": true,
+    "no_wordpress_api": true,
+    "no_wordpress_write": true,
+    "no_wordpress_draft": true,
+    "no_x_api": true,
+    "no_x_post": true,
+    "no_external_fetch": true,
+    "no_http_get": true,
+    "no_credential_read": true,
+    "no_credential_check": true,
+    "no_secret_output": true,
+    "execution_allowed": false
+  }
+}

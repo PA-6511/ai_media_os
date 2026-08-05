@@ -1,0 +1,18 @@
+{
+  "phase": "LS-NEW-14",
+  "document_type": "START_LS_NEW14_DECISION_HANDOFF",
+  "status": "LSNEW14_DECISION_HANDOFF_READY",
+  "next_phase": "LS-NEW-14-DECISION",
+  "next_phase_name": "Separate Draft Creation Execution Approval Decision",
+  "handoff_ready": true,
+  "ready_for_ls_new_14_decision": true,
+  "ready_for_ls_new_15": false,
+  "required_approval_label": "APPROVED_FOR_LS_NEW_14_DRAFT_CREATION_EXECUTION_APPROVAL_GATE_ONLY",
+  "notes": [
+    "LS-NEW-14 created the separate draft creation execution approval gate only.",
+    "LS-NEW-14 did not approve draft creation.",
+    "LS-NEW-14 did not consume an approval label.",
+    "LS-NEW-14 did not create a WordPress draft.",
+    "LS-NEW-14-DECISION must be handled as a separate human decision step."
+  ]
+}

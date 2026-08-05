@@ -1,0 +1,50 @@
+{
+  "schema_name": "START_LS_NEW5_DECISION_SCHEMA",
+  "schema_version": "1.0.0",
+  "phase": "LS-NEW-5-DECISION",
+  "execution_mode": "HUMAN_REVIEW_DECISION_ONLY_NO_EXECUTION",
+  "allowed_approval_label": "APPROVED_FOR_LS_NEW_6_WP_DRAFT_PAYLOAD_PREP_ONLY",
+  "input_fields": [
+    "human_review_completed",
+    "human_approved",
+    "approval_label",
+    "reviewer_notes",
+    "execution_allowed",
+    "ready_for_ls_new_6"
+  ],
+  "boolean_strict_fields": [
+    "human_review_completed",
+    "human_approved",
+    "execution_allowed"
+  ],
+  "ignored_input_fields": [
+    "ready_for_ls_new_6"
+  ],
+  "output_fixed_fields": {
+    "execution_allowed": false,
+    "approval_label_consumed": false
+  },
+  "ready_for_ls_new_6_logic": {
+    "human_review_completed": true,
+    "human_approved": true,
+    "approval_label_exact": "APPROVED_FOR_LS_NEW_6_WP_DRAFT_PAYLOAD_PREP_ONLY",
+    "input_execution_allowed": false
+  },
+  "warnings": [
+    "input_execution_allowed_true_forced_false",
+    "invalid_boolean_type"
+  ],
+  "safety": {
+    "no_external_fetch": true,
+    "no_http_get": true,
+    "no_scraping": true,
+    "no_wordpress_api": true,
+    "no_wordpress_write": true,
+    "no_wordpress_draft": true,
+    "no_x_api": true,
+    "no_x_post": true,
+    "no_credential_read": true,
+    "no_secret_output": true,
+    "execution_allowed": false
+  }
+}

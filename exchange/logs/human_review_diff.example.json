@@ -1,0 +1,39 @@
+{
+  "package_type": "human_review_diff",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "human_review_required": true,
+  "production_status": "NO_GO",
+  "status": "PASS",
+  "reason": "human review diff captured",
+  "before_json": {
+    "status": "WARN",
+    "reason": "missing reviewer note",
+    "score": 0.7
+  },
+  "after_json": {
+    "status": "WARN",
+    "reason": "reviewer note added",
+    "score": 0.72,
+    "reviewer_note": "score adjusted after manual check"
+  },
+  "changed_fields": [
+    {
+      "path": "reason",
+      "before": "missing reviewer note",
+      "after": "reviewer note added"
+    },
+    {
+      "path": "score",
+      "before": 0.7,
+      "after": 0.72
+    },
+    {
+      "path": "reviewer_note",
+      "before": null,
+      "after": "score adjusted after manual check"
+    }
+  ],
+  "reviewer_note": "manual correction applied",
+  "created_at": "2026-05-24T00:00:00+00:00"
+}

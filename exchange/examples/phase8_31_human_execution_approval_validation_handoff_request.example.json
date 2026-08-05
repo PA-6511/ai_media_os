@@ -1,0 +1,18 @@
+{
+  "mode": "PHASE8_31_APPROVAL_HANDOFF_ONLY",
+  "phase": "8-31",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "target_item_count": 1,
+  "human_approval_required": true,
+  "execution_allowed": false,
+  "wordpress_api_call_allowed": false,
+  "wordpress_write_allowed": false,
+  "wordpress_draft_creation_allowed": false,
+  "approve_draft_create_only_currently_allowed": false,
+  "unlock_in_this_phase": false,
+  "next_step_if_approval_valid": "prepare_next_phase_single_draft_create_gate",
+  "next_step_if_blocked": "manual_credential_provisioning_then_recheck",
+  "next_step_if_policy_violation": "abort_without_execution",
+  "next_step_if_secret_leak_risk": "abort_without_execution"
+}

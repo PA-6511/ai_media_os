@@ -1,0 +1,91 @@
+{
+  "phase_id": "PHASE_S4_4",
+  "phase_name": "final_isolation_design_gate",
+  "phase_status": "DESIGN_ONLY",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "human_approval_required": true,
+  "final_gate_only": true,
+  "final_gate_locked": true,
+  "isolation_design_ready_required": true,
+  "future_execution_allowed": false,
+  "isolation_execution_allowed": false,
+  "isolation_executed": false,
+  "executor_action_allowed": false,
+  "required_evidence_files": {
+    "phase_s4": [
+      "exchange/logs/security_phase_s4_overall_result.json"
+    ],
+    "phase_s4_completion": [
+      "exchange/logs/security_phase_s4_overall_completion_report.json"
+    ],
+    "phase_s4_1": [
+      "exchange/logs/security_isolation_policy_dry_run_phase_s4_1_result.json",
+      "exchange/logs/security_phase_s4_1_overall_result.json"
+    ],
+    "phase_s4_2": [
+      "exchange/logs/security_isolation_event_simulation_phase_s4_2_result.json",
+      "exchange/logs/security_phase_s4_2_overall_result.json"
+    ],
+    "phase_s4_3": [
+      "exchange/logs/security_isolation_audit_design_review_phase_s4_3_result.json",
+      "exchange/logs/security_phase_s4_3_overall_result.json"
+    ]
+  },
+  "expected_statuses": {
+    "phase_s4_overall_result": "PASS",
+    "phase_s4_completion_report": "PASS_DRY_RUN_ONLY",
+    "phase_s4_1_overall_result": "PASS_DRY_RUN_ONLY",
+    "phase_s4_1_replay_result": "PASS",
+    "phase_s4_2_overall_result": "PASS_DRY_RUN_ONLY",
+    "phase_s4_2_replay_result": "PASS",
+    "phase_s4_3_overall_result": "PASS_DRY_RUN_ONLY",
+    "phase_s4_3_audit_result": "PASS"
+  },
+  "required_metrics": {
+    "phase_s4_2_scenario_count": 7,
+    "phase_s4_2_matched_expected_count": 7,
+    "phase_s4_2_mismatched_expected_count": 0,
+    "phase_s4_2_isolation_recommendation_detected": true,
+    "phase_s4_2_freeze_recommendation_detected": true,
+    "phase_s4_2_human_review_recommendation_detected": true,
+    "phase_s4_3_required_evidence_count": 6,
+    "phase_s4_3_found_evidence_count": 6,
+    "phase_s4_3_missing_evidence_count": 0
+  },
+  "required_invariants": {
+    "execution": "DRY_RUN",
+    "production_status": "NO_GO",
+    "human_approval_required": true,
+    "final_gate_only": true,
+    "future_execution_allowed": false,
+    "isolation_execution_allowed": false,
+    "isolation_executed": false,
+    "executor_action_allowed": false,
+    "network_policy_applied": false,
+    "firewall_applied": false,
+    "container_stop_executed": false,
+    "process_kill_executed": false,
+    "scheduler_stop_executed": false,
+    "wordpress_write_executed": false,
+    "external_api_call_executed": false,
+    "state_change_executed": false,
+    "auto_freeze_execute": false,
+    "auto_revoke_execute": false,
+    "auto_isolation_execute": false
+  },
+  "actions": {
+    "auto_freeze_execute": false,
+    "auto_revoke_execute": false,
+    "auto_isolation_execute": false,
+    "network_policy_apply": false,
+    "firewall_apply": false,
+    "container_stop_execute": false,
+    "process_kill_execute": false,
+    "scheduler_stop_execute": false,
+    "wordpress_write_execute": false,
+    "external_api_call_execute": false,
+    "state_change_execute": false
+  },
+  "next_step": "pause_before_execution_or_prepare_s5_design_only"
+}

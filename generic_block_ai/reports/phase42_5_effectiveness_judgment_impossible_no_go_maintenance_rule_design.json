@@ -1,0 +1,33 @@
+{
+  "_meta": {
+    "phase": "42-5",
+    "phase_name": "最終承認後・発効可否確認層",
+    "layer": "補強層 (reinforcement layer)",
+    "title": "発効可否判定不可・NO_GO維持ルール設計",
+    "created": "2026-05-14",
+    "author": "governance-framework",
+    "status": "PASS_DESIGN_ONLY",
+    "reports_only": true
+  },
+  "scope": "Phase 42-2 / 42-3 / 42-4 で実施された発効可否判定において、発効不可と判定された場合、以下のルールを設計する：(1) 即座な NO_GO 再宣言ルール、(2) 発効不可の詳細理由の差し戻し・報告ルール、(3) Phase 41 プロセスへの遡及確認ルール、(4) NO_GO 状態の恒久的維持ルール（発効不可が最終判定されるまで NO_GO は解除されない）。",
+  "governance": {
+    "production_status": "NO_GO",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "report": {
+    "description": "Phase 42-5 では、Phase 42-2～42-4 で発効不可が判定された場合、以下のプロセスを 設計層で定義する。(1) 即座な NO_GO 再宣言ルール：発効不可判定時、即座に 'production_status: NO_GO' と 'manual_release_go_authorization: NOT_GRANTED' と 'actual_process_start_go_authorization: NOT_GRANTED' を再宣言する。(2) 差し戻しルール：発効不可の理由を詳細に分類したレポートを生成し、差し戻し資料とする。(3) 遡及確認ルール：発効不可の理由によっては Phase 41 プロセスの再確認が必要となる。(4) NO_GO 恒久維持ルール：発効不可と最終判定されるまで、production_status = 'NO_GO' は解除されない。これらのルールは全て 設計層（reports only）で実装される。",
+    "invariants": [
+      "NO_GO 強制：発効不可判定時は即座に production_status = 'NO_GO' を再宣言",
+      "NOT_GRANTED 強制：発効不可判定時は即座に manual_release_go_authorization / actual_process_start_go_authorization = 'NOT_GRANTED' を再宣言",
+      "reports only：ルール全体は報告書形式で実装される"
+    ],
+    "actions": [],
+    "notes": [
+      "Phase 42-5 は 設計層のみで実装される",
+      "発効不可 → NO_GO は自動的に動作",
+      "実処理開始は NO_GO のまま"
+    ]
+  }
+}

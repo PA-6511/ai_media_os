@@ -1,0 +1,28 @@
+{
+  "package_type": "patch_proposal",
+  "source": "local_self_builder",
+  "target": "ebook_affiliate_block",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "human_approval_required": true,
+  "risk_level": "LOW",
+  "auto_post": false,
+  "auto_update": false,
+  "auto_delete": false,
+  "auto_export": false,
+  "proposal_id": "sample-ebook-cta-001",
+  "title": "電子書籍記事CTA改善案サンプル",
+  "description": "購入ボタン文言とランキングカード表示を改善する提案。実ファイル変更は行わない。",
+  "affected_area": [
+    "article_template",
+    "cta",
+    "ranking_card"
+  ],
+  "changes": [
+    {
+      "file": "templates/article_template.html",
+      "operation": "PROPOSE_ONLY",
+      "summary": "CTA文言を強調し、スマホで見やすい構成にする"
+    }
+  ]
+}

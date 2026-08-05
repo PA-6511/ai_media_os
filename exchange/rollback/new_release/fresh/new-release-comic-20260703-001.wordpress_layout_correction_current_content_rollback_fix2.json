@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M22-FIX2",
+  "document_role": "WORDPRESS_LAYOUT_CORRECTION_CURRENT_CONTENT_ROLLBACK_EVIDENCE",
+  "content_item_id": "new-release-comic-20260703-001",
+  "wordpress_post_id": 192,
+  "last_verified_wordpress_status": "publish",
+  "current_content_html": "<div class=\"ebook-new-release-article\" data-template-id=\"POST185_STANDARD_TEMPLATE_V1\">\n  <p class=\"ebook-pr-disclosure\">【PR】本記事にはアフィリエイト広告を含みます。価格・配信状況は各ストアで確認してください。</p>\n  <div class=\"ebook-release-layout\">\n    <figure class=\"ls-book-cover\">\n      <img src=\"https://shop.r10s.jp/rakutenkobo-ebooks/cabinet/6485/2000020786485.jpg\" alt=\"ダークギャザリング 第20巻 書影\" loading=\"lazy\">\n    </figure>\n    <div class=\"ls-store-card\">\n      <ul>\n        <li><strong>作品名：</strong>ダークギャザリング</li>\n        <li><strong>価格：</strong>616円（税込）</li>\n        <li><strong>作者：</strong>近藤憲一</li>\n        <li><strong>出版社：</strong>集英社</li>\n        <li><strong>発売日：</strong>2026-07-03</li>\n      </ul>\n    </div>\n  </div>\n  <div class=\"ls-store-buttons\" aria-label=\"電子書籍ストア\">\n    <span class=\"ls-store-btn ls-store-amazon ls-store-disabled\" aria-disabled=\"true\">Amazonで確認（リンク準備中）</span>\n    <span class=\"ls-store-btn ls-store-kobo ls-store-disabled\" aria-disabled=\"true\">楽天Koboで確認（リンク準備中）</span>\n    <a class=\"ls-store-btn ls-store-dmm\" href=\"https://al.dmm.com/?lurl=https%3A%2F%2Fbook.dmm.com%2Fproduct%2F861056%2Fb950yshes32617%2F&amp;af_id=xuanyilugang-001&amp;ch=link_tool&amp;ch_id=link\" target=\"_blank\" rel=\"nofollow sponsored noopener\">DMMブックスで確認</a>\n  </div>\n</div>\n",
+  "current_content_html_sha256": "c5851f15e4eb477038dca512c8990068736a306cf4fb8c207036a3186119f436",
+  "source_article_file_sha256": "de2739c8ae1aa4a50973b983964b05844086a2187b9ef337383ad6fa7123697d",
+  "source_payload_file_sha256": "30a70be4110e863a85e2896f69f5b3e51d814a6fd82d5489f899d8a244166d8f",
+  "source_payload_digest_sha256": "2ab27b59305dbae98f997ca3a460400298152f173ef605b534df922c187411c6",
+  "live_content_last_verified_equal_to_source": true,
+  "live_verification_source_phase": "LS-NEW-BATCH-4G-2E-RECOVERY-M18",
+  "live_comment_status_verified_in_this_phase": false,
+  "live_comment_status": "UNKNOWN_NOT_NETWORK_CHECKED",
+  "network_connection_performed": false,
+  "wordpress_access_performed": false,
+  "created_at_utc": "2026-07-11T13:00:49.985557+00:00",
+  "rollback_evidence_digest_sha256": "60ac4fe5182e412014bcbd291ca52af1e516e7061722e608b39a34c284dbfcf5"
+}

@@ -1,0 +1,32 @@
+{
+  "phase": "LS-NEW-9",
+  "document_type": "START_LS_NEW9_SEPARATE_EXECUTION_APPROVAL_REQUEST",
+  "status": "LSNEW9_SEPARATE_EXECUTION_APPROVAL_REQUEST_CREATED_NO_EXECUTION",
+  "execution_mode": "SEPARATE_EXECUTION_APPROVAL_GATE_ONLY_NO_EXECUTION",
+  "production_status": "WAITING_FOR_SEPARATE_EXECUTION_APPROVAL_NO_EXECUTION",
+  "ls_new8_validated": true,
+  "content_item_id": "new-comic-001",
+  "title": "月曜日のたわわ",
+  "volume": "第15巻",
+  "author": "比村奇石",
+  "publisher": "講談社",
+  "release_date": "2026-07-06",
+  "post_status_target": "draft",
+  "target_post_id": null,
+  "target_post_id_allocated": false,
+  "human_approval_required": true,
+  "human_approval_completed": false,
+  "human_approved_for_execution": false,
+  "required_approval_label": "APPROVED_FOR_LS_NEW_9_SEPARATE_EXECUTION_APPROVAL_GATE_ONLY",
+  "approval_label": "",
+  "approval_label_consumed": false,
+  "request_scope": [
+    "Approve moving to the next no-execution execution-prep phase only",
+    "Do not approve WordPress API call in LS-NEW-9",
+    "Do not approve credential.env read in LS-NEW-9",
+    "Do not approve WordPress draft creation in LS-NEW-9"
+  ],
+  "execution_allowed": false,
+  "runner_execution_allowed": false,
+  "final_execution_command_created": false
+}

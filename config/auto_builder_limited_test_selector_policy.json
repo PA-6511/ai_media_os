@@ -1,0 +1,74 @@
+{
+  "phase": "AB-T5",
+  "status": "PASS_DESIGN_ONLY_NO_EXECUTION",
+  "purpose": "limited_test_selector",
+  "execution_mode": "DESIGN_ONLY",
+  "production_status": "NO_GO",
+  "safety_state": "DRY_RUN_ONLY",
+  "test_selection_rules": {
+    "max_test_commands": 3,
+    "prefer_targeted_pytest": true,
+    "prefer_json_tool_for_policy": true,
+    "prefer_py_compile_for_scripts": true,
+    "allow_full_pytest": false,
+    "allow_network_tests": false,
+    "allow_production_tests": false,
+    "allow_wordpress_tests": false,
+    "allow_credential_tests": false
+  },
+  "allowed_test_command_patterns": [
+    "python3 -m json.tool",
+    "python3 -m py_compile",
+    "pytest -q tests/test_"
+  ],
+  "forbidden_test_command_patterns": [
+    "pytest",
+    "pytest -q",
+    "curl",
+    "wget",
+    "ssh",
+    "scp",
+    "rsync",
+    "systemctl",
+    "journalctl",
+    "wp ",
+    "git push",
+    "git commit",
+    "cat /etc/ai-media-os/credential.env",
+    "printenv",
+    "env"
+  ],
+  "output_mode": "LIMITED_TEST_PLAN_ONLY",
+  "allowed_outputs": [
+    "limited_test_plan",
+    "target_test_files",
+    "json_validation_command",
+    "py_compile_command",
+    "targeted_pytest_command",
+    "safety_confirmation"
+  ],
+  "forbidden_outputs": [
+    "full_test_sweep_command",
+    "network_command",
+    "production_execution",
+    "wordpress_command",
+    "credential_contents",
+    "secret_values",
+    "git_commit",
+    "git_push"
+  ],
+  "copilot_send_allowed": false,
+  "external_api_call_allowed": false,
+  "wordpress_api_call_allowed": false,
+  "credential_read_allowed": false,
+  "credential_output_allowed": false,
+  "production_write_allowed": false,
+  "destructive_operation_allowed": false,
+  "git_commit_allowed": false,
+  "git_push_allowed": false,
+  "next_phase": {
+    "phase": "AB-T6",
+    "name": "Copilot Usage Saving Evidence Pack",
+    "execution_allowed": false
+  }
+}

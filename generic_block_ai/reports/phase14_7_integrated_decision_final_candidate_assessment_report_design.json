@@ -1,0 +1,65 @@
+{
+  "_meta": {
+    "phase": "14-7",
+    "phase_name": "integrated_decision 最終候補判定レポート設計",
+    "version": "1.0",
+    "created_date": "2026-05-12",
+    "status": "PASS_DESIGN_ONLY",
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only",
+    "description": "収束ルールと停止条件を踏まえて、integrated_decision の最終候補を実測で判定するレポートを定義する。"
+  },
+  "references": [
+    "generic_block_ai/reports/phase14_4_integrated_decision_update_candidate_convergence_rules_design.json",
+    "generic_block_ai/reports/phase14_6_go_candidate_final_stop_conditions_design.json",
+    "generic_block_ai/reports/phase14_2_integrated_decision_go_nogo_update_candidate_generation.json"
+  ],
+  "assessment_inputs": [
+    "convergence_template",
+    "actual_candidate_template",
+    "stop_template",
+    "production_status"
+  ],
+  "final_candidate_rules": {
+    "go_candidate_requires": [
+      "convergence_complete == true",
+      "converged_integrated_decision_candidate == GO",
+      "stop_triggered == false",
+      "production_status == NO_GO"
+    ],
+    "no_go_candidate_requires": [
+      "convergence_complete == false",
+      "converged_integrated_decision_candidate == NO_GO",
+      "stop_triggered == true",
+      "any missing evidence remains"
+    ]
+  },
+  "actual_assessment_template": {
+    "final_integrated_decision_candidate": "NO_GO",
+    "candidate_confidence": "PENDING",
+    "assessment_basis": [],
+    "reason": "収束実測と停止条件評価が未確定のため、現時点では NO_GO 候補を維持。"
+  },
+  "blocked_actions": [
+    "core_ai_real_send",
+    "external_api_call",
+    "wordpress_operation",
+    "cron_registration",
+    "auto_execute",
+    "auto_post",
+    "auto_update",
+    "auto_delete",
+    "auto_export",
+    "production_execution"
+  ],
+  "phase_decision": {
+    "phase14_7_status": "PASS_DESIGN_ONLY",
+    "app_implementation_status": "NO_GO",
+    "tests_implementation_status": "NO_GO",
+    "note": "最終候補判定レポートの設計のみ。integrated_decision は NO_GO 候補を維持。"
+  }
+}

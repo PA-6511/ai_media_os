@@ -1,0 +1,98 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M19",
+  "document_role": "WORDPRESS_PUBLISHED_POST_HUMAN_REVIEW_CHANGE_REQUIREMENTS",
+  "content_item_id": "new-release-comic-20260703-001",
+  "wordpress_post_id": 192,
+  "reviewed_by": "HUMAN_OPERATOR",
+  "review_method": "PUBLIC_PAGE_VISUAL_REVIEW",
+  "review_verdict": "CHANGES_REQUIRED",
+  "human_review_complete": true,
+  "published_page_display_confirmed": true,
+  "change_required": true,
+  "approved_no_change_required": false,
+  "issues": [
+    {
+      "issue_id": "DETAIL_CARD_LAYOUT_BALANCE",
+      "severity": "REQUIRES_CORRECTION",
+      "finding": "Work detail card width, wrapping, and whitespace balance are unsuitable."
+    },
+    {
+      "issue_id": "DESKTOP_STORE_BUTTON_POSITION",
+      "severity": "REQUIRES_CORRECTION",
+      "finding": "Desktop store buttons must be positioned beside the cover image."
+    },
+    {
+      "issue_id": "PR_DISCLOSURE_POSITION",
+      "severity": "REQUIRES_CORRECTION",
+      "finding": "PR disclosure position must follow the approved responsive layout."
+    },
+    {
+      "issue_id": "COMMENTS_NOT_REQUIRED",
+      "severity": "REQUIRES_CORRECTION",
+      "finding": "Comment form and comment display are unnecessary for ebook affiliate articles."
+    }
+  ],
+  "approved_desktop_layout": {
+    "left_column": [
+      "cover_image"
+    ],
+    "right_column_order": [
+      "amazon_button",
+      "rakuten_kobo_button",
+      "dmm_button",
+      "responsive_work_details",
+      "pr_disclosure"
+    ],
+    "store_buttons_vertical": true,
+    "work_details_format": "LABEL_VALUE_RESPONSIVE",
+    "remove_excess_whitespace": true,
+    "prevent_fragmented_wrapping": true
+  },
+  "approved_mobile_layout": {
+    "content_order": [
+      "cover_image",
+      "responsive_work_details",
+      "amazon_button",
+      "rakuten_kobo_button",
+      "dmm_button",
+      "pr_disclosure"
+    ]
+  },
+  "approved_comment_policy": {
+    "scope": "EBOOK_AFFILIATE_ARTICLES",
+    "comment_status": "closed",
+    "comment_form_visible": false,
+    "comment_list_visible": false,
+    "comment_heading_visible": false
+  },
+  "pr_position_pre_implementation_compliance_check_required": true,
+  "m18_result_digest_sha256": "a278655efbd252455d95b063cf2cc8ed4ec4de78f009d9991156cb1a10b02c95",
+  "m17_result_digest_sha256": "e405bd6b44b45c8246388b0ea2fa55ac501e728563cf97d9b82be6c5dad2e93e",
+  "m17_consumption_digest_sha256": "9fa836ec2fe8c49b160101351e5a913b0c606af857131b5a0550b81fb04f443e",
+  "m17_secret_response_digest_sha256": "edc92fb39dafda7948d6d7e53918147343507b50239d0ae2608311ed306de741",
+  "payload_file_sha256": "30a70be4110e863a85e2896f69f5b3e51d814a6fd82d5489f899d8a244166d8f",
+  "payload_digest_sha256": "2ab27b59305dbae98f997ca3a460400298152f173ef605b534df922c187411c6",
+  "article_file_sha256": "de2739c8ae1aa4a50973b983964b05844086a2187b9ef337383ad6fa7123697d",
+  "network_connection_performed": false,
+  "dns_resolution_performed": false,
+  "http_request_performed": false,
+  "wordpress_access_performed": false,
+  "wordpress_write_performed": false,
+  "wordpress_update_performed": false,
+  "wordpress_republish_performed": false,
+  "wordpress_delete_performed": false,
+  "authorization_reused": false,
+  "authorization_reissued": false,
+  "automatic_retry_performed": false,
+  "automatic_reissue_performed": false,
+  "m17_rerun_performed": false,
+  "m18_rerun_performed": false,
+  "x_post_performed": false,
+  "production_status": "NO_GO",
+  "ready_for_layout_correction_design_gate": true,
+  "ready_for_wordpress_update": false,
+  "ready_for_wordpress_publish": false,
+  "reviewed_at_utc": "2026-07-11T12:06:28.195874+00:00",
+  "human_review_evidence_digest_sha256": "ee9cc3be321c2c592afc0c784c002d9506a598cf9a2072e3c1e205d662417db1"
+}

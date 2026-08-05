@@ -1,0 +1,17 @@
+{
+  "policy_version": "v1",
+  "block_id": "generic_block_template",
+  "mode": "DRY_RUN_ONLY",
+  "freeze_required": true,
+  "approval_required": true,
+  "controlled_run_required": true,
+  "evidence_required": true,
+  "external_api_allowed": false,
+  "external_network_allowed": false,
+  "wordpress_allowed": false,
+  "publish_allowed": false,
+  "update_allowed": false,
+  "delete_allowed": false,
+  "export_allowed": false,
+  "production_status": "NO_GO"
+}

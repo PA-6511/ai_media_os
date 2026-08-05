@@ -1,0 +1,193 @@
+{
+  "_meta": {
+    "schema_version": "ir9_quality_gate_v1",
+    "phase": "IR9-T3",
+    "generated_at": "2026-05-23T14:31:10.410870+00:00",
+    "status": "OK"
+  },
+  "freeze_package": {
+    "path": "generic_block_ai/reports/affiliate_block_package_descriptor.json",
+    "status": "OK"
+  },
+  "input_validation": {
+    "result": "PASS",
+    "failed_checks": [],
+    "warnings": []
+  },
+  "pre_generic": {
+    "status": "success",
+    "decision": "human_review",
+    "core_ai_handshake": {
+      "path": null,
+      "connection_status": "HANDSHAKE_PENDING_REVIEW",
+      "validation_result": "PASS",
+      "validation_failed_checks": [],
+      "validation_warnings": [],
+      "external_write_executed": false
+    }
+  },
+  "affiliate": {
+    "result": {
+      "status": "success",
+      "decision": "human_review",
+      "mode": "dry_run",
+      "operation_mode": "OBSERVE",
+      "input_schema": {
+        "version": "affiliate_input_v1",
+        "required_fields": [
+          "source",
+          "title",
+          "asin",
+          "url",
+          "campaign_type",
+          "risk_flags"
+        ]
+      },
+      "output_schema": {
+        "version": "affiliate_candidate_v1",
+        "fields": [
+          "article_candidate",
+          "review_required",
+          "affiliate_disclosure",
+          "blocked_reason",
+          "risk_flags"
+        ]
+      },
+      "summary": "dry-run processed records=2, accepted=2, selected=2, rejected=0",
+      "recommended_candidates": [
+        {
+          "source": "official_api",
+          "title": "IR9 Live Trial Product A",
+          "asin": "B0IR9LIVE01",
+          "url": "https://example.com/products/ir9-a",
+          "campaign_type": "seasonal",
+          "risk_flags": []
+        },
+        {
+          "source": "approved_feed",
+          "title": "IR9 Live Trial Product B",
+          "asin": "B0IR9LIVE02",
+          "url": "https://example.com/products/ir9-b",
+          "campaign_type": "standard",
+          "risk_flags": [
+            "price_volatility"
+          ]
+        }
+      ],
+      "affiliate_candidates": [
+        {
+          "article_candidate": {
+            "title": "IR9 Live Trial Product A",
+            "summary": "Affiliate draft for IR9 Live Trial Product A",
+            "source": "official_api",
+            "asin": "B0IR9LIVE01",
+            "url": "https://example.com/products/ir9-a",
+            "campaign_type": "seasonal"
+          },
+          "review_required": false,
+          "affiliate_disclosure": "This content may include affiliate links.",
+          "blocked_reason": null,
+          "risk_flags": []
+        },
+        {
+          "article_candidate": {
+            "title": "IR9 Live Trial Product B",
+            "summary": "Affiliate draft for IR9 Live Trial Product B",
+            "source": "approved_feed",
+            "asin": "B0IR9LIVE02",
+            "url": "https://example.com/products/ir9-b",
+            "campaign_type": "standard"
+          },
+          "review_required": true,
+          "affiliate_disclosure": "This content may include affiliate links.",
+          "blocked_reason": null,
+          "risk_flags": [
+            "price_volatility"
+          ]
+        }
+      ],
+      "rejected_records": [],
+      "safeguards": {
+        "actual_auto_execute": false,
+        "actual_auto_approve": false,
+        "external_write_executed": false,
+        "production_release": false
+      },
+      "meta": {
+        "generated_runner": true,
+        "generated_at": "2026-05-23T14:31:10.410532+00:00"
+      }
+    },
+    "candidate_validation": {
+      "result": "PASS",
+      "failed_checks": [],
+      "warnings": []
+    },
+    "quality_gate": {
+      "status": "WARN",
+      "summary": {
+        "overall_status": "WARN",
+        "candidate_count": 2,
+        "pass_count": 1,
+        "warn_count": 1,
+        "fail_count": 0,
+        "abort_count": 0
+      },
+      "items": [
+        {
+          "index": 0,
+          "quality_score": 100,
+          "risk_weight_total": 0,
+          "risk_flags": [],
+          "review_required": false,
+          "blocked_reason": null,
+          "decision": "PASS"
+        },
+        {
+          "index": 1,
+          "quality_score": 70,
+          "risk_weight_total": 15,
+          "risk_flags": [
+            "price_volatility"
+          ],
+          "review_required": true,
+          "blocked_reason": null,
+          "decision": "WARN"
+        }
+      ],
+      "warnings": []
+    },
+    "runner_to_core_handshake": {
+      "connection_status": "HANDSHAKE_READY_DRY_RUN",
+      "validation_result": "PASS",
+      "validation_failed_checks": []
+    }
+  },
+  "post_generic": {
+    "status": "success",
+    "decision": "human_review",
+    "core_ai_handshake": {
+      "path": null,
+      "connection_status": "HANDSHAKE_PENDING_REVIEW",
+      "validation_result": "PASS",
+      "validation_failed_checks": [],
+      "validation_warnings": [],
+      "external_write_executed": false
+    },
+    "requested_actions_count": 2,
+    "blocked_candidates_count": 0
+  },
+  "quality_gate_judgment": "WARN",
+  "connection_statuses": {
+    "affiliate_to_core": "HANDSHAKE_READY_DRY_RUN",
+    "pre_generic_to_core": "HANDSHAKE_PENDING_REVIEW",
+    "post_generic_to_core": "HANDSHAKE_PENDING_REVIEW"
+  },
+  "safeguards": {
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "external_write_executed": false,
+    "actual_auto_execute": false,
+    "production_release": false
+  }
+}

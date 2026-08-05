@@ -1,0 +1,123 @@
+{
+  "package_type": "phase11_10_phase11_overall_completion_report",
+  "phase": "Phase 11-10",
+  "title": "Phase 11-10 Phase 11 Overall Completion Report",
+  "status": "PASS",
+  "phase11_overall_status": "PASS",
+  "phase_range": "Phase 11-1 through Phase 11-9",
+  "current_decision": "KEEP_NO_GO",
+  "publish_candidate_unlocked_for_operator": false,
+  "wordpress_publish_execution": "NO_GO",
+  "wordpress_write_executed": false,
+  "production_status": "NO_GO",
+  "wordpress_draft_id": 110,
+  "target_draft_status": "draft",
+  "phase_statuses": {
+    "11-1": "PASS",
+    "11-2": "PASS",
+    "11-3": "PASS",
+    "11-4": "PASS",
+    "11-5": "PASS",
+    "11-6": "PASS",
+    "11-7": "PASS",
+    "11-8": "PASS",
+    "11-9": "PASS"
+  },
+  "still_forbidden": [
+    "wordpress_publish",
+    "wordpress_update_existing_post",
+    "wordpress_delete_post",
+    "wordpress_export",
+    "wordpress_bulk_post",
+    "cron_automation",
+    "github_actions_trigger",
+    "slack_production_notification",
+    "vps_self_builder_execution",
+    "env_or_secrets_or_credentials_auto_edit"
+  ],
+  "validation_checks": [
+    {
+      "check": "phase11-1_status=PASS",
+      "passed": true,
+      "actual": "PASS"
+    },
+    {
+      "check": "phase11-2_status=PASS",
+      "passed": true,
+      "actual": "PASS"
+    },
+    {
+      "check": "phase11-3_status=PASS",
+      "passed": true,
+      "actual": "PASS"
+    },
+    {
+      "check": "phase11-4_status=PASS",
+      "passed": true,
+      "actual": "PASS"
+    },
+    {
+      "check": "phase11-5_status=PASS",
+      "passed": true,
+      "actual": "PASS"
+    },
+    {
+      "check": "phase11-6_status=PASS",
+      "passed": true,
+      "actual": "PASS"
+    },
+    {
+      "check": "phase11-7_status=PASS",
+      "passed": true,
+      "actual": "PASS"
+    },
+    {
+      "check": "phase11-8_status=PASS",
+      "passed": true,
+      "actual": "PASS"
+    },
+    {
+      "check": "phase11-9_status=PASS",
+      "passed": true,
+      "actual": "PASS"
+    },
+    {
+      "check": "current_decision=KEEP_NO_GO_in_11_1_to_11_9",
+      "passed": true,
+      "actual": {
+        "11-1": "KEEP_NO_GO",
+        "11-2": "KEEP_NO_GO",
+        "11-3": "KEEP_NO_GO",
+        "11-4": "KEEP_NO_GO",
+        "11-5": "KEEP_NO_GO",
+        "11-6": "KEEP_NO_GO",
+        "11-7": "KEEP_NO_GO",
+        "11-8": "KEEP_NO_GO",
+        "11-9": "KEEP_NO_GO"
+      }
+    },
+    {
+      "check": "publish_candidate_unlocked_for_operator=false_in_11_1_to_11_9",
+      "passed": true,
+      "actual": {
+        "11-1": false,
+        "11-2": false,
+        "11-3": false,
+        "11-4": false,
+        "11-5": false,
+        "11-6": false,
+        "11-7": false,
+        "11-8": false,
+        "11-9": false
+      }
+    }
+  ],
+  "all_checks_passed": true,
+  "summary": {
+    "phase11_completed_without_publish_execution": true,
+    "phase11_no_go_boundary_maintained": true,
+    "phase12_start_gate_can_be_designed": true
+  },
+  "next_step": "phase11_11_phase12_start_conditions_check_design",
+  "created_at": "2026-05-10T03:58:15.710428+00:00"
+}

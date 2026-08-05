@@ -1,0 +1,85 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M11-FIX1",
+  "approval_id": "fresh-payload-article-title-field-validator-fix-approval-v1",
+  "approval_label": "FRESH_PAYLOAD_ARTICLE_TITLE_FIELD_VALIDATOR_FIX_APPROVED",
+  "approved_by": "HUMAN_OPERATOR",
+  "human_explicit_approval": true,
+  "approved_at_utc": "2026-07-11T08:46:01.099001+00:00",
+  "approved_fix": {
+    "formal_title_field": "article_title",
+    "root_title_key_required_absent": true,
+    "required_title": "ダークギャザリング 第20巻｜配信開始",
+    "title_transformation_allowed": false
+  },
+  "approved_execution": {
+    "authorization_id": "FRESH_PAYLOAD_GENERATION_ONE_SHOT_AUTHORIZATION_V1",
+    "authorization_digest_sha256": "fed0e3c217c654f5e9803f750fd1d07269bff3eed4917a58638e61c9b571bc5b",
+    "single_use": true,
+    "initially_unconsumed": true,
+    "reuse_allowed": false,
+    "automatic_retry_allowed": false,
+    "automatic_reissue_allowed": false
+  },
+  "source_bindings": {
+    "article": {
+      "path": "exchange/content/new_release/fresh/new-release-comic-20260703-001.article.json",
+      "file_sha256": "de2739c8ae1aa4a50973b983964b05844086a2187b9ef337383ad6fa7123697d"
+    },
+    "m10_authorization": {
+      "path": "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.fresh_payload_generation_authorization.json",
+      "file_sha256": "4d30518af88409316a03ee75748dd40e07d3b5d4a8c50d341bb4564c8de84c15"
+    },
+    "m10_review": {
+      "path": "exchange/reviews/new_release/fresh/new-release-comic-20260703-001.post_injection_article_human_review.json",
+      "file_sha256": "823b4ab68e1af22ea9a99d5d224604f950128ec69066a1904fc211f0f39ba4c3"
+    },
+    "m10_result": {
+      "path": "exchange/logs/ls_new_batch_4g_2e_recovery_m10_result.json",
+      "file_sha256": "1a65a00b9ba8ae462665937819556799087b37c033590509ef3b6de133732ff5"
+    },
+    "m9_fix1_authorization": {
+      "path": "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.article_dmm_link_injection_fix1_authorization.json",
+      "file_sha256": "737993fcf83236e610247bb5bc31c9d1966896a95b3ce602ff5d648aeb213df6"
+    },
+    "m9_fix1_consumption": {
+      "path": "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.article_dmm_link_injection_fix1_consumption.json",
+      "file_sha256": "a5954bb426612296b997e26388c74f7996ac210d364b4ceca72694b81d302342"
+    },
+    "m9_fix1_result": {
+      "path": "exchange/logs/ls_new_batch_4g_2e_recovery_m9_fix1_result.json",
+      "file_sha256": "d98695971f1ffb73c34958e2418a6c18155f6f8a31420c6ab2e3662114a383ab"
+    },
+    "secret_link": {
+      "path": "exchange/links/new_release/fresh/new-release-comic-20260703-001.dmm_final_affiliate_link_generation_result.json",
+      "file_sha256": "c5a70d9804a4e2dfd91049ee20bdda5379abf3e1fe3c25b0fb8cbd5fa587faa0"
+    },
+    "m7_consumption": {
+      "path": "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.dmm_final_affiliate_link_generation_consumption.json",
+      "file_sha256": "f88bf184167925026350602de97790930ce8efb31eff1eefa289ba98a7f54f63"
+    },
+    "m6_authorization": {
+      "path": "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.dmm_final_affiliate_link_generation_authorization.json",
+      "file_sha256": "8e751212054d5722863984bec7faad5c0c851f28fdbebe18d5b441f34e36b4d9"
+    },
+    "m5_review": {
+      "path": "exchange/reviews/new_release/fresh/new-release-comic-20260703-001.dmm_historical_m4_evidence_human_review.json",
+      "file_sha256": "29411ef1792b95f5d807d6eef3c2298484b53e116ccfc5a7cdc19b0eb90d2ccd"
+    },
+    "cred1_result": {
+      "path": "exchange/logs/ls_new_batch_4g_2e_recovery_m6_cred1_result.json",
+      "file_sha256": "238420061e545a7f3123ac9ebbde27c11e8e42a38538c69c3c5494e1dd3ac908"
+    },
+    "category_mapping": {
+      "path": "config/new_release_wp_production_category_mapping.json",
+      "file_sha256": "19c2598d65d9acd817778deae8c661bc4c6ea33cc2a4d2686d33ec671764c4c0"
+    }
+  },
+  "full_payload_output_allowed": false,
+  "full_final_url_output_allowed": false,
+  "affiliate_identifier_output_allowed": false,
+  "network_connection_allowed": false,
+  "wordpress_access_allowed": false,
+  "production_status": "NO_GO",
+  "approval_evidence_digest_sha256": "828faaf712d98805c46ccabf217dd23244d32a951efe819f878584f0c01f4338"
+}

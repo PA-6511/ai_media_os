@@ -1,0 +1,83 @@
+{
+  "schema_version": "ir161_post_terminal_integrity_verification_v1",
+  "phase": "IR161",
+  "generated_at": "2026-05-26T12:32:10.773365+00:00",
+  "source_task_id": "ir161_165_batch",
+  "validation_result": "PASS",
+  "validation_failed_checks": [],
+  "validation_warnings": [],
+  "post_terminal_integrity_verification": {
+    "verification_id": "ir161_verify_ir161_165_batch_20260526T123210Z",
+    "generated_at": "2026-05-26T12:32:10.773348+00:00",
+    "source_task_id": "ir161_165_batch",
+    "new_cycle_id": "IR71_PLUS_CYCLE_A",
+    "verification_entries": [
+      {
+        "index_item_id": "immutable_1",
+        "meta_item": "new_cycle_start",
+        "verification_status": "INTACT",
+        "integrity_ok": true
+      },
+      {
+        "index_item_id": "immutable_2",
+        "meta_item": "governance_preparation",
+        "verification_status": "INTACT",
+        "integrity_ok": true
+      },
+      {
+        "index_item_id": "immutable_3",
+        "meta_item": "prohibition_continuity",
+        "verification_status": "INTACT",
+        "integrity_ok": true
+      },
+      {
+        "index_item_id": "immutable_4",
+        "meta_item": "evidence_fixation",
+        "verification_status": "INTACT",
+        "integrity_ok": true
+      },
+      {
+        "index_item_id": "immutable_5",
+        "meta_item": "long_term_retention",
+        "verification_status": "INTACT",
+        "integrity_ok": true
+      },
+      {
+        "index_item_id": "immutable_6",
+        "meta_item": "terminal_seal",
+        "verification_status": "INTACT",
+        "integrity_ok": true
+      },
+      {
+        "index_item_id": "immutable_7",
+        "meta_item": "cycle_summary",
+        "verification_status": "INTACT",
+        "integrity_ok": true
+      }
+    ],
+    "entry_count": 7,
+    "all_integrity_ok": true,
+    "unlock_eligible": false,
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "report_hash": "71c00e37cf31a33bedf9f8c672a872e7d8e8e8a973b0ed2b4926ad45e33400ae",
+  "safety_gate_snapshot": {
+    "dry_run": "maintained",
+    "OBSERVE": "maintained",
+    "submission_execution_blocked": true,
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "network_transmission_executed": false,
+    "production_release": false,
+    "GitHub_push": "未実行"
+  }
+}

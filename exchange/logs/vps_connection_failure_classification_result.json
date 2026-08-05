@@ -1,0 +1,15 @@
+{
+  "package_type": "phase7_4_vps_connection_failure_classification_result",
+  "phase": "Phase 7-4",
+  "status": "PASS",
+  "production_status": "NO_GO",
+  "human_review_required": true,
+  "classification_is_estimation_only": true,
+  "auto_remediation_executed": false,
+  "forbidden_operations_executed": false,
+  "classification": [
+    "UNKNOWN"
+  ],
+  "source_overall_status": "PASS_DRY_RUN_ONLY",
+  "created_at": "2026-05-24T04:29:50.292417+00:00"
+}

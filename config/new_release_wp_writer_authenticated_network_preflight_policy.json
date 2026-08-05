@@ -1,0 +1,87 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M13-PRE-NETWORK",
+  "policy_id": "WORDPRESS_WRITER_AUTHENTICATED_NETWORK_PREFLIGHT_POLICY_V1",
+  "operation_mode": "AUTHENTICATED_GET_ONLY_WORDPRESS_PREFLIGHT",
+  "content_item_id": "new-release-comic-20260703-001",
+  "connection_contract": {
+    "required_scheme": "https",
+    "required_host": "hoshido.jp",
+    "explicit_port_allowed": false,
+    "userinfo_allowed": false,
+    "fragment_allowed": false,
+    "cross_host_redirect_allowed": false,
+    "proxy_use_allowed": false,
+    "allowed_http_methods": [
+      "GET"
+    ],
+    "maximum_get_request_count": 3,
+    "automatic_retry_allowed": false
+  },
+  "checks": {
+    "authenticated_user_check": {
+      "method": "GET",
+      "rest_path": "/wp-json/wp/v2/users/me",
+      "context": "edit",
+      "required_capability": "edit_posts"
+    },
+    "category_check": {
+      "method": "GET",
+      "rest_path": "/wp-json/wp/v2/categories/10",
+      "required_category_id": 10,
+      "required_category_name": "最新巻",
+      "required_taxonomy": "category"
+    },
+    "duplicate_draft_check": {
+      "method": "GET",
+      "rest_path": "/wp-json/wp/v2/posts",
+      "required_status": "draft",
+      "required_context": "edit",
+      "required_title": "ダークギャザリング 第20巻｜配信開始",
+      "exact_title_raw_match_required": true,
+      "exact_content_raw_match_required": true,
+      "fail_if_raw_fields_unavailable": true,
+      "maximum_result_pages": 1
+    }
+  },
+  "payload_binding": {
+    "path": "exchange/payloads/new_release/fresh/new-release-comic-20260703-001.wordpress_draft_payload.json",
+    "required_file_sha256": "30a70be4110e863a85e2896f69f5b3e51d814a6fd82d5489f899d8a244166d8f",
+    "required_payload_digest_sha256": "2ab27b59305dbae98f997ca3a460400298152f173ef605b534df922c187411c6",
+    "required_mode": "0600"
+  },
+  "m12_authorization_binding": {
+    "required_file_sha256": "7c9662a7a13502e165862e452427899228794bce6904a0215c45a5b54ba1142b",
+    "required_authorization_digest_sha256": "d3ede61a71d75cbbc00a594f0a8d319aed0e598bd9c061609a52bed7e96d07c3",
+    "required_consumed_state": false
+  },
+  "secret_handling": {
+    "credential_values_output_allowed": false,
+    "username_output_allowed": false,
+    "application_password_output_allowed": false,
+    "authorization_header_output_allowed": false,
+    "credential_length_output_allowed": false,
+    "credential_mask_output_allowed": false,
+    "credential_hash_output_allowed": false,
+    "credential_file_content_output_allowed": false,
+    "full_wordpress_response_output_allowed": false,
+    "post_id_output_allowed": false,
+    "existing_post_content_output_allowed": false
+  },
+  "execution_boundary": {
+    "get_requests_allowed": true,
+    "post_requests_allowed": false,
+    "put_requests_allowed": false,
+    "patch_requests_allowed": false,
+    "delete_requests_allowed": false,
+    "m12_authorization_consumption_allowed": false,
+    "wordpress_write_allowed": false,
+    "wordpress_draft_creation_allowed": false,
+    "wordpress_publish_allowed": false,
+    "category_creation_allowed": false,
+    "category_update_allowed": false,
+    "media_upload_allowed": false,
+    "x_post_allowed": false,
+    "production_status": "NO_GO"
+  }
+}

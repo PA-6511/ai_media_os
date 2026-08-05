@@ -1,0 +1,81 @@
+{
+  "schema_version": "ir176_periodic_reverification_timeline_snapshot_v1",
+  "phase": "IR176",
+  "generated_at": "2026-05-26T12:53:34.315183+00:00",
+  "source_task_id": "ir176_180_batch",
+  "validation_result": "PASS",
+  "validation_failed_checks": [],
+  "validation_warnings": [],
+  "periodic_reverification_timeline_snapshot": {
+    "snapshot_id": "ir176_snapshot_ir176_180_batch_20260526T125334Z",
+    "generated_at": "2026-05-26T12:53:34.314819+00:00",
+    "source_task_id": "ir176_180_batch",
+    "new_cycle_id": "IR71_PLUS_CYCLE_A",
+    "timeline_entries": [
+      {
+        "timeline_item_id": "timeline_1",
+        "timeline_position": 1,
+        "source_phase": "IR171",
+        "source_content": "Periodic Reverification Snapshot",
+        "timeline_status": "FIXED",
+        "change_detected": false
+      },
+      {
+        "timeline_item_id": "timeline_2",
+        "timeline_position": 2,
+        "source_phase": "IR172",
+        "source_content": "Zero-Change Audit Registry",
+        "timeline_status": "FIXED",
+        "change_detected": false
+      },
+      {
+        "timeline_item_id": "timeline_3",
+        "timeline_position": 3,
+        "source_phase": "IR173",
+        "source_content": "Tracking Digest Refix",
+        "timeline_status": "FIXED",
+        "change_detected": false
+      },
+      {
+        "timeline_item_id": "timeline_4",
+        "timeline_position": 4,
+        "source_phase": "IR174",
+        "source_content": "DRY_RUN Continuity Evidence",
+        "timeline_status": "FIXED",
+        "change_detected": false
+      },
+      {
+        "timeline_item_id": "timeline_5",
+        "timeline_position": 5,
+        "source_phase": "IR175",
+        "source_content": "Phase 171-175 Completion Bundle",
+        "timeline_status": "FIXED",
+        "change_detected": false
+      }
+    ],
+    "entry_count": 5,
+    "timeline_fixed": true,
+    "unlock_eligible": false,
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "snapshot_hash": "517d62acde6c0b8f91a9a8354f1789c0c7e90350d7b3c9570140332c2a2516db",
+  "safety_gate_snapshot": {
+    "dry_run": "maintained",
+    "OBSERVE": "maintained",
+    "submission_execution_blocked": true,
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "network_transmission_executed": false,
+    "production_release": false,
+    "GitHub_push": "未実行"
+  }
+}

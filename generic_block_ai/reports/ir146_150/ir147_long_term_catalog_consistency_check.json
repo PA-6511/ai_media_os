@@ -1,0 +1,71 @@
+{
+  "schema_version": "ir147_long_term_catalog_consistency_check_v1",
+  "phase": "IR147",
+  "generated_at": "2026-05-26T12:16:15.834402+00:00",
+  "source_task_id": "ir146_150_batch",
+  "validation_result": "PASS",
+  "validation_failed_checks": [],
+  "validation_warnings": [],
+  "long_term_catalog_consistency_check": {
+    "check_id": "ir147_check_ir146_150_batch_20260526T121615Z",
+    "generated_at": "2026-05-26T12:16:15.834397+00:00",
+    "source_task_id": "ir146_150_batch",
+    "new_cycle_id": "IR71_PLUS_CYCLE_A",
+    "consistency_entries": [
+      {
+        "catalog_item_id": "queue_1",
+        "item": "go_decision_document",
+        "consistency_status": "CONSISTENT",
+        "consistent": true
+      },
+      {
+        "catalog_item_id": "queue_2",
+        "item": "release_approver_signature",
+        "consistency_status": "CONSISTENT",
+        "consistent": true
+      },
+      {
+        "catalog_item_id": "queue_3",
+        "item": "safety_redeclaration_record",
+        "consistency_status": "CONSISTENT",
+        "consistent": true
+      },
+      {
+        "catalog_item_id": "queue_4",
+        "item": "full_test_matrix_record",
+        "consistency_status": "CONSISTENT",
+        "consistent": true
+      },
+      {
+        "catalog_item_id": "queue_5",
+        "item": "execution_authorization_record",
+        "consistency_status": "CONSISTENT",
+        "consistent": true
+      }
+    ],
+    "entry_count": 5,
+    "all_consistent": true,
+    "unlock_eligible": false,
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "check_hash": "13b82773fe981074016d321234eccc1751e4da7cf03e889c3786f7932786d56c",
+  "safety_gate_snapshot": {
+    "dry_run": "maintained",
+    "OBSERVE": "maintained",
+    "submission_execution_blocked": true,
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "network_transmission_executed": false,
+    "production_release": false,
+    "GitHub_push": "未実行"
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "phase": "Phase 7-6",
+  "name": "human_approval_evidence_package_policy",
+  "policy_status": "DESIGN_ONLY",
+  "production_status": "NO_GO",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "human_approval_required": true,
+  "approval_is_execution_permission": false,
+  "wordpress_draft_creation": "NO_GO",
+  "wordpress_write_executed": false,
+  "publish_allowed": false,
+  "approve_draft_create_only_currently_allowed": false,
+  "unlock_in_this_phase": false,
+  "required_human_approval_fields": [
+    "review_id",
+    "phase",
+    "operator",
+    "decision",
+    "target_item_count",
+    "candidate_id",
+    "acknowledged_no_go",
+    "acknowledged_no_publish",
+    "acknowledged_single_item_only",
+    "acknowledged_freeze_on_mismatch",
+    "approval_scope"
+  ],
+  "allowed_decisions_in_phase7_6": [
+    "ACKNOWLEDGE_PRE_UNLOCK_REVIEW_ONLY",
+    "REQUEST_FIX",
+    "REJECT",
+    "ABORT"
+  ],
+  "forbidden_decisions_in_phase7_6": [
+    "APPROVE_DRAFT_CREATE_ONLY",
+    "APPROVE_PUBLISH",
+    "APPROVE_BULK_RUN"
+  ],
+  "approval_scope_required": {
+    "draft_create_only": false,
+    "publish": false,
+    "update": false,
+    "delete": false,
+    "bulk": false,
+    "external_export": false
+  },
+  "allowed_next_step": "Phase 7-7 APPROVE_DRAFT_CREATE_ONLY activation readiness gate design only"
+}

@@ -1,0 +1,26 @@
+{
+  "phase": "Phase 7-11",
+  "status": "TOKEN_READY_BUT_LOCKED",
+  "production_status": "NO_GO",
+  "wordpress_draft_creation": "NO_GO",
+  "wordpress_write_executed": false,
+  "wordpress_api_call_allowed": false,
+  "publish_allowed": false,
+  "approve_draft_create_only_currently_allowed": false,
+  "unlock_in_this_phase": false,
+  "token_validation_is_activation": false,
+  "target_item_count": 1,
+  "token_name": "APPROVE_DRAFT_CREATE_ONLY",
+  "evidence_summary": [
+    {
+      "path": "exchange/logs/phase7_10_human_unlock_decision_result.json",
+      "exists": true,
+      "status": "PASS_REVIEW_ONLY_NO_GO"
+    }
+  ],
+  "errors": [],
+  "warnings": [],
+  "safety_violations": [],
+  "allowed_next_step": "Phase 7-12 one-item controlled draft creation execution plan DRY_RUN",
+  "checked_at": "2026-05-27T14:01:09.424328+00:00"
+}

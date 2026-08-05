@@ -1,0 +1,61 @@
+{
+  "phase_id": "PHASE_S4",
+  "phase_name": "inter_block_communication_matrix",
+  "phase_status": "DESIGN_ONLY",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "human_approval_required": true,
+  "communication_default": "DENY",
+  "allowed_routes": [
+    {
+      "from": "core_ai",
+      "to": "generic_block_ai",
+      "mode": "proposal_only",
+      "write_allowed": false,
+      "execution_allowed": false,
+      "human_approval_required": true
+    },
+    {
+      "from": "core_ai",
+      "to": "ebook_affiliate_block_ai",
+      "mode": "proposal_only",
+      "write_allowed": false,
+      "execution_allowed": false,
+      "human_approval_required": true
+    },
+    {
+      "from": "core_ai",
+      "to": "self_builder_ai",
+      "mode": "design_review_only",
+      "write_allowed": false,
+      "execution_allowed": false,
+      "human_approval_required": true
+    }
+  ],
+  "blocked_routes": [
+    {
+      "from": "experimental_block_ai",
+      "to": "production_core_ai",
+      "reason": "experimental_block_must_not_connect_to_production_core"
+    },
+    {
+      "from": "adult_or_risky_experiment_ai",
+      "to": "production_core_ai",
+      "reason": "restricted_ai_must_remain_isolated"
+    },
+    {
+      "from": "unknown_block_ai",
+      "to": "any_production_component",
+      "reason": "unknown_block_default_deny"
+    }
+  ],
+  "external_routes": {
+    "wordpress_write": false,
+    "wordpress_read": true,
+    "slack_live_notice": false,
+    "slack_dry_run_notice": true,
+    "github_write": false,
+    "github_read": true,
+    "openai_write_or_key_rotation": false
+  }
+}

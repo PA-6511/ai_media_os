@@ -1,0 +1,35 @@
+{
+  "phase": "Phase 8-2",
+  "status": "FINAL_PREFLIGHT_PASS_READY_FOR_PHASE8_3_SINGLE_DRAFT_CREATE",
+  "production_status": "NO_GO",
+  "wordpress_draft_creation": "NO_GO",
+  "wordpress_write_executed": false,
+  "wordpress_api_call_allowed": false,
+  "publish_allowed": false,
+  "preflight_is_execution_permission": false,
+  "phase8_3_may_execute_if_this_passes": true,
+  "target_item_count": 1,
+  "approval_token": "APPROVE_DRAFT_CREATE_ONLY",
+  "evidence_summary": [
+    {
+      "path": "exchange/logs/phase7_14_pre_live_unlock_final_report.json",
+      "exists": true,
+      "status": "READY_FOR_PHASE8_HUMAN_APPROVAL_BUT_NO_GO"
+    },
+    {
+      "path": "exchange/logs/phase8_1_explicit_human_approval_result.json",
+      "exists": true,
+      "status": "APPROVAL_FILE_VALID_FOR_PREFLIGHT_ONLY"
+    }
+  ],
+  "candidate_summary": {
+    "candidate_id": "phase7_1_sample_candidate_001",
+    "title": "サンプル漫画 1巻 セール紹介",
+    "category": "電子書籍"
+  },
+  "errors": [],
+  "warnings": [],
+  "safety_violations": [],
+  "allowed_next_step": "Phase 8-3 first one-item WordPress draft creation execution only if human explicitly approves",
+  "checked_at": "2026-05-27T14:18:31.753050+00:00"
+}

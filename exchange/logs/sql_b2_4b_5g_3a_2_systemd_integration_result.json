@@ -1,0 +1,91 @@
+{
+  "phase": "SQL-B2-4B-5G-3A-2",
+  "result": "PASS_REPOSITORY_EXEC_CONDITION_INTEGRATION_CORRECTED",
+  "recorded_at": "2026-07-14T14:53:07.618292+00:00",
+  "git": {
+    "branch": "feature/sql-b2-4b-slack-production-readiness",
+    "integration_commit": "a2113960c6f5aa8bb174e2343459dc49ee47ecac",
+    "integration_commit_short": "a211396",
+    "permission_correction_commit": "61767562bd8469f2fa2c3efdff613a1e300fa16b",
+    "permission_correction_commit_short": "6176756",
+    "head_commit": "61767562bd8469f2fa2c3efdff613a1e300fa16b",
+    "head_commit_short": "6176756"
+  },
+  "implementation": {
+    "integration_method": "SYSTEMD_EXEC_CONDITION",
+    "repository_exec_condition": true,
+    "repository_exec_condition_count": 1,
+    "service_user": "deploy",
+    "installed_unit_modified": false,
+    "deployment_state": "REPOSITORY_ONLY",
+    "phase_files": [
+      "systemd/ai-media-os-slack-approval-readiness.service",
+      "config/slack_readiness_autostart_systemd_integration_policy.json",
+      "tests/test_slack_readiness_autostart_systemd_integration.py",
+      "app/services/slack_autostart_gate.py",
+      "config/slack_readiness_autostart_gate_policy.json",
+      "tests/test_slack_autostart_gate.py"
+    ],
+    "source_sha256": {
+      "systemd/ai-media-os-slack-approval-readiness.service": "ea27ffcff758a32020102f35a4df025aba8358501a6798d33f0ba069162005fc",
+      "config/slack_readiness_autostart_systemd_integration_policy.json": "0e01684b1fcca05484f3dd2b2dc35f31b42809cf1c3c3cec32049774f49cfd03",
+      "tests/test_slack_readiness_autostart_systemd_integration.py": "835915eddf494fb2eb98d7e6fe3925486f3770d6303195e1d05551db8f129998",
+      "app/services/slack_autostart_gate.py": "e9258e5aaa4bcf920409186ef010f77018609fe1ada9e3958a7bb14aaefebd8f",
+      "config/slack_readiness_autostart_gate_policy.json": "c393cea7a58a3d92e79f25e3771bd730137840f2d1060cd8cefb7ba267d7bd00",
+      "tests/test_slack_autostart_gate.py": "c0a522275eaf346c4c00622948ec66e802ae2458e73601af9e83667d1abb6625"
+    }
+  },
+  "gate_contract": {
+    "path": "/etc/ai-media-os/slack-readiness-autostart.approved",
+    "owner": "root",
+    "group": "root",
+    "mode": "0644",
+    "contains_secrets": false,
+    "service_user_readable": true,
+    "non_root_writable": false,
+    "present": false,
+    "approval": "NOT_APPROVED"
+  },
+  "tests": {
+    "new_and_related_tests_passed": 32,
+    "targeted_tests_passed": 41,
+    "regression_tests_passed": 175,
+    "systemd_verify_exit_code": 0
+  },
+  "installed_unit_safety": {
+    "sha256_before": "94b6aaac4f43605996eec4e3e79ee50eb7523e5efe50bf447069dc9489b4681e",
+    "sha256_after": "94b6aaac4f43605996eec4e3e79ee50eb7523e5efe50bf447069dc9489b4681e",
+    "unchanged": true,
+    "contains_exec_condition": false
+  },
+  "database_safety": {
+    "production_sha256_before": "a4c5c6b3c9f016cd745cdb9c531c807fe5bc4a3ac28f9422609dfa96cd7b37d8",
+    "production_sha256_after": "a4c5c6b3c9f016cd745cdb9c531c807fe5bc4a3ac28f9422609dfa96cd7b37d8",
+    "production_database_unchanged": true,
+    "readiness_quick_check": "ok",
+    "readiness_approval_count": 0
+  },
+  "systemd_final_state": {
+    "active_state": "inactive",
+    "sub_state": "dead",
+    "unit_file_state": "disabled",
+    "main_pid": 0,
+    "enabled": false,
+    "running": false
+  },
+  "decision": {
+    "repository_exec_condition": "IMPLEMENTED",
+    "installed_unit": "UNCHANGED",
+    "autostart_approval": "NOT_APPROVED",
+    "unit_enabled": false,
+    "service_running": false,
+    "final_decision": "NO_GO"
+  },
+  "governance": {
+    "production_status": "NO_GO",
+    "safety_state": "REPOSITORY_EXEC_CONDITION_IMPLEMENTED_NOT_INSTALLED",
+    "production_slack_approval_allowed": false,
+    "automatic_start_allowed": false,
+    "installed_unit_change_allowed": false
+  }
+}

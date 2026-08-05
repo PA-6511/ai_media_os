@@ -1,0 +1,304 @@
+{
+  "fixture_id": "LS_NEW_BATCH_4G_2E_PHASE_K_PREIMAGE",
+  "purpose": "Immutable historical Phase K article preimage and minimal bound dependencies for K through M8-FIX1 tests",
+  "phase": "K",
+  "source_item_id": "new-release-comic-20260703-001",
+  "source_phase": "LS-NEW-BATCH-4G-2E-RECOVERY-K",
+  "original_artifact_path": "exchange/content/new_release/fresh/new-release-comic-20260703-001.article.json",
+  "original_artifact_sha256": "849a37519c6af70d2212ec01d5cddef5793bfa811e97ca9f248ce099a0350bf4",
+  "fixture_artifact_path": "snapshot/exchange/content/new_release/fresh/new-release-comic-20260703-001.article.json",
+  "fixture_artifact_sha256": "849a37519c6af70d2212ec01d5cddef5793bfa811e97ca9f248ce099a0350bf4",
+  "expected_article_sha256": "849a37519c6af70d2212ec01d5cddef5793bfa811e97ca9f248ce099a0350bf4",
+  "terminal_postimage_sha256": "de2739c8ae1aa4a50973b983964b05844086a2187b9ef337383ad6fa7123697d",
+  "provenance_type": "DETERMINISTIC_REGENERATION_FROM_FORMAL_PHASE_K_INPUTS",
+  "provenance_evidence": [
+    {
+      "path": "exchange/logs/ls_new_batch_4g_2e_recovery_k_result.json",
+      "sha256": "e168c31a354a625c0053d329d7279d47e577c379ea15e68506be50d4f886ded2",
+      "evidence_role": "PHASE_K_GENERATION_RESULT"
+    },
+    {
+      "path": "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.offline_content_generation_consumption.json",
+      "sha256": "04d4a3be9286ab35dae2f4f635f883ea63f5c108d64f1c390804f0b7defeedf8",
+      "evidence_role": "PHASE_K_GENERATED_ARTICLE_BINDING"
+    },
+    {
+      "path": "exchange/logs/ls_new_batch_4g_2e_recovery_m9_fix1_result.json",
+      "sha256": "d98695971f1ffb73c34958e2418a6c18155f6f8a31420c6ab2e3662114a383ab",
+      "evidence_role": "POSTIMAGE_ATOMIC_REPLACEMENT_PREIMAGE_BINDING"
+    }
+  ],
+  "provenance_inputs": [
+    {
+      "path": "scripts/build_ls_new_batch_4g_2e_recovery_k.py",
+      "sha256": "2939f9a0945e495c9455a53b5e46eb0835e8623ecb40d1ee65f0b5e184ab2a53",
+      "included_or_bound_only": "BOUND_ONLY"
+    },
+    {
+      "path": "config/new_release_wp_fresh_article_one_shot_offline_generation_policy.json",
+      "sha256": "62d7431a8d41a422f960f45748861f65c3207282ae6c04fc1e608a8f295751ff",
+      "included_or_bound_only": "BOUND_ONLY"
+    },
+    {
+      "path": "exchange/examples/new_release_wp_fresh_article_one_shot_offline_generation_execute_request.example.json",
+      "sha256": "c118ca74a9fc4763e9343e80ce6b0bbc7fe41af1db0ef9e9246fda33af16df8d",
+      "included_or_bound_only": "BOUND_ONLY"
+    },
+    {
+      "path": "exchange/logs/ls_new_batch_4g_2e_recovery_k_preflight_result.json",
+      "sha256": "868704cd5ad97f3cf369aad5e487b9260e1e4818bc0eefbf9dbc8cd5acb1ccff",
+      "included_or_bound_only": "BOUND_ONLY"
+    },
+    {
+      "path": "exchange/preflight/new_release/fresh/new-release-comic-20260703-001.offline_content_generation_preflight.json",
+      "sha256": "8fd198c416fec119999143153d496b1cfd794b1ffdd65e9860a5e5c622f879c7",
+      "included_or_bound_only": "BOUND_ONLY"
+    },
+    {
+      "path": "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.offline_content_generation_authorization.json",
+      "sha256": "32950bab69f70b0433b446c2e18c5dad9f6cfa7c4b188e432869a0bde8f58afb",
+      "included_or_bound_only": "BOUND_ONLY"
+    },
+    {
+      "path": "exchange/approvals/ls_new_batch_4g_2e_recovery_k_execute_now_approval.json",
+      "sha256": "dcff543bc139d7d058f01de4b9a9aface36f54f96cffc4815779a108587f66ab",
+      "included_or_bound_only": "BOUND_ONLY"
+    }
+  ],
+  "historical_dependencies": [
+    {
+      "path": "config/new_release_wp_fresh_dmm_final_affiliate_link_generation_authorization_gate_policy.json",
+      "sha256": "b586d86822f9f0122c520f5a0229c1e8dddf05148c660c565d24f2ca3ca5cc77",
+      "source_phase": "M6",
+      "included_or_bound_only": "INCLUDED"
+    },
+    {
+      "path": "exchange/approvals/ls_new_batch_4g_2e_recovery_m2_execute_now_approval.json",
+      "sha256": "ef6aba899c5296fab9b593359dfd8a1e8a86be4e2ea1a3296cff6807a62c53da",
+      "source_phase": "M2",
+      "included_or_bound_only": "INCLUDED"
+    },
+    {
+      "path": "exchange/approvals/ls_new_batch_4g_2e_recovery_m4_execute_now_approval.json",
+      "sha256": "db9934ae308700ad8dfd8c7c9e200e184c611dbbc1fa7537ef23cd5ba2db767a",
+      "source_phase": "M4",
+      "included_or_bound_only": "INCLUDED"
+    },
+    {
+      "path": "exchange/approvals/ls_new_batch_4g_2e_recovery_m4_fix1_volume_canonical_remediation_approval.json",
+      "sha256": "57cc5a1c4f1de02a6f8bf4968a602f4888dbcd22a9d2cce97f40f535bb7cec37",
+      "source_phase": "M4-FIX1",
+      "included_or_bound_only": "INCLUDED"
+    },
+    {
+      "path": "exchange/approvals/ls_new_batch_4g_2e_recovery_m5_historical_evidence_human_review_approval.json",
+      "sha256": "04ddd0aa521b9796be11ab5643162eb5a695b5741fbbcd54975ea52754a4e884",
+      "source_phase": "M5",
+      "included_or_bound_only": "INCLUDED"
+    },
+    {
+      "path": "exchange/approvals/ls_new_batch_4g_2e_recovery_m6_authorization_gate_approval.json",
+      "sha256": "e53987a4c4d78ee540d1e911b3d261325081ae31b3358e4df6d4010e5860c89c",
+      "source_phase": "M6",
+      "included_or_bound_only": "INCLUDED"
+    },
+    {
+      "path": "exchange/approvals/ls_new_batch_4g_2e_recovery_m7_execute_now_approval.json",
+      "sha256": "16d3c69498740efbc24825b0921da52b48fd311454cedb67b6aed8b9a1ea994b",
+      "source_phase": "M7",
+      "included_or_bound_only": "INCLUDED"
+    },
+    {
+      "path": "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.article_dmm_link_injection_fix1_authorization.json",
+      "sha256": "737993fcf83236e610247bb5bc31c9d1966896a95b3ce602ff5d648aeb213df6",
+      "source_phase": "M8-FIX1",
+      "included_or_bound_only": "INCLUDED"
+    },
+    {
+      "path": "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.dmm_final_affiliate_link_generation_authorization.json",
+      "sha256": "8e751212054d5722863984bec7faad5c0c851f28fdbebe18d5b441f34e36b4d9",
+      "source_phase": "M6",
+      "included_or_bound_only": "INCLUDED"
+    },
+    {
+      "path": "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.dmm_latest_alias_recheck_authorization.json",
+      "sha256": "f628bf4d8b1451dfd9beec4ff04ce0c3101086da9ef7806d89af0ab26bd93701",
+      "source_phase": "M1",
+      "included_or_bound_only": "INCLUDED"
+    },
+    {
+      "path": "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.dmm_latest_alias_recheck_consumption.json",
+      "sha256": "fa4d1d2fbc5a4a57b79e1e563d1d7ce12aaab98e12eb822dfc6cf08a20778fd6",
+      "source_phase": "M2",
+      "included_or_bound_only": "INCLUDED"
+    },
+    {
+      "path": "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.dmm_latest_alias_recheck_post_parser_fix_authorization.json",
+      "sha256": "39c77b363e39e2be287d009a3df3624d9dca7d510a93156309ee02d53110c541",
+      "source_phase": "M3",
+      "included_or_bound_only": "INCLUDED"
+    },
+    {
+      "path": "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.dmm_latest_alias_recheck_post_parser_fix_consumption.json",
+      "sha256": "b1afbd3728cba784ec9d90f9d1805a32f212292960d3fa60ac8c43355d75725c",
+      "source_phase": "M4",
+      "included_or_bound_only": "INCLUDED"
+    },
+    {
+      "path": "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.offline_content_generation_consumption.json",
+      "sha256": "04d4a3be9286ab35dae2f4f635f883ea63f5c108d64f1c390804f0b7defeedf8",
+      "source_phase": "K",
+      "included_or_bound_only": "INCLUDED"
+    },
+    {
+      "path": "exchange/content/new_release/fresh/new-release-comic-20260703-001.article.json",
+      "sha256": "849a37519c6af70d2212ec01d5cddef5793bfa811e97ca9f248ce099a0350bf4",
+      "source_phase": "K",
+      "included_or_bound_only": "INCLUDED"
+    },
+    {
+      "path": "exchange/examples/new_release_wp_fresh_article_content_human_review_request.example.json",
+      "sha256": "af1c9a3cf8dffffefda5873eac7f74dec7af7ae10a7709b04fcceaef8677bd52",
+      "source_phase": "L",
+      "included_or_bound_only": "INCLUDED"
+    },
+    {
+      "path": "exchange/examples/new_release_wp_fresh_dmm_latest_alias_recheck_authorization_request.example.json",
+      "sha256": "62603c6ace4bc7976a95f706f782da6f831dbdf87104c30952223b23205dd485",
+      "source_phase": "M1",
+      "included_or_bound_only": "INCLUDED"
+    },
+    {
+      "path": "exchange/examples/new_release_wp_fresh_dmm_latest_alias_recheck_execute_request.example.json",
+      "sha256": "61792023d9290f3f26d54fdc3f477892616f8d2d326da7b9b37a94c5896294ab",
+      "source_phase": "M2",
+      "included_or_bound_only": "INCLUDED"
+    },
+    {
+      "path": "exchange/examples/new_release_wp_fresh_dmm_post_parser_fix_recheck_authorization_request.example.json",
+      "sha256": "83e7d89f5ebb4f6b92f8265ffac2e474b90bbc12b7e963a43e1dadf65ed79625",
+      "source_phase": "M3",
+      "included_or_bound_only": "INCLUDED"
+    },
+    {
+      "path": "exchange/examples/new_release_wp_fresh_dmm_post_parser_fix_recheck_execute_request.example.json",
+      "sha256": "534bebe861761f1166f96009423c69ab247245ea7392c38adedddac2503f257f",
+      "source_phase": "M4",
+      "included_or_bound_only": "INCLUDED"
+    },
+    {
+      "path": "exchange/examples/new_release_wp_fresh_store_link_finalization_plan_request.example.json",
+      "sha256": "63c8e95c53429a192faaed1405f96824793da5c958bb8fb8a4517dfa1bc3ea8c",
+      "source_phase": "M0",
+      "included_or_bound_only": "INCLUDED"
+    },
+    {
+      "path": "exchange/inputs/new_release/fresh/new-release-comic-20260703-001.input.json",
+      "sha256": "0e7c87975fd3adaa8d8e8f8bcd13d49e75f4ef390d8a71e416089c85bfe4cd6f",
+      "source_phase": "G-V2",
+      "included_or_bound_only": "INCLUDED"
+    },
+    {
+      "path": "exchange/logs/ls_new_batch_4g_2e_recovery_m2_fix1_result.json",
+      "sha256": "3f1069131bc662359fd015731637586f4c2327cbb8167c9604a718d0782c309f",
+      "source_phase": "M2-FIX1",
+      "included_or_bound_only": "INCLUDED"
+    },
+    {
+      "path": "exchange/logs/ls_new_batch_4g_2e_recovery_m2_result.json",
+      "sha256": "9781d843184ead76b313a099b86cba30081725679c5889938fab1c930aa5cdec",
+      "source_phase": "M2",
+      "included_or_bound_only": "INCLUDED"
+    },
+    {
+      "path": "exchange/logs/ls_new_batch_4g_2e_recovery_m4_fix1_result.json",
+      "sha256": "e45ff091abc12010d9d6f04985571a33ad7b88b0c0600aaa999f0f8893a6c511",
+      "source_phase": "M4-FIX1",
+      "included_or_bound_only": "INCLUDED"
+    },
+    {
+      "path": "exchange/logs/ls_new_batch_4g_2e_recovery_m4_result.json",
+      "sha256": "391a58437472d37a3cbd7a4e5482c0af0a477d9688378e2bc205c585a536554b",
+      "source_phase": "M4",
+      "included_or_bound_only": "INCLUDED"
+    },
+    {
+      "path": "exchange/logs/ls_new_batch_4g_2e_recovery_m6_cred1_result.json",
+      "sha256": "238420061e545a7f3123ac9ebbde27c11e8e42a38538c69c3c5494e1dd3ac908",
+      "source_phase": "M6",
+      "included_or_bound_only": "INCLUDED"
+    },
+    {
+      "path": "exchange/logs/ls_new_batch_4g_2e_recovery_m6_result.json",
+      "sha256": "0109ec8432407bba6407ee446009426e55a575d3adc857b548378f1f9143c8bc",
+      "source_phase": "M6",
+      "included_or_bound_only": "INCLUDED"
+    },
+    {
+      "path": "exchange/logs/ls_new_batch_4g_2e_recovery_m8_fix1_result.json",
+      "sha256": "5c38021615d02b6abfde827a4de2653536e6bbc2b25f2c808f48b82b43414f57",
+      "source_phase": "M8-FIX1",
+      "included_or_bound_only": "INCLUDED"
+    },
+    {
+      "path": "exchange/plans/new_release/fresh/new-release-comic-20260703-001.store_link_finalization_plan.json",
+      "sha256": "3004d586cab8b98f39101d7d85164d0bdeea68882da66ecde9b6b37f9a16fb7a",
+      "source_phase": "M0",
+      "included_or_bound_only": "INCLUDED"
+    },
+    {
+      "path": "exchange/rechecks/new_release/fresh/new-release-comic-20260703-001.dmm_latest_alias_recheck_post_parser_fix_result.json",
+      "sha256": "2d921454f02f4d670bfae53447abc520ff9ee5c47ce1f92b737bf578d93365a2",
+      "source_phase": "M4",
+      "included_or_bound_only": "INCLUDED"
+    },
+    {
+      "path": "exchange/rechecks/new_release/fresh/new-release-comic-20260703-001.dmm_latest_alias_recheck_result.json",
+      "sha256": "0a7f09cdcb048468e21520d3531a257677dcc100087f45842288b692db2648dc",
+      "source_phase": "M2",
+      "included_or_bound_only": "INCLUDED"
+    },
+    {
+      "path": "exchange/reviews/new_release/fresh/new-release-comic-20260703-001.article_content_human_review.json",
+      "sha256": "532576598bd87dbaebc5d2a275b2e313c6187f9b2ea94176cfd064d6ec929f1d",
+      "source_phase": "L",
+      "included_or_bound_only": "INCLUDED"
+    },
+    {
+      "path": "exchange/reviews/new_release/fresh/new-release-comic-20260703-001.dmm_historical_m4_evidence_human_review.json",
+      "sha256": "29411ef1792b95f5d807d6eef3c2298484b53e116ccfc5a7cdc19b0eb90d2ccd",
+      "source_phase": "M5",
+      "included_or_bound_only": "INCLUDED"
+    },
+    {
+      "path": "scripts/build_ls_new_batch_4g_2e_recovery_m8_fix1.py",
+      "sha256": "47976082f63267ab4e5acd3a26613087f74c2b56a3a48c40a896d80ab671fff3",
+      "source_phase": "M8-FIX1",
+      "included_or_bound_only": "INCLUDED"
+    },
+    {
+      "path": "scripts/execute_ls_new_batch_4g_2e_recovery_m2.py",
+      "sha256": "f28ec2df1816e102673831ea9e8dfde0db2df7df668324925f6b7f1441e306aa",
+      "source_phase": "M2",
+      "included_or_bound_only": "INCLUDED"
+    },
+    {
+      "path": "scripts/execute_ls_new_batch_4g_2e_recovery_m4.py",
+      "sha256": "729036b79e18f38bf4f00b257f688726578673109f5d57023255dd6b329dc4e4",
+      "source_phase": "M4",
+      "included_or_bound_only": "INCLUDED"
+    }
+  ],
+  "created_at": "2026-07-23T13:37:22Z",
+  "immutable": true,
+  "terminal_artifact": false,
+  "postimage_artifact": false,
+  "update_policy": {
+    "allowed_only_for_formal_phase_k_specification_change": true,
+    "new_authoritative_phase_k_generation_required": true,
+    "human_approval_required": true,
+    "old_sha_new_sha_reason_and_generation_phase_required": true,
+    "historical_test_contract_reevaluation_required": true,
+    "later_terminal_article_change_is_not_an_update_reason": true
+  }
+}

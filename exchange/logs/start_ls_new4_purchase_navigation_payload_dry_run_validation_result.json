@@ -1,0 +1,14 @@
+{
+  "phase": "LS-NEW-4",
+  "document_type": "START_LS_NEW4_PURCHASE_NAVIGATION_PAYLOAD_DRY_RUN_VALIDATION_RESULT",
+  "validation_status": "LSNEW4_PURCHASE_NAVIGATION_PAYLOAD_DRY_RUN_VALIDATED_NO_EXECUTION",
+  "run_status": "LSNEW4_PURCHASE_NAVIGATION_PAYLOAD_DRY_RUN_PASSED_NO_EXECUTION",
+  "production_status": "NO_EXECUTION_PURCHASE_NAVIGATION_PAYLOAD_DRY_RUN_ONLY",
+  "recommended_next_action": "BEGIN_LS_NEW_5_HUMAN_REVIEW_GATE",
+  "recommended_next_phase_options": [
+    "LS-NEW-5",
+    "LS-MON-2"
+  ],
+  "errors": [],
+  "generated_at": "2026-07-04T17:12:02.854711+00:00"
+}

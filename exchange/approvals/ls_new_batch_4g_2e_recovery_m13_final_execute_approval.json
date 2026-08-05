@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M13",
+  "approval_id": "wordpress-draft-creation-final-one-shot-execute-now-approval-v1",
+  "approval_label": "WORDPRESS_DRAFT_CREATION_FINAL_ONE_SHOT_EXECUTE_NOW_APPROVED",
+  "approved_by": "HUMAN_OPERATOR",
+  "human_explicit_approval": true,
+  "approved_at_utc": "2026-07-11T10:27:27.536437+00:00",
+  "authorized_operation": "CONSUME_M12_AUTHORIZATION_AND_CREATE_EXACTLY_ONE_WORDPRESS_DRAFT",
+  "duplicate_get_before_consumption_required": true,
+  "maximum_duplicate_get_count": 1,
+  "maximum_create_post_count": 1,
+  "authorization_consumption_approved": true,
+  "wordpress_draft_creation_approved": true,
+  "wordpress_publish_approved": false,
+  "automatic_retry_allowed": false,
+  "automatic_reissue_allowed": false,
+  "source_bindings": {
+    "article": {
+      "path": "exchange/content/new_release/fresh/new-release-comic-20260703-001.article.json",
+      "file_sha256": "de2739c8ae1aa4a50973b983964b05844086a2187b9ef337383ad6fa7123697d"
+    },
+    "payload": {
+      "path": "exchange/payloads/new_release/fresh/new-release-comic-20260703-001.wordpress_draft_payload.json",
+      "file_sha256": "30a70be4110e863a85e2896f69f5b3e51d814a6fd82d5489f899d8a244166d8f"
+    },
+    "secret_link": {
+      "path": "exchange/links/new_release/fresh/new-release-comic-20260703-001.dmm_final_affiliate_link_generation_result.json",
+      "file_sha256": "c5a70d9804a4e2dfd91049ee20bdda5379abf3e1fe3c25b0fb8cbd5fa587faa0"
+    },
+    "m11_fix2_review": {
+      "path": "exchange/reviews/new_release/fresh/new-release-comic-20260703-001.wordpress_draft_payload_human_review.json",
+      "file_sha256": "b789556be39fdfb506b2a0149430716128e50d49a7f403b8b2e536e5ea9b0c70"
+    },
+    "m11_fix2_result": {
+      "path": "exchange/logs/ls_new_batch_4g_2e_recovery_m11_fix2_result.json",
+      "file_sha256": "82a54aa24e22d19ed8c8b9904375d73bb69809d9fd603c836bfab82ee9846c0b"
+    },
+    "m12_authorization": {
+      "path": "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.wordpress_draft_creation_authorization.json",
+      "file_sha256": "7c9662a7a13502e165862e452427899228794bce6904a0215c45a5b54ba1142b"
+    },
+    "m12_result": {
+      "path": "exchange/logs/ls_new_batch_4g_2e_recovery_m12_result.json",
+      "file_sha256": "494e453f8fd20f25d2591492d7ba8632d28fe9a29cb156fcdf74621c6e9ac56c"
+    },
+    "m13_pre_writer_result": {
+      "path": "exchange/logs/ls_new_batch_4g_2e_recovery_m13_pre_writer_result.json",
+      "file_sha256": "7425bb093ed9d20420ce300b411e8bac93f1b2a5aefecd53932f148c360820b8"
+    },
+    "m13_pre_network_result": {
+      "path": "exchange/logs/ls_new_batch_4g_2e_recovery_m13_pre_network_result.json",
+      "file_sha256": "2c5090f5216cfa418d408db0098270b93c1fbc247a3d53f40b9d488ace24c3fe"
+    },
+    "cred1_result": {
+      "path": "exchange/logs/ls_new_batch_4g_2e_recovery_m6_cred1_result.json",
+      "file_sha256": "238420061e545a7f3123ac9ebbde27c11e8e42a38538c69c3c5494e1dd3ac908"
+    }
+  },
+  "production_status_after_success": "NO_GO",
+  "approval_evidence_digest_sha256": "a269dc078d0861fe1146e459998a54d3c3c8f422cf6fd387241404f67142e4a8"
+}

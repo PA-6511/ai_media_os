@@ -1,0 +1,12 @@
+{
+  "phase": "LS-NEW-9-DECISION",
+  "document_type": "START_LS_NEW9_DECISION_INPUT_TEMPLATE",
+  "human_approval_completed": false,
+  "human_approved_for_execution": false,
+  "approval_label": "",
+  "reviewer_notes": "",
+  "execution_allowed": false,
+  "runner_execution_allowed": false,
+  "final_execution_command_created": false,
+  "ready_for_ls_new_10": false
+}

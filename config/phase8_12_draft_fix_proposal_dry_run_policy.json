@@ -1,0 +1,39 @@
+{
+  "phase": "Phase 8-12",
+  "name": "draft_fix_proposal_dry_run_policy",
+  "policy_status": "PROPOSAL_ONLY_NO_WRITE",
+  "production_status": "NO_GO",
+  "mode": "DRAFT_FIX_PROPOSAL",
+  "execution": "DRY_RUN",
+  "wordpress_api_call_allowed": false,
+  "wordpress_write_executed": false,
+  "publish_allowed": false,
+  "update_allowed": false,
+  "delete_allowed": false,
+  "export_allowed": false,
+  "auto_post": false,
+  "auto_update": false,
+  "auto_delete": false,
+  "auto_export": false,
+  "required_evidence": [
+    "exchange/logs/phase8_11_manual_draft_review_post_114_result.json"
+  ],
+  "required_phase8_11_status": "PHASE8_11_REQUEST_FIX",
+  "target_post_id": 114,
+  "required_checklist_state": {
+    "draft_exists_and_is_draft": true,
+    "title_is_expected": true,
+    "content_has_no_break_or_blank_or_dangerous_html": true,
+    "affiliate_or_pr_disclosure_present": true,
+    "links_are_intended": false,
+    "still_not_published": true
+  },
+  "proposal_requirements": {
+    "keep_pr_disclosure": true,
+    "must_include_link_section": true,
+    "forbid_dangerous_html": true,
+    "publish_go_forbidden": true,
+    "wordpress_update_forbidden": true
+  },
+  "allowed_next_step": "Phase 8-13 manual draft content edit plan review (still NO_GO)"
+}

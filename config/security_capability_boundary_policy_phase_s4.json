@@ -1,0 +1,58 @@
+{
+  "phase_id": "PHASE_S4",
+  "phase_name": "capability_boundary_policy",
+  "phase_status": "DESIGN_ONLY",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "human_approval_required": true,
+  "capability_defaults": {
+    "observe": true,
+    "analyze": true,
+    "propose": true,
+    "draft": true,
+    "report": true,
+    "execute": false,
+    "write": false,
+    "delete": false,
+    "export": false,
+    "publish": false,
+    "network_change": false,
+    "secret_read": false,
+    "secret_write": false,
+    "credential_rotate": false,
+    "process_control": false,
+    "scheduler_control": false
+  },
+  "blocked_capabilities": [
+    "execute",
+    "write",
+    "delete",
+    "export",
+    "publish",
+    "network_change",
+    "secret_read",
+    "secret_write",
+    "credential_rotate",
+    "process_control",
+    "scheduler_control",
+    "firewall_apply",
+    "container_stop",
+    "systemctl_execute",
+    "wordpress_write",
+    "external_api_write"
+  ],
+  "allowed_capabilities_without_human_approval": [
+    "observe",
+    "analyze",
+    "propose",
+    "report"
+  ],
+  "capabilities_requiring_human_approval": [
+    "draft",
+    "connect_block_ai",
+    "disconnect_block_ai",
+    "change_risk_class",
+    "request_isolation",
+    "request_reconnect"
+  ]
+}

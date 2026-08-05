@@ -1,0 +1,17 @@
+{
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "hold_state": "HOLD",
+  "simulation_recheck_requested": true,
+  "execution_allowed": false,
+  "wordpress_api_call_allowed": false,
+  "wordpress_write_allowed": false,
+  "wordpress_write_executed": false,
+  "wordpress_draft_created": false,
+  "publish_allowed": false,
+  "rollback_executed": false,
+  "freeze_executed": false,
+  "secret_values_output": false,
+  "operator_note": "Adapter-route rollback/freeze simulation reconfirmation only"
+}

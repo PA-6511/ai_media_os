@@ -1,0 +1,81 @@
+{
+  "_meta": {
+    "phase": "10-6",
+    "phase_name": "receiver validator 実装発効前 preflight 設計",
+    "version": "1.0",
+    "created_date": "2026-05-12",
+    "status": "PASS_DESIGN_ONLY",
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only",
+    "description": "Phase 10-3 の許可宣言を発効させる前に、receiver validator の最小実装に必要な preflight 条件を設計する。"
+  },
+  "references": [
+    "generic_block_ai/reports/phase10_2_app_tests_implementation_go_nogo_actual_decision.json",
+    "generic_block_ai/reports/phase10_3_receiver_validator_minimal_implementation_permission_declaration.json",
+    "generic_block_ai/reports/phase10_5_integrated_decision_go_activation_conditions_detailed_design.json"
+  ],
+  "governance": {
+    "preflight_must_pass_before_activation": true,
+    "activation_without_preflight": "forbidden",
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ]
+  },
+  "preflight_checks": [
+    {
+      "check_id": "PF-01",
+      "check": "phase10_2.current_decision.integrated_decision == 'GO'",
+      "required": true,
+      "failure_effect": "NO_ACTIVATION"
+    },
+    {
+      "check_id": "PF-02",
+      "check": "phase10_3.current_permission.declaration_status can transition from NOT_YET_ACTIVATED only after human approval",
+      "required": true,
+      "failure_effect": "NO_ACTIVATION"
+    },
+    {
+      "check_id": "PF-03",
+      "check": "minimal_implementation_scope remains limited to receiver_validator only",
+      "required": true,
+      "failure_effect": "NO_ACTIVATION"
+    },
+    {
+      "check_id": "PF-04",
+      "check": "operation_mode == OBSERVE and execution == dry_run remain unchanged",
+      "required": true,
+      "failure_effect": "NO_ACTIVATION"
+    },
+    {
+      "check_id": "PF-05",
+      "check": "test target remains isolated and does not permit production execution",
+      "required": true,
+      "failure_effect": "NO_ACTIVATION"
+    }
+  ],
+  "preflight_result_template": {
+    "overall_result": "PENDING",
+    "activation_allowed": false,
+    "failed_checks": [],
+    "reviewer_confirmation": ""
+  },
+  "phase_decision": {
+    "phase10_6_status": "PASS_DESIGN_ONLY",
+    "app_implementation_status": "NO_GO",
+    "tests_implementation_status": "NO_GO",
+    "note": "preflight 設計のみであり、receiver validator 実装の発効条件を厳密化する。"
+  }
+}

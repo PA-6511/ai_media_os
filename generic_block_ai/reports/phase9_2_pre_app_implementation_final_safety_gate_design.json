@@ -1,0 +1,79 @@
+{
+  "_meta": {
+    "phase": "9-2",
+    "phase_name": "app実装ゲート前の最終安全条件設計",
+    "version": "1.0",
+    "created_date": "2026-05-12",
+    "status": "PASS_DESIGN_ONLY",
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only",
+    "description": "Phase 9で app実装ゲートを開く前に満たすべき最終安全条件を設計する。"
+  },
+  "gate_principles": {
+    "principle_1": "Phase 9 設計開始可と app実装開始許可は別判定",
+    "principle_2": "NO_GO 境界を崩す条件ではゲートを開かない",
+    "principle_3": "Human review 署名がない判定は無効"
+  },
+  "final_safety_conditions": [
+    {
+      "id": "SG-01",
+      "condition": "operation_mode=OBSERVE を維持",
+      "required": true
+    },
+    {
+      "id": "SG-02",
+      "condition": "execution=dry_run を維持",
+      "required": true
+    },
+    {
+      "id": "SG-03",
+      "condition": "production_status=NO_GO を維持",
+      "required": true
+    },
+    {
+      "id": "SG-04",
+      "condition": "requires_human_approval=true を維持",
+      "required": true
+    },
+    {
+      "id": "SG-05",
+      "condition": "auto_execute_allowed=false を維持",
+      "required": true
+    },
+    {
+      "id": "SG-06",
+      "condition": "blocked actions の禁止集合が維持される",
+      "required": true
+    }
+  ],
+  "gate_outcome_definition": {
+    "allowed_values": [
+      "NO_GO",
+      "PENDING",
+      "GO_DESIGN_ONLY",
+      "ABORT"
+    ],
+    "note": "このフェーズでは app実装開始GO を返さない。"
+  },
+  "blocked_if_detected": [
+    "core_ai_real_send",
+    "external_api_call",
+    "wordpress_operation",
+    "cron_registration",
+    "auto_execute",
+    "auto_post",
+    "auto_update",
+    "auto_delete",
+    "auto_export",
+    "production_execution"
+  ],
+  "decision": {
+    "phase9_design_status": "GO_DESIGN_ONLY",
+    "phase9_app_implementation_permission": "NO_GO",
+    "reason": "最終安全条件は設計として定義済み。実装ゲート判定は次段の human review と別ゲートで実施する。"
+  }
+}

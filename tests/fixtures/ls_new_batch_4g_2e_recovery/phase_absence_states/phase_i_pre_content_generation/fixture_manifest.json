@@ -1,0 +1,72 @@
+{
+  "fixture_id": "LS_NEW_BATCH_4G_2E_PHASE_I_PRE_CONTENT_GENERATION",
+  "phase": "I",
+  "purpose": "Verify the Phase I gate before any Phase K article generation",
+  "source_item_id": "new-release-comic-20260703-001",
+  "state_boundary": "PHASE_I_GATE_COMPLETE_BEFORE_CONTENT_GENERATION",
+  "required_present": [
+    {
+      "path": "config/new_release_wp_fresh_article_content_generation_contract.json",
+      "sha256": "a0cd3957924c64550fc6289f28b14da8eb6ace44010c363c5cdff4503086610d",
+      "source_phase": "I",
+      "provenance": "FORMAL_EXISTING_PHASE_ARTIFACT"
+    },
+    {
+      "path": "config/new_release_wp_fresh_article_content_generation_gate_policy.json",
+      "sha256": "27392614795fbda260164c5a1e42a9207077bba8ede02074ad0af1df460d5cde",
+      "source_phase": "I",
+      "provenance": "FORMAL_EXISTING_PHASE_ARTIFACT"
+    },
+    {
+      "path": "exchange/examples/new_release_wp_fresh_article_content_generation_gate_request.example.json",
+      "sha256": "a4457f0b36536099f22968f6796194be8683870586d379b43b9432e709bf351f",
+      "source_phase": "I",
+      "provenance": "FORMAL_EXISTING_PHASE_ARTIFACT"
+    },
+    {
+      "path": "exchange/logs/ls_new_batch_4g_2e_recovery_i_result.json",
+      "sha256": "ea04557f8f8a11dd2429487ad19cbbedb03869635a057125279284663c816cfb",
+      "source_phase": "I",
+      "provenance": "FORMAL_EXISTING_PHASE_ARTIFACT"
+    }
+  ],
+  "required_absent": [
+    {
+      "relative_path": "exchange/content/new_release/fresh/new-release-comic-20260703-001.article.json",
+      "artifact_role": "PHASE_K_ARTICLE_OUTPUT",
+      "absence_required_by_phase": true,
+      "first_phase_allowed_to_create": "K"
+    },
+    {
+      "relative_path": "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.offline_content_generation_consumption.json",
+      "artifact_role": "PHASE_K_GENERATION_CONSUMPTION",
+      "absence_required_by_phase": true,
+      "first_phase_allowed_to_create": "K"
+    }
+  ],
+  "present_artifact_sha256": {
+    "config/new_release_wp_fresh_article_content_generation_contract.json": "a0cd3957924c64550fc6289f28b14da8eb6ace44010c363c5cdff4503086610d",
+    "config/new_release_wp_fresh_article_content_generation_gate_policy.json": "27392614795fbda260164c5a1e42a9207077bba8ede02074ad0af1df460d5cde",
+    "exchange/examples/new_release_wp_fresh_article_content_generation_gate_request.example.json": "a4457f0b36536099f22968f6796194be8683870586d379b43b9432e709bf351f",
+    "exchange/logs/ls_new_batch_4g_2e_recovery_i_result.json": "ea04557f8f8a11dd2429487ad19cbbedb03869635a057125279284663c816cfb"
+  },
+  "absence_reason": "Phase I fixes the generation contract and does not create or consume Phase K output",
+  "later_writer_phase": "K",
+  "provenance_type": "MINIMAL_SNAPSHOT_FROM_FORMAL_PHASE_ARTIFACTS",
+  "provenance_evidence": [
+    "config/new_release_wp_fresh_article_content_generation_contract.json",
+    "config/new_release_wp_fresh_article_content_generation_gate_policy.json",
+    "exchange/examples/new_release_wp_fresh_article_content_generation_gate_request.example.json",
+    "exchange/logs/ls_new_batch_4g_2e_recovery_i_result.json"
+  ],
+  "immutable": true,
+  "terminal_namespace": false,
+  "created_at": "2026-07-23T14:07:54Z",
+  "update_policy": {
+    "formal_phase_contract_change_required": true,
+    "human_approval_required": true,
+    "old_and_new_sha_record_required": true,
+    "absence_boundary_reevaluation_required": true,
+    "later_terminal_writer_is_not_an_update_reason": true
+  }
+}

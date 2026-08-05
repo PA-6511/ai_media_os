@@ -1,0 +1,13 @@
+{
+  "phase": "LS-NEW-9-DECISION",
+  "document_type": "START_LS_NEW9_DECISION_VALIDATION_RESULT",
+  "validation_status": "LSNEW9_DECISION_VALIDATED_NO_EXECUTION",
+  "run_status": "LSNEW9_DECISION_HUMAN_APPROVED_NO_EXECUTION",
+  "recommended_next_action": "PROCEED_TO_LS_NEW_10_EXECUTION_PREP_ONLY",
+  "recommended_next_phase_options": [
+    "LS-NEW-10",
+    "LS-MON-2"
+  ],
+  "errors": [],
+  "generated_at": "2026-07-05T03:31:48.191662+00:00"
+}

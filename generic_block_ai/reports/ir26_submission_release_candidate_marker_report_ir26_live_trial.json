@@ -1,0 +1,30 @@
+{
+  "schema_version": "ir26_submission_release_candidate_marker_v1",
+  "phase": "IR26",
+  "generated_at": "2026-05-23T15:51:48.424942+00:00",
+  "source_task_id": "ir26_live_trial",
+  "marker_result": "PASS",
+  "release_candidate_id": "rc_20260523T155148Z_ir26_live_trial_b940393b490b",
+  "validation_failed_checks": [],
+  "validation_warnings": [],
+  "summary": {
+    "marker_result": "PASS",
+    "failed_check_count": 0,
+    "warning_count": 0,
+    "immutable_marker_locked": true
+  },
+  "artifacts": {
+    "ir25_gate_report": "generic_block_ai/reports/ir25_submission_change_approval_gate_report_ir25_live_trial.json",
+    "marker_dir": "generic_block_ai/reports/ir26_release_candidate_marker_ir26_live_trial",
+    "approval_snapshot": "generic_block_ai/reports/ir26_release_candidate_marker_ir26_live_trial/approval_snapshot.json",
+    "immutable_marker": "generic_block_ai/reports/ir26_release_candidate_marker_ir26_live_trial/immutable_marker.json",
+    "readme": "generic_block_ai/reports/ir26_release_candidate_marker_ir26_live_trial/README.md"
+  },
+  "safeguards": {
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "production_release": false
+  }
+}

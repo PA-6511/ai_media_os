@@ -1,0 +1,34 @@
+{
+  "_meta": {
+    "phase": "49-4",
+    "phase_name": "発効直前・最終安全停止・キャンセル境界層",
+    "layer": "補強層 (reinforcement layer)",
+    "title": "manual_release_go 安全停止条件確認結果の証跡固定ルール設計",
+    "created": "2026-05-14",
+    "author": "governance-framework",
+    "status": "PASS_DESIGN_ONLY",
+    "reports_only": true
+  },
+  "scope": "Phase 49-2 で実施された manual_release_go_authorization 発効直前の最終安全停止条件確認結果に対して、以下の証跡固定ルールを設計する：(1) Phase 49-2 の安全停止条件確認プロセス全体（緊急停止・キャンセル・再確認要求・検証ポイント・証跡固定・NO_GO維持ルール）の記録を改ざん不可の報告形式で固定、(2) manual_release_go_authorization: 'NOT_GRANTED' 安全停止成立時のみその根拠と判定時刻を詳細に記録、(3) manual_release_go_authorization が GRANTED のまま（安全停止不成立）と判定された場合、理由を詳細に分類記録、(4) 判定結果と Phase 48-8 証跡固定との対応関係を記録。",
+  "governance": {
+    "production_status": "NO_GO",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "report": {
+    "description": "Phase 49-4 では、Phase 49-2 で実施された manual_release_go_authorization 発効直前の最終安全停止条件確認結果に対して、証跡固定ルールを 設計層で定義する。(1) 安全停止条件確認プロセス全体の記録固定：緊急停止・キャンセル・再確認要求・検証ポイント・証跡固定・NO_GO維持ルールの各段階の実施結果を改ざん不可のレポート形式で固定する。(2) 'NOT_GRANTED' 安全停止成立時の記録：manual_release_go_authorization が 'NOT_GRANTED' で安全停止が成立した場合、その根拠（どの段階で停止したか、判定日時、判定者）を詳細に記録する。(3) GRANTED 維持時の記録：manual_release_go_authorization が GRANTED のまま（安全停止不成立）と判定された場合、その理由を詳細に分類記録する。(4) Phase 48-8 との対応記録：安全停止判定結果が Phase 48-8 の証跡固定とどう対応しているか を記録する。これらのルールは全て 設計層（reports only）で実装される。",
+    "invariants": [
+      "NO_GO 維持：証跡固定プロセスを通じて production_status = 'NO_GO' は維持される",
+      "NOT_GRANTED 強制（安全停止時）：manual_release_go_authorization が 'NOT_GRANTED' で安全停止が成立した場合、NOT_GRANTED を強制維持",
+      "reports only：証跡固定ルール全体は報告書形式で実装される"
+    ],
+    "actions": [],
+    "notes": [
+      "Phase 49-4 は 設計層のみで実装される",
+      "証跡固定は reports only",
+      "manual_release_go 発効直前の安全停止は Phase 49-2 での合格が前提",
+      "実処理開始は NO_GO のまま（安全停止解除まで）"
+    ]
+  }
+}

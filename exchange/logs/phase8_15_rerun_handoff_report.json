@@ -1,0 +1,38 @@
+{
+  "phase": "Phase 8-15",
+  "status": "RERUN_HANDOFF_NOT_READY_CREDENTIALS_MISSING",
+  "production_status": "NO_GO",
+  "wordpress_api_call_allowed": false,
+  "wordpress_write_executed": false,
+  "publish_allowed": false,
+  "handoff_is_execution_permission": false,
+  "secret_values_written": false,
+  "target_item_count": 1,
+  "evidence_summary": [
+    {
+      "path": "exchange/logs/phase8_11_credentials_manual_runbook_validation_result.json",
+      "exists": true,
+      "status": "PASS_RUNBOOK_ONLY"
+    },
+    {
+      "path": "exchange/logs/phase8_12_no_secret_leak_audit_result.json",
+      "exists": true,
+      "status": "NO_SECRET_LEAK_AUDIT_PASS"
+    },
+    {
+      "path": "exchange/logs/phase8_13_post_credential_readiness_recheck_result.json",
+      "exists": true,
+      "status": "POST_CREDENTIALS_NOT_READY_NO_SECRET_OUTPUT"
+    },
+    {
+      "path": "exchange/logs/phase8_14_rerun_authorization_renewal_result.json",
+      "exists": true,
+      "status": "RERUN_AUTHORIZATION_NOT_READY_CREDENTIALS_MISSING"
+    }
+  ],
+  "errors": [],
+  "warnings": [],
+  "safety_violations": [],
+  "allowed_next_step": "Set credentials manually without exposing secrets, then rerun Phase 8-13",
+  "checked_at": "2026-05-27T14:50:35.240396+00:00"
+}

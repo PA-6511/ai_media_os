@@ -1,0 +1,26 @@
+{
+  "phase": "SFB-11C",
+  "block_name": "sale_flash_block",
+  "mode": "DRY_RUN",
+  "production_status": "NO_GO",
+  "external_api_allowed": false,
+  "external_network_allowed": false,
+  "wordpress_write_allowed": false,
+  "baseline_name": "sale_flash_block_real_data_import_dry_run_locked",
+  "required_phase_logs": {
+    "sfb11_real_data_import": "logs/real_sale_csv_import_report.json",
+    "sfb11b_real_data_evidence": "logs/real_data_import_dry_run_evidence.json",
+    "sfb10b_pre_production_baseline_lock": "logs/sale_flash_block_v1_pre_production_baseline_lock_report.json"
+  },
+  "required_import_status": [
+    "PASS",
+    "WARN"
+  ],
+  "required_evidence_status": [
+    "PASS",
+    "WARN"
+  ],
+  "require_fixture_changed": true,
+  "output_json": "logs/real_data_import_dry_run_baseline_lock_report.json",
+  "output_markdown": "logs/real_data_import_dry_run_baseline_lock_report.md"
+}

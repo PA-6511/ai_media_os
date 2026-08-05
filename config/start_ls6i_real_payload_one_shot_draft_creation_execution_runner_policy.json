@@ -1,0 +1,132 @@
+{
+  "phase": "LS-6I",
+  "name": "Real Payload One-shot Draft Creation Execution Runner Implementation",
+  "status": "REAL_PAYLOAD_ONE_SHOT_DRAFT_CREATION_EXECUTION_RUNNER_IMPLEMENTATION",
+  "execution_mode": "RUNNER_IMPLEMENTATION_PREFLIGHT_ONLY",
+  "production_status": "NO_GO",
+  "purpose": "Implement a blocked/preflight-only execution runner skeleton for one future WordPress draft creation using the reviewed, approved, final-preflight-passed, and execute-approved LS-6C real payload. This phase must not execute WordPress write.",
+  "required_previous_phase": {
+    "ls6h": {
+      "required_status": "LS6H_REAL_PAYLOAD_ONE_SHOT_DRAFT_CREATION_EXECUTE_APPROVED_NO_EXECUTION",
+      "approved_result": "exchange/logs/start_ls6h_real_payload_one_shot_draft_creation_execute_approval_gate_approved_result.json",
+      "approval": "exchange/human_review/start_ls6h_real_payload_one_shot_draft_creation_execute_approval.json",
+      "required_execute_approval_label": "APPROVED_FOR_REAL_PAYLOAD_ONE_SHOT_DRAFT_CREATION_EXECUTE_ONLY"
+    },
+    "ls6g": {
+      "required_status": "LS6G_REAL_PAYLOAD_ONE_SHOT_DRAFT_CREATION_FINAL_PREFLIGHT_PASSED_NO_EXECUTION",
+      "result": "exchange/logs/start_ls6g_real_payload_one_shot_draft_creation_final_preflight_gate_result.json"
+    },
+    "ls6f": {
+      "required_status": "LS6F_REAL_PAYLOAD_ONE_SHOT_DRAFT_RUNNER_PREP_READY_NO_EXECUTION",
+      "runner_plan": "exchange/logs/start_ls6f_real_payload_one_shot_draft_runner_plan.json",
+      "result": "exchange/logs/start_ls6f_real_payload_one_shot_draft_runner_prep_result.json"
+    },
+    "ls6e": {
+      "required_status": "LS6E_REAL_PAYLOAD_ONE_SHOT_DRAFT_CREATION_APPROVED_NO_EXECUTION",
+      "approved_result": "exchange/logs/start_ls6e_real_payload_one_shot_draft_creation_approval_gate_approved_result.json",
+      "approval": "exchange/human_review/start_ls6e_real_payload_one_shot_draft_creation_approval.json",
+      "required_approval_label": "APPROVED_FOR_REAL_PAYLOAD_ONE_SHOT_DRAFT_CREATION_ONLY"
+    },
+    "ls6d": {
+      "required_status": "LS6D_REAL_PAYLOAD_HUMAN_REVIEW_PASSED_NO_EXECUTION",
+      "result": "exchange/logs/start_ls6d_real_payload_human_review_gate_passed_result.json",
+      "review": "exchange/human_review/start_ls6d_real_payload_human_review.json"
+    },
+    "ls6c": {
+      "required_payload_status": "LS6C_REAL_DRAFT_PAYLOAD_REBUILT_DRY_RUN_READY",
+      "required_validator_status": "LS6C_REAL_DRAFT_PAYLOAD_REBUILD_DRY_RUN_READY",
+      "payload_preview": "exchange/logs/start_ls6c_real_draft_payload_preview.json",
+      "result": "exchange/logs/start_ls6c_real_draft_payload_rebuild_dry_run_result.json"
+    },
+    "ls7a": {
+      "required_status": "LS7A_HUMAN_REVIEW_DO_NOT_PUBLISH_EVIDENCE_RECORDED",
+      "result": "exchange/logs/start_ls7a_human_review_result_evidence_result.json",
+      "review_decision": "exchange/human_review/start_ls7a_post119_human_review_decision.json"
+    },
+    "ls6b": {
+      "required_status": "LS6B_WORDPRESS_ONE_SHOT_DRAFT_CREATED_AND_FROZEN",
+      "required_validation_status": "LS6B_ONE_SHOT_DRAFT_CREATION_RESULT_VALIDATED",
+      "result": "exchange/logs/start_ls6b_wordpress_one_shot_draft_creation_result.json",
+      "validation_result": "exchange/logs/start_ls6b_wordpress_one_shot_draft_creation_validation_result.json",
+      "lock": "exchange/locks/start_ls6b_wordpress_one_shot_draft_creation.lock.json"
+    }
+  },
+  "target_payload": {
+    "phase": "LS-6C",
+    "payload_ready": true,
+    "max_items": 1,
+    "payload_count": 1,
+    "post_status": "draft",
+    "content_format": "html",
+    "title": "2.5次元の誘惑",
+    "asin": "B07X2G67B4",
+    "markdown_link_present": false,
+    "html_link_present": true,
+    "sample_content_detected": false
+  },
+  "runner_implementation_policy": {
+    "runner_implementation_only": true,
+    "runner_preflight_only": true,
+    "actual_execution_allowed_by_this_phase": false,
+    "separate_execution_command_required": true,
+    "execute_option_implemented": false,
+    "execute_option_must_fail_if_present": true,
+    "wordpress_api_call_allowed_by_this_phase": false,
+    "wordpress_write_allowed_by_this_phase": false,
+    "wordpress_draft_creation_allowed_by_this_phase": false,
+    "credential_env_read_allowed_by_this_phase": false,
+    "credential_secret_output_allowed": false,
+    "approval_label_consumed_by_this_phase": false,
+    "execute_approval_label_consumed_by_this_phase": false,
+    "manual_publish_allowed_by_this_phase": false,
+    "post119_update_allowed": false,
+    "max_items": 1,
+    "post_status": "draft",
+    "future_execution_must_create_new_draft_only": true,
+    "future_execution_must_not_update_existing_post": true,
+    "future_execution_must_not_publish": true,
+    "future_execution_must_not_schedule": true,
+    "future_execution_requires_separate_command": true,
+    "future_execution_requires_one_shot_lock": true,
+    "future_execution_requires_freeze_before_and_after": true,
+    "future_execution_must_consume_execute_approval_label_once": true
+  },
+  "current_phase_safety_flags": {
+    "wordpress_api_call_executed": false,
+    "wordpress_write_executed": false,
+    "wordpress_draft_creation_executed": false,
+    "wordpress_existing_post_update_executed": false,
+    "post119_update_executed": false,
+    "publish_executed": false,
+    "future_schedule_executed": false,
+    "delete_executed": false,
+    "amazon_api_call_executed": false,
+    "x_api_call_executed": false,
+    "x_post_executed": false,
+    "credential_env_read_executed": false,
+    "credential_secret_output": false,
+    "secret_length_output": false,
+    "secret_hash_output": false,
+    "approval_token_consumed": false,
+    "approval_label_consumed": false,
+    "execute_approval_label_consumed": false,
+    "runner_executed": false,
+    "actual_execution_executed": false,
+    "ls6b_rerun_executed": false
+  },
+  "outputs": {
+    "preflight_result": "exchange/logs/start_ls6i_real_payload_one_shot_draft_creation_execution_runner_preflight_result.json",
+    "validation_result": "exchange/logs/start_ls6i_real_payload_one_shot_draft_creation_execution_runner_validation_result.json",
+    "preflight_report": "reports/start_ls6i_real_payload_one_shot_draft_creation_execution_runner_preflight_report.md",
+    "validation_report": "reports/start_ls6i_real_payload_one_shot_draft_creation_execution_runner_validation_report.md"
+  },
+  "next_phase": {
+    "phase": "LS-6J",
+    "name": "Real Payload One-shot Draft Creation Separate Execution Command Gate",
+    "execution_allowed_by_this_phase": false,
+    "wordpress_write_allowed_by_this_phase": false,
+    "requires_ls6i_runner_preflight_pass": true,
+    "requires_separate_execution_command": true,
+    "purpose": "Separate final command gate before any actual WordPress draft creation write."
+  }
+}

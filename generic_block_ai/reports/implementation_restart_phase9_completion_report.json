@@ -1,0 +1,40 @@
+{
+  "phase": "Implementation Restart Phase 9",
+  "status": "COMPLETED",
+  "generated_at": "2026-05-23T14:31:10.411458+00:00",
+  "schema_version": "ir9_quality_gate_v1",
+  "test_result": {
+    "focused_tests": {
+      "passed": 18,
+      "failed": 0
+    },
+    "full_regression": {
+      "passed": 122,
+      "failed": 0
+    }
+  },
+  "quality_gate": {
+    "overall_status": "WARN",
+    "summary": {
+      "overall_status": "WARN",
+      "candidate_count": 2,
+      "pass_count": 1,
+      "warn_count": 1,
+      "fail_count": 0,
+      "abort_count": 0
+    },
+    "warnings": []
+  },
+  "roundtrip_judgment": "WARN",
+  "safeguards": {
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "external_write_executed": false,
+    "actual_auto_execute": false,
+    "production_release": false
+  },
+  "artifacts": {
+    "roundtrip": "generic_block_ai/reports/ir8_roundtrip_dryrun_ir9_live_trial.json",
+    "completion_report": "reports/implementation_restart_phase9_completion_report.json"
+  }
+}

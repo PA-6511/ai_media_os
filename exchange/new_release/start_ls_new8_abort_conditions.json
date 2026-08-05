@@ -1,0 +1,20 @@
+{
+  "phase": "LS-NEW-8",
+  "document_type": "START_LS_NEW8_ABORT_CONDITIONS",
+  "status": "LSNEW8_ABORT_CONDITIONS_READY_NO_EXECUTION",
+  "abort_if_any_true": [
+    "LS-NEW-7 validation is not valid",
+    "target_post_id is not null before draft creation",
+    "target_post_id_allocated is true before draft creation",
+    "execution_allowed is true in any pre-execution artifact",
+    "runner_execution_allowed is true before explicit execution approval",
+    "credential.env was read before later approved credential phase",
+    "WordPress API was called before later approved execution phase",
+    "post_id=119 update is attempted",
+    "post_id=183 update is attempted",
+    "approval label is consumed before execution gate",
+    "external fetch is attempted"
+  ],
+  "abort_triggered": false,
+  "execution_allowed": false
+}

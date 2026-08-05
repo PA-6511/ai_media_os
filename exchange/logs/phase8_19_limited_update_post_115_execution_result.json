@@ -1,0 +1,59 @@
+{
+  "phase": "Phase 8-19",
+  "phase_name": "Limited WordPress Draft Update for post_id 115",
+  "status": "PHASE8_19_LIMITED_DRAFT_UPDATE_EXECUTED_PENDING_HUMAN_REVIEW",
+  "target_post_id": 115,
+  "production_status": "LIMITED_DRAFT_UPDATE_ONLY",
+  "update_scope": "title_body_category_tags_only",
+  "wordpress_api_call_allowed": true,
+  "wordpress_api_call_attempted": true,
+  "wordpress_write_executed": true,
+  "wordpress_draft_updated": true,
+  "api_status_code": 200,
+  "post_id": 115,
+  "post_status": "draft",
+  "post_link": "https://hoshido.jp/?p=115",
+  "publish_allowed": false,
+  "publish_executed": false,
+  "update_executed": true,
+  "delete_allowed": false,
+  "delete_executed": false,
+  "bulk_operation_allowed": false,
+  "bulk_operation_executed": false,
+  "export_allowed": false,
+  "export_executed": false,
+  "auto_retry_allowed": false,
+  "auto_retry_executed": false,
+  "rollback_executed": false,
+  "freeze_executed": false,
+  "human_review_required": true,
+  "secret_values_output": false,
+  "secret_values_written": false,
+  "errors": [],
+  "warnings": [],
+  "safety_violations": [],
+  "evidence_summary": [
+    {
+      "path": "exchange/logs/phase8_15_corrected_draft_candidate_v2_dry_run_post_115_result.json",
+      "exists": true,
+      "status": "PHASE8_15_CORRECTED_CANDIDATE_V2_DRY_RUN_READY"
+    },
+    {
+      "path": "exchange/logs/phase8_16_corrected_candidate_v2_manual_review_post_115_result.json",
+      "exists": true,
+      "status": "PHASE8_16_CORRECTED_CANDIDATE_V2_REVIEW_APPROVED"
+    },
+    {
+      "path": "exchange/logs/phase8_17_limited_update_plan_design_only_post_115_result.json",
+      "exists": true,
+      "status": "PHASE8_17_LIMITED_UPDATE_PLAN_CREATED_DESIGN_ONLY_NO_EXECUTION"
+    },
+    {
+      "path": "exchange/logs/phase8_18_limited_update_preflight_no_execution_post_115_result.json",
+      "exists": true,
+      "status": "PHASE8_18_LIMITED_UPDATE_PREFLIGHT_READY_NO_EXECUTION"
+    }
+  ],
+  "next_step": "phase8_20_limited_update_closure_report",
+  "checked_at": "2026-06-09T13:35:33.324034+00:00"
+}

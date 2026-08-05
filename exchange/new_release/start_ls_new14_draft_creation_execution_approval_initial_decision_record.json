@@ -1,0 +1,14 @@
+{
+  "phase": "LS-NEW-14",
+  "document_type": "START_LS_NEW14_DRAFT_CREATION_EXECUTION_APPROVAL_INITIAL_DECISION_RECORD",
+  "status": "LSNEW14_DRAFT_CREATION_EXECUTION_APPROVAL_INITIAL_DECISION_NOT_APPROVED",
+  "human_approval_completed": false,
+  "human_approved_for_draft_creation": false,
+  "approval_label": "",
+  "approval_label_consumed": false,
+  "approval_label_autofill_executed": false,
+  "auto_approval_executed": false,
+  "ai_self_approval_executed": false,
+  "ready_for_ls_new_15": false,
+  "execution_allowed": false
+}

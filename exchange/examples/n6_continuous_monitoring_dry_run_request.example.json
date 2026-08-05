@@ -1,0 +1,8 @@
+{
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "simulated_duration_hours": 24,
+  "check_interval_minutes": 60,
+  "seed": 42
+}

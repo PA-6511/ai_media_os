@@ -1,0 +1,19 @@
+{
+  "phase": "PR WARN Backfill Phase 1",
+  "scope": "PR WARN Backfill Phase 1 の1件限定",
+  "approved": false,
+  "wordpress_write_allowed": false,
+  "target_post_id": 101,
+  "approved_post_id": 101,
+  "approval_token": "APPROVED_PR_WARN_BACKFILL_PHASE1",
+  "max_live_updates": 1,
+  "review_checklist": {
+    "phase0_artifacts_reviewed": true,
+    "dry_run_diff_reviewed": true,
+    "single_item_limit_confirmed": true,
+    "rollback_plan_confirmed": true
+  },
+  "operator": "human_reviewer",
+  "approved_at": null,
+  "note": "まだLIVE実行不可。人間承認前ドラフト"
+}

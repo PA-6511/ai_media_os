@@ -1,0 +1,95 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-1",
+  "policy_id": "NEW_RELEASE_WP_READ_ONLY_CATEGORY_LOOKUP_IMPLEMENTATION_POLICY_V1",
+  "source_phase_id": "LS-NEW-BATCH-4G-0",
+  "template_contract_id": "POST185_STANDARD_TEMPLATE_V1_FIXED",
+  "operation_mode": "LOCAL_WORDPRESS_API_MOCK_ONLY",
+  "transport_contract": {
+    "current_transport": "LOCAL_JSON_MOCK",
+    "future_transport": "HTTPS_WORDPRESS_REST",
+    "allowed_http_method": "GET",
+    "allowed_rest_path": "/wp-json/wp/v2/categories",
+    "request_body_allowed": false,
+    "redirect_follow_allowed": false,
+    "authorization_header_allowed_in_current_phase": false
+  },
+  "mock_fixture": {
+    "allowed_root": "exchange/fixtures/wordpress_api",
+    "required_source_type": "LOCAL_WORDPRESS_API_MOCK",
+    "required_http_status": 200,
+    "required_content_type": "application/json",
+    "reserved_category_id_minimum": 980000,
+    "reserved_category_id_maximum": 989999,
+    "production_usable": false,
+    "payload_injection_allowed": false
+  },
+  "response_contract": {
+    "response_root_type": "array",
+    "required_fields": [
+      "id",
+      "slug",
+      "name",
+      "count"
+    ],
+    "maximum_items": 100,
+    "positive_integer_id_required": true,
+    "nonnegative_count_required": true
+  },
+  "matching_rules": {
+    "exact_slug_match_required": true,
+    "exact_name_match_required": true,
+    "single_result_required": true,
+    "missing_result_must_block": true,
+    "duplicate_result_must_block": true,
+    "name_mismatch_must_block": true,
+    "automatic_payload_injection_allowed": false,
+    "human_verification_required": true
+  },
+  "failure_states": {
+    "invalid_mock_fixture": "BLOCKED_INVALID_WORDPRESS_CATEGORY_MOCK",
+    "unexpected_endpoint": "BLOCKED_UNEXPECTED_WORDPRESS_CATEGORY_ENDPOINT",
+    "unexpected_method": "BLOCKED_UNEXPECTED_WORDPRESS_CATEGORY_METHOD",
+    "unexpected_query": "BLOCKED_UNEXPECTED_WORDPRESS_CATEGORY_QUERY",
+    "http_status": "BLOCKED_WORDPRESS_CATEGORY_MOCK_HTTP_STATUS",
+    "invalid_response": "BLOCKED_WORDPRESS_CATEGORY_MOCK_RESPONSE",
+    "missing_category": "BLOCKED_WORDPRESS_CATEGORY_NOT_FOUND",
+    "duplicate_category": "BLOCKED_WORDPRESS_CATEGORY_DUPLICATE",
+    "name_mismatch": "BLOCKED_WORDPRESS_CATEGORY_NAME_MISMATCH",
+    "invalid_category_id": "BLOCKED_WORDPRESS_CATEGORY_ID_INVALID"
+  },
+  "integrity": {
+    "source_design_digest_verification_required": true,
+    "fixture_root_confinement_required": true,
+    "mock_response_digest_required": true,
+    "matched_mapping_digest_required": true,
+    "implementation_package_digest_required": true,
+    "source_package_mutation_allowed": false
+  },
+  "execution_boundary": {
+    "local_mock_read_allowed": true,
+    "credential_file_metadata_read_allowed": false,
+    "credential_file_content_read_allowed": false,
+    "credential_value_output_allowed": false,
+    "environment_variable_read_allowed": false,
+    "dns_resolution_allowed": false,
+    "network_connection_allowed": false,
+    "tls_connection_allowed": false,
+    "wordpress_api_call_allowed": false,
+    "wordpress_category_lookup_allowed": false,
+    "wordpress_response_read_allowed": false,
+    "wordpress_write_allowed": false,
+    "wordpress_publish_allowed": false,
+    "external_api_call_allowed": false,
+    "execution_approval_issued": false,
+    "approval_token_generation_allowed": false,
+    "execution_allowed": false,
+    "production_status": "NO_GO",
+    "safety_state": "LOCAL_MOCK_LOOKUP_IMPLEMENTATION_ONLY"
+  },
+  "next_phase": {
+    "phase_id": "LS-NEW-BATCH-4G-2",
+    "name": "Actual Read-Only Category Lookup Authorization and Execution",
+    "execution_allowed": false
+  }
+}

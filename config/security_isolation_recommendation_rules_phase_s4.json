@@ -1,0 +1,35 @@
+{
+  "phase_id": "PHASE_S4",
+  "phase_name": "isolation_recommendation_rules",
+  "phase_status": "DESIGN_ONLY",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "human_approval_required": true,
+  "recommendation_only": true,
+  "isolation_recommendation_allowed": true,
+  "isolation_execution_allowed": false,
+  "isolation_executed": false,
+  "recommendation_triggers": [
+    "unexpected_wordpress_write_attempt",
+    "unknown_external_api_call_intent",
+    "secret_value_echo_intent",
+    "duplicate_runner_detected",
+    "scheduler_retry_loop",
+    "unknown_block_ai_connection_request",
+    "restricted_block_ai_connection_request",
+    "production_core_connection_attempt_from_experimental_ai"
+  ],
+  "recommendation_outputs": {
+    "isolation_recommendation": true,
+    "human_review_recommendation": true,
+    "freeze_recommendation": true
+  },
+  "actions": {
+    "auto_isolation_execute": false,
+    "auto_freeze_execute": false,
+    "auto_revoke_execute": false,
+    "network_policy_apply": false,
+    "container_stop_execute": false,
+    "process_kill_execute": false
+  }
+}

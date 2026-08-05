@@ -1,0 +1,40 @@
+{
+  "package_type": "draft_candidate_approval_evidence",
+  "phase": "Phase 5-5",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "human_approval_required": true,
+  "status": "PASS_DRY_RUN_ONLY",
+  "decision": "APPROVE_DRY_RUN_ONLY",
+  "review_status": "PASS",
+  "review_next_step": "record_draft_candidate_approval_evidence",
+  "summary": "WordPress下書き候補の承認証跡。実下書き作成・投稿・更新・削除・Exportは未許可。",
+  "source_files": {
+    "draft_candidate": "exchange/outgoing/wordpress_draft_candidate.example.json",
+    "draft_candidate_review": "exchange/human_review/wordpress_draft_candidate_review.example.json",
+    "draft_candidate_review_result": "exchange/logs/wordpress_draft_candidate_review_result.json"
+  },
+  "safety_flags": {
+    "wordpress_write_executed": false,
+    "auto_post": false,
+    "auto_update": false,
+    "auto_delete": false,
+    "auto_export": false,
+    "github_actions_triggered": false,
+    "slack_notification_executed": false
+  },
+  "allowed_next_step": "record_only_no_wordpress_write",
+  "forbidden_actions": [
+    "wordpress_rest_post",
+    "wordpress_rest_put_patch",
+    "publish_post",
+    "create_real_draft",
+    "update_existing_post",
+    "delete_post",
+    "github_actions_trigger",
+    "slack_notification",
+    "cron_change",
+    "env_or_secret_access"
+  ],
+  "created_at": "2026-05-05T05:18:44.795184+00:00"
+}

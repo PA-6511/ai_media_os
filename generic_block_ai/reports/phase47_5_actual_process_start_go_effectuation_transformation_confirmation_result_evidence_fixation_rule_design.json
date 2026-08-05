@@ -1,0 +1,36 @@
+{
+  "_meta": {
+    "phase": "47-5",
+    "phase_name": "最終実測GO入力・発効最終変換確認層",
+    "layer": "補強層 (reinforcement layer)",
+    "title": "actual_process_start_go 発効変換確認結果の証跡固定ルール設計",
+    "created": "2026-05-14",
+    "author": "governance-framework",
+    "status": "PASS_DESIGN_ONLY",
+    "reports_only": true
+  },
+  "scope": "Phase 47-3 で実施された actual_process_start_go_authorization への発効変換確認の結果に対して、以下の証跡固定ルール（manual_release_go よりも厳格）を設計する：(1) Phase 47-3 の変換確認プロセス全体（厳格版テンプレット適合性・高い基準検証ポイント・厳格版バックトラッキング・拡大ABORT条件）の記録を改ざん不可の報告形式で固定、(2) actual_process_start_go_authorization: 'GRANTED' 発効と判定された場合のみその根拠と判定時刻を詳細に記録、(3) actual_process_start_go_authorization が NOT_GRANTED のまま（変換確定できず）と判定された場合、理由を詳細に分類記録（manual_release_go より詳細）、(4) 判定結果と Phase 46-9 完了宣言との対応関係を記録。",
+  "governance": {
+    "production_status": "NO_GO",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "report": {
+    "description": "Phase 47-5 では、Phase 47-3 で実施された actual_process_start_go_authorization への発効変換確認に対して、証跡固定ルール（manual_release_go よりも厳格）を 設計層で定義する。(1) 変換確認プロセス全体の記録固定：入力値テンプレット適合性確認（厳格版）、全検証ポイント合格確認（高い基準版）、バックトラッキング合否判定（厳格版）、ABORT条件該当確認（拡大版） の各段階の実施結果を改ざん不可のレポート形式で固定する。各段階の厳格性が manual_release_go より高いことを明示する。(2) 'GRANTED' 発効時の記録：actual_process_start_go_authorization が 'GRANTED' と判定された場合、その根拠（どの厳格な段階で合格したか、判定日時、判定者、複数署名が必要な場合はその記録）を詳細に記録する。(3) NOT_GRANTED 維持時の記録：actual_process_start_go_authorization が NOT_GRANTED のままと判定された場合、その不可理由を詳細に分類記録する。manual_release_go の NOT_GRANTED 理由よりも詳細なカテゴリ分けを行う。(4) Phase 46-9 との対応記録：judgment結果が Phase 46 の完了宣言とどう対応しているか を記録する。これらのルールは全て 設計層（reports only）で実装される。",
+    "invariants": [
+      "NO_GO 維持：証跡固定プロセスを通じて production_status = 'NO_GO' は維持される",
+      "NOT_GRANTED 維持（GRANTED前）：actual_process_start_go_authorization が NOT_GRANTED のまま（GRANTED未確定）の間は，NOT_GRANTED は維持される",
+      "厳格性維持：証跡固定時に manual_release_go よりも厳格な基準が適用されたことを明示",
+      "reports only：証跡固定ルール全体は報告書形式で実装される"
+    ],
+    "actions": [],
+    "notes": [
+      "Phase 47-5 は 設計層のみで実装される",
+      "証跡固定は reports only",
+      "actual_process_start_go 発効変換は manual_release_go より厳格な条件で判定",
+      "両承認候補の発効確定時刻は異なる（actual_process_start_go がより遅延）",
+      "実処理開始は NO_GO のまま（変換確定直前まで）"
+    ]
+  }
+}

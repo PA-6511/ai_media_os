@@ -1,0 +1,48 @@
+{
+  "policy_name": "VALID_UNTIL_SCOPE_REDUCTION_POLICY",
+  "status": "PASS_DESIGN_ONLY_NO_EXECUTION",
+  "production_status": "NO_GO",
+  "execution_mode": "DRY_RUN_ONLY",
+  "valid_until_default_policy": "DISABLED_FOR_NON_EXECUTION_DECISIONS",
+  "non_execution_decision_policy": {
+    "valid_until_required": false,
+    "freshness_policy": "STATIC_UNTIL_INPUT_CHANGE",
+    "requires_time_based_recheck": false,
+    "invalidated_by": [
+      "input_file_changed",
+      "policy_changed",
+      "approval_label_changed",
+      "credential_state_changed",
+      "execution_permission_changed",
+      "target_phase_changed",
+      "production_boundary_changed"
+    ]
+  },
+  "execution_gate_policy": {
+    "valid_until_required": true,
+    "freshness_policy": "SHORT_EXECUTION_WINDOW",
+    "single_use": true,
+    "auto_revoke_after_use": true,
+    "applies_to": [
+      "credential_env_creation",
+      "external_api_real_call",
+      "wordpress_write",
+      "wordpress_publish",
+      "systemd_timer_start",
+      "systemd_timer_enable",
+      "rollback_execution",
+      "emergency_recovery_or_isolation_release"
+    ]
+  },
+  "prohibited_changes": [
+    "no_production_write",
+    "no_wordpress_api_call",
+    "no_external_api_call",
+    "no_credential_read",
+    "no_credential_output",
+    "no_systemd_operation",
+    "no_approval_label_consumption",
+    "no_phase_forward_execution"
+  ],
+  "evidence_index_update": "updated_safely"
+}

@@ -1,0 +1,18 @@
+{
+  "phase": "LS-NEW-12",
+  "document_type": "START_LS_NEW12_DRAFT_CREATION_HOLD_BOUNDARY",
+  "status": "LSNEW12_DRAFT_CREATION_HOLD_BOUNDARY_READY_NO_DRAFT_CREATION",
+  "draft_creation_still_blocked": true,
+  "draft_creation_executed_in_current_phase": false,
+  "wordpress_draft_created": false,
+  "target_post_id": null,
+  "target_post_id_allocated": false,
+  "required_before_later_draft_creation": [
+    "LS-NEW-13 must prepare a separate draft creation command without execution",
+    "A later explicit execution approval gate must approve one draft creation only",
+    "target_post_id must remain null before creation",
+    "post119/post183 update must remain forbidden",
+    "rollback/freeze boundary must remain available"
+  ],
+  "execution_allowed": false
+}

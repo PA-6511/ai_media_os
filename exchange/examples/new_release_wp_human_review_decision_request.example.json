@@ -1,0 +1,36 @@
+{
+  "request_version": 1,
+  "phase_id": "LS-NEW-BATCH-4B",
+  "gate_package_id": "wp-category-review-gate-example-20260717",
+  "batch_id": "example-20260717",
+  "source_resolved_package_digest_sha256": "60e99f168203c7a852154799d061b9e0cede202c34dc0eb40df1c9d82ff26104",
+  "review_status": "COMPLETED",
+  "item_reviews": [
+    {
+      "item_id": "example-20260717-001",
+      "source_resolved_payload_digest_sha256": "42a113efc546e791e4eb2053724deffcb46a916e6e38aa5cd381fa36bbd2183d",
+      "checks": {
+        "title": true,
+        "volume_label": true,
+        "release_date": true,
+        "publisher": true,
+        "authors": true,
+        "cover_image": true,
+        "store_links": true,
+        "prices": true,
+        "pr_disclosure": true,
+        "category": true,
+        "mobile_preview": true
+      },
+      "decision": "APPROVE_FOR_DRAFT_PRE_EXECUTION",
+      "reviewer_note": "LS-NEW-BATCH-4Bの統合試験用レビュー。EXAMPLE_ONLYカテゴリIDのため実行承認ではない。"
+    }
+  ],
+  "overall_decision": "APPROVE_FOR_DRAFT_PRE_EXECUTION",
+  "reviewer": "EXAMPLE_HUMAN_REVIEWER",
+  "reviewed_at": "2026-07-10T21:00:00+09:00",
+  "human_review_confirmation": "I_CONFIRM_REVIEW_COMPLETED",
+  "overall_note": "全項目を確認済み。これはローカル統合試験用のレビュー記録であり、WordPress実行承認ではない。",
+  "execution_approval_issued": false,
+  "approval_token": null
+}

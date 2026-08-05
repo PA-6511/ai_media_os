@@ -1,0 +1,98 @@
+{
+  "schema_name": "START_LS_NEW2_NEW_RELEASE_COMIC_CANDIDATE_INTAKE_SCHEMA",
+  "schema_version": "1.0.0",
+  "phase": "LS-NEW-2",
+  "content_type": "new_release_comic",
+  "media_type": "purchase_navigation_media",
+  "required_fields": [
+    "content_item_id",
+    "title",
+    "volume",
+    "author",
+    "publisher",
+    "release_date",
+    "candidate_source_type",
+    "human_confirmed"
+  ],
+  "source_requirement": {
+    "requires_source_url_or_source_pending": true,
+    "source_url_fields": [
+      "publisher_source_url",
+      "kindle_url",
+      "rakuten_kobo_url",
+      "dmm_books_url",
+      "ebookjapan_url",
+      "booklive_url",
+      "manual_source_url"
+    ],
+    "source_pending_allowed": true
+  },
+  "field_rules": {
+    "content_item_id": {
+      "type": "string",
+      "required": true,
+      "non_empty": true
+    },
+    "title": {
+      "type": "string",
+      "required": true,
+      "non_empty": true,
+      "ai_auto_inference_allowed": false
+    },
+    "volume": {
+      "type": "string",
+      "required": true,
+      "non_empty": true
+    },
+    "author": {
+      "type": "string",
+      "required": true,
+      "non_empty": true
+    },
+    "publisher": {
+      "type": "string",
+      "required": true,
+      "non_empty": true
+    },
+    "release_date": {
+      "type": "string",
+      "required": true,
+      "format": "YYYY-MM-DD",
+      "ai_auto_inference_allowed": false
+    },
+    "human_confirmed": {
+      "type": "boolean",
+      "required": true,
+      "must_be_true_for_ready": true
+    }
+  },
+  "copy_policy": {
+    "official_synopsis_copy_allowed": false,
+    "store_description_copy_allowed": false,
+    "publisher_description_copy_allowed": false,
+    "review_copy_allowed": false,
+    "user_comment_copy_allowed": false,
+    "catchcopy_copy_allowed": false,
+    "short_original_comment_allowed": true
+  },
+  "simple_x_post_rule": {
+    "enabled": true,
+    "max_characters": 280,
+    "template": "配信開始です\n#PR #Amazonmanga #Kindle #作者名\n『タイトル』第○巻\n\nURL",
+    "requires_pr_hashtag_when_affiliate_url_present": true,
+    "requires_url": true,
+    "does_not_require_synopsis": true,
+    "does_not_require_price_or_point_rate": true,
+    "does_not_require_store_comparison": true
+  },
+  "safety": {
+    "no_execution": true,
+    "wordpress_write_allowed": false,
+    "x_post_allowed": false,
+    "external_api_call_allowed": false,
+    "http_get_allowed": false,
+    "scraping_allowed": false,
+    "credential_env_read_allowed": false,
+    "publish_allowed": false
+  }
+}

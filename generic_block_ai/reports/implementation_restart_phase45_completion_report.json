@@ -1,0 +1,48 @@
+{
+  "phase": "Implementation Restart Phase 45",
+  "status": "COMPLETED",
+  "generated_at": "2026-05-24T03:17:44.881605+00:00",
+  "schema_version": "ir45_destination_review_queue_builder_v1",
+  "test_result": {
+    "focused_tests": {
+      "passed": 6,
+      "failed": 0
+    },
+    "adjacent_ir43_ir45": {
+      "passed": 19,
+      "failed": 0
+    },
+    "scoped_regression": {
+      "passed": 326,
+      "failed": 0
+    }
+  },
+  "overall_approval_decision": "APPROVE_DRY_RUN",
+  "overall_submission_gate_decision": "READY_FOR_REVIEW",
+  "overall_queue_action": "Build review queue entries and hand off to destination reviewers.",
+  "release_candidate_id": "rc_20260523T155148Z_ir26_live_trial_b940393b490b",
+  "final_submission_decision": "READY_FOR_SUBMISSION_SUMMARY",
+  "validation_result": "PASS",
+  "validation_failed_check_count": 0,
+  "validation_warning_count": 0,
+  "summary": {
+    "destination_count": 3,
+    "queued_for_review_count": 3,
+    "hold_for_human_review_count": 0,
+    "rejected_no_queue_count": 0,
+    "aborted_no_queue_count": 0,
+    "review_item_count": 6
+  },
+  "artifacts": {
+    "runbook_report": "generic_block_ai/reports/ir45_destination_review_queue_builder_report_ir45_live_trial.json",
+    "completion_report": "reports/implementation_restart_phase45_completion_report.json"
+  },
+  "safeguards": {
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "network_transmission_executed": false,
+    "production_release": false
+  }
+}

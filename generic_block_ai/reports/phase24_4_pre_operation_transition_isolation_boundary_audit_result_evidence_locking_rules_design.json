@@ -1,0 +1,89 @@
+{
+  "phase_id": "24-4",
+  "phase_name": "Pre-Operation Transition Isolation Boundary Audit Result Evidence Locking Rules Design",
+  "phase_japanese_name": "運用移行前隔離境界監査結果の証跡固定ルール設計",
+  "purpose": "Design immutable evidence locking rules for isolation boundary audit results before operation transition authorization",
+  "layer": "pre_operation_transition_isolation_and_rollback_boundary_reinforcement_layer",
+  "design_category": "reports_only",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "operation_transition_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "phase_24_4_scope": {
+    "scope_1_input_contract": {
+      "scope_id": "INPUT_CONTRACT",
+      "required_inputs": {
+        "phase24_1_to_24_3_status": "PASS_DESIGN_ONLY",
+        "phase24_pre_operation_transition_isolation_and_rollback_boundary_status": "PASS_DESIGN_ONLY",
+        "source_reports": [
+          "phase24_2_pre_operation_transition_final_isolation_boundary_design.json",
+          "phase24_3_pre_operation_transition_rollback_and_halt_conditions_design.json"
+        ]
+      }
+    },
+    "scope_2_locking_rules": {
+      "scope_id": "LOCKING_RULES",
+      "rules": {
+        "rule_IBL1": "Canonicalize isolation boundary audit result payload before hashing",
+        "rule_IBL2": "Compute SHA-256 hash and record as isolation_boundary_audit_hash",
+        "rule_IBL3": "Sign hash with authority signature metadata",
+        "rule_IBL4": "Append signed record to immutable append-only audit trail",
+        "rule_IBL5": "Perform roundtrip hash/signature verification after append",
+        "rule_IBL6": "If verification fails, lock_status = LOCK_FAILED and operation_transition_go_authorization = NOT_GRANTED"
+      }
+    },
+    "scope_3_report_structure": {
+      "scope_id": "REPORT_STRUCTURE",
+      "sections": {
+        "section_1_header": {
+          "report_id": "PHASE24_4_ISOLATION_BOUNDARY_AUDIT_LOCK_<UTC_TIMESTAMP>",
+          "report_type": "pre_operation_transition_isolation_boundary_audit_result_evidence_lock",
+          "generated_at_utc": "RFC3339",
+          "generated_by": "authority_identifier"
+        },
+        "section_2_lock_inputs": {
+          "isolation_boundary_report_id": "PHASE24_2_FINAL_ISOLATION_BOUNDARY_<UTC_TIMESTAMP>",
+          "rollback_halt_report_id": "PHASE24_3_PRE_OPERATION_ROLLBACK_HALT_<UTC_TIMESTAMP>",
+          "input_integrity_status": "PASS | FAIL"
+        },
+        "section_3_integrity_results": {
+          "isolation_boundary_audit_hash": "hex",
+          "signature_verification": "PASS | FAIL",
+          "audit_append_status": "PASS | FAIL",
+          "tamper_check_status": "PASS | FAIL"
+        },
+        "section_4_lock_determination": {
+          "lock_status": "LOCK_CONFIRMED | LOCK_FAILED",
+          "operation_transition_go_authorization": "NOT_GRANTED | CONDITIONALLY_READY_FOR_NEXT_GATE",
+          "production_status": "NO_GO"
+        }
+      }
+    }
+  },
+  "phase_24_4_governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "state_invariants": {
+      "app_implementation_status": "NO_GO",
+      "tests_implementation_status": "NO_GO",
+      "production_status": "NO_GO",
+      "operation_transition_go_authorization": "NOT_GRANTED",
+      "changed_area": "reports only"
+    }
+  }
+}

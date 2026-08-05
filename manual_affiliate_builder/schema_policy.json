@@ -1,0 +1,23 @@
+{
+  "phase": "Phase 8-50-MANUAL",
+  "required_item_fields": [
+    "asin",
+    "canonical_item_id",
+    "title",
+    "author",
+    "volume",
+    "release_date",
+    "manual_affiliate_url",
+    "source_mode",
+    "migration_status",
+    "api_verified"
+  ],
+  "allowed_source_modes": [
+    "manual"
+  ],
+  "allowed_migration_statuses": [
+    "manual_active",
+    "manual_only",
+    "migrated_without_api"
+  ]
+}

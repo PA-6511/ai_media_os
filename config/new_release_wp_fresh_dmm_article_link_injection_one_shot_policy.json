@@ -1,0 +1,71 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M9",
+  "policy_id": "DMM_ARTICLE_LINK_INJECTION_ONE_SHOT_POLICY_V1",
+  "operation_mode": "ONE_SHOT_LOCAL_ARTICLE_DMM_LINK_INJECTION",
+  "content_item_id": "new-release-comic-20260703-001",
+  "article_preimage": {
+    "path": "exchange/content/new_release/fresh/new-release-comic-20260703-001.article.json",
+    "required_sha256": "849a37519c6af70d2212ec01d5cddef5793bfa811e97ca9f248ce099a0350bf4"
+  },
+  "source_authorization": {
+    "authorization_id": "DMM_ARTICLE_LINK_INJECTION_ONE_SHOT_AUTHORIZATION_V1",
+    "required_digest_sha256": "d274eaf6bd14c95ac43031fbff296d0d47e6051dbb4231407327d376f93fec7f",
+    "single_use": true,
+    "must_be_unconsumed": true,
+    "reuse_allowed": false,
+    "automatic_retry_allowed": false
+  },
+  "required_review": {
+    "required_digest_sha256": "764fa0e5b3eea9cd09369995c78b6b0598c66aca17f66f80e3391d4654d932a4",
+    "required_verdict": "APPROVED_NO_CHANGE_REQUIRED"
+  },
+  "mutation_contract": {
+    "required_source_tag": "span",
+    "required_source_class_tokens": [
+      "ls-store-btn",
+      "ls-store-dmm",
+      "ls-store-disabled"
+    ],
+    "required_source_aria_disabled": "true",
+    "required_source_text": "DMMブックスで確認（再確認待ち）",
+    "required_source_match_count": 1,
+    "target_tag": "a",
+    "target_class_tokens": [
+      "ls-store-btn",
+      "ls-store-dmm"
+    ],
+    "target_text": "DMMブックスで確認",
+    "target_target": "_blank",
+    "target_rel_tokens": [
+      "nofollow",
+      "sponsored",
+      "noopener"
+    ],
+    "remove_disabled_class": true,
+    "remove_aria_disabled": true,
+    "only_dmm_slot_may_change": true
+  },
+  "store_navigation_contract": {
+    "render_mode": "PARTIAL_ACTIVE_STORE_LINKS",
+    "anchor_elements_included": true,
+    "href_attributes_included": true,
+    "final_affiliate_urls_included": true,
+    "dmm_url_included": true
+  },
+  "execution_boundary": {
+    "authorization_consumption_allowed": true,
+    "article_atomic_replacement_allowed": true,
+    "network_connection_allowed": false,
+    "dns_resolution_allowed": false,
+    "http_request_allowed": false,
+    "dmm_recheck_allowed": false,
+    "payload_generation_allowed": false,
+    "category_id_injection_allowed": false,
+    "wordpress_access_allowed": false,
+    "wordpress_write_allowed": false,
+    "wordpress_publish_allowed": false,
+    "x_post_allowed": false,
+    "production_status": "NO_GO"
+  }
+}

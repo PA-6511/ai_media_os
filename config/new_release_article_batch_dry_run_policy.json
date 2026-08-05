@@ -1,0 +1,79 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-3",
+  "policy_id": "NEW_RELEASE_ARTICLE_BATCH_DRY_RUN_POLICY_V1",
+  "verification_policy_id": "NEW_RELEASE_VERIFICATION_POLICY_V1",
+  "template_contract_id": "POST185_STANDARD_TEMPLATE_V1_FIXED",
+  "eligible_classifications": [
+    "READY_FOR_DRAFT"
+  ],
+  "article_generation": {
+    "wordpress_status": "draft",
+    "description_mode": "minimal",
+    "long_commentary_allowed": false,
+    "pr_disclosure_required": true,
+    "verified_image_required": true,
+    "price_cards_required": true,
+    "store_buttons_required": true,
+    "uncategorized_allowed": false,
+    "store_button_order": [
+      "amazon",
+      "rakuten_kobo",
+      "dmm"
+    ],
+    "store_display_names": {
+      "amazon": "Amazon Kindle",
+      "rakuten_kobo": "楽天Kobo",
+      "dmm": "DMMブックス"
+    },
+    "category_mapping": {
+      "comic": {
+        "category_slug": "comic-new-release",
+        "category_name": "コミック新刊"
+      },
+      "light_novel": {
+        "category_slug": "light-novel-new-release",
+        "category_name": "ライトノベル新刊"
+      },
+      "general_book": {
+        "category_slug": "general-book-new-release",
+        "category_name": "一般書籍新刊"
+      }
+    }
+  },
+  "x_candidate_generation": {
+    "enabled": true,
+    "template_id": "X_NEW_RELEASE_V1",
+    "max_total_characters": 280,
+    "reserved_url_characters": 23,
+    "max_text_characters_without_url": 257,
+    "hashtags_allowed": false,
+    "emoji_allowed": false,
+    "manual_review_required": true,
+    "automatic_post_allowed": false
+  },
+  "output": {
+    "combined_json_allowed": true,
+    "html_preview_allowed": true,
+    "x_feedback_initialize_request_allowed": true,
+    "wordpress_payload_execution_allowed": false
+  },
+  "execution_boundary": {
+    "local_json_read_allowed": true,
+    "local_preview_write_allowed": true,
+    "external_api_call_allowed": false,
+    "web_scraping_allowed": false,
+    "wordpress_write_allowed": false,
+    "wordpress_publish_allowed": false,
+    "x_api_call_allowed": false,
+    "x_post_allowed": false,
+    "automatic_rule_update_allowed": false,
+    "production_status": "NO_GO",
+    "safety_state": "DRY_RUN_ONLY"
+  },
+  "next_phase": {
+    "phase_id": "LS-NEW-BATCH-4",
+    "name": "Controlled WordPress Draft Preparation",
+    "execution_allowed": false
+  }
+}

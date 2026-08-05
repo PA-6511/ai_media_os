@@ -1,0 +1,38 @@
+{
+  "_meta": {
+    "phase": "46-2",
+    "phase_name": "最終実測GO入力の受領・検証層",
+    "layer": "受領/確認層 (receipt and confirmation layer)",
+    "title": "manual_release_go / actual_process_start_go 最終実測入力フォーマット設計",
+    "created": "2026-05-14",
+    "author": "governance-framework",
+    "status": "PASS_DESIGN_ONLY",
+    "reports_only": true
+  },
+  "scope": "Phase 46-1 で受領・整合確認された Phase 45 完了証跡に基づいて、以下の最終実測GO入力のフォーマットを設計する：(1) manual_release_go_authorization への実測GO入力フォーマット（変換可能判定後の最終実測入力構造）、(2) actual_process_start_go_authorization への実測GO入力フォーマット（変換可能判定後の最終実測入力構造、厳格条件に対応）、(3) 両フォーマットの共通項目と分離項目の定義、(4) 入力値の型・範囲・必須性の定義、(5) 入力日時・入力者権限・入力署名などのメタデータ構造の定義、(6) 次フェーズ（Phase 46-3 受領・検証）で検証される項目の完全な列挙。",
+  "governance": {
+    "production_status": "NO_GO",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "report": {
+    "description": "Phase 46-2 では、manual_release_go_authorization と actual_process_start_go_authorization の最終実測GO入力を受領するためのフォーマットを 設計層で定義する。(1) manual_release_go_authorization 最終実測入力フォーマット設計：Phase 45-2 で GRANTED 変換可能と判定された場合に、実際に manual_release_go_authorization が実測で GO 状態に到達したことを宣言するための入力フォーマットを設計する。入力項目：①確認項目（manual_release_go が実測で GO 状態にあることの根拠、Phase 41-1～Phase 45-9 全プロセスの遡及確認），②確認値（GO / NO_GO / その他），③確認日時（ISO 8601 形式），④確認者情報（確認者ID、権限レベル、組織、署名），⑤メタデータ（入力バージョン、入力スキーマ名、入力チェックサム）。(2) actual_process_start_go_authorization 最終実測入力フォーマット設計：Phase 45-3 で GRANTED 変換可能と判定された場合に、実際に actual_process_start_go_authorization が実測で GO 状態に到達したことを宣言するための入力フォーマットを設計する。入力項目：①確認項目（actual_process_start_go が実測で GO 状態にあることの根拠、Phase 41-1～Phase 45-9 全プロセス + 実行不可境界リスク最終確認の遡及），②確認値（GO / NO_GO / その他），③確認日時（ISO 8601 形式），④確認者情報（確認者ID、権限レベル・厳格レベル、組織、署名），⑤実行不可境界リスク最終確認（Phase 43-7 で検出されたリスク項目の最終状態），⑥メタデータ（入力バージョン、入力スキーマ名、入力チェックサム）。(3) フォーマット共通項目定義：両フォーマットが共有する項目（確認項目、確認値、確認日時、確認者情報、メタデータ）の構造を統一的に定義し、整合性を保証する。(4) フォーマット分離項目定義：actual_process_start_go が manual_release_go より厳格であることを反映して、actual_process_start_go 固有の項目（権限レベル・厳格レベル、実行不可境界リスク最終確認）を明示的に分離定義する。(5) 入力値型・範囲・必須性定義：各入力項目について、型（文字列、日時、整数など）、値の範囲（GO / NO_GO など許可値の列挙）、必須性（必須 / 省略可など）を詳細に定義し、次フェーズの検証で参照できるようにする。(6) 検証項目の完全列挙：Phase 46-3 で検証される全項目（フォーマット完全性、型チェック、範囲チェック、必須項目チェック、メタデータ整合性など）をこの段階で完全に列挙し、検証テンプレートの基礎とする。これらのフォーマット定義は全て 設計層（reports only）で実装され、実処理開始許可を含まない。",
+    "invariants": [
+      "NO_GO 維持：フォーマット設計プロセスを通じて production_status = 'NO_GO' は維持される",
+      "NOT_GRANTED 維持：フォーマット設計を通じて manual_release_go_authorization / actual_process_start_go_authorization は 'NOT_GRANTED' のままである",
+      "reports only：フォーマット設計全体は報告書形式で実装され、実処理への権限付与を含まない",
+      "分離設計：manual_release_go と actual_process_start_go の共通項目と分離項目が明確に定義される",
+      "厳格性反映：actual_process_start_go が manual_release_go より厳格であることがフォーマットに反映される"
+    ],
+    "actions": [],
+    "notes": [
+      "Phase 46-2 は 設計層のみで実装される（実処理開始許可ではない）",
+      "最終実測入力フォーマット設計は reports only であり、生産環境コード変更を含まない",
+      "Phase 46-3 の受領・検証テンプレート設計の基礎となる",
+      "フォーマットは Phase 45-2 / 45-3 の GRANTED 変換可能判定を前提とする",
+      "入力値の型・範囲・必須性は後続フェーズでの機械的検証を想定して設計される",
+      "実処理開始は NO_GO のまま"
+    ]
+  }
+}

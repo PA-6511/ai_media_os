@@ -1,0 +1,13 @@
+【Phase証跡標準仕様 v1】
+
+- reports/evidence/phaseXX_component_name/ 使用
+- 必須5ファイル生成
+- mode=DRY_RUN
+- human_review_required=true
+- production_status=NO_GO
+- side_effect_policy 全false
+- sha256記録必須
+- 不明項目=UNKNOWN
+- 新規ファイルのみ
+- 既存コード変更禁止
+- PASS/WARN/FAIL/ABORT 出力

@@ -1,0 +1,126 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M0",
+  "policy_id": "NEW_RELEASE_WP_FRESH_STORE_LINK_FINALIZATION_PLAN_POLICY_V1",
+  "source_phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-L",
+  "operation_mode": "APPROVED_STORE_LINK_FINALIZATION_PLAN_FIXATION_ONLY",
+  "content_item_id": "new-release-comic-20260703-001",
+  "article_title": "ダークギャザリング 第20巻｜配信開始",
+  "plan_contract": {
+    "plan_id": "DARK_GATHERING_VOLUME_20_STORE_LINK_FINALIZATION_PLAN_V1",
+    "plan_path": "exchange/plans/new_release/fresh/new-release-comic-20260703-001.store_link_finalization_plan.json",
+    "plan_creation_allowed": true,
+    "plan_overwrite_allowed": false,
+    "plan_change_requires_new_human_approval": true
+  },
+  "store_order": [
+    "amazon",
+    "rakuten_kobo",
+    "dmm_books"
+  ],
+  "common_final_link_requirements": {
+    "https_required": true,
+    "target_blank_required": true,
+    "rel_required_tokens": [
+      "nofollow",
+      "sponsored",
+      "noopener"
+    ],
+    "javascript_scheme_allowed": false,
+    "data_scheme_allowed": false,
+    "url_userinfo_allowed": false,
+    "dummy_url_allowed": false,
+    "placeholder_url_allowed": false,
+    "verification_source_url_as_final_link_allowed": false,
+    "product_identity_binding_required": true,
+    "final_link_human_review_required": true
+  },
+  "amazon": {
+    "identifier_type": "ASIN",
+    "identifier": "B0H3N7QK5K",
+    "verification_url_kind": "STABLE_PRODUCT_URL",
+    "verification_source_role": "PRODUCT_VERIFICATION_SOURCE_NOT_FINAL_AFFILIATE_LINK",
+    "finalization_method": "APPROVED_AMAZON_AFFILIATE_PROVIDER_OR_APPROVED_MANUAL_BUILDER",
+    "hardcoded_affiliate_tag_allowed": false,
+    "legacy_post185_affiliate_link_reuse_allowed": false,
+    "final_link_generation_allowed_in_current_phase": false,
+    "final_link_ready": false
+  },
+  "rakuten_kobo": {
+    "identifier_type": "RAKUTEN_KOBO_PRODUCT_NUMBER",
+    "identifier": "4972000159519",
+    "verification_url_kind": "STABLE_PRODUCT_URL",
+    "verification_source_role": "PRODUCT_VERIFICATION_SOURCE_NOT_FINAL_AFFILIATE_LINK",
+    "finalization_method": "APPROVED_RAKUTEN_AFFILIATE_DEEPLINK_BUILDER",
+    "required_final_affiliate_host": "hb.afl.rakuten.co.jp",
+    "destination_product_binding_required": true,
+    "legacy_post185_affiliate_link_reuse_allowed": false,
+    "final_link_generation_allowed_in_current_phase": false,
+    "final_link_ready": false
+  },
+  "dmm_books": {
+    "identifier_type": "DMM_SERIES_ID",
+    "identifier": "861056",
+    "verification_url_kind": "SERIES_LATEST_ALIAS",
+    "verification_source_role": "PRODUCT_VERIFICATION_SOURCE_NOT_FINAL_AFFILIATE_LINK",
+    "latest_alias_recheck_required": true,
+    "latest_alias_recheck_completed": false,
+    "one_shot_read_only_get_required": true,
+    "canonical_product_resolution_required": true,
+    "series_latest_alias_as_final_link_allowed": false,
+    "finalization_method": "APPROVED_DMM_AFFILIATE_LINK_BUILDER_AFTER_RECHECK",
+    "required_final_affiliate_host": "al.dmm.com",
+    "affiliate_id_source": "APPROVED_NONSECRET_CONFIGURATION_ONLY",
+    "legacy_post185_affiliate_link_reuse_allowed": false,
+    "final_link_generation_allowed_in_current_phase": false,
+    "final_link_ready": false
+  },
+  "failure_handling": {
+    "product_identity_mismatch": "HIDE_STORE_SLOT_AND_RETURN_TO_HUMAN_REVIEW",
+    "verification_source_unreachable": "KEEP_EXISTING_CONTENT_UNCHANGED_AND_RETURN_TO_REVIEW",
+    "affiliate_conversion_failure": "HIDE_FAILED_STORE_SLOT_NO_DUMMY_URL",
+    "invalid_final_host": "REJECT_FINAL_LINK_AND_RETURN_TO_REVIEW",
+    "invalid_scheme": "REJECT_FINAL_LINK_AND_RETURN_TO_REVIEW",
+    "missing_required_rel_token": "REJECT_RENDERING_AND_RETURN_TO_REVIEW",
+    "dmm_latest_alias_mismatch": "HIDE_DMM_SLOT_AND_RETURN_TO_HUMAN_REVIEW",
+    "dmm_canonical_product_unresolved": "HIDE_DMM_SLOT_AND_KEEP_DMM_LINK_UNAVAILABLE",
+    "all_store_links_unavailable": "BLOCK_PAYLOAD_GENERATION",
+    "partial_store_links_available": "REQUIRE_EXPLICIT_HUMAN_APPROVAL_BEFORE_PAYLOAD",
+    "minimum_valid_final_link_count_for_future_payload": 1,
+    "unresolved_store_slot_rendering_allowed": false
+  },
+  "source_preservation": {
+    "generated_article_modification_allowed": false,
+    "article_content_human_review_modification_allowed": false,
+    "authorization_consumption_evidence_modification_allowed": false,
+    "article_input_modification_allowed": false
+  },
+  "execution_boundary": {
+    "store_link_finalization_plan_creation_allowed": true,
+    "verification_source_url_read_from_registered_input_allowed": true,
+    "final_affiliate_link_generation_allowed": false,
+    "final_affiliate_link_validation_allowed": false,
+    "article_url_injection_allowed": false,
+    "generated_article_write_allowed": false,
+    "dmm_recheck_allowed": false,
+    "credential_file_read_allowed": false,
+    "dns_resolution_allowed": false,
+    "network_connection_allowed": false,
+    "http_request_allowed": false,
+    "fresh_payload_creation_allowed": false,
+    "payload_binding_allowed": false,
+    "production_category_id_payload_injection_allowed": false,
+    "wordpress_api_call_allowed": false,
+    "wordpress_write_allowed": false,
+    "wordpress_draft_creation_allowed": false,
+    "wordpress_publish_allowed": false,
+    "execution_allowed": false,
+    "production_status": "NO_GO",
+    "safety_state": "STORE_LINK_FINALIZATION_PLAN_ONLY"
+  },
+  "next_phase": {
+    "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M1",
+    "name": "DMM Latest Alias One-Shot Read-Only Recheck Authorization",
+    "execution_allowed": false
+  }
+}

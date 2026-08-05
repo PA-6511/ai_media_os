@@ -1,0 +1,55 @@
+{
+  "phase": "Phase 8-44",
+  "phase_name": "Human Business/Content/Legal Review Input Evidence",
+  "status": "PHASE8_44_HUMAN_REVIEW_INPUT_EVIDENCE_PENDING_COMPLETION",
+  "target_post_id": 115,
+  "production_status": "NO_PUBLISH_PAUSE",
+  "human_review_input_received": false,
+  "human_review_input_complete": false,
+  "human_review_input": {
+    "business_facts_review": {
+      "work_title_verified": null,
+      "volume_info_verified": null,
+      "price_campaign_terms_verified": null,
+      "notes": ""
+    },
+    "content_accuracy_review": {
+      "claims_supported": null,
+      "official_link_checked": null,
+      "affiliate_link_checked": null,
+      "notes": ""
+    },
+    "legal_pr_affiliate_review": {
+      "pr_label_visible": null,
+      "affiliate_disclosure_visible": null,
+      "legal_compliance_checked": null,
+      "notes": ""
+    },
+    "final_human_decision": {
+      "publish_go": null,
+      "keep_no_go": true,
+      "decision_reason": "human review inputs are not completed yet"
+    }
+  },
+  "publish_allowed": false,
+  "publish_executed": false,
+  "wordpress_api_call_attempted": false,
+  "wordpress_write_executed": false,
+  "wordpress_draft_updated": false,
+  "secret_values_output": false,
+  "secret_values_written": false,
+  "errors": [],
+  "warnings": [
+    "Human review fields are pending. Keep NO_GO pause until all required fields are completed."
+  ],
+  "safety_violations": [],
+  "evidence_summary": [
+    {
+      "path": "exchange/logs/phase8_41_human_review_input_template_design_only_post_115_result.json",
+      "exists": true,
+      "status": "PHASE8_41_HUMAN_REVIEW_INPUT_TEMPLATE_DESIGN_ONLY_READY"
+    }
+  ],
+  "next_step": "phase8_45_manual_review_result_validation",
+  "checked_at": "2026-06-09T14:05:27.927866+00:00"
+}

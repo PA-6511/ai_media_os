@@ -1,0 +1,21 @@
+# LS-NEW-BATCH-4G-2E-RECOVERY-M24
+
+- Status: `PASS_WORDPRESS_TAWAWA_REFERENCE_LAYOUT_REVISION_GENERATED_LOCAL_ONLY_NON_EXECUTABLE_SAFE_PREVIEWS_READY_NO_WORDPRESS_ACCESS`
+- Decision: `TAWAWA_REFERENCE_LAYOUT_GENERATED_AWAITING_HUMAN_VISUAL_REVIEW`
+- Reference layout: `HUMAN_PROVIDED_TAWAWA_SCREENSHOT`
+- WordPress post ID: `192`
+- Desktop cover left / buttons right: `true`
+- Buttons vertical and equal width: `true`
+- Description separated below card: `true`
+- Details separated below description: `true`
+- Notice separated at bottom: `true`
+- Mobile single-column layout: `true`
+- PR before first affiliate interaction: `true`
+- Comment status target: `closed`
+- Allowed update fields: `content, comment_status`
+- Store URL multiset preserved: `true`
+- WordPress access performed: `false`
+- WordPress update performed: `false`
+- Authorization issued: `false`
+- Production status: `NO_GO`
+- Ready for human review: `true`

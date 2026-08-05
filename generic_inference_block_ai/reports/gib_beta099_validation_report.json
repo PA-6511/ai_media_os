@@ -1,0 +1,51 @@
+{
+  "schema_version": "gib.beta099.validation_report.v0.1",
+  "block_id": "GIB",
+  "beta_version": "beta0.99",
+  "final_status": "PASS_DRY_RUN_BETA099_FINAL_APPROVAL_GATE_NO_EXECUTION",
+  "status": "DRY_RUN_FINAL_APPROVAL_GATE_ONLY",
+  "production_status": "NO_GO",
+  "handoff_ready": false,
+  "final_approval_required": true,
+  "final_approval_granted": false,
+  "final_approval_statement": "I APPROVE GIB BETA1 FIRST REAL LOCAL LLM CALL TRANSITION UNDER CHANGE CONTROL.",
+  "target_runtime": "ollama",
+  "target_host": "localhost",
+  "target_port": 11434,
+  "target_model": "gemma-4-qat-e2b",
+  "target_valid": true,
+  "target_issues": [],
+  "switch_conditions_ok": true,
+  "switch_condition_issues": [],
+  "real_llm_call_switch_conditions_documented": true,
+  "denied_scenario": {
+    "scenario_name": "approval_false",
+    "approval_granted": false,
+    "call_allowed": false,
+    "blocked_reason": "final_manual_approval_required"
+  },
+  "approved_sim_scenario": {
+    "scenario_name": "approval_true_simulation",
+    "approval_granted": true,
+    "call_allowed": false,
+    "blocked_reason": "real_llm_call_allowed_false"
+  },
+  "current_guardrails": {
+    "real_llm_call_allowed": false,
+    "execution_allowed": false,
+    "generate_call_allowed": false,
+    "chat_call_allowed": false,
+    "wordpress_write_allowed": false,
+    "credential_access_allowed": false,
+    "fallback_runtime": "stub"
+  },
+  "beta095_snapshot": {
+    "final_status": "PASS_DRY_RUN_BETA095_APPROVAL_EVIDENCE_FORMAT_ONLY",
+    "token_format_valid": true,
+    "change_id_format_valid": true,
+    "production_status": "NO_GO",
+    "real_llm_call_allowed": false,
+    "execution_allowed": false
+  },
+  "can_execute_now": false
+}

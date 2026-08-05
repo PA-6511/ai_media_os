@@ -1,0 +1,18 @@
+{
+  "phase": "LS-NEW-12",
+  "document_type": "START_LS_NEW12_NO_WRITE_SAFETY_CONTRACT",
+  "status": "LSNEW12_NO_WRITE_SAFETY_CONTRACT_READY",
+  "no_write_required": true,
+  "wordpress_get_only": true,
+  "wordpress_post_allowed": false,
+  "wordpress_put_allowed": false,
+  "wordpress_patch_allowed": false,
+  "wordpress_delete_allowed": false,
+  "wordpress_draft_create_allowed": false,
+  "wordpress_publish_allowed": false,
+  "wordpress_update_allowed": false,
+  "runner_execution_allowed": false,
+  "final_execution_command_created": false,
+  "target_post_id_allocation_allowed": false,
+  "execution_allowed": false
+}

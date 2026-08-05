@@ -1,0 +1,54 @@
+{
+  "phase": "Phase 8-42",
+  "phase_name": "Manual Review Result Validator Design Only",
+  "status": "PHASE8_42_MANUAL_REVIEW_RESULT_VALIDATOR_DESIGN_ONLY_READY",
+  "target_post_id": 115,
+  "production_status": "NO_PUBLISH_PAUSE",
+  "design_only": true,
+  "validator_rules": {
+    "required_boolean_fields": [
+      "business_facts_review.work_title_verified",
+      "business_facts_review.volume_info_verified",
+      "business_facts_review.price_campaign_terms_verified",
+      "content_accuracy_review.claims_supported",
+      "content_accuracy_review.official_link_checked",
+      "content_accuracy_review.affiliate_link_checked",
+      "legal_pr_affiliate_review.pr_label_visible",
+      "legal_pr_affiliate_review.affiliate_disclosure_visible",
+      "legal_pr_affiliate_review.legal_compliance_checked"
+    ],
+    "publish_go_constraints": [
+      "publish_go and keep_no_go cannot both be true",
+      "if publish_go is true then all required boolean fields must be true",
+      "decision_reason must be non-empty"
+    ],
+    "default_decision_when_incomplete": "NO_GO_KEEP_PAUSE"
+  },
+  "validation_output_schema": {
+    "is_input_complete": "boolean",
+    "is_publish_go_eligible": "boolean",
+    "decision_now": "NO_GO_KEEP_PAUSE | READY_FOR_SEPARATE_PUBLISH_PHASE",
+    "failed_rules": "string[]"
+  },
+  "publish_allowed": false,
+  "publish_executed": false,
+  "wordpress_api_call_attempted": false,
+  "wordpress_write_executed": false,
+  "wordpress_draft_updated": false,
+  "secret_values_output": false,
+  "secret_values_written": false,
+  "errors": [],
+  "warnings": [
+    "Validator is design-only and does not process live publish actions."
+  ],
+  "safety_violations": [],
+  "evidence_summary": [
+    {
+      "path": "exchange/logs/phase8_41_human_review_input_template_design_only_post_115_result.json",
+      "exists": true,
+      "status": "PHASE8_41_HUMAN_REVIEW_INPUT_TEMPLATE_DESIGN_ONLY_READY"
+    }
+  ],
+  "next_step": "phase8_43_publish_readiness_re_evaluation_no_execution",
+  "checked_at": "2026-06-09T14:02:17.003707+00:00"
+}

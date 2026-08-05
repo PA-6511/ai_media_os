@@ -1,0 +1,41 @@
+{
+  "schema_version": "gib.beta1.prep.runbook.v0.1",
+  "phase": "beta1_prep",
+  "status": "DRY_RUN_BETA1_PREP_ONLY",
+  "production_status": "NO_GO",
+  "execution_allowed": false,
+  "real_llm_call_allowed": false,
+  "target_runtime": "ollama",
+  "target_host": "local_pc",
+  "target_model": "gemma-4-qat-e2b",
+  "constraints": {
+    "localhost_only": true,
+    "reports_only_output": true,
+    "wordpress_write_allowed": false,
+    "credential_access_allowed": false,
+    "systemd_operation_allowed": false,
+    "generate_chat_execution": false
+  },
+  "required_inputs": {
+    "approval_token_format_valid": true,
+    "change_management_id_format_valid": true,
+    "final_approval_granted": false
+  },
+  "run_steps": [
+    "Verify local ollama binary availability on local_pc only",
+    "Verify model name is in allowlist and equals gemma-4-qat-e2b",
+    "Verify endpoint scope is localhost only",
+    "Verify output path is limited to generic_inference_block_ai/reports",
+    "Verify WordPress/credential/systemd access remains forbidden",
+    "Do not execute generate/chat in beta1 prep"
+  ],
+  "release_gate": {
+    "allow_beta1_execution_now": false,
+    "required_switches_for_beta1": [
+      "explicit_manual_approval",
+      "real_llm_call_allowed_true",
+      "execution_allowed_true",
+      "change_control_ticket_bound"
+    ]
+  }
+}

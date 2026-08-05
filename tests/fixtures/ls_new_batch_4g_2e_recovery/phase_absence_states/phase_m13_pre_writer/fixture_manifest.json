@@ -1,0 +1,70 @@
+{
+  "fixture_id": "LS_NEW_BATCH_4G_2E_PHASE_M13_PRE_WRITER",
+  "phase": "M13-PRE-WRITER",
+  "purpose": "Verify writer credential and M12 authorization integrity before M13 execution",
+  "source_item_id": "new-release-comic-20260703-001",
+  "state_boundary": "M13_PRE_WRITER_VALIDATION_COMPLETE_BEFORE_EXECUTION",
+  "required_present": [
+    {
+      "path": "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.wordpress_draft_creation_authorization.json",
+      "sha256": "7c9662a7a13502e165862e452427899228794bce6904a0215c45a5b54ba1142b",
+      "source_phase": "M12",
+      "provenance": "FORMAL_EXISTING_PHASE_ARTIFACT"
+    },
+    {
+      "path": "exchange/logs/ls_new_batch_4g_2e_recovery_m13_pre_writer_result.json",
+      "sha256": "7425bb093ed9d20420ce300b411e8bac93f1b2a5aefecd53932f148c360820b8",
+      "source_phase": "M13-PRE-WRITER",
+      "provenance": "FORMAL_EXISTING_PHASE_ARTIFACT"
+    },
+    {
+      "path": "exchange/payloads/new_release/fresh/new-release-comic-20260703-001.wordpress_draft_payload.json",
+      "sha256": "30a70be4110e863a85e2896f69f5b3e51d814a6fd82d5489f899d8a244166d8f",
+      "source_phase": "M11",
+      "provenance": "FORMAL_EXISTING_PHASE_ARTIFACT"
+    }
+  ],
+  "required_absent": [
+    {
+      "relative_path": "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.wordpress_draft_creation_consumption.json",
+      "artifact_role": "M13_WORDPRESS_DRAFT_CONSUMPTION",
+      "absence_required_by_phase": true,
+      "first_phase_allowed_to_create": "M13"
+    },
+    {
+      "relative_path": "exchange/wordpress/new_release/fresh/new-release-comic-20260703-001.wordpress_draft_creation_response.json",
+      "artifact_role": "M13_WORDPRESS_DRAFT_RESPONSE",
+      "absence_required_by_phase": true,
+      "first_phase_allowed_to_create": "M13"
+    },
+    {
+      "relative_path": "exchange/logs/ls_new_batch_4g_2e_recovery_m13_result.json",
+      "artifact_role": "M13_EXECUTION_RESULT",
+      "absence_required_by_phase": true,
+      "first_phase_allowed_to_create": "M13"
+    }
+  ],
+  "present_artifact_sha256": {
+    "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.wordpress_draft_creation_authorization.json": "7c9662a7a13502e165862e452427899228794bce6904a0215c45a5b54ba1142b",
+    "exchange/logs/ls_new_batch_4g_2e_recovery_m13_pre_writer_result.json": "7425bb093ed9d20420ce300b411e8bac93f1b2a5aefecd53932f148c360820b8",
+    "exchange/payloads/new_release/fresh/new-release-comic-20260703-001.wordpress_draft_payload.json": "30a70be4110e863a85e2896f69f5b3e51d814a6fd82d5489f899d8a244166d8f"
+  },
+  "absence_reason": "Pre-writer validation cannot consume authorization or create WordPress execution artifacts",
+  "later_writer_phase": "M13",
+  "provenance_type": "MINIMAL_SNAPSHOT_FROM_FORMAL_PHASE_ARTIFACTS",
+  "provenance_evidence": [
+    "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.wordpress_draft_creation_authorization.json",
+    "exchange/logs/ls_new_batch_4g_2e_recovery_m13_pre_writer_result.json",
+    "exchange/payloads/new_release/fresh/new-release-comic-20260703-001.wordpress_draft_payload.json"
+  ],
+  "immutable": true,
+  "terminal_namespace": false,
+  "created_at": "2026-07-23T14:07:54Z",
+  "update_policy": {
+    "formal_phase_contract_change_required": true,
+    "human_approval_required": true,
+    "old_and_new_sha_record_required": true,
+    "absence_boundary_reevaluation_required": true,
+    "later_terminal_writer_is_not_an_update_reason": true
+  }
+}

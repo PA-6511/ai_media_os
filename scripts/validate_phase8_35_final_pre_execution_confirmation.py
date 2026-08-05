@@ -1,0 +1,236 @@
+#!/usr/bin/env python3
+import json
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Any
+
+ROOT = Path(__file__).resolve().parents[1]
+DEFAULT_POLICY = ROOT / "config/phase8_35_final_pre_execution_confirmation_policy.json"
+DEFAULT_REQUEST = ROOT / "exchange/examples/phase8_35_final_pre_execution_confirmation_request.example.json"
+DEFAULT_OUTPUT = ROOT / "exchange/logs/phase8_35_final_pre_execution_confirmation_result.json"
+
+
+def now_iso() -> str:
+    return datetime.now(timezone.utc).isoformat()
+
+
+def load_json(path: Path) -> dict[str, Any]:
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def write_json(path: Path, payload: dict[str, Any]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+
+
+def resolve_root(policy_path: Path) -> Path:
+    if policy_path.parent.name == "config":
+        return policy_path.parent.parent
+    return policy_path.parent
+
+
+def scan_value_strings(payload: Any, markers: list[str], findings: list[str], path: str = "root") -> None:
+    if isinstance(payload, dict):
+        for key, value in payload.items():
+            scan_value_strings(value, markers, findings, f"{path}.{key}")
+        return
+
+    if isinstance(payload, list):
+        for idx, value in enumerate(payload):
+            scan_value_strings(value, markers, findings, f"{path}[{idx}]")
+        return
+
+    if isinstance(payload, str):
+        lowered = payload.lower()
+        if any(marker in lowered for marker in markers):
+            findings.append(f"forbidden_value:{path}")
+
+
+def base_result() -> dict[str, Any]:
+    return {
+        "phase": "8-35",
+        "phase_name": "Final pre-execution confirmation before one-shot draft creation handoff",
+        "final_status": "ABORT_POLICY_VIOLATION",
+        "phase_status": "FINAL_CONFIRMATION_NO_EXECUTION",
+        "production_status": "NO_GO",
+        "execution": "DRY_RUN",
+        "design_only": False,
+        "final_pre_execution_confirmation_executed": True,
+        "previous_evidence_found": False,
+        "previous_phase8_29_to_8_31_pack_status": None,
+        "previous_phase8_32_to_8_34_pack_status": None,
+        "credentials_ready": False,
+        "credentials_not_ready": False,
+        "target_item_count": 1,
+        "execution_allowed": False,
+        "wordpress_api_call_allowed": False,
+        "wordpress_api_call_attempted": False,
+        "wordpress_write_allowed": False,
+        "wordpress_write_executed": False,
+        "wordpress_draft_created": False,
+        "publish_allowed": False,
+        "update_allowed": False,
+        "delete_allowed": False,
+        "bulk_action_allowed": False,
+        "export_allowed": False,
+        "auto_post": False,
+        "auto_update": False,
+        "auto_delete": False,
+        "auto_export": False,
+        "approve_draft_create_only_currently_allowed": False,
+        "unlock_in_this_phase": False,
+        "executor_action_allowed": False,
+        "actual_go_decision_issued": False,
+        "handoff_evidence_generated_for_execution": False,
+        "lock_created": False,
+        "lock_released": False,
+        "rollback_executed": False,
+        "no_secret_leak_passed": True,
+        "secret_values_output": False,
+        "secret_values_written": False,
+        "secret_values_logged": False,
+        "reasons": [],
+        "policy_violations": [],
+        "secret_leak_findings": [],
+        "next_step": "abort_without_execution",
+        "validated_at": now_iso(),
+    }
+
+
+def validate_phase8_35(
+    policy_path: Path = DEFAULT_POLICY,
+    request_path: Path = DEFAULT_REQUEST,
+    output_json_path: Path = DEFAULT_OUTPUT,
+) -> dict[str, Any]:
+    policy_path = Path(policy_path)
+    request_path = Path(request_path)
+    output_json_path = Path(output_json_path)
+
+    result = base_result()
+
+    if not policy_path.exists() or not request_path.exists():
+        result["final_status"] = "ABORT_MISSING_EVIDENCE"
+        result["no_secret_leak_passed"] = False
+        result["reasons"].append("missing_policy_or_request")
+        write_json(output_json_path, result)
+        return result
+
+    policy = load_json(policy_path)
+    request = load_json(request_path)
+    root = resolve_root(policy_path)
+
+    result["phase_name"] = str(policy.get("phase_name", result["phase_name"]))
+    result["phase_status"] = str(policy.get("phase_status", result["phase_status"]))
+    result["final_pre_execution_confirmation_executed"] = bool(policy.get("final_pre_execution_confirmation_executed", True))
+    result["target_item_count"] = int(request.get("target_item_count", 1))
+
+    policy_violations: list[str] = []
+    secret_leak_findings: list[str] = []
+
+    evidence_rel = list(policy.get("previous_required_evidence", []))
+    evidence_paths = [root / rel for rel in evidence_rel]
+    if all(path.exists() for path in evidence_paths):
+        result["previous_evidence_found"] = True
+    else:
+        result["reasons"].append("missing_required_evidence")
+        for rel, path in zip(evidence_rel, evidence_paths):
+            if not path.exists():
+                result["reasons"].append(f"missing:{rel}")
+
+    p2931 = {}
+    p3234 = {}
+    if result["previous_evidence_found"]:
+        p2931 = load_json(evidence_paths[0])
+        p3234 = load_json(evidence_paths[1])
+
+    result["previous_phase8_29_to_8_31_pack_status"] = p2931.get("pack_status")
+    result["previous_phase8_32_to_8_34_pack_status"] = p3234.get("pack_status")
+    result["credentials_ready"] = bool(p2931.get("credentials_ready", False))
+    result["credentials_not_ready"] = bool(p2931.get("credentials_not_ready", False))
+
+    if policy.get("production_status") != "NO_GO":
+        policy_violations.append("policy.production_status must be NO_GO")
+    if policy.get("execution") != "DRY_RUN":
+        policy_violations.append("policy.execution must be DRY_RUN")
+    if request.get("production_status") != "NO_GO":
+        policy_violations.append("request.production_status must be NO_GO")
+    if request.get("execution") != "DRY_RUN":
+        policy_violations.append("request.execution must be DRY_RUN")
+    if result["target_item_count"] != 1:
+        policy_violations.append("request.target_item_count must be 1")
+
+    for flag in policy.get("required_false_flags", []):
+        if policy.get(flag) is not False:
+            policy_violations.append(f"policy.{flag} must be false")
+
+    request_false_flags = [
+        "execution_allowed",
+        "wordpress_api_call_allowed",
+        "wordpress_api_call_attempted",
+        "wordpress_write_allowed",
+        "wordpress_write_executed",
+        "wordpress_draft_creation_allowed",
+        "approve_draft_create_only_currently_allowed",
+        "unlock_in_this_phase",
+        "actual_go_decision_issued",
+        "handoff_evidence_generated_for_execution",
+    ]
+    for flag in request_false_flags:
+        if request.get(flag) is not False:
+            policy_violations.append(f"request.{flag} must be false")
+
+    accepted_2931 = set(policy.get("accepted_phase8_29_to_8_31_statuses", []))
+    required_3234 = set(policy.get("required_phase8_32_to_8_34_status", []))
+
+    if result["previous_evidence_found"]:
+        if result["previous_phase8_29_to_8_31_pack_status"] not in accepted_2931:
+            policy_violations.append("phase8_29_to_8_31 pack status is not accepted")
+        if result["previous_phase8_32_to_8_34_pack_status"] not in required_3234:
+            policy_violations.append("phase8_32_to_8_34 pack status is not accepted")
+
+    markers = list(policy.get("forbidden_value_markers", []))
+    scan_value_strings(request, markers, secret_leak_findings)
+    scan_value_strings(result, markers, secret_leak_findings)
+
+    result["policy_violations"] = policy_violations
+    result["secret_leak_findings"] = secret_leak_findings
+
+    if not result["previous_evidence_found"]:
+        result["final_status"] = "ABORT_MISSING_EVIDENCE"
+        result["no_secret_leak_passed"] = False
+        result["next_step"] = str(request.get("next_step_if_policy_violation", "abort_without_execution"))
+    elif policy_violations:
+        result["final_status"] = "ABORT_POLICY_VIOLATION"
+        result["no_secret_leak_passed"] = False
+        result["next_step"] = str(request.get("next_step_if_policy_violation", "abort_without_execution"))
+    elif secret_leak_findings:
+        result["final_status"] = "ABORT_SECRET_LEAK_RISK"
+        result["no_secret_leak_passed"] = False
+        result["next_step"] = str(request.get("next_step_if_secret_leak_risk", "abort_without_execution"))
+    elif result["credentials_not_ready"]:
+        result["final_status"] = "PHASE8_35_FINAL_CONFIRMATION_BLOCKED_CREDENTIALS_NOT_READY_NO_EXECUTION"
+        result["next_step"] = str(request.get("next_step_if_credentials_not_ready", "stop_and_repeat_credential_provisioning_then_phase8_29_to_8_31"))
+    elif result["credentials_ready"]:
+        result["final_status"] = "PHASE8_35_FINAL_CONFIRMATION_READY_FOR_DRY_RUN_HANDOFF_NO_EXECUTION"
+        result["next_step"] = str(request.get("next_step_if_ready", "phase8_36_one_shot_draft_creation_dry_run_handoff"))
+    else:
+        result["final_status"] = "ABORT_POLICY_VIOLATION"
+        result["no_secret_leak_passed"] = False
+        result["next_step"] = str(request.get("next_step_if_policy_violation", "abort_without_execution"))
+
+    write_json(output_json_path, result)
+    return result
+
+
+def main() -> int:
+    result = validate_phase8_35()
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+    acceptable = {
+        "PHASE8_35_FINAL_CONFIRMATION_READY_FOR_DRY_RUN_HANDOFF_NO_EXECUTION",
+        "PHASE8_35_FINAL_CONFIRMATION_BLOCKED_CREDENTIALS_NOT_READY_NO_EXECUTION",
+    }
+    return 0 if result.get("final_status") in acceptable else 2
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

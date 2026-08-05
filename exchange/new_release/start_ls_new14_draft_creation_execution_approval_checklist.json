@@ -1,0 +1,28 @@
+{
+  "phase": "LS-NEW-14",
+  "document_type": "START_LS_NEW14_DRAFT_CREATION_EXECUTION_APPROVAL_CHECKLIST",
+  "status": "LSNEW14_DRAFT_CREATION_EXECUTION_APPROVAL_CHECKLIST_READY",
+  "check_items": {
+    "ls_new13_validated": true,
+    "blocked_command_template_exists": true,
+    "blocked_command_template_not_executable": true,
+    "payload_map_confirmed": true,
+    "payload_status_is_draft": true,
+    "one_shot_execution_target_is_one": true,
+    "one_shot_execution_actual_count_is_zero": true,
+    "target_post_id_is_null": true,
+    "target_post_id_allocated_false": true,
+    "post119_update_forbidden": true,
+    "post183_update_forbidden": true,
+    "wordpress_draft_not_created": true,
+    "wordpress_publish_not_executed": true,
+    "separate_decision_required": true,
+    "human_approval_required": true,
+    "auto_approval_forbidden": true,
+    "ai_self_approval_forbidden": true,
+    "approval_label_autofill_forbidden": true,
+    "approval_label_consumption_forbidden_in_gate": true
+  },
+  "all_required_checks_passed": true,
+  "execution_allowed": false
+}

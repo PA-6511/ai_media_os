@@ -1,0 +1,99 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-0",
+  "policy_id": "NEW_RELEASE_WP_READ_ONLY_CATEGORY_LOOKUP_POLICY_V1",
+  "design_package_id": "wp-read-only-category-lookup-design",
+  "operation_mode": "READ_ONLY_CATEGORY_LOOKUP_DESIGN_ONLY",
+  "credential_preflight_state": {
+    "presence_verified": true,
+    "metadata_verified": true,
+    "structure_verified": true,
+    "credential_values_loaded": false,
+    "credential_values_output": false
+  },
+  "http_contract": {
+    "allowed_method": "GET",
+    "allowed_rest_path": "/wp-json/wp/v2/categories",
+    "request_body_allowed": false,
+    "redirect_follow_allowed": false,
+    "tls_verification_required": true,
+    "write_methods_allowed": false
+  },
+  "lookup_plan_count": 1,
+  "lookup_plans": [
+    {
+      "category_slug": "comic-new-release",
+      "category_name": "コミック新刊",
+      "method": "GET",
+      "base_url": null,
+      "rest_path": "/wp-json/wp/v2/categories",
+      "query_parameters": {
+        "slug": "comic-new-release",
+        "per_page": 100,
+        "_fields": "id,slug,name,count"
+      },
+      "request_body": null,
+      "authorization_header_constructed": false,
+      "credential_values_loaded": false,
+      "request_url_constructed": false,
+      "dns_resolution_performed": false,
+      "tls_connection_performed": false,
+      "http_request_performed": false,
+      "response_read": false,
+      "future_matching_requirements": {
+        "exact_slug_match": true,
+        "exact_name_match": true,
+        "single_result": true,
+        "positive_integer_category_id": true,
+        "human_verification_required": true,
+        "automatic_payload_injection_allowed": false
+      },
+      "lookup_plan_digest_sha256": "d7f16b2dde22a006b46a391a4f49d0b189a03e96c389b32d878d57c3168c4604"
+    }
+  ],
+  "current_phase_activity": {
+    "credential_file_read": false,
+    "environment_variable_read": false,
+    "dns_resolution": false,
+    "tls_connection": false,
+    "http_request": false,
+    "wordpress_response_read": false,
+    "wordpress_write": false
+  },
+  "preexecution_gate": {
+    "state": "BLOCKED_LOOKUP_DESIGN_ONLY",
+    "implementation_required": true,
+    "explicit_lookup_authorization_required": true,
+    "network_authority_granted": false,
+    "wordpress_read_authority_granted": false,
+    "wordpress_write_authority_granted": false,
+    "execution_approval_issued": false,
+    "approval_token": null,
+    "execution_allowed": false
+  },
+  "execution_boundary": {
+    "credential_value_output_allowed": false,
+    "dns_resolution_allowed": false,
+    "network_connection_allowed": false,
+    "wordpress_api_call_allowed": false,
+    "wordpress_category_lookup_allowed": false,
+    "wordpress_write_allowed": false,
+    "wordpress_publish_allowed": false,
+    "external_api_call_allowed": false,
+    "execution_allowed": false,
+    "production_status": "NO_GO",
+    "safety_state": "READ_ONLY_CATEGORY_LOOKUP_DESIGN_ONLY"
+  },
+  "verified_checks": [
+    "source_phase_identity",
+    "source_credential_check_passed",
+    "source_sanitized_digest_referenced",
+    "source_credential_presence_verified",
+    "source_credential_metadata_verified",
+    "source_credential_structure_verified",
+    "source_secret_output_absent",
+    "source_wordpress_access_absent",
+    "source_execution_gate_closed"
+  ],
+  "design_package_digest_sha256": "5f7ea5b931c92989c4085120cb64bdd0cb84e0d47af189fe13058db7bce50229"
+}

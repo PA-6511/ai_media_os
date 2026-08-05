@@ -1,0 +1,26 @@
+{
+  "review_id": "phase8_1_explicit_human_approval_001",
+  "phase": "Phase 8-1",
+  "operator": "human",
+  "decision": "APPROVE_DRAFT_CREATE_ONLY_EXPLICIT_FOR_PHASE8_PREFLIGHT",
+  "target_item_count": 1,
+  "candidate_id": "phase7_1_sample_candidate_001",
+  "approval_token": "APPROVE_DRAFT_CREATE_ONLY",
+  "acknowledged_single_item_only": true,
+  "acknowledged_draft_only": true,
+  "acknowledged_no_publish": true,
+  "acknowledged_no_update": true,
+  "acknowledged_no_delete": true,
+  "acknowledged_no_bulk": true,
+  "acknowledged_freeze_on_mismatch": true,
+  "acknowledged_manual_review_after_creation": true,
+  "approval_scope": {
+    "draft_create_only": true,
+    "publish": false,
+    "update": false,
+    "delete": false,
+    "bulk": false,
+    "external_export": false
+  },
+  "note": "Explicit approval for Phase 8 preflight only. Actual execution still requires Phase 8-2 PASS."
+}

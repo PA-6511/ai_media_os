@@ -1,0 +1,27 @@
+{
+  "phase_id": "LS-NEW-BATCH-0",
+  "status": "PASS_DESIGN_ONLY_NO_EXECUTION",
+  "decision": "POST185_STANDARD_TEMPLATE_CONTRACT_FIXED",
+  "contract_id": "POST185_STANDARD_TEMPLATE_V1_FIXED",
+  "source_post_id": 185,
+  "verified_checks": [
+    "contract_phase_id",
+    "contract_identity",
+    "source_post_185",
+    "required_components",
+    "contract_execution_boundary",
+    "policy_contract_reference",
+    "initial_batch_policy",
+    "policy_execution_boundary"
+  ],
+  "verified_check_count": 8,
+  "template_fixed": true,
+  "batch_execution_allowed": false,
+  "wordpress_write_allowed": false,
+  "wordpress_publish_allowed": false,
+  "external_api_call_allowed": false,
+  "production_status": "NO_GO",
+  "safety_state": "DRY_RUN_ONLY",
+  "ready_for_ls_new_batch_1": true,
+  "next_phase_execution_allowed": false
+}

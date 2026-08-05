@@ -1,0 +1,74 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M25",
+  "approval_id": "wordpress-tawawa-reference-layout-human-review-approved-no-change-required-with-backlist-future-requirement-v1",
+  "approval_label": "WORDPRESS_TAWAWA_REFERENCE_LAYOUT_HUMAN_REVIEW_APPROVED_NO_CHANGE_REQUIRED_WITH_BACKLIST_CAROUSEL_FUTURE_REQUIREMENT",
+  "approved_by": "HUMAN_OPERATOR",
+  "human_explicit_approval": true,
+  "approved_at_utc": "2026-07-11T15:17:34.105749+00:00",
+  "content_item_id": "new-release-comic-20260703-001",
+  "wordpress_post_id": 192,
+  "human_review_verdict": "APPROVED_NO_CHANGE_REQUIRED",
+  "desktop_visual_review_completed": true,
+  "mobile_visual_review_completed": true,
+  "m24_artifact_modification_approved": false,
+  "backlist_carousel_future_requirement_recording_approved": true,
+  "backlist_carousel_implementation_approved": false,
+  "backlist_requirement_current_payload_inclusion_approved": false,
+  "comment_status_target": "closed",
+  "allowed_update_fields": [
+    "content",
+    "comment_status"
+  ],
+  "wordpress_access_approved": false,
+  "wordpress_write_approved": false,
+  "wordpress_update_approved": false,
+  "wordpress_republish_approved": false,
+  "wordpress_delete_approved": false,
+  "authorization_issue_approved": false,
+  "authorization_consumption_approved": false,
+  "authorization_reuse_approved": false,
+  "automatic_retry_approved": false,
+  "automatic_reissue_approved": false,
+  "x_post_approved": false,
+  "source_bindings": {
+    "m24_decision": {
+      "path": "exchange/decisions/new_release/fresh/new-release-comic-20260703-001.wordpress_tawawa_reference_layout_revision.json",
+      "file_sha256": "e3c03c4b94efb7d92400881f31b4dcd432ff5d8e0d6b94745bbf131cd9d277c8"
+    },
+    "m24_rendered": {
+      "path": "exchange/rendered/new_release/fresh/new-release-comic-20260703-001.wordpress_tawawa_reference_layout_v1.html",
+      "file_sha256": "dc938ae164c70130a5fb27692d71c97cc367a8985c44c2c333801b337ee6caf4"
+    },
+    "m24_css": {
+      "path": "exchange/rendered/new_release/fresh/new-release-comic-20260703-001.wordpress_tawawa_reference_layout_v1.css",
+      "file_sha256": "8fb60f5c3554b31de56d5a96ea11127108a12ef0bcd2f57355d3f90086dfedf0"
+    },
+    "m24_payload": {
+      "path": "exchange/payloads/new_release/fresh/new-release-comic-20260703-001.wordpress_tawawa_reference_layout_update_payload_v1.json",
+      "file_sha256": "f0408094164e1bfee02fe399390fbb86e252e70592710c50735af2872c29ae16"
+    },
+    "m24_desktop": {
+      "path": "exchange/previews/new_release/fresh/new-release-comic-20260703-001.wordpress_tawawa_reference_desktop_safe_preview.html",
+      "file_sha256": "454d688f6e32beb83340c27b65dfead421c41ff19aece5910b5aae93ae424469"
+    },
+    "m24_mobile": {
+      "path": "exchange/previews/new_release/fresh/new-release-comic-20260703-001.wordpress_tawawa_reference_mobile_safe_preview.html",
+      "file_sha256": "6e3b3a3c12b171377ab9505386609dcac4c8292f60aaac9e30e13fa2fca68c0a"
+    },
+    "m24_review_packet": {
+      "path": "exchange/reviews/new_release/fresh/new-release-comic-20260703-001.wordpress_tawawa_reference_human_review_packet.json",
+      "file_sha256": "eea03afe1b6d668c881fbb482ffd68ef67fbd6704baa28d34efbe211cd88038c"
+    },
+    "m24_result": {
+      "path": "exchange/logs/ls_new_batch_4g_2e_recovery_m24_result.json",
+      "file_sha256": "922a0f40cf3c5f5df4ea6461b618dfe2bb4341497590228c867e505c1ea2c157"
+    },
+    "rollback": {
+      "path": "exchange/rollback/new_release/fresh/new-release-comic-20260703-001.wordpress_layout_correction_current_content_rollback_fix2.json",
+      "file_sha256": "a85be565e80c730673179323b64dd0c69bca317fc5a670c3afccf74f9cc487cd"
+    }
+  },
+  "production_status": "NO_GO",
+  "approval_evidence_digest_sha256": "d5bbc20ac9309a97c45275cb7cd1623611dea8d7f7d8d346cd18b8b572663e85"
+}

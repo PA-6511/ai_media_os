@@ -1,0 +1,36 @@
+{
+  "phase_id": "PHASE_S2",
+  "phase_name": "secrets_credential_isolation",
+  "status": "DESIGN_ONLY",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "human_approval_required": true,
+  "environments": {
+    "dev": {
+      "env_file": ".env.dev",
+      "writable": false,
+      "external_write_allowed": false
+    },
+    "stage": {
+      "env_file": ".env.stage",
+      "writable": false,
+      "external_write_allowed": false
+    },
+    "prod": {
+      "env_file": ".env.prod",
+      "writable": false,
+      "external_write_allowed": false
+    }
+  },
+  "rules": {
+    "env_cross_reference_forbidden": true,
+    "prod_secret_usage_without_human_approval_forbidden": true,
+    "plaintext_secret_logging_forbidden": true,
+    "secret_value_echo_forbidden": true
+  },
+  "evidence": {
+    "secrets_inventory_required": true,
+    "credential_owner_required": true,
+    "rotation_policy_reference_required": true
+  }
+}

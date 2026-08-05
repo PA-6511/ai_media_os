@@ -1,0 +1,42 @@
+{
+  "phase": "Phase 8-13",
+  "name": "final_draft_fix_review_dry_run_policy",
+  "policy_status": "MANUAL_REVIEW_ONLY_NO_WRITE",
+  "production_status": "NO_GO",
+  "mode": "FINAL_DRAFT_FIX_REVIEW",
+  "execution": "DRY_RUN",
+  "wordpress_api_call_allowed": false,
+  "wordpress_write_executed": false,
+  "publish_allowed": false,
+  "update_allowed": false,
+  "delete_allowed": false,
+  "export_allowed": false,
+  "auto_post": false,
+  "auto_update": false,
+  "auto_delete": false,
+  "auto_export": false,
+  "required_evidence": [
+    "exchange/logs/phase8_12_draft_fix_proposal_dry_run_result.json"
+  ],
+  "required_phase8_12_status": "PHASE8_12_DRAFT_FIX_PROPOSAL_READY_DRY_RUN_ONLY",
+  "target_post_id": 114,
+  "allowed_decisions": [
+    "APPROVE_FIX_DRY_RUN_ONLY",
+    "REQUEST_FIX",
+    "REJECT",
+    "ABORT",
+    "PENDING"
+  ],
+  "required_manual_checks": {
+    "pr_disclosure_kept": true,
+    "dangerous_html_not_included": true,
+    "placeholder_links_identified": true,
+    "replace_plan_defined": true,
+    "no_wordpress_update_executed": true,
+    "no_publish_executed": true
+  },
+  "allowed_next_step_on_approve": "Phase 8-14 dry-run edit execution plan review (still NO_GO)",
+  "allowed_next_step_on_request_fix": "Revise fix draft and re-review in Phase 8-13",
+  "allowed_next_step_on_reject": "Keep NO_GO and stop draft-fix flow",
+  "allowed_next_step_on_abort": "Stop flow and manual investigation"
+}

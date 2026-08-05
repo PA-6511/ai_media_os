@@ -1,0 +1,94 @@
+{
+  "package_type": "wordpress_draft_phase8_3_publish_gate_design",
+  "phase": "Phase 8-3",
+  "label": "WordPress下書き 公開ゲート設計",
+  "design_status": "DESIGN_ONLY",
+  "wordpress_post_enabled": false,
+  "real_write_enabled": false,
+  "production_status": "NO_GO",
+  "wordpress_publish_execution": "NO_GO",
+  "wordpress_write_executed": false,
+  "target_draft": {
+    "wordpress_draft_id": 110,
+    "expected_status": "draft",
+    "source_logs": [
+      "exchange/logs/phase7_6_wordpress_draft_creation_overall_completion_report.json",
+      "exchange/logs/phase8_2_manual_pre_publish_review_result.json"
+    ]
+  },
+  "gate_purpose": "公開可否を判定するゲート条件を定義する。Phase 8-3 では公開実行を行わない。",
+  "gate_requirements": [
+    {
+      "id": "gt_01",
+      "check": "Phase 8-1 の公開前レビュー設計が PASS",
+      "source": "exchange/logs/phase8_1_pre_publish_review_design_validation_result.json",
+      "mandatory": true
+    },
+    {
+      "id": "gt_02",
+      "check": "Phase 8-2 の手動レビュー結果が APPROVE",
+      "source": "exchange/logs/phase8_2_manual_pre_publish_review_result.json",
+      "mandatory": true
+    },
+    {
+      "id": "gt_03",
+      "check": "対象下書きIDが 110 で一致",
+      "mandatory": true
+    },
+    {
+      "id": "gt_04",
+      "check": "対象ステータスが draft",
+      "mandatory": true
+    },
+    {
+      "id": "gt_05",
+      "check": "公開禁止条件に未該当",
+      "mandatory": true
+    },
+    {
+      "id": "gt_06",
+      "check": "人間レビュアーであること",
+      "mandatory": true
+    },
+    {
+      "id": "gt_07",
+      "check": "公開承認トークンの形式・期限ルールが定義済み",
+      "mandatory": true
+    },
+    {
+      "id": "gt_08",
+      "check": "公開実行前の最終中止手順が定義済み",
+      "mandatory": true
+    }
+  ],
+  "publish_token_rules": {
+    "token_name": "APPROVE_PUBLISH_ONE_TIME_MANUAL_ONLY",
+    "one_time_only": true,
+    "expires_minutes": 30,
+    "human_reviewer_required": true,
+    "publish_count_limit": 1
+  },
+  "forbidden_actions_in_phase8_3": [
+    "wordpress_rest_publish_post",
+    "wordpress_rest_update_existing_post",
+    "wordpress_rest_delete_post",
+    "wordpress_rest_bulk_post",
+    "external_export",
+    "cron_automation",
+    "github_actions_trigger",
+    "slack_production_notification",
+    "vps_self_builder_execution",
+    "env_secret_auto_edit"
+  ],
+  "gate_result": {
+    "description": "Phase 8-3 は公開ゲート設計のみ。判定が READY でも公開は実行しない。",
+    "result_values": [
+      "PUBLISH_GATE_DESIGN_READY",
+      "PUBLISH_GATE_NEEDS_FIX",
+      "PUBLISH_GATE_BLOCKED"
+    ],
+    "current_result": "PUBLISH_GATE_DESIGN_READY"
+  },
+  "next_step": "phase8_4_publish_execution_protocol_design_only",
+  "note": "Design-only phase. Keep publish NO_GO."
+}

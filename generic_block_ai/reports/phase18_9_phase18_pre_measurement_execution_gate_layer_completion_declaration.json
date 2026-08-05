@@ -1,0 +1,383 @@
+{
+  "phase_id": "18-9",
+  "phase_name": "Phase 18 Pre-Measurement Execution Gate Layer Completion Declaration",
+  "phase_japanese_name": "Phase 18 実行直前ゲート層完了宣言",
+  "purpose": "Design the final completion declaration for Phase 18 pre-measurement execution gate layer, verifying all 8 sub-phases (18-1 through 18-8) are designed, validated, and ready to support Phase 15-7 and 15-8 measurement workflow execution",
+  "layer": "pre_measurement_execution_gate_layer",
+  "design_category": "reports_only",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only"
+  },
+  "phase_18_9_scope": {
+    "scope_1_phase18_artifacts_presence_verification": {
+      "scope_id": "VERIFY_ARTIFACTS_PRESENT",
+      "description": "Verify all Phase 18-1 through Phase 18-8 design artifacts are present and complete",
+      "artifact_checklist": [
+        {
+          "phase": "18-1",
+          "artifact_name": "phase18_1_phase17_completion_certificate_receipt_and_consistency_confirmation_design.json",
+          "purpose": "Phase 17 completion receipt & consistency confirmation (5 requirement groups)",
+          "status_check": "FILE_EXISTS | FILE_MISSING"
+        },
+        {
+          "phase": "18-2",
+          "artifact_name": "phase18_2_phase15_7_measurement_workflow_pre_execution_final_check_design.json",
+          "purpose": "Phase 15-7 pre-execution checks (8 checks, 20 check items)",
+          "status_check": "FILE_EXISTS | FILE_MISSING"
+        },
+        {
+          "phase": "18-3",
+          "artifact_name": "phase18_3_phase15_8_measurement_workflow_pre_execution_final_check_design.json",
+          "purpose": "Phase 15-8 pre-execution checks (8 checks + Phase 15-7 integration, 22-23 check items)",
+          "status_check": "FILE_EXISTS | FILE_MISSING"
+        },
+        {
+          "phase": "18-4",
+          "artifact_name": "phase18_4_phase15_7_15_8_pre_execution_check_result_evidence_locking_design.json",
+          "purpose": "Check result evidence locking (SHA-256+ hashing, signature, tamper detection)",
+          "status_check": "FILE_EXISTS | FILE_MISSING"
+        },
+        {
+          "phase": "18-5",
+          "artifact_name": "phase18_5_pre_execution_check_failure_remediation_and_hold_halt_handling_design.json",
+          "purpose": "Check failure remediation, HOLD/HALT procedures (6 failure categories, 3 HOLD scenarios, 4 HALT scenarios)",
+          "status_check": "FILE_EXISTS | FILE_MISSING"
+        },
+        {
+          "phase": "18-6",
+          "artifact_name": "phase18_6_measurement_workflow_pre_execution_final_abort_conditions_design.json",
+          "purpose": "Final ABORT conditions (6 categories, 6-stage verification, ABORT recovery)",
+          "status_check": "FILE_EXISTS | FILE_MISSING"
+        },
+        {
+          "phase": "18-7",
+          "artifact_name": "phase18_7_phase15_7_15_8_pre_execution_final_judgment_report_design.json",
+          "purpose": "Final judgment report (5 aggregations + decision logic + 6-section report structure)",
+          "status_check": "FILE_EXISTS | FILE_MISSING"
+        },
+        {
+          "phase": "18-8",
+          "artifact_name": "phase18_8_measurement_workflow_launch_authorization_candidate_final_evidence_lock_design.json",
+          "purpose": "Launch authorization signature workflow (4 procedures, 5 verification steps)",
+          "status_check": "FILE_EXISTS | FILE_MISSING"
+        }
+      ],
+      "completion_criterion": "All 8 artifacts present (FILE_EXISTS for all phases 18-1 through 18-8)"
+    },
+    "scope_2_phase18_json_validity_verification": {
+      "scope_id": "VERIFY_JSON_VALIDITY",
+      "description": "Verify all Phase 18-1 through Phase 18-8 JSON files are syntactically valid",
+      "json_validation_procedure": {
+        "validation_tool": "Python 3 json.load() or equivalent JSON parser",
+        "validation_check": "Parse each file as valid JSON 5.0 document with no syntax errors",
+        "validation_results": [
+          {
+            "file": "phase18_1_...json",
+            "validation_status": "VALID_JSON | SYNTAX_ERROR",
+            "error_message": "(if error)"
+          },
+          {
+            "file": "phase18_2_...json",
+            "validation_status": "VALID_JSON | SYNTAX_ERROR"
+          },
+          {
+            "file": "phase18_3_...json",
+            "validation_status": "VALID_JSON | SYNTAX_ERROR"
+          },
+          {
+            "file": "phase18_4_...json",
+            "validation_status": "VALID_JSON | SYNTAX_ERROR"
+          },
+          {
+            "file": "phase18_5_...json",
+            "validation_status": "VALID_JSON | SYNTAX_ERROR"
+          },
+          {
+            "file": "phase18_6_...json",
+            "validation_status": "VALID_JSON | SYNTAX_ERROR"
+          },
+          {
+            "file": "phase18_7_...json",
+            "validation_status": "VALID_JSON | SYNTAX_ERROR"
+          },
+          {
+            "file": "phase18_8_...json",
+            "validation_status": "VALID_JSON | SYNTAX_ERROR"
+          }
+        ],
+        "completion_criterion": "All 8 files parse as VALID_JSON"
+      }
+    },
+    "scope_3_governance_consistency_verification": {
+      "scope_id": "VERIFY_GOVERNANCE_CONSISTENCY",
+      "description": "Verify all Phase 18-1 through Phase 18-8 artifacts maintain governance consistency",
+      "governance_fields_checklist": [
+        {
+          "field": "_meta.operation_mode",
+          "expected_value": "OBSERVE (all 8 phases)",
+          "verification": "All 8 files must have operation_mode=OBSERVE"
+        },
+        {
+          "field": "_meta.execution",
+          "expected_value": "dry_run (all 8 phases)",
+          "verification": "All 8 files must have execution=dry_run"
+        },
+        {
+          "field": "_meta.production_status",
+          "expected_value": "NO_GO (all 8 phases)",
+          "verification": "All 8 files must have production_status=NO_GO"
+        },
+        {
+          "field": "_meta.requires_human_approval",
+          "expected_value": "true (all 8 phases)",
+          "verification": "All 8 files must have requires_human_approval=true"
+        },
+        {
+          "field": "_meta.auto_execute_allowed",
+          "expected_value": "false (all 8 phases)",
+          "verification": "All 8 files must have auto_execute_allowed=false"
+        },
+        {
+          "field": "_meta.changed_area",
+          "expected_value": "reports only (all 8 phases)",
+          "verification": "All 8 files must have changed_area=reports only"
+        },
+        {
+          "field": "governance.blocked_actions",
+          "expected_value": "[10 actions] all 8 phases",
+          "verification": "All 8 files must contain identical 10-item blocked_actions array"
+        },
+        {
+          "field": "governance.state_invariants.integrated_decision",
+          "expected_value": "NO_GO (all 8 phases)",
+          "verification": "All 8 files must have integrated_decision=NO_GO"
+        },
+        {
+          "field": "governance.state_invariants.receiver_validator_permission",
+          "expected_value": "NOT_EFFECTIVE (all 8 phases)",
+          "verification": "All 8 files must have receiver_validator_permission=NOT_EFFECTIVE"
+        },
+        {
+          "field": "governance.state_invariants.app_implementation_status",
+          "expected_value": "NO_GO (all 8 phases)",
+          "verification": "All 8 files must have app_implementation_status=NO_GO"
+        },
+        {
+          "field": "governance.state_invariants.tests_implementation_status",
+          "expected_value": "NO_GO (all 8 phases)",
+          "verification": "All 8 files must have tests_implementation_status=NO_GO"
+        }
+      ],
+      "completion_criterion": "All 7 _meta fields + 10 blocked_actions + 4 state_invariants consistent across all 8 phases"
+    },
+    "scope_4_state_consistency_verification": {
+      "scope_id": "VERIFY_STATE_CONSISTENCY",
+      "description": "Verify all Phase 18-1 through Phase 18-8 maintain state consistency (NO_GO/NOT_EFFECTIVE)",
+      "state_invariants_checklist": [
+        {
+          "invariant": "integrated_decision",
+          "expected_state": "NO_GO",
+          "reason": "Must remain NO_GO until Phase 15-7 measurement workflow execution",
+          "verification": "integrated_decision never changes from NO_GO across all 8 phases"
+        },
+        {
+          "invariant": "receiver_validator_permission",
+          "expected_state": "NOT_EFFECTIVE",
+          "reason": "Must remain NOT_EFFECTIVE until Phase 15-8 measurement workflow execution",
+          "verification": "receiver_validator_permission never changes from NOT_EFFECTIVE across all 8 phases"
+        },
+        {
+          "invariant": "app_implementation_status",
+          "expected_state": "NO_GO",
+          "reason": "No app/ implementation during design phases",
+          "verification": "app_implementation_status=NO_GO across all 8 phases"
+        },
+        {
+          "invariant": "tests_implementation_status",
+          "expected_state": "NO_GO",
+          "reason": "No tests/ implementation during design phases",
+          "verification": "tests_implementation_status=NO_GO across all 8 phases"
+        },
+        {
+          "invariant": "production_status",
+          "expected_state": "NO_GO",
+          "reason": "Hardcoded NO_GO, never changes (safety critical)",
+          "verification": "production_status=NO_GO (hardcoded) across all 8 phases"
+        }
+      ],
+      "completion_criterion": "All 5 state invariants remain unchanged from Phase 18-1 through Phase 18-8"
+    },
+    "scope_5_phase_dependency_verification": {
+      "scope_id": "VERIFY_PHASE_DEPENDENCIES",
+      "description": "Verify Phase 18 design dependency chain is complete and consistent",
+      "dependency_chain": {
+        "phase_18_1_phase_17_dependency": {
+          "phase_18_1_requires": "Phase 17-1, 17-2, 17-3, 17-4, 17-5, 17-6, 17-7, 17-8, 17-9 (all Phase 17 artifacts PASS_DESIGN_ONLY)",
+          "verification": "Phase 18-1 receipt confirmation expects Phase 17 completion certificate"
+        },
+        "phase_18_2_phase_18_1_dependency": {
+          "phase_18_2_requires": "Phase 18-1 (receipt status CONFIRMED)",
+          "verification": "check_1_phase18_1_receipt_confirmation in Phase 18-2 must receive Phase 18-1 output"
+        },
+        "phase_18_3_phase_18_1_dependency": {
+          "phase_18_3_requires": "Phase 18-1 (receipt status CONFIRMED)",
+          "verification": "check_1_phase18_1_receipt_confirmation in Phase 18-3 must receive Phase 18-1 output"
+        },
+        "phase_18_4_phase_18_2_18_3_dependency": {
+          "phase_18_4_requires": "Phase 18-2 and Phase 18-3 (check results for locking)",
+          "verification": "Phase 18-4 lock procedures receive Phase 18-2/18-3 check results JSON"
+        },
+        "phase_18_5_phase_18_2_18_3_dependency": {
+          "phase_18_5_requires": "Phase 18-2 and Phase 18-3 (check failure results)",
+          "verification": "Phase 18-5 failure handling routes failures from Phase 18-2/18-3 checks"
+        },
+        "phase_18_6_phase_18_4_5_dependency": {
+          "phase_18_6_requires": "Phase 18-4 (evidence locks) and Phase 18-5 (failure status)",
+          "verification": "Phase 18-6 ABORT conditions reference evidence lock integrity from Phase 18-4"
+        },
+        "phase_18_7_phase_18_2_3_4_5_6_dependency": {
+          "phase_18_7_requires": "Phase 18-2, 18-3, 18-4, 18-5, 18-6 (all aggregations)",
+          "verification": "Phase 18-7 synthesizes results from 5 aggregation steps covering 18-2 through 18-6"
+        },
+        "phase_18_8_phase_18_7_dependency": {
+          "phase_18_8_requires": "Phase 18-7 (final judgment for signature)",
+          "verification": "Phase 18-8 authorization procedure receives Phase 18-7 final judgment"
+        }
+      },
+      "completion_criterion": "All 8 phases form complete dependency chain: 17 → 18-1 → 18-2/18-3 → 18-4/18-5 → 18-6 → 18-7 → 18-8 → 18-9"
+    },
+    "scope_6_implementation_purity_verification": {
+      "scope_id": "VERIFY_IMPLEMENTATION_PURITY",
+      "description": "Verify no app/ or tests/ code implementation changes during Phase 18 design",
+      "purity_checklist": [
+        {
+          "directory": "generic_block_ai/app/",
+          "expected_change_count": 0,
+          "verification": "Git status shows no additions/modifications/deletions in app/ from Phase 18 work"
+        },
+        {
+          "directory": "generic_block_ai/tests/",
+          "expected_change_count": 0,
+          "verification": "Git status shows no additions/modifications/deletions in tests/ from Phase 18 work"
+        },
+        {
+          "directory": "generic_block_ai/reports/",
+          "expected_change_count": 8,
+          "verification": "Git status shows exactly 8 new JSON files added (phase18_1 through phase18_8)"
+        },
+        {
+          "pre_existing_changes": "If any prior work",
+          "expected_status": "UNCHANGED",
+          "verification": "No additional app/tests changes since Phase 18-1 creation"
+        }
+      ],
+      "completion_criterion": "0 changes in app/ and tests/, exactly 8 new JSON files in reports/ from Phase 18 work"
+    },
+    "scope_7_phase18_9_completion_verification": {
+      "scope_id": "VERIFY_PHASE18_COMPLETION",
+      "description": "Final verification that Phase 18 design is complete and ready",
+      "completion_checklist": [
+        {
+          "check": "All 6 verification scopes (1-6) pass",
+          "status": "PASS | FAIL"
+        },
+        {
+          "check": "Phase 18-1 receipt confirms Phase 17 completion",
+          "status": "PASS | FAIL"
+        },
+        {
+          "check": "Phase 18-2 and 18-3 design 20+ checks for Phase 15-7/15-8",
+          "status": "PASS | FAIL"
+        },
+        {
+          "check": "Phase 18-4 evidence locking procedures designed",
+          "status": "PASS | FAIL"
+        },
+        {
+          "check": "Phase 18-5 HOLD/HALT remediation procedures designed (6 categories, 3+4 scenarios)",
+          "status": "PASS | FAIL"
+        },
+        {
+          "check": "Phase 18-6 ABORT conditions and 6-stage verification designed",
+          "status": "PASS | FAIL"
+        },
+        {
+          "check": "Phase 18-7 final judgment synthesis and decision logic designed",
+          "status": "PASS | FAIL"
+        },
+        {
+          "check": "Phase 18-8 authority signature procedure designed (4 procedures, 5 verifications)",
+          "status": "PASS | FAIL"
+        },
+        {
+          "check": "All state invariants (NO_GO/NOT_EFFECTIVE) maintained",
+          "status": "PASS | FAIL"
+        },
+        {
+          "check": "No app/ or tests/ implementation changes this phase",
+          "status": "PASS | FAIL"
+        }
+      ],
+      "completion_criterion": "All 10 checks PASS"
+    }
+  },
+  "phase_18_9_governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "state_invariants": {
+      "integrated_decision": "NO_GO",
+      "receiver_validator_permission": "NOT_EFFECTIVE",
+      "app_implementation_status": "NO_GO",
+      "tests_implementation_status": "NO_GO"
+    },
+    "phase_18_9_completion_criteria": [
+      "All 8 Phase 18 artifacts present (18-1 through 18-8)",
+      "All 8 artifacts parse as valid JSON",
+      "All governance fields consistent across 8 phases",
+      "All state invariants unchanged (NO_GO/NOT_EFFECTIVE)",
+      "Complete phase dependency chain verified",
+      "Implementation purity verified (reports only, no app/tests changes)",
+      "Phase 18-9 completion verification (all 10 checks pass)",
+      "No changes to app/ or tests/ directories",
+      "Ready to support Phase 15-7 and Phase 15-8 measurement workflow execution"
+    ]
+  },
+  "phase_18_9_final_declaration": {
+    "phase_18_status": "DESIGN_LAYER_COMPLETE",
+    "phase_18_purpose": "Pre-measurement execution gate layer for Phase 15-7 (integrated_decision measurement) and Phase 15-8 (receiver_validator_permission measurement)",
+    "phase_18_design_scope": [
+      "Phase 18-1: Phase 17 completion receipt & consistency confirmation (5 requirement groups)",
+      "Phase 18-2: Phase 15-7 pre-execution checks (8 checks, 20 check items, 5 groups)",
+      "Phase 18-3: Phase 15-8 pre-execution checks (8 checks + Phase 15-7 integration, 22-23 check items, 6 groups)",
+      "Phase 18-4: Check result evidence locking (SHA-256+, signature, tamper detection, chain of custody)",
+      "Phase 18-5: Check failure remediation (6 failure categories, 3 HOLD scenarios, 4 HALT scenarios)",
+      "Phase 18-6: Final ABORT conditions (6 categories, 6-stage verification, ABORT recovery)",
+      "Phase 18-7: Final judgment report (5 aggregations, 3 decision precedences, 6-section report)",
+      "Phase 18-8: Launch authorization signature (4 procedures, 5 verification steps, 4 signature outcomes)"
+    ],
+    "phase_18_deliverables": "8 complete JSON design artifacts, all governance-consistent, all state-invariants-preserved",
+    "next_phase_readiness": "Phase 15-7 and Phase 15-8 measurement workflows may proceed with Phase 18 pre-execution gates fully designed and ready",
+    "critical_state_invariants_at_phase18_9_completion": {
+      "integrated_decision": "NO_GO (locked until Phase 15-7 measurement changes it)",
+      "receiver_validator_permission": "NOT_EFFECTIVE (locked until Phase 15-8 measurement changes it)",
+      "app_implementation_status": "NO_GO (locked until measurement workflows complete)",
+      "tests_implementation_status": "NO_GO (locked until measurement workflows complete)",
+      "production_status": "NO_GO (hardcoded, never changes)"
+    }
+  }
+}

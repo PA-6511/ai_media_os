@@ -1,0 +1,212 @@
+{
+  "schema_version": "1.0.0",
+  "document_role": "ONE_SHOT_OFFLINE_ARTICLE_CONTENT_GENERATION_PREFLIGHT_PLAN",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-K-PREFLIGHT",
+  "preflight_id": "DARK_GATHERING_VOLUME_20_OFFLINE_GENERATION_PREFLIGHT_V1",
+  "content_item_id": "new-release-comic-20260703-001",
+  "article_identity": {
+    "work_title": "ダークギャザリング",
+    "volume_label": "第20巻",
+    "article_title": "ダークギャザリング 第20巻｜配信開始",
+    "release_date": "2026-07-03",
+    "author_name": "近藤憲一",
+    "publisher_name": "集英社",
+    "wordpress_status": "draft"
+  },
+  "template": {
+    "template_contract_id": "POST185_STANDARD_TEMPLATE_V1_FIXED",
+    "template_id": "POST185_STANDARD_TEMPLATE_V1",
+    "template_artifact_resolved": true,
+    "reconciliation_contract_id": "FRESH_NEW_RELEASE_COMIC_TEMPLATE_RECONCILIATION_V1"
+  },
+  "planned_render": {
+    "html_rendered": false,
+    "component_order": [
+      "advertising_disclosure",
+      "cover_and_information_card",
+      "store_navigation_slots"
+    ],
+    "advertising_disclosure": {
+      "element": "p",
+      "css_class": "ebook-pr-disclosure",
+      "exact_text": "【PR】本記事にはアフィリエイト広告を含みます。価格・配信状況は各ストアで確認してください。"
+    },
+    "cover": {
+      "required": true,
+      "image_url": "https://shop.r10s.jp/rakutenkobo-ebooks/cabinet/6485/2000020786485.jpg",
+      "image_source": "rakuten_kobo",
+      "verification_state": "VERIFIED",
+      "alt_text": "ダークギャザリング 第20巻 書影",
+      "loading": "lazy",
+      "anchor_element": false,
+      "href": null
+    },
+    "information_card": {
+      "required": true,
+      "css_class": "ls-store-card",
+      "ordered_fields": [
+        {
+          "field_id": "work_title",
+          "label": "作品名",
+          "value": "ダークギャザリング"
+        },
+        {
+          "field_id": "price",
+          "label": "価格",
+          "value": "616円（税込）"
+        },
+        {
+          "field_id": "author",
+          "label": "作者",
+          "value": "近藤憲一"
+        },
+        {
+          "field_id": "publisher",
+          "label": "出版社",
+          "value": "集英社"
+        },
+        {
+          "field_id": "release_date",
+          "label": "発売日",
+          "value": "2026-07-03"
+        }
+      ],
+      "volume_line_included": false
+    },
+    "store_navigation": {
+      "css_class": "ls-store-buttons",
+      "render_mode": "RESERVED_NON_CLICKABLE_SLOTS_ONLY",
+      "store_urls_included": false,
+      "final_affiliate_urls_included": false,
+      "slots": [
+        {
+          "order": 1,
+          "store_id": "amazon",
+          "display_name": "Amazon",
+          "identifier_type": "ASIN",
+          "identifier": "B0H3N7QK5K",
+          "render_element": "span",
+          "reserved_css_classes": [
+            "ls-store-btn",
+            "ls-store-amazon",
+            "ls-store-disabled"
+          ],
+          "display_text": "Amazonで確認（リンク準備中）",
+          "aria_disabled": true,
+          "href": null,
+          "url_included": false
+        },
+        {
+          "order": 2,
+          "store_id": "rakuten_kobo",
+          "display_name": "楽天Kobo",
+          "identifier_type": "RAKUTEN_KOBO_PRODUCT_NUMBER",
+          "identifier": "4972000159519",
+          "render_element": "span",
+          "reserved_css_classes": [
+            "ls-store-btn",
+            "ls-store-kobo",
+            "ls-store-disabled"
+          ],
+          "display_text": "楽天Koboで確認（リンク準備中）",
+          "aria_disabled": true,
+          "href": null,
+          "url_included": false
+        },
+        {
+          "order": 3,
+          "store_id": "dmm_books",
+          "display_name": "DMMブックス",
+          "identifier_type": "DMM_SERIES_ID",
+          "identifier": "861056",
+          "render_element": "span",
+          "reserved_css_classes": [
+            "ls-store-btn",
+            "ls-store-dmm",
+            "ls-store-disabled"
+          ],
+          "display_text": "DMMブックスで確認（再確認待ち）",
+          "aria_disabled": true,
+          "href": null,
+          "url_included": false,
+          "latest_alias_recheck_required": true,
+          "latest_alias_recheck_completed": false
+        }
+      ]
+    }
+  },
+  "verified_metadata": {
+    "price_amount": 616,
+    "price_text": "616円（税込）",
+    "price_currency": "JPY",
+    "price_observed_at": "2026-07-11T01:54:53+09:00",
+    "amazon_asin": "B0H3N7QK5K",
+    "rakuten_kobo_product_number": "4972000159519",
+    "dmm_series_id": "861056"
+  },
+  "content_limits": {
+    "description_mode": "minimal",
+    "synopsis_included": false,
+    "story_detail_included": false,
+    "unsupported_claims_included": false,
+    "discount_claims_included": false,
+    "point_return_claims_included": false,
+    "campaign_claims_included": false,
+    "inventory_claims_included": false
+  },
+  "legacy_exclusion": {
+    "legacy_product_data_included": false,
+    "legacy_urls_included": false,
+    "forbidden_product_tokens": [
+      "月曜日のたわわ",
+      "比村奇石",
+      "講談社",
+      "税込792円",
+      "B0H6DQLPPB",
+      "4071859"
+    ]
+  },
+  "link_boundary": {
+    "verification_source_urls_copied": false,
+    "final_affiliate_urls_generated": false,
+    "final_affiliate_urls_rendered": false,
+    "dmm_url_copied": false,
+    "dmm_url_rendered": false
+  },
+  "output_contract": {
+    "reserved_output_path": "exchange/content/new_release/fresh/new-release-comic-20260703-001.article.json",
+    "output_document_role": "OFFLINE_FRESH_NEW_RELEASE_ARTICLE_CONTENT_DRAFT",
+    "content_output_creation_allowed_in_current_phase": false,
+    "content_output_overwrite_allowed": false,
+    "content_output_exists": false
+  },
+  "authorization_contract": {
+    "authorization_id": "DARK_GATHERING_VOLUME_20_OFFLINE_CONTENT_GENERATION_AUTHORIZATION_V1",
+    "authorized_phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-K",
+    "single_use": true,
+    "authorization_consumed": false,
+    "authorization_reuse_allowed": false,
+    "consumption_evidence_path": "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.offline_content_generation_consumption.json",
+    "consumption_evidence_exists": false
+  },
+  "source_lineage": {
+    "article_input_artifact_digest_sha256": "341e5a5dbad8aee79a3ac7ccba69a3b9592d165b24b9ef0f20ba40361e1726f2",
+    "human_review_artifact_digest_sha256": "32eed5052f0074698b5cf98d2b516524b7cbe47605630bf0698a79fec69b26f5",
+    "content_generation_contract_artifact_digest_sha256": "1811f8cf1805cb3177ac70fb5e8e52d0ec3084a9bc4d226e1782383b5ea6833a",
+    "template_reconciliation_contract_artifact_digest_sha256": "e0b55d243cf466b833cee555ca800264973ddc59a7cf5b912ee3e58bceddb62b",
+    "authorization_artifact_digest_sha256": "994e3088234ae4ecbd26fd772a0c47adf80f822f3860c5eb5c65ff11fff7064e"
+  },
+  "category_id_injected": false,
+  "fresh_payload_created": false,
+  "article_content_generated": false,
+  "authorization_consumed": false,
+  "consumption_evidence_created": false,
+  "network_access_performed": false,
+  "wordpress_access_performed": false,
+  "wordpress_write_performed": false,
+  "execution_allowed": false,
+  "production_status": "NO_GO",
+  "safety_state": "PREFLIGHT_PLAN_FIXED_AWAITING_EXPLICIT_RECOVERY_K_EXECUTE_NOW_CONFIRMATION",
+  "preflight_fixed_at_utc": "2026-07-11T02:10:19.535373+00:00",
+  "preflight_plan_digest_sha256": "064aebcade35d14d3e4e38e594c0ed911af69c0326a260439af78390ede4c810"
+}

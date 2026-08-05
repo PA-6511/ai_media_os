@@ -1,0 +1,59 @@
+{
+  "phase": "LS-TEMPLATE-FIX-LITE-1",
+  "status": "NEW_RELEASE_ARTICLE_STANDARD_TEMPLATE_FIXED",
+  "template_name": "new_release_comic_affiliate_standard_v1",
+  "based_on_post_id": 185,
+  "based_on_article": "月曜日のたわわ 第15巻",
+
+  "title_policy": {
+    "format": "{work_title} {volume_label}｜配信開始",
+    "avoid_store_specific_label_when_multi_store": true,
+    "forbidden_terms_when_multi_store": ["Kindle版"],
+    "example": "月曜日のたわわ 第15巻｜配信開始"
+  },
+
+  "layout_policy": {
+    "cover_and_store_card": true,
+    "cover_position": "left_on_desktop_top_on_mobile",
+    "store_buttons": ["Amazon", "楽天Kobo", "DMMブックス"],
+    "lead_box": true,
+    "info_card": true,
+    "pr_notice": true
+  },
+
+  "info_card_policy": {
+    "fields": ["作品名", "価格", "作者", "出版社", "発売日"],
+    "omit_volume_line": true,
+    "price_required": true,
+    "example_price": "税込792円"
+  },
+
+  "display_cleanup_policy": {
+    "hide_default_sns_buttons": true,
+    "hide_ai_publisher": true,
+    "hide_uncategorized_chip": true
+  },
+
+  "affiliate_policy": {
+    "cover_source_priority": [
+      "楽天公式アフィリエイト画像または楽天公式画像URL",
+      "DMM公式アフィリエイト画像",
+      "Amazon公式API画像",
+      "画像なし"
+    ],
+    "link_rel_required": "nofollow sponsored noopener",
+    "manual_match_check_required": true
+  },
+
+  "safety": {
+    "wordpress_api_call_executed": false,
+    "wordpress_post_update_executed": false,
+    "credential_env_read_executed": false,
+    "publish_rerun_allowed": false,
+    "draft_create_rerun_allowed": false
+  },
+
+  "ready_for_next_article": true,
+  "recommended_next_action": "USE_THIS_TEMPLATE_FOR_NEXT_NEW_RELEASE_ARTICLE",
+  "errors": []
+}

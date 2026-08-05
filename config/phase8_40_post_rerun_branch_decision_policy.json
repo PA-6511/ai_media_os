@@ -1,0 +1,31 @@
+{
+  "phase": "Phase 8-40",
+  "name": "post_rerun_branch_decision_policy",
+  "policy_status": "BRANCH_DECISION_ONLY",
+  "production_status": "NO_GO",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "human_approval_required": true,
+  "branch_decision_is_execution_permission": false,
+  "commands_executed_in_this_phase": false,
+  "phase8_6_to_8_10_executed": false,
+  "wordpress_api_call_allowed": false,
+  "wordpress_write_executed": false,
+  "publish_allowed": false,
+  "target_item_count": 1,
+  "required_evidence": [
+    "exchange/logs/phase8_39_manual_rerun_command_bundle.json"
+  ],
+  "optional_rerun_evidence": [
+    "exchange/logs/phase8_10_post_rerun_closure_report.json"
+  ],
+  "ready_command_bundle_status": "MANUAL_RERUN_COMMAND_BUNDLE_READY_BUT_NOT_EXECUTED",
+  "blocked_command_bundle_status": "MANUAL_RERUN_COMMAND_BUNDLE_BLOCKED_CREDENTIALS_MISSING",
+  "phase8_10_success_status": "RERUN_DRAFT_VERIFIED_PENDING_HUMAN_REVIEW",
+  "phase8_10_not_executed_status": "RERUN_NOT_EXECUTED_CONFIRMED",
+  "phase8_10_freeze_status": "RERUN_FREEZE_REQUIRED",
+  "allowed_next_step_if_ready_not_executed": "Human operator may manually rerun existing Phase 8-6 to Phase 8-10 exactly once",
+  "allowed_next_step_if_draft_created": "Phase 8-41 manual inspection and draft evidence review",
+  "allowed_next_step_if_not_executed": "Keep NO_GO and investigate credential/rerun readiness",
+  "allowed_next_step_if_freeze": "Manual freeze investigation, no auto cleanup"
+}

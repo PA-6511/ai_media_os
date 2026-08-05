@@ -1,0 +1,34 @@
+{
+  "_meta": {
+    "phase": "51-9",
+    "phase_name": "リリース直前再検証層",
+    "layer": "完了宣言層 (completion declaration layer)",
+    "title": "Phase 51 最終解除候補・リリース直前再検証層完了宣言",
+    "created": "2026-05-15",
+    "author": "governance-framework",
+    "status": "PASS_DESIGN_ONLY",
+    "reports_only": true
+  },
+  "scope": "Phase 51-1～51-8 で実施された最終解除候補・リリース直前再検証層の全体が完了したことを設計層で宣言する。宣言内容：(1) Phase 51-1～51-8 全プロセス（受領/整合確認→再検証→証跡固定→差し戻し→統合最終判定→証跡固定）の実施完了、(2) manual_release_go / actual_process_start_go の NOT_GRANTED 維持状態の確認、(3) production_status = 'NO_GO' の維持確認、(4) Phase 52 以降への進行条件の明示。",
+  "governance": {
+    "production_status": "NO_GO",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "report": {
+    "description": "Phase 51-9 では，Phase 51-1～51-8 で実施された最終解除候補・リリース直前再検証層の全体的な完了を設計層で宣言する。この宣言は実処理開始許可ではなく，設計層でのプロセス完了宣言である。(1) Phase 51-1～51-8 全プロセス完了宣言：受領/整合確認→再検証→証跡固定→差し戻し→統合最終判定→証跡固定の全てが完了したことを宣言する。(2) manual_release_go / actual_process_start_go の NOT_GRANTED 維持状態の確認，(3) production_status = 'NO_GO' の維持確認，(4) Phase 52 以降への進行条件の明示。これらの宣言と判定は全て reports-only で実装され，実処理開始許可を含まない。",
+    "invariants": [
+      "NO_GO 維持：Phase 51-9 での完了宣言を通じて production_status = 'NO_GO' を維持",
+      "NOT_GRANTED 維持：manual_release_go / actual_process_start_go の NOT_GRANTED 状態を維持",
+      "reports only：完了宣言は報告書形式で実装され，実処理開始許可を含まない",
+      "次フェーズへの前提条件：Phase 52 への進行は Phase 51-9 の完了宣言を前提とする"
+    ],
+    "actions": [],
+    "notes": [
+      "Phase 51-9 は設計層のみで実装される。実処理開始許可ではない。",
+      "「完了宣言」とは，設計工程としての Phase 51 が終了したこと。実処理開始ではない。",
+      "Phase 52 は次の設計層であり，Phase 51 の判定結果に基づいて進行する。"
+    ]
+  }
+}

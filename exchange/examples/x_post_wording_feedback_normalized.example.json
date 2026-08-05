@@ -1,0 +1,71 @@
+{
+  "schema_version": "1.0.0",
+  "schema_id": "X_POST_WORDING_FEEDBACK_SCHEMA_V1",
+  "record_version": 1,
+  "feedback_id": "x-fb-example-20260717-001",
+  "supersedes_feedback_id": null,
+  "article_item_id": "example-20260717-001",
+  "wordpress_post_id": null,
+  "template_id": "X_NEW_RELEASE_V1",
+  "record_stage": "POSTED",
+  "article_context": {
+    "title": "サンプル作品",
+    "volume_label": "第1巻",
+    "release_date": "2026-07-17",
+    "category": "comic"
+  },
+  "text_snapshots": {
+    "generated_text": "『サンプル作品 第1巻』が2026年7月17日に発売です。電子書籍ストアをチェックしてください。",
+    "human_edited_text": "『サンプル作品 第1巻』は7月17日発売。Amazon・楽天Kobo・DMMの価格を記事でまとめています。",
+    "actually_posted_text": "『サンプル作品 第1巻』は7月17日発売。Amazon・楽天Kobo・DMMの価格を記事でまとめています。"
+  },
+  "text_character_counts": {
+    "generated_text": 48,
+    "human_edited_text": 53,
+    "actually_posted_text": 53
+  },
+  "was_edited": true,
+  "edit_reason_labels": [
+    "INFORMATION_PRIORITY_WRONG",
+    "CTA_TOO_STRONG"
+  ],
+  "edit_reason_note": null,
+  "wording_labels": [
+    "TITLE_FIRST",
+    "INFORMATIONAL_TONE",
+    "ARTICLE_CTA",
+    "NO_EMOJI",
+    "NO_HASHTAG"
+  ],
+  "posting_adjustment_labels": [],
+  "posting_adjustment_note": null,
+  "human_rating": 4,
+  "posted_at": "2026-07-17T12:00:00+09:00",
+  "x_post_id": null,
+  "metrics": {
+    "impressions": null,
+    "likes": null,
+    "reposts": null,
+    "replies": null,
+    "bookmarks": null,
+    "link_clicks": null
+  },
+  "metric_observed_at": null,
+  "review_status": "POSTED_UNMEASURED",
+  "derived_flags": {
+    "human_edit_detected": true,
+    "posting_adjustment_detected": false,
+    "metrics_available": false,
+    "ready_for_future_learning_dataset": true
+  },
+  "execution_boundary": {
+    "x_api_call_allowed": false,
+    "x_post_allowed": false,
+    "wordpress_write_allowed": false,
+    "external_api_call_allowed": false,
+    "automatic_rule_update_allowed": false,
+    "production_status": "NO_GO",
+    "safety_state": "DRY_RUN_ONLY"
+  },
+  "record_digest_sha256": "d0cf722c5590e9a3c3ab9f861718bb75dccd71ddb3fef46149cc05272f384ed7"
+}

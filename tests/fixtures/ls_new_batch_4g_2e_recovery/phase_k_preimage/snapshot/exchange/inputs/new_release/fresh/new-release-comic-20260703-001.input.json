@@ -1,0 +1,177 @@
+{
+  "schema_version": "1.0.0",
+  "document_role": "FRESH_NEW_RELEASE_ARTICLE_INPUT_REGISTRATION",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-G",
+  "registration_revision": 2,
+  "contract_id": "FRESH_NEW_RELEASE_COMIC_DRAFT_INPUT_V1",
+  "template_contract_id": "POST185_STANDARD_TEMPLATE_V1_FIXED",
+  "input_complete": true,
+  "human_registration_approval_recorded": true,
+  "human_review_complete": false,
+  "content_item_id": "new-release-comic-20260703-001",
+  "work_title": "ダークギャザリング",
+  "volume_label": "第20巻",
+  "article_title": "ダークギャザリング 第20巻｜配信開始",
+  "release_date": "2026-07-03",
+  "author_name": "近藤憲一",
+  "publisher_name": "集英社",
+  "article_type": "COMIC_NEW_RELEASE_LATEST_VOLUME_DISTRIBUTION_START",
+  "wordpress_status": "draft",
+  "content_source": {
+    "source_type": "PUBLISHER_AND_STORE_PRODUCT_PAGES",
+    "human_verified": true,
+    "verification_observed_at": "2026-07-11T01:54:53+09:00",
+    "runtime_network_verification_performed": false,
+    "source_references": [
+      {
+        "source_id": "shueisha_official",
+        "url": "https://www.shueisha.co.jp/books/items/contents.html?isbn=978-4-08-885120-4",
+        "verification_state": "VERIFIED",
+        "verified_fields": [
+          "work_title",
+          "volume_label",
+          "release_date",
+          "author_name",
+          "publisher_name",
+          "isbn_13"
+        ]
+      },
+      {
+        "source_id": "amazon_kindle",
+        "url": "https://www.amazon.co.jp/dp/B0H3N7QK5K",
+        "verification_state": "VERIFIED",
+        "verified_fields": [
+          "work_title",
+          "volume_label",
+          "release_date",
+          "author_name",
+          "publisher_name",
+          "amazon_asin"
+        ]
+      },
+      {
+        "source_id": "rakuten_kobo",
+        "url": "https://books.rakuten.co.jp/rk/2d876b43205136b7a0d36a78cec5bf46/",
+        "verification_state": "VERIFIED",
+        "verified_fields": [
+          "work_title",
+          "volume_label",
+          "release_date",
+          "author_name",
+          "publisher_name",
+          "price",
+          "product_number",
+          "cover"
+        ]
+      },
+      {
+        "source_id": "dmm_books",
+        "url": "https://book.dmm.com/product/861056/latest/",
+        "url_kind": "SERIES_LATEST_ALIAS",
+        "verification_state": "VERIFIED",
+        "verified_fields": [
+          "work_title",
+          "volume_label",
+          "author_name",
+          "publisher_name",
+          "price"
+        ],
+        "requires_recheck_before_payload_generation": true
+      }
+    ]
+  },
+  "store_links": {
+    "amazon": {
+      "url": "https://www.amazon.co.jp/dp/B0H3N7QK5K",
+      "product_identifier_type": "ASIN",
+      "product_identifier": "B0H3N7QK5K",
+      "url_kind": "STABLE_PRODUCT_URL",
+      "link_role": "PRODUCT_VERIFICATION_SOURCE_NOT_FINAL_AFFILIATE_LINK",
+      "verification_state": "VERIFIED",
+      "final_affiliate_link": false,
+      "requires_recheck_before_payload_generation": false
+    },
+    "rakuten_kobo": {
+      "url": "https://books.rakuten.co.jp/rk/2d876b43205136b7a0d36a78cec5bf46/",
+      "product_identifier_type": "RAKUTEN_KOBO_PRODUCT_NUMBER",
+      "product_identifier": "4972000159519",
+      "url_kind": "STABLE_PRODUCT_URL",
+      "link_role": "PRODUCT_VERIFICATION_SOURCE_NOT_FINAL_AFFILIATE_LINK",
+      "verification_state": "VERIFIED",
+      "final_affiliate_link": false,
+      "requires_recheck_before_payload_generation": false
+    },
+    "dmm_books": {
+      "url": "https://book.dmm.com/product/861056/latest/",
+      "product_identifier_type": "DMM_SERIES_ID",
+      "product_identifier": "861056",
+      "url_kind": "SERIES_LATEST_ALIAS",
+      "link_role": "PRODUCT_VERIFICATION_SOURCE_NOT_FINAL_AFFILIATE_LINK",
+      "verification_state": "VERIFIED",
+      "final_affiliate_link": false,
+      "requires_recheck_before_payload_generation": true
+    }
+  },
+  "cover": {
+    "image_url": "https://shop.r10s.jp/rakutenkobo-ebooks/cabinet/6485/2000020786485.jpg",
+    "source": "rakuten_kobo",
+    "source_page_url": "https://books.rakuten.co.jp/rk/2d876b43205136b7a0d36a78cec5bf46/",
+    "verification_state": "VERIFIED",
+    "local_copy_created": false
+  },
+  "price": {
+    "amount": 616,
+    "price_text": "616円（税込）",
+    "currency": "JPY",
+    "observed_at": "2026-07-11T01:54:53+09:00",
+    "verification_state": "VERIFIED",
+    "verification_sources": [
+      "rakuten_kobo",
+      "dmm_books"
+    ],
+    "automatic_refresh_performed": false
+  },
+  "identifiers": {
+    "isbn_13": "9784088851204",
+    "amazon_asin": "B0H3N7QK5K",
+    "rakuten_kobo_product_number": "4972000159519",
+    "dmm_series_id": "861056"
+  },
+  "affiliate_disclosure_required": true,
+  "categories_initial_state": "ABSENT",
+  "legacy_post185_reference": false,
+  "approval_lineage": {
+    "approval_revision": 2,
+    "approval_label": "FRESH_ARTICLE_INPUT_REGISTRATION_APPROVED",
+    "reissue_approval_label": "FRESH_ARTICLE_INPUT_REGISTRATION_APPROVAL_REISSUE_APPROVED",
+    "approval_evidence_digest_sha256": "ffd95ab36dc75d81ba24ddc0384ef59bd2a9e9345a91d475a49ffe114eb5ba6c",
+    "superseded_approval_path": "exchange/approvals/ls_new_batch_4g_2e_recovery_g_article_input_registration_approval.json",
+    "superseded_approval_evidence_digest_sha256": "324cced26217241641af34172c92ae80d920f2c9bb608272640b573d406dff3f",
+    "superseded_approval_preserved": true,
+    "current_source_result_digest_sha256": "e866d41d0d201225382a13723dce944af33215e8b2576442cecb9f2a1611e2c5",
+    "human_explicit_reissue_approval": true,
+    "execution_allowed": false
+  },
+  "source_input_contract": {
+    "path": "config/new_release_wp_fresh_payload_generation_input_contract.json",
+    "input_contract_digest_sha256": "1f5dad97e9dbffae612647b17af673e7feb63763e1aca461688e0db03a22b450"
+  },
+  "article_input_registered": true,
+  "article_content_generated": false,
+  "fresh_payload_created": false,
+  "fresh_payload_read": false,
+  "fresh_payload_copied": false,
+  "payload_binding_complete": false,
+  "payload_modified": false,
+  "production_category_id_payload_injected": false,
+  "credential_file_read": false,
+  "network_access_performed": false,
+  "wordpress_access_performed": false,
+  "wordpress_write_performed": false,
+  "wordpress_draft_created": false,
+  "execution_allowed": false,
+  "production_status": "NO_GO",
+  "safety_state": "FRESH_ARTICLE_INPUT_REGISTERED_VIA_APPROVAL_V2_AWAITING_HUMAN_REVIEW",
+  "registered_at_utc": "2026-07-10T17:16:56.151056+00:00",
+  "article_input_digest_sha256": "341e5a5dbad8aee79a3ac7ccba69a3b9592d165b24b9ef0f20ba40361e1726f2"
+}

@@ -1,0 +1,16 @@
+{
+  "block_ai": "ebook_affiliate_block_ai",
+  "current_phase": "Phase 8-50B",
+  "status": "PHASE8_50B_HARDENING_PASS_DRY_RUN_ONLY",
+  "execution_mode": "DRY_RUN_ONLY",
+  "production_status": "NO_GO",
+  "next_action": "KEEP_HOLD_AND_MONITOR",
+  "next_phase": "Phase 8-51-MIGRATION-SKELETON",
+  "next_phase_lock": "NOT_STARTED_LOCKED",
+  "amazon_api_call_allowed": false,
+  "wordpress_write_allowed": false,
+  "x_api_call_allowed": false,
+  "x_post_allowed": false,
+  "publish_allowed": false,
+  "approval_token_consumed": false
+}

@@ -1,0 +1,71 @@
+{
+  "_meta": {
+    "phase": "11-5",
+    "phase_name": "integrated_decision GO 更新時の二重確認ルール設計",
+    "version": "1.0",
+    "created_date": "2026-05-12",
+    "status": "PASS_DESIGN_ONLY",
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only",
+    "description": "integrated_decision を GO に更新する直前に必要な二重確認ルールを固定する。"
+  },
+  "references": [
+    "generic_block_ai/reports/phase11_2_integrated_decision_update_eligibility_actual_check.json",
+    "generic_block_ai/reports/phase10_8_integrated_decision_go_update_procedure_design.json",
+    "generic_block_ai/reports/phase11_4_human_review_post_entry_defect_detection_rules_design.json"
+  ],
+  "double_check_rules": [
+    {
+      "rule_id": "DCR-01",
+      "check": "eligibility_checks と defect_detection_rules の双方を再確認する",
+      "required": true,
+      "failure_effect": "GO update denied"
+    },
+    {
+      "rule_id": "DCR-02",
+      "check": "app_gate_update_eligible と tests_gate_update_eligible を別々に確認する",
+      "required": true,
+      "failure_effect": "integrated_decision stays NO_GO"
+    },
+    {
+      "rule_id": "DCR-03",
+      "check": "production_status が NO_GO のままであることを更新直前に確認する",
+      "required": true,
+      "failure_effect": "GO update denied"
+    },
+    {
+      "rule_id": "DCR-04",
+      "check": "blocked_actions が全て禁止状態で維持されていることを再確認する",
+      "required": true,
+      "failure_effect": "GO update denied"
+    }
+  ],
+  "double_check_result_template": {
+    "first_check_passed": false,
+    "second_check_passed": false,
+    "go_update_allowed": false,
+    "reason": "PENDING"
+  },
+  "blocked_actions": [
+    "core_ai_real_send",
+    "external_api_call",
+    "wordpress_operation",
+    "cron_registration",
+    "auto_execute",
+    "auto_post",
+    "auto_update",
+    "auto_delete",
+    "auto_export",
+    "production_execution"
+  ],
+  "phase_decision": {
+    "phase11_5_status": "PASS_DESIGN_ONLY",
+    "app_implementation_status": "NO_GO",
+    "tests_implementation_status": "NO_GO",
+    "note": "GO 更新時の二重確認ルール設計のみ。NO_GO を既定値として維持する。"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "schema_version": "ir31_submission_audit_narrative_v1",
+  "phase": "IR31",
+  "generated_at": "2026-05-23T16:13:50.296831+00:00",
+  "release_candidate_id": "rc_20260523T155148Z_ir26_live_trial_b940393b490b",
+  "summary_text": "Submission decision summary is prepared for audit review; execution remains dry-run only.",
+  "final_submission_decision": "READY_FOR_SUBMISSION_SUMMARY",
+  "decision_reasons": [
+    "dryrun_submission_summary_ready"
+  ],
+  "send_allowed_invariant_ok": true,
+  "validation_result": "PASS"
+}

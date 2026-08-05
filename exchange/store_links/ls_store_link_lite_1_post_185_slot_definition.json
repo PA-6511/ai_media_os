@@ -1,0 +1,65 @@
+{
+  "phase": "LS-STORE-LINK-LITE-1",
+  "status": "LS_STORE_LINK_LITE_1_SLOT_DEFINITION_CREATED",
+  "execution_mode": "STORE_LINK_SLOT_DEFINITION_ONLY",
+  "production_status": "NO_WP_UPDATE_NO_API_CALL",
+
+  "published_post_id": 185,
+  "published_post_status": "publish",
+  "content_item_id": "new-comic-001",
+  "title": "月曜日のたわわ",
+  "volume": "第15巻",
+  "author": "比村奇石",
+  "publisher": "講談社",
+  "asin": "B0H6DQLPPB",
+  "isbn": "978-4065442296",
+
+  "store_slots": {
+    "amazon": {
+      "enabled": true,
+      "label": "Amazonで見る",
+      "current_url": "https://www.amazon.co.jp/dp/B0H6DQLPPB",
+      "affiliate_url_required": true,
+      "affiliate_url_confirmed": false,
+      "image_url_available": false,
+      "image_source_policy": "Amazon image should be added later via official API or approved official source only"
+    },
+    "rakuten_kobo": {
+      "enabled": true,
+      "label": "楽天Koboで見る",
+      "affiliate_url_required": true,
+      "affiliate_url": null,
+      "image_affiliate_link_available": false,
+      "image_url": null,
+      "source_policy": "Use Rakuten official API or Rakuten Affiliate image link"
+    },
+    "dmm_books": {
+      "enabled": true,
+      "label": "DMMブックスで見る",
+      "affiliate_url_required": true,
+      "affiliate_url": null,
+      "image_affiliate_link_available": false,
+      "image_url": null,
+      "source_policy": "Use DMM official affiliate image link or official API result"
+    }
+  },
+
+  "image_priority": [
+    "rakuten_kobo_official_affiliate_image",
+    "dmm_books_official_affiliate_image",
+    "amazon_official_api_image_later",
+    "no_image_placeholder"
+  ],
+
+  "manual_input_required": true,
+  "api_auto_insert_enabled": false,
+  "api_auto_fetch_executed": false,
+  "wordpress_api_call_executed": false,
+  "wordpress_post_update_executed": false,
+  "credential_env_read_executed": false,
+
+  "ready_for_manual_store_link_fill": true,
+  "ready_for_article_update": false,
+  "recommended_next_action": "FILL_RAKUTEN_KOBO_AND_DMM_AFFILIATE_LINKS_MANUALLY_OR_PREPARE_API_ADAPTER",
+  "errors": []
+}

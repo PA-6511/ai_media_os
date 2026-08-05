@@ -1,0 +1,72 @@
+{
+  "report_id": "phase35_7c_initial_artifacts_adoption_policy",
+  "phase": "Phase 3.5-7C",
+  "target": "generic_block_ai",
+  "status": "PASS",
+  "purpose": "Record the adoption policy for README.md and evidence/.gitkeep as initial configuration artifacts, distinct from Phase 3.5-5~3.5-7 reports-only artifacts.",
+  "artifacts": {
+    "generic_block_ai/README.md": {
+      "category": "initial_configuration_artifact",
+      "reports_only_artifact": false,
+      "adoption_status": "adopted",
+      "reason": "Documents safety mode constraints (OBSERVE, DRY_RUN, human_review_required, dangerous_operations=blocked). Serves as human-readable declaration of Phase 3.5 operating conditions.",
+      "included_in_phase35_5_to_7_pass_judgment": false
+    },
+    "generic_block_ai/evidence/.gitkeep": {
+      "category": "initial_configuration_artifact",
+      "reports_only_artifact": false,
+      "adoption_status": "adopted",
+      "reason": "Placeholder for the evidence directory. Intended as a future evidence storage location for audit trails and human review records.",
+      "included_in_phase35_5_to_7_pass_judgment": false
+    }
+  },
+  "phase35_5_to_7_reports_only_judgment": {
+    "status": "PASS",
+    "basis": "Phase 3.5-5~3.5-7 judgment is based solely on reports/ artifacts.",
+    "included_files": [
+      "generic_block_ai/reports/phase35_existing_audit_report.json",
+      "generic_block_ai/reports/phase35_existing_audit_report.md",
+      "generic_block_ai/reports/phase35_pass_report.json",
+      "generic_block_ai/reports/phase35_pass_report.md",
+      "generic_block_ai/reports/phase35_decision_package.json",
+      "generic_block_ai/reports/phase35_decision_package.md",
+      "generic_block_ai/reports/phase35_human_review_template.json",
+      "generic_block_ai/reports/phase35_human_review_template.md"
+    ],
+    "excluded_files": [
+      "generic_block_ai/README.md",
+      "generic_block_ai/evidence/.gitkeep"
+    ]
+  },
+  "overall_classification": {
+    "source_diffs": {
+      "category": "Phase 3.5-2~3.5-4 OBSERVE/guard/test diffs",
+      "status": "OK"
+    },
+    "reports_diffs": {
+      "category": "Phase 3.5-5~3.5-7 template artifacts",
+      "status": "OK"
+    },
+    "readme_md": {
+      "category": "initial configuration artifact",
+      "status": "OK"
+    },
+    "evidence_gitkeep": {
+      "category": "initial configuration artifact",
+      "status": "OK"
+    },
+    "source_runtime_dangerous_elements": {
+      "detected": false,
+      "status": "OK"
+    }
+  },
+  "safety_state": {
+    "operation_mode": "OBSERVE",
+    "observe_only": true,
+    "execution": "dry_run",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "dangerous_operations": "blocked",
+    "production_status": "NO_GO"
+  }
+}

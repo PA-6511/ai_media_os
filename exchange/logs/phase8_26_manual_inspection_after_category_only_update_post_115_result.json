@@ -1,0 +1,57 @@
+{
+  "phase": "Phase 8-26",
+  "phase_name": "Manual Inspection After Category Only Update for post_id 115",
+  "status": "PHASE8_26_MANUAL_INSPECTION_APPROVED_AFTER_CATEGORY_ONLY_UPDATE",
+  "target_post_id": 115,
+  "post_id": 115,
+  "post_status": "draft",
+  "post_link": "https://hoshido.jp/?p=115",
+  "manual_review_result": "approve",
+  "manual_inspection": {
+    "draft_exists": true,
+    "status_is_draft": true,
+    "title_ok": true,
+    "body_ok": true,
+    "affiliate_disclosure_ok": true,
+    "pr_label_ok": true,
+    "placeholder_url_removed": true,
+    "category_is_sale_info": true,
+    "category_tag_ok": true,
+    "tags_not_required_for_this_phase": true,
+    "no_publish_confirmed": true
+  },
+  "category_id_confirmed": 13,
+  "category_name_confirmed": "セール情報",
+  "tags_status": "not_required_for_this_phase",
+  "production_status": "CATEGORY_ONLY_UPDATE_ONLY",
+  "wordpress_api_call_attempted": false,
+  "wordpress_write_executed": false,
+  "wordpress_draft_updated": false,
+  "title_update_executed": false,
+  "body_update_executed": false,
+  "publish_executed": false,
+  "delete_executed": false,
+  "bulk_operation_executed": false,
+  "export_executed": false,
+  "rollback_executed": false,
+  "freeze_executed": false,
+  "secret_values_output": false,
+  "secret_values_written": false,
+  "errors": [],
+  "warnings": [],
+  "safety_violations": [],
+  "evidence_summary": [
+    {
+      "path": "exchange/logs/phase8_24_category_only_update_post_115_execution_result.json",
+      "exists": true,
+      "status": "PHASE8_24_CATEGORY_ONLY_UPDATE_EXECUTED_PENDING_HUMAN_REVIEW"
+    },
+    {
+      "path": "exchange/logs/phase8_25_category_only_update_post_115_closure_report.json",
+      "exists": true,
+      "status": "PHASE8_25_CATEGORY_ONLY_UPDATE_VERIFIED_PENDING_HUMAN_REVIEW"
+    }
+  ],
+  "next_step": "phase8_27_first_one_item_draft_create_update_category_success_fixed_no_publish",
+  "checked_at": "2026-06-09T13:51:52.484131+00:00"
+}

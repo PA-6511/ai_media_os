@@ -9,6 +9,7 @@ from core.interfaces import (
     normalize_block_result,
     normalize_core_decision,
 )
+from core.legal_compliance_gate_adapter import observe_legal_gate_in_core_input
 
 
 INVALID_TRANSITION_FALLBACK = get_core_runtime_str("core.invalid_transition_fallback", "review").strip() or "review"
@@ -44,10 +45,31 @@ class CouncilRuntime:
         core_input = build_core_input(proposals, event_id=event_id)
         self.logger.info("[Runtime] 収集した提案数: %d event_id=%s", len(core_input["proposals"]), event_id)
 
+        legal_observation = None
+        try:
+            legal_observation = observe_legal_gate_in_core_input(
+                core_input,
+                event_id=event_id,
+                logger=self.logger,
+            )
+        except Exception as exc:
+            # L-3.5 観測モードでは Core 判定へ影響を与えない。
+            self.logger.warning(
+                "[Runtime] legal gate observation skipped reason=%s event_id=%s",
+                exc,
+                event_id,
+            )
+
         selected = self.core_ai.evaluate(core_input["proposals"])
         if not selected:
             self.logger.info("[Runtime] 提案がないため終了 event_id=%s", event_id)
-            return {"status": "no_task", "event_id": event_id}
+            result = {"status": "no_task", "event_id": event_id}
+            if isinstance(legal_observation, dict):
+                result["legal_gate_observation"] = {
+                    "status": legal_observation.get("decision_package", {}).get("legal_gate", {}).get("status"),
+                    "report_path": legal_observation.get("report_path"),
+                }
+            return result
 
         selected_block_name = "core_selected"
         if isinstance(selected, dict):
@@ -101,5 +123,13 @@ class CouncilRuntime:
             result.setdefault("event_id", event_id)
             result.setdefault("decision", decision["decision"])
             result.setdefault("next_action", decision["next_action"])
+            if isinstance(legal_observation, dict):
+                result.setdefault(
+                    "legal_gate_observation",
+                    {
+                        "status": legal_observation.get("decision_package", {}).get("legal_gate", {}).get("status"),
+                        "report_path": legal_observation.get("report_path"),
+                    },
+                )
             return result
         return {"status": "unknown", "event_id": event_id}

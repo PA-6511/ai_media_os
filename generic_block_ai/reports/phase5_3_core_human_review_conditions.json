@@ -1,0 +1,54 @@
+{
+  "_meta": {
+    "phase": "5-3",
+    "purpose": "core_human_review_conditions_design",
+    "created_at": "2026-05-12",
+    "status": "DESIGN_ONLY",
+    "note": "Core側 human review 条件設計。承認フロー実装は行わない。"
+  },
+  "runtime_constraints": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO"
+  },
+  "review_requirements": {
+    "requires_human_approval": true,
+    "auto_approval_allowed": false,
+    "review_state": "HUMAN_REVIEW_REQUIRED",
+    "required_checks": [
+      "schema_integrity",
+      "blocked_capabilities_integrity",
+      "permission_integrity",
+      "runtime_constraints_integrity"
+    ]
+  },
+  "pre_review_blocked_actions": [
+    "core_ai_real_send",
+    "external_api_call",
+    "wordpress_operation",
+    "cron_registration",
+    "auto_execute",
+    "auto_post",
+    "auto_update",
+    "auto_delete",
+    "auto_export",
+    "production_execution"
+  ],
+  "post_review_still_blocked_actions": [
+    "external_api_call",
+    "wordpress_operation",
+    "cron_registration",
+    "auto_execute",
+    "auto_post",
+    "auto_update",
+    "auto_delete",
+    "auto_export",
+    "production_execution"
+  ],
+  "core_permissions": {
+    "mode": "observation_only",
+    "execution_permission": "none",
+    "write_permission": "none"
+  },
+  "result": "PASS_DRY_RUN_ONLY"
+}

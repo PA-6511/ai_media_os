@@ -1,0 +1,370 @@
+{
+  "_meta": {
+    "phase": "7-3",
+    "purpose": "receiver_validator_preflight_design",
+    "created_at": "2026-05-12",
+    "status": "DESIGN_ONLY",
+    "note": "Phase 7-3: receiver validator 実装前 preflight 設計。receiver validator 実装直前に確認すべき条件を設計。"
+  },
+  "preflight_scope": {
+    "target": "Core側 receiver_validator 実装",
+    "purpose": "実装前に Phase 6 設計との整合性、安全性条件を最終確認するための preflight チェックリスト設計",
+    "design_basis": [
+      "reports/phase6_4_receiver_validator_detail_design.json",
+      "reports/phase6_9_phase6_design_completion_declaration.json"
+    ],
+    "preflight_timing": "app/core_receiver_validator.py 実装直前に実行（予定）"
+  },
+  "preflight_checklist_design": {
+    "title": "receiver validator 実装前 preflight チェックリスト設計",
+    "categories": [
+      "Safety Boundary Verification",
+      "Schema Implementation Alignment",
+      "Permission Enforcement Setup",
+      "Validation Logic Completeness",
+      "Error Handling Coverage"
+    ]
+  },
+  "safety_boundary_preflight": {
+    "title": "安全性境界検証 preflight",
+    "checks": [
+      {
+        "id": "check_operation_mode",
+        "requirement": "operation_mode = OBSERVE に設定されているか",
+        "verification_method": "block_manifest.json および app/block_contract.py の確認",
+        "status": "MANDATORY",
+        "severity": "CRITICAL"
+      },
+      {
+        "id": "check_execution",
+        "requirement": "execution = dry_run に設定されているか",
+        "verification_method": "app/block_contract.py の確認",
+        "status": "MANDATORY",
+        "severity": "CRITICAL"
+      },
+      {
+        "id": "check_production_status",
+        "requirement": "production_status = NO_GO に設定されているか",
+        "verification_method": "block_manifest.json の確認",
+        "status": "MANDATORY",
+        "severity": "CRITICAL"
+      },
+      {
+        "id": "check_requires_human_approval",
+        "requirement": "requires_human_approval = true に設定されているか",
+        "verification_method": "block_manifest.json の確認",
+        "status": "MANDATORY",
+        "severity": "CRITICAL"
+      },
+      {
+        "id": "check_auto_execute_disabled",
+        "requirement": "auto_execute_allowed = false に設定されているか",
+        "verification_method": "app/block_runner.py の確認",
+        "status": "MANDATORY",
+        "severity": "CRITICAL"
+      },
+      {
+        "id": "check_core_send_blocked",
+        "requirement": "core_ai_real_send = false に硬コード化されているか",
+        "verification_method": "app/safety_guard.py の確認",
+        "status": "MANDATORY",
+        "severity": "CRITICAL"
+      },
+      {
+        "id": "check_external_api_blocked",
+        "requirement": "external_api_call = false に硬コード化されているか",
+        "verification_method": "app/safety_guard.py の確認",
+        "status": "MANDATORY",
+        "severity": "CRITICAL"
+      },
+      {
+        "id": "check_wordpress_blocked",
+        "requirement": "wordpress_operation = false に硬コード化されているか",
+        "verification_method": "app/safety_guard.py の確認",
+        "status": "MANDATORY",
+        "severity": "CRITICAL"
+      },
+      {
+        "id": "check_cron_blocked",
+        "requirement": "cron_registration = false に硬コード化されているか",
+        "verification_method": "app/safety_guard.py の確認",
+        "status": "MANDATORY",
+        "severity": "CRITICAL"
+      },
+      {
+        "id": "check_auto_operations_blocked",
+        "requirement": "auto_post / auto_update / auto_delete / auto_export = false に硬コード化されているか",
+        "verification_method": "app/safety_guard.py の確認",
+        "status": "MANDATORY",
+        "severity": "CRITICAL"
+      },
+      {
+        "id": "check_production_execution_blocked",
+        "requirement": "production_execution = false に硬コード化されているか",
+        "verification_method": "app/safety_guard.py の確認",
+        "status": "MANDATORY",
+        "severity": "CRITICAL"
+      }
+    ]
+  },
+  "schema_implementation_alignment_preflight": {
+    "title": "スキーマ実装整合性 preflight",
+    "checks": [
+      {
+        "id": "check_observation_schema",
+        "requirement": "observation_schema (phase6-4 詳細設計) に完全準拠しているか",
+        "implementation_points": [
+          "observation_id (UUID)",
+          "observation_type (enum: proposal_request / decision_query / status_check / condition_evaluation)",
+          "observation_content (proposal / context / constraints)",
+          "timestamp (ISO8601)",
+          "source_id (non-empty)"
+        ],
+        "status": "MANDATORY",
+        "severity": "CRITICAL"
+      },
+      {
+        "id": "check_decision_package_reference_schema",
+        "requirement": "decision_package_reference_schema (phase6-4 詳細設計) に完全準拠しているか",
+        "implementation_points": [
+          "reference_id (UUID)",
+          "reference_type (enum: decision_package_v1 / v2)",
+          "reference_payload (decision_id / decision_logic / decision_result)",
+          "dry_run_indicator (= true)",
+          "timestamp (ISO8601)"
+        ],
+        "status": "MANDATORY",
+        "severity": "CRITICAL"
+      },
+      {
+        "id": "check_permission_schema",
+        "requirement": "permission_schema (phase6-4 詳細設計) に完全準拠しているか",
+        "implementation_points": [
+          "execution_permission = none",
+          "write_permission = none",
+          "transport_permission in [none, internal_dry_run_reference]",
+          "observation_read = true"
+        ],
+        "status": "MANDATORY",
+        "severity": "CRITICAL"
+      },
+      {
+        "id": "check_safety_flags_schema",
+        "requirement": "safety_flags_schema (phase6-4 詳細設計) に完全準拠しているか",
+        "implementation_points": [
+          "dry_run_mode = true",
+          "external_call_blocked = true",
+          "wordpress_blocked = true",
+          "cron_blocked = true",
+          "auto_execute_blocked = true",
+          "auto_post_blocked = true",
+          "auto_update_blocked = true",
+          "auto_delete_blocked = true",
+          "auto_export_blocked = true",
+          "production_execution_blocked = true"
+        ],
+        "status": "MANDATORY",
+        "severity": "CRITICAL"
+      }
+    ]
+  },
+  "permission_enforcement_preflight": {
+    "title": "permission 強制 preflight",
+    "checks": [
+      {
+        "id": "check_execution_permission_none",
+        "requirement": "execution_permission != none の場合、即座に REJECT するロジックが実装されているか",
+        "status": "MANDATORY",
+        "severity": "CRITICAL"
+      },
+      {
+        "id": "check_write_permission_none",
+        "requirement": "write_permission != none の場合、即座に REJECT するロジックが実装されているか",
+        "status": "MANDATORY",
+        "severity": "CRITICAL"
+      },
+      {
+        "id": "check_transport_permission_valid",
+        "requirement": "transport_permission が [none, internal_dry_run_reference] に限定されているか。それ以外は REJECT。",
+        "status": "MANDATORY",
+        "severity": "CRITICAL"
+      },
+      {
+        "id": "check_observation_read_true",
+        "requirement": "observation_read = true が強制されているか",
+        "status": "MANDATORY",
+        "severity": "CRITICAL"
+      }
+    ]
+  },
+  "validation_logic_completeness_preflight": {
+    "title": "検証ロジック完全性 preflight",
+    "checks": [
+      {
+        "id": "check_pass_conditions_implemented",
+        "requirement": "PASS 条件 5つ が全て実装されているか（phase6-4 参照）",
+        "conditions": [
+          "schema conformance",
+          "permission enforcement",
+          "dry_run enforcement",
+          "blocked actions absent",
+          "observation or reference only"
+        ],
+        "status": "MANDATORY",
+        "severity": "CRITICAL"
+      },
+      {
+        "id": "check_warn_conditions_implemented",
+        "requirement": "WARN 条件 5つ が全て実装されているか（phase6-4 参照）",
+        "conditions": [
+          "observation depth",
+          "large payload",
+          "unusual timestamp gap",
+          "reference id not found",
+          "observation type unusual"
+        ],
+        "status": "MANDATORY",
+        "severity": "HIGH"
+      },
+      {
+        "id": "check_reject_conditions_implemented",
+        "requirement": "REJECT 条件 8つ が全て実装されているか（phase6-4 参照）",
+        "conditions": [
+          "schema violation",
+          "permission violation",
+          "dry_run disabled",
+          "blocked action detected",
+          "malformed uuid",
+          "invalid timestamp",
+          "transport permission violation",
+          "source id missing"
+        ],
+        "status": "MANDATORY",
+        "severity": "CRITICAL"
+      },
+      {
+        "id": "check_abort_conditions_implemented",
+        "requirement": "ABORT 条件 3つ が全て実装されているか（phase6-4 参照）",
+        "conditions": [
+          "critical permission bypass",
+          "malicious payload",
+          "encryption violation"
+        ],
+        "status": "MANDATORY",
+        "severity": "CRITICAL"
+      },
+      {
+        "id": "check_validation_flow_implemented",
+        "requirement": "5-step validation flow が正確に実装されているか（phase6-4 参照）",
+        "flow": [
+          "step1: schema check",
+          "step2: permission check",
+          "step3: safety flags check",
+          "step4: blocked actions scan",
+          "step5: warning check"
+        ],
+        "status": "MANDATORY",
+        "severity": "CRITICAL"
+      }
+    ]
+  },
+  "error_handling_coverage_preflight": {
+    "title": "エラーハンドリング網羅性 preflight",
+    "checks": [
+      {
+        "id": "check_reject_response_codes",
+        "requirement": "REJECT 時に適切な response_code が返されているか（23個のコード）",
+        "status": "MANDATORY",
+        "severity": "HIGH"
+      },
+      {
+        "id": "check_warn_logging",
+        "requirement": "WARN 条件検知時にログが記録されているか（human review へのトレーサビリティ）",
+        "status": "MANDATORY",
+        "severity": "MEDIUM"
+      },
+      {
+        "id": "check_abort_triggers",
+        "requirement": "ABORT 条件検知時に即座に処理が停止されるか（例外処理）",
+        "status": "MANDATORY",
+        "severity": "CRITICAL"
+      },
+      {
+        "id": "check_no_exception_exposure",
+        "requirement": "内部例外がユーザーに露出していないか（例外ハンドリング）",
+        "status": "MANDATORY",
+        "severity": "MEDIUM"
+      }
+    ]
+  },
+  "test_coverage_preflight": {
+    "title": "テストカバレッジ preflight（参考）",
+    "note": "Phase 7-1〜7-3 は設計のみ。実装テストは Phase 8 以降で実施。",
+    "planned_test_scope": [
+      "test_receiver_validator_schema: schema conformance テスト",
+      "test_receiver_validator_permission: permission enforcement テスト",
+      "test_receiver_validator_safety: safety_flags enforcement テスト",
+      "test_receiver_validator_blocked_actions: banned actions detection テスト",
+      "test_receiver_validator_warning: warning conditions テスト",
+      "test_receiver_validator_reject: reject response テスト",
+      "test_receiver_validator_abort: abort conditions テスト"
+    ]
+  },
+  "preflight_execution_plan": {
+    "title": "preflight 実行予定（参考：Phase 7-4 以降の案）",
+    "step1": {
+      "action": "app/core_receiver_validator.py 実装",
+      "constraint": "Phase 7-2 限定範囲内でのみ実装"
+    },
+    "step2": {
+      "action": "phase7_3_preflight_checklist 実行",
+      "timing": "実装後、tests/ テスト記述前に実施"
+    },
+    "step3": {
+      "action": "preflight 結果確認",
+      "decision": "PASS → tests/ テスト実装へ。FAIL / WARN → 修正後に再確認。"
+    }
+  },
+  "safety_audit": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "app_implementation_added": false,
+    "tests_implementation_added": false,
+    "preflight_design_only": true
+  },
+  "judgment": {
+    "phase7_3_preflight_design_status": "PASS",
+    "design_completeness": "COMPLETE",
+    "safety_boundary_checks_defined": true,
+    "schema_alignment_checks_defined": true,
+    "permission_enforcement_checks_defined": true,
+    "validation_logic_completeness_checks_defined": true,
+    "error_handling_coverage_checks_defined": true,
+    "preflight_design_only": true,
+    "implementation_not_performed": true,
+    "production_status": "NO_GO",
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "allowed_state": [
+      "OBSERVE",
+      "DRY_RUN",
+      "HUMAN_REVIEW_REQUIRED"
+    ],
+    "blocked": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "next_phase": "Phase 7-1 human review approval decision OR Phase 7-4+ implementation (awaiting approval)"
+  }
+}

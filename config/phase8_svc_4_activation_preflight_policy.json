@@ -1,0 +1,59 @@
+{
+  "phase": "8-SVC-4",
+  "phase_name": "Activation Preflight Design",
+  "status": "DESIGN_ONLY_NO_EXECUTION",
+  "production_status": "NO_GO",
+  "execution": "DRY_RUN",
+  "design_only": true,
+  "require_svc3_pass_before_activation": true,
+  "svc3_required_status": "PASS_UNIT_FILES_PLACED_NO_ACTIVATION",
+  "required_installed_files": [
+    "/etc/systemd/system/ai-media-os-credential-ready-validator.service",
+    "/etc/systemd/system/ai-media-os-credential-ready-validator.timer"
+  ],
+  "required_repo_files": [
+    "systemd/ai-media-os-credential-ready-validator.service",
+    "systemd/ai-media-os-credential-ready-validator.timer"
+  ],
+  "required_runbook_sections": [
+    "## 1. Purpose",
+    "## 4. Preflight Gate Checklist (Future SVC-5+)",
+    "## 5. Daemon-Reload Permission Rule",
+    "## 6. Timer Enable Permission Rule",
+    "## 7. Service Start Permission Rule",
+    "## 8. Credential Handling Rule",
+    "## 10. Rollback / Removal Design",
+    "## 12. Final Judgment Rule",
+    "## 13. Next Step"
+  ],
+  "forbidden_patterns": [
+    "systemctl daemon-reload",
+    "systemctl enable",
+    "systemctl start",
+    "systemctl restart",
+    "requests.post(",
+    "requests.put(",
+    "requests.patch(",
+    "requests.delete(",
+    "wp-json",
+    "WORDPRESS_APP_PASSWORD=",
+    "printenv",
+    "cat /etc/ai-media-os/credential.env",
+    "echo $WORDPRESS_"
+  ],
+  "activation_actions": {
+    "daemon_reload_executed": false,
+    "systemctl_enable_executed": false,
+    "systemctl_start_executed": false,
+    "systemctl_restart_executed": false
+  },
+  "execution_actions": {
+    "credential_env_created": false,
+    "secret_input_executed": false,
+    "phase8_29_to_8_40_rerun_executed": false,
+    "wordpress_api_call_attempted": false,
+    "wordpress_draft_created": false,
+    "wordpress_publish_executed": false
+  },
+  "allowed_next_step": "SVC-5 activation preflight execution after SVC-3 pass"
+}

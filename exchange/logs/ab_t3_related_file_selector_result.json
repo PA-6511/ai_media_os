@@ -1,0 +1,49 @@
+{
+  "phase": "AB-T3",
+  "final_status": "PASS_DESIGN_ONLY_NO_EXECUTION",
+  "execution_mode": "DESIGN_ONLY",
+  "production_status": "NO_GO",
+  "safety_state": "DRY_RUN_ONLY",
+  "max_related_files": 5,
+  "max_lines_per_file": 120,
+  "selection_rules_loaded": true,
+  "excluded_patterns_loaded": true,
+  "selector_ready": true,
+  "target_file": "scripts/build_auto_builder_copilot_prompt_compression.py",
+  "generated_related_file_list": [
+    {
+      "path": "scripts/build_auto_builder_copilot_prompt_compression.py",
+      "selection_score": 1.0,
+      "selection_reason": "target_file"
+    },
+    {
+      "path": "tests/test_build_auto_builder_copilot_prompt_compression.py",
+      "selection_score": 0.95,
+      "selection_reason": "matching_test"
+    },
+    {
+      "path": "scripts/__init__.py",
+      "selection_score": 0.8,
+      "selection_reason": "same_directory"
+    },
+    {
+      "path": "scripts/audit_phase8_12_no_secret_leak.py",
+      "selection_score": 0.8,
+      "selection_reason": "same_directory"
+    },
+    {
+      "path": "scripts/build_ebook_trial_adapter_3_completion_payload.py",
+      "selection_score": 0.8,
+      "selection_reason": "same_directory"
+    }
+  ],
+  "forbidden_operations_all_blocked": true,
+  "next_phase": {
+    "phase": "AB-T4",
+    "name": "Patch Draft Generator",
+    "execution_allowed": false
+  },
+  "ready_for_ab_t4": true,
+  "errors": [],
+  "generated_at": "2026-07-01T13:32:21.313560+00:00"
+}

@@ -1,0 +1,113 @@
+{
+  "phase": "PR_WARN_BACKFILL_PHASE2A_NEXT_TARGET_SELECTION",
+  "mode": "HUMAN_REVIEW_NEXT_TARGET_DECISION_NO_EXECUTION",
+  "status": "PASS_NEXT_TARGET_SELECTED_NO_EXECUTION",
+  "completed_post_id": 101,
+  "completed_phase": "Phase 1X",
+  "completed_status": "PASS_PHASE1X_POST_LIVE_WRITE_VERIFIED_AND_FROZEN",
+  "same_true_approval_reuse_allowed": false,
+  "same_post_additional_write_allowed": false,
+  "next_target_requires_new_approval": true,
+  "decision": "SELECT_NEXT_TARGET",
+  "selected_next_post_id": 92,
+  "selected_next_title": "呪術廻戦は何巻まで出てる？最新巻・関連情報まとめ",
+  "candidate_count_detected": 5,
+  "candidates": [
+    {
+      "post_id": 92,
+      "source_files": [
+        "reports/pr_warn_backfill_phase0_dry_run_20260614.json",
+        "reports/pr_warn_reclassification_20260614_sample.json"
+      ],
+      "title_candidates": [
+        "呪術廻戦は何巻まで出てる？最新巻・関連情報まとめ",
+        "呪術廻戦全巻まとめ買いガイド",
+        "無職転生は何巻まで出てる？最新巻・関連情報まとめ",
+        "無職転生全巻まとめ買いガイド",
+        "葬送のフリーレンは何巻まで出てる？最新巻・関連情報まとめ",
+        "葬送のフリーレン全巻まとめ買いガイド"
+      ]
+    },
+    {
+      "post_id": 93,
+      "source_files": [
+        "reports/pr_warn_backfill_phase0_dry_run_20260614.json",
+        "reports/pr_warn_reclassification_20260614_sample.json"
+      ],
+      "title_candidates": [
+        "呪術廻戦は何巻まで出てる？最新巻・関連情報まとめ",
+        "呪術廻戦全巻まとめ買いガイド",
+        "無職転生は何巻まで出てる？最新巻・関連情報まとめ",
+        "無職転生全巻まとめ買いガイド",
+        "葬送のフリーレンは何巻まで出てる？最新巻・関連情報まとめ",
+        "葬送のフリーレン全巻まとめ買いガイド"
+      ]
+    },
+    {
+      "post_id": 94,
+      "source_files": [
+        "reports/pr_warn_backfill_phase0_dry_run_20260614.json",
+        "reports/pr_warn_reclassification_20260614_sample.json"
+      ],
+      "title_candidates": [
+        "呪術廻戦は何巻まで出てる？最新巻・関連情報まとめ",
+        "呪術廻戦全巻まとめ買いガイド",
+        "無職転生は何巻まで出てる？最新巻・関連情報まとめ",
+        "無職転生全巻まとめ買いガイド",
+        "葬送のフリーレンは何巻まで出てる？最新巻・関連情報まとめ",
+        "葬送のフリーレン全巻まとめ買いガイド"
+      ]
+    },
+    {
+      "post_id": 95,
+      "source_files": [
+        "reports/pr_warn_backfill_phase0_dry_run_20260614.json",
+        "reports/pr_warn_reclassification_20260614_sample.json"
+      ],
+      "title_candidates": [
+        "呪術廻戦は何巻まで出てる？最新巻・関連情報まとめ",
+        "呪術廻戦全巻まとめ買いガイド",
+        "無職転生は何巻まで出てる？最新巻・関連情報まとめ",
+        "無職転生全巻まとめ買いガイド",
+        "葬送のフリーレンは何巻まで出てる？最新巻・関連情報まとめ",
+        "葬送のフリーレン全巻まとめ買いガイド"
+      ]
+    },
+    {
+      "post_id": 96,
+      "source_files": [
+        "reports/pr_warn_backfill_phase0_dry_run_20260614.json",
+        "reports/pr_warn_reclassification_20260614_sample.json"
+      ],
+      "title_candidates": [
+        "呪術廻戦は何巻まで出てる？最新巻・関連情報まとめ",
+        "呪術廻戦全巻まとめ買いガイド",
+        "無職転生は何巻まで出てる？最新巻・関連情報まとめ",
+        "無職転生全巻まとめ買いガイド",
+        "葬送のフリーレンは何巻まで出てる？最新巻・関連情報まとめ",
+        "葬送のフリーレン全巻まとめ買いガイド"
+      ]
+    }
+  ],
+  "candidate_source_files": [
+    "reports/pr_warn_backfill_phase0_dry_run_20260614.json",
+    "reports/pr_warn_reclassification_20260614_sample.json"
+  ],
+  "excluded_completed_post_ids": [
+    101
+  ],
+  "wordpress_read_executed": false,
+  "wordpress_write_executed": false,
+  "post_put_patch_delete_executed": false,
+  "live_execution_executed": false,
+  "snapshot_created": false,
+  "approval_created": false,
+  "payload_created": false,
+  "update_count": 0,
+  "approval_consumed_changed": false,
+  "secrets_displayed": false,
+  "snapshot_body_displayed": false,
+  "payload_body_displayed": false,
+  "created_at": "2026-06-21T01:20:05.464103+00:00",
+  "next_required_phase": "Phase 2B-NEXT-TARGET-READ-ONLY-SNAPSHOT"
+}

@@ -1,0 +1,78 @@
+{
+  "app_id": "new_release_multistore_local_webapp",
+  "schema_version": "1.0.0",
+  "engine_module": "src.new_release_multistore_input",
+  "engine_functions": [
+    "import_multistore_csv",
+    "write_import_artifacts"
+  ],
+  "default_host": "127.0.0.1",
+  "default_port": 8765,
+  "max_upload_bytes": 10485760,
+  "session_ttl_seconds": 3600,
+  "collected_csv_supported": true,
+  "manually_adjusted_csv_supported": true,
+  "supported_encodings": [
+    "utf-8",
+    "utf-8-sig",
+    "cp932"
+  ],
+  "cp932_conversion_uses_temporary_file": true,
+  "csv_structure_diagnostics_visible": true,
+  "required_columns": [
+    "batch_id",
+    "item_id",
+    "title",
+    "release_date",
+    "category",
+    "rakuten_kobo_url",
+    "image_url",
+    "wordpress_status",
+    "schema_id",
+    "record_status",
+    "publish_ready",
+    "pr_required",
+    "price_notice_required",
+    "dmm_match_status",
+    "amazon_match_status",
+    "source_row_sha256"
+  ],
+  "old_ls_new_batch_detection": {
+    "filename_token": "ls_new_batch_input",
+    "header_hints": [
+      "batch_id",
+      "item_id",
+      "title",
+      "rakuten_kobo_url"
+    ]
+  },
+  "old_to_v2_conversion_preview_enabled": true,
+  "conversion_preview_download_utf8_bom": true,
+  "conversion_fixed_defaults": {
+    "schema_id": "NEW_RELEASE_BATCH_MULTISTORE_INPUT_SCHEMA_V2",
+    "wordpress_status": "draft",
+    "record_status": "READY_FOR_DRAFT",
+    "publish_ready": "true",
+    "pr_required": "true",
+    "price_notice_required": "true",
+    "dmm_match_status": "NOT_FOUND",
+    "amazon_match_status": "NOT_FOUND",
+    "edition_type": "volume"
+  },
+  "source_row_sha256_autofill": true,
+  "converted_csv_must_pass_engine_validation": true,
+  "import_enabled_requires": {
+    "ready_count_min": 1,
+    "batch_id_required": true,
+    "raw_result_required": true
+  },
+  "source_csv_overwrite_allowed": false,
+  "validation_writes_repository_artifacts": false,
+  "import_requires_explicit_confirmation": true,
+  "double_import_allowed": false,
+  "wordpress_write_allowed": false,
+  "wordpress_publish_allowed": false,
+  "external_network_allowed": false,
+  "credential_read_allowed": false,
+  "git_operations_allowed": false
+}

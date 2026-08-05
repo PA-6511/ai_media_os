@@ -1,0 +1,98 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M6",
+  "approval_id": "dmm-final-affiliate-link-generation-authorization-gate-approval-v1",
+  "approval_label": "DMM_FINAL_AFFILIATE_LINK_GENERATION_AUTHORIZATION_GATE_APPROVED",
+  "approved_by": "HUMAN_OPERATOR",
+  "human_explicit_approval": true,
+  "approved_at_utc": "2026-07-11T05:25:54.908250+00:00",
+  "approved_product_url": "https://book.dmm.com/product/861056/b950yshes32617/",
+  "approved_final_url_contract": {
+    "scheme": "https",
+    "host": "al.dmm.com",
+    "explicit_port_allowed": false,
+    "userinfo_allowed": false,
+    "destination_exact_binding_required": true,
+    "registered_identifier_exact_binding_required": true,
+    "latest_alias_allowed": false,
+    "past_article_link_reuse_allowed": false,
+    "post185_link_reuse_allowed": false,
+    "automatic_fallback_allowed": false
+  },
+  "approved_identifier_binding": {
+    "source_path": "/etc/ai-media-os/credential.env",
+    "source_key": "DMM_AFFILIATE_ID",
+    "source_file_mode": "0600",
+    "source_owner_uid": 1001,
+    "source_owner_gid": 1001,
+    "source_owner_matches_execution_user": true,
+    "source_is_regular_file": true,
+    "source_is_symlink": false,
+    "identifier_format_validated": true,
+    "identifier_value_output": false,
+    "identifier_value_persisted_in_authorization": false,
+    "registration_phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M6-CRED1",
+    "registration_result_path": "exchange/logs/ls_new_batch_4g_2e_recovery_m6_cred1_result.json",
+    "registration_result_digest_sha256": "7a173b74bef53781a3b2fe2e2cc2d3f363a096b937508c241d454311d072ec7e",
+    "registration_commitment_algorithm": "PBKDF2-HMAC-SHA256",
+    "registration_commitment_iterations": 600000,
+    "registration_commitment_salt_hex": "87554dc61c9830634e799c50dbc7dddc3822c409097c05fe4e663f56f5d40dc3",
+    "registration_commitment_hex": "0b984233677d69cfd8e7f91e9d878679d1b7c802ee3099d71628ffbf3bfeca44",
+    "registration_commitment_revalidated": true,
+    "identifier_value_present": false
+  },
+  "approved_boundaries": {
+    "single_use_authorization": true,
+    "initially_unconsumed": true,
+    "reuse_allowed": false,
+    "automatic_retry_allowed": false,
+    "actual_link_generation_allowed": false,
+    "network_access_allowed": false,
+    "dmm_recheck_allowed": false,
+    "article_modification_allowed": false,
+    "article_url_injection_allowed": false,
+    "payload_generation_allowed": false,
+    "wordpress_access_allowed": false
+  },
+  "source_bindings": {
+    "m5_policy": {
+      "path": "config/new_release_wp_fresh_dmm_historical_m4_evidence_human_review_policy.json",
+      "file_sha256": "d256052c6408d5e659d4805e90e444a8304b2749dc11c068ecf8714199b391de"
+    },
+    "m5_fix1_approval": {
+      "path": "exchange/approvals/ls_new_batch_4g_2e_recovery_m5_fix1_policy_schema_fix_approval.json",
+      "file_sha256": "1467ddf8e101b391dd5794a3ba8cc819de52dbeac68dd20c8f6a0aa35d515b34"
+    },
+    "m5_approval": {
+      "path": "exchange/approvals/ls_new_batch_4g_2e_recovery_m5_historical_evidence_human_review_approval.json",
+      "file_sha256": "04ddd0aa521b9796be11ab5643162eb5a695b5741fbbcd54975ea52754a4e884"
+    },
+    "m5_review": {
+      "path": "exchange/reviews/new_release/fresh/new-release-comic-20260703-001.dmm_historical_m4_evidence_human_review.json",
+      "file_sha256": "29411ef1792b95f5d807d6eef3c2298484b53e116ccfc5a7cdc19b0eb90d2ccd"
+    },
+    "m5_result": {
+      "path": "exchange/logs/ls_new_batch_4g_2e_recovery_m5_result.json",
+      "file_sha256": "23c03cf88e923c79e37b0e6d1ccca22714855db3dba905d00b3d2fddc8f980ea"
+    },
+    "m5_fix1_result": {
+      "path": "exchange/logs/ls_new_batch_4g_2e_recovery_m5_fix1_result.json",
+      "file_sha256": "dd0e647d63cacb365b698ec8af8e4df17c0d650eb47902a870f75c73e2a4ce49"
+    },
+    "cred1_policy": {
+      "path": "config/new_release_wp_fresh_dmm_affiliate_identifier_secure_registration_policy.json",
+      "file_sha256": "49a35085687254929fb36a0dd4c2c15fc8aab8a93f98c39b5eaad9927d316101"
+    },
+    "cred1_approval": {
+      "path": "exchange/approvals/ls_new_batch_4g_2e_recovery_m6_cred1_secure_registration_approval.json",
+      "file_sha256": "56a038a231d2eab999b71b63d53e9b25c41d02336b4e9720e750b2e6b8de567b"
+    },
+    "cred1_result": {
+      "path": "exchange/logs/ls_new_batch_4g_2e_recovery_m6_cred1_result.json",
+      "file_sha256": "238420061e545a7f3123ac9ebbde27c11e8e42a38538c69c3c5494e1dd3ac908"
+    }
+  },
+  "execution_allowed": false,
+  "production_status": "NO_GO",
+  "approval_evidence_digest_sha256": "785085ee4b2a7043bd8f20df86141b326c95beec9131c70f13e517b5c7c0a537"
+}

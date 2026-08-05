@@ -1,0 +1,12 @@
+# LS-6AN Manual Publish Actual Publish Execution Runner No-Execution Implementation Validation Report
+
+- generated_at: 2026-07-04T08:05:30.362818+00:00
+- status: LS6AN_MANUAL_PUBLISH_ACTUAL_PUBLISH_EXECUTION_RUNNER_NO_EXECUTION_IMPLEMENTATION_VALIDATED_NO_PUBLISH
+- post_id: 183
+- returned_post_status: draft
+- runtime_status: MANUAL_PUBLISH_ACTUAL_PUBLISH_EXECUTION_RUNNER_NO_EXECUTION_IMPLEMENTATION_RECORDED_NO_PUBLISH
+- lock_status: MANUAL_PUBLISH_ACTUAL_PUBLISH_EXECUTION_RUNNER_NO_EXECUTION_IMPLEMENTATION_LOCKED_NO_PUBLISH
+- publish_execution_still_blocked: True
+
+## Errors
+- none

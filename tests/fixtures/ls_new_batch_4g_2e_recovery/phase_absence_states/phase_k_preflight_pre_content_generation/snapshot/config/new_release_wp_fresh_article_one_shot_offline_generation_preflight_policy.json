@@ -1,0 +1,128 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-K-PREFLIGHT",
+  "policy_id": "NEW_RELEASE_WP_FRESH_ARTICLE_ONE_SHOT_OFFLINE_GENERATION_PREFLIGHT_POLICY_V1",
+  "source_phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-K0",
+  "operation_mode": "APPROVED_ONE_SHOT_OFFLINE_GENERATION_PREFLIGHT_ONLY",
+  "content_item_id": "new-release-comic-20260703-001",
+  "template_contract_id": "POST185_STANDARD_TEMPLATE_V1_FIXED",
+  "template_id": "POST185_STANDARD_TEMPLATE_V1",
+  "content_generation_contract_id": "FRESH_NEW_RELEASE_COMIC_CONTENT_GENERATION_V1",
+  "template_reconciliation_contract_id": "FRESH_NEW_RELEASE_COMIC_TEMPLATE_RECONCILIATION_V1",
+  "authorization_id": "DARK_GATHERING_VOLUME_20_OFFLINE_CONTENT_GENERATION_AUTHORIZATION_V1",
+  "preflight_contract": {
+    "preflight_plan_path": "exchange/preflight/new_release/fresh/new-release-comic-20260703-001.offline_content_generation_preflight.json",
+    "reserved_content_output_path": "exchange/content/new_release/fresh/new-release-comic-20260703-001.article.json",
+    "consumption_evidence_path": "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.offline_content_generation_consumption.json",
+    "preflight_plan_creation_allowed": true,
+    "content_output_creation_allowed": false,
+    "authorization_consumption_allowed": false,
+    "consumption_evidence_creation_allowed": false,
+    "preflight_change_requires_new_human_approval": true
+  },
+  "fixed_article": {
+    "work_title": "ダークギャザリング",
+    "volume_label": "第20巻",
+    "article_title": "ダークギャザリング 第20巻｜配信開始",
+    "release_date": "2026-07-03",
+    "author_name": "近藤憲一",
+    "publisher_name": "集英社",
+    "price_amount": 616,
+    "price_text": "616円（税込）",
+    "price_currency": "JPY",
+    "wordpress_status": "draft",
+    "amazon_asin": "B0H3N7QK5K",
+    "rakuten_kobo_product_number": "4972000159519",
+    "dmm_series_id": "861056"
+  },
+  "planned_structure": {
+    "component_order": [
+      "advertising_disclosure",
+      "cover_and_information_card",
+      "store_navigation_slots"
+    ],
+    "advertising_disclosure": {
+      "exact_text": "【PR】本記事にはアフィリエイト広告を含みます。価格・配信状況は各ストアで確認してください。",
+      "must_be_first_visible_component": true
+    },
+    "cover": {
+      "required": true,
+      "must_use_current_article_input": true,
+      "linked_cover_allowed": false
+    },
+    "information_card": {
+      "required": true,
+      "ordered_fields": [
+        "作品名",
+        "価格",
+        "作者",
+        "出版社",
+        "発売日"
+      ],
+      "volume_line_allowed": false
+    },
+    "store_navigation": {
+      "render_mode": "RESERVED_NON_CLICKABLE_SLOTS_ONLY",
+      "ordered_slots": [
+        "amazon",
+        "rakuten_kobo",
+        "dmm_books"
+      ],
+      "anchor_element_allowed": false,
+      "href_attribute_allowed": false,
+      "verification_source_url_rendering_allowed": false,
+      "final_affiliate_url_rendering_allowed": false,
+      "dmm_url_rendering_allowed": false
+    }
+  },
+  "content_limits": {
+    "description_mode": "minimal",
+    "synopsis_generation_allowed": false,
+    "story_detail_generation_allowed": false,
+    "unsupported_claim_generation_allowed": false,
+    "discount_claim_generation_allowed": false,
+    "point_return_claim_generation_allowed": false,
+    "campaign_claim_generation_allowed": false,
+    "inventory_claim_generation_allowed": false,
+    "legacy_post185_product_data_inheritance_allowed": false,
+    "legacy_post185_url_inheritance_allowed": false
+  },
+  "dmm_boundary": {
+    "latest_alias_recheck_required": true,
+    "latest_alias_recheck_completed": false,
+    "network_recheck_allowed_in_current_phase": false,
+    "url_copy_to_preflight_plan_allowed": false,
+    "url_rendering_allowed": false,
+    "final_link_use_allowed": false
+  },
+  "category_boundary": {
+    "categories_field_creation_allowed": false,
+    "production_category_id_payload_injection_allowed": false
+  },
+  "execution_boundary": {
+    "preflight_plan_creation_allowed": true,
+    "article_content_generation_allowed": false,
+    "content_output_creation_allowed": false,
+    "authorization_consumption_allowed": false,
+    "consumption_evidence_creation_allowed": false,
+    "fresh_payload_creation_allowed": false,
+    "payload_binding_allowed": false,
+    "production_category_id_payload_injection_allowed": false,
+    "credential_file_read_allowed": false,
+    "dns_resolution_allowed": false,
+    "network_connection_allowed": false,
+    "http_request_allowed": false,
+    "wordpress_api_call_allowed": false,
+    "wordpress_write_allowed": false,
+    "wordpress_draft_creation_allowed": false,
+    "wordpress_publish_allowed": false,
+    "execution_allowed": false,
+    "production_status": "NO_GO",
+    "safety_state": "ONE_SHOT_OFFLINE_GENERATION_PREFLIGHT_ONLY_AUTHORIZATION_UNCONSUMED"
+  },
+  "next_phase": {
+    "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-K",
+    "required_action": "EXPLICIT_EXECUTE_NOW_CONFIRMATION",
+    "execution_allowed": false
+  }
+}

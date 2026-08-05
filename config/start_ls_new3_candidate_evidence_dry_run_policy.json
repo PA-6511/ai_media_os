@@ -1,0 +1,67 @@
+{
+  "phase": "LS-NEW-3",
+  "name": "Candidate Evidence Dry Run",
+  "japanese_name": "新刊コミック候補 証跡DRY_RUN",
+  "execution_mode": "CANDIDATE_EVIDENCE_DRY_RUN_ONLY_NO_EXTERNAL_FETCH",
+  "production_status": "NO_EXECUTION_CANDIDATE_EVIDENCE_DRY_RUN_ONLY",
+  "required_previous_phase": {
+    "ls_new2_fill_result": "exchange/runtime/start_ls_new2_fill_human_new_release_comic_candidate_result.json",
+    "ls_new2_fill_validation_result": "exchange/logs/start_ls_new2_fill_human_new_release_comic_candidate_validation_result.json",
+    "required_ls_new2_fill_status": "LSNEW2_FILL_HUMAN_NEW_RELEASE_COMIC_CANDIDATE_PASSED_NO_EXECUTION",
+    "required_ls_new2_fill_validation_status": "LSNEW2_FILL_HUMAN_NEW_RELEASE_COMIC_CANDIDATE_VALIDATED_NO_EXECUTION",
+    "required_ready_for_ls_new_3": true,
+    "required_execution_allowed": false,
+    "required_missing_required_human_fields_empty": true
+  },
+  "candidate_evidence_policy": {
+    "dry_run_only": true,
+    "no_external_fetch": true,
+    "evidence_from_human_input_only": true,
+    "source_url_inventory_allowed": true,
+    "source_url_fetch_allowed": false,
+    "store_evidence_slot_creation_allowed": true,
+    "store_evidence_verification_allowed": false,
+    "asin_lookup_allowed": false,
+    "isbn_lookup_allowed": false,
+    "price_lookup_allowed": false,
+    "point_reward_lookup_allowed": false,
+    "delivery_status_lookup_allowed": false,
+    "wordpress_preview_allowed": true,
+    "wordpress_write_allowed": false,
+    "simple_x_preview_allowed": true,
+    "x_post_allowed": false,
+    "candidate_selection_allowed": false,
+    "ls_next1_fill_update_allowed": false,
+    "execution_allowed": false
+  },
+  "copy_policy": {
+    "official_synopsis_copy_allowed": false,
+    "store_description_copy_allowed": false,
+    "publisher_description_copy_allowed": false,
+    "review_copy_allowed": false,
+    "user_comment_copy_allowed": false,
+    "catchcopy_copy_allowed": false,
+    "external_media_description_copy_allowed": false,
+    "short_original_comment_allowed": true
+  },
+  "next_phase": {
+    "recommended_next_action_valid": "BEGIN_LS_NEW_4_PURCHASE_NAVIGATION_PAYLOAD_DRY_RUN",
+    "recommended_next_phase_options_valid": [
+      "LS-NEW-4",
+      "LS-MON-2"
+    ]
+  },
+  "outputs": {
+    "evidence_record": "exchange/new_release/start_ls_new3_candidate_evidence_dry_run.json",
+    "source_url_inventory": "exchange/new_release/start_ls_new3_source_url_inventory.json",
+    "store_evidence_slots": "exchange/new_release/start_ls_new3_store_evidence_slots.json",
+    "simple_x_post_preview": "exchange/new_release/start_ls_new3_simple_x_post_preview.json",
+    "wp_purchase_navigation_preview": "exchange/new_release/start_ls_new3_wp_purchase_navigation_preview.md",
+    "result": "exchange/runtime/start_ls_new3_candidate_evidence_dry_run_result.json",
+    "lock": "exchange/locks/start_ls_new3_candidate_evidence_dry_run.lock.json",
+    "run_result": "exchange/logs/start_ls_new3_candidate_evidence_dry_run_result.json",
+    "validation_result": "exchange/logs/start_ls_new3_candidate_evidence_dry_run_validation_result.json",
+    "run_report": "reports/start_ls_new3_candidate_evidence_dry_run_report.md",
+    "validation_report": "reports/start_ls_new3_candidate_evidence_dry_run_validation_report.md"
+  }
+}

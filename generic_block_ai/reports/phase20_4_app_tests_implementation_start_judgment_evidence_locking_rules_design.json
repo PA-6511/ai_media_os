@@ -1,0 +1,146 @@
+{
+  "phase_id": "20-4",
+  "phase_name": "App/Tests Implementation Start Judgment Evidence Locking Rules Design",
+  "phase_japanese_name": "app/tests 実装開始判定の証跡固定ルール設計",
+  "purpose": "Design immutable evidence locking rules for Phase 20-3 final GO/NO-GO judgment templates and filled judgments, ensuring tamper-evident records before any implementation authorization can be accepted",
+  "layer": "pre_measurement_final_gate_layer",
+  "design_category": "reports_only",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only"
+  },
+  "phase_20_4_scope": {
+    "scope_1_locking_targets": {
+      "scope_id": "LOCKING_TARGETS",
+      "description": "Define which artifacts must be locked before implementation-start judgment can be trusted",
+      "targets": [
+        {
+          "target_id": "T1",
+          "artifact": "phase20_3_app_tests_implementation_start_final_go_no_go_judgment_template_design.json",
+          "lock_purpose": "Lock the approved template version used for final judgment issuance"
+        },
+        {
+          "target_id": "T2",
+          "artifact": "filled final judgment record (from Phase 20-3 template)",
+          "lock_purpose": "Lock actual GO/NO-GO judgment evidence after all gates are evaluated"
+        },
+        {
+          "target_id": "T3",
+          "artifact": "supporting gate evidence references (Phase 19-7, 19-8, 20-2 report IDs)",
+          "lock_purpose": "Prevent substitution of prerequisite evidence references"
+        }
+      ]
+    },
+    "scope_2_evidence_locking_procedure": {
+      "scope_id": "EVIDENCE_LOCKING_PROCEDURE",
+      "description": "Canonical locking procedure",
+      "steps": {
+        "step_1_canonicalize": {
+          "step_id": "CANONICALIZE",
+          "action": "Serialize target artifact to canonical JSON (sorted keys, compact, RFC3339 UTC timestamps)"
+        },
+        "step_2_hash": {
+          "step_id": "HASH",
+          "action": "Compute SHA-256+ hash (SHA-3-256 or Blake2b-256 preferred)",
+          "output": "artifact_hash_hex"
+        },
+        "step_3_lock_entry": {
+          "step_id": "LOCK_ENTRY",
+          "action": "Generate immutable lock entry",
+          "entry_fields": {
+            "lock_id": "IMPLLOCK_<UTC_TIMESTAMP>_<NONCE>",
+            "target_id": "T1 | T2 | T3",
+            "target_artifact_id": "artifact identifier",
+            "artifact_hash_sha256_plus": "hex",
+            "locked_at_utc": "RFC3339",
+            "authority_signature": {
+              "algorithm": "RSA-2048 or ECDSA-256",
+              "signature_value": "Base64",
+              "signer_authority_id": "identifier",
+              "revocation_status": "ACTIVE | REVOKED | EXPIRED"
+            }
+          }
+        },
+        "step_4_append_only_store": {
+          "step_id": "APPEND_ONLY_STORE",
+          "action": "Append lock entry to immutable audit file",
+          "store": "generic_block_ai/reports/audit_trail_impl_start_judgment_locks.json"
+        },
+        "step_5_verify_roundtrip": {
+          "step_id": "VERIFY_ROUNDTRIP",
+          "action": "Re-read lock entry and verify hash/signature consistency"
+        }
+      }
+    },
+    "scope_3_tamper_detection_rules": {
+      "scope_id": "TAMPER_DETECTION_RULES",
+      "description": "Rules for detecting post-lock tampering",
+      "rules": {
+        "td1_hash_recompute": {
+          "rule_id": "TD1",
+          "check": "Recomputed hash equals locked artifact_hash_sha256_plus",
+          "fail_outcome": "TAMPER_DETECTED_HALT"
+        },
+        "td2_signature_valid": {
+          "rule_id": "TD2",
+          "check": "Authority signature valid and revocation_status=ACTIVE",
+          "fail_outcome": "SIGNATURE_INVALID_HALT"
+        },
+        "td3_prereq_refs_fixed": {
+          "rule_id": "TD3",
+          "check": "Referenced Phase 19-7 / 19-8 / 20-2 report IDs unchanged from lock time",
+          "fail_outcome": "REFERENCE_SUBSTITUTION_HALT"
+        },
+        "td4_audit_presence": {
+          "rule_id": "TD4",
+          "check": "Lock entry exists in append-only audit trail",
+          "fail_outcome": "EVIDENCE_LOSS_HALT"
+        }
+      }
+    },
+    "scope_4_unlock_judgment_guardrails": {
+      "scope_id": "UNLOCK_JUDGMENT_GUARDRAILS",
+      "description": "Interpretation guardrails while in design-only state",
+      "guardrails": [
+        "If integrated_decision != GO, final status must remain NO_GO",
+        "If receiver_validator_permission != EFFECTIVE, final status must remain NO_GO",
+        "If dual_gate != UNLOCKED, final status must remain NO_GO",
+        "If safety_gate != CLEARED, final status must remain NO_GO",
+        "If human final approval missing, final status must remain NO_GO"
+      ]
+    }
+  },
+  "phase_20_4_governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "state_invariants": {
+      "integrated_decision": "NO_GO",
+      "receiver_validator_permission": "NOT_EFFECTIVE",
+      "app_implementation_status": "NO_GO",
+      "tests_implementation_status": "NO_GO"
+    },
+    "phase_20_4_completion_criteria": [
+      "Locking targets and append-only storage defined",
+      "5-step evidence locking procedure defined",
+      "4 tamper detection rules defined",
+      "NO_GO interpretation guardrails defined",
+      "All JSON validation passed",
+      "No changes to app/ or tests/ directories",
+      "All state invariants maintained"
+    ]
+  }
+}

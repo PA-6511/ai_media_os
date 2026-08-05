@@ -1,0 +1,20 @@
+{
+  "phase": "Phase 7-1",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "human_review_required": true,
+  "auto_execute": false,
+  "allow_remote_write": false,
+  "allow_remote_delete": false,
+  "allow_remote_command_exec": false,
+  "ssh_key_material_embedded": false,
+  "allowed_checks": [
+    "ping",
+    "tcp_22",
+    "ssh_banner",
+    "ssh_auth_dry_run",
+    "latency_sample"
+  ],
+  "notes": "Policy for VPS connectivity verification only. No production execution and no remote write are allowed."
+}

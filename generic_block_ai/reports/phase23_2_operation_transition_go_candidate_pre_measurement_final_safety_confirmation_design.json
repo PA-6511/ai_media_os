@@ -1,0 +1,80 @@
+{
+  "phase_id": "23-2",
+  "phase_name": "Operation Transition GO Candidate Pre-Measurement Final Safety Confirmation Design",
+  "phase_japanese_name": "運用移行GO候補の実測前最終安全確認設計",
+  "purpose": "Design final safety checks before measured evaluation of operation-transition GO candidates while keeping production and implementation states in NO_GO",
+  "layer": "pre_measured_operation_transition_final_audit_layer",
+  "design_category": "reports_only",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only"
+  },
+  "phase_23_2_scope": {
+    "scope_1_pre_measurement_safety_checks": {
+      "scope_id": "PRE_MEASUREMENT_SAFETY_CHECKS",
+      "checks": {
+        "check_PS1": "Phase 23-1 receipt_and_consistency_status is PASS_DESIGN_ONLY",
+        "check_PS2": "No contradiction in operation-transition candidate package and locked evidence references",
+        "check_PS3": "No unauthorized production transition traces are detected",
+        "check_PS4": "Implementation-start GO and operation-transition GO boundaries remain separated",
+        "check_PS5": "Human review request payload and signer metadata are complete"
+      },
+      "all_checks_required": true
+    },
+    "scope_2_interpretation_rules": {
+      "scope_id": "INTERPRETATION_RULES",
+      "rules": {
+        "rule_PR1": "If any PS check fails, pre_measurement_safety_status = NOT_CLEARED",
+        "rule_PR2": "Even if all PS checks pass, this phase does not grant operation-transition GO",
+        "rule_PR3": "production_status remains NO_GO until measured judgment explicitly grants GO"
+      }
+    },
+    "scope_3_report_structure": {
+      "scope_id": "REPORT_STRUCTURE",
+      "sections": {
+        "section_1_header": {
+          "report_id": "PHASE23_2_PRE_MEAS_OPERATION_SAFETY_<UTC_TIMESTAMP>",
+          "report_type": "operation_transition_go_candidate_pre_measurement_final_safety_confirmation",
+          "generated_at_utc": "RFC3339",
+          "generated_by": "authority_identifier"
+        },
+        "section_2_check_results": {
+          "PS1": "PASS | FAIL",
+          "PS2": "PASS | FAIL",
+          "PS3": "PASS | FAIL",
+          "PS4": "PASS | FAIL",
+          "PS5": "PASS | FAIL"
+        },
+        "section_3_determination": {
+          "pre_measurement_safety_status": "CLEARED | NOT_CLEARED",
+          "operation_transition_go_authorization": "NOT_GRANTED",
+          "production_status": "NO_GO"
+        }
+      }
+    }
+  },
+  "phase_23_2_governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "state_invariants": {
+      "app_implementation_status": "NO_GO",
+      "tests_implementation_status": "NO_GO",
+      "production_status": "NO_GO",
+      "changed_area": "reports only"
+    }
+  }
+}

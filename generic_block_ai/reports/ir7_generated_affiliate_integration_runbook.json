@@ -1,0 +1,48 @@
+{
+  "_meta": {
+    "schema_version": "runbook_v1",
+    "phase": "IR7-T4",
+    "generated_at": "2026-05-23T14:16:50.148888+00:00",
+    "status": "READY"
+  },
+  "objective": "generated affiliate block skeleton integration dry-run",
+  "steps": [
+    {
+      "step": 1,
+      "name": "freeze generated package",
+      "action": "freeze_generated_affiliate_block_package(base_path)",
+      "pass_condition": "descriptor._meta.status == OK"
+    },
+    {
+      "step": 2,
+      "name": "runner payload to handshake",
+      "action": "build_handshake_from_affiliate_runner_result(runner_result, source_task_id)",
+      "pass_condition": "validation_result == PASS"
+    },
+    {
+      "step": 3,
+      "name": "three-party dry-run trial",
+      "action": "run_affiliate_generic_core_dryrun_trial(base_path, source_task_id)",
+      "pass_condition": "trial_result._meta.status == OK"
+    },
+    {
+      "step": 4,
+      "name": "regression",
+      "action": "python3 -m pytest -q generic_block_ai/tests",
+      "pass_condition": "all tests pass"
+    }
+  ],
+  "abort_conditions": [
+    "freeze package status != OK",
+    "handshake validation_result == FAIL",
+    "generic core_ai_handshake.validation_result == FAIL",
+    "external_write_executed == true"
+  ],
+  "safeguards": {
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "external_write_executed": false,
+    "actual_auto_execute": false,
+    "production_release": false
+  }
+}

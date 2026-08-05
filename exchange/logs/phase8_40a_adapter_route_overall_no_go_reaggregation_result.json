@@ -1,0 +1,72 @@
+{
+  "phase": "8-40A",
+  "phase_name": "Adapter Route Overall NO_GO Report Re-Aggregation",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "decision_now": "NO_GO_KEEP_HOLD",
+  "execution_allowed": false,
+  "wordpress_api_call_allowed": false,
+  "wordpress_write_allowed": false,
+  "wordpress_write_executed": false,
+  "wordpress_draft_created": false,
+  "publish_allowed": false,
+  "rollback_executed": false,
+  "freeze_executed": false,
+  "secret_values_output": false,
+  "secret_values_written": false,
+  "executed_external_changes": 0,
+  "checked_at": "2026-06-15T13:59:34.100780+00:00",
+  "status": "PHASE8_40A_ADAPTER_ROUTE_OVERALL_NO_GO_FIXED",
+  "policy_violations": [],
+  "missing_sources": [],
+  "status_mismatch_sources": [],
+  "invariant_failures": [],
+  "errors": [],
+  "warnings": [],
+  "source_reports": {
+    "adapter6": "exchange/logs/ebook_trial_adapter_6_baseline_lock_result.json",
+    "phase8_38a": "exchange/logs/phase8_38a_adapter5_to_phase8_38_preflight_reconnection_baseline_lock_result.json",
+    "phase8_39a": "exchange/logs/phase8_39a_adapter_route_abort_rollback_freeze_simulation_check_result.json",
+    "phase8_38_from_adapter5": "exchange/logs/phase8_38_first_one_item_trial_preflight_from_adapter5_result.json",
+    "adapter5_result": "exchange/logs/ebook_trial_adapter_5_phase8_38_request_mapping_result.json"
+  },
+  "summary": {
+    "adapter_route_pack_completed": true,
+    "publish_execution_unlocked": false,
+    "safety_violations_empty": true
+  },
+  "evidence_summary": [
+    {
+      "key": "adapter6",
+      "path": "exchange/logs/ebook_trial_adapter_6_baseline_lock_result.json",
+      "exists": true,
+      "status": "EBOOK_TRIAL_ADAPTER_6_BASELINE_LOCK_PASS_HOLD_NO_EXECUTION"
+    },
+    {
+      "key": "phase8_38a",
+      "path": "exchange/logs/phase8_38a_adapter5_to_phase8_38_preflight_reconnection_baseline_lock_result.json",
+      "exists": true,
+      "status": "PHASE8_38A_ADAPTER5_TO_PHASE8_38_RECONNECTION_BASELINE_LOCK_PASS_HOLD_NO_EXECUTION"
+    },
+    {
+      "key": "phase8_39a",
+      "path": "exchange/logs/phase8_39a_adapter_route_abort_rollback_freeze_simulation_check_result.json",
+      "exists": true,
+      "status": "PHASE8_39A_ADAPTER_ROUTE_ROLLBACK_FREEZE_SIMULATION_PASS_HOLD_NO_EXECUTION"
+    },
+    {
+      "key": "phase8_38_from_adapter5",
+      "path": "exchange/logs/phase8_38_first_one_item_trial_preflight_from_adapter5_result.json",
+      "exists": true,
+      "status": "PHASE8_38_FIRST_ONE_ITEM_TRIAL_PREFLIGHT_READY_NO_EXECUTION"
+    },
+    {
+      "key": "adapter5_result",
+      "path": "exchange/logs/ebook_trial_adapter_5_phase8_38_request_mapping_result.json",
+      "exists": true,
+      "status": "EBOOK_TRIAL_ADAPTER_5_PHASE8_38_REQUEST_MAPPING_PASS_DRY_RUN_NO_EXECUTION"
+    }
+  ],
+  "next_step": "KEEP_HOLD_AND_MONITOR"
+}

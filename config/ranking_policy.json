@@ -1,0 +1,21 @@
+{
+  "version": "v1",
+  "weights": {
+    "new_release_weight": 0.35,
+    "sale_weight": 0.3,
+    "author_weight": 0.2,
+    "publisher_weight": 0.15
+  },
+  "score_formula": {
+    "description": "weighted_sum",
+    "expression": "new_release_score*new_release_weight + sale_score*sale_weight + author_score*author_weight + publisher_score*publisher_weight",
+    "range": {
+      "min": 0.0,
+      "max": 1.0
+    }
+  },
+  "constraints": {
+    "sum_of_weights_must_be": 1.0,
+    "execution": "design_only_no_ranking_generation"
+  }
+}

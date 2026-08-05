@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M20",
+  "document_role": "PR_DISCLOSURE_POSITION_COMPLIANCE_ASSESSMENT",
+  "content_item_id": "new-release-comic-20260703-001",
+  "wordpress_post_id": 192,
+  "assessment_scope": "AFFILIATE_DISCLOSURE_VISIBILITY_BEFORE_LINK_INTERACTION",
+  "source_basis": [
+    {
+      "authority": "Consumer Affairs Agency",
+      "document": "Stealth Marketing Q&A",
+      "question": "Q13",
+      "principle": "Affiliate advertising disclosure must be clear from the overall display, including visibility such as size and color."
+    },
+    {
+      "authority": "Consumer Affairs Agency",
+      "document": "Stealth Marketing Q&A",
+      "question": "Q11",
+      "principle": "Terms such as advertising, promotion, and PR may be used when the commercial nature is clear to consumers."
+    }
+  ],
+  "requested_desktop_pr_position": "AFTER_ALL_AFFILIATE_BUTTONS_AND_DETAILS",
+  "requested_mobile_pr_position": "AFTER_ALL_AFFILIATE_BUTTONS",
+  "risk_findings": {
+    "affiliate_buttons_reachable_before_disclosure": true,
+    "consumer_may_interact_before_disclosure": true,
+    "clear_pre_interaction_disclosure_not_guaranteed": true
+  },
+  "assessment_type": "CONSERVATIVE_OPERATIONAL_COMPLIANCE_GATE",
+  "formal_legal_opinion": false,
+  "requested_layout_verdict": "BLOCK_REQUESTED_PR_POSITION",
+  "compliant_alternative_required": true,
+  "required_alternative_pr_position": "IMMEDIATELY_BEFORE_FIRST_AFFILIATE_BUTTON",
+  "human_reapproval_required": true,
+  "wordpress_update_allowed": false,
+  "assessed_at_utc": "2026-07-11T12:20:34.507442+00:00",
+  "compliance_assessment_digest_sha256": "957874620811effbae144f86a5b4b7a06e5fa12001aaee0608307db71654dc01"
+}

@@ -1,0 +1,20 @@
+{
+  "phase": "LS-NEW-13",
+  "document_type": "START_LS_NEW13_NO_EXECUTION_SAFETY_CONTRACT",
+  "status": "LSNEW13_NO_EXECUTION_SAFETY_CONTRACT_READY",
+  "no_execution_required": true,
+  "wordpress_api_call_allowed": false,
+  "wordpress_post_allowed": false,
+  "wordpress_put_allowed": false,
+  "wordpress_patch_allowed": false,
+  "wordpress_delete_allowed": false,
+  "wordpress_draft_create_allowed": false,
+  "wordpress_publish_allowed": false,
+  "runner_execution_allowed": false,
+  "final_execution_command_created": false,
+  "actual_executable_command_created": false,
+  "shell_execution_allowed": false,
+  "credential_env_read_allowed": false,
+  "target_post_id_allocation_allowed": false,
+  "execution_allowed": false
+}

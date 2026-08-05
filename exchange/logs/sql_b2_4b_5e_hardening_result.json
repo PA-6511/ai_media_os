@@ -1,0 +1,49 @@
+{
+  "phase": "SQL-B2-4B-5E-HARDENING",
+  "result": "PASS_REAL_SOCKET_GRACEFUL_SHUTDOWN",
+  "recorded_at": "2026-07-14T13:02:19.240789+00:00",
+  "git": {
+    "branch": "feature/sql-b2-4b-slack-dry-run-hardening",
+    "commit": "18f727cb85cdbdbfa4850e6ad101741407760e81",
+    "commit_short": "18f727c"
+  },
+  "runtime": {
+    "slack_mode": "DRY_RUN",
+    "database_target": "/tmp/ebook_affiliate_slack_5e.db",
+    "real_socket_connection": true,
+    "sigint_exit_code": 0,
+    "graceful_shutdown": true,
+    "traceback_present": false,
+    "keyboard_interrupt_trace_present": false
+  },
+  "integration": {
+    "real_slack_message_sent": true,
+    "real_button_decision_received": "APPROVE",
+    "database_decision_applied": false,
+    "item_id": "421b17c2-2859-447e-bf76-1cf2e584a552",
+    "request_id": "57d9b10e-c7f3-4333-a56d-65f32d3b3791",
+    "workflow_status": "REVIEW",
+    "review_status": "IN_REVIEW",
+    "approval_type": "REVIEW_READY",
+    "approval_status": "PENDING",
+    "slack_binding_present": true,
+    "raw_approval_token_stored": false
+  },
+  "production_database": {
+    "path": "/home/deploy/ai_media_os/data/database/ebook_affiliate.db",
+    "sha256": "a4c5c6b3c9f016cd745cdb9c531c807fe5bc4a3ac28f9422609dfa96cd7b37d8",
+    "expected_sha256_match": true,
+    "approval_request_count": 0,
+    "integration_test_item_count": 0,
+    "mutated": false
+  },
+  "tests": {
+    "targeted_tests_passed": 2,
+    "regression_tests_passed": 132
+  },
+  "governance": {
+    "production_status": "NO_GO",
+    "safety_state": "DRY_RUN_ONLY",
+    "live_approval_allowed": false
+  }
+}

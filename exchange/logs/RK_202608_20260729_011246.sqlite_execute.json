@@ -1,0 +1,427 @@
+{
+  "status": "PASS",
+  "mode": "EXECUTE",
+  "input_mode": "PREVALIDATED_READY_ARTIFACTS",
+  "database_backend": "sqlite",
+  "batch_id": "RK_202608_20260729_011246",
+  "batch_dir": "/home/deploy/ai_media_os/exchange/inputs/new_release/batches/RK_202608_20260729_011246",
+  "manifest": "/home/deploy/ai_media_os/exchange/inputs/new_release/batches/RK_202608_20260729_011246/manifest.json",
+  "blocked_evidence": "/home/deploy/ai_media_os/exchange/reviews/new_release/batches/RK_202608_20260729_011246.multistore_blocked.json",
+  "prevalidation_result_log": "/home/deploy/ai_media_os/exchange/logs/RK_202608_20260729_011246.multistore_import_result.json",
+  "adapted_csv": null,
+  "ready_input_count": 466,
+  "blocked_count": 39,
+  "warning_count": 466,
+  "processed": 466,
+  "created": 466,
+  "updated": 0,
+  "unchanged": 0,
+  "offer_created": 466,
+  "offer_updated": 0,
+  "offer_unchanged": 0,
+  "failed": 0,
+  "database_write_performed": true,
+  "external_network_performed": false,
+  "blocked_reasons": [
+    {
+      "code": "SINGLE_EPISODE_FORBIDDEN",
+      "message": "single_episode and explicit single-episode markers are forbidden.",
+      "field": "edition_type",
+      "count": 39
+    }
+  ],
+  "blocked_rows": [
+    {
+      "row_number": 82,
+      "item_id": "RAKUTEN_KOBO_2e80d5da7f4f5c06",
+      "batch_id": "RK_202608_20260729_011246",
+      "error": {
+        "code": "SINGLE_EPISODE_FORBIDDEN",
+        "message": "single_episode and explicit single-episode markers are forbidden.",
+        "field": "edition_type"
+      }
+    },
+    {
+      "row_number": 215,
+      "item_id": "RAKUTEN_KOBO_8b26fc2e7edb2ac4",
+      "batch_id": "RK_202608_20260729_011246",
+      "error": {
+        "code": "SINGLE_EPISODE_FORBIDDEN",
+        "message": "single_episode and explicit single-episode markers are forbidden.",
+        "field": "edition_type"
+      }
+    },
+    {
+      "row_number": 216,
+      "item_id": "RAKUTEN_KOBO_33b42f94c1cfc48c",
+      "batch_id": "RK_202608_20260729_011246",
+      "error": {
+        "code": "SINGLE_EPISODE_FORBIDDEN",
+        "message": "single_episode and explicit single-episode markers are forbidden.",
+        "field": "edition_type"
+      }
+    },
+    {
+      "row_number": 217,
+      "item_id": "RAKUTEN_KOBO_7a293e59d57c93cd",
+      "batch_id": "RK_202608_20260729_011246",
+      "error": {
+        "code": "SINGLE_EPISODE_FORBIDDEN",
+        "message": "single_episode and explicit single-episode markers are forbidden.",
+        "field": "edition_type"
+      }
+    },
+    {
+      "row_number": 218,
+      "item_id": "RAKUTEN_KOBO_8e6c14a6cbc2a677",
+      "batch_id": "RK_202608_20260729_011246",
+      "error": {
+        "code": "SINGLE_EPISODE_FORBIDDEN",
+        "message": "single_episode and explicit single-episode markers are forbidden.",
+        "field": "edition_type"
+      }
+    },
+    {
+      "row_number": 221,
+      "item_id": "RAKUTEN_KOBO_964fc2ca2d91326a",
+      "batch_id": "RK_202608_20260729_011246",
+      "error": {
+        "code": "SINGLE_EPISODE_FORBIDDEN",
+        "message": "single_episode and explicit single-episode markers are forbidden.",
+        "field": "edition_type"
+      }
+    },
+    {
+      "row_number": 222,
+      "item_id": "RAKUTEN_KOBO_ec4c65ebdf78ab97",
+      "batch_id": "RK_202608_20260729_011246",
+      "error": {
+        "code": "SINGLE_EPISODE_FORBIDDEN",
+        "message": "single_episode and explicit single-episode markers are forbidden.",
+        "field": "edition_type"
+      }
+    },
+    {
+      "row_number": 227,
+      "item_id": "RAKUTEN_KOBO_ff20f4b91fd52ae6",
+      "batch_id": "RK_202608_20260729_011246",
+      "error": {
+        "code": "SINGLE_EPISODE_FORBIDDEN",
+        "message": "single_episode and explicit single-episode markers are forbidden.",
+        "field": "edition_type"
+      }
+    },
+    {
+      "row_number": 230,
+      "item_id": "RAKUTEN_KOBO_fccc13c5b205cd3f",
+      "batch_id": "RK_202608_20260729_011246",
+      "error": {
+        "code": "SINGLE_EPISODE_FORBIDDEN",
+        "message": "single_episode and explicit single-episode markers are forbidden.",
+        "field": "edition_type"
+      }
+    },
+    {
+      "row_number": 232,
+      "item_id": "RAKUTEN_KOBO_dbb4855b3ca79dc5",
+      "batch_id": "RK_202608_20260729_011246",
+      "error": {
+        "code": "SINGLE_EPISODE_FORBIDDEN",
+        "message": "single_episode and explicit single-episode markers are forbidden.",
+        "field": "edition_type"
+      }
+    },
+    {
+      "row_number": 233,
+      "item_id": "RAKUTEN_KOBO_92e39c3ad21652c1",
+      "batch_id": "RK_202608_20260729_011246",
+      "error": {
+        "code": "SINGLE_EPISODE_FORBIDDEN",
+        "message": "single_episode and explicit single-episode markers are forbidden.",
+        "field": "edition_type"
+      }
+    },
+    {
+      "row_number": 234,
+      "item_id": "RAKUTEN_KOBO_fca1129d6323d852",
+      "batch_id": "RK_202608_20260729_011246",
+      "error": {
+        "code": "SINGLE_EPISODE_FORBIDDEN",
+        "message": "single_episode and explicit single-episode markers are forbidden.",
+        "field": "edition_type"
+      }
+    },
+    {
+      "row_number": 268,
+      "item_id": "RAKUTEN_KOBO_cba6543344219931",
+      "batch_id": "RK_202608_20260729_011246",
+      "error": {
+        "code": "SINGLE_EPISODE_FORBIDDEN",
+        "message": "single_episode and explicit single-episode markers are forbidden.",
+        "field": "edition_type"
+      }
+    },
+    {
+      "row_number": 269,
+      "item_id": "RAKUTEN_KOBO_bdc73b7dd17a1f17",
+      "batch_id": "RK_202608_20260729_011246",
+      "error": {
+        "code": "SINGLE_EPISODE_FORBIDDEN",
+        "message": "single_episode and explicit single-episode markers are forbidden.",
+        "field": "edition_type"
+      }
+    },
+    {
+      "row_number": 270,
+      "item_id": "RAKUTEN_KOBO_6e9e2e347f9a6cc6",
+      "batch_id": "RK_202608_20260729_011246",
+      "error": {
+        "code": "SINGLE_EPISODE_FORBIDDEN",
+        "message": "single_episode and explicit single-episode markers are forbidden.",
+        "field": "edition_type"
+      }
+    },
+    {
+      "row_number": 271,
+      "item_id": "RAKUTEN_KOBO_6f1c3fc9bbe9d84a",
+      "batch_id": "RK_202608_20260729_011246",
+      "error": {
+        "code": "SINGLE_EPISODE_FORBIDDEN",
+        "message": "single_episode and explicit single-episode markers are forbidden.",
+        "field": "edition_type"
+      }
+    },
+    {
+      "row_number": 272,
+      "item_id": "RAKUTEN_KOBO_dd6b9cf573516950",
+      "batch_id": "RK_202608_20260729_011246",
+      "error": {
+        "code": "SINGLE_EPISODE_FORBIDDEN",
+        "message": "single_episode and explicit single-episode markers are forbidden.",
+        "field": "edition_type"
+      }
+    },
+    {
+      "row_number": 273,
+      "item_id": "RAKUTEN_KOBO_83a75cf8d85252a7",
+      "batch_id": "RK_202608_20260729_011246",
+      "error": {
+        "code": "SINGLE_EPISODE_FORBIDDEN",
+        "message": "single_episode and explicit single-episode markers are forbidden.",
+        "field": "edition_type"
+      }
+    },
+    {
+      "row_number": 274,
+      "item_id": "RAKUTEN_KOBO_960131a1767229bf",
+      "batch_id": "RK_202608_20260729_011246",
+      "error": {
+        "code": "SINGLE_EPISODE_FORBIDDEN",
+        "message": "single_episode and explicit single-episode markers are forbidden.",
+        "field": "edition_type"
+      }
+    },
+    {
+      "row_number": 275,
+      "item_id": "RAKUTEN_KOBO_4b3fdb44dd4b1eaa",
+      "batch_id": "RK_202608_20260729_011246",
+      "error": {
+        "code": "SINGLE_EPISODE_FORBIDDEN",
+        "message": "single_episode and explicit single-episode markers are forbidden.",
+        "field": "edition_type"
+      }
+    },
+    {
+      "row_number": 276,
+      "item_id": "RAKUTEN_KOBO_ea9c2d6a16f3d1eb",
+      "batch_id": "RK_202608_20260729_011246",
+      "error": {
+        "code": "SINGLE_EPISODE_FORBIDDEN",
+        "message": "single_episode and explicit single-episode markers are forbidden.",
+        "field": "edition_type"
+      }
+    },
+    {
+      "row_number": 277,
+      "item_id": "RAKUTEN_KOBO_97d8075bac1730fc",
+      "batch_id": "RK_202608_20260729_011246",
+      "error": {
+        "code": "SINGLE_EPISODE_FORBIDDEN",
+        "message": "single_episode and explicit single-episode markers are forbidden.",
+        "field": "edition_type"
+      }
+    },
+    {
+      "row_number": 278,
+      "item_id": "RAKUTEN_KOBO_4dcdc5adfde8388d",
+      "batch_id": "RK_202608_20260729_011246",
+      "error": {
+        "code": "SINGLE_EPISODE_FORBIDDEN",
+        "message": "single_episode and explicit single-episode markers are forbidden.",
+        "field": "edition_type"
+      }
+    },
+    {
+      "row_number": 279,
+      "item_id": "RAKUTEN_KOBO_95048e7ee451af9b",
+      "batch_id": "RK_202608_20260729_011246",
+      "error": {
+        "code": "SINGLE_EPISODE_FORBIDDEN",
+        "message": "single_episode and explicit single-episode markers are forbidden.",
+        "field": "edition_type"
+      }
+    },
+    {
+      "row_number": 280,
+      "item_id": "RAKUTEN_KOBO_4349c89be74fd70d",
+      "batch_id": "RK_202608_20260729_011246",
+      "error": {
+        "code": "SINGLE_EPISODE_FORBIDDEN",
+        "message": "single_episode and explicit single-episode markers are forbidden.",
+        "field": "edition_type"
+      }
+    },
+    {
+      "row_number": 281,
+      "item_id": "RAKUTEN_KOBO_3b59909cbc3cc66f",
+      "batch_id": "RK_202608_20260729_011246",
+      "error": {
+        "code": "SINGLE_EPISODE_FORBIDDEN",
+        "message": "single_episode and explicit single-episode markers are forbidden.",
+        "field": "edition_type"
+      }
+    },
+    {
+      "row_number": 282,
+      "item_id": "RAKUTEN_KOBO_c2a90d669b35cc46",
+      "batch_id": "RK_202608_20260729_011246",
+      "error": {
+        "code": "SINGLE_EPISODE_FORBIDDEN",
+        "message": "single_episode and explicit single-episode markers are forbidden.",
+        "field": "edition_type"
+      }
+    },
+    {
+      "row_number": 283,
+      "item_id": "RAKUTEN_KOBO_de15191d6031e1a2",
+      "batch_id": "RK_202608_20260729_011246",
+      "error": {
+        "code": "SINGLE_EPISODE_FORBIDDEN",
+        "message": "single_episode and explicit single-episode markers are forbidden.",
+        "field": "edition_type"
+      }
+    },
+    {
+      "row_number": 284,
+      "item_id": "RAKUTEN_KOBO_b99d5bf043015dc9",
+      "batch_id": "RK_202608_20260729_011246",
+      "error": {
+        "code": "SINGLE_EPISODE_FORBIDDEN",
+        "message": "single_episode and explicit single-episode markers are forbidden.",
+        "field": "edition_type"
+      }
+    },
+    {
+      "row_number": 285,
+      "item_id": "RAKUTEN_KOBO_9f886a572f788dd7",
+      "batch_id": "RK_202608_20260729_011246",
+      "error": {
+        "code": "SINGLE_EPISODE_FORBIDDEN",
+        "message": "single_episode and explicit single-episode markers are forbidden.",
+        "field": "edition_type"
+      }
+    },
+    {
+      "row_number": 286,
+      "item_id": "RAKUTEN_KOBO_6c1661f1292f4954",
+      "batch_id": "RK_202608_20260729_011246",
+      "error": {
+        "code": "SINGLE_EPISODE_FORBIDDEN",
+        "message": "single_episode and explicit single-episode markers are forbidden.",
+        "field": "edition_type"
+      }
+    },
+    {
+      "row_number": 287,
+      "item_id": "RAKUTEN_KOBO_aafb6aafc650c222",
+      "batch_id": "RK_202608_20260729_011246",
+      "error": {
+        "code": "SINGLE_EPISODE_FORBIDDEN",
+        "message": "single_episode and explicit single-episode markers are forbidden.",
+        "field": "edition_type"
+      }
+    },
+    {
+      "row_number": 288,
+      "item_id": "RAKUTEN_KOBO_492b1ad8c975be9f",
+      "batch_id": "RK_202608_20260729_011246",
+      "error": {
+        "code": "SINGLE_EPISODE_FORBIDDEN",
+        "message": "single_episode and explicit single-episode markers are forbidden.",
+        "field": "edition_type"
+      }
+    },
+    {
+      "row_number": 289,
+      "item_id": "RAKUTEN_KOBO_c2486fc1bf407f30",
+      "batch_id": "RK_202608_20260729_011246",
+      "error": {
+        "code": "SINGLE_EPISODE_FORBIDDEN",
+        "message": "single_episode and explicit single-episode markers are forbidden.",
+        "field": "edition_type"
+      }
+    },
+    {
+      "row_number": 290,
+      "item_id": "RAKUTEN_KOBO_8ac771ccbad7062f",
+      "batch_id": "RK_202608_20260729_011246",
+      "error": {
+        "code": "SINGLE_EPISODE_FORBIDDEN",
+        "message": "single_episode and explicit single-episode markers are forbidden.",
+        "field": "edition_type"
+      }
+    },
+    {
+      "row_number": 501,
+      "item_id": "RAKUTEN_KOBO_a60935e73f03ae69",
+      "batch_id": "RK_202608_20260729_011246",
+      "error": {
+        "code": "SINGLE_EPISODE_FORBIDDEN",
+        "message": "single_episode and explicit single-episode markers are forbidden.",
+        "field": "edition_type"
+      }
+    },
+    {
+      "row_number": 504,
+      "item_id": "RAKUTEN_KOBO_12628905a487d923",
+      "batch_id": "RK_202608_20260729_011246",
+      "error": {
+        "code": "SINGLE_EPISODE_FORBIDDEN",
+        "message": "single_episode and explicit single-episode markers are forbidden.",
+        "field": "edition_type"
+      }
+    },
+    {
+      "row_number": 505,
+      "item_id": "RAKUTEN_KOBO_5959e57a7fbbd965",
+      "batch_id": "RK_202608_20260729_011246",
+      "error": {
+        "code": "SINGLE_EPISODE_FORBIDDEN",
+        "message": "single_episode and explicit single-episode markers are forbidden.",
+        "field": "edition_type"
+      }
+    },
+    {
+      "row_number": 506,
+      "item_id": "RAKUTEN_KOBO_e2cbf7ff21239c55",
+      "batch_id": "RK_202608_20260729_011246",
+      "error": {
+        "code": "SINGLE_EPISODE_FORBIDDEN",
+        "message": "single_episode and explicit single-episode markers are forbidden.",
+        "field": "edition_type"
+      }
+    }
+  ],
+  "wordpress_write_performed": false,
+  "x_post_performed": false
+}

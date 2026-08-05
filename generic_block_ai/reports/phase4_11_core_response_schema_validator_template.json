@@ -1,0 +1,50 @@
+{
+  "_meta": {
+    "phase": "4-11",
+    "purpose": "core_response_schema_validator_template",
+    "created_at": "2026-05-12",
+    "status": "TEMPLATE_ONLY",
+    "note": "Core response dry-run schema 雛形に対する validator 設計雛形。実検証コード・実応答送信・外部接続は含まない。"
+  },
+  "target_template": "reports/phase4_8_core_response_dry_run_schema.json",
+  "required_fields": [
+    {"path": "response_contract.mode", "expected_type": "string", "allowed_values": ["observation_only"]},
+    {"path": "response_contract.operation_mode", "expected_type": "string", "allowed_values": ["OBSERVE"]},
+    {"path": "response_contract.connection_test_mode", "expected_type": "boolean", "must_be": true},
+    {"path": "response_contract.connection_scope", "expected_type": "string", "allowed_values": ["decision_package_handoff_only"]},
+    {"path": "response_contract.execution", "expected_type": "string", "allowed_values": ["dry_run"]},
+    {"path": "response_contract.requires_human_approval", "expected_type": "boolean", "must_be": true},
+    {"path": "response_contract.auto_execute_allowed", "expected_type": "boolean", "must_be": false},
+    {"path": "response_contract.transport", "expected_type": "string", "allowed_values": ["none"]},
+    {"path": "response_contract.external_api_call", "expected_type": "boolean", "must_be": false},
+    {"path": "schema.assessment_type", "expected_type": "string", "allowed_values": ["observation_only"]},
+    {"path": "schema.recommended_next_action", "expected_type": "string", "allowed_values": ["human_review_only"]},
+    {"path": "schema.execution_permission", "expected_type": "string", "allowed_values": ["none"]},
+    {"path": "schema.write_permission", "expected_type": "string", "allowed_values": ["none"]},
+    {"path": "schema.no_go_status_preserved", "expected_type": "boolean", "must_be": true}
+  ],
+  "forbidden_values": [
+    {"path": "response_contract.operation_mode", "forbidden": ["EXECUTE", "WRITE", "PUBLISH"]},
+    {"path": "response_contract.transport", "forbidden": ["http", "https", "webhook"]},
+    {"path": "schema.execution_permission", "forbidden": ["execute", "run", "publish"]},
+    {"path": "schema.write_permission", "forbidden": ["write", "update", "delete"]}
+  ],
+  "required_blocked_actions_echo": [
+    "external_api_call",
+    "wordpress_operation",
+    "cron_registration",
+    "auto_execute",
+    "auto_post",
+    "auto_update",
+    "auto_delete",
+    "auto_export",
+    "production_execution"
+  ],
+  "validation_expectations": [
+    "must_not_contain_execution_command",
+    "must_not_contain_external_request",
+    "must_not_change_operation_mode",
+    "must_preserve_human_review_requirement"
+  ],
+  "result": "PASS_DRY_RUN_ONLY"
+}

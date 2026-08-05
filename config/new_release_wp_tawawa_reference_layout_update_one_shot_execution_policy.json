@@ -1,0 +1,82 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M27-EXECUTE",
+  "policy_id": "WORDPRESS_TAWAWA_REFERENCE_LAYOUT_UPDATE_ONE_SHOT_EXECUTION_POLICY_V1",
+  "operation_mode": "AUTHENTICATED_WORDPRESS_ONE_SHOT_POST_UPDATE",
+  "content_item_id": "new-release-comic-20260703-001",
+  "wordpress_post_id": 192,
+  "required_approval_label": "WORDPRESS_TAWAWA_REFERENCE_LAYOUT_UPDATE_ONE_SHOT_EXECUTION_APPROVED",
+  "request_contract": {
+    "allowed_method": "POST",
+    "maximum_post_request_count": 1,
+    "allowed_request_fields": [
+      "content",
+      "comment_status"
+    ],
+    "target_comment_status": "closed",
+    "redirect_following_allowed": false,
+    "automatic_retry_allowed": false,
+    "second_post_allowed": false,
+    "timeout_seconds": 30,
+    "maximum_response_bytes": 4194304
+  },
+  "expected_wordpress_state": {
+    "post_id": 192,
+    "status": "publish",
+    "title": "ダークギャザリング 第20巻｜配信開始",
+    "category_ids": [
+      10
+    ],
+    "pre_update_comment_status": "open",
+    "post_update_comment_status": "closed",
+    "pre_update_content_sha256": "c5851f15e4eb477038dca512c8990068736a306cf4fb8c207036a3186119f436",
+    "post_update_content_sha256": "dc938ae164c70130a5fb27692d71c97cc367a8985c44c2c333801b337ee6caf4"
+  },
+  "artifact_binding_contract": {
+    "execute_now_confirmation_digest_sha256": "74cc04d1d01a5ae81a2367ed098ce17ba4896db8e1ac713a8014fd2c01cc1c64",
+    "execute_now_result_digest_sha256": "dd7705f008508846c627b5114c2d35d2389a63acadfc1bac748f4ee7e0ef02ce",
+    "preflight_snapshot_digest_sha256": "2a86005667e2dbbb3a93fadb72ed60ae1840de625e2ad6b55dad30671134a384",
+    "preflight_result_digest_sha256": "a127d49abcdeb6784e1602cb339a0e1debb7268675183ad03a8c49c20f611ab4",
+    "authorization_digest_sha256": "d7f53a0eb02a037cde4b6ab71b4b026b79eb8c2d2c08a95a8bec5f1ad0b6e615",
+    "rendered_content_sha256": "dc938ae164c70130a5fb27692d71c97cc367a8985c44c2c333801b337ee6caf4",
+    "update_payload_digest_sha256": "52ed18792454e5806b739059911c8117810cafcadacf35fb77429b608673cd60",
+    "human_review_digest_sha256": "7fd7a9f0f5317435160010fac811b77d876f77919ad2b5905c6cdea82f8f1806",
+    "backlist_requirement_digest_sha256": "bfa2e1b69c1d5cfe3999ac0048539d1d4b01d60e9ba9d452a8e65176a5d028a4",
+    "rollback_digest_sha256": "60ac4fe5182e412014bcbd291ca52af1e516e7061722e608b39a34c284dbfcf5",
+    "request_body_digest_sha256": "02f5f89d916e328f0b020ebfefafcb391e1c4b0a511d4b2277e37fa225fc81e7"
+  },
+  "consumption_contract": {
+    "authorization_consumed_immediately_before_transport_call": true,
+    "execute_now_confirmation_consumed_immediately_before_transport_call": true,
+    "consumption_count": 1,
+    "reuse_allowed": false,
+    "automatic_reissue_allowed": false,
+    "immutable_new_evidence_required": true,
+    "original_authorization_file_modification_allowed": false,
+    "original_confirmation_file_modification_allowed": false
+  },
+  "preserved_fields": {
+    "title_sent": false,
+    "status_sent": false,
+    "categories_sent": false,
+    "slug_sent": false,
+    "excerpt_sent": false,
+    "featured_media_sent": false
+  },
+  "excluded_scope": {
+    "backlist_carousel_included": false,
+    "get_request_allowed": false,
+    "delete_allowed": false,
+    "x_post_allowed": false
+  },
+  "post_attempt_outcome_contract": {
+    "validated_http_200_requires_get_only_post_update_verification": true,
+    "timeout_requires_indeterminate_stop": true,
+    "connection_failure_requires_indeterminate_stop": true,
+    "response_mismatch_requires_indeterminate_stop": true,
+    "non_200_requires_get_only_reconciliation": true,
+    "retry_after_any_post_attempt_allowed": false,
+    "required_next_phase": "LS-NEW-BATCH-4G-2E-RECOVERY-M28-POST-UPDATE-VERIFY"
+  },
+  "production_status": "NO_GO"
+}

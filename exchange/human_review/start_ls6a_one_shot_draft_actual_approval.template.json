@@ -1,0 +1,37 @@
+{
+  "phase": "LS-6A",
+  "approval_label": "APPROVED_FOR_ONE_SHOT_DRAFT_CREATION_ONLY",
+  "approval_status": "TEMPLATE_NOT_ACTUAL_APPROVAL",
+  "approved_by": "HUMAN_REQUIRED",
+  "approval_created_at": "HUMAN_REQUIRED",
+  "approval_target": {
+    "next_phase": "LS-6B",
+    "target_payload_preview": "exchange/logs/start_ls4_wordpress_draft_payload_preview.json",
+    "target_ls4_result": "exchange/logs/start_ls4_wordpress_draft_runner_dry_run_result.json",
+    "max_items": 1,
+    "post_status": "draft"
+  },
+  "approved_scope": {
+    "wordpress_write_allowed": true,
+    "wordpress_draft_creation_allowed": true,
+    "publish_allowed": false,
+    "future_schedule_allowed": false,
+    "existing_post_update_allowed": false,
+    "delete_allowed": false,
+    "amazon_api_call_allowed": false,
+    "x_api_call_allowed": false,
+    "x_post_allowed": false,
+    "freeze_after_run": true,
+    "rollback_pointer_required": true
+  },
+  "current_phase_execution": {
+    "wordpress_api_call_executed": false,
+    "wordpress_write_executed": false,
+    "wordpress_draft_creation_executed": false,
+    "publish_executed": false,
+    "approval_token_consumed": false
+  },
+  "human_confirmation_text_required": "I explicitly approve LS-6B WordPress one-shot draft creation only.",
+  "human_confirmation_text": "HUMAN_REQUIRED",
+  "note": "Copy this template to start_ls6a_one_shot_draft_actual_approval.json and change approval_status to HUMAN_APPROVED only after explicit human approval. This template itself is not actual approval."
+}

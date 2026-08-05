@@ -1,0 +1,116 @@
+{
+  "phase": "SQL-B2-4B-5G-3B-1A",
+  "result": "PASS_DISCOVERY_TRUSTED_VERIFIER_BOUNDARY_NOT_ESTABLISHED",
+  "recorded_at": "2026-07-14T15:12:51.876471+00:00",
+  "git": {
+    "branch": "feature/sql-b2-4b-slack-production-readiness",
+    "source_commit": "133c0e941a469e46e16f0b612863532f757363bd",
+    "source_commit_short": "133c0e9"
+  },
+  "execution_boundary": {
+    "systemd_service_user": "deploy",
+    "exec_condition_uses_repository_code": true,
+    "exec_condition_uses_deploy_venv": true,
+    "installed_unit_sha256": "ea27ffcff758a32020102f35a4df025aba8358501a6798d33f0ba069162005fc",
+    "installed_unit_metadata": {
+      "path": "/etc/systemd/system/ai-media-os-slack-approval-readiness.service",
+      "owner": "root",
+      "group": "root",
+      "mode": "0644",
+      "is_regular_file": true,
+      "is_directory": false,
+      "is_symbolic_link": false,
+      "writable_by_current_user": false
+    }
+  },
+  "repository_trust": {
+    "repository": {
+      "path": "/home/deploy/ai_media_os",
+      "owner": "deploy",
+      "group": "deploy",
+      "mode": "0775",
+      "is_regular_file": false,
+      "is_directory": true,
+      "is_symbolic_link": false,
+      "writable_by_current_user": true
+    },
+    "cli": {
+      "path": "/home/deploy/ai_media_os/scripts/check_slack_readiness_autostart.py",
+      "owner": "deploy",
+      "group": "deploy",
+      "mode": "0664",
+      "is_regular_file": true,
+      "is_directory": false,
+      "is_symbolic_link": false,
+      "writable_by_current_user": true
+    },
+    "module": {
+      "path": "/home/deploy/ai_media_os/app/services/slack_autostart_gate.py",
+      "owner": "deploy",
+      "group": "deploy",
+      "mode": "0664",
+      "is_regular_file": true,
+      "is_directory": false,
+      "is_symbolic_link": false,
+      "writable_by_current_user": true
+    },
+    "policy": {
+      "path": "/home/deploy/ai_media_os/config/slack_readiness_autostart_gate_policy.json",
+      "owner": "deploy",
+      "group": "deploy",
+      "mode": "0664",
+      "is_regular_file": true,
+      "is_directory": false,
+      "is_symbolic_link": false,
+      "writable_by_current_user": true
+    },
+    "trusted_verifier_boundary": "NOT_ESTABLISHED"
+  },
+  "gate_binding": {
+    "target_commit_field": true,
+    "installed_unit_sha256_field": false,
+    "verifier_sha256_field": false,
+    "clean_worktree_enforced": false
+  },
+  "required_hardening": {
+    "root_owned_verifier_copy": true,
+    "self_contained_verifier": true,
+    "repository_imports_allowed": false,
+    "deploy_venv_allowed": false,
+    "required_interpreter": "/usr/bin/python3",
+    "isolated_python_mode_required": true,
+    "sanitized_environment_required": true
+  },
+  "database_safety": {
+    "production_sha256": "a4c5c6b3c9f016cd745cdb9c531c807fe5bc4a3ac28f9422609dfa96cd7b37d8",
+    "production_database_unchanged": true,
+    "readiness_quick_check": "ok",
+    "readiness_approval_count": 0
+  },
+  "systemd_state": {
+    "fragment_path": "/etc/systemd/system/ai-media-os-slack-approval-readiness.service",
+    "need_daemon_reload": "no",
+    "active_state": "inactive",
+    "sub_state": "dead",
+    "unit_file_state": "disabled",
+    "main_pid": 0,
+    "enabled": false,
+    "running": false
+  },
+  "decision": {
+    "trusted_verifier_boundary": "NOT_ESTABLISHED",
+    "systemd_block_test_allowed": "HOLD",
+    "autostart_gate": "ABSENT",
+    "autostart_approval": "NOT_APPROVED",
+    "unit_enabled": false,
+    "service_running": false,
+    "final_decision": "NO_GO"
+  },
+  "governance": {
+    "production_status": "NO_GO",
+    "safety_state": "TRUST_BOUNDARY_DISCOVERED_HARDENING_REQUIRED",
+    "automatic_start_allowed": false,
+    "service_start_test_allowed": false,
+    "production_slack_approval_allowed": false
+  }
+}

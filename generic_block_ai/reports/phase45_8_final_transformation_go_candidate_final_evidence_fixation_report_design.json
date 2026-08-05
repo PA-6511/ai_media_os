@@ -1,0 +1,40 @@
+{
+  "_meta": {
+    "phase": "45-8",
+    "phase_name": "手動最終確認後・発効可否分離確認層",
+    "layer": "最終判定層 (final judgment layer)",
+    "title": "最終変換GO候補の最終証跡固定レポート設計",
+    "created": "2026-05-14",
+    "author": "governance-framework",
+    "status": "PASS_DESIGN_ONLY",
+    "reports_only": true
+  },
+  "scope": "Phase 45-1～45-7 で実施した全ての手動最終確認プロセス（Phase 44 完了証跡受領、manual_release_go_authorization 変換可否確認、actual_process_start_go_authorization 変換可否確認、証跡固定ルール、差し戻し・NO_GO維持ルール、統合最終判定）に基づいて、以下の手動確認候補について最終証跡固定レポートを設計する：(1) manual_release_go_authorization 候補についての確認・検証・判定の全記録（Phase 43-8～Phase 45-7 全プロセス）、(2) actual_process_start_go_authorization 候補についての確認・検証・判定の全記録（Phase 43-8～Phase 45-7 全プロセス、厳格性が反映されたもの）。これらの証跡は以後改ざん不可のレポート形式で固定される。",
+  "governance": {
+    "production_status": "NO_GO",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "report": {
+    "description": "Phase 45-8 では、Phase 45-1～45-7 で実施した手動最終確認プロセスの結果に基づいて、2つの承認候補（manual_release_go_authorization / actual_process_start_go_authorization）について 最終証跡固定レポートを 設計層で定義する。(1) manual_release_go_authorization 最終証跡固定レポート：Phase 43-8 で実施した manual_release_go_authorization の分離監査から Phase 45-7 の統合最終判定までの全プロセスを記録し、最終的に manual_release_go_authorization が GRANTED 変換可能 / NOT_GRANTED のいずれであるかを固定する。記録対象：要求内容、受領状況（Phase 45-1）、変換可否確認内容（Phase 45-2）、変換可否判定結果（GRANTED 可能 or 不可、理由詳細）、証跡固定内容（Phase 45-4）、差し戻し対応（Phase 45-6 該当時）、統合最終判定（Phase 45-7）。全ての記録は改ざん不可の報告書とする。(2) actual_process_start_go_authorization 最終証跡固定レポート：Phase 43-8 で実施した actual_process_start_go_authorization の分離監査から Phase 45-7 の統合最終判定までの全プロセスを記録し、最終的に actual_process_start_go_authorization が GRANTED 変換可能 / NOT_GRANTED のいずれであるかを固定する。記録対象：要求内容、受領状況（Phase 45-1）、変換可否確認内容（Phase 45-3、厳格条件含む）、変換可否判定結果（GRANTED 可能 or 不可、理由詳細、権限厳格性の記録）、証跡固定内容（Phase 45-5、厳格性の記録含む）、差し戻し対応（Phase 45-6 該当時）、統合最終判定（Phase 45-7、厳格性の再確認含む）。全ての記録は改ざん不可の報告書とする。特に actual_process_start_go が manual_release_go より厳格であることが全ての記録に明記される。(3) 証跡固定の恒久性：これらの証跡は Phase 45-8 でレポート形式で固定された後、Phase 46 以降でも改ざん不可（immutable）となる。(4) 分離記録：2つの承認候補は完全に分離されて記録され、混在しない。これら全てのレポートは 設計層（reports only）で実装され、実処理開始許可を含まない。",
+    "invariants": [
+      "NO_GO 維持：証跡固定プロセス全体を通じて production_status = 'NO_GO' は維持される",
+      "NOT_GRANTED 維持：証跡固定プロセス全体を通じて manual_release_go_authorization / actual_process_start_go_authorization は 'NOT_GRANTED' のまま（両方共に）",
+      "reports only：証跡固定レポート全体は報告書形式で実装され、実処理への権限付与を含まない",
+      "改ざん防止：固定された証跡は以後 Phase でも変更されない（immutable）",
+      "分離記録：2つの承認候補は完全に分離されて記録される（混在なし）",
+      "厳格性記録：actual_process_start_go が manual_release_go より厳格であることが全ての記録に明記される"
+    ],
+    "actions": [],
+    "notes": [
+      "Phase 45-8 は 設計層のみで実装される（実処理開始許可ではない）",
+      "手動最終確認候補の最終証跡固定レポートは reports only であり、生産環境コード変更を含まない",
+      "Phase 45-9 の完了宣言に向けた証跡確定層である",
+      "GRANTED 変換可能 / NOT_GRANTED の判定は Phase 45-8 の段階では確定されず、実測を待つ（両方 NOT_GRANTED のまま）",
+      "証跡の恒久性は Phase 46 以降も保証される",
+      "actual_process_start_go は manual_release_go より権限・条件が厳格（この関係性は全て記録に反映）",
+      "実処理開始は NO_GO のまま"
+    ]
+  }
+}

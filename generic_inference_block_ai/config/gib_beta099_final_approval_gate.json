@@ -1,0 +1,44 @@
+{
+  "schema_version": "gib.beta099.final_approval_gate.v0.1",
+  "beta_version": "beta0.99",
+  "status": "DRY_RUN_FINAL_APPROVAL_GATE_ONLY",
+  "production_status": "NO_GO",
+  "handoff_ready": false,
+  "final_approval_required": true,
+  "final_approval_granted": false,
+  "final_approval_statement": "I APPROVE GIB BETA1 FIRST REAL LOCAL LLM CALL TRANSITION UNDER CHANGE CONTROL.",
+  "real_llm_call_switch_conditions_documented": true,
+  "switch_conditions": {
+    "beta095_pass_required": true,
+    "manual_approval_required": true,
+    "approval_evidence_format_valid": true,
+    "localhost_runtime_only": true,
+    "allowlisted_model_only": true,
+    "fallback_stub_plan_required": true,
+    "execution_allowed_must_stay_false_at_beta099": true,
+    "generate_chat_must_stay_unexecuted": true
+  },
+  "current_guardrails": {
+    "real_llm_call_allowed": false,
+    "execution_allowed": false,
+    "generate_call_allowed": false,
+    "chat_call_allowed": false,
+    "wordpress_write_allowed": false,
+    "credential_access_allowed": false,
+    "fallback_runtime": "stub"
+  },
+  "first_call_target": {
+    "runtime": "ollama",
+    "host": "localhost",
+    "port": 11434,
+    "model": "gemma-4-qat-e2b",
+    "allowlisted_model_patterns": [
+      "gemma-4-qat",
+      "gemma-4-qat-e2b"
+    ]
+  },
+  "artifact_policy": {
+    "report_write_scope": ["generic_inference_block_ai/reports"],
+    "reports_only": true
+  }
+}

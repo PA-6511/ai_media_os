@@ -1,0 +1,65 @@
+{
+  "policy_metadata": {
+    "version": "v1.0.0",
+    "environment": "dev",
+    "updated_at": "2026-05-23T14:22:01Z",
+    "change_reason": "IR5-T4 affiliate block skeleton initial spec",
+    "policy_hash": "AUTO_COMPUTED"
+  },
+  "observe_only": true,
+  "forbidden_actions": [
+    "delete_block",
+    "export_block",
+    "sell_block",
+    "change_core_policy",
+    "disable_audit",
+    "auto_publish_without_approval",
+    "handle_adult_content",
+    "direct_purchase",
+    "store_payment_info",
+    "auto_place_order"
+  ],
+  "quality_metrics": {
+    "quality_score_base": 55,
+    "priority_weight": 0.35,
+    "accepted_risk_weight": 0.2,
+    "rejection_penalty_weight": 30,
+    "validation_penalty_fail": 35,
+    "validation_penalty_warn": 15,
+    "risk_gap_weight": 0.7,
+    "risk_rejection_penalty_weight": 20,
+    "readiness_min_quality_score": 60,
+    "readiness_min_risk_balance": 50,
+    "readiness_allowed_validation_results": [
+      "PASS"
+    ]
+  },
+  "review_decision": {
+    "block_on_status": [
+      "error",
+      "blocked"
+    ],
+    "reject_on_validation_results": [
+      "FAIL"
+    ],
+    "reject_on_readiness": [
+      "not_ready"
+    ],
+    "approve_on_readiness": [
+      "ready"
+    ]
+  },
+  "affiliate_guardrails": {
+    "allow_external_checkout": false,
+    "allow_pii_storage": false,
+    "allow_direct_purchase": false,
+    "required_disclosure_text": "This content may include affiliate links.",
+    "allowed_product_sources": [
+      "official_api",
+      "approved_feed",
+      "manual_review_queue"
+    ],
+    "max_outbound_links_per_item": 3,
+    "require_manual_review_before_publish": true
+  }
+}

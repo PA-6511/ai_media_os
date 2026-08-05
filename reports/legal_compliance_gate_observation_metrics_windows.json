@@ -1,0 +1,60 @@
+{
+  "generated_at_utc": "2026-05-24T04:02:07.644637+00:00",
+  "kpi_scope": "legal_compliance_gate_observation_windowed",
+  "observations_dir": "/home/deploy/ai_media_os/reports/legal_compliance_gate_observations",
+  "records_with_timestamp": 1,
+  "records_missing_timestamp": 0,
+  "window_metrics": {
+    "7d": {
+      "total_observations": 1,
+      "kpis": {
+        "legal_warn_rate": 1.0,
+        "disclosure_missing_rate": 1.0,
+        "api_terms_pending_rate": 1.0,
+        "secret_abort_count": 0,
+        "human_legal_review_rate": 1.0
+      },
+      "status_counts": {
+        "LEGAL_REVIEW_REQUIRED": 1
+      },
+      "risk_id_counts": {
+        "AFFILIATE_DISCLOSURE_REQUIRED": 1,
+        "API_TERMS_CHECK_REQUIRED": 1
+      }
+    },
+    "30d": {
+      "total_observations": 1,
+      "kpis": {
+        "legal_warn_rate": 1.0,
+        "disclosure_missing_rate": 1.0,
+        "api_terms_pending_rate": 1.0,
+        "secret_abort_count": 0,
+        "human_legal_review_rate": 1.0
+      },
+      "status_counts": {
+        "LEGAL_REVIEW_REQUIRED": 1
+      },
+      "risk_id_counts": {
+        "AFFILIATE_DISCLOSURE_REQUIRED": 1,
+        "API_TERMS_CHECK_REQUIRED": 1
+      }
+    },
+    "all": {
+      "total_observations": 1,
+      "kpis": {
+        "legal_warn_rate": 1.0,
+        "disclosure_missing_rate": 1.0,
+        "api_terms_pending_rate": 1.0,
+        "secret_abort_count": 0,
+        "human_legal_review_rate": 1.0
+      },
+      "status_counts": {
+        "LEGAL_REVIEW_REQUIRED": 1
+      },
+      "risk_id_counts": {
+        "AFFILIATE_DISCLOSURE_REQUIRED": 1,
+        "API_TERMS_CHECK_REQUIRED": 1
+      }
+    }
+  }
+}

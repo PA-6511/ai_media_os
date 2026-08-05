@@ -1,0 +1,20 @@
+{
+  "phase": "Phase 7-13",
+  "status": "PASS_RUNBOOK_ONLY",
+  "production_status": "NO_GO",
+  "wordpress_draft_creation": "NO_GO",
+  "wordpress_write_executed": false,
+  "wordpress_api_call_allowed": false,
+  "publish_allowed": false,
+  "approve_draft_create_only_currently_allowed": false,
+  "unlock_in_this_phase": false,
+  "runbook_is_execution_permission": false,
+  "runbook_path": "docs/runbooks/phase7_13_first_controlled_wordpress_draft_creation_operator_runbook.md",
+  "missing_sections": [],
+  "missing_required_lines": [],
+  "dangerous_hits": [],
+  "errors": [],
+  "warnings": [],
+  "allowed_next_step": "Phase 7-14 pre-live unlock final freeze/go report",
+  "checked_at": "2026-05-27T14:01:25.173167+00:00"
+}

@@ -1,0 +1,344 @@
+{
+  "phase_identifier": "16-7",
+  "phase_title": "実測入力検証結果レポート設計",
+  "phase_purpose": "Phase 16 実測入力受領・検証層：Phase 16-4（形式検証）、Phase 16-2（完全性・署名・整合性検証）、Phase 16-5（証跡固定）の検証結果を統合し、実測入力データの検証が成功したか失敗したかを総合的に報告するレポート構造を設計する",
+  "execution_context": "reports-only design phase; design of validation result reporting structure only, no actual validation result reporting yet",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only"
+  },
+  "governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "safety_rule": "All blocked_actions remain strictly prohibited. Validation result reporting is design-only; no actual validation result reports are generated. No app/tests implementation permitted.",
+    "hard_stop_condition": "This phase is design-only. No actual validation reporting is performed."
+  },
+  "validation_result_reporting_purpose": {
+    "purpose": "Create unified validation result report aggregating outcomes from all three validation layers (format, completeness/signature/consistency, integrity/evidence lock) and determining overall validation success or failure",
+    "report_timing": "Following completion of Phase 16-4, Phase 16-2, and Phase 16-5 validation procedures",
+    "report_inputs": [
+      "Phase 16-4 format validation report (PASSED_FORMAT or FAILED_FORMAT)",
+      "Phase 16-2 completeness/signature/consistency validation report (PASSED_VALIDATION, FAILED_*, or PASSED_WITH_WARNINGS)",
+      "Phase 16-5 evidence lock verification result (LOCKED or TAMPERING_DETECTED)",
+      "Phase 16-1 receipt record metadata"
+    ],
+    "report_outputs": [
+      "Phase 16-7 unified validation result report determining: VALIDATION_PASSED, VALIDATION_FAILED_RETURNABLE, VALIDATION_FAILED_HALT, or VALIDATION_PASSED_WITH_WARNINGS"
+    ],
+    "downstream_consumer": "Phase 16-8 (Phase 15-7/15-8 measurement workflow execution feasibility)"
+  },
+  "validation_result_aggregation_logic": {
+    "aggregation_rule_1_format_required": {
+      "rule_id": "AGGREGATE_RULE_FORMAT",
+      "rule": "Format validation (Phase 16-4) must be PASSED_FORMAT",
+      "condition": "IF phase16_4_format_validation_final_status != PASSED_FORMAT THEN overall_result = VALIDATION_FAILED_RETURNABLE",
+      "rationale": "If data format is invalid, cannot proceed to deeper validation; returnable to reviewer for reformatting"
+    },
+    "aggregation_rule_2_signature_critical": {
+      "rule_id": "AGGREGATE_RULE_SIGNATURE",
+      "rule": "Authentication validation (Phase 16-2 signature check) must be AUTHENTICATED",
+      "condition": "IF phase16_2_authentication_status != AUTHENTICATED THEN overall_result = VALIDATION_FAILED_HALT",
+      "rationale": "Authentication failure indicates potential tampering or security issue; must halt, not return"
+    },
+    "aggregation_rule_3_completeness_required": {
+      "rule_id": "AGGREGATE_RULE_COMPLETENESS",
+      "rule": "Completeness validation (Phase 16-2) must be COMPLETE",
+      "condition": "IF phase16_2_completeness_status != COMPLETE THEN overall_result = VALIDATION_FAILED_RETURNABLE",
+      "rationale": "Missing fields are correctable by reviewer"
+    },
+    "aggregation_rule_4_consistency_important": {
+      "rule_id": "AGGREGATE_RULE_CONSISTENCY",
+      "rule": "Consistency validation (Phase 16-2) should be CONSISTENT",
+      "condition": "IF phase16_2_consistency_status == INCONSISTENT THEN overall_result = VALIDATION_FAILED_RETURNABLE; IF CONSISTENCY_WARNING THEN flag as warning_present",
+      "rationale": "Consistency failures are returnable unless they involve authentication"
+    },
+    "aggregation_rule_5_integrity_absolute": {
+      "rule_id": "AGGREGATE_RULE_INTEGRITY",
+      "rule": "Data integrity (Phase 16-5) must show LOCKED (hash verified OK)",
+      "condition": "IF phase16_5_integrity_verification_status != LOCKED THEN overall_result = VALIDATION_FAILED_HALT",
+      "rationale": "Tampering detected must halt immediately; not returnable"
+    },
+    "aggregation_rule_6_combined_pass_logic": {
+      "rule_id": "AGGREGATE_RULE_PASS",
+      "rule": "All validation layers must pass to achieve VALIDATION_PASSED",
+      "logic": "IF (format=PASSED AND signature=AUTHENTICATED AND completeness=COMPLETE AND consistency=CONSISTENT AND integrity=LOCKED) THEN overall_result = VALIDATION_PASSED; ELSE if warnings_present THEN VALIDATION_PASSED_WITH_WARNINGS",
+      "rationale": "All layers must succeed; warnings are tolerable in PASSED_WITH_WARNINGS state"
+    }
+  },
+  "unified_validation_result_report_structure": {
+    "report_id": "UNIFIED_ACTUAL_MEASUREMENT_VALIDATION_RESULT_REPORT_v1",
+    "report_elements": {
+      "validation_summary": {
+        "field_name": "validation_execution_summary",
+        "type": "object",
+        "elements": {
+          "validation_completed_timestamp": "ISO8601 - when all validation layers completed",
+          "total_validation_checks_performed": "Count of all validation checks across 3 layers",
+          "total_validation_checks_passed": "Count of checks that passed",
+          "total_validation_checks_failed": "Count of checks that failed",
+          "validation_pass_rate": "Percentage (passed / total * 100)"
+        }
+      },
+      "phase_16_4_format_validation_summary": {
+        "field_name": "format_validation_layer_status",
+        "type": "object",
+        "elements": {
+          "phase_16_4_format_validation_final_status": "PASSED_FORMAT or FAILED_FORMAT",
+          "format_check_count": "Total format checks performed",
+          "format_check_pass_count": "Format checks passed",
+          "format_check_fail_count": "Format checks failed",
+          "failing_fields": "List of fields that failed format validation (if any)",
+          "format_issues_summary": "Summary of format problems"
+        }
+      },
+      "phase_16_2_completeness_validation_summary": {
+        "field_name": "completeness_validation_layer_status",
+        "type": "object",
+        "elements": {
+          "phase_16_2_completeness_status": "COMPLETE or INCOMPLETE",
+          "required_fields_check_count": "Total required fields checked",
+          "required_fields_present_count": "Fields confirmed present",
+          "required_fields_missing_count": "Fields missing",
+          "missing_fields_list": "List of missing fields (if any)",
+          "completeness_issues_summary": "Summary of completeness problems"
+        }
+      },
+      "phase_16_2_authentication_validation_summary": {
+        "field_name": "authentication_validation_layer_status",
+        "type": "object",
+        "elements": {
+          "phase_16_2_authentication_status": "AUTHENTICATED or NOT_AUTHENTICATED",
+          "phase_15_1_signature_status": "AUTHENTICATED / NOT_AUTHENTICATED / NO_SIGNATURE",
+          "phase_15_2_signature_status": "AUTHENTICATED / NOT_AUTHENTICATED / NO_SIGNATURE",
+          "authentication_algorithm": "Algorithm used (RSA-2048, ECDSA-256, JWT, MFA, etc.)",
+          "authentication_issues": "Any signature verification failures or weak algorithms"
+        }
+      },
+      "phase_16_2_consistency_validation_summary": {
+        "field_name": "consistency_validation_layer_status",
+        "type": "object",
+        "elements": {
+          "phase_16_2_consistency_status": "CONSISTENT / INCONSISTENT / WARNING",
+          "consistency_checks_performed": [
+            "Reviewer identity coherence",
+            "Timestamp order coherence",
+            "Decision logic coherence",
+            "Evidence reference compatibility",
+            "Confidence-judgment alignment"
+          ],
+          "consistency_check_results": "For each check: PASS / FAIL / WARNING",
+          "consistency_failures_list": "Any inconsistencies detected",
+          "consistency_warnings_list": "Any warnings flagged"
+        }
+      },
+      "phase_16_5_integrity_validation_summary": {
+        "field_name": "integrity_validation_layer_status",
+        "type": "object",
+        "elements": {
+          "phase_16_5_integrity_verification_status": "LOCKED / TAMPERING_DETECTED",
+          "phase_15_1_data_hash_verified": "boolean - hash recomputed and matched",
+          "phase_15_2_data_hash_verified": "boolean - hash recomputed and matched",
+          "integrity_check_timestamp": "When integrity verification was performed",
+          "tampering_detected": "If any hash mismatch or audit log issues found",
+          "tamper_details": "Description of tampering (if detected)"
+        }
+      },
+      "overall_validation_result": {
+        "field_name": "validation_final_overall_status",
+        "type": "enum",
+        "allowed_values": [
+          "VALIDATION_PASSED",
+          "VALIDATION_PASSED_WITH_WARNINGS",
+          "VALIDATION_FAILED_RETURNABLE",
+          "VALIDATION_FAILED_HALT"
+        ],
+        "logic": {
+          "VALIDATION_PASSED": "All 5 layers (format, completeness, signature, consistency, integrity) PASSED; no issues",
+          "VALIDATION_PASSED_WITH_WARNINGS": "All critical layers passed, but warnings flagged (e.g., confidence-judgment mismatch)",
+          "VALIDATION_FAILED_RETURNABLE": "Format, completeness, or consistency failures; can be corrected and resubmitted",
+          "VALIDATION_FAILED_HALT": "Signature or integrity failures; cannot be corrected; requires halt/escalation"
+        }
+      },
+      "recommended_next_step": {
+        "field_name": "validation_result_recommended_action",
+        "type": "enum",
+        "allowed_values": [
+          "PROCEED_TO_PHASE_16_8_FEASIBILITY_CHECK",
+          "REQUEST_CORRECTION_AND_RESUBMISSION",
+          "HALT_AND_ESCALATE_TO_AUTHORITY",
+          "HOLD_WITH_WARNINGS_FOR_REVIEW"
+        ],
+        "logic": {
+          "PROCEED": "If VALIDATION_PASSED or VALIDATION_PASSED_WITH_WARNINGS",
+          "REQUEST_CORRECTION": "If VALIDATION_FAILED_RETURNABLE",
+          "HALT_AND_ESCALATE": "If VALIDATION_FAILED_HALT",
+          "HOLD_WITH_WARNINGS": "If VALIDATION_PASSED_WITH_WARNINGS but human review recommended"
+        }
+      },
+      "phase_16_3_integration": {
+        "field_name": "integration_with_phase_16_3_assessment",
+        "type": "object",
+        "description": "Connection to Phase 16-3 pre-decision update feasibility assessment",
+        "elements": {
+          "validation_passed_sufficient_for_16_3": "Is validation outcome sufficient for Phase 16-3 to proceed? (YES if VALIDATION_PASSED; CONDITIONAL if PASSED_WITH_WARNINGS)",
+          "warnings_impact_on_16_3": "Do warnings affect Phase 16-3 feasibility assessment?",
+          "phase_16_3_readiness_condition": "Phase 16-3 READY_1_VALIDATION_PASSED condition: met if validation status in [VALIDATION_PASSED, VALIDATION_PASSED_WITH_WARNINGS]"
+        }
+      }
+    }
+  },
+  "validation_result_workflow": {
+    "step_1_collect_validation_outcomes": {
+      "action": "Gather Phase 16-4, Phase 16-2 (all sub-checks), and Phase 16-5 validation reports",
+      "prerequisite": "All three validation layers must have executed"
+    },
+    "step_2_assess_format_layer": {
+      "action": "Check Phase 16-4 format_validation_final_status",
+      "pass_criterion": "PASSED_FORMAT",
+      "fail_criterion": "FAILED_FORMAT → VALIDATION_FAILED_RETURNABLE"
+    },
+    "step_3_assess_signature_layer": {
+      "action": "Check Phase 16-2 authentication_status",
+      "pass_criterion": "AUTHENTICATED",
+      "fail_criterion": "NOT_AUTHENTICATED → VALIDATION_FAILED_HALT"
+    },
+    "step_4_assess_completeness_layer": {
+      "action": "Check Phase 16-2 completeness_status",
+      "pass_criterion": "COMPLETE",
+      "fail_criterion": "INCOMPLETE → VALIDATION_FAILED_RETURNABLE"
+    },
+    "step_5_assess_consistency_layer": {
+      "action": "Check Phase 16-2 consistency_status",
+      "pass_criterion": "CONSISTENT or WARNING",
+      "fail_criterion": "INCONSISTENT → VALIDATION_FAILED_RETURNABLE; WARNING → flag as warning_present"
+    },
+    "step_6_assess_integrity_layer": {
+      "action": "Check Phase 16-5 integrity_verification_status",
+      "pass_criterion": "LOCKED",
+      "fail_criterion": "TAMPERING_DETECTED → VALIDATION_FAILED_HALT"
+    },
+    "step_7_aggregate_and_synthesize": {
+      "action": "Apply aggregation rules to determine overall_validation_result",
+      "logic": "Synthesize outcomes from all 5 layers using aggregation_rule_1 through rule_6",
+      "output": "validation_final_overall_status"
+    },
+    "step_8_determine_recommended_action": {
+      "action": "Based on overall_validation_result, set validation_result_recommended_action",
+      "mapping": "VALIDATION_PASSED → PROCEED; PASSED_WITH_WARNINGS → HOLD_WITH_WARNINGS or PROCEED; FAILED_RETURNABLE → REQUEST_CORRECTION; FAILED_HALT → HALT_AND_ESCALATE"
+    },
+    "step_9_generate_report": {
+      "action": "Generate unified_validation_result_report with all findings",
+      "output": "phase16_7_validation_result_report_TIMESTAMP.json"
+    }
+  },
+  "validation_result_report_examples": {
+    "example_1_passed": {
+      "scenario": "All validation layers pass; no warnings",
+      "format_status": "PASSED_FORMAT",
+      "signature_status": "AUTHENTICATED",
+      "completeness_status": "COMPLETE",
+      "consistency_status": "CONSISTENT",
+      "integrity_status": "LOCKED",
+      "overall_result": "VALIDATION_PASSED",
+      "recommended_action": "PROCEED_TO_PHASE_16_8_FEASIBILITY_CHECK"
+    },
+    "example_2_passed_with_warnings": {
+      "scenario": "All critical layers pass; consistency has warning (confidence-judgment mismatch)",
+      "format_status": "PASSED_FORMAT",
+      "signature_status": "AUTHENTICATED",
+      "completeness_status": "COMPLETE",
+      "consistency_status": "WARNING",
+      "integrity_status": "LOCKED",
+      "overall_result": "VALIDATION_PASSED_WITH_WARNINGS",
+      "recommended_action": "HOLD_WITH_WARNINGS_FOR_REVIEW",
+      "next_step_after_review": "If approved: PROCEED_TO_PHASE_16_8; If rejected: REQUEST_CORRECTION"
+    },
+    "example_3_failed_returnable": {
+      "scenario": "Format has missing fields; signature OK; integrity OK",
+      "format_status": "FAILED_FORMAT",
+      "signature_status": "AUTHENTICATED",
+      "completeness_status": "INCOMPLETE",
+      "consistency_status": "NOT_CHECKED (format failed)",
+      "integrity_status": "LOCKED",
+      "overall_result": "VALIDATION_FAILED_RETURNABLE",
+      "recommended_action": "REQUEST_CORRECTION_AND_RESUBMISSION",
+      "correction_required": "Provide missing fields; reformat; resubmit via Phase 16-1"
+    },
+    "example_4_failed_halt": {
+      "scenario": "Signature verification fails; indicates tampering or authentication issue",
+      "format_status": "PASSED_FORMAT",
+      "signature_status": "NOT_AUTHENTICATED",
+      "completeness_status": "COMPLETE",
+      "consistency_status": "UNKNOWN (signature failed first)",
+      "integrity_status": "NOT_CHECKED_DUE_TO_SIGNATURE_FAILURE",
+      "overall_result": "VALIDATION_FAILED_HALT",
+      "recommended_action": "HALT_AND_ESCALATE_TO_AUTHORITY",
+      "escalation_reason": "Potential tampering or authentication system compromise"
+    },
+    "example_5_failed_halt_tampering": {
+      "scenario": "Data integrity check detects hash mismatch; data may be tampered",
+      "format_status": "PASSED_FORMAT",
+      "signature_status": "AUTHENTICATED",
+      "completeness_status": "COMPLETE",
+      "consistency_status": "CONSISTENT",
+      "integrity_status": "TAMPERING_DETECTED",
+      "overall_result": "VALIDATION_FAILED_HALT",
+      "recommended_action": "HALT_AND_ESCALATE_TO_AUTHORITY",
+      "escalation_reason": "Data tampering detected; security investigation required"
+    }
+  },
+  "phase_dependencies": {
+    "depends_on": [
+      "Phase 16-4: Format validation report",
+      "Phase 16-2: Completeness, signature, consistency validation reports",
+      "Phase 16-5: Integrity verification result"
+    ],
+    "feeds_into": [
+      "Phase 16-8: Phase 15-7/15-8 measurement workflow execution feasibility (receives validation result)",
+      "Phase 16-6: Failure handling (receives validation result if failed)"
+    ]
+  },
+  "design_review_checklist": [
+    "Aggregation logic covers all 5 validation layers (format, completeness, signature, consistency, integrity)",
+    "Format layer failure is flagged as RETURNABLE",
+    "Signature/authentication layer failure is flagged as HALT (not returnable)",
+    "Completeness and consistency failures are flagged as RETURNABLE",
+    "Integrity/tampering detection is flagged as HALT",
+    "Overall result logic correctly synthesizes layer outcomes",
+    "Recommended actions (PROCEED, REQUEST_CORRECTION, HALT_AND_ESCALATE, HOLD_WITH_WARNINGS) flow from overall result",
+    "Report structure aggregates findings from all three validation phases",
+    "Examples cover all five outcome scenarios (PASSED, PASSED_WITH_WARNINGS, FAILED_RETURNABLE, FAILED_HALT_SIGNATURE, FAILED_HALT_TAMPERING)",
+    "Phase 16-3 integration explicitly references validation outcome as readiness condition",
+    "All blocked actions remain in governance",
+    "production_status remains NO_GO (hardcoded)",
+    "Phase dependencies are accurate"
+  ],
+  "completion_gate": {
+    "gate_condition": "Validation result report design approved AND aggregation logic finalized",
+    "approval_required": "Human technical reviewer + Phase 16 design authority",
+    "prerequisite_for": "Phase 16-8 (Phase 15-7/15-8 measurement workflow execution feasibility) can begin once validation result design is approved"
+  },
+  "status": {
+    "phase_status": "DESIGN_ONLY",
+    "actual_validation_result_reporting_status": "NOT_YET_STARTED",
+    "integrated_decision_status": "NO_GO",
+    "receiver_validator_implementation_permission_status": "NOT_EFFECTIVE",
+    "app_implementation_status": "NO_GO",
+    "tests_implementation_status": "NO_GO",
+    "production_status": "NO_GO"
+  }
+}

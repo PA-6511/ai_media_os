@@ -1,0 +1,28 @@
+{
+  "phase": "LS-6D",
+  "status": "LS6D_REAL_PAYLOAD_HUMAN_REVIEW_PASSED_NO_EXECUTION",
+  "execution_mode": "REVIEW_ONLY",
+  "production_status": "NO_GO",
+  "actual_review": true,
+  "payload_ready": true,
+  "payload_title": "2.5次元の誘惑",
+  "payload_post_status": "draft",
+  "payload_content_format": "html",
+  "manual_publish_allowed": false,
+  "wordpress_write_allowed_by_this_phase": false,
+  "wordpress_api_call_executed": false,
+  "wordpress_write_executed": false,
+  "wordpress_draft_creation_executed": false,
+  "wordpress_existing_post_update_executed": false,
+  "post119_update_executed": false,
+  "publish_executed": false,
+  "approval_token_consumed": false,
+  "ls6b_rerun_executed": false,
+  "next_phase": {
+    "phase": "LS-6E",
+    "execution_allowed": false,
+    "requires_human_review_pass": true
+  },
+  "errors": [],
+  "generated_at": "2026-06-21T12:56:08.621359+00:00"
+}

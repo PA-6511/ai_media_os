@@ -1,0 +1,20 @@
+{
+  "phase": "N-2",
+  "name": "n2_wordpress_api_stability_policy",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "human_approval_required": true,
+  "wordpress_write_executed": false,
+  "wordpress_post_created": false,
+  "external_state_change": false,
+  "executor_action_allowed": false,
+  "network_observation_only": true,
+  "communication_test_only": true,
+  "allowed_methods": ["GET", "HEAD"],
+  "forbidden_methods": ["POST", "PUT", "PATCH", "DELETE"],
+  "thresholds": {
+    "pass_success_rate_percent": 99,
+    "warn_success_rate_percent": 95
+  }
+}

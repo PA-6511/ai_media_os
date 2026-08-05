@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M15",
+  "policy_id": "WORDPRESS_DRAFT_HUMAN_REVIEW_NO_CHANGE_POLICY_V1",
+  "operation_mode": "LOCAL_HUMAN_REVIEW_EVIDENCE_RECORDING_ONLY",
+  "content_item_id": "new-release-comic-20260703-001",
+  "wordpress_post_id": 192,
+  "required_human_review_verdict": "APPROVED_NO_CHANGE_REQUIRED",
+  "required_review_assertions": {
+    "title_confirmed": true,
+    "draft_status_confirmed": true,
+    "category_confirmed": true,
+    "body_layout_confirmed": true,
+    "dmm_button_display_confirmed": true,
+    "dmm_button_enabled_state_confirmed": true,
+    "secret_information_non_exposure_confirmed": true,
+    "publish_action_not_performed": true,
+    "change_required": false
+  },
+  "source_evidence_contract": {
+    "m14_result_digest_sha256": "364cf76c3db0d321f9dc31251224393b403030524bb834cb147dc5f3f4e2ef61",
+    "m13_result_digest_sha256": "34bb7a2cd15cfd829a805c1e974ca62cc453036132a25c41d7fd17b3ae681e0d",
+    "m13_consumption_digest_sha256": "a9c96f8fddc4bfebeebce2d535936a21e9214bb9ac6688e7277aa6def171aaba",
+    "payload_file_sha256": "30a70be4110e863a85e2896f69f5b3e51d814a6fd82d5489f899d8a244166d8f",
+    "payload_digest_sha256": "2ab27b59305dbae98f997ca3a460400298152f173ef605b534df922c187411c6",
+    "article_file_sha256": "de2739c8ae1aa4a50973b983964b05844086a2187b9ef337383ad6fa7123697d",
+    "m12_authorization_file_sha256": "7c9662a7a13502e165862e452427899228794bce6904a0215c45a5b54ba1142b",
+    "m12_authorization_digest_sha256": "d3ede61a71d75cbbc00a594f0a8d319aed0e598bd9c061609a52bed7e96d07c3"
+  },
+  "execution_boundary": {
+    "network_connection_allowed": false,
+    "dns_resolution_allowed": false,
+    "http_request_allowed": false,
+    "wordpress_access_allowed": false,
+    "wordpress_write_allowed": false,
+    "wordpress_update_allowed": false,
+    "wordpress_publish_allowed": false,
+    "wordpress_delete_allowed": false,
+    "category_operation_allowed": false,
+    "media_operation_allowed": false,
+    "authorization_issue_allowed": false,
+    "authorization_consumption_allowed": false,
+    "authorization_reuse_allowed": false,
+    "m13_rerun_allowed": false,
+    "m14_rerun_allowed": false,
+    "x_post_allowed": false,
+    "production_status": "NO_GO"
+  },
+  "secret_handling": {
+    "credential_access_allowed": false,
+    "credential_output_allowed": false,
+    "full_payload_output_allowed": false,
+    "full_post_content_output_allowed": false,
+    "full_wordpress_response_output_allowed": false,
+    "full_affiliate_url_output_allowed": false,
+    "dmm_identifier_output_allowed": false
+  },
+  "next_gate": {
+    "ready_for_separate_wordpress_publication_authorization_gate": true,
+    "ready_for_wordpress_publish": false
+  }
+}

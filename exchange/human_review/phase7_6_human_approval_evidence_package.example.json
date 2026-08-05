@@ -1,0 +1,21 @@
+{
+  "review_id": "phase7_6_human_approval_package_sample_001",
+  "phase": "Phase 7-6",
+  "operator": "human",
+  "decision": "ACKNOWLEDGE_PRE_UNLOCK_REVIEW_ONLY",
+  "target_item_count": 1,
+  "candidate_id": "phase7_1_sample_candidate_001",
+  "acknowledged_no_go": true,
+  "acknowledged_no_publish": true,
+  "acknowledged_single_item_only": true,
+  "acknowledged_freeze_on_mismatch": true,
+  "approval_scope": {
+    "draft_create_only": false,
+    "publish": false,
+    "update": false,
+    "delete": false,
+    "bulk": false,
+    "external_export": false
+  },
+  "note": "Pre-unlock review acknowledgement only. This is not permission to create a WordPress draft."
+}

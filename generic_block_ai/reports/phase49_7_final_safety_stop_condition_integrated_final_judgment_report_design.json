@@ -1,0 +1,35 @@
+{
+  "_meta": {
+    "phase": "49-7",
+    "phase_name": "発効直前・最終安全停止・キャンセル境界層",
+    "layer": "最終判定層 (final judgment layer)",
+    "title": "最終安全停止条件の統合最終判定レポート設計",
+    "created": "2026-05-14",
+    "author": "governance-framework",
+    "status": "PASS_DESIGN_ONLY",
+    "reports_only": true
+  },
+  "scope": "Phase 49-4 / 49-5 で実施された manual_release_go_authorization / actual_process_start_go_authorization 発効直前の最終安全停止条件確認結果に基づいて、両承認候補の最終状態を統合的に判定するレポートを設計層で定義する。判定対象：(1) manual_release_go_authorization の安全停止が成立したか、(2) actual_process_start_go_authorization の安全停止が成立したか、(3) 両承認候補の安全停止状態を統合判定し、production_status の最終状態を決定するか。",
+  "governance": {
+    "production_status": "NO_GO",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "report": {
+    "description": "Phase 49-7 では、Phase 49-4 / 49-5 で実施した最終安全停止条件確認結果に基づいて，両承認候補の最終状態を統合的に判定するレポートを 設計層で定義する。(1) manual_release_go_authorization 安全停止判定統合：Phase 49-4 で記録された安全停止条件確認結果をレビューし，manual_release_go_authorization の安全停止が成立したか を統合的に判定する。(2) actual_process_start_go_authorization 安全停止判定統合：Phase 49-5 で記録された安全停止条件確認結果をレビューし，actual_process_start_go_authorization の安全停止が成立したか を統合的に判定する。(3) 統合最終判定：両承認候補の安全停止状態を統合して以下のいずれかを判定する：①両候補が安全停止成立 → production_status は NO_GO 維持、②いずれか一方が安全停止成立，他方が不成立 → 部分 GO 状態（片方の承認候補は有効，他方は無効）、③両候補が安全停止不成立 → production_status は GO へ向けて準備（ただし実処理開始は次フェーズ以降）。これらの統合判定は全て 設計層（reports only）で行われ，実処理開始許可を含まない。",
+    "invariants": [
+      "NO_GO 維持または部分 GO 判定：統合判定プロセスを通じて production_status は NO_GO のままか，最多で部分 GO 状態であり、完全な GO（両承認候補安全停止不成立）でも実処理開始許可ではない",
+      "NOT_GRANTED 維持（該当時）：いずれかの承認候補が安全停止成立（NOT_GRANTED）のままである場合，該当承認候補は NOT_GRANTED を維持",
+      "reports only：統合判定レポート全体は報告書形式で実装される"
+    ],
+    "actions": [],
+    "notes": [
+      "Phase 49-7 は 設計層のみで実装される",
+      "統合判定は両承認候補の状態を同時に評価",
+      "部分 GO 状態（片方安全停止不成立 / 片方安全停止成立）の定義を明確化",
+      "実処理開始は Phase 50 以降で実施",
+      "実処理開始は NO_GO / 部分 GO のいずれでも許可ではない"
+    ]
+  }
+}

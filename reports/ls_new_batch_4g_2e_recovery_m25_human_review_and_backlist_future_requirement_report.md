@@ -1,0 +1,26 @@
+# LS-NEW-BATCH-4G-2E-RECOVERY-M25
+
+- Status: `PASS_WORDPRESS_TAWAWA_REFERENCE_LAYOUT_HUMAN_REVIEW_APPROVED_NO_CHANGE_REQUIRED_BACKLIST_FUTURE_REQUIREMENT_RECORDED_LOCAL_ONLY_NO_WORDPRESS_ACCESS`
+- Decision: `HUMAN_REVIEW_APPROVED_READY_FOR_SEPARATE_WORDPRESS_UPDATE_AUTHORIZATION_GATE_BACKLIST_REQUIREMENT_DEFERRED`
+- WordPress post ID: `192`
+- Human review completed: `true`
+- Human review verdict: `APPROVED_NO_CHANGE_REQUIRED`
+- Desktop verdict: `APPROVED_NO_CHANGE_REQUIRED`
+- Mobile verdict: `APPROVED_NO_CHANGE_REQUIRED`
+- M24 layout change required: `false`
+- Backlist carousel future requirement recorded: `true`
+- Backlist carousel implemented: `false`
+- Included in current update payload: `false`
+- Recommended future phase: `LS-NEW-SERIES-BACKLIST-1`
+- Comment status target: `closed`
+- Allowed update fields: `content, comment_status`
+- M24 rendered HTML modified: `false`
+- M24 CSS modified: `false`
+- M24 update payload modified: `false`
+- Network connection performed: `false`
+- WordPress access performed: `false`
+- WordPress update performed: `false`
+- Authorization issued: `false`
+- Production status: `NO_GO`
+- Ready for WordPress update authorization gate: `true`
+- Ready for WordPress update: `false`

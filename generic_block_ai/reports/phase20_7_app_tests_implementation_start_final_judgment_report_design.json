@@ -1,0 +1,169 @@
+{
+  "phase_id": "20-7",
+  "phase_name": "App/Tests Implementation Start Final Judgment Report Design",
+  "phase_japanese_name": "app/tests 実装開始最終判定レポート設計",
+  "purpose": "Design the final judgment report that aggregates Phase 20-1 through 20-6 outcomes and produces the authoritative IMPLEMENTATION_START_GO or IMPLEMENTATION_START_NO_GO determination template",
+  "layer": "pre_measurement_final_gate_layer",
+  "design_category": "reports_only",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only"
+  },
+  "phase_20_7_scope": {
+    "scope_1_input_aggregation": {
+      "scope_id": "INPUT_AGGREGATION",
+      "description": "Define required inputs from Phase 20-1 through 20-6",
+      "required_inputs": {
+        "input_20_1": {
+          "source_phase": "20-1",
+          "required_status": "PHASE19_RECEIPT_CONFIRMED",
+          "required_fields": [
+            "report_id",
+            "all_9_artifacts_received=true",
+            "all_consistency_checks_pass=true"
+          ]
+        },
+        "input_20_2": {
+          "source_phase": "20-2",
+          "required_status": "SAFETY_GATE_CLEARED",
+          "required_fields": [
+            "report_id",
+            "safety_gate_status",
+            "failing_checks (must be empty)"
+          ]
+        },
+        "input_20_3": {
+          "source_phase": "20-3",
+          "required_status": "FINAL_JUDGMENT_TEMPLATE_COMPLETE",
+          "required_fields": [
+            "judgment_id",
+            "gate_1 through gate_5 evaluation slots",
+            "final_determination field"
+          ]
+        },
+        "input_20_4": {
+          "source_phase": "20-4",
+          "required_status": "EVIDENCE_LOCK_RULES_READY",
+          "required_fields": [
+            "locking_procedure_steps",
+            "tamper_detection_rules TD1-TD4"
+          ]
+        },
+        "input_20_5": {
+          "source_phase": "20-5",
+          "required_status": "NO_OPEN_REJECTION_OR_HALT",
+          "required_fields": [
+            "rejection_category_rules",
+            "no_go_maintenance_invariants",
+            "open_items_count=0"
+          ]
+        },
+        "input_20_6": {
+          "source_phase": "20-6",
+          "required_status": "PRE_LAUNCH_ABORT_CHECKS_DEFINED",
+          "required_fields": [
+            "AB1-AB5 categories",
+            "PL1-PL8 checklist",
+            "abort_response_procedure"
+          ]
+        }
+      }
+    },
+    "scope_2_final_judgment_logic": {
+      "scope_id": "FINAL_JUDGMENT_LOGIC",
+      "description": "Rules for IMPLEMENTATION_START_GO or IMPLEMENTATION_START_NO_GO",
+      "rules": {
+        "rule_FJ1": {
+          "rule_id": "ALL_MINIMUM_GATES_MET",
+          "condition": "integrated_decision=GO AND receiver_validator_permission=EFFECTIVE AND dual_gate=UNLOCKED AND safety_gate=CLEARED AND human_final_approval=APPROVED",
+          "outcome": "IMPLEMENTATION_START_GO"
+        },
+        "rule_FJ2": {
+          "rule_id": "ANY_MINIMUM_GATE_NOT_MET",
+          "condition": "Any one of the five minimum gates is NOT_MET",
+          "outcome": "IMPLEMENTATION_START_NO_GO"
+        },
+        "rule_FJ3": {
+          "rule_id": "INTEGRITY_OR_ABORT_OVERRIDE",
+          "condition": "Any 20-4 tamper detection fail or any 20-6 pre-launch check fail",
+          "outcome": "IMPLEMENTATION_START_NO_GO (override)"
+        },
+        "rule_FJ4": {
+          "rule_id": "OPEN_REJECTION_OVERRIDE",
+          "condition": "Any unresolved Phase 20-5 rejection or HALT",
+          "outcome": "IMPLEMENTATION_START_NO_GO (override)"
+        }
+      }
+    },
+    "scope_3_report_structure": {
+      "scope_id": "REPORT_STRUCTURE",
+      "description": "Final judgment report structure",
+      "sections": {
+        "section_1_header": {
+          "report_id": "IMPLSTART_FINAL_<UTC_TIMESTAMP>",
+          "report_type": "app_tests_implementation_start_final_judgment",
+          "generated_at_utc": "RFC3339",
+          "generated_by": "authority_identifier"
+        },
+        "section_2_input_status_summary": {
+          "phase20_1_status": "PASS | FAIL",
+          "phase20_2_status": "PASS | FAIL",
+          "phase20_3_status": "PASS | FAIL",
+          "phase20_4_status": "PASS | FAIL",
+          "phase20_5_status": "PASS | FAIL",
+          "phase20_6_status": "PASS | FAIL"
+        },
+        "section_3_minimum_gate_evaluation": {
+          "gate_1_integrated_decision_go": "MET | NOT_MET",
+          "gate_2_receiver_validator_effective": "MET | NOT_MET",
+          "gate_3_dual_gate_unlocked": "MET | NOT_MET",
+          "gate_4_safety_gate_cleared": "MET | NOT_MET",
+          "gate_5_human_final_approval": "MET | NOT_MET"
+        },
+        "section_4_final_determination": {
+          "determination": "IMPLEMENTATION_START_GO | IMPLEMENTATION_START_NO_GO",
+          "applied_rules": [
+            "FJ1 | FJ2 | FJ3 | FJ4"
+          ],
+          "reason_summary": "human-readable reason"
+        },
+        "section_5_next_action": {
+          "if_go": "Proceed to Phase 20-8 authorization candidate evidence lock report",
+          "if_no_go": "Maintain NO_GO and route remediation via Phase 20-5/20-6"
+        }
+      }
+    }
+  },
+  "phase_20_7_governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "state_invariants": {
+      "integrated_decision": "NO_GO",
+      "receiver_validator_permission": "NOT_EFFECTIVE",
+      "app_implementation_status": "NO_GO",
+      "tests_implementation_status": "NO_GO"
+    },
+    "phase_20_7_completion_criteria": [
+      "20-1 through 20-6 input aggregation defined",
+      "Final judgment rule set FJ1-FJ4 defined",
+      "5-section final judgment report structure defined",
+      "All JSON validation passed",
+      "No changes to app/ or tests/ directories",
+      "All state invariants maintained"
+    ]
+  }
+}

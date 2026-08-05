@@ -1,0 +1,26 @@
+{
+  "phase": "Phase 8-4",
+  "name": "post_execution_verification_policy",
+  "policy_status": "VERIFY_ONLY",
+  "human_approval_required": true,
+  "publish_allowed": false,
+  "update_allowed": false,
+  "delete_allowed": false,
+  "auto_cleanup_allowed": false,
+  "auto_publish_allowed": false,
+  "required_evidence": [
+    "exchange/logs/phase8_3_first_one_item_wordpress_draft_create_result.json"
+  ],
+  "success_status": "DRAFT_CREATED_PENDING_HUMAN_REVIEW",
+  "not_executed_status": "NOT_EXECUTED_MISSING_CREDENTIALS",
+  "failure_statuses": [
+    "DRAFT_CREATE_FAILED_FREEZE_REQUIRED",
+    "ABORT"
+  ],
+  "required_success_fields": [
+    "post_id",
+    "post_status"
+  ],
+  "required_post_status": "draft",
+  "allowed_next_step": "Phase 8-5 first controlled draft creation completion report"
+}

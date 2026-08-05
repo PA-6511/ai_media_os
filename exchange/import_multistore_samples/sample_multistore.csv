@@ -1,0 +1,2 @@
+batch_id,item_id,title,volume_label,release_date,publisher,authors,category,source_discovery,publisher_confirmation_url,amazon_url,rakuten_kobo_url,dmm_url,amazon_price_jpy,rakuten_kobo_price_jpy,dmm_price_jpy,image_source,image_url,description_mode,x_post_required,wordpress_status
+example-20260717,example-20260717-001,サンプル作品,第1巻,2026-07-17,サンプル出版社,著者A|著者B,comic,manual,,,,,,,,none,,minimal,true,draft

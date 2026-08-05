@@ -1,0 +1,88 @@
+{
+  "schema_version": "gib.alpha4.validation_report.v0.1",
+  "block_id": "GIB",
+  "alpha_version": "alpha4",
+  "final_status": "PASS_DESIGN_ONLY_ALPHA4_RUNTIME_GATE_FIXED",
+  "production_status": "NO_GO",
+  "execution_mode": "DRY_RUN_ONLY",
+  "active_runtime_lock": "stub",
+  "policy_flags": {
+    "model_runtime_enabled": false,
+    "real_llm_call_allowed": false,
+    "execution_allowed": false
+  },
+  "all_scenarios_match_expected": true,
+  "hard_block_for_non_stub_runtime": true,
+  "scenario_count": 4,
+  "scenario_results": [
+    {
+      "index": 0,
+      "requested_runtime": "stub",
+      "active_runtime": "stub",
+      "allowed": true,
+      "expected_allowed": true,
+      "matches_expected": true,
+      "blocked_reason": null,
+      "required_flags": [],
+      "missing_flags": []
+    },
+    {
+      "index": 1,
+      "requested_runtime": "ollama",
+      "active_runtime": "stub",
+      "allowed": false,
+      "expected_allowed": false,
+      "matches_expected": true,
+      "blocked_reason": "runtime_call_not_allowed_by_policy_flags",
+      "required_flags": [
+        "model_runtime_enabled",
+        "real_llm_call_allowed",
+        "execution_allowed"
+      ],
+      "missing_flags": [
+        "model_runtime_enabled",
+        "real_llm_call_allowed",
+        "execution_allowed"
+      ]
+    },
+    {
+      "index": 2,
+      "requested_runtime": "llama_cpp",
+      "active_runtime": "stub",
+      "allowed": false,
+      "expected_allowed": false,
+      "matches_expected": true,
+      "blocked_reason": "runtime_call_not_allowed_by_policy_flags",
+      "required_flags": [
+        "model_runtime_enabled",
+        "real_llm_call_allowed",
+        "execution_allowed"
+      ],
+      "missing_flags": [
+        "model_runtime_enabled",
+        "real_llm_call_allowed",
+        "execution_allowed"
+      ]
+    },
+    {
+      "index": 3,
+      "requested_runtime": "unknown_runtime",
+      "active_runtime": "stub",
+      "allowed": false,
+      "expected_allowed": false,
+      "matches_expected": true,
+      "blocked_reason": "unsupported_runtime",
+      "required_flags": [],
+      "missing_flags": []
+    }
+  ],
+  "beta0_promotion_requirements": [
+    "production_status must transition from NO_GO to CONDITIONAL_GO or GO via formal approval",
+    "model_runtime_enabled must be true",
+    "real_llm_call_allowed must be true",
+    "execution_allowed must be true",
+    "external_network_allowed must be explicitly approved",
+    "credential_access_allowed policy must remain least-privileged and audited",
+    "dry-run evidence and rollback plan must be documented"
+  ]
+}

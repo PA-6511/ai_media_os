@@ -1,0 +1,90 @@
+{
+  "phase": "PR_WARN_BACKFILL_PHASE1F_LIVE_ROUTE",
+  "mode": "DRY_RUN",
+  "status": "PASS_DRY_RUN_FIRST_ONLY",
+  "target_post_id": 101,
+  "title": "呪術廻戦は何巻まで出てる？最新巻・関連情報まとめ",
+  "approval_file": "exchange/human_review/pr_warn_backfill_phase1_101_human_approval.approved.json",
+  "approved": true,
+  "wordpress_write_allowed": true,
+  "max_live_updates": 1,
+  "phase0_source": "reports/pr_warn_backfill_phase0_dry_run_20260614.json",
+  "prior_phase1f_abort_log": "/home/deploy/ai_media_os/exchange/logs/pr_warn_backfill_phase1f_101_live_result.json",
+  "prior_phase1f_abort_status": "ABORT_LIVE_ROUTE_NOT_AVAILABLE",
+  "live_route_available": false,
+  "live_mode_enabled": false,
+  "wordpress_write_executed": false,
+  "update_count": 0,
+  "proposed_notice_text": "PR：本記事には広告が含まれます。",
+  "proposed_insert_position": "after_h1",
+  "proposed_changed_fields": [
+    "content"
+  ],
+  "forbidden_changed_fields": [
+    "title",
+    "url",
+    "cta",
+    "featured_image",
+    "status",
+    "category",
+    "tag",
+    "publish"
+  ],
+  "payload_preview": {
+    "target_post_id": 101,
+    "operation": "content_patch_preview_only",
+    "patch": {
+      "insert_position": "after_h1",
+      "notice_text": "PR：本記事には広告が含まれます。"
+    },
+    "write_enabled": false
+  },
+  "snapshot_plan": {
+    "required_before_live": true,
+    "fields": [
+      "post_id",
+      "title",
+      "content",
+      "status",
+      "link",
+      "modified"
+    ],
+    "snapshot_output_path": "exchange/logs/pr_warn_backfill_phase1g_101_pre_live_snapshot.json",
+    "if_snapshot_failed": "live_forbidden"
+  },
+  "rollback_plan": {
+    "enabled_for_live_phase": true,
+    "single_item_only": true,
+    "target_post_id": 101,
+    "restore_from_snapshot_field": "content",
+    "verify_after_rollback": true,
+    "rollback_log_path": "exchange/logs/pr_warn_backfill_phase1g_101_rollback_result.json"
+  },
+  "post_live_verification_plan": {
+    "fetch_target_post_again": true,
+    "verify_pr_notice_inserted": true,
+    "verify_immutable_fields": [
+      "title",
+      "url",
+      "cta",
+      "featured_image",
+      "status",
+      "category",
+      "tag"
+    ],
+    "verify_update_count_equals": 1,
+    "run_draft_check": true,
+    "verify_pr_warn_decrease_for_target": true,
+    "if_any_mismatch": "stop_additional_execution"
+  },
+  "safety_flags": {
+    "single_post_only": true,
+    "max_live_updates_equals_one": true,
+    "content_only_change": true,
+    "forbidden_field_updates_blocked": true,
+    "bulk_backfill_forbidden": true,
+    "publish_forbidden": true,
+    "wordpress_api_send_disabled_in_phase": true
+  },
+  "created_at": "2026-06-20T00:39:21.240569+00:00"
+}

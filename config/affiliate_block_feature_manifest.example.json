@@ -1,0 +1,9 @@
+{
+  "block_type": "affiliate",
+  "features": {
+    "wordpress_draft": true,
+    "x_draft_generation": true,
+    "human_approval": true,
+    "revenue_tracking": true
+  }
+}

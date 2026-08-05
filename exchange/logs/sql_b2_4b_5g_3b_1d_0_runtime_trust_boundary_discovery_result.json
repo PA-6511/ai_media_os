@@ -1,0 +1,140 @@
+{
+  "phase": "SQL-B2-4B-5G-3B-1D-0",
+  "result": "PASS_RUNTIME_TRUST_BOUNDARY_DISCOVERY_CORRECTED_NO_GO",
+  "recorded_at": "2026-07-14T16:22:59.120635+00:00",
+  "git": {
+    "branch": "feature/sql-b2-4b-slack-production-readiness",
+    "source_commit": "455191f71777eb287a987a650b7e3affad15a2a9",
+    "source_commit_short": "455191f"
+  },
+  "correction": {
+    "flawed_temporary_log_removed": true,
+    "corrected_log_used": true,
+    "secret_content_read": false,
+    "secret_content_hashed": false,
+    "secret_content_output": false
+  },
+  "trusted_verifier_boundary": {
+    "status": "ESTABLISHED",
+    "repository_unit_sha256": "1d71fead2e78cc490042c22a3529aaea6295e0f6fd463daa24273e8215bbcccd",
+    "installed_unit_sha256": "1d71fead2e78cc490042c22a3529aaea6295e0f6fd463daa24273e8215bbcccd",
+    "repository_and_installed_match": true,
+    "installed_verifier_sha256": "439903b8b7b3710ea23e1963bac34a7d019da3364b63ab70f780db66f71f020a",
+    "host_switch_authorization": "CONSUMED",
+    "further_host_unit_switch": "LOCKED"
+  },
+  "worker_runtime_boundary": {
+    "status": "NOT_ESTABLISHED",
+    "runtime_metadata": {
+      "repository": {
+        "owner": "deploy",
+        "group": "deploy",
+        "mode": "0775",
+        "is_symlink": false,
+        "is_directory": true,
+        "is_regular": false,
+        "writable_by_deploy": true
+      },
+      "virtualenv": {
+        "owner": "deploy",
+        "group": "deploy",
+        "mode": "0775",
+        "is_symlink": false,
+        "is_directory": true,
+        "is_regular": false,
+        "writable_by_deploy": true
+      },
+      "site_packages": {
+        "owner": "deploy",
+        "group": "deploy",
+        "mode": "0775",
+        "is_symlink": false,
+        "is_directory": true,
+        "is_regular": false,
+        "writable_by_deploy": true
+      },
+      "runtime_python": {
+        "owner": "deploy",
+        "group": "deploy",
+        "mode": "0777",
+        "is_symlink": true,
+        "is_directory": false,
+        "is_regular": false,
+        "writable_by_deploy": true,
+        "resolved_target": "/usr/bin/python3.10"
+      },
+      "runtime_entrypoint": {
+        "owner": "deploy",
+        "group": "deploy",
+        "mode": "0664",
+        "is_symlink": false,
+        "is_directory": false,
+        "is_regular": true,
+        "writable_by_deploy": true,
+        "sha256": "7739ce3233102b7f1fcf5b0160c6203c61db31652ddac9c98c9dabe27f0cb8e6"
+      }
+    },
+    "repository_runtime_used_by_exec_start_pre": true,
+    "repository_runtime_used_by_exec_start": true,
+    "host_prestart_mutation_risk": true
+  },
+  "secret_boundary": {
+    "status": "NOT_ESTABLISHED",
+    "slack_env_metadata": {
+      "owner": "deploy",
+      "group": "deploy",
+      "mode": "0600",
+      "is_symlink": false,
+      "is_directory": false,
+      "is_regular": true,
+      "writable_by_deploy": true,
+      "content_read": false,
+      "content_hashed": false,
+      "content_output": false
+    },
+    "root_managed_immutable_secret": false
+  },
+  "sandbox": {
+    "configured": true,
+    "protect_system": "strict",
+    "protect_home": "read-only",
+    "repository_read_only_inside_service": true,
+    "host_prestart_immutability_provided": false
+  },
+  "database_safety": {
+    "production_sha256": "a4c5c6b3c9f016cd745cdb9c531c807fe5bc4a3ac28f9422609dfa96cd7b37d8",
+    "production_database_unchanged": true,
+    "readiness_quick_check": "ok",
+    "readiness_approval_count": 0
+  },
+  "systemd_state": {
+    "fragment_path": "/etc/systemd/system/ai-media-os-slack-approval-readiness.service",
+    "need_daemon_reload": "no",
+    "active_state": "inactive",
+    "sub_state": "dead",
+    "unit_file_state": "disabled",
+    "main_pid": 0,
+    "enabled": false,
+    "running": false
+  },
+  "decision": {
+    "trusted_verifier_boundary": "ESTABLISHED",
+    "worker_runtime_immutable_boundary": "NOT_ESTABLISHED",
+    "secret_file_root_immutable_boundary": "NOT_ESTABLISHED",
+    "gate_creation_allowed": "HOLD",
+    "systemd_block_test_allowed": "HOLD",
+    "service_start_allowed": false,
+    "unit_enable_allowed": false,
+    "autostart_approval": "NOT_APPROVED",
+    "final_decision": "NO_GO"
+  },
+  "governance": {
+    "production_status": "NO_GO",
+    "safety_state": "TRUSTED_VERIFIER_ESTABLISHED_WORKER_AND_SECRET_BOUNDARIES_PENDING",
+    "production_database_write_allowed": false,
+    "gate_creation_allowed": false,
+    "systemd_block_test_allowed": false,
+    "service_start_allowed": false,
+    "unit_enable_allowed": false
+  }
+}

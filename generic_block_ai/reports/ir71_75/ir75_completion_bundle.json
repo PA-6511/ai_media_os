@@ -1,0 +1,305 @@
+{
+  "schema_version": "ir75_phase_71_75_completion_bundle_v1",
+  "phase": "IR75",
+  "generated_at": "2026-05-24T14:14:46.090224+00:00",
+  "source_task_id": "ir71_75_live_trial",
+  "new_cycle_id": "IR71_PLUS_CYCLE_A",
+  "ir71_result": {
+    "schema_version": "ir71_new_cycle_design_gate_v1",
+    "phase": "IR71",
+    "generated_at": "2026-05-24T14:14:46.089342+00:00",
+    "source_task_id": "ir71_75_live_trial",
+    "new_cycle_design_gate_decision": "NEW_CYCLE_DESIGN_APPROVED",
+    "validation_result": "PASS",
+    "validation_failed_checks": [],
+    "validation_warnings": [],
+    "gate_record": {
+      "gate_id": "ir71_gate_ir71_75_live_trial_20260524T141446Z",
+      "generated_at": "2026-05-24T14:14:46.089309+00:00",
+      "source_task_id": "ir71_75_live_trial",
+      "new_cycle_id": "IR71_PLUS_CYCLE_A",
+      "design_owner": "design_owner_a",
+      "prior_cycle_final_decision": "NO_GO_LOCKED_DRY_RUN_ONLY",
+      "prior_cycle_locked": true,
+      "decision": "NEW_CYCLE_DESIGN_APPROVED",
+      "safety_gate_snapshot": {
+        "dry_run": "maintained",
+        "OBSERVE": "maintained",
+        "submission_execution_blocked": true,
+        "execution_policy_execute": false,
+        "external_write_executed": false,
+        "network_transmission_executed": false,
+        "production_release": false,
+        "GitHub_push": "未実行"
+      }
+    },
+    "gate_hash": "7a1f6f139c1955a1200cf4c4b8e2ad44b55dc394ecdebc5c21d9735a3b4d9f7d",
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "ir72_result": {
+    "schema_version": "ir72_cycle_approver_attestation_v1",
+    "phase": "IR72",
+    "generated_at": "2026-05-24T14:14:46.089612+00:00",
+    "source_task_id": "ir71_75_live_trial",
+    "validation_result": "PASS",
+    "validation_failed_checks": [],
+    "validation_warnings": [],
+    "attestation_record": {
+      "attestation_id": "ir72_attest_ir71_75_live_trial_20260524T141446Z",
+      "generated_at": "2026-05-24T14:14:46.089605+00:00",
+      "source_task_id": "ir71_75_live_trial",
+      "new_cycle_id": "IR71_PLUS_CYCLE_A",
+      "approver": "approver_a",
+      "attestation": "approved_for_new_cycle_design_scope_only",
+      "linked_ir71_gate_hash": "7a1f6f139c1955a1200cf4c4b8e2ad44b55dc394ecdebc5c21d9735a3b4d9f7d",
+      "safety_gate_snapshot": {
+        "dry_run": "maintained",
+        "OBSERVE": "maintained",
+        "submission_execution_blocked": true,
+        "execution_policy_execute": false,
+        "external_write_executed": false,
+        "network_transmission_executed": false,
+        "production_release": false,
+        "GitHub_push": "未実行"
+      }
+    },
+    "attestation_hash": "369fe6e013ff3e0856d4f8abca832e7504519ceafb1071ecce87840f408c56d0",
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "ir73_result": {
+    "schema_version": "ir73_dry_run_unlock_policy_declaration_v1",
+    "phase": "IR73",
+    "generated_at": "2026-05-24T14:14:46.089740+00:00",
+    "source_task_id": "ir71_75_live_trial",
+    "validation_result": "PASS",
+    "validation_failed_checks": [],
+    "validation_warnings": [],
+    "policy_declaration": {
+      "declaration_id": "ir73_policy_ir71_75_live_trial_20260524T141446Z",
+      "generated_at": "2026-05-24T14:14:46.089736+00:00",
+      "source_task_id": "ir71_75_live_trial",
+      "new_cycle_id": "IR71_PLUS_CYCLE_A",
+      "unlock_policy": {
+        "requires_explicit_design_approval": true,
+        "requires_named_approver": true,
+        "requires_safety_gate_redeclaration": true,
+        "requires_test_matrix_reexecution": true,
+        "requires_no_go_lock_reference": true
+      },
+      "policy_scope": "design_and_governance_only",
+      "execution_unlock_blocked_by_default": true,
+      "safety_gate_snapshot": {
+        "dry_run": "maintained",
+        "OBSERVE": "maintained",
+        "submission_execution_blocked": true,
+        "execution_policy_execute": false,
+        "external_write_executed": false,
+        "network_transmission_executed": false,
+        "production_release": false,
+        "GitHub_push": "未実行"
+      }
+    },
+    "policy_hash": "5b241e0cc6295b026fc468a3692103bbb1fed0a9b56df223f2489b873e943a02",
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "ir74_result": {
+    "schema_version": "ir74_legacy_artifact_freeze_registry_v1",
+    "phase": "IR74",
+    "generated_at": "2026-05-24T14:14:46.089998+00:00",
+    "source_task_id": "ir71_75_live_trial",
+    "legacy_artifact_freeze_decision": "FROZEN_REFERENCE_ONLY",
+    "validation_result": "PASS",
+    "validation_failed_checks": [],
+    "validation_warnings": [],
+    "freeze_registry": {
+      "registry_id": "ir74_freeze_ir71_75_live_trial_20260524T141446Z",
+      "generated_at": "2026-05-24T14:14:46.089993+00:00",
+      "source_task_id": "ir71_75_live_trial",
+      "legacy_cycle": "IR51_to_IR70",
+      "freeze_entries": [
+        {
+          "artifact_key": "ir66_70_completion_table",
+          "artifact_ref": "generic_block_ai/reports/ir66_70/ir66_70_completion_table.md",
+          "freeze_mode": "reference_only",
+          "mutation_allowed": false
+        },
+        {
+          "artifact_key": "ir66_70_live_status",
+          "artifact_ref": "generic_block_ai/reports/ir66_70/ir66_70_live_status.md",
+          "freeze_mode": "reference_only",
+          "mutation_allowed": false
+        },
+        {
+          "artifact_key": "ir66_final_dry_run_comprehensive_audit",
+          "artifact_ref": "generic_block_ai/reports/ir66_70/ir66_final_dry_run_comprehensive_audit.json",
+          "freeze_mode": "reference_only",
+          "mutation_allowed": false
+        },
+        {
+          "artifact_key": "ir67_pre_operational_transition_review",
+          "artifact_ref": "generic_block_ai/reports/ir66_70/ir67_pre_operational_transition_review.json",
+          "freeze_mode": "reference_only",
+          "mutation_allowed": false
+        },
+        {
+          "artifact_key": "ir68_no_go_lock_gate_report",
+          "artifact_ref": "generic_block_ai/reports/ir66_70/ir68_no_go_lock_gate_report.json",
+          "freeze_mode": "reference_only",
+          "mutation_allowed": false
+        },
+        {
+          "artifact_key": "ir69_next_phase_design_package",
+          "artifact_ref": "generic_block_ai/reports/ir66_70/ir69_next_phase_design_package.json",
+          "freeze_mode": "reference_only",
+          "mutation_allowed": false
+        },
+        {
+          "artifact_key": "ir70_completion_bundle",
+          "artifact_ref": "generic_block_ai/reports/ir66_70/ir70_completion_bundle.json",
+          "freeze_mode": "reference_only",
+          "mutation_allowed": false
+        }
+      ],
+      "freeze_scope": "reference_only",
+      "external_distribution_blocked": true,
+      "safety_gate_snapshot": {
+        "dry_run": "maintained",
+        "OBSERVE": "maintained",
+        "submission_execution_blocked": true,
+        "execution_policy_execute": false,
+        "external_write_executed": false,
+        "network_transmission_executed": false,
+        "production_release": false,
+        "GitHub_push": "未実行"
+      }
+    },
+    "registry_hash": "fbebacccb411c531b85f5a8790fd980923e45bab5c6320d16d6708c68242d682",
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "test_summary": {
+    "focused": {
+      "passed": 6,
+      "failed": 0
+    },
+    "adjacent": {
+      "passed": 24,
+      "failed": 0
+    },
+    "scoped": {
+      "passed": 386,
+      "failed": 0
+    }
+  },
+  "live_summary": {
+    "ir71": "PASS",
+    "ir72": "PASS",
+    "ir73": "PASS",
+    "ir74": "PASS",
+    "ir75": "PASS"
+  },
+  "safety_gate_summary": {
+    "dry_run": "maintained",
+    "OBSERVE": "maintained",
+    "submission_execution_blocked": true,
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "network_transmission_executed": false,
+    "production_release": false,
+    "GitHub_push": "未実行"
+  },
+  "completion_table": [
+    {
+      "phase": "IR71",
+      "content": "New Cycle Design Approval Gate",
+      "focused": "PASS",
+      "adjacent": "PASS",
+      "scoped": "PASS",
+      "live": "PASS",
+      "judgement": "完了"
+    },
+    {
+      "phase": "IR72",
+      "content": "Cycle Approver Attestation",
+      "focused": "PASS",
+      "adjacent": "PASS",
+      "scoped": "PASS",
+      "live": "PASS",
+      "judgement": "完了"
+    },
+    {
+      "phase": "IR73",
+      "content": "Dry-Run Unlock Policy Declaration",
+      "focused": "PASS",
+      "adjacent": "PASS",
+      "scoped": "PASS",
+      "live": "PASS",
+      "judgement": "完了"
+    },
+    {
+      "phase": "IR74",
+      "content": "Legacy Artifact Freeze Registry",
+      "focused": "PASS",
+      "adjacent": "PASS",
+      "scoped": "PASS",
+      "live": "PASS",
+      "judgement": "完了"
+    },
+    {
+      "phase": "IR75",
+      "content": "Phase 71-75 Completion Bundle",
+      "focused": "PASS",
+      "adjacent": "PASS",
+      "scoped": "PASS",
+      "live": "PASS",
+      "judgement": "完了"
+    }
+  ],
+  "final_decision": "FROZEN_REFERENCE_ONLY",
+  "legacy_cycle_frozen_reference_only": true,
+  "artifacts": {
+    "ir71_new_cycle_design_gate_report": "generic_block_ai/reports/ir71_75/ir71_new_cycle_design_gate_report.json",
+    "ir72_cycle_approver_attestation_report": "generic_block_ai/reports/ir71_75/ir72_cycle_approver_attestation_report.json",
+    "ir73_dry_run_unlock_policy_declaration": "generic_block_ai/reports/ir71_75/ir73_dry_run_unlock_policy_declaration.json",
+    "ir74_legacy_artifact_freeze_registry_report": "generic_block_ai/reports/ir71_75/ir74_legacy_artifact_freeze_registry_report.json",
+    "ir75_completion_bundle": "generic_block_ai/reports/ir71_75/ir75_completion_bundle.json",
+    "ir71_75_live_status": "generic_block_ai/reports/ir71_75/ir71_75_live_status.md",
+    "ir71_75_completion_table": "generic_block_ai/reports/ir71_75/ir71_75_completion_table.md"
+  },
+  "external_write_executed": false
+}

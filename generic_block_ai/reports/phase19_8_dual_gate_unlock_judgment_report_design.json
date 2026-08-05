@@ -1,0 +1,197 @@
+{
+  "phase_id": "19-8",
+  "phase_name": "Dual-Gate Unlock Judgment Report Design",
+  "phase_japanese_name": "デュアルゲート解除判定レポート設計",
+  "purpose": "Design the dual-gate unlock judgment report that consumes the Phase 19-7 final verification report and Phase 19-3 cross-validation outcome to produce the definitive DUAL_GATE_UNLOCKED or DUAL_GATE_LOCKED determination, which is the gate condition for app/tests implementation authorization",
+  "layer": "measurement_execution_record_layer",
+  "design_category": "reports_only",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only"
+  },
+  "phase_19_8_scope": {
+    "scope_1_unlock_preconditions": {
+      "scope_id": "UNLOCK_PRECONDITIONS",
+      "description": "Define all preconditions that must be satisfied before dual-gate unlock can be assessed",
+      "preconditions": {
+        "precondition_1": {
+          "id": "PRE_1",
+          "condition": "Phase 19-7 final_verification_status = FINAL_RECORD_VERIFIED",
+          "failure_outcome": "DUAL_GATE_LOCKED (prerequisite not met; route to Phase 19-7 rejection handling)"
+        },
+        "precondition_2": {
+          "id": "PRE_2",
+          "condition": "Phase 19-3 dual_gate_unlock_status is determined (not null/absent)",
+          "failure_outcome": "DUAL_GATE_LOCKED (cross-validation not complete)"
+        },
+        "precondition_3": {
+          "id": "PRE_3",
+          "condition": "Phase 19-5 evidence locks for both records have tamper_detection_status = ALL_PASS",
+          "failure_outcome": "DUAL_GATE_LOCKED (evidence integrity not confirmed)"
+        },
+        "precondition_4": {
+          "id": "PRE_4",
+          "condition": "Phase 19-6 deficiency_log_status = CLEAR",
+          "failure_outcome": "DUAL_GATE_LOCKED (open deficiencies exist)"
+        },
+        "precondition_5": {
+          "id": "PRE_5",
+          "condition": "Phase 19-8 judgment is executed by authorized authority with valid digital signature",
+          "failure_outcome": "JUDGMENT_INVALID (unsigned or unauthorized judgment not accepted)"
+        }
+      }
+    },
+    "scope_2_dual_gate_judgment_logic": {
+      "scope_id": "DUAL_GATE_JUDGMENT_LOGIC",
+      "description": "Define the judgment logic for DUAL_GATE_UNLOCKED or DUAL_GATE_LOCKED",
+      "judgment_inputs": {
+        "input_integrated_decision_actual": "integrated_decision_actual_result from Phase 19-7 section_3 (GO | NO_GO)",
+        "input_receiver_validator_permission_actual": "receiver_validator_permission_actual_result from Phase 19-7 section_3 (EFFECTIVE | NOT_EFFECTIVE)",
+        "input_dual_gate_status_from_cross_validation": "dual_gate_unlock_status from Phase 19-3 (DUAL_GATE_UNLOCKED | DUAL_GATE_LOCKED)"
+      },
+      "judgment_rules": {
+        "rule_DG_1": {
+          "rule_id": "UNLOCK_CONDITION",
+          "condition": "integrated_decision_actual = GO AND receiver_validator_permission_actual = EFFECTIVE AND dual_gate_status_from_cross_validation = DUAL_GATE_UNLOCKED",
+          "outcome": "DUAL_GATE_UNLOCKED",
+          "note": "All three conditions must be simultaneously true"
+        },
+        "rule_DG_2": {
+          "rule_id": "LOCK_ON_NO_GO",
+          "condition": "integrated_decision_actual = NO_GO (regardless of other values)",
+          "outcome": "DUAL_GATE_LOCKED",
+          "note": "integrated_decision=NO_GO means Phase 15-7 measurement failed; no unlock possible"
+        },
+        "rule_DG_3": {
+          "rule_id": "LOCK_ON_NOT_EFFECTIVE",
+          "condition": "receiver_validator_permission_actual = NOT_EFFECTIVE (regardless of other values)",
+          "outcome": "DUAL_GATE_LOCKED",
+          "note": "receiver_validator_permission=NOT_EFFECTIVE means Phase 15-8 measurement failed; no unlock possible"
+        },
+        "rule_DG_4": {
+          "rule_id": "LOCK_ON_CROSS_VALIDATION_LOCKED",
+          "condition": "dual_gate_status_from_cross_validation = DUAL_GATE_LOCKED",
+          "outcome": "DUAL_GATE_LOCKED",
+          "note": "Even if individual results are GO and EFFECTIVE, cross-validation inconsistency keeps gate locked"
+        },
+        "rule_DG_5": {
+          "rule_id": "PRECEDENCE",
+          "description": "If rule_DG_2 or DG_3 or DG_4 fires, outcome is DUAL_GATE_LOCKED regardless of other conditions",
+          "precedence_order": "DG_2 > DG_3 > DG_4 > DG_1",
+          "note": "DUAL_GATE_LOCKED conditions always take precedence over UNLOCKED"
+        }
+      }
+    },
+    "scope_3_report_structure": {
+      "scope_id": "DUAL_GATE_REPORT_STRUCTURE",
+      "description": "Design the structure of the dual-gate unlock judgment report",
+      "report_structure": {
+        "header": {
+          "report_id": "DUALGATE_JUDGMENT_<UTC_TIMESTAMP>",
+          "report_type": "dual_gate_unlock_judgment",
+          "phase_coverage": ["19-3", "19-5", "19-6", "19-7"],
+          "report_generated_utc": "RFC 3339",
+          "report_generated_by_authority": "identifier"
+        },
+        "section_1_prerequisite_verification": {
+          "pre_1_phase19_7_verified": "PASS | FAIL",
+          "pre_2_cross_validation_determined": "PASS | FAIL",
+          "pre_3_evidence_locks_intact": "PASS | FAIL",
+          "pre_4_no_open_deficiencies": "PASS | FAIL",
+          "pre_5_authority_signature_valid": "PASS | FAIL",
+          "all_preconditions_pass": true,
+          "phase19_7_report_id_reference": "FINVERIFY_PHASE19_...",
+          "phase19_3_cross_validation_id_reference": "CROSSVAL_..."
+        },
+        "section_2_measurement_result_inputs": {
+          "integrated_decision_actual_result": "GO | NO_GO",
+          "receiver_validator_permission_actual_result": "EFFECTIVE | NOT_EFFECTIVE",
+          "dual_gate_status_from_cross_validation": "DUAL_GATE_UNLOCKED | DUAL_GATE_LOCKED",
+          "applied_judgment_rule": "DG_1 | DG_2 | DG_3 | DG_4"
+        },
+        "section_3_dual_gate_determination": {
+          "dual_gate_final_status": "DUAL_GATE_UNLOCKED | DUAL_GATE_LOCKED",
+          "determination_basis": "Rule DG_x triggered; all three conditions met / condition Y not met",
+          "app_implementation_unlock_authorized": "YES | NO",
+          "tests_implementation_unlock_authorized": "YES | NO",
+          "notes": {
+            "if_DUAL_GATE_UNLOCKED": "app_implementation_unlock_authorized=YES; tests_implementation_unlock_authorized=YES. Proceed to Phase 19-9 completion declaration.",
+            "if_DUAL_GATE_LOCKED": "app_implementation_unlock_authorized=NO; tests_implementation_unlock_authorized=NO. Document failing conditions and route to appropriate remediation."
+          }
+        },
+        "section_4_locked_gate_remediation_path": {
+          "applicable_when": "dual_gate_final_status = DUAL_GATE_LOCKED",
+          "remediation_paths": {
+            "if_integrated_decision_NO_GO": "Re-execute Phase 15-7 measurement. Cannot unlock without integrated_decision=GO.",
+            "if_receiver_validator_NOT_EFFECTIVE": "Re-execute Phase 15-8 measurement. Cannot unlock without receiver_validator_permission=EFFECTIVE.",
+            "if_cross_validation_locked": "Re-examine Phase 19-3 cross-checks. Resolve inconsistencies. May require re-execution of one or both measurements."
+          }
+        },
+        "section_5_judgment_evidence_hash": {
+          "report_canonical_hash_sha256_plus": "SHA-256+ of canonical report JSON (sections 1-4)",
+          "report_authority_signature": {
+            "algorithm": "RSA-2048 or ECDSA-256",
+            "signature_value": "Base64",
+            "signer_authority_id": "identifier",
+            "signed_at_utc": "RFC 3339"
+          }
+        }
+      }
+    },
+    "scope_4_implementation_gate_conditions": {
+      "scope_id": "IMPLEMENTATION_GATE_CONDITIONS",
+      "description": "Define the gate conditions for app and tests implementation authorization",
+      "gate_conditions": {
+        "app_implementation_gate": {
+          "gate_id": "APP_IMPL_GATE",
+          "unlock_condition": "dual_gate_final_status = DUAL_GATE_UNLOCKED AND app_implementation_unlock_authorized = YES",
+          "lock_condition": "dual_gate_final_status = DUAL_GATE_LOCKED",
+          "current_status": "LOCKED",
+          "current_status_reason": "integrated_decision=NO_GO and receiver_validator_permission=NOT_EFFECTIVE (design phase; no measurement executed)"
+        },
+        "tests_implementation_gate": {
+          "gate_id": "TESTS_IMPL_GATE",
+          "unlock_condition": "dual_gate_final_status = DUAL_GATE_UNLOCKED AND tests_implementation_unlock_authorized = YES",
+          "lock_condition": "dual_gate_final_status = DUAL_GATE_LOCKED",
+          "current_status": "LOCKED",
+          "current_status_reason": "integrated_decision=NO_GO and receiver_validator_permission=NOT_EFFECTIVE (design phase; no measurement executed)"
+        },
+        "invariant_note": "These gate conditions remain LOCKED throughout all design phases. Only actual Phase 15-7 and 15-8 measurement execution (not design) can change these states."
+      }
+    }
+  },
+  "phase_19_8_governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "state_invariants": {
+      "integrated_decision": "NO_GO",
+      "receiver_validator_permission": "NOT_EFFECTIVE",
+      "app_implementation_status": "NO_GO",
+      "tests_implementation_status": "NO_GO"
+    },
+    "phase_19_8_completion_criteria": [
+      "5 unlock preconditions designed",
+      "5 judgment rules (DG_1 through DG_5 precedence) designed",
+      "5-section dual-gate judgment report structure designed",
+      "Implementation gate conditions (app + tests) designed",
+      "Locked gate remediation paths designed",
+      "All JSON validation passed",
+      "No changes to app/ or tests/ directories",
+      "All state invariants maintained"
+    ]
+  }
+}

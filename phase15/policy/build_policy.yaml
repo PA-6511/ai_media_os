@@ -1,0 +1,7 @@
+phase: "15"
+mode: "DRY_RUN"
+constraints:
+  - "Do not modify existing core logic"
+  - "Allowlist-only file updates"
+  - "No delete operations"
+  - "Human approval required"

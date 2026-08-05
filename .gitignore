@@ -25,3 +25,58 @@ data/archives/
 
 # 47-C runtime input (production candidate data)
 candidates.json
+
+# Local SQL databases
+data/database/*.db
+data/database/*.db-shm
+data/database/*.db-wal
+data/database/*.sqlite
+data/database/*.sqlite3
+
+# Local database credentials
+.env.database
+.env.postgresql
+
+# Python generated files
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Virtual environments
+.venv/
+venv/
+
+# Temporary and log files
+*.log
+*.tmp
+*.swp
+*~
+
+# Local runtime state
+.review_runtime/
+run/
+backup/
+
+# Generated execution locks and local diagnostics
+exchange/locks/
+exchange/diagnostics/
+
+# Temporary source snapshots
+*.before_*
+*.bak_*
+*.bak_affiliate_*
+
+# Generated workflow runtime data
+exchange/review_evidence/
+exchange/inputs/
+exchange/candidates/
+exchange/review_requests/
+exchange/reviews/
+exchange/manual_input/
+exchange/review_decisions/
+exchange/imports/
+exchange/approvals/

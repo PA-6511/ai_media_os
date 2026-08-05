@@ -1,0 +1,37 @@
+{
+  "phase": "AB-T2",
+  "status": "PASS_DESIGN_ONLY_NO_EXECUTION",
+  "purpose": "copilot_prompt_context_compression_gate",
+  "max_files_per_ai_context": 5,
+  "max_lines_per_file_excerpt": 120,
+  "copilot_agent_default_allowed": false,
+  "external_api_call_allowed": false,
+  "credential_read_allowed": false,
+  "credential_output_allowed": false,
+  "wordpress_write_allowed": false,
+  "production_write_allowed": false,
+  "destructive_operation_allowed": false,
+  "execution_mode": "DESIGN_ONLY",
+  "production_status": "NO_GO",
+  "safety_state": "DRY_RUN_ONLY",
+  "output_mode": "PROMPT_TEMPLATE_ONLY",
+  "allowed_outputs": [
+    "compressed_prompt_template",
+    "target_file_list",
+    "bounded_diff_instruction",
+    "limited_pytest_instruction",
+    "safety_constraints_summary"
+  ],
+  "forbidden_outputs": [
+    "secret_values",
+    "credential_env_contents",
+    "live_api_payload",
+    "production_execution_command",
+    "wordpress_publish_command"
+  ],
+  "next_phase": {
+    "phase": "AB-T3",
+    "name": "Related File Selector",
+    "execution_allowed": false
+  }
+}

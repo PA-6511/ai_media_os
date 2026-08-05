@@ -1,0 +1,55 @@
+{
+  "phase": "Phase 6-5",
+  "name": "wordpress_draft_execution_spec",
+  "spec_status": "DESIGN_ONLY",
+  "production_status": "NO_GO",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "human_approval_required": true,
+  "wordpress_draft_creation": "NO_GO",
+  "wordpress_write_executed": false,
+  "wordpress_rest_api": {
+    "post_allowed": false,
+    "put_allowed": false,
+    "patch_allowed": false,
+    "delete_allowed": false
+  },
+  "dangerous_operations": {
+    "auto_post": false,
+    "auto_update": false,
+    "auto_delete": false,
+    "auto_export": false,
+    "auto_publish": false,
+    "bulk_execution": false,
+    "external_write": false,
+    "vps_self_builder_execution": false
+  },
+  "future_reserved_decision_token": {
+    "token": "APPROVE_DRAFT_CREATE_ONLY",
+    "currently_allowed": false,
+    "meaning": "Reserved for future one-item WordPress draft creation only after all gates pass."
+  },
+  "single_item_limit": {
+    "enabled": true,
+    "max_items": 1,
+    "bulk_run_allowed": false
+  },
+  "required_preconditions_for_future_unlock": [
+    "phase6_5_execution_spec_passed",
+    "phase6_6_quality_gate_passed",
+    "phase6_7_slack_approval_dry_run_passed",
+    "phase6_8_runbook_exists",
+    "phase6_9_preflight_gate_passed",
+    "human_approval_file_exists",
+    "target_item_count_equals_1",
+    "wordpress_publish_allowed_false",
+    "rollback_or_freeze_path_exists"
+  ],
+  "allowed_future_scope": {
+    "create_wordpress_draft_only": true,
+    "publish": false,
+    "update_existing_post": false,
+    "delete_post": false,
+    "export": false
+  }
+}

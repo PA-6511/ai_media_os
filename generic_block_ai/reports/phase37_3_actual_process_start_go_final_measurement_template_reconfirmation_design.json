@@ -1,0 +1,100 @@
+{
+  "phase_id": "37-3",
+  "phase_name": "Actual Process Start GO Final Measurement Template Reconfirmation Design",
+  "phase_japanese_name": "actual_process_start_go 最終実測判定テンプレート再確認設計",
+  "purpose": "Design reconfirmation template for actual_process_start_go final measurement after manual release boundary checks.",
+  "layer": "post_manual_release_pre_actual_process_start_boundary_confirmation_layer",
+  "design_category": "reports_only",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "operation_transition_go_authorization": "NOT_GRANTED",
+    "production_reflection_go_authorization": "NOT_GRANTED",
+    "freeze_release_go_authorization": "NOT_GRANTED",
+    "execution_start_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "phase_37_3_scope": {
+    "scope_1_input_contract": {
+      "scope_id": "INPUT_CONTRACT",
+      "required_inputs": {
+        "phase37_2_audit_status": "PASS | FAIL"
+      }
+    },
+    "scope_2_reconfirmation_rules": {
+      "scope_id": "RECONFIRMATION_RULES",
+      "rules": {
+        "rule_P37J1": "Reconfirm minimum GO conditions for actual_process_start_go",
+        "rule_P37J2": "Reconfirm NO_GO and ABORT trigger definitions",
+        "rule_P37J3": "Require explicit evidence that manual_release_go and actual_process_start_go remain distinct",
+        "rule_P37J4": "If all reconfirmation checks pass, actual_process_start_status = GO_CANDIDATE",
+        "rule_P37J5": "If any check fails, actual_process_start_status = NO_GO"
+      }
+    },
+    "scope_3_report_structure": {
+      "scope_id": "REPORT_STRUCTURE",
+      "sections": {
+        "section_1_header": {
+          "report_id": "PHASE37_3_ACTUAL_PROCESS_START_FINAL_MEASUREMENT_RECONFIRMATION_<UTC_TIMESTAMP>",
+          "report_type": "actual_process_start_go_final_measurement_template_reconfirmation",
+          "generated_at_utc": "RFC3339",
+          "generated_by": "authority_identifier"
+        },
+        "section_2_reconfirmation_summary": {
+          "audit_status_from_P37_2": "PASS | FAIL",
+          "minimum_condition_reconfirmed": "PASS | FAIL",
+          "boundary_independence_reconfirmed": "YES | NO"
+        },
+        "section_3_reconfirmation_result": {
+          "actual_process_start_status": "GO_CANDIDATE | NO_GO",
+          "abort_triggered": "YES | NO"
+        },
+        "section_4_state_confirmation": {
+          "app_implementation_status": "NO_GO",
+          "tests_implementation_status": "NO_GO",
+          "production_status": "NO_GO",
+          "operation_transition_go_authorization": "NOT_GRANTED",
+          "production_reflection_go_authorization": "NOT_GRANTED",
+          "freeze_release_go_authorization": "NOT_GRANTED",
+          "execution_start_go_authorization": "NOT_GRANTED",
+          "actual_process_start_go_authorization": "NOT_GRANTED",
+          "manual_release_go_authorization": "NOT_GRANTED",
+          "changed_area": "reports only"
+        }
+      }
+    }
+  },
+  "phase_37_3_governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution",
+      "manual_release_execution",
+      "actual_process_start_execution"
+    ],
+    "state_invariants": {
+      "app_implementation_status": "NO_GO",
+      "tests_implementation_status": "NO_GO",
+      "production_status": "NO_GO",
+      "operation_transition_go_authorization": "NOT_GRANTED",
+      "production_reflection_go_authorization": "NOT_GRANTED",
+      "freeze_release_go_authorization": "NOT_GRANTED",
+      "execution_start_go_authorization": "NOT_GRANTED",
+      "actual_process_start_go_authorization": "NOT_GRANTED",
+      "manual_release_go_authorization": "NOT_GRANTED",
+      "changed_area": "reports only"
+    }
+  }
+}

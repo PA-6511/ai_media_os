@@ -1,0 +1,39 @@
+{
+  "_meta": {
+    "phase": "46-3",
+    "phase_name": "最終実測GO入力の受領・検証層",
+    "layer": "受領/確認層 (receipt and confirmation layer)",
+    "title": "最終実測入力の受領・検証テンプレート設計",
+    "created": "2026-05-14",
+    "author": "governance-framework",
+    "status": "PASS_DESIGN_ONLY",
+    "reports_only": true
+  },
+  "scope": "Phase 46-2 で設計された manual_release_go_authorization / actual_process_start_go_authorization の最終実測入力フォーマットに基づいて、実際の最終実測GO入力を受領し、その整合性・妥当性を検証するテンプレート を設計する。検証対象：(1) 入力フォーマットの完全性（全必須項目の存在確認），(2) 入力値の型・範囲チェック（Phase 46-2 で定義された型・範囲・必須性の確認），(3) 入力メタデータの整合性（確認日時、確認者情報、署名の妥当性），(4) 入力値と Phase 45-2 / 45-3 の最終変換可否判定結果の整合性，(5) 入力確認者の権限レベル確認（manual_release_go より厳格な actual_process_start_go の権限要件確認含む），(6) Phase 41-1～Phase 46-2 の全プロセス記録との矛盾検出。全ての検証プロセスは報告書形式で記録され、検証失敗時は即座に NO_GO を再宣言する。",
+  "governance": {
+    "production_status": "NO_GO",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "report": {
+    "description": "Phase 46-3 では、manual_release_go_authorization / actual_process_start_go_authorization の最終実測GO入力を受領・検証するテンプレットを 設計層で定義する。(1) 入力フォーマット完全性検証テンプレート：Phase 46-2 で設計された最終実測入力フォーマット（確認項目、確認値、確認日時、確認者情報、メタデータ）が完全に揃っているか を機械的に確認するテンプレートを設計する。不完全な場合は即座に検証失敗レポートを生成する。(2) 入力値型・範囲チェック検証テンプレット：各入力項目について、Phase 46-2 で定義された型（文字列、日時、整数など）と値の範囲（GO / NO_GO など許可値）が満たされているか を確認するテンプレートを設計する。型エラー・範囲外エラーを検出した場合はエラーをレポートで記録する。(3) 入力メタデータ整合性検証テンプレット：確認日時が妥当な形式（ISO 8601）であるか、確認者情報が完全であるか、署名が妥当であるか を確認するテンプレートを設計する。メタデータの矛盾を検出した場合はレポートで警告する。(4) Phase 45 最終判定結果との整合性検証テンプレット：最終実測入力の確認値（GO / NO_GO など）が Phase 45-2 / 45-3 で判定された「GRANTED 変換可能」の前提と矛盾していないか を確認するテンプレートを設計する。矛盾を検出した場合はレポートで詳細に記録する。(5) 入力確認者権限レベル検証テンプレット：manual_release_go_authorization の確認者権限が所定レベルを保持しているか、actual_process_start_go_authorization の確認者権限が manual_release_go より厳格なレベルを保持しているか を確認するテンプレートを設計する。権限不足を検出した場合は検証失敗レポートを生成する。(6) 全プロセス矛盾検出検証テンプレット：最終実測入力の内容が Phase 41-1～Phase 46-2 の全プロセス記録と矛盾していないか を確認するテンプレートを設計する。矛盾を検出した場合はレポートで矛盾内容を詳細に記録する。これら全ての検証は 設計層（reports only）で行われ、実処理開始許可を含まない。検証失敗時は自動的に NO_GO を再宣言する。",
+    "invariants": [
+      "NO_GO 維持：検証プロセス全体を通じて production_status = 'NO_GO' は維持される（検証失敗時も NO_GO）",
+      "NOT_GRANTED 維持：検証合格時でも manual_release_go_authorization / actual_process_start_go_authorization は 'NOT_GRANTED' のまま",
+      "reports only：検証プロセス全体は報告書形式で実装され、実処理への権限付与を含まない",
+      "自動判定：検証失敗時は自動的に NO_GO / NOT_GRANTED を再宣言（手動介入なし）",
+      "矛盾検出：整合性検証で矛盾を検出した場合は即座にレポート化"
+    ],
+    "actions": [],
+    "notes": [
+      "Phase 46-3 は 設計層のみで実装される（実処理開始許可ではない）",
+      "最終実測入力の受領・検証テンプレットは reports only であり、生産環境コード変更を含まない",
+      "検証合格 ≠ 実処理開始許可（最終判定は Phase 46-4～46-6 で行われる）",
+      "検証失敗時の NO_GO 再宣言ルールは自動的に動作し、手動確認者の判断を上書きしない",
+      "manual_release_go と actual_process_start_go は完全に分離検証される（mixed checking なし）",
+      "actual_process_start_go は manual_release_go より権限・条件が厳格（検証テンプレットに反映）",
+      "実処理開始は NO_GO のまま"
+    ]
+  }
+}

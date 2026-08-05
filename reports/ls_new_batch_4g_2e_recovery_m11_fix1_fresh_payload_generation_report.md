@@ -1,0 +1,25 @@
+# LS-NEW-BATCH-4G-2E-RECOVERY-M11-FIX1
+
+- Status: `PASS_FRESH_PAYLOAD_ARTICLE_TITLE_FIELD_VALIDATOR_FIXED_PAYLOAD_GENERATED_AUTHORIZATION_CONSUMED_NO_NETWORK_NO_WORDPRESS`
+- Fixed title field: `article_title`
+- Root title key absent: `true`
+- Article title exact match: `true`
+- Authorization consumed: `true`
+- Authorization reuse allowed: `false`
+- Automatic retry allowed: `false`
+- Automatic reissue allowed: `false`
+- Payload file SHA-256: `30a70be4110e863a85e2896f69f5b3e51d814a6fd82d5489f899d8a244166d8f`
+- Payload digest: `2ab27b59305dbae98f997ca3a460400298152f173ef605b534df922c187411c6`
+- Payload mode: `0600`
+- Article SHA-256: `de2739c8ae1aa4a50973b983964b05844086a2187b9ef337383ad6fa7123697d`
+- Title: `ダークギャザリング 第20巻｜配信開始`
+- Post status: `draft`
+- Publish: `false`
+- Category ID: `10`
+- Full payload output: `false`
+- Full final URL output: `false`
+- Affiliate identifier output: `false`
+- Article modified: `false`
+- Network accessed: `false`
+- WordPress accessed: `false`
+- Production status: `NO_GO`

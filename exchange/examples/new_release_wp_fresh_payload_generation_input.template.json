@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0.0",
+  "document_role": "NON_EXECUTABLE_INCOMPLETE_INPUT_TEMPLATE",
+  "contract_id": "FRESH_NEW_RELEASE_COMIC_DRAFT_INPUT_V1",
+  "input_complete": false,
+  "human_review_complete": false,
+  "content_item_id": null,
+  "work_title": null,
+  "volume_label": null,
+  "article_title": null,
+  "release_date": null,
+  "author_name": null,
+  "publisher_name": null,
+  "article_type": "COMIC_NEW_RELEASE_LATEST_VOLUME_DISTRIBUTION_START",
+  "wordpress_status": "draft",
+  "content_source": {
+    "source_type": null,
+    "source_reference": null,
+    "human_verified": false
+  },
+  "store_links": {
+    "amazon": {
+      "url": null,
+      "verification_state": "PENDING"
+    },
+    "rakuten_kobo": {
+      "url": null,
+      "verification_state": "PENDING"
+    },
+    "dmm_books": {
+      "url": null,
+      "verification_state": "PENDING"
+    }
+  },
+  "cover": {
+    "image_url": null,
+    "source": null,
+    "verification_state": "PENDING"
+  },
+  "price": {
+    "price_text": null,
+    "currency": "JPY",
+    "observed_at": null,
+    "verification_state": "PENDING"
+  },
+  "affiliate_disclosure_required": true,
+  "categories_initial_state": "ABSENT",
+  "legacy_post185_reference": false,
+  "article_input_registration_requested": false,
+  "payload_generation_requested": false,
+  "category_id_injection_requested": false,
+  "wordpress_execution_requested": false,
+  "execution_allowed": false,
+  "input_template_fixed_at_utc": "2026-07-10T16:36:40.550781+00:00",
+  "input_template_digest_sha256": "9ac5b56831c4fdffcccaec7a54a3d77a70fa3b6ba25a6257b0f7f99d80eb2969"
+}

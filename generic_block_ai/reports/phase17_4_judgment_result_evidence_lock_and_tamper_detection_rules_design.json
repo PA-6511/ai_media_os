@@ -1,0 +1,322 @@
+{
+  "phase_identifier": "17-4",
+  "phase_title": "Phase 15-7/15-8 測定ワークフロー実行可否判定結果の証跡固定ルール設計",
+  "phase_purpose": "Phase 17-2（Phase 15-7 実行可否判定）と Phase 17-3（Phase 15-8 実行可否判定）の判定結果（PROCEED/HOLD/HALT）の完全性・改変防止を確保するための証跡固定ルール、ハッシュ、タイムスタンプ、監査ログ、改ざん検出メカニズムを設計する。判定結果を改変不可の形式で記録し、後続の Phase 15-7/15-8 測定実行時に改ざんが検出された場合は即座に処理停止できる仕組みを設計する。",
+  "execution_context": "reports-only design phase; design of judgment result evidence lock mechanisms only, no actual judgment result locking or auditing yet",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only"
+  },
+  "governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "safety_rule": "All blocked_actions remain strictly prohibited. Phase 17-4 evidence lock rules are design-only; no actual judgment result locking occurs. No app/tests implementation permitted.",
+    "hard_stop_condition": "This phase is design-only. No actual evidence locking or tamper detection occurs."
+  },
+  "judgment_result_evidence_lock_purpose": {
+    "purpose": "Design mechanisms to cryptographically lock Phase 17-2 and Phase 17-3 judgment results (PROCEED, HOLD, HALT decisions) and detect any tampering before Phase 15-7/15-8 measurement workflows execute, ensuring decision integrity",
+    "judgment_inputs_to_protect": [
+      "Phase 17-2 overall_phase15_7_execution_feasibility_result (PROCEED_TO_PHASE_15_7_MEASUREMENT, HOLD_PENDING_AUTHORITY_DECISION, or HALT_DO_NOT_EXECUTE_PHASE_15_7)",
+      "Phase 17-3 overall_phase15_8_execution_feasibility_result (PROCEED_TO_PHASE_15_8_MEASUREMENT, HOLD_PENDING_AUTHORITY_DECISION, or HALT_DO_NOT_EXECUTE_PHASE_15_8)",
+      "All gate evaluation results (6 gates each for Phase 17-2 and 17-3)",
+      "Authority decision (if HOLD resulted)",
+      "Timestamps of judgment completion"
+    ],
+    "protection_mechanisms": [
+      "SHA-256+ cryptographic hashing of complete judgment reports",
+      "Digital timestamps (UTC + optional TSA)",
+      "Append-only audit logs of judgment receipt, verification, reads, modification attempts",
+      "Tamper detection via hash recomputation and mismatch flags"
+    ],
+    "downstream_protection": "Before Phase 15-7/15-8 measurement execution, hash verification confirms no tampering; if tampering detected, processing halts immediately"
+  },
+  "judgment_result_evidence_lock_algorithms": {
+    "algorithm_1_cryptographic_hashing": {
+      "algorithm_name": "SHA-256 or stronger (SHA-384, SHA-512, or future approved algorithms)",
+      "input_data": "Complete Phase 17-2 judgment report JSON (or canonicalized form) + Complete Phase 17-3 judgment report JSON",
+      "hash_output_format": {
+        "hash_value": "hexadecimal string representation of hash",
+        "algorithm_used": "e.g., 'SHA-256', 'SHA-384', 'SHA-512'",
+        "hash_timestamp": "ISO8601 UTC timestamp of hash computation",
+        "hash_metadata": {
+          "computation_context": "Phase 17-4 judgment result locking",
+          "data_size_bytes": "Size of combined judgment reports in bytes",
+          "input_canonicalization": "How JSON was canonicalized (e.g., sorted keys, no whitespace)"
+        }
+      },
+      "security_constraint": "Must NOT use MD5, SHA-1, or any algorithmically weakened hashing; only cryptographically secure algorithms"
+    },
+    "algorithm_2_digital_timestamps": {
+      "primary_timestamp_mechanism": "System UTC timestamp",
+      "primary_timestamp_format": "ISO8601 with nanosecond precision",
+      "primary_timestamp_semantics": "Exact moment when Phase 17-2 and 17-3 judgment reports were locked",
+      "optional_tsa_mechanism": "Time Stamping Authority (TSA) RFC 3161 timestamp",
+      "optional_tsa_semantics": "For future high-assurance audit scenarios; not required at initial design stage",
+      "timestamp_storage": {
+        "location": "In judgment result lock record",
+        "accessible_for": "Verification during Phase 15-7/15-8 entry, audit trail reconstruction"
+      }
+    },
+    "algorithm_3_audit_trail_logging": {
+      "audit_trail_model": "Append-only log of judgment result lifecycle events",
+      "immutability_requirement": "Records must not be modified or deleted; only appended",
+      "log_entry_format": {
+        "timestamp": "ISO8601 UTC when event occurred",
+        "event_type": "One of: JUDGMENT_LOCKED, HASH_VERIFIED_OK, HASH_VERIFIED_FAILED, TAMPER_DETECTED, VERIFICATION_ATTEMPTED, HALT_INITIATED",
+        "phase_17_2_status": "Current phase_17_2 result (if event affects it)",
+        "phase_17_3_status": "Current phase_17_3 result (if event affects it)",
+        "detail": "Descriptive text of what happened"
+      },
+      "log_events_captured": [
+        "Judgment_LOCKED: Phase 17-2/17-3 judgment locked with timestamp and hash",
+        "HASH_VERIFIED_OK: Verification successful, no tampering detected",
+        "HASH_VERIFIED_FAILED: Hash mismatch detected",
+        "TAMPER_DETECTED: Tampering confirmed; security alert issued",
+        "VERIFICATION_ATTEMPTED: Someone requested verification",
+        "HALT_INITIATED: Processing halted due to tampering"
+      ]
+    }
+  },
+  "judgment_result_lock_state_transitions": {
+    "state_1_unlocked": {
+      "state_name": "UNLOCKED",
+      "semantics": "Phase 17-2/17-3 judgment reports exist but are not yet cryptographically locked",
+      "transition_to_hashed": "Compute hash(judgment_reports), store hash with metadata, record audit log entry"
+    },
+    "state_2_hashed": {
+      "state_name": "HASHED",
+      "semantics": "Phase 17-2/17-3 judgment reports are hashed; ready for integrity verification",
+      "hash_value_stored": "h1 = hash(phase_17_2_report || phase_17_3_report)",
+      "transition_to_locked": "Verification request → compute h2 = hash(phase_17_2_report || phase_17_3_report); if h2 == h1, transition to LOCKED and log HASH_VERIFIED_OK",
+      "transition_to_tampering_detected": "If h2 != h1, record TAMPERING_DETECTED, halt, initiate forensic investigation"
+    },
+    "state_3_locked": {
+      "state_name": "LOCKED",
+      "semantics": "Hash verification succeeded; judgment reports confirmed unmodified; ready for Phase 15-7/15-8 measurement entry",
+      "lock_timestamp": "Time when hash verification completed successfully",
+      "before_phase15_7_entry": "Final verification must be performed at Phase 15-7 entry; if lock status is LOCKED, proceed; otherwise halt"
+    },
+    "state_4_tampering_detected": {
+      "state_name": "TAMPERING_DETECTED",
+      "semantics": "Hash mismatch detected; judgment reports may be corrupted or intentionally altered; security investigation required",
+      "tampering_response": "Immediately halt processing; alert security authority; preserve forensic evidence (original hash, current recomputed hash, difference analysis); escalate for manual investigation"
+    }
+  },
+  "judgment_result_verification_procedures": {
+    "procedure_1_locking_phase17_2_17_3_results": {
+      "step_1_collect_judgment_reports": {
+        "action": "Obtain Phase 17-2 overall judgment report and Phase 17-3 overall judgment report",
+        "prerequisite": "Both judgment reports must be finalized"
+      },
+      "step_2_canonicalize_json": {
+        "action": "Canonicalize each judgment report JSON (sort keys, remove whitespace, ensure consistent formatting)",
+        "purpose": "Ensure hash computation is deterministic regardless of JSON formatting variations"
+      },
+      "step_3_concatenate_reports": {
+        "action": "Concatenate canonicalized Phase 17-2 and Phase 17-3 JSON: combined_data = phase_17_2_json || phase_17_3_json",
+        "separator": "Use explicit separator (e.g., '|||') to prevent collision attacks"
+      },
+      "step_4_compute_hash": {
+        "action": "Compute h = hash(combined_data) using SHA-256 or stronger",
+        "output": "hexadecimal hash value"
+      },
+      "step_5_record_hash_metadata": {
+        "action": "Create hash record with: hash_value, algorithm, timestamp, input_size, canonicalization_method",
+        "storage": "Store in judgment result lock record"
+      },
+      "step_6_log_locking_event": {
+        "action": "Append audit log entry: JUDGMENT_LOCKED event with timestamp and hash value",
+        "immutability": "Log entry must be append-only; cannot modify prior entries"
+      },
+      "step_7_transition_state": {
+        "action": "Set lock_state to HASHED; lock is now ready for verification at Phase 15-7/15-8 entry"
+      }
+    },
+    "procedure_2_verifying_lock_before_phase15_7_entry": {
+      "step_1_retrieve_judgment_reports": {
+        "action": "Obtain stored Phase 17-2 and Phase 17-3 judgment reports from secure storage"
+      },
+      "step_2_retrieve_stored_hash": {
+        "action": "Retrieve stored hash value h1 and metadata (algorithm, timestamp, canonicalization method)"
+      },
+      "step_3_recompute_hash": {
+        "action": "Canonicalize current judgment reports and recompute hash h2 using same algorithm and canonicalization method as original",
+        "critical": "Must use identical algorithm and canonicalization; any difference invalidates comparison"
+      },
+      "step_4_compare_hashes": {
+        "action": "Compare h1 (stored) with h2 (recomputed)",
+        "if_equal": "Hashes match; no tampering detected; proceed to step 5",
+        "if_not_equal": "Hashes mismatch; tampering detected; proceed to error handling (Procedure 3)"
+      },
+      "step_5_verify_timestamp_recency": {
+        "action": "Check lock timestamp is recent (e.g., within last 24 hours) and before Phase 15-7 entry time",
+        "if_ok": "Timestamp valid; lock is current",
+        "if_old": "Flag as warning: lock is old; consider re-locking before Phase 15-7 entry"
+      },
+      "step_6_log_verification_success": {
+        "action": "Append audit log entry: HASH_VERIFIED_OK with verification timestamp",
+        "state_transition": "Set lock_state to LOCKED"
+      },
+      "step_7_permit_phase15_7_entry": {
+        "action": "Judgment reports confirmed unmodified; Phase 15-7 measurement workflow can proceed",
+        "handoff": "Pass locked judgment results to Phase 15-7 with lock_state=LOCKED"
+      }
+    },
+    "procedure_3_handling_tampering_detection": {
+      "step_1_identify_tampering": {
+        "action": "Hash mismatch detected in Procedure 2 Step 4",
+        "severity": "CRITICAL"
+      },
+      "step_2_preserve_forensic_evidence": {
+        "action": "Preserve for investigation: original hash h1, recomputed hash h2, current judgment reports, audit trail, system logs",
+        "immutability": "Copy evidence to immutable storage; do not overwrite original records"
+      },
+      "step_3_compute_difference_analysis": {
+        "action": "Analyze what changed between original and current judgment reports (which fields, gate outcomes, decisions)",
+        "output": "Detailed diff report"
+      },
+      "step_4_alert_security_authority": {
+        "action": "Issue security alert to authority: 'Tampering detected in Phase 17-2/17-3 judgment results; immediate investigation required'",
+        "alert_content": [
+          "Hash mismatch evidence",
+          "Difference analysis",
+          "Audit trail of recent accesses/modifications",
+          "Timestamp of tampering detection"
+        ]
+      },
+      "step_5_log_tampering_event": {
+        "action": "Append audit log entry: TAMPERING_DETECTED with forensic evidence references",
+        "state_transition": "Set lock_state to TAMPERING_DETECTED"
+      },
+      "step_6_halt_processing": {
+        "action": "STOP: Do not proceed to Phase 15-7/15-8 measurement execution until tampering investigation resolved",
+        "halt_reason": "Judgment result integrity compromised; measurement foundation unsound"
+      },
+      "step_7_escalate_for_investigation": {
+        "action": "Escalate to security/authority team; await decision on how to proceed (request rejudgment, investigate tampering source, etc.)"
+      }
+    }
+  },
+  "judgment_result_lock_record_structure": {
+    "record_id": "JUDGMENT_RESULT_LOCK_RECORD_v1",
+    "record_elements": {
+      "phase_17_2_judgment_lock": {
+        "field_name": "phase_17_2_judgment_result_lock",
+        "type": "object",
+        "elements": {
+          "judgment_report_id": "Identifier of Phase 17-2 overall judgment report",
+          "judgment_report_hash": {
+            "hash_algorithm": "SHA-256 or stronger",
+            "hash_value": "hexadecimal representation",
+            "hash_timestamp": "ISO8601 UTC when hash computed",
+            "input_canonicalization_method": "Description of canonicalization applied"
+          },
+          "judgment_overall_result": "Value of phase_17_2_measurement_workflow_feasibility_result (PROCEED, HOLD, or HALT) at time of locking",
+          "judgment_gate_outcomes": {
+            "gate_1_through_6_locked_results": "Copy of all 6 gate evaluation results at lock time (immutable reference)"
+          }
+        }
+      },
+      "phase_17_3_judgment_lock": {
+        "field_name": "phase_17_3_judgment_result_lock",
+        "type": "object",
+        "elements": {
+          "judgment_report_id": "Identifier of Phase 17-3 overall judgment report",
+          "judgment_report_hash": {
+            "hash_algorithm": "SHA-256 or stronger",
+            "hash_value": "hexadecimal representation",
+            "hash_timestamp": "ISO8601 UTC when hash computed",
+            "input_canonicalization_method": "Description of canonicalization applied"
+          },
+          "judgment_overall_result": "Value of phase_15_8_measurement_workflow_feasibility_result (PROCEED, HOLD, or HALT) at time of locking",
+          "judgment_gate_outcomes": {
+            "gate_1_through_6_locked_results": "Copy of all 6 gate evaluation results at lock time (immutable reference)"
+          }
+        }
+      },
+      "combined_judgment_lock": {
+        "field_name": "combined_phase_17_2_17_3_judgment_lock",
+        "type": "object",
+        "elements": {
+          "combined_hash_algorithm": "SHA-256 or stronger",
+          "combined_hash_value": "hash(phase_17_2_json || phase_17_3_json)",
+          "combined_hash_timestamp": "ISO8601 UTC when combined hash computed",
+          "combined_input_size_bytes": "Total size of concatenated canonicalized JSON",
+          "lock_state": "UNLOCKED → HASHED → LOCKED or TAMPERING_DETECTED"
+        }
+      },
+      "audit_trail": {
+        "field_name": "judgment_result_lock_audit_trail",
+        "type": "array of objects",
+        "elements": [
+          {
+            "timestamp": "ISO8601 UTC when event occurred",
+            "event_type": "JUDGMENT_LOCKED | HASH_VERIFIED_OK | HASH_VERIFIED_FAILED | TAMPER_DETECTED | VERIFICATION_ATTEMPTED | HALT_INITIATED",
+            "detail": "Descriptive text",
+            "actor": "System or human identifier (if applicable)"
+          }
+        ],
+        "immutability_enforcement": "Audit trail is append-only; existing entries cannot be deleted or modified"
+      }
+    }
+  },
+  "judgment_result_integrity_verification_at_phase15_7_8_entry": {
+    "requirement": "Before Phase 15-7 or Phase 15-8 measurement workflow can execute, judgment result lock must be verified and lock_state must be LOCKED",
+    "verification_trigger": "Phase 15-7/15-8 entry point",
+    "verification_logic": "Invoke Procedure 2 (verification procedure); if LOCKED, proceed; if TAMPERING_DETECTED, halt immediately"
+  },
+  "phase_dependencies": {
+    "depends_on": [
+      "Phase 17-2: Phase 15-7 measurement workflow execution feasibility judgment report (provides judgment results to lock)",
+      "Phase 17-3: Phase 15-8 measurement workflow execution feasibility judgment report (provides judgment results to lock)"
+    ],
+    "feeds_into": [
+      "Phase 17-5: PROCEED/HOLD/HALT handling rules (uses locked judgment results)",
+      "Phase 15-7 and Phase 15-8: Measurement workflows (verify judgment lock before entry)"
+    ]
+  },
+  "design_review_checklist": [
+    "Evidence lock purpose (prevent tampering of judgment results) clearly stated",
+    "Cryptographic hashing algorithm (SHA-256+) specified correctly",
+    "Digital timestamp mechanism (UTC + optional TSA) designed",
+    "Audit trail logging (append-only, immutable) defined",
+    "Tamper detection logic (hash mismatch → alert + halt) specified",
+    "State transition model (UNLOCKED → HASHED → LOCKED or TAMPERING_DETECTED) complete",
+    "Locking procedure (canonicalize, hash, record, log) step-by-step defined",
+    "Verification procedure (recompute hash, compare, verify timestamp) step-by-step defined",
+    "Tampering handling procedure (preserve forensic evidence, alert authority, halt) complete",
+    "Lock record structure (hashes, timestamps, audit trail) clearly defined",
+    "Phase 15-7/15-8 entry verification requirement explicit",
+    "All blocked actions remain in governance",
+    "production_status remains NO_GO (hardcoded)",
+    "Phase dependencies are accurate"
+  ],
+  "completion_gate": {
+    "gate_condition": "Judgment result evidence lock rules design approved AND verification procedures finalized",
+    "approval_required": "Human technical reviewer + Phase 17 design authority + Security authority",
+    "prerequisite_for": "Phase 17-5 (PROCEED/HOLD/HALT handling rules) can begin once judgment result locking rules are approved"
+  },
+  "status": {
+    "phase_status": "DESIGN_ONLY",
+    "actual_judgment_result_locking_status": "NOT_YET_STARTED",
+    "integrated_decision_status": "NO_GO",
+    "receiver_validator_implementation_permission_status": "NOT_EFFECTIVE",
+    "app_implementation_status": "NO_GO",
+    "tests_implementation_status": "NO_GO",
+    "production_status": "NO_GO"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "phase": "Phase 8-12",
+  "status": "PHASE8_12_DRAFT_FIX_PROPOSAL_READY_DRY_RUN_ONLY",
+  "reason": "draft fix proposal generated without WordPress write",
+  "production_status": "NO_GO",
+  "mode": "DRAFT_FIX_PROPOSAL",
+  "execution": "DRY_RUN",
+  "target_post_id": 114,
+  "proposal": {
+    "target_post_id": 114,
+    "proposed_title": "サンプル漫画 1巻 セール紹介【PR】",
+    "proposed_body_markdown": "【PR】この記事はアフィリエイトプログラムを利用しています。\n\n## サンプル漫画 1巻 セール情報\n期間限定で価格が下がっているため、まずは1巻を試したい方向けに情報を整理しました。\n\n## こんな人におすすめ\n- 少額で試し読みしたい\n- まず1巻だけ読んで判断したい\n- キャンペーン期間中に購入したい\n\n## 商品リンク\n- 公式商品ページ: https://example.com/replace-with-official-product-link\n- アフィリエイトリンク: https://example.com/replace-with-affiliate-link\n\n## 注意点\n- 価格や還元率は変動する可能性があります。\n- 最終的な購入前に販売ページで最新情報を確認してください。\n\n## まとめ\n1巻のセールを安全に活用したい方は、上記リンク先で条件を確認してから判断してください。\n",
+    "must_replace_placeholders": [
+      "https://example.com/replace-with-official-product-link",
+      "https://example.com/replace-with-affiliate-link"
+    ],
+    "fix_focus": [
+      "preflight/test wording の除去",
+      "PR表記の維持",
+      "商品/アフィリエイトリンクの明示",
+      "危険HTMLを含めない"
+    ]
+  },
+  "publish_allowed": false,
+  "update_allowed": false,
+  "delete_allowed": false,
+  "export_allowed": false,
+  "auto_post": false,
+  "wordpress_api_call_allowed": false,
+  "wordpress_write_executed": false,
+  "evidence_summary": [
+    {
+      "path": "exchange/logs/phase8_11_manual_draft_review_post_114_result.json",
+      "exists": true,
+      "status": "PHASE8_11_REQUEST_FIX"
+    }
+  ],
+  "errors": [],
+  "warnings": [],
+  "safety_violations": [],
+  "allowed_next_step": "Phase 8-13 manual draft content edit plan review (still NO_GO)",
+  "checked_at": "2026-06-04T13:23:38.691768+00:00"
+}

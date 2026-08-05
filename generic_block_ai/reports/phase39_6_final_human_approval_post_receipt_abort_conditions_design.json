@@ -1,0 +1,99 @@
+{
+  "phase_id": "39-6",
+  "phase_name": "Final Human Approval Post-Receipt Abort Conditions Design",
+  "phase_japanese_name": "人間承認受領後の最終ABORT条件設計",
+  "purpose": "Design final abort conditions immediately after final human approval input receipt, ensuring all NO_GO/NOT_GRANTED invariants are checked.",
+  "layer": "final_human_approval_input_layer",
+  "design_category": "reports_only",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "operation_transition_go_authorization": "NOT_GRANTED",
+    "production_reflection_go_authorization": "NOT_GRANTED",
+    "freeze_release_go_authorization": "NOT_GRANTED",
+    "execution_start_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "phase_39_6_scope": {
+    "scope_1_input_contract": {
+      "scope_id": "INPUT_CONTRACT",
+      "required_inputs": {
+        "phase39_5_no_go_maintenance_status": "PASS | FAIL",
+        "actual_process_start_go_authorization": "NOT_GRANTED"
+      }
+    },
+    "scope_2_abort_conditions_rules": {
+      "scope_id": "ABORT_CONDITIONS_RULES",
+      "rules": {
+        "rule_P39A1": "Define all abort triggers for post-receipt phase",
+        "rule_P39A2": "If any abort condition is met, halt execution and maintain NO_GO",
+        "rule_P39A3": "Explicitly check all NOT_GRANTED invariants after approval input receipt",
+        "rule_P39A4": "Document all abort events and evidence"
+      }
+    },
+    "scope_3_report_structure": {
+      "scope_id": "REPORT_STRUCTURE",
+      "sections": {
+        "section_1_header": {
+          "report_id": "PHASE39_6_FINAL_HUMAN_APPROVAL_POST_RECEIPT_ABORT_CONDITIONS_<UTC_TIMESTAMP>",
+          "report_type": "final_human_approval_post_receipt_abort_conditions",
+          "generated_at_utc": "RFC3339",
+          "generated_by": "authority_identifier"
+        },
+        "section_2_abort_conditions_summary": {
+          "abort_triggered": "YES | NO",
+          "abort_reason": "TEXT"
+        },
+        "section_3_abort_judgment": {
+          "execution_halted": "YES | NO",
+          "actual_process_start_go_authorization": "NOT_GRANTED"
+        },
+        "section_4_state_confirmation": {
+          "app_implementation_status": "NO_GO",
+          "tests_implementation_status": "NO_GO",
+          "production_status": "NO_GO",
+          "operation_transition_go_authorization": "NOT_GRANTED",
+          "production_reflection_go_authorization": "NOT_GRANTED",
+          "freeze_release_go_authorization": "NOT_GRANTED",
+          "execution_start_go_authorization": "NOT_GRANTED",
+          "actual_process_start_go_authorization": "NOT_GRANTED",
+          "manual_release_go_authorization": "NOT_GRANTED",
+          "changed_area": "reports only"
+        }
+      }
+    }
+  },
+  "phase_39_6_governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution",
+      "manual_release_execution",
+      "actual_process_start_execution"
+    ],
+    "state_invariants": {
+      "app_implementation_status": "NO_GO",
+      "tests_implementation_status": "NO_GO",
+      "production_status": "NO_GO",
+      "operation_transition_go_authorization": "NOT_GRANTED",
+      "production_reflection_go_authorization": "NOT_GRANTED",
+      "freeze_release_go_authorization": "NOT_GRANTED",
+      "execution_start_go_authorization": "NOT_GRANTED",
+      "actual_process_start_go_authorization": "NOT_GRANTED",
+      "manual_release_go_authorization": "NOT_GRANTED",
+      "changed_area": "reports only"
+    }
+  }
+}

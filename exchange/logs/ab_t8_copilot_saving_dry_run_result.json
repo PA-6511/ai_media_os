@@ -1,0 +1,132 @@
+{
+  "phase": "AB-T8",
+  "final_status": "PASS_DESIGN_ONLY_NO_EXECUTION",
+  "execution_mode": "DESIGN_ONLY",
+  "production_status": "NO_GO",
+  "safety_state": "DRY_RUN_ONLY",
+  "verified_phase_count": 6,
+  "pipeline_ready": true,
+  "dry_run_summary_generated": true,
+  "simulated_prompt_generated": true,
+  "simulated_patch_generated": true,
+  "simulated_test_plan_generated": true,
+  "pipeline_summary_generated": true,
+  "safety_summary_generated": true,
+  "evidence_summary_generated": true,
+  "forbidden_operations_all_blocked": true,
+  "next_phase": {
+    "phase": "AB-T9",
+    "name": "Copilot Saving Readiness Gate",
+    "execution_allowed": false
+  },
+  "ready_for_ab_t9": true,
+  "phase_order_verified": true,
+  "verification_table": [
+    {
+      "phase": "AB-T2",
+      "final_status": "PASS_DESIGN_ONLY_NO_EXECUTION",
+      "execution_mode": "DESIGN_ONLY",
+      "production_status": "NO_GO",
+      "safety_state": "DRY_RUN_ONLY",
+      "verified": true
+    },
+    {
+      "phase": "AB-T3",
+      "final_status": "PASS_DESIGN_ONLY_NO_EXECUTION",
+      "execution_mode": "DESIGN_ONLY",
+      "production_status": "NO_GO",
+      "safety_state": "DRY_RUN_ONLY",
+      "verified": true
+    },
+    {
+      "phase": "AB-T4",
+      "final_status": "PASS_DESIGN_ONLY_NO_EXECUTION",
+      "execution_mode": "DESIGN_ONLY",
+      "production_status": "NO_GO",
+      "safety_state": "DRY_RUN_ONLY",
+      "verified": true
+    },
+    {
+      "phase": "AB-T5",
+      "final_status": "PASS_DESIGN_ONLY_NO_EXECUTION",
+      "execution_mode": "DESIGN_ONLY",
+      "production_status": "NO_GO",
+      "safety_state": "DRY_RUN_ONLY",
+      "verified": true
+    },
+    {
+      "phase": "AB-T6",
+      "final_status": "PASS_DESIGN_ONLY_NO_EXECUTION",
+      "execution_mode": "DESIGN_ONLY",
+      "production_status": "NO_GO",
+      "safety_state": "DRY_RUN_ONLY",
+      "verified": true
+    },
+    {
+      "phase": "AB-T7",
+      "final_status": "PASS_DESIGN_ONLY_NO_EXECUTION",
+      "execution_mode": "DESIGN_ONLY",
+      "production_status": "NO_GO",
+      "safety_state": "DRY_RUN_ONLY",
+      "verified": true
+    }
+  ],
+  "dry_run_summary": "AB-T8 dry run pack assembled with 6 verified phases; pipeline_ready=True; simulated_patch_targets=5; simulated_test_commands=3; Copilot and all execution paths remain blocked.",
+  "simulated_prompt": "Copilot Saving Dry Run Input\n- pipeline_ready: True\n- mode: DESIGN_ONLY / NO_GO / DRY_RUN_ONLY\n- send_to_copilot: false\n\nCompressed Prompt:\n---\nTask:\nImplement only the smallest safe design-only patch for the requested phase.\n\nContext Budget:\n- Max files: 5\n- Max lines per file excerpt: 120\n\nSafety Constraints:\n- DRY_RUN only\n- NO_GO production status\n- No WordPress write\n- No credential read/output\n- No external API call\n- No destructive operation\n\nRelevant Files:\n- config/auto_builder_copilot_prompt_compression_policy.json\n- scripts/build_auto_builder_copilot_prompt_compression.py\n- tests/test_build_auto_builder_copilot_prompt_compression.py\n- scripts/validate_auto_builder_token_efficiency_policy.py\n- scripts/validate_auto_builder_token_budget_and_snapshot_digest.py\n\nInstructions:\n- Use minimal diff only\n- Do not refactor unrelated code\n- Do not modify production execution gates\n- Do not read or output secrets\n- Return patch proposal only\n- Include limited pytest command suggestion\n\nExpected Output:\n- Changed files\n- Patch summary\n- Safety confirmation\n- Suggested limited tests\n---\n\nRelated Files:\n- scripts/build_auto_builder_copilot_prompt_compression.py (target_file, score=1.0)\n- tests/test_build_auto_builder_copilot_prompt_compression.py (matching_test, score=0.95)\n- scripts/__init__.py (same_directory, score=0.8)\n- scripts/audit_phase8_12_no_secret_leak.py (same_directory, score=0.8)\n- scripts/build_ebook_trial_adapter_3_completion_payload.py (same_directory, score=0.8)",
+  "simulated_patch": {
+    "target_file_count": 5,
+    "target_files": [
+      "scripts/build_auto_builder_copilot_prompt_compression.py",
+      "tests/test_build_auto_builder_copilot_prompt_compression.py",
+      "scripts/__init__.py",
+      "scripts/audit_phase8_12_no_secret_leak.py",
+      "scripts/build_ebook_trial_adapter_3_completion_payload.py"
+    ],
+    "change_scope": "minimal_diff_design_only",
+    "draft_origin": "AB-T4 patch_draft",
+    "no_apply_command": true,
+    "no_git_command": true,
+    "no_production_command": true,
+    "risk_notes": [
+      "Over-selection may dilute patch focus if unrelated files are included.",
+      "Over-selection may dilute patch focus if unrelated files are included.",
+      "Over-selection may dilute patch focus if unrelated files are included.",
+      "Over-selection may dilute patch focus if unrelated files are included.",
+      "Over-selection may dilute patch focus if unrelated files are included."
+    ]
+  },
+  "simulated_test_plan": {
+    "target_files": [
+      "scripts/build_auto_builder_copilot_prompt_compression.py",
+      "tests/test_build_auto_builder_copilot_prompt_compression.py",
+      "scripts/__init__.py",
+      "scripts/audit_phase8_12_no_secret_leak.py",
+      "scripts/build_ebook_trial_adapter_3_completion_payload.py"
+    ],
+    "selected_tests": [
+      "python3 -m json.tool config/auto_builder_limited_test_selector_policy.json >/dev/null",
+      "python3 -m py_compile scripts/select_auto_builder_limited_tests.py",
+      "pytest -q tests/test_build_auto_builder_copilot_prompt_compression.py"
+    ],
+    "why_these_tests": "Policy json validation, script compile validation, and one targeted pytest only.",
+    "blocked_commands": [
+      "full pytest sweep",
+      "network commands",
+      "wordpress commands",
+      "credential/env reads",
+      "git commit/push"
+    ],
+    "safety_confirmation": {
+      "no_full_pytest": true,
+      "no_network": true,
+      "no_wordpress": true,
+      "no_credential_read": true,
+      "no_git_operation": true
+    }
+  },
+  "pipeline_summary": "Verified 6 phases across AB-T2 to AB-T7. AB-T2 to AB-T6 are connected in order and verified under design-only constraints. Pipeline narrows context, targets related files, drafts minimal patches, limits tests, and consolidates evidence. Evidence pack complete and ready for AB-T7 integration gate review.",
+  "safety_summary": "Dry run only; Copilot send, LLM send, git operations, WordPress, external API, and credential access remain blocked. Policy blocks: send_to_copilot=False, send_to_llm=False, allow_git_operation=False, allow_wordpress=False, allow_external_api=False, allow_credentials=False. All phases remain DESIGN_ONLY/NO_GO/DRY_RUN_ONLY with execution and sensitive operations blocked. All stages remain NO_GO / DRY_RUN_ONLY with external, WordPress, credential, and git operations blocked.",
+  "evidence_summary": "Evidence source: AB-T2 to AB-T5 progressively constrain context scope, patch drafting, and test scope for token savings. Integration source: AB-T2 to AB-T6 are connected in order and verified under design-only constraints.",
+  "errors": [],
+  "generated_at": "2026-07-01T14:02:52.835563+00:00"
+}

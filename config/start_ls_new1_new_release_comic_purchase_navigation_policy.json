@@ -1,0 +1,198 @@
+{
+  "phase": "LS-NEW-1",
+  "name": "New Release Comic Purchase Navigation Protocol",
+  "japanese_name": "新刊コミック購入ナビ・プロトコル",
+  "status": "DESIGN_ONLY_NO_EXECUTION",
+  "production_status": "NO_GO",
+  "execution_mode": "PROTOCOL_AND_VALIDATION_DESIGN_ONLY",
+  "purpose": "Define the new-release comic purchase navigation protocol. This protocol focuses on release dates, store availability, price, point/reward rates, reservation/delivery status, X announcement templates, sale article handoff, and update timestamps. It must not become a work-explanation media protocol.",
+  "route_policy": {
+    "sale_route_status": "ON_HOLD",
+    "new_release_comic_route_status": "PRIMARY_NEXT_ROUTE",
+    "reason": "New-release comics are published daily, can be drafted ahead of release, and can use safer purchase-navigation templates without requiring long work explanations."
+  },
+  "content_strategy": {
+    "media_type": "purchase_navigation_media",
+    "not_media_type": "work_explanation_media",
+    "work_introduction_required": false,
+    "long_work_explanation_required": false,
+    "primary_value_fields": [
+      "release_date",
+      "sales_store",
+      "price",
+      "point_reward_rate",
+      "reservation_status",
+      "delivery_status",
+      "checked_at",
+      "purchase_link"
+    ],
+    "short_original_comment_allowed": true
+  },
+  "copy_policy": {
+    "official_synopsis_copy_allowed": false,
+    "store_description_copy_allowed": false,
+    "publisher_description_copy_allowed": false,
+    "review_copy_allowed": false,
+    "user_comment_copy_allowed": false,
+    "editorial_comment_copy_allowed": false,
+    "catchcopy_copy_allowed": false,
+    "ranking_article_description_copy_allowed": false,
+    "external_media_description_copy_allowed": false,
+    "initial_operation_external_quote_allowed": false
+  },
+  "source_policy": {
+    "hon_no_hikidashi": {
+      "usage": "human_checked_auxiliary_source_only",
+      "allowed": [
+        "human_checks_release_candidates",
+        "human_checks_title_volume_release_date_existence"
+      ],
+      "forbidden": [
+        "auto_scraping",
+        "database_creation",
+        "article_text_copy",
+        "description_copy",
+        "image_copy",
+        "canonical_source_use",
+        "automated_fetch"
+      ]
+    },
+    "canonical_sources": [
+      "publisher_official",
+      "amazon_kindle",
+      "rakuten_books_kobo",
+      "dmm_books",
+      "ebookjapan",
+      "booklive",
+      "asp_permitted_store"
+    ],
+    "preferred_acquisition_methods": [
+      "api",
+      "official_affiliate_materials",
+      "manual_confirmation",
+      "permission_compliant_data_acquisition"
+    ],
+    "scraping_allowed": false
+  },
+  "resource_allocation_policy": {
+    "priority_high": [
+      "x_post_generation",
+      "release_date_announcement",
+      "reservation_start_announcement",
+      "delivery_start_announcement",
+      "sale_article_generation",
+      "point_reward_rate_comparison",
+      "price_comparison",
+      "store_availability_diff_detection"
+    ],
+    "priority_medium": [
+      "short_original_helper_comment",
+      "author_summary",
+      "anime_or_trending_work_supplement"
+    ],
+    "priority_low": [
+      "averaging_external_descriptions",
+      "long_work_explanation",
+      "official_synopsis_style_generation"
+    ]
+  },
+  "allowed_data_fields": [
+    "title",
+    "volume",
+    "author",
+    "publisher",
+    "label",
+    "release_date",
+    "ebook_release_date",
+    "paper_release_date",
+    "price",
+    "sales_store",
+    "reservation_status",
+    "delivery_status",
+    "point_reward_rate",
+    "coupon_target",
+    "campaign_target",
+    "asin",
+    "isbn",
+    "store_product_id",
+    "affiliate_url",
+    "checked_at",
+    "source_url"
+  ],
+  "safety": {
+    "design_only": true,
+    "no_execution": true,
+    "no_go": true,
+    "human_review_required": true,
+    "wordpress_write_allowed": false,
+    "x_post_allowed": false,
+    "external_api_call_allowed": false,
+    "http_get_allowed": false,
+    "scraping_allowed": false,
+    "amazon_api_call_allowed": false,
+    "pa_api_call_allowed": false,
+    "creators_api_call_allowed": false,
+    "credential_env_read_allowed": false,
+    "publish_allowed": false
+  },
+  "must_remain_false_flags": {
+    "wordpress_api_call_executed": false,
+    "wordpress_write_executed": false,
+    "wordpress_draft_created": false,
+    "publish_executed": false,
+    "x_post_executed": false,
+    "external_api_call_executed": false,
+    "http_get_executed": false,
+    "web_scraping_executed": false,
+    "rss_fetch_executed": false,
+    "amazon_api_call_executed": false,
+    "pa_api_call_executed": false,
+    "creators_api_call_executed": false,
+    "credential_env_read_executed": false,
+    "credential_value_output": false,
+    "credential_secret_output": false,
+    "authorization_header_generated": false,
+    "authorization_header_output": false,
+    "basic_auth_string_generated": false,
+    "basic_auth_string_output": false,
+    "post119_update_executed": false,
+    "post183_update_executed": false,
+    "ls_next1_fill_updated": false,
+    "ls_next2_started": false,
+    "ls_sale_route_started": false,
+    "asin_auto_inferred": false,
+    "title_auto_inferred": false,
+    "release_date_auto_inferred": false,
+    "price_auto_inferred": false,
+    "point_reward_rate_auto_inferred": false,
+    "candidate_ranking_executed": false,
+    "candidate_selected": false
+  },
+  "validator_requirements": {
+    "required_protocol": "LS-NEW-1",
+    "required_content_type": "new_release_comic",
+    "requires_title": true,
+    "requires_release_date": true,
+    "requires_publisher_or_source_url": true,
+    "requires_checked_at": true,
+    "requires_source_url_or_source_pending": true,
+    "requires_copy_policy_false": true,
+    "requires_safety_false_flags": true,
+    "requires_human_review_required_true": true
+  },
+  "outputs": {
+    "example_candidate": "exchange/examples/start_ls_new1_new_release_comic_candidate.example.json",
+    "wp_template": "exchange/templates/start_ls_new1_wp_purchase_navigation_template.md",
+    "x_templates": "exchange/templates/start_ls_new1_x_post_templates.md",
+    "result": "exchange/logs/start_ls_new1_new_release_comic_purchase_navigation_result.json",
+    "report": "reports/start_ls_new1_new_release_comic_purchase_navigation_report.md"
+  },
+  "next_phase": {
+    "recommended_next_action": "BEGIN_LS_NEW_2_CANDIDATE_INTAKE_SCHEMA_OR_CONTINUE_MONITORING",
+    "recommended_next_phase_options": [
+      "LS-NEW-2",
+      "LS-MON-2",
+      "LS-NEXT-1-FILL_AFTER_HUMAN_INPUT"
+    ]
+  }
+}

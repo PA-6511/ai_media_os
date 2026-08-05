@@ -1,0 +1,83 @@
+{
+  "schema_version": "ir162_read_only_preservation_check_v1",
+  "phase": "IR162",
+  "generated_at": "2026-05-26T12:32:10.773650+00:00",
+  "source_task_id": "ir161_165_batch",
+  "validation_result": "PASS",
+  "validation_failed_checks": [],
+  "validation_warnings": [],
+  "read_only_preservation_check": {
+    "check_id": "ir162_check_ir161_165_batch_20260526T123210Z",
+    "generated_at": "2026-05-26T12:32:10.773645+00:00",
+    "source_task_id": "ir161_165_batch",
+    "new_cycle_id": "IR71_PLUS_CYCLE_A",
+    "preservation_entries": [
+      {
+        "index_item_id": "immutable_1",
+        "meta_item": "new_cycle_start",
+        "preservation_mode": "READ_ONLY",
+        "preserved": true
+      },
+      {
+        "index_item_id": "immutable_2",
+        "meta_item": "governance_preparation",
+        "preservation_mode": "READ_ONLY",
+        "preserved": true
+      },
+      {
+        "index_item_id": "immutable_3",
+        "meta_item": "prohibition_continuity",
+        "preservation_mode": "READ_ONLY",
+        "preserved": true
+      },
+      {
+        "index_item_id": "immutable_4",
+        "meta_item": "evidence_fixation",
+        "preservation_mode": "READ_ONLY",
+        "preserved": true
+      },
+      {
+        "index_item_id": "immutable_5",
+        "meta_item": "long_term_retention",
+        "preservation_mode": "READ_ONLY",
+        "preserved": true
+      },
+      {
+        "index_item_id": "immutable_6",
+        "meta_item": "terminal_seal",
+        "preservation_mode": "READ_ONLY",
+        "preserved": true
+      },
+      {
+        "index_item_id": "immutable_7",
+        "meta_item": "cycle_summary",
+        "preservation_mode": "READ_ONLY",
+        "preserved": true
+      }
+    ],
+    "entry_count": 7,
+    "all_preserved": true,
+    "unlock_eligible": false,
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "check_hash": "a22e64cbd50fb5bba27b64855f8b6fb5b344c299ecc6d954f587b3f35f306b31",
+  "safety_gate_snapshot": {
+    "dry_run": "maintained",
+    "OBSERVE": "maintained",
+    "submission_execution_blocked": true,
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "network_transmission_executed": false,
+    "production_release": false,
+    "GitHub_push": "未実行"
+  }
+}

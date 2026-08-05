@@ -1,0 +1,50 @@
+{
+  "phase": "Phase 8-45",
+  "phase_name": "Manual Review Result Validation",
+  "status": "PHASE8_45_MANUAL_REVIEW_VALIDATION_COMPLETED_NO_GO",
+  "target_post_id": 115,
+  "production_status": "NO_PUBLISH_PAUSE",
+  "design_only": true,
+  "validation_result": {
+    "is_input_complete": false,
+    "is_publish_go_eligible": false,
+    "decision_now": "NO_GO_KEEP_PAUSE",
+    "failed_rules": [
+      "required_boolean_not_set:business_facts_review.work_title_verified",
+      "required_boolean_not_set:business_facts_review.volume_info_verified",
+      "required_boolean_not_set:business_facts_review.price_campaign_terms_verified",
+      "required_boolean_not_set:content_accuracy_review.claims_supported",
+      "required_boolean_not_set:content_accuracy_review.official_link_checked",
+      "required_boolean_not_set:content_accuracy_review.affiliate_link_checked",
+      "required_boolean_not_set:legal_pr_affiliate_review.pr_label_visible",
+      "required_boolean_not_set:legal_pr_affiliate_review.affiliate_disclosure_visible",
+      "required_boolean_not_set:legal_pr_affiliate_review.legal_compliance_checked"
+    ]
+  },
+  "publish_allowed": false,
+  "publish_executed": false,
+  "wordpress_api_call_attempted": false,
+  "wordpress_write_executed": false,
+  "wordpress_draft_updated": false,
+  "secret_values_output": false,
+  "secret_values_written": false,
+  "errors": [],
+  "warnings": [
+    "Validation indicates pending human inputs; keep NO_GO pause."
+  ],
+  "safety_violations": [],
+  "evidence_summary": [
+    {
+      "path": "exchange/logs/phase8_44_human_review_input_evidence_post_115_result.json",
+      "exists": true,
+      "status": "PHASE8_44_HUMAN_REVIEW_INPUT_EVIDENCE_PENDING_COMPLETION"
+    },
+    {
+      "path": "exchange/logs/phase8_42_manual_review_result_validator_design_only_post_115_result.json",
+      "exists": true,
+      "status": "PHASE8_42_MANUAL_REVIEW_RESULT_VALIDATOR_DESIGN_ONLY_READY"
+    }
+  ],
+  "next_step": "phase8_46_publish_readiness_re_evaluation_after_human_review",
+  "checked_at": "2026-06-09T14:05:27.927866+00:00"
+}

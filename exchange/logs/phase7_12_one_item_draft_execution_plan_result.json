@@ -1,0 +1,58 @@
+{
+  "phase": "Phase 7-12",
+  "status": "EXECUTION_PLAN_READY_BUT_NO_GO",
+  "production_status": "NO_GO",
+  "wordpress_draft_creation": "NO_GO",
+  "wordpress_write_executed": false,
+  "wordpress_api_call_allowed": false,
+  "publish_allowed": false,
+  "approve_draft_create_only_currently_allowed": false,
+  "unlock_in_this_phase": false,
+  "execution_plan_is_execution_permission": false,
+  "target_item_count": 1,
+  "planned_wordpress_payload": {
+    "candidate_id": "phase7_1_sample_candidate_001",
+    "title": "サンプル漫画 1巻 セール紹介",
+    "content": "PR：本記事には広告が含まれます。これはPhase 7-12の実行計画DRY_RUN用本文です。WordPress APIは呼びません。",
+    "status": "draft_candidate_plan_only",
+    "category": "電子書籍",
+    "tags": [
+      "漫画",
+      "セール",
+      "電子書籍"
+    ],
+    "affiliate_links": [
+      {
+        "store": "amazon",
+        "url": "https://example.com/affiliate/sample"
+      }
+    ],
+    "cta": [
+      {
+        "label": "Amazonで見る",
+        "url": "https://example.com/affiliate/sample"
+      }
+    ]
+  },
+  "evidence_summary": [
+    {
+      "path": "exchange/logs/phase7_11_approve_draft_create_only_token_validation_result.json",
+      "exists": true,
+      "status": "TOKEN_READY_BUT_LOCKED"
+    }
+  ],
+  "errors": [],
+  "warnings": [],
+  "safety_violations": [],
+  "blocked_operations": [
+    "wordpress_rest_post",
+    "wordpress_rest_put",
+    "wordpress_rest_patch",
+    "wordpress_rest_delete",
+    "wordpress_publish",
+    "wordpress_update",
+    "wordpress_delete"
+  ],
+  "allowed_next_step": "Phase 7-13 first controlled WordPress draft creation operator runbook",
+  "checked_at": "2026-05-27T14:01:23.877881+00:00"
+}

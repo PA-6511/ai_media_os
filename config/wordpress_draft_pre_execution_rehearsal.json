@@ -1,0 +1,129 @@
+{
+  "phase": "Phase 6-6",
+  "rehearsal_name": "wordpress_draft_pre_execution_rehearsal_design",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "rehearsal_status": "DESIGN_ONLY",
+  "production_status": "NO_GO",
+  "wordpress_draft_creation": "NO_GO",
+  "rehearsal_enabled": true,
+  "real_write_enabled": false,
+  "rehearsal_scope": {
+    "target_operation": "single_wordpress_draft_creation_rehearsal",
+    "max_posts_per_run": 1,
+    "target_post_status": "draft",
+    "simulate_only": true,
+    "wordpress_rest_call_must_be_skipped": true
+  },
+  "required_inputs": [
+    "request_id",
+    "candidate_id",
+    "title",
+    "body_markdown",
+    "content_url",
+    "pr_disclosure",
+    "affiliate_check_result",
+    "human_review_decision",
+    "reviewer_id",
+    "reviewed_at"
+  ],
+  "preconditions": [
+    "phase6_1_release_policy_validation_result.status == PASS",
+    "phase6_2_preflight_gate_validation_result.status == PASS",
+    "phase6_3_release_decision_rules_validation_result.status == PASS",
+    "phase6_4_controlled_unlock_plan_validation_result.status == PASS",
+    "phase6_5_execution_spec_validation_result.status == PASS",
+    "execution_enabled == false",
+    "wordpress_write_executed == false"
+  ],
+  "rehearsal_sequence": [
+    {
+      "step": 1,
+      "name": "load_inputs_and_schema_check",
+      "description": "入力一式を読み込み、必須項目・形式を検証",
+      "stop_on_failure": true
+    },
+    {
+      "step": 2,
+      "name": "phase_gate_and_policy_check",
+      "description": "Phase 6-1から6-5までの検証結果とNO_GO状態を確認",
+      "stop_on_failure": true
+    },
+    {
+      "step": 3,
+      "name": "human_review_and_expiry_check",
+      "description": "APPROVE_DRAFT_CREATE_ONLYと承認時刻有効性を確認",
+      "stop_on_failure": true
+    },
+    {
+      "step": 4,
+      "name": "wordpress_permission_and_scope_check",
+      "description": "専用ユーザー権限・scope制限・既存記事影響ゼロを確認",
+      "stop_on_failure": true
+    },
+    {
+      "step": 5,
+      "name": "payload_simulation_without_send",
+      "description": "送信ペイロードを生成して整合性を確認するが送信しない",
+      "stop_on_failure": true
+    },
+    {
+      "step": 6,
+      "name": "evidence_dry_record_and_signoff",
+      "description": "実行証跡の将来フォーマットを乾式記録し承認観点を固定",
+      "stop_on_failure": true
+    }
+  ],
+  "evidence_requirements": {
+    "required_in_phase6_6": true,
+    "store_as_simulation_only": true,
+    "required_fields": [
+      "request_id",
+      "candidate_id",
+      "reviewer_id",
+      "decision_token",
+      "simulated_payload_hash",
+      "simulated_at",
+      "result_status",
+      "write_api_called"
+    ]
+  },
+  "stop_conditions": [
+    "missing_required_input == true",
+    "precondition_not_met == true",
+    "human_review_missing_or_expired == true",
+    "affiliate_check_unresolved_warn == true",
+    "content_url_missing == true",
+    "pr_disclosure_missing == true",
+    "wordpress_role_not_allowed == true",
+    "wordpress_rest_post_attempted == true",
+    "wordpress_rest_put_patch_attempted == true",
+    "publish_attempted == true",
+    "update_existing_post_attempted == true",
+    "delete_post_attempted == true",
+    "cron_change_attempted == true",
+    "github_actions_trigger_attempted == true",
+    "slack_production_notification_attempted == true",
+    "vps_self_builder_execution_attempted == true",
+    "env_secret_credential_auto_edit_attempted == true"
+  ],
+  "retry_policy": {
+    "auto_retry_forbidden": true,
+    "retry_on_failure": false,
+    "manual_rerun_requires_new_review": true
+  },
+  "forbidden_actions": [
+    "wordpress_rest_post",
+    "wordpress_rest_put_patch",
+    "publish_post",
+    "update_existing_post",
+    "delete_post",
+    "bulk_posting",
+    "external_export",
+    "github_actions_trigger",
+    "slack_production_notification",
+    "cron_automation",
+    "env_secret_auto_edit",
+    "vps_self_builder_execution"
+  ]
+}

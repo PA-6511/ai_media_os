@@ -1,0 +1,52 @@
+{
+  "phase": "Phase 8-24",
+  "phase_name": "Category Only Update for post_id 115",
+  "status": "PHASE8_24_CATEGORY_ONLY_UPDATE_EXECUTED_PENDING_HUMAN_REVIEW",
+  "target_post_id": 115,
+  "production_status": "CATEGORY_ONLY_UPDATE_ONLY",
+  "update_scope": "category_only",
+  "category_only_update_executed": true,
+  "categories_updated_to": [
+    13
+  ],
+  "tags_updated": false,
+  "requested_category_ids": [
+    13
+  ],
+  "tag_ids_input_mode": "do_not_send",
+  "wordpress_api_call_attempted": true,
+  "wordpress_write_executed": true,
+  "wordpress_draft_updated": true,
+  "api_status_code": 200,
+  "post_id": 115,
+  "post_status": "draft",
+  "post_link": "https://hoshido.jp/?p=115",
+  "title_update_executed": false,
+  "body_update_executed": false,
+  "publish_executed": false,
+  "delete_executed": false,
+  "bulk_operation_executed": false,
+  "export_executed": false,
+  "rollback_executed": false,
+  "freeze_executed": false,
+  "human_review_required": true,
+  "secret_values_output": false,
+  "secret_values_written": false,
+  "errors": [],
+  "warnings": [],
+  "safety_violations": [],
+  "evidence_summary": [
+    {
+      "path": "exchange/logs/phase8_23_category_tag_only_preflight_no_execution_post_115_result.json",
+      "exists": true,
+      "status": "PHASE8_23_CATEGORY_TAG_ONLY_PREFLIGHT_READY_NO_EXECUTION"
+    },
+    {
+      "path": "exchange/logs/phase8_24a_taxonomy_id_discovery_no_write_post_115_result.json",
+      "exists": true,
+      "status": "PHASE8_24A_TAXONOMY_ID_DISCOVERY_READY_NO_WRITE"
+    }
+  ],
+  "next_step": "phase8_25_category_only_update_closure_report",
+  "checked_at": "2026-06-09T13:46:24.619573+00:00"
+}

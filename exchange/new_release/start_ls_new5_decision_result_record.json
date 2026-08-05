@@ -1,0 +1,15 @@
+{
+  "phase": "LS-NEW-5-DECISION",
+  "document_type": "START_LS_NEW5_HUMAN_REVIEW_DECISION_RESULT_RECORD",
+  "status": "LSNEW5_HUMAN_REVIEW_DECISION_HUMAN_APPROVED_NO_EXECUTION",
+  "human_review_completed": true,
+  "human_approved": true,
+  "approval_label": "APPROVED_FOR_LS_NEW_6_WP_DRAFT_PAYLOAD_PREP_ONLY",
+  "normalized_approval_label": "APPROVED_FOR_LS_NEW_6_WP_DRAFT_PAYLOAD_PREP_ONLY",
+  "approval_label_consumed": false,
+  "reviewer_notes": "WP payload and X payload reviewed. Approved for LS-NEW-6 WP draft payload preparation only.",
+  "ready_for_ls_new_6": true,
+  "execution_allowed": false,
+  "warnings": [],
+  "recommended_next_action": "PROCEED_TO_LS_NEW_6_PREP_ONLY"
+}

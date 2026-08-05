@@ -1,0 +1,17 @@
+{
+  "package_type": "wordpress_draft_candidate_result",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "status": "PASS",
+  "reason": "wordpress draft candidate generated for human_review",
+  "candidate_generated": true,
+  "candidate_output": "/home/deploy/ai_media_os/exchange/outgoing/wordpress_draft_candidate.example.json",
+  "input_source": "/home/deploy/ai_media_os/exchange/incoming/decision_package.realdata.normal.example.json",
+  "wordpress_write_executed": false,
+  "auto_post": false,
+  "auto_update": false,
+  "auto_delete": false,
+  "auto_export": false,
+  "next_step": "human_review",
+  "created_at": "2026-05-05T05:15:29.080648+00:00"
+}

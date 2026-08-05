@@ -1,0 +1,116 @@
+{
+  "phase": "Phase 8-27",
+  "phase_name": "First One-Item Draft Create, Limited Body Update, and Category Fix Success Report",
+  "status": "PHASE8_27_FIRST_ONE_ITEM_DRAFT_BODY_CATEGORY_SUCCESS_FIXED_NO_PUBLISH",
+  "target_post_id": 115,
+  "post_status": "draft",
+  "post_link": "https://hoshido.jp/?p=115",
+  "category_id_confirmed": 13,
+  "category_name_confirmed": "セール情報",
+  "tags_status": "not_required_for_this_phase",
+  "draft_created": true,
+  "body_updated": true,
+  "category_updated": true,
+  "manual_review_result": "approve",
+  "production_status": "LIMITED_DRAFT_UPDATE_ONLY_NO_PUBLISH",
+  "publish_executed": false,
+  "delete_executed": false,
+  "bulk_operation_executed": false,
+  "export_executed": false,
+  "auto_post": false,
+  "auto_update": false,
+  "auto_delete": false,
+  "auto_export": false,
+  "systemd_enable_executed": false,
+  "timer_enable_executed": false,
+  "secret_values_output": false,
+  "secret_values_written": false,
+  "missing_evidence_keys": [],
+  "success_conditions": {
+    "draft_create_executed": true,
+    "draft_create_verified": true,
+    "initial_manual_review_request_fix": true,
+    "v2_candidate_approved": true,
+    "limited_body_update_executed": true,
+    "limited_body_update_verified": true,
+    "category_request_fix_recorded": true,
+    "category_only_update_executed": true,
+    "category_only_update_verified": true,
+    "final_manual_inspection_approved": true,
+    "post_status_draft": true,
+    "no_publish": true,
+    "no_delete": true,
+    "no_safety_violations": true,
+    "no_secret_output": true
+  },
+  "failed_conditions": [],
+  "errors": [],
+  "warnings": [
+    "RequestsDependencyWarning was observed during earlier requests-based phases; handle later as dependency hygiene, not as blocker for this successful controlled trial."
+  ],
+  "safety_violations": [],
+  "evidence_summary": [
+    {
+      "key": "phase8_9",
+      "path": "exchange/logs/phase8_9_first_one_item_wordpress_draft_create_rerun_result.json",
+      "exists": true,
+      "status": "RERUN_DRAFT_CREATED_PENDING_HUMAN_REVIEW"
+    },
+    {
+      "key": "phase8_10",
+      "path": "exchange/logs/phase8_10_post_rerun_closure_report.json",
+      "exists": true,
+      "status": "RERUN_DRAFT_VERIFIED_PENDING_HUMAN_REVIEW"
+    },
+    {
+      "key": "phase8_11",
+      "path": "exchange/logs/phase8_11_manual_draft_review_post_115_result.json",
+      "exists": true,
+      "status": "PHASE8_11_REQUEST_FIX"
+    },
+    {
+      "key": "phase8_16",
+      "path": "exchange/logs/phase8_16_corrected_candidate_v2_manual_review_post_115_result.json",
+      "exists": true,
+      "status": "PHASE8_16_CORRECTED_CANDIDATE_V2_REVIEW_APPROVED"
+    },
+    {
+      "key": "phase8_19",
+      "path": "exchange/logs/phase8_19_limited_update_post_115_execution_result.json",
+      "exists": true,
+      "status": "PHASE8_19_LIMITED_DRAFT_UPDATE_EXECUTED_PENDING_HUMAN_REVIEW"
+    },
+    {
+      "key": "phase8_20",
+      "path": "exchange/logs/phase8_20_limited_update_post_115_closure_report.json",
+      "exists": true,
+      "status": "PHASE8_20_LIMITED_DRAFT_UPDATE_VERIFIED_PENDING_HUMAN_REVIEW"
+    },
+    {
+      "key": "phase8_21",
+      "path": "exchange/logs/phase8_21_manual_inspection_after_limited_update_post_115_result.json",
+      "exists": true,
+      "status": "PHASE8_21_MANUAL_INSPECTION_REQUEST_FIX"
+    },
+    {
+      "key": "phase8_24",
+      "path": "exchange/logs/phase8_24_category_only_update_post_115_execution_result.json",
+      "exists": true,
+      "status": "PHASE8_24_CATEGORY_ONLY_UPDATE_EXECUTED_PENDING_HUMAN_REVIEW"
+    },
+    {
+      "key": "phase8_25",
+      "path": "exchange/logs/phase8_25_category_only_update_post_115_closure_report.json",
+      "exists": true,
+      "status": "PHASE8_25_CATEGORY_ONLY_UPDATE_VERIFIED_PENDING_HUMAN_REVIEW"
+    },
+    {
+      "key": "phase8_26",
+      "path": "exchange/logs/phase8_26_manual_inspection_after_category_only_update_post_115_result.json",
+      "exists": true,
+      "status": "PHASE8_26_MANUAL_INSPECTION_APPROVED_AFTER_CATEGORY_ONLY_UPDATE"
+    }
+  ],
+  "next_step": "phase8_28_no_publish_pause_and_next_route_design",
+  "checked_at": "2026-06-09T13:51:52.484131+00:00"
+}

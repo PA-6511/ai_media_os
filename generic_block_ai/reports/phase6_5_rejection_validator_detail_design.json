@@ -1,0 +1,395 @@
+{
+  "_meta": {
+    "phase": "6-5",
+    "purpose": "rejection_validator_detail_design",
+    "created_at": "2026-05-12",
+    "status": "DESIGN_ONLY",
+    "note": "Core側 rejection validator の詳細設計。拒否すべき条件を詳細化。WARN/REJECT/ABORT条件の明文化。実装候補は設計情報に留める。"
+  },
+  "validator_scope": {
+    "validator_type": "rejection_validator",
+    "purpose": "Core側から受け取る payload に対し、即座に拒否すべき条件を検証",
+    "design_basis": [
+      "reports/phase6_2_receiver_validator_implementation_conditions.json",
+      "reports/phase5_2_core_rejection_conditions.json"
+    ],
+    "rejection_scope": [
+      "operation_mode 逸脱",
+      "execution 逸脱",
+      "permission 逸脱",
+      "transport 逸脱",
+      "禁止 action 混入"
+    ]
+  },
+  "operation_mode_violation_rejection": {
+    "title": "operation_mode 違反拒否",
+    "violation_types": [
+      {
+        "id": "mode_not_observe",
+        "condition": "operation_mode != 'OBSERVE' である",
+        "severity": "CRITICAL",
+        "action": "IMMEDIATE_REJECT",
+        "reason": "OBSERVE mode は固定",
+        "response": "rejection_code: MODE_VIOLATION"
+      },
+      {
+        "id": "mode_undefined",
+        "condition": "operation_mode フィールドが定義されていない",
+        "severity": "CRITICAL",
+        "action": "IMMEDIATE_REJECT",
+        "reason": "operation_mode は必須",
+        "response": "rejection_code: MODE_UNDEFINED"
+      },
+      {
+        "id": "mode_value_mismatch",
+        "condition": "operation_mode が動的に変更される可能性",
+        "severity": "CRITICAL",
+        "action": "IMMEDIATE_REJECT",
+        "reason": "operation_mode は不変",
+        "response": "rejection_code: MODE_MISMATCH"
+      }
+    ]
+  },
+  "execution_violation_rejection": {
+    "title": "execution 違反拒否",
+    "violation_types": [
+      {
+        "id": "execution_not_dry_run",
+        "condition": "execution != 'dry_run' である",
+        "severity": "CRITICAL",
+        "action": "IMMEDIATE_REJECT",
+        "reason": "dry_run mode は固定",
+        "response": "rejection_code: EXECUTION_VIOLATION"
+      },
+      {
+        "id": "execution_undefined",
+        "condition": "execution フィールドが定義されていない",
+        "severity": "CRITICAL",
+        "action": "IMMEDIATE_REJECT",
+        "reason": "execution は必須",
+        "response": "rejection_code: EXECUTION_UNDEFINED"
+      },
+      {
+        "id": "execution_production_mode",
+        "condition": "execution が 'production' または similar 値",
+        "severity": "CRITICAL",
+        "action": "IMMEDIATE_REJECT_ABORT",
+        "reason": "本番実行は絶対禁止",
+        "response": "rejection_code: PRODUCTION_MODE_DETECTED"
+      }
+    ]
+  },
+  "permission_violation_rejection": {
+    "title": "permission 違反拒否",
+    "violation_types": [
+      {
+        "id": "execution_permission_not_none",
+        "condition": "execution_permission != 'none' である",
+        "severity": "CRITICAL",
+        "action": "IMMEDIATE_REJECT",
+        "reason": "execution_permission は none 固定",
+        "response": "rejection_code: EXEC_PERMISSION_VIOLATION"
+      },
+      {
+        "id": "write_permission_not_none",
+        "condition": "write_permission != 'none' である",
+        "severity": "CRITICAL",
+        "action": "IMMEDIATE_REJECT",
+        "reason": "write_permission は none 固定",
+        "response": "rejection_code: WRITE_PERMISSION_VIOLATION"
+      },
+      {
+        "id": "transport_permission_invalid",
+        "condition": "transport_permission not in ['none', 'internal_dry_run_reference']",
+        "severity": "CRITICAL",
+        "action": "IMMEDIATE_REJECT",
+        "reason": "transport_permission は限定値のみ",
+        "response": "rejection_code: TRANSPORT_PERMISSION_VIOLATION"
+      },
+      {
+        "id": "undefined_permission_field",
+        "condition": "execution_permission / write_permission / transport_permission が undefined",
+        "severity": "CRITICAL",
+        "action": "IMMEDIATE_REJECT",
+        "reason": "permission field は必須",
+        "response": "rejection_code: PERMISSION_UNDEFINED"
+      }
+    ]
+  },
+  "blocked_action_rejection": {
+    "title": "禁止 action 検出拒否",
+    "immediate_reject_actions": [
+      {
+        "action_name": "external_api_call",
+        "severity": "CRITICAL",
+        "rejection_code": "EXTERNAL_API_BLOCKED",
+        "action_type": "IMMEDIATE_REJECT",
+        "reason": "外部API呼び出しは絶対禁止"
+      },
+      {
+        "action_name": "wordpress_operation",
+        "severity": "CRITICAL",
+        "rejection_code": "WORDPRESS_BLOCKED",
+        "action_type": "IMMEDIATE_REJECT",
+        "reason": "WordPress操作は絶対禁止"
+      },
+      {
+        "action_name": "cron_registration",
+        "severity": "CRITICAL",
+        "rejection_code": "CRON_BLOCKED",
+        "action_type": "IMMEDIATE_REJECT",
+        "reason": "cron登録は絶対禁止"
+      },
+      {
+        "action_name": "auto_execute",
+        "severity": "CRITICAL",
+        "rejection_code": "AUTO_EXECUTE_BLOCKED",
+        "action_type": "IMMEDIATE_REJECT",
+        "reason": "自動実行は絶対禁止"
+      },
+      {
+        "action_name": "auto_post",
+        "severity": "CRITICAL",
+        "rejection_code": "AUTO_POST_BLOCKED",
+        "action_type": "IMMEDIATE_REJECT",
+        "reason": "自動投稿は絶対禁止"
+      },
+      {
+        "action_name": "auto_update",
+        "severity": "CRITICAL",
+        "rejection_code": "AUTO_UPDATE_BLOCKED",
+        "action_type": "IMMEDIATE_REJECT",
+        "reason": "自動更新は絶対禁止"
+      },
+      {
+        "action_name": "auto_delete",
+        "severity": "CRITICAL",
+        "rejection_code": "AUTO_DELETE_BLOCKED",
+        "action_type": "IMMEDIATE_REJECT",
+        "reason": "自動削除は絶対禁止"
+      },
+      {
+        "action_name": "auto_export",
+        "severity": "CRITICAL",
+        "rejection_code": "AUTO_EXPORT_BLOCKED",
+        "action_type": "IMMEDIATE_REJECT",
+        "reason": "自動export は絶対禁止"
+      },
+      {
+        "action_name": "production_execution",
+        "severity": "CRITICAL",
+        "rejection_code": "PRODUCTION_BLOCKED",
+        "action_type": "IMMEDIATE_REJECT_ABORT",
+        "reason": "本番実行は絶対禁止"
+      },
+      {
+        "action_name": "core_ai_real_send",
+        "severity": "CRITICAL",
+        "rejection_code": "REAL_SEND_BLOCKED",
+        "action_type": "IMMEDIATE_REJECT_ABORT",
+        "reason": "Core AI への実送信は絶対禁止"
+      }
+    ]
+  },
+  "safety_flags_violation_rejection": {
+    "title": "safety flag 違反拒否",
+    "violations": [
+      {
+        "id": "dry_run_false",
+        "condition": "dry_run_mode = false",
+        "severity": "CRITICAL",
+        "action": "IMMEDIATE_REJECT",
+        "reason": "dry_run は必須",
+        "response": "rejection_code: DRY_RUN_DISABLED"
+      },
+      {
+        "id": "any_safety_flag_false",
+        "condition": "external_call_blocked / wordpress_blocked / cron_blocked / auto_execute_blocked / production_execution_blocked のいずれか = false",
+        "severity": "CRITICAL",
+        "action": "IMMEDIATE_REJECT",
+        "reason": "safety flag は全て true 必須",
+        "response": "rejection_code: SAFETY_FLAG_VIOLATION"
+      },
+      {
+        "id": "safety_flag_undefined",
+        "condition": "safety flag フィールドが定義されていない",
+        "severity": "CRITICAL",
+        "action": "IMMEDIATE_REJECT",
+        "reason": "safety flag は必須",
+        "response": "rejection_code: SAFETY_FLAG_UNDEFINED"
+      }
+    ]
+  },
+  "warn_conditions": {
+    "title": "警告条件（human review 要求）",
+    "warn_types": [
+      {
+        "id": "missing_audit_trail",
+        "condition": "payload に audit trail 情報が不足",
+        "severity": "WARNING",
+        "action": "WARN",
+        "requires_human_review": true,
+        "reason": "トレーサビリティ確認必要"
+      },
+      {
+        "id": "missing_reference_artifacts",
+        "condition": "参照すべき artifact (phase5_1, phase5_2, phase5_3 等) が見つからない",
+        "severity": "WARNING",
+        "action": "WARN",
+        "requires_human_review": true,
+        "reason": "設計証跡の完全性確認必要"
+      },
+      {
+        "id": "human_review_not_completed",
+        "condition": "payload に human_review_completed flag がない、または false",
+        "severity": "WARNING",
+        "action": "WARN",
+        "requires_human_review": true,
+        "reason": "human review 完了確認必要"
+      },
+      {
+        "id": "incomplete_safety_justification",
+        "condition": "safety_boundary が定義されているが、その根拠が不足",
+        "severity": "WARNING",
+        "action": "WARN",
+        "requires_human_review": true,
+        "reason": "安全性根拠の詳細確認必要"
+      },
+      {
+        "id": "unusual_decision_logic",
+        "condition": "decision logic が通常と異なるパターン",
+        "severity": "WARNING",
+        "action": "WARN",
+        "requires_human_review": true,
+        "reason": "判定ロジックの適切性確認必要"
+      }
+    ]
+  },
+  "rejection_flow": {
+    "step1_operation_mode_check": {
+      "action": "operation_mode == 'OBSERVE' 確認",
+      "violation": "IMMEDIATE_REJECT + rejection_code: MODE_VIOLATION",
+      "pass": "step2へ進む"
+    },
+    "step2_execution_check": {
+      "action": "execution == 'dry_run' 確認",
+      "violation": "IMMEDIATE_REJECT + rejection_code: EXECUTION_VIOLATION",
+      "pass": "step3へ進む"
+    },
+    "step3_permission_check": {
+      "action": "execution_permission == 'none' AND write_permission == 'none' AND transport_permission in [none, internal_dry_run_reference] 確認",
+      "violation": "IMMEDIATE_REJECT + rejection_code: PERMISSION_VIOLATION",
+      "pass": "step4へ進む"
+    },
+    "step4_safety_flags_check": {
+      "action": "全 safety_flags == true 確認",
+      "violation": "IMMEDIATE_REJECT + rejection_code: SAFETY_FLAG_VIOLATION",
+      "pass": "step5へ進む"
+    },
+    "step5_blocked_actions_scan": {
+      "action": "禁止 action 10個が payload に混入していないか確認",
+      "violation": "IMMEDIATE_REJECT + rejection_code: [ACTION]_BLOCKED",
+      "pass": "step6へ進む"
+    },
+    "step6_warning_check": {
+      "action": "WARN 条件をチェック",
+      "warn": "WARN + human_review gate へ",
+      "pass": "PASS（human_review validator へ進む）"
+    }
+  },
+  "response_codes": {
+    "rejection_codes": [
+      "MODE_VIOLATION",
+      "MODE_UNDEFINED",
+      "MODE_MISMATCH",
+      "EXECUTION_VIOLATION",
+      "EXECUTION_UNDEFINED",
+      "PRODUCTION_MODE_DETECTED",
+      "EXEC_PERMISSION_VIOLATION",
+      "WRITE_PERMISSION_VIOLATION",
+      "TRANSPORT_PERMISSION_VIOLATION",
+      "PERMISSION_UNDEFINED",
+      "EXTERNAL_API_BLOCKED",
+      "WORDPRESS_BLOCKED",
+      "CRON_BLOCKED",
+      "AUTO_EXECUTE_BLOCKED",
+      "AUTO_POST_BLOCKED",
+      "AUTO_UPDATE_BLOCKED",
+      "AUTO_DELETE_BLOCKED",
+      "AUTO_EXPORT_BLOCKED",
+      "PRODUCTION_BLOCKED",
+      "REAL_SEND_BLOCKED",
+      "DRY_RUN_DISABLED",
+      "SAFETY_FLAG_VIOLATION",
+      "SAFETY_FLAG_UNDEFINED"
+    ],
+    "abort_triggers": [
+      "PRODUCTION_MODE_DETECTED",
+      "REAL_SEND_BLOCKED"
+    ]
+  },
+  "implementation_candidates": {
+    "note": "以下は設計上の候補。実装ファイルはまだ作成しない。",
+    "candidate_structure": {
+      "main_validator": "app/core_rejection_validator.py (DESIGN_ONLY)",
+      "mode_checker": "app/rejection_mode_checker.py (DESIGN_ONLY)",
+      "permission_checker": "app/rejection_permission_checker.py (DESIGN_ONLY)",
+      "blocked_action_scanner": "app/rejection_blocked_action_scanner.py (DESIGN_ONLY)",
+      "response_mapper": "app/rejection_response_mapper.py (DESIGN_ONLY)"
+    },
+    "test_candidates": {
+      "test_mode": "tests/test_core_rejection_validator_mode.py (DESIGN_ONLY)",
+      "test_permission": "tests/test_core_rejection_validator_permission.py (DESIGN_ONLY)",
+      "test_actions": "tests/test_core_rejection_validator_actions.py (DESIGN_ONLY)"
+    }
+  },
+  "safety_audit": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "external_connection_allowed": false,
+    "wordpress_operation_allowed": false,
+    "cron_registration_allowed": false,
+    "app_implementation_added": false,
+    "tests_implementation_added": false,
+    "validator_implementation_blocked": true
+  },
+  "judgment": {
+    "phase6_5_detail_design_status": "PASS",
+    "design_completeness": "COMPLETE",
+    "rejection_conditions_clear": true,
+    "operation_mode_violations_defined": true,
+    "execution_violations_defined": true,
+    "permission_violations_defined": true,
+    "blocked_actions_enumerated": true,
+    "safety_flags_violations_defined": true,
+    "warn_conditions_clear": true,
+    "rejection_flow_clear": true,
+    "response_codes_defined": true,
+    "implementation_candidates_noted": true,
+    "implementation_not_performed": true,
+    "production_status": "NO_GO",
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "allowed_state": [
+      "OBSERVE",
+      "DRY_RUN",
+      "HUMAN_REVIEW_REQUIRED"
+    ],
+    "blocked": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "next_phase": "phase6_6_human_review_validator_detail_design"
+  }
+}

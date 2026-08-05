@@ -1,0 +1,34 @@
+{
+  "_meta": {
+    "phase": "42-6",
+    "phase_name": "最終承認後・発効可否確認層",
+    "layer": "補強層 (reinforcement layer)",
+    "title": "発効可否判定受領後の最終検証条件設計",
+    "created": "2026-05-14",
+    "author": "governance-framework",
+    "status": "PASS_DESIGN_ONLY",
+    "reports_only": true
+  },
+  "scope": "Phase 42-1～42-5 で実施された Phase 41 完了証跡の受領・整合確認、発効可否判定、証跡固定、NO_GO維持が完了した場合、Phase 43 以降に進む前に実施すべき最終検証条件を 設計層で定義する。検証対象：(1) Phase 41-1～Phase 42-5 の全プロセス記録の完全性確認、(2) manual_release_go_authorization / actual_process_start_go_authorization の発効可能性が正確に判定されたか の最終確認、(3) NO_GO 状態が確実に維持されているか の確認、(4) Phase 43 以降への進行可能性の設計層判定。",
+  "governance": {
+    "production_status": "NO_GO",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "report": {
+    "description": "Phase 42-6 では、Phase 42-1～42-5 で実施された全プロセスを総合的に検証し、Phase 43 以降に進む前の最終確認を 設計層で定義する。(1) プロセス完全性検証：Phase 41-1～Phase 42-5 の全プロセス記録が揃っているか、欠落や矛盾がないか を検証する。(2) 発効可能性判定の正確性検証：Phase 42-2～42-4 で実施した発効可能性判定（manual_release_go / actual_process_start_go の両方について）が正確に行われたか を最終確認する。(3) NO_GO 維持確認：production_status = 'NO_GO' / manual_release_go_authorization = 'NOT_GRANTED' / actual_process_start_go_authorization = 'NOT_GRANTED' の状態が確実に維持されているか を確認する。(4) Phase 43 進行可能性設計判定：上記の検証が全て合格した場合、Phase 43（実処理開始境界再確認層）への進行が可能であるか を設計層で判定する。発効可能と判定された両承認候補に対して、Phase 43 で実処理開始直前の最終確認を行うことが必要であることを明記する。これらの検証と判定は全て 設計層（reports only）で実装され、実処理開始許可を含まない。",
+    "invariants": [
+      "NO_GO 維持：最終検証を通じて production_status = 'NO_GO' は維持される",
+      "NOT_GRANTED 維持：最終検証を通じて manual_release_go_authorization / actual_process_start_go_authorization は 'NOT_GRANTED' のままである",
+      "reports only：最終検証条件全体は報告書形式で実装され、実処理への権限付与を含まない"
+    ],
+    "actions": [],
+    "notes": [
+      "Phase 42-6 は 設計層のみで実装される",
+      "Phase 42-6 は Phase 43 への入口ゲートキーパー層",
+      "進行可能判定は Phase 43 以降へ向けた最終設計判定（実処理開始ではない）",
+      "実処理開始は NO_GO のまま"
+    ]
+  }
+}

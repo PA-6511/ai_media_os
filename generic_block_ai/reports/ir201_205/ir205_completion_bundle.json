@@ -1,0 +1,361 @@
+{
+  "schema_version": "ir205_phase_201_205_completion_bundle_v1",
+  "phase": "IR205",
+  "generated_at": "2026-05-26T13:29:20.667753+00:00",
+  "source_task_id": "ir201_205_batch",
+  "new_cycle_id": "IR71_PLUS_CYCLE_A",
+  "ir201_result": {
+    "schema_version": "ir201_final_preservation_snapshot_v1",
+    "phase": "IR201",
+    "generated_at": "2026-05-26T13:29:20.666946+00:00",
+    "source_task_id": "ir201_205_batch",
+    "validation_result": "PASS",
+    "validation_failed_checks": [],
+    "validation_warnings": [],
+    "final_preservation_snapshot": {
+      "snapshot_id": "ir201_snapshot_ir201_205_batch_20260526T132920Z",
+      "generated_at": "2026-05-26T13:29:20.666926+00:00",
+      "source_task_id": "ir201_205_batch",
+      "new_cycle_id": "IR71_PLUS_CYCLE_A",
+      "preservation_entries": [
+        {
+          "preservation_item_id": "preserve_1",
+          "source_phase": "IR196",
+          "source_content": "Terminal Audit Seal Snapshot",
+          "preservation_status": "FINAL_PRESERVED",
+          "change_detected": false
+        },
+        {
+          "preservation_item_id": "preserve_2",
+          "source_phase": "IR197",
+          "source_content": "Long-Term Reference Catalog Lock",
+          "preservation_status": "FINAL_PRESERVED",
+          "change_detected": false
+        },
+        {
+          "preservation_item_id": "preserve_3",
+          "source_phase": "IR198",
+          "source_content": "Final Immutable Digest",
+          "preservation_status": "FINAL_PRESERVED",
+          "change_detected": false
+        },
+        {
+          "preservation_item_id": "preserve_4",
+          "source_phase": "IR199",
+          "source_content": "Dry-Run Terminal Preservation Declaration",
+          "preservation_status": "FINAL_PRESERVED",
+          "change_detected": false
+        },
+        {
+          "preservation_item_id": "preserve_5",
+          "source_phase": "IR200",
+          "source_content": "Phase 196-200 Completion Bundle",
+          "preservation_status": "FINAL_PRESERVED",
+          "change_detected": false
+        }
+      ],
+      "entry_count": 5,
+      "final_preservation_ready": true,
+      "unlock_eligible": false,
+      "safety_gate_snapshot": {
+        "dry_run": "maintained",
+        "OBSERVE": "maintained",
+        "submission_execution_blocked": true,
+        "execution_policy_execute": false,
+        "external_write_executed": false,
+        "network_transmission_executed": false,
+        "production_release": false,
+        "GitHub_push": "未実行"
+      }
+    },
+    "snapshot_hash": "cfb1fecbcd71fb5b933574d55538e8ea63d83a380b3a08c103623704bc95c437",
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "ir202_result": {
+    "schema_version": "ir202_closed_reference_catalog_registry_v1",
+    "phase": "IR202",
+    "generated_at": "2026-05-26T13:29:20.667254+00:00",
+    "source_task_id": "ir201_205_batch",
+    "validation_result": "PASS",
+    "validation_failed_checks": [],
+    "validation_warnings": [],
+    "closed_reference_catalog_registry": {
+      "registry_id": "ir202_registry_ir201_205_batch_20260526T132920Z",
+      "generated_at": "2026-05-26T13:29:20.667247+00:00",
+      "source_task_id": "ir201_205_batch",
+      "new_cycle_id": "IR71_PLUS_CYCLE_A",
+      "registry_entries": [
+        {
+          "preservation_item_id": "preserve_1",
+          "source_phase": "IR196",
+          "source_content": "Terminal Audit Seal Snapshot",
+          "catalog_status": "CLOSED_REFERENCE_CATALOG",
+          "change_detected": false
+        },
+        {
+          "preservation_item_id": "preserve_2",
+          "source_phase": "IR197",
+          "source_content": "Long-Term Reference Catalog Lock",
+          "catalog_status": "CLOSED_REFERENCE_CATALOG",
+          "change_detected": false
+        },
+        {
+          "preservation_item_id": "preserve_3",
+          "source_phase": "IR198",
+          "source_content": "Final Immutable Digest",
+          "catalog_status": "CLOSED_REFERENCE_CATALOG",
+          "change_detected": false
+        },
+        {
+          "preservation_item_id": "preserve_4",
+          "source_phase": "IR199",
+          "source_content": "Dry-Run Terminal Preservation Declaration",
+          "catalog_status": "CLOSED_REFERENCE_CATALOG",
+          "change_detected": false
+        },
+        {
+          "preservation_item_id": "preserve_5",
+          "source_phase": "IR200",
+          "source_content": "Phase 196-200 Completion Bundle",
+          "catalog_status": "CLOSED_REFERENCE_CATALOG",
+          "change_detected": false
+        }
+      ],
+      "entry_count": 5,
+      "all_closed_reference_catalog": true,
+      "unlock_eligible": false,
+      "safety_gate_snapshot": {
+        "dry_run": "maintained",
+        "OBSERVE": "maintained",
+        "submission_execution_blocked": true,
+        "execution_policy_execute": false,
+        "external_write_executed": false,
+        "network_transmission_executed": false,
+        "production_release": false,
+        "GitHub_push": "未実行"
+      }
+    },
+    "registry_hash": "2ec64811364c132dbac968666594a6212cbf852a679dac5c5bb58ab1c7669bb5",
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "ir203_result": {
+    "schema_version": "ir203_final_catalog_digest_v1",
+    "phase": "IR203",
+    "generated_at": "2026-05-26T13:29:20.667447+00:00",
+    "source_task_id": "ir201_205_batch",
+    "validation_result": "PASS",
+    "validation_failed_checks": [],
+    "validation_warnings": [],
+    "final_catalog_digest": {
+      "digest_id": "ir203_digest_ir201_205_batch_20260526T132920Z",
+      "generated_at": "2026-05-26T13:29:20.667444+00:00",
+      "source_task_id": "ir201_205_batch",
+      "new_cycle_id": "IR71_PLUS_CYCLE_A",
+      "digest_entries": [
+        {
+          "preservation_item_id": "preserve_1",
+          "source_phase": "IR196",
+          "digest_id": "e7e54f1f82ca8226872912cb8777dea1741a2ba3dd7ace9b479483349e7c3cfb",
+          "digest_status": "FINAL_CATALOG_DIGESTED"
+        },
+        {
+          "preservation_item_id": "preserve_2",
+          "source_phase": "IR197",
+          "digest_id": "22aa63a372fae0d66060d14b0eca05e7d28e2e2b190c71d723ccf2d8c77e8428",
+          "digest_status": "FINAL_CATALOG_DIGESTED"
+        },
+        {
+          "preservation_item_id": "preserve_3",
+          "source_phase": "IR198",
+          "digest_id": "cc383a6b6381117c04dabc7b3b77f6a9c3b4c9f149ccc76a43ff57ea47a966da",
+          "digest_status": "FINAL_CATALOG_DIGESTED"
+        },
+        {
+          "preservation_item_id": "preserve_4",
+          "source_phase": "IR199",
+          "digest_id": "d326a7c0eeb220f7c5bb9a2461496736c782a17d944113559d9cd653824c4932",
+          "digest_status": "FINAL_CATALOG_DIGESTED"
+        },
+        {
+          "preservation_item_id": "preserve_5",
+          "source_phase": "IR200",
+          "digest_id": "bc1732ae8d129f120fdacc6b3f4ad0d2b06bf28cde7e8fb2a503d266b4d3201b",
+          "digest_status": "FINAL_CATALOG_DIGESTED"
+        }
+      ],
+      "entry_count": 5,
+      "final_catalog_digest_ready": true,
+      "unlock_eligible": false,
+      "safety_gate_snapshot": {
+        "dry_run": "maintained",
+        "OBSERVE": "maintained",
+        "submission_execution_blocked": true,
+        "execution_policy_execute": false,
+        "external_write_executed": false,
+        "network_transmission_executed": false,
+        "production_release": false,
+        "GitHub_push": "未実行"
+      }
+    },
+    "digest_hash": "4110bc5f59ca35140c297833adb1dba248cd4b5fd7a72263e35d62745f889eb0",
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "ir204_result": {
+    "schema_version": "ir204_dry_run_final_preservation_declaration_v1",
+    "phase": "IR204",
+    "generated_at": "2026-05-26T13:29:20.667604+00:00",
+    "source_task_id": "ir201_205_batch",
+    "dry_run_final_preservation_declaration_decision": "PROHIBITION_CONTINUITY_FINALIZED_DRY_RUN_ONLY",
+    "gate_action": "Dry-run final preservation declaration confirmed.",
+    "validation_result": "PASS",
+    "validation_failed_checks": [],
+    "validation_warnings": [],
+    "dry_run_final_preservation_declaration": {
+      "declaration_id": "ir204_declaration_ir201_205_batch_20260526T132920Z",
+      "generated_at": "2026-05-26T13:29:20.667600+00:00",
+      "source_task_id": "ir201_205_batch",
+      "decision": "PROHIBITION_CONTINUITY_FINALIZED_DRY_RUN_ONLY",
+      "unlock_prohibited": true,
+      "final_preservation_declared": true,
+      "safety_gate_snapshot": {
+        "dry_run": "maintained",
+        "OBSERVE": "maintained",
+        "submission_execution_blocked": true,
+        "execution_policy_execute": false,
+        "external_write_executed": false,
+        "network_transmission_executed": false,
+        "production_release": false,
+        "GitHub_push": "未実行"
+      }
+    },
+    "declaration_hash": "1e47fb5b94cec7e82e388529c5be822a1d803da8301215d5e1530e8f4f5e73c6",
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "test_summary": {
+    "focused": {
+      "passed": 6,
+      "failed": 0
+    },
+    "adjacent": {
+      "passed": 12,
+      "failed": 0
+    },
+    "scoped": {
+      "passed": 542,
+      "failed": 0
+    }
+  },
+  "live_summary": {
+    "ir201": "PASS",
+    "ir202": "PASS",
+    "ir203": "PASS",
+    "ir204": "PASS",
+    "ir205": "PASS"
+  },
+  "safety_gate_summary": {
+    "dry_run": "maintained",
+    "OBSERVE": "maintained",
+    "submission_execution_blocked": true,
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "network_transmission_executed": false,
+    "production_release": false,
+    "GitHub_push": "未実行"
+  },
+  "completion_table": [
+    {
+      "phase": "IR201",
+      "content": "Final Preservation Snapshot",
+      "focused": "PASS",
+      "adjacent": "PASS",
+      "scoped": "PASS",
+      "live": "PASS",
+      "judgement": "完了"
+    },
+    {
+      "phase": "IR202",
+      "content": "Closed Reference Catalog Registry",
+      "focused": "PASS",
+      "adjacent": "PASS",
+      "scoped": "PASS",
+      "live": "PASS",
+      "judgement": "完了"
+    },
+    {
+      "phase": "IR203",
+      "content": "Final Catalog Digest",
+      "focused": "PASS",
+      "adjacent": "PASS",
+      "scoped": "PASS",
+      "live": "PASS",
+      "judgement": "完了"
+    },
+    {
+      "phase": "IR204",
+      "content": "Dry-Run Final Preservation Declaration",
+      "focused": "PASS",
+      "adjacent": "PASS",
+      "scoped": "PASS",
+      "live": "PASS",
+      "judgement": "完了"
+    },
+    {
+      "phase": "IR205",
+      "content": "Phase 201-205 Completion Bundle",
+      "focused": "PASS",
+      "adjacent": "PASS",
+      "scoped": "PASS",
+      "live": "PASS",
+      "judgement": "完了"
+    }
+  ],
+  "final_decision": "PROHIBITION_CONTINUITY_FINALIZED_DRY_RUN_ONLY",
+  "prohibition_continuity_finalized": true,
+  "delta_closure_pending": true,
+  "artifacts": {
+    "ir201_final_preservation_snapshot": "generic_block_ai/reports/ir201_205/ir201_final_preservation_snapshot.json",
+    "ir202_closed_reference_catalog_registry": "generic_block_ai/reports/ir201_205/ir202_closed_reference_catalog_registry.json",
+    "ir203_final_catalog_digest": "generic_block_ai/reports/ir201_205/ir203_final_catalog_digest.json",
+    "ir204_dry_run_final_preservation_declaration": "generic_block_ai/reports/ir201_205/ir204_dry_run_final_preservation_declaration.json",
+    "ir205_completion_bundle": "generic_block_ai/reports/ir201_205/ir205_completion_bundle.json",
+    "ir201_205_live_status": "generic_block_ai/reports/ir201_205/ir201_205_live_status.md",
+    "ir201_205_completion_table": "generic_block_ai/reports/ir201_205/ir201_205_completion_table.md"
+  },
+  "external_write_executed": false
+}

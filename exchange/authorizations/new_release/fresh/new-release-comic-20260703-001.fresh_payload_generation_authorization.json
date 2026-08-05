@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0.0",
+  "document_role": "FRESH_PAYLOAD_GENERATION_ONE_SHOT_AUTHORIZATION",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M10",
+  "content_item_id": "new-release-comic-20260703-001",
+  "authorization_id": "FRESH_PAYLOAD_GENERATION_ONE_SHOT_AUTHORIZATION_V1",
+  "authorized_operation": "ONE_SHOT_FRESH_WORDPRESS_DRAFT_PAYLOAD_GENERATION",
+  "article_binding": {
+    "path": "exchange/content/new_release/fresh/new-release-comic-20260703-001.article.json",
+    "article_postimage_sha256": "de2739c8ae1aa4a50973b983964b05844086a2187b9ef337383ad6fa7123697d"
+  },
+  "post_injection_review_binding": {
+    "path": "exchange/reviews/new_release/fresh/new-release-comic-20260703-001.post_injection_article_human_review.json",
+    "review_verdict": "APPROVED_NO_CHANGE_REQUIRED",
+    "review_digest_sha256": "48b567388d071a89f82a63504c60fd5767ddd328db23c7a9df73f16b848ebbae"
+  },
+  "secret_link_binding": {
+    "path": "exchange/links/new_release/fresh/new-release-comic-20260703-001.dmm_final_affiliate_link_generation_result.json",
+    "file_sha256": "c5a70d9804a4e2dfd91049ee20bdda5379abf3e1fe3c25b0fb8cbd5fa587faa0",
+    "artifact_digest_sha256": "4807e0a6d8a8416a936bafa978ba4f90d43ae7d304322bbd6a6ababcb2cd2db6",
+    "full_final_url_present": false,
+    "affiliate_identifier_present": false
+  },
+  "historical_bindings": {
+    "m9_fix1_authorization_digest_sha256": "c25ddfa1023038f057ef0d403a00ffe1443f15097f8fc89c6402c7113d37b630",
+    "m9_fix1_consumption_digest_sha256": "d798a6b22539964f260105a41bd412d2b8959ee65f61b28eb79faae9a25885d9",
+    "m9_fix1_result_digest_sha256": "a0ea1c29b1c653139db4b6bfa51a96ef79e574f3d519ad543c6a8988bc0854d6",
+    "m7_consumption_digest_sha256": "9d6a8ba944747d1df2d039075a2f511fdf88215a81cc4b867c9d184313b0efcc",
+    "m6_authorization_digest_sha256": "0607dd3774aa592369a1a22ac2692372ad57d70fe3a70d5eee387d47a27ec3f5",
+    "m5_review_digest_sha256": "92c59e79b7f8ff9b3dae934d1912f5249ccd4ce0c754cb5a5070e0b8264be892",
+    "cred1_result_digest_sha256": "7a173b74bef53781a3b2fe2e2cc2d3f363a096b937508c241d454311d072ec7e"
+  },
+  "payload_contract": {
+    "template_id": "POST185_STANDARD_TEMPLATE_V1_FIXED",
+    "category_mapping_id": "COMIC_NEW_RELEASE_LATEST_VOLUME_TO_WP_CATEGORY_10",
+    "category_id": 10,
+    "category_name": "最新巻",
+    "post_status": "draft",
+    "publish_allowed": false,
+    "article_content_must_match_bound_article": true,
+    "payload_generation_offline_only": true
+  },
+  "single_use": true,
+  "authorization_consumed": false,
+  "authorization_reuse_allowed": false,
+  "automatic_retry_allowed": false,
+  "automatic_reissue_allowed": false,
+  "actual_payload_generation_requires_execute_now_approval": true,
+  "actual_payload_generation_allowed": false,
+  "planned_execution_phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M11",
+  "full_final_url_present": false,
+  "affiliate_identifier_present": false,
+  "article_modified": false,
+  "payload_created": false,
+  "category_id_injected": false,
+  "network_connection_performed": false,
+  "wordpress_access_performed": false,
+  "wordpress_write_performed": false,
+  "wordpress_published": false,
+  "x_post_performed": false,
+  "execution_allowed": false,
+  "production_status": "NO_GO",
+  "authorized_at_utc": "2026-07-11T07:56:07.435327+00:00",
+  "authorization_digest_sha256": "fed0e3c217c654f5e9803f750fd1d07269bff3eed4917a58638e61c9b571bc5b"
+}

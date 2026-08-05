@@ -1,0 +1,44 @@
+{
+  "phase": "Phase 7-7",
+  "name": "approve_draft_create_only_readiness_gate",
+  "gate_status": "DESIGN_ONLY",
+  "production_status": "NO_GO",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "human_approval_required": true,
+  "approve_draft_create_only_currently_allowed": false,
+  "readiness_is_activation": false,
+  "unlock_in_this_phase": false,
+  "wordpress_draft_creation": "NO_GO",
+  "wordpress_write_executed": false,
+  "publish_allowed": false,
+  "required_evidence": [
+    "exchange/logs/phase7_5_freeze_or_live_decision_report.json",
+    "exchange/logs/phase7_6_human_approval_evidence_package_result.json"
+  ],
+  "required_conditions": {
+    "phase7_5_status": "LIVE_CANDIDATE_BUT_LOCKED",
+    "phase7_6_status": "PASS_DESIGN_ONLY",
+    "target_item_count": 1,
+    "human_approval_required": true,
+    "publish_allowed": false,
+    "wordpress_write_executed": false
+  },
+  "dangerous_operations": {
+    "auto_post": false,
+    "auto_update": false,
+    "auto_delete": false,
+    "auto_export": false,
+    "publish_allowed": false,
+    "wordpress_write_executed": false,
+    "bulk_execution": false,
+    "external_write": false,
+    "vps_self_builder_execution": false
+  },
+  "decision_rules": {
+    "all_conditions_met": "READY_BUT_LOCKED",
+    "missing_required_condition": "NOT_READY",
+    "safety_violation": "ABORT"
+  },
+  "allowed_next_step": "Phase 7-8 single draft create execution simulation DRY_RUN only"
+}

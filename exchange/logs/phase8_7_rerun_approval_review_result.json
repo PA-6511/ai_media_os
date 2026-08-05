@@ -1,0 +1,42 @@
+{
+  "phase": "Phase 8-7",
+  "status": "PASS_RERUN_REVIEW_ONLY",
+  "production_status": "NO_GO",
+  "wordpress_api_call_allowed": false,
+  "wordpress_write_executed": false,
+  "publish_allowed": false,
+  "rerun_review_is_execution_permission": false,
+  "target_item_count": 1,
+  "approval_token": "APPROVE_DRAFT_CREATE_ONLY",
+  "evidence_summary": [
+    {
+      "path": "exchange/logs/phase8_1_explicit_human_approval_result.json",
+      "exists": true,
+      "status": "APPROVAL_FILE_VALID_FOR_PREFLIGHT_ONLY"
+    },
+    {
+      "path": "exchange/logs/phase8_5_first_controlled_draft_completion_report.json",
+      "exists": true,
+      "status": "FIRST_DRAFT_NOT_EXECUTED"
+    },
+    {
+      "path": "exchange/logs/phase8_6_wordpress_credentials_readiness_result.json",
+      "exists": true,
+      "status": "CREDENTIALS_READY_NO_SECRET_OUTPUT"
+    }
+  ],
+  "approval_scope": {
+    "rerun_preflight_only": true,
+    "draft_create_only": false,
+    "publish": false,
+    "update": false,
+    "delete": false,
+    "bulk": false,
+    "external_export": false
+  },
+  "errors": [],
+  "warnings": [],
+  "safety_violations": [],
+  "allowed_next_step": "Phase 8-8 final credentialed live-preflight",
+  "checked_at": "2026-06-09T13:15:00.438297+00:00"
+}

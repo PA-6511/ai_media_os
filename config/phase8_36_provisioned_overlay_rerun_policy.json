@@ -1,0 +1,57 @@
+{
+  "phase": "Phase 8-36",
+  "name": "provisioned_overlay_rerun_policy",
+  "policy_status": "OVERLAY_RERUN_REVIEW_ONLY",
+  "production_status": "NO_GO",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "human_approval_required": true,
+  "overlay_rerun_is_execution_permission": false,
+  "commands_executed_in_this_phase": false,
+  "phase8_6_to_8_10_executed": false,
+  "wordpress_api_call_allowed": false,
+  "wordpress_write_executed": false,
+  "publish_allowed": false,
+  "target_item_count": 1,
+  "required_evidence": [
+    "exchange/logs/phase8_31_secret_safe_credential_procedure_result.json",
+    "exchange/logs/phase8_35_final_ready_blocked_rerun_decision.json"
+  ],
+  "required_phase8_31_status": "PASS_PROCEDURE_ONLY",
+  "allowed_phase8_35_statuses": [
+    "BLOCKED_CREDENTIALS_MISSING",
+    "READY_FOR_EXISTING_PHASE8_6_TO_8_10_MANUAL_RERUN_BUT_NOT_EXECUTED"
+  ],
+  "allowed_decisions": [
+    "OVERLAY_RERUN_DECLARE_CREDENTIALS_PROVISIONED_OUTSIDE_REPO",
+    "OVERLAY_RERUN_DECLARE_CREDENTIALS_STILL_NOT_READY",
+    "REQUEST_FIX",
+    "REJECT",
+    "ABORT"
+  ],
+  "required_acknowledgements": [
+    "acknowledged_overlay_rerun_does_not_modify_prior_evidence",
+    "acknowledged_no_secret_values_in_repo",
+    "acknowledged_no_env_file_edit",
+    "acknowledged_no_log_secret_output",
+    "acknowledged_manual_secret_management_only",
+    "acknowledged_no_wordpress_api_call_in_phase8_36",
+    "acknowledged_no_phase8_6_to_8_10_execution_in_phase8_36",
+    "acknowledged_single_item_only",
+    "acknowledged_no_publish",
+    "acknowledged_no_update",
+    "acknowledged_no_delete",
+    "acknowledged_no_bulk"
+  ],
+  "approval_scope_required": {
+    "provisioned_overlay_rerun_only": true,
+    "manual_rerun_handoff": false,
+    "draft_create_only": false,
+    "publish": false,
+    "update": false,
+    "delete": false,
+    "bulk": false,
+    "external_export": false
+  },
+  "allowed_next_step": "Phase 8-37 credential-ready revalidation after operator update"
+}

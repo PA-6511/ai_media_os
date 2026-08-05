@@ -1,0 +1,26 @@
+{
+  "phase": "8-31",
+  "approval_scope": "NEXT_PHASE_SINGLE_DRAFT_CREATE_ONLY_NO_EXECUTION_IN_THIS_PHASE",
+  "decision": "APPROVE_SINGLE_DRAFT_CREATE_NEXT_PHASE_ONLY",
+  "allowed_decisions": [
+    "APPROVE_SINGLE_DRAFT_CREATE_NEXT_PHASE_ONLY",
+    "REQUEST_FIX",
+    "REJECT",
+    "ABORT"
+  ],
+  "target_item_count": 1,
+  "human_approval_required": true,
+  "human_approved": true,
+  "approved_for_this_phase_execution": false,
+  "approved_for_next_phase_single_draft_create_consideration": true,
+  "approved_for_wordpress_api_call_in_this_phase": false,
+  "approved_for_wordpress_write_in_this_phase": false,
+  "approved_for_draft_creation_in_this_phase": false,
+  "approved_for_publish": false,
+  "approved_for_update": false,
+  "approved_for_delete": false,
+  "approved_for_export": false,
+  "approved_for_unlock": false,
+  "secret_values_included": false,
+  "operator_note": "This approval validates handoff for next-phase consideration only. It does not execute WordPress API calls or draft creation in Phase 8-31."
+}

@@ -1,0 +1,135 @@
+{
+  "package_type": "phase10_6_manual_publish_pre_execution_confirmation_design_report",
+  "phase": "Phase 10-6",
+  "title": "Phase 10-6 Manual Publish Pre Execution Confirmation Design Report",
+  "status": "PASS",
+  "phase10_6_design_status": "PASS",
+  "design_scope": "manual_publish_pre_execution_confirmation_design_only",
+  "source_report": "exchange/logs/phase10_5_manual_unlock_candidate_execution_guard_design_report.json",
+  "current_decision": "KEEP_NO_GO",
+  "phase9_2_decision": "KEEP_NO_GO",
+  "wordpress_draft_id": 110,
+  "target_draft_status": "draft",
+  "publish_candidate_unlocked_for_operator": false,
+  "wordpress_publish_execution": "NO_GO",
+  "wordpress_write_executed": false,
+  "production_status": "NO_GO",
+  "pre_execution_confirmation_design": {
+    "checklist_count": 10,
+    "checklist": [
+      "target_draft_id_is_110",
+      "target_draft_status_is_draft",
+      "single_publish_limit_is_1",
+      "target_scope_is_draft_to_publish_only",
+      "approval_token_exact_match",
+      "token_not_expired_within_30_minutes",
+      "human_reviewer_identity_verified",
+      "forbidden_operations_absent",
+      "relock_plan_prepared",
+      "publish_execution_in_phase10_6_must_remain_no_go"
+    ],
+    "required_target_draft_id": 110,
+    "required_target_draft_status": "draft",
+    "required_token": "APPROVE_PUBLISH_ONE_TIME_MANUAL_ONLY",
+    "token_expiry_minutes": 30,
+    "max_publish_count": 1,
+    "target_scope": "draft_to_publish_only",
+    "relock_required_after_attempt": true,
+    "publish_execution_in_phase10_6": "NO_GO",
+    "wordpress_write_executed_in_phase10_6": false
+  },
+  "confirmation_flow": [
+    "load_phase10_5_execution_guard_design",
+    "run_10_item_pre_execution_checklist",
+    "record_confirmation_result",
+    "keep_publish_not_executed_in_phase10_6"
+  ],
+  "confirmation_outcomes": [
+    {
+      "confirmation_result": "PRE_EXECUTION_CONFIRMED",
+      "publish_execution_in_phase10_6": "NO_GO",
+      "wordpress_write_executed_in_phase10_6": false,
+      "next_step": "phase10_7_manual_publish_immediate_pre_execution_go_freeze_decision_design"
+    },
+    {
+      "confirmation_result": "PRE_EXECUTION_BLOCKED_KEEP_LOCKED",
+      "publish_execution_in_phase10_6": "NO_GO",
+      "wordpress_write_executed_in_phase10_6": false,
+      "next_step": "maintain_no_go"
+    },
+    {
+      "confirmation_result": "REQUEST_FIX_REQUIRED",
+      "publish_execution_in_phase10_6": "NO_GO",
+      "wordpress_write_executed_in_phase10_6": false,
+      "next_step": "apply_requested_fix_before_next_redecision"
+    },
+    {
+      "confirmation_result": "ABORT",
+      "publish_execution_in_phase10_6": "NO_GO",
+      "wordpress_write_executed_in_phase10_6": false,
+      "next_step": "abort_and_stop"
+    }
+  ],
+  "still_forbidden": [
+    "wordpress_publish",
+    "wordpress_update_existing_post",
+    "wordpress_delete_post",
+    "wordpress_export",
+    "wordpress_bulk_post",
+    "cron_automation",
+    "github_actions_trigger",
+    "slack_production_notification",
+    "vps_self_builder_execution",
+    "env_or_secrets_or_credentials_auto_edit"
+  ],
+  "validation_checks": [
+    {
+      "check": "phase10_5_status=PASS",
+      "passed": true,
+      "actual": "PASS"
+    },
+    {
+      "check": "current_decision=KEEP_NO_GO",
+      "passed": true,
+      "actual": "KEEP_NO_GO"
+    },
+    {
+      "check": "publish_candidate_unlocked_for_operator=false",
+      "passed": true,
+      "actual": false
+    },
+    {
+      "check": "wordpress_publish_execution=NO_GO",
+      "passed": true,
+      "actual": "NO_GO"
+    },
+    {
+      "check": "wordpress_write_executed=false",
+      "passed": true,
+      "actual": false
+    },
+    {
+      "check": "wordpress_draft_id=110",
+      "passed": true,
+      "actual": 110
+    },
+    {
+      "check": "target_draft_status=draft",
+      "passed": true,
+      "actual": "draft"
+    },
+    {
+      "check": "execution_guard_checks_count=5",
+      "passed": true,
+      "actual": 5
+    }
+  ],
+  "validation_passed": true,
+  "summary": {
+    "pre_execution_confirmation_design_fixed": true,
+    "publish_still_not_executed_in_phase10_6": true,
+    "wordpress_write_still_not_executed_in_phase10_6": true
+  },
+  "next_step": "phase10_7_manual_publish_immediate_pre_execution_go_freeze_decision_design",
+  "created_at": "2026-05-09T17:17:26.163155+00:00"
+}

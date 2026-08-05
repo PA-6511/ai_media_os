@@ -1,0 +1,41 @@
+{
+  "phase": "Implementation Restart Phase 28",
+  "status": "COMPLETED",
+  "generated_at": "2026-05-23T16:03:15.501614+00:00",
+  "schema_version": "ir28_release_candidate_trace_bundle_v1",
+  "test_result": {
+    "focused_tests": {
+      "passed": 6,
+      "failed": 0
+    },
+    "full_regression": {
+      "passed": 223,
+      "failed": 0
+    }
+  },
+  "validation_result": "PASS",
+  "release_candidate_id": "rc_20260523T155148Z_ir26_live_trial_b940393b490b",
+  "validation_failed_check_count": 0,
+  "validation_warning_count": 0,
+  "summary": {
+    "included_artifact_count": 22,
+    "failed_check_count": 0,
+    "warning_count": 0,
+    "trace_summary": {
+      "ir23_reports": 2,
+      "ir22_profile_reports": 6,
+      "phase_completion_reports": 8
+    }
+  },
+  "artifacts": {
+    "trace_report": "generic_block_ai/reports/ir28_release_candidate_trace_bundle_report_ir28_live_trial.json",
+    "completion_report": "reports/implementation_restart_phase28_completion_report.json"
+  },
+  "safeguards": {
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "production_release": false
+  }
+}

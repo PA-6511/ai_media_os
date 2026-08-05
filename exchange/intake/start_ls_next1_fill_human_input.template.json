@@ -1,0 +1,18 @@
+{
+  "document_type": "START_LS_NEXT1_FILL_HUMAN_INPUT_TEMPLATE",
+  "schema_version": "1.0.0",
+  "phase": "LS-NEXT-1-FILL",
+  "content_item_id": "",
+  "target_post_id": null,
+  "target_post_link": "",
+  "payload_title": "",
+  "payload_asin": "",
+  "public_url": "",
+  "public_rest_url": "",
+  "expected_pre_publish_status": "draft",
+  "target_publish_status": "publish",
+  "human_filled": false,
+  "human_confirmed": false,
+  "execution_allowed": false,
+  "notes": "Fill this file manually. Do not let AI infer or guess these values."
+}

@@ -1,0 +1,40 @@
+{
+  "validator": "exchange_validator",
+  "version": "1.0.0",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "human_approval_required": true,
+  "auto_post": false,
+  "auto_update": false,
+  "auto_delete": false,
+  "auto_export": false,
+  "timestamp": "2026-05-05T00:00:00+00:00",
+  "overall_status": "WARN",
+  "packages": [
+    {
+      "package_type": "decision_package",
+      "file": "exchange/incoming/decision_package.example.json",
+      "status": "WARN",
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "package_type": "patch_proposal",
+      "file": "exchange/incoming/patch_proposal.example.json",
+      "status": "PASS",
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "package_type": "test_report",
+      "file": "exchange/incoming/test_report.example.json",
+      "status": "WARN",
+      "issues": [],
+      "warnings": [
+        "tests.link_check='WARN'",
+        "tests.wp_post='NOT_EXECUTED'"
+      ]
+    }
+  ],
+  "next_step": "human_review"
+}

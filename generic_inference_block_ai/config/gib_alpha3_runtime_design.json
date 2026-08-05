@@ -1,0 +1,61 @@
+{
+  "schema_version": "gib.alpha3.runtime_design.v0.1",
+  "alpha_version": "alpha3",
+  "design_status": "DESIGN_ONLY",
+  "production_status": "NO_GO",
+  "execution_mode": "DRY_RUN_ONLY",
+  "execution_allowed": false,
+  "external_network_allowed": false,
+  "credential_access_allowed": false,
+  "wordpress_write_allowed": false,
+  "systemd_operation_allowed": false,
+  "model_runtime_enabled": false,
+  "real_llm_call_allowed": false,
+  "runtime_selection": {
+    "active_runtime_locked": "stub",
+    "default_runtime": "stub",
+    "fallback_order": [
+      "stub",
+      "ollama",
+      "llama_cpp"
+    ]
+  },
+  "runtime_designs": {
+    "ollama": {
+      "enabled": false,
+      "call_allowed": false,
+      "transport": "http_local_only_design",
+      "base_url": "http://127.0.0.1:11434",
+      "generate_path": "/api/generate",
+      "chat_path": "/api/chat",
+      "model_placeholder": "gemma-4-qat-design-placeholder",
+      "timeout_ms": 30000,
+      "notes": [
+        "Design-only metadata. No HTTP request is permitted in alpha stage.",
+        "Runtime wiring to be activated in GIB-beta only after approval."
+      ]
+    },
+    "llama_cpp": {
+      "enabled": false,
+      "call_allowed": false,
+      "transport": "http_local_only_design",
+      "base_url": "http://127.0.0.1:8080",
+      "completion_path": "/completion",
+      "chat_path": "/v1/chat/completions",
+      "model_placeholder": "gemma-4-qat-design-placeholder",
+      "timeout_ms": 30000,
+      "notes": [
+        "Design-only metadata. No HTTP request is permitted in alpha stage.",
+        "Runtime wiring to be activated in GIB-beta only after approval."
+      ]
+    }
+  },
+  "prohibited_actions": [
+    "network_http_call",
+    "subprocess_runtime_call",
+    "credential_read",
+    "wordpress_write",
+    "systemd_operation",
+    "go_nogo_decision"
+  ]
+}

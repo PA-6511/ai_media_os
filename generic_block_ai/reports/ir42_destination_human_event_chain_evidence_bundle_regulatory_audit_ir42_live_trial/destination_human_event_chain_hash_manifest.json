@@ -1,0 +1,13 @@
+{
+  "destination": "regulatory_audit",
+  "bundle_hash": "54fbf3189cb9b6a2600965cfb69204e916509fb3510bc85c18606e917272ee2b",
+  "evidence_digest": "b6089d8777711b38146e953f44af2d4c5317696faf0621a8e7730bb443765526",
+  "chain_hash": "881a2d751cb9d3b45841b1f671e4984b6ca97e0bacceb57bdd4704c0747b7821",
+  "review_status": "PASS",
+  "source_refs": {
+    "ir39": "generic_block_ai/reports/ir39_human_approval_event_simulator_for_destinations_report_ir39_live_trial.json",
+    "ir40": "generic_block_ai/reports/ir40_human_event_audit_replay_for_destinations_report_ir40_live_trial.json",
+    "ir41": "generic_block_ai/reports/ir41_destination_human_event_chain_integrity_report_ir41_live_trial.json"
+  },
+  "generated_at": "2026-05-24T02:48:34.676337+00:00"
+}

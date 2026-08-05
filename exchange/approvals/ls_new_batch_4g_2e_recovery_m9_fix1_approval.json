@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M9-FIX1",
+  "approval_id": "dmm-article-link-injection-html-entity-validator-fix-approval-v1",
+  "approval_label": "DMM_ARTICLE_LINK_INJECTION_HTML_ENTITY_VALIDATOR_FIX_AND_NEW_ONE_SHOT_AUTHORIZATION_APPROVED",
+  "approved_by": "HUMAN_OPERATOR",
+  "human_explicit_approval": true,
+  "approved_at_utc": "2026-07-11T07:37:13.137361+00:00",
+  "diagnosis": "HTML_ENTITY_ESCAPING_FALSE_NEGATIVE",
+  "old_m9_authorization_consumed": true,
+  "old_m9_authorization_reuse_allowed": false,
+  "new_authorization_single_use": true,
+  "new_authorization_reuse_allowed": false,
+  "new_authorization_automatic_retry_allowed": false,
+  "new_authorization_automatic_reissue_allowed": false,
+  "full_final_url_output_allowed": false,
+  "affiliate_identifier_output_allowed": false,
+  "source_bindings": {
+    "article_preimage": {
+      "path": "exchange/content/new_release/fresh/new-release-comic-20260703-001.article.json",
+      "file_sha256": "849a37519c6af70d2212ec01d5cddef5793bfa811e97ca9f248ce099a0350bf4"
+    },
+    "secret_link": {
+      "path": "exchange/links/new_release/fresh/new-release-comic-20260703-001.dmm_final_affiliate_link_generation_result.json",
+      "file_sha256": "c5a70d9804a4e2dfd91049ee20bdda5379abf3e1fe3c25b0fb8cbd5fa587faa0",
+      "artifact_digest_sha256": "4807e0a6d8a8416a936bafa978ba4f90d43ae7d304322bbd6a6ababcb2cd2db6",
+      "fingerprint_sha256": "f01572020caf88cd0a017e0e739bc492394fa275eeac0e346328adba0fd99141"
+    },
+    "old_m9": {
+      "policy": {
+        "path": "config/new_release_wp_fresh_dmm_article_link_injection_one_shot_policy.json",
+        "file_sha256": "b385a50eb36e1da699d63f313a7a1a4157ef7263af30c7ddcb6dd0d48d8266d5"
+      },
+      "approval": {
+        "path": "exchange/approvals/ls_new_batch_4g_2e_recovery_m9_execute_now_approval.json",
+        "file_sha256": "1d037c432a5aa61e70493d1f2e5dca75e63b27c4e044e532d0909c2d592e5443"
+      },
+      "authorization": {
+        "path": "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.article_dmm_link_injection_authorization.json",
+        "file_sha256": "8cec2c0c566b7e992fd3f822403d1c43f2558239aecf702de93190abb2ef83fd"
+      },
+      "consumption": {
+        "path": "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.article_dmm_link_injection_consumption.json",
+        "file_sha256": "7b34ad6e195d7cbe5bd061bc3edb9e001a8e2d914d956e22605dd901e67c655c"
+      },
+      "result": {
+        "path": "exchange/logs/ls_new_batch_4g_2e_recovery_m9_result.json",
+        "file_sha256": "4bfc26c714795030ad3c86aa5e3be0e5cd86c7622fface6cca77919053775526"
+      },
+      "runner": {
+        "path": "scripts/run_ls_new_batch_4g_2e_recovery_m9.py",
+        "file_sha256": "50de49ef03426e58f8d3b9a70b72c3becbf3f62c78713867a25d4eb951fed55d"
+      },
+      "test": {
+        "path": "tests/test_run_ls_new_batch_4g_2e_recovery_m9.py",
+        "file_sha256": "f0e2545bad7f3b37a4e9f9fd818b82d9ed5cc3d6167064d61c2dd6a1fec1ad6d"
+      }
+    }
+  },
+  "production_status": "NO_GO",
+  "approval_evidence_digest_sha256": "99a3e17a78625cd3a03b7ec3f7a5122a5f92440cf3ba613e285ae1c7d69f7421"
+}

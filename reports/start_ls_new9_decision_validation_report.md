@@ -1,0 +1,8 @@
+# LS-NEW-9-DECISION Validation Report
+
+- generated_at: 2026-07-05T03:31:48.191662+00:00
+- validation_status: LSNEW9_DECISION_VALIDATED_NO_EXECUTION
+- run_status: LSNEW9_DECISION_HUMAN_APPROVED_NO_EXECUTION
+
+## Errors
+- none

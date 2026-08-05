@@ -1,0 +1,16 @@
+{
+  "policy_version": "v1",
+  "run_mode": "CONTROLLED_ONCE",
+  "allowed_target_blocks": [
+    "sample_block"
+  ],
+  "max_runs_per_execution": 1,
+  "enforce_sample_block_only": true,
+  "dry_run_only": true,
+  "record_evidence": true,
+  "status_model": [
+    "PASS",
+    "WARN",
+    "FAIL"
+  ]
+}

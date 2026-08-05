@@ -1,0 +1,73 @@
+{
+  "_meta": {
+    "schema_version": "ir7_integration_v1",
+    "phase": "IR7-T3",
+    "generated_at": "2026-05-23T14:16:50.148395+00:00",
+    "status": "OK"
+  },
+  "freeze_package": {
+    "path": "generic_block_ai/reports/affiliate_block_package_descriptor.json",
+    "status": "OK"
+  },
+  "affiliate_stage": {
+    "result": {
+      "status": "success",
+      "decision": "human_review",
+      "mode": "dry_run",
+      "operation_mode": "OBSERVE",
+      "summary": "dry-run processed candidates=3, selected=3",
+      "recommended_candidates": [
+        {
+          "id": 1
+        },
+        {
+          "id": 2
+        },
+        {
+          "id": 3
+        }
+      ],
+      "safeguards": {
+        "actual_auto_execute": false,
+        "actual_auto_approve": false,
+        "external_write_executed": false,
+        "production_release": false
+      },
+      "meta": {
+        "generated_runner": true,
+        "generated_at": "2026-05-23T14:16:50.147852+00:00"
+      }
+    },
+    "runner_to_core_handshake": {
+      "connection_status": "HANDSHAKE_READY_DRY_RUN",
+      "validation_result": "PASS",
+      "validation_failed_checks": []
+    }
+  },
+  "generic_stage": {
+    "requested_actions_count": 3,
+    "result": {
+      "status": "success",
+      "decision": "human_review",
+      "core_ai_handshake": {
+        "path": null,
+        "connection_status": "HANDSHAKE_PENDING_REVIEW",
+        "validation_result": "PASS",
+        "validation_failed_checks": [],
+        "validation_warnings": [],
+        "external_write_executed": false
+      }
+    }
+  },
+  "connection_statuses": {
+    "affiliate_to_core": "HANDSHAKE_READY_DRY_RUN",
+    "generic_to_core": "HANDSHAKE_PENDING_REVIEW"
+  },
+  "safeguards": {
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "external_write_executed": false,
+    "actual_auto_execute": false,
+    "production_release": false
+  }
+}

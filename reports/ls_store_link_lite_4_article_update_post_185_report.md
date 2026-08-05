@@ -1,0 +1,25 @@
+# LS-STORE-LINK-LITE-4 Article Update Report
+
+- Phase: LS-STORE-LINK-LITE-4
+- Status: LS_STORE_LINK_LITE_4_POST_185_STORE_BLOCK_UPDATED_ONE_SHOT
+- Target post ID: 185
+- Update scope: store block insertion only
+- Pre-read attempted: true
+- Pre-read succeeded: true
+- Content backup created: true
+- Content backup path: exchange/backups/post_185_content_before_store_block_20260710_001625.html
+- Store block inserted: true
+- Article update attempted: true
+- Article update succeeded: true
+- WordPress post update executed: true
+- Updated post ID: 185
+- Updated post status: publish
+- Updated post link: https://hoshido.jp/2026/07/09/%e6%9c%88%e6%9b%9c%e6%97%a5%e3%81%ae%e3%81%9f%e3%82%8f%e3%82%8f-%e7%ac%ac15%e5%b7%bb%ef%bd%9ckindle%e7%89%88-%e9%85%8d%e4%bf%a1%e9%96%8b%e5%a7%8b/
+- Credential env read executed: true
+- Credential value output: false
+- Secret output: false
+- Authorization output: false
+- Response body output: false
+- One-shot article update consumed: true
+- Ready for visual check: true
+- Next action: VISUAL_CHECK_POST_185_STORE_BLOCK

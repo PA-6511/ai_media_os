@@ -1,0 +1,50 @@
+{
+  "phase": "Phase 8-43",
+  "name": "one_shot_draft_creation_execution_runner_scaffold_policy",
+  "policy_status": "RUNNER_SCAFFOLD_AND_LABEL_CONSUMER_VALIDATION_ONLY",
+  "production_status": "NO_GO",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "human_approval_required": true,
+  "runner_is_execution_permission": false,
+  "execution_allowed": false,
+  "actual_go_decision_issued": false,
+  "commands_executed_in_this_phase": false,
+  "phase8_6_to_8_10_executed": false,
+  "wordpress_api_call_allowed": false,
+  "wordpress_write_executed": false,
+  "wordpress_draft_created": false,
+  "publish_allowed": false,
+  "secret_values_output": false,
+  "target_item_count": 1,
+  "required_approval_label": "APPROVED_FOR_ONE_SHOT_DRAFT_CREATION_ONLY",
+  "required_evidence": [
+    "exchange/logs/phase8_42_explicit_one_shot_production_execution_approval_gate_result.json"
+  ],
+  "required_statuses": {
+    "exchange/logs/phase8_42_explicit_one_shot_production_execution_approval_gate_result.json": [
+      "PHASE8_42_APPROVAL_GATE_DEFINED_NO_EXECUTION",
+      "PHASE8_42_EXPLICIT_ONE_SHOT_PRODUCTION_EXECUTION_APPROVAL_GRANTED_GATE_ONLY"
+    ]
+  },
+  "required_review_acknowledgements": [
+    "acknowledged_runner_scaffold_only",
+    "acknowledged_label_consumer_validation_only",
+    "acknowledged_no_wordpress_api_call",
+    "acknowledged_no_wordpress_write",
+    "acknowledged_no_draft_creation",
+    "acknowledged_execution_allowed_false",
+    "acknowledged_actual_go_decision_issued_false",
+    "acknowledged_secret_values_output_false",
+    "acknowledged_real_execution_requires_separate_final_approval"
+  ],
+  "allowed_decisions": [
+    "DEFINE_RUNNER_SCAFFOLD_ONLY_NO_EXECUTION",
+    "VALIDATE_LABEL_CONSUMER_ONLY_NO_EXECUTION",
+    "REQUEST_FIX",
+    "REJECT",
+    "ABORT"
+  ],
+  "allowed_next_step_if_scaffold_valid": "Before any real execution, require a separate final phase that sets execution_allowed=true only when approval label is explicitly present",
+  "allowed_next_step_if_fix_required": "Keep NO_GO and fix scaffold/policy mismatches before any execution consideration"
+}

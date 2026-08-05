@@ -1,0 +1,40 @@
+{
+  "schema_version": "ir159_terminal_declaration_package_v1",
+  "phase": "IR159",
+  "generated_at": "2026-05-26T12:26:11.128443+00:00",
+  "source_task_id": "ir156_160_batch",
+  "terminal_declaration_decision": "PROHIBITION_CONTINUITY_FINALIZED_DRY_RUN_ONLY",
+  "gate_action": "Terminal declaration package confirmed under dry-run terminal state.",
+  "validation_result": "PASS",
+  "validation_failed_checks": [],
+  "validation_warnings": [],
+  "terminal_declaration_package": {
+    "package_id": "ir159_package_ir156_160_batch_20260526T122611Z",
+    "generated_at": "2026-05-26T12:26:11.128433+00:00",
+    "source_task_id": "ir156_160_batch",
+    "decision": "PROHIBITION_CONTINUITY_FINALIZED_DRY_RUN_ONLY",
+    "unlock_prohibited": true,
+    "terminal_declaration_confirmed": true,
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "package_hash": "66e5022972e60b73c31bc23d7f58a0356dfa50bcda76f98d4cb1997b952ca94e",
+  "safety_gate_snapshot": {
+    "dry_run": "maintained",
+    "OBSERVE": "maintained",
+    "submission_execution_blocked": true,
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "network_transmission_executed": false,
+    "production_release": false,
+    "GitHub_push": "未実行"
+  }
+}

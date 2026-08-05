@@ -1,0 +1,112 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-2A",
+  "policy_id": "NEW_RELEASE_WP_ACTUAL_READ_ONLY_LOOKUP_AUTHORIZATION_POLICY_V1",
+  "authorization_package_id": "wp-one-shot-read-only-category-lookup-authorization",
+  "operation_mode": "ONE_SHOT_ACTUAL_READ_ONLY_LOOKUP_AUTHORIZATION_GATE",
+  "source_mock_mapping_summary": {
+    "category_slug": "comic-new-release",
+    "category_name": "コミック新刊",
+    "fixture_category_id": 980001,
+    "fixture_id_authorized": false,
+    "fixture_id_production_usable": false,
+    "fixture_id_payload_injection_allowed": false,
+    "fixture_id_discard_required": true
+  },
+  "authorization_scope": {
+    "approval_scope_id": "ONE_SHOT_WORDPRESS_CATEGORY_LOOKUP_COMIC_NEW_RELEASE",
+    "requested_approval_label": "APPROVED_FOR_ONE_SHOT_READ_ONLY_CATEGORY_LOOKUP_ONLY",
+    "credential_file_path": "/etc/ai-media-os/wordpress-readonly-category.env",
+    "base_url_source": "VERIFIED_PRODUCTION_CREDENTIAL_FILE",
+    "https_required": true,
+    "method": "GET",
+    "rest_path": "/wp-json/wp/v2/categories",
+    "query_parameters": {
+      "slug": "comic-new-release",
+      "per_page": 100,
+      "_fields": "id,slug,name,count"
+    },
+    "target_category": {
+      "category_slug": "comic-new-release",
+      "category_name": "コミック新刊"
+    },
+    "maximum_http_requests": 1,
+    "maximum_attempts": 1,
+    "retry_allowed": false,
+    "request_body": null,
+    "redirect_follow": false,
+    "cross_origin_redirect": false,
+    "proxy_use": false,
+    "timeout_seconds": 15,
+    "maximum_response_bytes": 1048576,
+    "tls_verification": true,
+    "allowed_http_statuses": [
+      200
+    ],
+    "required_content_type_prefix": "application/json",
+    "fixture_category_id_reference": 980001,
+    "fixture_category_id_authorized": false,
+    "fixture_category_id_discard_required": true,
+    "production_category_id_payload_injection_allowed": false,
+    "wordpress_write_allowed": false,
+    "approval_label_issued": false,
+    "actual_go_decision_issued": false,
+    "execution_allowed": false,
+    "authorization_scope_digest_sha256": "527b1197f48864d34b5b9413ff59d3801160002508fc5742ae00ddd724397d75"
+  },
+  "approval_gate": {
+    "state": "AWAITING_EXPLICIT_APPROVAL",
+    "requested_approval_label": "APPROVED_FOR_ONE_SHOT_READ_ONLY_CATEGORY_LOOKUP_ONLY",
+    "approval_label_issued": false,
+    "approval_label_consumed": false,
+    "actual_go_decision_issued": false,
+    "approval_token_generation_allowed": false,
+    "approval_token": null,
+    "human_explicit_approval_required": true,
+    "execution_allowed": false
+  },
+  "current_phase_activity": {
+    "credential_file_read": false,
+    "credential_values_loaded": false,
+    "credential_values_output": false,
+    "authorization_header_constructed": false,
+    "dns_resolution_performed": false,
+    "network_connection_performed": false,
+    "tls_connection_performed": false,
+    "http_request_performed": false,
+    "wordpress_response_read": false,
+    "wordpress_write_performed": false,
+    "production_category_id_received": false,
+    "production_payload_modified": false
+  },
+  "execution_boundary": {
+    "credential_file_read_allowed": false,
+    "credential_value_output_allowed": false,
+    "environment_variable_export_allowed": false,
+    "authorization_header_construction_allowed": false,
+    "dns_resolution_allowed": false,
+    "network_connection_allowed": false,
+    "tls_connection_allowed": false,
+    "wordpress_api_call_allowed": false,
+    "wordpress_category_lookup_allowed": false,
+    "wordpress_write_allowed": false,
+    "wordpress_publish_allowed": false,
+    "external_api_call_allowed": false,
+    "execution_approval_issued": false,
+    "execution_allowed": false,
+    "production_status": "NO_GO",
+    "safety_state": "AWAITING_EXPLICIT_ONE_SHOT_LOOKUP_APPROVAL"
+  },
+  "verified_checks": [
+    "source_phase_identity",
+    "source_implementation_digest_verified",
+    "source_mock_matching_verified",
+    "source_fixture_id_identified",
+    "source_fixture_id_not_production_usable",
+    "source_fixture_id_not_injected",
+    "source_network_authority_closed",
+    "source_wordpress_authority_closed",
+    "source_execution_gate_closed"
+  ],
+  "authorization_package_digest_sha256": "b695c9bd800baf04dcda4ead4fa67ad2c2a529a83900a22c573f7432d3785893"
+}

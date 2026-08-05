@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M15",
+  "approval_id": "wordpress-draft-human-review-approved-no-change-required-v1",
+  "approval_label": "WORDPRESS_DRAFT_HUMAN_REVIEW_APPROVED_NO_CHANGE_REQUIRED",
+  "approved_by": "HUMAN_OPERATOR",
+  "human_explicit_approval": true,
+  "approved_at_utc": "2026-07-11T10:57:43.185779+00:00",
+  "content_item_id": "new-release-comic-20260703-001",
+  "wordpress_post_id": 192,
+  "human_review_attestation": {
+    "title_confirmed": true,
+    "draft_status_confirmed": true,
+    "category_confirmed": true,
+    "body_layout_confirmed": true,
+    "dmm_button_display_confirmed": true,
+    "dmm_button_enabled_state_confirmed": true,
+    "secret_information_non_exposure_confirmed": true,
+    "publish_action_not_performed": true,
+    "change_required": false,
+    "review_verdict": "APPROVED_NO_CHANGE_REQUIRED"
+  },
+  "wordpress_access_approved": false,
+  "wordpress_write_approved": false,
+  "wordpress_publish_approved": false,
+  "authorization_issue_approved": false,
+  "authorization_consumption_approved": false,
+  "production_status": "NO_GO",
+  "approval_evidence_digest_sha256": "45a2ce99c574ba789ed41d9e083114480ce71e7bddbccce3cd0e0208320d4697"
+}

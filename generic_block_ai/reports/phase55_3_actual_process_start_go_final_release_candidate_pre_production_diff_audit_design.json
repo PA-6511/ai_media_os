@@ -1,0 +1,35 @@
+{
+  "_meta": {
+    "phase": "55-3",
+    "phase_name": "本番直前差分監査層",
+    "layer": "actual_process_start_go 差分監査設計層 (actual_process_start_go pre-production diff audit design layer)",
+    "title": "actual_process_start_go 最終解除候補の本番直前差分監査設計",
+    "created": "2026-05-15",
+    "author": "governance-framework",
+    "status": "PASS_DESIGN_ONLY",
+    "reports_only": true
+  },
+  "scope": "Phase 55-1 で受領・整合確認された Phase 54 完了証跡をもとに，actual_process_start_go の最終解除候補について本番直前差分監査ルールを設計層で定義する。内容：(1) actual_process_start_go の NOT_GRANTED 維持状態の再確認，(2) 想定構成と現行構成の差分監査項目・判定基準の定義，(3) 監査結果記録要件と改ざん防止要件の明示，(4) production_status = 'NO_GO' の維持確認。",
+  "governance": {
+    "production_status": "NO_GO",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "report": {
+    "description": "Phase 55-3 では，Phase 55-1 で受領・整合確認された Phase 54 完了証跡をもとに，actual_process_start_go の最終解除候補について本番直前差分監査ルールを設計層で定義する。(1) actual_process_start_go の NOT_GRANTED 維持状態の再確認，(2) 想定構成と現行構成の差分監査項目・判定基準の定義，(3) 監査結果記録要件と改ざん防止要件の明示，(4) production_status = 'NO_GO' の維持確認。これらは全て reports-only で実装され，実処理開始許可は含まれない。",
+    "invariants": [
+      "NO_GO 維持：差分監査設計時点で production_status = 'NO_GO' を維持",
+      "NOT_GRANTED 維持：actual_process_start_go の NOT_GRANTED 状態を再確認",
+      "差分監査明示：監査項目・判定基準・記録要件を明確に定義",
+      "改ざん防止：監査記録は署名・時刻・ハッシュ等で改ざん防止を担保",
+      "reports only：全差分監査設計は設計層の報告書形式で実施"
+    ],
+    "actions": [],
+    "notes": [
+      "Phase 55-3 は設計層のみで実装される（reports-only）",
+      "実処理開始許可は含まれない",
+      "actual_process_start_go の NOT_GRANTED 維持が前提"
+    ]
+  }
+}

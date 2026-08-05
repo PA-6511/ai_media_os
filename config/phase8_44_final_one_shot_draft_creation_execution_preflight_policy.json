@@ -1,0 +1,48 @@
+{
+  "phase": "Phase 8-44",
+  "name": "final_one_shot_draft_creation_execution_preflight_policy",
+  "policy_status": "FINAL_PREFLIGHT_AND_DRY_RUN_LOCK_VALIDATION_ONLY",
+  "production_status": "NO_GO",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "human_approval_required": true,
+  "preflight_is_execution_permission": false,
+  "execution_allowed": false,
+  "actual_go_decision_issued": false,
+  "commands_executed_in_this_phase": false,
+  "phase8_6_to_8_10_executed": false,
+  "wordpress_api_call_allowed": false,
+  "wordpress_write_executed": false,
+  "wordpress_draft_created": false,
+  "publish_allowed": false,
+  "secret_values_output": false,
+  "target_item_count": 1,
+  "required_approval_label": "APPROVED_FOR_ONE_SHOT_DRAFT_CREATION_ONLY",
+  "required_evidence": [
+    "exchange/logs/phase8_43_one_shot_draft_creation_execution_runner_scaffold_result.json"
+  ],
+  "required_statuses": {
+    "exchange/logs/phase8_43_one_shot_draft_creation_execution_runner_scaffold_result.json": [
+      "PHASE8_43_ONE_SHOT_RUNNER_SCAFFOLD_VALIDATED_NO_EXECUTION"
+    ]
+  },
+  "required_review_acknowledgements": [
+    "acknowledged_final_preflight_only",
+    "acknowledged_lock_absent_required",
+    "acknowledged_single_target_only",
+    "acknowledged_rollback_freeze_defined",
+    "acknowledged_wordpress_write_still_forbidden",
+    "acknowledged_approval_label_not_consumed_yet",
+    "acknowledged_execution_allowed_false",
+    "acknowledged_actual_go_decision_issued_false",
+    "acknowledged_secret_values_output_false"
+  ],
+  "allowed_decisions": [
+    "FINAL_PREFLIGHT_READY_NO_EXECUTION",
+    "REQUEST_FIX",
+    "REJECT",
+    "ABORT"
+  ],
+  "allowed_next_step_if_ready": "Request separate explicit final execution approval before any WordPress write",
+  "allowed_next_step_if_fix_required": "Keep NO_GO and fix preflight mismatches before execution consideration"
+}

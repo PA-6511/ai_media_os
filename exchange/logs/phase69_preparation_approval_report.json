@@ -1,0 +1,138 @@
+{
+  "package_type": "phase69_preparation_approval_report",
+  "phase": "Phase 69",
+  "title": "Phase 69 Limited Dry-Run Preparation Approval Report",
+  "status": "PASS",
+  "approval_status": "PASS",
+  "source_report": "exchange/logs/phase68_preparation_review_report.json",
+  "source_report_type": "phase68_preparation_review_report",
+  "mode": "DRY_RUN",
+  "human_approval_required": true,
+  "can_execute": false,
+  "execute_allowed": false,
+  "max_files_to_execute": 1,
+  "sandbox_scope_required": true,
+  "single_file_scope_required": true,
+  "approval_package": {
+    "package_scope": "limited_dry_run_preparation_approval_package_only",
+    "does_not_execute": true,
+    "approval_target": "phase68_preparation_review_report",
+    "status": "PREPARATION_APPROVAL_PACKAGE_READY"
+  },
+  "approval_controls": {
+    "controls_required": true,
+    "dry_run_required": true,
+    "human_approval_required": true,
+    "sandbox_scope_required": true,
+    "single_file_scope_required": true,
+    "does_not_execute": true,
+    "status": "PREPARATION_APPROVAL_CONTROLS_READY"
+  },
+  "approval_evidence_checks": {
+    "evidence_required": true,
+    "required_evidence": [
+      "phase66_go_no_go_report_reference",
+      "preparation_scope_statement",
+      "target_files_manifest",
+      "sandbox_scope_confirmation",
+      "single_file_scope_confirmation",
+      "dry_run_mode_confirmation",
+      "non_execution_confirmation"
+    ],
+    "missing_evidence_blocks_progress": true,
+    "does_not_execute": true,
+    "status": "PREPARATION_APPROVAL_EVIDENCE_CHECKS_READY"
+  },
+  "manual_approval_gate": {
+    "gate_required": true,
+    "allowed_decisions": [
+      "ALLOW_PHASE70_PLANNING_ONLY",
+      "REJECT"
+    ],
+    "does_not_execute": true,
+    "status": "MANUAL_PREPARATION_APPROVAL_GATE_READY"
+  },
+  "phase70_readiness": {
+    "readiness_status": "READY_FOR_PHASE70_PLANNING_ONLY",
+    "planning_package_scope": "limited_dry_run_preparation_planning_package_only",
+    "human_approval_required": true,
+    "can_execute": false,
+    "execute_allowed": false
+  },
+  "production_status": "NO_GO",
+  "checks": [
+    {
+      "check": "input_phase=Phase 68",
+      "passed": true,
+      "actual": "Phase 68"
+    },
+    {
+      "check": "input_package_type=phase68_preparation_review_report",
+      "passed": true,
+      "actual": "phase68_preparation_review_report"
+    },
+    {
+      "check": "input_status=PASS",
+      "passed": true,
+      "actual": "PASS"
+    },
+    {
+      "check": "dry_run_fixed=true",
+      "passed": true,
+      "actual": "DRY_RUN"
+    },
+    {
+      "check": "human_approval_required=true",
+      "passed": true,
+      "actual": true
+    },
+    {
+      "check": "can_execute=false",
+      "passed": true,
+      "actual": false
+    },
+    {
+      "check": "execute_allowed=false",
+      "passed": true,
+      "actual": false
+    },
+    {
+      "check": "max_files_to_execute=1",
+      "passed": true,
+      "actual": 1
+    },
+    {
+      "check": "sandbox_scope_required=true",
+      "passed": true,
+      "actual": true
+    },
+    {
+      "check": "single_file_scope_required=true",
+      "passed": true,
+      "actual": true
+    },
+    {
+      "check": "approval_controls_does_not_execute=true",
+      "passed": true,
+      "actual": true
+    },
+    {
+      "check": "approval_evidence_checks_does_not_execute=true",
+      "passed": true,
+      "actual": true
+    },
+    {
+      "check": "manual_approval_gate_does_not_execute=true",
+      "passed": true,
+      "actual": true
+    },
+    {
+      "check": "phase69_readiness_status=READY_FOR_PHASE69_READINESS_REVIEW_ONLY",
+      "passed": true,
+      "actual": "READY_FOR_PHASE69_READINESS_REVIEW_ONLY"
+    }
+  ],
+  "all_checks_passed": true,
+  "next_step": "decide_whether_to_start_phase70_limited_dry_run_preparation_planning_package",
+  "created_at": "2026-05-09T14:30:35.621265+00:00"
+}

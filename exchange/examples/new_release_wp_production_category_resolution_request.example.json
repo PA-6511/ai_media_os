@@ -1,0 +1,21 @@
+{
+  "request_version": 1,
+  "phase_id": "LS-NEW-BATCH-4C",
+  "review_package_id": "wp-human-review-example-20260717",
+  "batch_id": "example-20260717",
+  "source_review_package_digest_sha256": "0b3a87c57cd56d953e6d8060db3aaeda9d93965bc517b60417ff209f89cb0aea",
+  "resolution_status": "PENDING_MANUAL_VERIFICATION",
+  "categories": [
+    {
+      "category_slug": "comic-new-release",
+      "category_name": "コミック新刊",
+      "wordpress_category_id": null,
+      "resolution_source": null,
+      "verified_at": null,
+      "evidence_note": null,
+      "human_verification_confirmed": false
+    }
+  ],
+  "execution_approval_issued": false,
+  "approval_token": null
+}

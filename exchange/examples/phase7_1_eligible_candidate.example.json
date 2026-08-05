@@ -1,0 +1,60 @@
+{
+  "candidate_id": "phase7_1_sample_candidate_001",
+  "source": "PHASE7_1_ELIGIBLE_DRY_RUN",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "target_item_count": 1,
+  "decision_token": "ELIGIBLE",
+  "duplicate_check": {
+    "status": "PASS",
+    "reason": "No duplicate ASIN/product_id detected in dry-run sample."
+  },
+  "quality_gate": {
+    "status": "PASS_DRY_RUN_ONLY",
+    "source_log": "exchange/logs/phase6_6_quality_gate_validation_result.json"
+  },
+  "pr_notice": {
+    "exists": true,
+    "text": "PR：本記事には広告が含まれます。"
+  },
+  "cta": {
+    "exists": true,
+    "items": [
+      {
+        "label": "Amazonで見る",
+        "url": "https://example.com/affiliate/sample"
+      }
+    ]
+  },
+  "affiliate_links": [
+    {
+      "store": "amazon",
+      "url": "https://example.com/affiliate/sample"
+    }
+  ],
+  "human_review": {
+    "required": true,
+    "status": "REQUIRED_NOT_APPROVED_IN_PHASE7_1",
+    "approval_token_used": false,
+    "approve_draft_create_only_used": false
+  },
+  "freeze_plan": {
+    "exists": true,
+    "freeze_on_mismatch": true,
+    "freeze_on_wordpress_write_attempt": true,
+    "freeze_on_bulk_execution": true
+  },
+  "safety_flags": {
+    "production_status": "NO_GO",
+    "wordpress_draft_creation": "NO_GO",
+    "wordpress_write_executed": false,
+    "auto_post": false,
+    "auto_update": false,
+    "auto_delete": false,
+    "auto_export": false,
+    "publish_allowed": false,
+    "bulk_execution": false,
+    "external_write": false,
+    "vps_self_builder_execution": false
+  }
+}

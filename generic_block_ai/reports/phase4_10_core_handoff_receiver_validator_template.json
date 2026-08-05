@@ -1,0 +1,41 @@
+{
+  "_meta": {
+    "phase": "4-10",
+    "purpose": "core_handoff_receiver_validator_template",
+    "created_at": "2026-05-12",
+    "status": "TEMPLATE_ONLY",
+    "note": "Core handoff dry-run receiver 雛形に対する validator 設計雛形。実検証コード・実送信・外部接続は含まない。"
+  },
+  "target_template": "reports/phase4_7_core_handoff_dry_run_receiver.json",
+  "required_fields": [
+    {"path": "receiver_contract.receiver_mode", "expected_type": "string", "allowed_values": ["dry_run_receive_only"]},
+    {"path": "receiver_contract.operation_mode", "expected_type": "string", "allowed_values": ["OBSERVE"]},
+    {"path": "receiver_contract.connection_test_mode", "expected_type": "boolean", "must_be": true},
+    {"path": "receiver_contract.connection_scope", "expected_type": "string", "allowed_values": ["decision_package_handoff_only"]},
+    {"path": "receiver_contract.execution", "expected_type": "string", "allowed_values": ["dry_run"]},
+    {"path": "receiver_contract.requires_human_approval", "expected_type": "boolean", "must_be": true},
+    {"path": "receiver_contract.auto_execute_allowed", "expected_type": "boolean", "must_be": false},
+    {"path": "receiver_contract.external_api_call", "expected_type": "boolean", "must_be": false},
+    {"path": "receiver_contract.transport", "expected_type": "string", "allowed_values": ["none"]},
+    {"path": "accepted_input.artifact_type", "expected_type": "string", "allowed_values": ["decision_package"]},
+    {"path": "accepted_input.max_actionable_permissions", "expected_type": "string", "allowed_values": ["none"]},
+    {"path": "receiver_behavior.response_mode", "expected_type": "string", "allowed_values": ["observation_only"]}
+  ],
+  "forbidden_values": [
+    {"path": "receiver_contract.operation_mode", "forbidden": ["EXECUTE", "WRITE", "PUBLISH"]},
+    {"path": "receiver_contract.transport", "forbidden": ["http", "https", "webhook"]},
+    {"path": "accepted_input.max_actionable_permissions", "forbidden": ["write", "execute", "publish"]}
+  ],
+  "required_blocked_actions": [
+    "external_api_call",
+    "wordpress_operation",
+    "cron_registration",
+    "auto_execute",
+    "auto_post",
+    "auto_update",
+    "auto_delete",
+    "auto_export",
+    "production_execution"
+  ],
+  "result": "PASS_DRY_RUN_ONLY"
+}

@@ -1,0 +1,25 @@
+{
+  "mode": "PHASE8_25_DESIGN_ONLY",
+  "phase": "8-25",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "design_only": true,
+  "human_approval_required": true,
+  "target_item_count": 1,
+  "execution_allowed": false,
+  "wordpress_api_call_allowed": false,
+  "wordpress_write_allowed": false,
+  "wordpress_draft_creation_allowed": false,
+  "approve_draft_create_only_currently_allowed": false,
+  "unlock_in_this_phase": false,
+  "no_secret_leak_required": true,
+  "secret_values_must_not_be_output": true,
+  "previous_required_evidence": [
+    "phase8_16_result_report",
+    "phase8_17_result_report",
+    "phase8_18_to_8_22_pack_overall_report"
+  ],
+  "next_step_if_design_pass": "phase8_16_equivalent_credential_readiness_recheck_or_final_execution_preflight",
+  "next_step_if_policy_violation": "abort_without_execution",
+  "next_step_if_secret_leak_risk": "abort_without_execution"
+}

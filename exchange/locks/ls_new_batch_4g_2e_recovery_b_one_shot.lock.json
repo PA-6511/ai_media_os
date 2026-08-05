@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-B",
+  "lock_id": "ls-new-batch-4g-2e-recovery-b-one-shot",
+  "state": "CONSUMED_COMPLETED_PASS",
+  "reserved_at_utc": "2026-07-10T16:03:43.023251+00:00",
+  "approval_label": "APPROVED_FOR_ONE_SHOT_READ_ONLY_CATEGORY_INDEX_RECOVERY_ONLY",
+  "approval_evidence_digest_sha256": "f24afcd60f6a7d9bc638a7cb05192baffe8c4c46454193aa2ffd7db05815874a",
+  "approval_label_consumed": true,
+  "http_request_limit": 1,
+  "http_attempt_limit": 1,
+  "retry_allowed": false,
+  "execution_complete": true,
+  "completed_at_utc": "2026-07-10T16:03:43.140698+00:00",
+  "result_status": "PASS_ONE_SHOT_ACTUAL_READ_ONLY_CATEGORY_INDEX_RECOVERY",
+  "http_request_attempt_count": 1
+}

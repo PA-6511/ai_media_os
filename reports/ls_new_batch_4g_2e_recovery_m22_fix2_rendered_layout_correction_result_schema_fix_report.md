@@ -1,0 +1,32 @@
+# LS-NEW-BATCH-4G-2E-RECOVERY-M22-FIX2
+
+- Status: `PASS_WORDPRESS_RENDERED_LAYOUT_CORRECTION_RESULT_SCHEMA_FIXED_DOM_VALIDATED_UPDATE_PAYLOAD_GENERATED_LOCAL_ONLY_NON_EXECUTABLE_NO_WORDPRESS_ACCESS`
+- Decision: `M22_FIX1_SCHEMA_MISMATCH_RECORDED_CANONICAL_RESULT_FIELD_FIXED_RENDERED_UPDATE_PAYLOAD_READY_FOR_HUMAN_REVIEW`
+- WordPress post ID: `192`
+- M22 failure recorded: `true`
+- M22-FIX1 failure recorded: `true`
+- M22-FIX1 failure classification: `RESULT_SCHEMA_FIELD_NAME_MISMATCH`
+- Canonical result field: `previous_m22_rerun_performed`
+- Deprecated result field present: `false`
+- Previous M22 rerun performed: `false`
+- Previous M22-FIX1 rerun performed: `false`
+- Validator type: `HTMLPARSER_DOM_ONLY`
+- Style text ignored: `true`
+- DOM event order verified: `cover_image, responsive_work_details, pr_disclosure, store_container, amazon_button, rakuten_kobo_button, dmm_button`
+- Desktop CSS order verified: `true`
+- Current content SHA-256: `c5851f15e4eb477038dca512c8990068736a306cf4fb8c207036a3186119f436`
+- Rendered content SHA-256: `86ebae8e7f0c550ed6ee4726164a654269e9f2c6c64ac268945dac9714d31d30`
+- Scoped CSS SHA-256: `a77f2bc010432322a754006e97fa4bf2190fccb881cc2c361edd9e2f4bddec43`
+- Allowed update fields: `content, comment_status`
+- Comment status target: `closed`
+- Store URL multiset preserved: `true`
+- PR disclosure before store interaction: `true`
+- Network connection performed: `false`
+- WordPress access performed: `false`
+- WordPress update performed: `false`
+- Authorization issued: `false`
+- Execution allowed: `false`
+- Production status: `NO_GO`
+- Ready for rendered update payload human review: `true`
+- Ready for WordPress update authorization gate: `false`
+- Ready for WordPress update: `false`

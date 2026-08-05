@@ -1,0 +1,47 @@
+{
+  "phase": "SFB-15B",
+  "phase_name": "Dashboard Operations Baseline Lock",
+  "generated_at": "2026-07-29T14:26:54.436204+00:00",
+  "status": "PASS",
+  "baseline_locked": true,
+  "hold_state": "HOLD",
+  "production_status": "NO_GO",
+  "mode": "DRY_RUN",
+  "wordpress_write_executed": false,
+  "external_api_called": false,
+  "external_network_called": false,
+  "approval_token_consumed": false,
+  "approval_label_consumed": false,
+  "human_approval_consumed": false,
+  "checks": {
+    "required_json_reports_present": true,
+    "missing_json_reports": [],
+    "expected_statuses_ok": true,
+    "status_check_results": {
+      "sfb13_diff_report": true,
+      "sfb14_dashboard": true,
+      "sfb15_operations_readiness": true
+    },
+    "required_test_files_present": true,
+    "missing_test_files": [],
+    "file_presence": {
+      "sfb13t_test_lock": true,
+      "sfb14_test_lock": true,
+      "sfb14c_warn_guard_test": true,
+      "sfb15_test_lock": true
+    },
+    "phase_mapping_lock_ok": true,
+    "undefined_mapping_guard_configured": true,
+    "no_go_invariants_ok": true
+  },
+  "source_reports": {
+    "sfb13_diff_report": "/home/deploy/ai_media_os/logs/sfb_13_csv_import_diff_report.json",
+    "sfb14_dashboard": "/home/deploy/ai_media_os/logs/sfb_14_dashboard_aggregation.json",
+    "sfb15_operations_readiness": "/home/deploy/ai_media_os/logs/sfb_15_dashboard_operations_readiness.json"
+  },
+  "summary": {
+    "locked_scope": "SFB-13T / SFB-14 / SFB-14B / SFB-14C / SFB-15",
+    "hold_recommendation": "HOLD",
+    "next_action": "KEEP_HOLD_AND_MONITOR"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "ir29_release_candidate_submission_dryrun_v1",
+  "phase": "IR29",
+  "generated_at": "2026-05-23T16:06:30.400178+00:00",
+  "source_task_id": "ir29_live_trial",
+  "release_candidate_id": "rc_20260523T155148Z_ir26_live_trial_b940393b490b",
+  "validation_result": "PASS",
+  "submission_mode": "dry_run_only",
+  "send_guard": {
+    "send_allowed": false,
+    "send_executed": false,
+    "network_transmission_executed": false,
+    "reason": "ir29_submission_dryrun_only"
+  },
+  "prohibited_actions": [
+    "external_network_submission",
+    "production_release",
+    "git_push"
+  ],
+  "summary": {
+    "included_artifact_count": 22,
+    "failed_check_count": 0,
+    "warning_count": 0
+  },
+  "artifacts": {
+    "pre_submission_checklist": "generic_block_ai/reports/ir29_release_candidate_submission_package_ir29_live_trial/pre_submission_checklist.json",
+    "source_ir28_report": "generic_block_ai/reports/ir28_release_candidate_trace_bundle_report_ir28_live_trial.json"
+  },
+  "safeguards": {
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "production_release": false,
+    "network_transmission_executed": false
+  }
+}

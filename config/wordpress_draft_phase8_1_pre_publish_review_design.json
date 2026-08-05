@@ -1,0 +1,92 @@
+{
+  "package_type": "wordpress_draft_phase8_1_pre_publish_review_design",
+  "phase": "Phase 8-1",
+  "label": "WordPress下書き 公開前レビュー設計",
+  "design_status": "DESIGN_ONLY",
+  "wordpress_post_enabled": false,
+  "real_write_enabled": false,
+  "production_status": "NO_GO",
+  "wordpress_publish_execution": "NO_GO",
+  "wordpress_write_executed": false,
+  "target_draft": {
+    "wordpress_draft_id": 110,
+    "expected_status": "draft",
+    "source_log": "exchange/logs/phase7_6_wordpress_draft_creation_overall_completion_report.json"
+  },
+  "review_purpose": "公開判定前に、下書きID 110 の内容品質と公開禁止条件を人間が確認する。Phase 8-1 では公開を実行しない。",
+  "review_checklist": [
+    {
+      "id": "rv_01",
+      "check": "タイトルが意図した商材・訴求と一致している",
+      "mandatory": true
+    },
+    {
+      "id": "rv_02",
+      "check": "本文の文脈・段落構造に破綻がない",
+      "mandatory": true
+    },
+    {
+      "id": "rv_03",
+      "check": "PR/広告表記が要件どおりに記載されている",
+      "mandatory": true
+    },
+    {
+      "id": "rv_04",
+      "check": "本文内リンクが有効で、遷移先が想定どおり",
+      "mandatory": true
+    },
+    {
+      "id": "rv_05",
+      "check": "affiliate tag が正しく付与されている",
+      "mandatory": true
+    },
+    {
+      "id": "rv_06",
+      "check": "カテゴリ設定が運用ルールに一致している",
+      "mandatory": true
+    },
+    {
+      "id": "rv_07",
+      "check": "タグ設定が運用ルールに一致している",
+      "mandatory": true
+    },
+    {
+      "id": "rv_08",
+      "check": "公開禁止条件に該当しないことを確認した",
+      "mandatory": true
+    }
+  ],
+  "publish_block_conditions": [
+    "pr_disclosure_missing",
+    "invalid_or_broken_links_detected",
+    "affiliate_tag_missing_or_invalid",
+    "content_quality_issue_detected",
+    "legal_or_policy_violation_detected",
+    "manual_reviewer_not_human",
+    "status_not_draft",
+    "approval_token_invalid_or_expired"
+  ],
+  "forbidden_actions_in_phase8_1": [
+    "wordpress_rest_publish_post",
+    "wordpress_rest_update_existing_post",
+    "wordpress_rest_delete_post",
+    "wordpress_rest_bulk_post",
+    "external_export",
+    "cron_automation",
+    "github_actions_trigger",
+    "slack_production_notification",
+    "vps_self_builder_execution",
+    "env_secret_auto_edit"
+  ],
+  "pass_condition": {
+    "description": "全 mandatory 項目が人間レビューで確認済みでも、Phase 8-1 は設計のみのため公開操作は NO_GO 維持。",
+    "result_values": [
+      "PRE_PUBLISH_REVIEW_DESIGN_READY",
+      "PRE_PUBLISH_REVIEW_NEEDS_FIX",
+      "PRE_PUBLISH_REVIEW_BLOCKED"
+    ],
+    "current_result": "PRE_PUBLISH_REVIEW_DESIGN_READY"
+  },
+  "next_step": "phase8_2_manual_pre_publish_review_protocol_design",
+  "note": "Phase 8-1 is design-only. Do not publish in this phase."
+}

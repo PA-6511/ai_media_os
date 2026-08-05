@@ -1,0 +1,29 @@
+{
+  "review_id": "phase8_24_operator_go_no_go_001",
+  "phase": "Phase 8-24",
+  "operator": "human",
+  "decision": "OPERATOR_NO_GO_CREDENTIALS_MISSING",
+  "target_item_count": 1,
+  "candidate_id": "phase7_1_sample_candidate_001",
+  "acknowledged_decision_not_execution": true,
+  "acknowledged_manual_rerun_only": true,
+  "acknowledged_no_api_call_in_phase8_24": true,
+  "acknowledged_single_item_only": true,
+  "acknowledged_draft_only": true,
+  "acknowledged_no_publish": true,
+  "acknowledged_no_update": true,
+  "acknowledged_no_delete": true,
+  "acknowledged_no_bulk": true,
+  "acknowledged_no_secret_output": true,
+  "secret_values_included": false,
+  "approval_scope": {
+    "manual_rerun_handoff_only": true,
+    "draft_create_only": false,
+    "publish": false,
+    "update": false,
+    "delete": false,
+    "bulk": false,
+    "external_export": false
+  },
+  "note": "Operator GO/NO-GO review only. This is not execution permission."
+}

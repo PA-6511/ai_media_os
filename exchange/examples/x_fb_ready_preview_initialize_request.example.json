@@ -1,0 +1,21 @@
+{
+  "action": "INITIALIZE",
+  "feedback_id": "x-fb-example-20260717-example-20260717-001",
+  "article_item_id": "example-20260717-001",
+  "wordpress_post_id": null,
+  "template_id": "X_NEW_RELEASE_V1",
+  "article_context": {
+    "title": "サンプル作品",
+    "volume_label": "第1巻",
+    "release_date": "2026-07-17",
+    "category": "comic"
+  },
+  "generated_text": "『サンプル作品 第1巻』は7月17日発売。\nAmazon Kindle・楽天Koboの価格と販売ページを記事でまとめています。",
+  "wording_labels": [
+    "TITLE_FIRST",
+    "INFORMATIONAL_TONE",
+    "ARTICLE_CTA",
+    "NO_EMOJI",
+    "NO_HASHTAG"
+  ]
+}

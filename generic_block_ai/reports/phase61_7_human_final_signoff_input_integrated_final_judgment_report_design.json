@@ -1,0 +1,38 @@
+{
+  "_meta": {
+    "phase": "61-7",
+    "phase_name": "最終解除候補の人間最終サインオフ入力層",
+    "layer": "統合最終判定層 (integrated final judgment layer)",
+    "title": "人間最終サインオフ入力の統合最終判定レポート設計",
+    "created": "2026-05-15",
+    "author": "governance-framework",
+    "status": "PASS_DESIGN_ONLY",
+    "reports_only": true
+  },
+  "scope": "Phase 61-4〜61-6 で設計された証跡固定ルール・差し戻し/NO_GO維持ルールを統合し，manual_release_go / actual_process_start_go の人間最終サインオフ入力に関する統合最終判定を設計層でレポートする。判定内容：(1) manual_release_go 入力結果の証跡固定適合性，(2) actual_process_start_go 入力結果の証跡固定適合性，(3) サインオフ不成立・不整合検出有無と差し戻し判定，(4) production_status = 'NO_GO' と execution_start = 'NO_GO' 維持確認，(5) Phase 61-8 への進行条件。",
+  "governance": {
+    "phase61_4_to_61_6_status": "PASS_DESIGN_ONLY",
+    "phase61_human_final_signoff_input_reinforcement_status": "PASS_DESIGN_ONLY",
+    "production_status": "NO_GO",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "execution_start": "NO_GO",
+    "changed_area": "reports only"
+  },
+  "report": {
+    "description": "Phase 61-7 では，Phase 61-4〜61-6 で定義した人間最終サインオフ入力補強ルールを統合し，最終解除候補の統合最終判定レポートを設計する。判定は reports-only の設計結果として扱い，解除許可または実処理開始許可は発行しない。NO_GO / NOT_GRANTED 固定を維持したまま Phase 61-8 への進行条件を明示する。",
+    "invariants": [
+      "NO_GO 維持：統合最終判定時点で production_status = 'NO_GO' を維持",
+      "実処理開始 NO_GO 維持：execution_start = 'NO_GO' を維持",
+      "NOT_GRANTED 維持：manual_release_go / actual_process_start_go は NOT_GRANTED を維持",
+      "サインオフ不成立・不整合管理：検出時は差し戻し判定と再確認を必須化",
+      "reports only：全統合最終判定は設計層の報告書形式で実施"
+    ],
+    "actions": [],
+    "notes": [
+      "Phase 61-7 は設計工程であり，解除許可工程ではない。",
+      "実処理開始許可は含まれない。",
+      "統合最終判定は Phase 61-8/61-9 の前提。"
+    ]
+  }
+}

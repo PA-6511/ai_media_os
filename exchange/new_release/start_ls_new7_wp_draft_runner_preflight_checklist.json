@@ -1,0 +1,23 @@
+{
+  "phase": "LS-NEW-7",
+  "document_type": "START_LS_NEW7_WP_DRAFT_RUNNER_PREFLIGHT_CHECKLIST",
+  "status": "LSNEW7_PREFLIGHT_CHECKLIST_READY_NO_EXECUTION",
+  "required_before_later_execution": [
+    "LS-NEW-6 payload validation remains valid",
+    "human approval remains valid",
+    "final preflight completed in later phase",
+    "credential readiness checked only in later approved phase",
+    "target post ID remains unallocated until actual draft creation phase",
+    "separate execution command approved in later phase",
+    "rollback/freeze boundary prepared in later phase"
+  ],
+  "current_phase_checks": {
+    "runner_execution_allowed": false,
+    "wordpress_api_call_executed": false,
+    "wordpress_write_executed": false,
+    "wordpress_draft_created": false,
+    "credential_env_read_executed": false,
+    "target_post_id_allocated": false,
+    "execution_allowed": false
+  }
+}

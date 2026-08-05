@@ -1,0 +1,33 @@
+{
+  "phase": "LS-6P",
+  "status": "LS6P_POST_EXECUTION_EVIDENCE_FREEZE_RESTORE_VALIDATED",
+  "execution_mode": "POST_EXECUTION_VERIFICATION_AND_FREEZE_RESTORE_ONLY",
+  "production_status": "POST_EXECUTION_DRAFT_VERIFIED_AND_LOCKED",
+  "post_id": 183,
+  "draft_verified": true,
+  "returned_post_status": "draft",
+  "runtime_freeze_restored": true,
+  "rerun_prevention_finalized": true,
+  "rerun_allowed": false,
+  "wordpress_get_executed": true,
+  "wordpress_write_executed_by_this_phase": false,
+  "wordpress_draft_creation_executed_by_this_phase": false,
+  "publish_executed": false,
+  "future_schedule_executed": false,
+  "delete_executed": false,
+  "credential_env_read_executed": true,
+  "credential_value_output": false,
+  "credential_value_persisted": false,
+  "credential_secret_output": false,
+  "secret_length_output": false,
+  "secret_hash_output": false,
+  "authorization_header_output": false,
+  "next_phase": {
+    "phase": "LS-6Q",
+    "manual_review_required": true,
+    "manual_publish_allowed_by_this_phase": false,
+    "execution_allowed": false
+  },
+  "errors": [],
+  "generated_at": "2026-07-01T14:50:11.492217+00:00"
+}

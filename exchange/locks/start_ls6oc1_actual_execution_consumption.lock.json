@@ -1,0 +1,21 @@
+{
+  "phase": "LS-6O-C-1",
+  "document_type": "ACTUAL_EXECUTION_CONSUMPTION_LOCK",
+  "status": "ACTUAL_EXECUTION_CONSUMED_ONE_SHOT_LOCKS",
+  "locked": true,
+  "rerun_allowed": false,
+  "actual_wordpress_go_consumed": true,
+  "final_execute_now_consumed": true,
+  "one_shot_actual_execution_lock_consumed": true,
+  "created_count": 1,
+  "new_post_id": 183,
+  "payload_title": "2.5次元の誘惑",
+  "payload_asin": "B07X2G67B4",
+  "post_status": "draft",
+  "runtime_freeze_restored": false,
+  "next_phase": {
+    "phase": "LS-6P",
+    "requires_post_id_verification": true,
+    "requires_runtime_freeze_restore": true
+  }
+}

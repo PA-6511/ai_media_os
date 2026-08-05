@@ -1,0 +1,272 @@
+{
+  "files": [
+    "reports/draft_check_20260608.json",
+    "reports/draft_check_20260609.json",
+    "reports/draft_check_20260610.json",
+    "reports/draft_check_20260611.json",
+    "reports/draft_check_20260612.json",
+    "reports/draft_check_20260613.json",
+    "reports/draft_check_20260614.json",
+    "reports/draft_check_20260615.json",
+    "reports/draft_check_20260616.json",
+    "reports/draft_check_20260617.json",
+    "reports/draft_check_20260618.json",
+    "reports/draft_check_20260619.json"
+  ],
+  "days": 12,
+  "total_drafts": 240,
+  "final_summary": {
+    "PASS_WITH_WARNS": 240
+  },
+  "warn_rate": {
+    "pr_notice": 30.8,
+    "urls": 55.0,
+    "cta": 19.2,
+    "featured_image": 100.0,
+    "content_quality": 14.2
+  },
+  "fail_rate": {
+    "content_quality": 0.0,
+    "urls": 0.0,
+    "cta": 0.0,
+    "pr_notice": 0.0,
+    "featured_image": 0.0
+  },
+  "top_warn_reasons": {
+    "pr_notice": [
+      {
+        "reason": "PR/広告表記が見つかりません",
+        "count": 74
+      }
+    ],
+    "urls": [
+      {
+        "reason": "URL が見つかりません",
+        "count": 132
+      }
+    ],
+    "cta": [
+      {
+        "reason": "CTA（ボタン/リンク）が見つかりません",
+        "count": 46
+      }
+    ],
+    "featured_image": [
+      {
+        "reason": "アイキャッチが未設定です",
+        "count": 240
+      }
+    ],
+    "content_quality": [
+      {
+        "reason": "見出し（h2/h3）が見つかりません",
+        "count": 34
+      },
+      {
+        "reason": "本文が短い（97文字、推奨100以上）",
+        "count": 12
+      }
+    ]
+  },
+  "per_day": [
+    {
+      "date": "20260608",
+      "file": "reports/draft_check_20260608.json",
+      "total_drafts": 20,
+      "final": {
+        "PASS_WITH_WARNS": 20
+      },
+      "warn_rate": {
+        "pr_notice": 35.0,
+        "urls": 55.0,
+        "cta": 15.0,
+        "featured_image": 100.0,
+        "content_quality": 10.0
+      }
+    },
+    {
+      "date": "20260609",
+      "file": "reports/draft_check_20260609.json",
+      "total_drafts": 20,
+      "final": {
+        "PASS_WITH_WARNS": 20
+      },
+      "warn_rate": {
+        "pr_notice": 35.0,
+        "urls": 55.0,
+        "cta": 15.0,
+        "featured_image": 100.0,
+        "content_quality": 10.0
+      }
+    },
+    {
+      "date": "20260610",
+      "file": "reports/draft_check_20260610.json",
+      "total_drafts": 20,
+      "final": {
+        "PASS_WITH_WARNS": 20
+      },
+      "warn_rate": {
+        "pr_notice": 30.0,
+        "urls": 55.0,
+        "cta": 20.0,
+        "featured_image": 100.0,
+        "content_quality": 15.0
+      }
+    },
+    {
+      "date": "20260611",
+      "file": "reports/draft_check_20260611.json",
+      "total_drafts": 20,
+      "final": {
+        "PASS_WITH_WARNS": 20
+      },
+      "warn_rate": {
+        "pr_notice": 30.0,
+        "urls": 55.0,
+        "cta": 20.0,
+        "featured_image": 100.0,
+        "content_quality": 15.0
+      }
+    },
+    {
+      "date": "20260612",
+      "file": "reports/draft_check_20260612.json",
+      "total_drafts": 20,
+      "final": {
+        "PASS_WITH_WARNS": 20
+      },
+      "warn_rate": {
+        "pr_notice": 30.0,
+        "urls": 55.0,
+        "cta": 20.0,
+        "featured_image": 100.0,
+        "content_quality": 15.0
+      }
+    },
+    {
+      "date": "20260613",
+      "file": "reports/draft_check_20260613.json",
+      "total_drafts": 20,
+      "final": {
+        "PASS_WITH_WARNS": 20
+      },
+      "warn_rate": {
+        "pr_notice": 30.0,
+        "urls": 55.0,
+        "cta": 20.0,
+        "featured_image": 100.0,
+        "content_quality": 15.0
+      }
+    },
+    {
+      "date": "20260614",
+      "file": "reports/draft_check_20260614.json",
+      "total_drafts": 20,
+      "final": {
+        "PASS_WITH_WARNS": 20
+      },
+      "warn_rate": {
+        "pr_notice": 30.0,
+        "urls": 55.0,
+        "cta": 20.0,
+        "featured_image": 100.0,
+        "content_quality": 15.0
+      }
+    },
+    {
+      "date": "20260615",
+      "file": "reports/draft_check_20260615.json",
+      "total_drafts": 20,
+      "final": {
+        "PASS_WITH_WARNS": 20
+      },
+      "warn_rate": {
+        "pr_notice": 30.0,
+        "urls": 55.0,
+        "cta": 20.0,
+        "featured_image": 100.0,
+        "content_quality": 15.0
+      }
+    },
+    {
+      "date": "20260616",
+      "file": "reports/draft_check_20260616.json",
+      "total_drafts": 20,
+      "final": {
+        "PASS_WITH_WARNS": 20
+      },
+      "warn_rate": {
+        "pr_notice": 30.0,
+        "urls": 55.0,
+        "cta": 20.0,
+        "featured_image": 100.0,
+        "content_quality": 15.0
+      }
+    },
+    {
+      "date": "20260617",
+      "file": "reports/draft_check_20260617.json",
+      "total_drafts": 20,
+      "final": {
+        "PASS_WITH_WARNS": 20
+      },
+      "warn_rate": {
+        "pr_notice": 30.0,
+        "urls": 55.0,
+        "cta": 20.0,
+        "featured_image": 100.0,
+        "content_quality": 15.0
+      }
+    },
+    {
+      "date": "20260618",
+      "file": "reports/draft_check_20260618.json",
+      "total_drafts": 20,
+      "final": {
+        "PASS_WITH_WARNS": 20
+      },
+      "warn_rate": {
+        "pr_notice": 30.0,
+        "urls": 55.0,
+        "cta": 20.0,
+        "featured_image": 100.0,
+        "content_quality": 15.0
+      }
+    },
+    {
+      "date": "20260619",
+      "file": "reports/draft_check_20260619.json",
+      "total_drafts": 20,
+      "final": {
+        "PASS_WITH_WARNS": 20
+      },
+      "warn_rate": {
+        "pr_notice": 30.0,
+        "urls": 55.0,
+        "cta": 20.0,
+        "featured_image": 100.0,
+        "content_quality": 15.0
+      }
+    }
+  ],
+  "policy_recommendation": {
+    "block_publish_if_fail": true,
+    "block_publish_if_warn": [
+      "pr_notice",
+      "urls",
+      "cta"
+    ],
+    "allow_with_manual_fix": [
+      "featured_image",
+      "content_quality"
+    ],
+    "priority_order": [
+      "pr_notice",
+      "urls",
+      "cta",
+      "featured_image",
+      "content_quality"
+    ]
+  }
+}

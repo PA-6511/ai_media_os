@@ -1,0 +1,38 @@
+{
+  "phase": "Phase 8-38",
+  "phase_name": "Legal/PR/Affiliate Disclosure Review Template Design Only",
+  "status": "PHASE8_38_LEGAL_PR_AFFILIATE_REVIEW_TEMPLATE_DESIGN_ONLY_READY",
+  "target_post_id": 115,
+  "production_status": "NO_PUBLISH_PAUSE",
+  "design_only": true,
+  "review_template": {
+    "pr_label_visibility_verified": false,
+    "affiliate_disclosure_visibility_verified": false,
+    "affiliate_disclosure_wording_compliant": false,
+    "legal_policy_conformance_verified": false,
+    "merchant_terms_conformance_verified": false,
+    "regulatory_risk_reviewed": false,
+    "review_owner": "manual_human_reviewer"
+  },
+  "publish_allowed": false,
+  "publish_executed": false,
+  "wordpress_api_call_attempted": false,
+  "wordpress_write_executed": false,
+  "wordpress_draft_updated": false,
+  "secret_values_output": false,
+  "secret_values_written": false,
+  "errors": [],
+  "warnings": [
+    "Template only. Legal/PR review remains a publish blocker until completed."
+  ],
+  "safety_violations": [],
+  "evidence_summary": [
+    {
+      "path": "exchange/logs/phase8_37_content_accuracy_and_link_review_template_design_only_post_115_result.json",
+      "exists": true,
+      "status": "PHASE8_37_CONTENT_ACCURACY_LINK_REVIEW_TEMPLATE_DESIGN_ONLY_READY"
+    }
+  ],
+  "next_step": "phase8_39_publish_blocker_status_refresh_no_go_maintained",
+  "checked_at": "2026-06-09T13:58:55.175461+00:00"
+}

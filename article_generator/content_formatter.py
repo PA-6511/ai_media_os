@@ -97,6 +97,24 @@ CTA_TEXTS: dict[str, str] = {
 }
 
 
+PR_DISCLOSURE_HTML = "<p><strong>PR：</strong>本記事には広告が含まれます。</p>"
+
+
+def ensure_pr_disclosure(html: str) -> str:
+    """PR表記が未挿入の場合のみ、先頭に固定表記を追加する。"""
+    lowered = html.lower()
+    markers = [
+        "pr：",
+        "pr:",
+        "【pr】",
+        "本記事には広告が含まれます",
+        "アフィリエイト広告を利用しています",
+    ]
+    if any(marker in lowered for marker in markers):
+        return html
+    return f"{PR_DISCLOSURE_HTML}\n{html}"
+
+
 def section_to_html(section: str, title: str, keyword: str) -> str:
     """セクション名を最小テンプレでHTML化する。"""
     lines = SECTION_TEXTS.get(section, ["このセクションでは関連情報を整理します。"])
@@ -160,7 +178,7 @@ def format_article_html(
         html = build_combined_article_html(merged_plan)
         print("[content_formatter] selected_template_builder: build_combined_article_html")
         print(f"[content_formatter] content_html_head100: {html[:100]!r}")
-        return html
+        return ensure_pr_disclosure(html)
 
     if signal_mode == "price_only" and article_type == "sale_article":
         html = build_sale_article_html(merged_plan)
@@ -168,7 +186,7 @@ def format_article_html(
         html = html + "\n" + sale_cta
         print("[content_formatter] selected_template_builder: build_sale_article_html")
         print(f"[content_formatter] content_html_head100: {html[:100]!r}")
-        return html
+        return ensure_pr_disclosure(html)
 
     if signal_mode == "release_only":
         if article_type == "latest_volume":
@@ -181,19 +199,19 @@ def format_article_html(
                 html = html + "\n" + release_cta
             print("[content_formatter] selected_template_builder: build_latest_volume_article_html")
             print(f"[content_formatter] content_html_head100: {html[:100]!r}")
-            return html
+            return ensure_pr_disclosure(html)
         if article_type in {"volume_guide", "summary"}:
             html = build_combined_article_html(merged_plan, template_mode)
             print("[content_formatter] selected_template_builder: build_combined_article_html")
             print(f"[content_formatter] content_html_head100: {html[:100]!r}")
-            return html
+            return ensure_pr_disclosure(html)
 
     # ---- 2. 既存 template_mode 分岐（後方互換） ----
     if combined or template_mode in {TEMPLATE_MODE_VOLUME_GUIDE_RELEASE, TEMPLATE_MODE_SUMMARY_RELEASE}:
         html = build_combined_article_html(merged_plan, template_mode)
         print("[content_formatter] selected_template_builder: build_combined_article_html")
         print(f"[content_formatter] content_html_head100: {html[:100]!r}")
-        return html
+        return ensure_pr_disclosure(html)
 
     # ---- 2. sale_article 専用テンプレート ----
     if template_mode in {TEMPLATE_MODE_SALE_PRICE_CHANGED, TEMPLATE_MODE_SALE_STANDARD}:
@@ -209,7 +227,7 @@ def format_article_html(
             print(f"[content_formatter] cta_mode: ab_test")
         print("[content_formatter] selected_template_builder: build_sale_article_html")
         print(f"[content_formatter] content_html_head100: {html[:100]!r}")
-        return html
+        return ensure_pr_disclosure(html)
 
     # ---- 3. latest_volume 専用テンプレート ----
     if template_mode in {TEMPLATE_MODE_LATEST_VOLUME_RELEASE, TEMPLATE_MODE_LATEST_VOLUME_STANDARD}:
@@ -222,7 +240,7 @@ def format_article_html(
             html = html + "\n" + release_cta
         print("[content_formatter] selected_template_builder: build_latest_volume_article_html")
         print(f"[content_formatter] content_html_head100: {html[:100]!r}")
-        return html
+        return ensure_pr_disclosure(html)
 
     # ---- 4. 通常記事テンプレート（standard）----
     html_parts: list[str] = [f"<h1>{title}</h1>"]
@@ -232,4 +250,4 @@ def format_article_html(
     html = "".join(html_parts)
     print("[content_formatter] selected_template_builder: build_default_article_html")
     print(f"[content_formatter] content_html_head100: {html[:100]!r}")
-    return html
+    return ensure_pr_disclosure(html)

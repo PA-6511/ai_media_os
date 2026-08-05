@@ -1,0 +1,261 @@
+{
+  "phase_identifier": "16-1",
+  "phase_title": "Phase 15-1 / 15-2 への実測入力データエントリ受領設計",
+  "phase_purpose": "Phase 16 実測入力データエントリ受領・検証層：人間レビュー入力（integrated_decision 判定、receiver_validator_permission 判定）のデータエントリを受け取り、受領記録を作成する流れを設計する",
+  "execution_context": "reports-only design phase; design of data entry receipt workflow only, no actual data entry yet",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only"
+  },
+  "governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "safety_rule": "All blocked_actions remain strictly prohibited. Data entry receipt is design-only; no actual human review data entry occurs until Phase 16-1 design is approved. No app/tests implementation permitted until integrated_decision=GO and receiver_validator_implementation_permission=EFFECTIVE are both confirmed.",
+    "hard_stop_condition": "This phase is design-only. No actual data entry processing or storage is permitted."
+  },
+  "data_entry_receipt_structure": {
+    "receipt_id": "ACTUAL_MEASUREMENT_INPUT_DATA_ENTRY_RECEIPT_v1",
+    "receipt_purpose": "Design of workflow for receiving Phase 15-1 and Phase 15-2 human review input data",
+    "receipt_timing": "Following Phase 15-9 (Phase 15 completion) approval and human reviewer assignment",
+    "data_sources_to_receive": [
+      {
+        "input_source": "Phase 15-1 integrated_decision final actual measurement input",
+        "description": "Human reviewer decision: integrated_decision should be GO or NO_GO",
+        "format_specification": "Reference Phase 15-1 integrated_decision final actual measurement input format specification",
+        "required_fields": [
+          "reviewer_id",
+          "reviewer_timestamp",
+          "integrated_decision_judgment (GO or NO_GO)",
+          "supporting_evidence_references",
+          "confidence_assessment",
+          "reviewer_signature_or_authentication"
+        ],
+        "delivery_channel": "TBD by Phase 16-1 receipt design (email, form, API, etc.)",
+        "receipt_verification_required": true
+      },
+      {
+        "input_source": "Phase 15-2 receiver_validator_permission final actual measurement input",
+        "description": "Human reviewer decision: receiver_validator_implementation_permission should be EFFECTIVE or NOT_EFFECTIVE",
+        "format_specification": "Reference Phase 15-2 receiver_validator_permission final actual measurement input format specification",
+        "required_fields": [
+          "reviewer_id",
+          "reviewer_timestamp",
+          "permission_judgment (EFFECTIVE or NOT_EFFECTIVE)",
+          "implementation_readiness_assessment",
+          "supporting_evidence_references",
+          "reviewer_signature_or_authentication"
+        ],
+        "delivery_channel": "TBD by Phase 16-1 receipt design (email, form, API, etc.)",
+        "receipt_verification_required": true
+      }
+    ]
+  },
+  "receipt_workflow_design": {
+    "step_1_receipt_notification_and_channel_readiness": {
+      "action": "Establish receipt channel (email, form submission, API endpoint, etc.)",
+      "requirement": "Channel must support authenticated receipt with timestamp and logging",
+      "design_task": "Document receipt channel details, access controls, audit trail capability",
+      "outcome": "Receipt channel ready for human reviewer data submission"
+    },
+    "step_2_human_reviewer_data_entry_and_submission": {
+      "action": "Human reviewer fills in Phase 15-1 and Phase 15-2 data entry forms and submits",
+      "requirement": "Data must match format specs from Phase 15-1 and Phase 15-2",
+      "design_task": "Design data entry form(s) with field validation, format checking, timestamp recording",
+      "outcome": "Data submitted to receipt channel with timestamp and reviewer authentication"
+    },
+    "step_3_receipt_acknowledgment_and_logging": {
+      "action": "Receipt system logs arrival of data, records receipt timestamp, creates receipt record",
+      "requirement": "Receipt must be timestamped and logged with reviewer ID and submission details",
+      "design_task": "Design receipt acknowledgment workflow: confirm receipt to submitter, log to audit trail, store receipt metadata",
+      "fields_to_record": [
+        "receipt_timestamp",
+        "submitter_reviewer_id",
+        "submitter_authentication_proof",
+        "phase_15_1_data_received (true/false)",
+        "phase_15_2_data_received (true/false)",
+        "initial_format_check_passed (preliminary, full check in Phase 16-2)",
+        "receipt_audit_trail_id"
+      ],
+      "outcome": "Receipt record created and filed for Phase 16-2 validation"
+    },
+    "step_4_receipt_record_storage_and_transfer": {
+      "action": "Store receipt record in reports/ directory; prepare data for Phase 16-2 validation",
+      "requirement": "Receipt record must be immutable and timestamped; data payload stored separately for validation",
+      "design_task": "Design receipt record JSON structure; design data package format for Phase 16-2 transfer",
+      "output_file_pattern": "phase16_1_receipt_record_YYYYMMDD_REVIEWER_ID.json",
+      "outcome": "Receipt record finalized; data ready for Phase 16-2 completeness and signature validation"
+    }
+  },
+  "receipt_record_structure": {
+    "receipt_record_id": "ACTUAL_MEASUREMENT_INPUT_RECEIPT_RECORD_v1",
+    "receipt_metadata": {
+      "field_name": "receipt_header",
+      "type": "object",
+      "elements": {
+        "receipt_timestamp": "ISO8601 datetime of receipt system recording",
+        "reviewer_id": "Identifier of human reviewer submitting data",
+        "reviewer_authentication_method": "How reviewer identity was verified (e.g., digital signature, OAuth token)",
+        "phase_16_1_receipt_record_id": "Unique ID for this receipt record"
+      }
+    },
+    "phase_15_1_data_receipt_status": {
+      "field_name": "integrated_decision_input_receipt",
+      "type": "object",
+      "elements": {
+        "data_received": "boolean - whether Phase 15-1 data was submitted",
+        "submission_timestamp": "When data was submitted to receipt channel",
+        "submission_format": "Data format received (JSON, email body, form submission, etc.)",
+        "data_payload_reference": "Path or ID to stored Phase 15-1 data for Phase 16-2 validation",
+        "preliminary_format_check": "Quick check: does data appear to match Phase 15-1 format spec? (YES/NO/PARTIAL)",
+        "format_check_notes": "Any issues detected in initial scan"
+      }
+    },
+    "phase_15_2_data_receipt_status": {
+      "field_name": "receiver_validator_permission_input_receipt",
+      "type": "object",
+      "elements": {
+        "data_received": "boolean - whether Phase 15-2 data was submitted",
+        "submission_timestamp": "When data was submitted to receipt channel",
+        "submission_format": "Data format received (JSON, email body, form submission, etc.)",
+        "data_payload_reference": "Path or ID to stored Phase 15-2 data for Phase 16-2 validation",
+        "preliminary_format_check": "Quick check: does data appear to match Phase 15-2 format spec? (YES/NO/PARTIAL)",
+        "format_check_notes": "Any issues detected in initial scan"
+      }
+    },
+    "receipt_completeness_snapshot": {
+      "field_name": "both_inputs_received_snapshot",
+      "type": "object",
+      "elements": {
+        "phase_15_1_received": "boolean",
+        "phase_15_2_received": "boolean",
+        "both_received_at_same_timestamp": "boolean - whether both arrived together or separately",
+        "time_delta_minutes": "If separate, minutes between Phase 15-1 and Phase 15-2 receipt (null if same)",
+        "receipt_completeness_status": "BOTH_COMPLETE / PARTIAL_PHASE15_1_ONLY / PARTIAL_PHASE15_2_ONLY / INCOMPLETE"
+      }
+    },
+    "receipt_audit_trail": {
+      "field_name": "receipt_audit_and_tracking",
+      "type": "object",
+      "elements": {
+        "receipt_initiated_by": "User or system that initiated receipt workflow",
+        "receipt_channel_used": "Channel identifier (email, form_portal_v2, api_endpoint_v1, etc.)",
+        "receipt_system_version": "Version of receipt system used",
+        "preliminary_validation_performed_by": "System or process that did initial format check",
+        "prepared_for_phase_16_2_by": "User/system that prepared data for Phase 16-2 validation",
+        "prepared_timestamp": "When data was prepared for Phase 16-2 transfer",
+        "audit_trail_log_reference": "Path to detailed audit log for this receipt"
+      }
+    }
+  },
+  "receipt_channel_design_options": {
+    "option_1_email_based_receipt": {
+      "channel_type": "Email submission with form attachment or body content",
+      "advantage": "Low barrier, familiar to reviewers",
+      "disadvantage": "Less structured, requires manual parsing",
+      "design_tasks": [
+        "Define email address(es) for receipt",
+        "Create template for email body format",
+        "Design attachment format (JSON, CSV, etc.)",
+        "Implement email parsing and logging",
+        "Create audit trail from email headers"
+      ]
+    },
+    "option_2_form_portal_based_receipt": {
+      "channel_type": "Web form with structured fields",
+      "advantage": "Structured input, client-side validation, clear submission record",
+      "disadvantage": "Requires development, user setup",
+      "design_tasks": [
+        "Design form with fields matching Phase 15-1 and Phase 15-2 specs",
+        "Implement form validation (format, required fields, etc.)",
+        "Design submission confirmation and receipt number generation",
+        "Store form responses in database or file",
+        "Create audit log of form submissions"
+      ]
+    },
+    "option_3_api_based_receipt": {
+      "channel_type": "REST or GraphQL API endpoint accepting structured input",
+      "advantage": "Most structured, programmatic, audit trail native",
+      "disadvantage": "Requires API development and reviewer tool integration",
+      "design_tasks": [
+        "Define API endpoint for Phase 15-1 input POST",
+        "Define API endpoint for Phase 15-2 input POST",
+        "Implement request validation (schema, authentication, rate limiting)",
+        "Design response structure (receipt ID, confirmation, timestamp)",
+        "Implement API audit logging and retry handling"
+      ]
+    }
+  },
+  "receipt_validation_prerequisites": {
+    "prerequisite_1_receipt_channel_operational": {
+      "requirement": "Receipt channel must be set up and accessible",
+      "check": "Is receipt channel (email, form, API) ready to receive submissions?",
+      "proceed_condition": "Yes - receipt workflow can begin",
+      "halt_condition": "No - halt Phase 16-1 execution until channel is operational"
+    },
+    "prerequisite_2_human_reviewer_assigned": {
+      "requirement": "At least one human reviewer must be assigned to Phase 15-1 and Phase 15-2 review",
+      "check": "Have reviewers been formally assigned and notified?",
+      "proceed_condition": "Yes - send reviewer guidelines and access to receipt channel",
+      "halt_condition": "No - halt Phase 16-1 execution until reviewers are assigned"
+    },
+    "prerequisite_3_phase_15_completion_confirmed": {
+      "requirement": "Phase 15 (all design phases 15-1 through 15-9) must be complete and approved",
+      "check": "Has Phase 15-9 completion declaration been reviewed and approved?",
+      "proceed_condition": "Yes - proceed with Phase 16-1 receipt design",
+      "halt_condition": "No - cannot proceed until Phase 15 approval is confirmed"
+    }
+  },
+  "phase_dependencies": {
+    "depends_on": [
+      "Phase 15: All design phases complete and approved",
+      "Phase 15-1: integrated_decision input format specification (reference for receipt)",
+      "Phase 15-2: receiver_validator_permission input format specification (reference for receipt)"
+    ],
+    "feeds_into": [
+      "Phase 16-2: Actual measurement input data completeness and validation (receives receipt record and data payload)",
+      "Phase 16-3: Pre-decision update feasibility assessment (receives validation results)"
+    ]
+  },
+  "design_review_checklist": [
+    "Receipt channel options documented with trade-offs",
+    "Phase 15-1 and Phase 15-2 required fields are clear and matched to format specs",
+    "Receipt workflow steps are sequential and have clear entry/exit criteria",
+    "Receipt record JSON structure captures metadata and audit trail",
+    "Preliminary format check procedure is defined (step 3)",
+    "Data transfer mechanism to Phase 16-2 is designed",
+    "Reviewer assignment and notification process is documented",
+    "Audit trail capability is specified for all receipt channels",
+    "All blocked actions remain in governance",
+    "production_status remains NO_GO (hardcoded)",
+    "Phase dependencies are accurate and complete"
+  ],
+  "completion_gate": {
+    "gate_condition": "Receipt workflow design approved AND receipt channel option selected AND human reviewers assigned",
+    "approval_required": "Human technical reviewer + Phase 16 design authority",
+    "prerequisite_for": "Phase 16-2 (completeness and validation design) can begin once receipt design is approved"
+  },
+  "status": {
+    "phase_status": "DESIGN_ONLY",
+    "actual_data_entry_status": "NOT_YET_STARTED",
+    "receipt_workflow_operational_status": "NOT_YET_STARTED",
+    "integrated_decision_status": "NO_GO",
+    "receiver_validator_implementation_permission_status": "NOT_EFFECTIVE",
+    "app_implementation_status": "NO_GO",
+    "tests_implementation_status": "NO_GO",
+    "production_status": "NO_GO"
+  }
+}

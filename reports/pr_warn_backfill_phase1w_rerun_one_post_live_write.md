@@ -1,0 +1,23 @@
+# PR WARN Backfill Phase 1W RERUN：one post live write
+
+- status: PASS_ONE_POST_LIVE_WRITE_RERUN_EXECUTED
+- target_post_id: 101
+- valid_until_deprecated: true
+- valid_until_used_as_execution_gate: false
+- replacement_gate: IMMEDIATE_PRE_WRITE_GET_MATCH
+- pre_write_GET: true
+- pre_write_match: true
+- WordPress write: true
+- wordpress_write_method: POST_CONTENT_ONLY
+- POST/PUT/PATCH/DELETE実送信: true
+- LIVE実行: true
+- update_count: 1
+- post_write_verification: PASS
+- post_status: draft
+- approval_consumed: true
+- true_file_modified: true
+- active approval false file変更: false
+- snapshot本文表示: false
+- payload本文表示: false
+- secret値表示: false
+- next_required_phase: Phase 1X-POST-LIVE-WRITE-VERIFY-AND-FREEZE

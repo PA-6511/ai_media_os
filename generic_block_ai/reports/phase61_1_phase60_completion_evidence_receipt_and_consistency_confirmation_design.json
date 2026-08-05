@@ -1,0 +1,38 @@
+{
+  "_meta": {
+    "phase": "61-1",
+    "phase_name": "最終解除候補の人間最終サインオフ入力層",
+    "layer": "受領・整合確認層 (receipt/consistency confirmation layer)",
+    "title": "Phase 60 完了証跡の受領・整合確認設計",
+    "created": "2026-05-15",
+    "author": "governance-framework",
+    "status": "PASS_DESIGN_ONLY",
+    "reports_only": true
+  },
+  "scope": "Phase 60-9 で宣言された最終解除候補・総合プリフライト凍結層の完了証跡（全9件）を受領し，内容・整合性・改ざん不可性を設計層で確認する。確認内容：(1) Phase 60-1〜60-9 の全証跡ファイル受領，(2) 各ファイルの JSON 妥当性・改ざん不可性の検証，(3) manual_release_go / actual_process_start_go の NOT_GRANTED 維持確認，(4) production_status = 'NO_GO' と execution_start = 'NO_GO' の維持確認，(5) Phase 61-2 / 61-3 への進行条件明示。",
+  "governance": {
+    "phase60_overall_status": "PASS_DESIGN_ONLY",
+    "phase60_final_release_candidate_comprehensive_preflight_freeze_layer_status": "PASS_DESIGN_ONLY",
+    "production_status": "NO_GO",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "execution_start": "NO_GO",
+    "changed_area": "reports only"
+  },
+  "report": {
+    "description": "Phase 61-1 では，Phase 60 完了証跡の受領・整合確認を行い，人間最終サインオフ入力層へ進むための前提条件を設計層で明確化する。これは reports-only の確認工程であり，解除許可・発効許可・実処理開始許可を含まない。",
+    "invariants": [
+      "NO_GO 維持：production_status = 'NO_GO' を維持",
+      "実処理開始 NO_GO 維持：execution_start = 'NO_GO' を維持",
+      "NOT_GRANTED 維持：manual_release_go / actual_process_start_go は NOT_GRANTED を維持",
+      "改ざん不可：証跡ファイルは署名・時刻・ハッシュ等で改ざん不可性を担保",
+      "reports only：全確認は設計層の報告書形式で実施"
+    ],
+    "actions": [],
+    "notes": [
+      "Phase 61-1 は設計・整合確認工程であり，解除許可工程ではない。",
+      "実処理開始許可は含まれない。",
+      "Phase 61-2 / 61-3 着手前の前提確認として扱う。"
+    ]
+  }
+}

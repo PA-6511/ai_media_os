@@ -1,0 +1,13 @@
+{
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "scenarios": [
+    "nginx_down",
+    "db_down",
+    "dns_failure",
+    "wordpress_no_response",
+    "github_connect_failure",
+    "slack_connect_failure"
+  ]
+}

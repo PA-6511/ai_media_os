@@ -1,0 +1,97 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M5",
+  "approval_id": "dmm-historical-m4-evidence-human-review-approval-v1",
+  "approval_label": "DMM_HISTORICAL_M4_EVIDENCE_HUMAN_REVIEW_APPROVED",
+  "approved_by": "HUMAN_OPERATOR",
+  "human_explicit_approval": true,
+  "approved_at_utc": "2026-07-11T04:20:56.685933+00:00",
+  "approved_findings": {
+    "historical_title_is_volume_20": true,
+    "normalized_volume": "第20巻",
+    "author_match": true,
+    "publisher_match": true,
+    "series_id_match": true,
+    "canonical_product_url_match": true,
+    "canonical_product_url": "https://book.dmm.com/product/861056/b950yshes32617/",
+    "product_url_role": "VERIFIED_DMM_PRODUCT_URL_CANDIDATE_ONLY"
+  },
+  "approved_outcome": {
+    "historical_evidence_match_approved": true,
+    "ready_for_final_affiliate_link_generation_gate": true,
+    "final_affiliate_link_generation_allowed": false,
+    "article_dmm_slot_activation_allowed": false,
+    "historical_m4_result_reclassification_allowed": false
+  },
+  "fix_approval_path": "exchange/approvals/ls_new_batch_4g_2e_recovery_m5_fix1_policy_schema_fix_approval.json",
+  "fix_approval_digest_sha256": "d547253e7e082957f8cd3a8e1ae1fee3727c2ca03d9ebc96423db1b9f01c647d",
+  "source_bindings": {
+    "parser_runner": {
+      "path": "scripts/execute_ls_new_batch_4g_2e_recovery_m2.py",
+      "file_sha256": "f28ec2df1816e102673831ea9e8dfde0db2df7df668324925f6b7f1441e306aa"
+    },
+    "m4_runner": {
+      "path": "scripts/execute_ls_new_batch_4g_2e_recovery_m4.py",
+      "file_sha256": "729036b79e18f38bf4f00b257f688726578673109f5d57023255dd6b329dc4e4"
+    },
+    "m4_fix1_approval": {
+      "path": "exchange/approvals/ls_new_batch_4g_2e_recovery_m4_fix1_volume_canonical_remediation_approval.json",
+      "file_sha256": "57cc5a1c4f1de02a6f8bf4968a602f4888dbcd22a9d2cce97f40f535bb7cec37"
+    },
+    "m4_fix1_result": {
+      "path": "exchange/logs/ls_new_batch_4g_2e_recovery_m4_fix1_result.json",
+      "file_sha256": "e45ff091abc12010d9d6f04985571a33ad7b88b0c0600aaa999f0f8893a6c511"
+    },
+    "m4_result": {
+      "path": "exchange/logs/ls_new_batch_4g_2e_recovery_m4_result.json",
+      "file_sha256": "391a58437472d37a3cbd7a4e5482c0af0a477d9688378e2bc205c585a536554b"
+    },
+    "m4_recheck": {
+      "path": "exchange/rechecks/new_release/fresh/new-release-comic-20260703-001.dmm_latest_alias_recheck_post_parser_fix_result.json",
+      "file_sha256": "2d921454f02f4d670bfae53447abc520ff9ee5c47ce1f92b737bf578d93365a2"
+    },
+    "m4_consumption": {
+      "path": "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.dmm_latest_alias_recheck_post_parser_fix_consumption.json",
+      "file_sha256": "b1afbd3728cba784ec9d90f9d1805a32f212292960d3fa60ac8c43355d75725c"
+    },
+    "m4_approval": {
+      "path": "exchange/approvals/ls_new_batch_4g_2e_recovery_m4_execute_now_approval.json",
+      "file_sha256": "db9934ae308700ad8dfd8c7c9e200e184c611dbbc1fa7537ef23cd5ba2db767a"
+    },
+    "m3_authorization": {
+      "path": "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.dmm_latest_alias_recheck_post_parser_fix_authorization.json",
+      "file_sha256": "39c77b363e39e2be287d009a3df3624d9dca7d510a93156309ee02d53110c541"
+    },
+    "m2_fix1_result": {
+      "path": "exchange/logs/ls_new_batch_4g_2e_recovery_m2_fix1_result.json",
+      "file_sha256": "3f1069131bc662359fd015731637586f4c2327cbb8167c9604a718d0782c309f"
+    },
+    "old_m2_result": {
+      "path": "exchange/logs/ls_new_batch_4g_2e_recovery_m2_result.json",
+      "file_sha256": "9781d843184ead76b313a099b86cba30081725679c5889938fab1c930aa5cdec"
+    },
+    "old_m2_recheck": {
+      "path": "exchange/rechecks/new_release/fresh/new-release-comic-20260703-001.dmm_latest_alias_recheck_result.json",
+      "file_sha256": "0a7f09cdcb048468e21520d3531a257677dcc100087f45842288b692db2648dc"
+    },
+    "old_m2_consumption": {
+      "path": "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.dmm_latest_alias_recheck_consumption.json",
+      "file_sha256": "fa4d1d2fbc5a4a57b79e1e563d1d7ce12aaab98e12eb822dfc6cf08a20778fd6"
+    },
+    "old_m2_approval": {
+      "path": "exchange/approvals/ls_new_batch_4g_2e_recovery_m2_execute_now_approval.json",
+      "file_sha256": "ef6aba899c5296fab9b593359dfd8a1e8a86be4e2ea1a3296cff6807a62c53da"
+    },
+    "article": {
+      "path": "exchange/content/new_release/fresh/new-release-comic-20260703-001.article.json",
+      "file_sha256": "849a37519c6af70d2212ec01d5cddef5793bfa811e97ca9f248ce099a0350bf4"
+    },
+    "store_link_plan": {
+      "path": "exchange/plans/new_release/fresh/new-release-comic-20260703-001.store_link_finalization_plan.json",
+      "file_sha256": "3004d586cab8b98f39101d7d85164d0bdeea68882da66ecde9b6b37f9a16fb7a"
+    }
+  },
+  "execution_allowed": false,
+  "production_status": "NO_GO",
+  "approval_evidence_digest_sha256": "ab2e45b0b249ec98efaa24ef9bb769feea90a25dfa9075aa246f59edb5357320"
+}

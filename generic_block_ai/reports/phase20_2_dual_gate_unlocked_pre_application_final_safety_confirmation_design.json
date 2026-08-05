@@ -1,0 +1,226 @@
+{
+  "phase_id": "20-2",
+  "phase_name": "Final Safety Confirmation Before Applying DUAL_GATE_UNLOCKED to Actual Measurements Design",
+  "phase_japanese_name": "DUAL_GATE_UNLOCKED 判定を実測適用する前の最終安全確認",
+  "purpose": "Design the final safety confirmation gate that must pass before the DUAL_GATE_UNLOCKED design template is applied to actual measurement results, ensuring no implementation begins prematurely and that all preconditions for real measurement execution are verified",
+  "layer": "pre_measurement_final_gate_layer",
+  "design_category": "reports_only",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only"
+  },
+  "phase_20_2_scope": {
+    "scope_1_safety_confirmation_preconditions": {
+      "scope_id": "SAFETY_PRECONDITIONS",
+      "description": "All preconditions that must be met before DUAL_GATE_UNLOCKED can be applied to actual measurements",
+      "precondition_groups": {
+        "group_1_design_completeness": {
+          "group_id": "DESIGN_COMPLETE",
+          "label": "Design layer completeness",
+          "checks": {
+            "check_DC1": {
+              "check_id": "PHASE19_RECEIPT_CONFIRMED",
+              "description": "Phase 20-1 receipt confirmation status = PHASE19_RECEIPT_CONFIRMED",
+              "pass_condition": "Phase 20-1 report receipt_status = PHASE19_RECEIPT_CONFIRMED",
+              "fail_outcome": "SAFETY_GATE_BLOCKED"
+            },
+            "check_DC2": {
+              "check_id": "ALL_PRIOR_PHASES_PASS_DESIGN_ONLY",
+              "description": "All phases from Phase 8-7 through Phase 19-9 are PASS_DESIGN_ONLY",
+              "pass_condition": "Phase completion chain is unbroken; no phase has FAIL or PENDING status",
+              "fail_outcome": "SAFETY_GATE_BLOCKED"
+            }
+          }
+        },
+        "group_2_state_invariant_pre_measurement_confirmation": {
+          "group_id": "STATE_INVARIANT_PREMEASUREMENT",
+          "label": "State invariants immediately before measurement",
+          "checks": {
+            "check_SI1": {
+              "check_id": "INTEGRATED_DECISION_STILL_NO_GO",
+              "description": "Confirm integrated_decision is still NO_GO at the moment of this safety confirmation",
+              "pass_condition": "integrated_decision = NO_GO (no unauthorized change since Phase 19 completion)",
+              "fail_condition": "integrated_decision != NO_GO",
+              "fail_outcome": "HALT → STATE_INVARIANT_VIOLATED (unauthorized state change detected)"
+            },
+            "check_SI2": {
+              "check_id": "RECEIVER_VALIDATOR_STILL_NOT_EFFECTIVE",
+              "description": "Confirm receiver_validator_permission is still NOT_EFFECTIVE",
+              "pass_condition": "receiver_validator_permission = NOT_EFFECTIVE",
+              "fail_condition": "receiver_validator_permission != NOT_EFFECTIVE",
+              "fail_outcome": "HALT → STATE_INVARIANT_VIOLATED"
+            },
+            "check_SI3": {
+              "check_id": "APP_IMPL_STILL_NO_GO",
+              "description": "Confirm app_implementation_status is still NO_GO",
+              "pass_condition": "app_implementation_status = NO_GO",
+              "fail_outcome": "HALT → PREMATURE_IMPLEMENTATION_DETECTED"
+            },
+            "check_SI4": {
+              "check_id": "TESTS_IMPL_STILL_NO_GO",
+              "description": "Confirm tests_implementation_status is still NO_GO",
+              "pass_condition": "tests_implementation_status = NO_GO",
+              "fail_outcome": "HALT → PREMATURE_IMPLEMENTATION_DETECTED"
+            }
+          }
+        },
+        "group_3_measurement_execution_readiness": {
+          "group_id": "MEASUREMENT_READINESS",
+          "label": "Phase 15-7 and 15-8 measurement execution readiness",
+          "checks": {
+            "check_MR1": {
+              "check_id": "PHASE18_ABORT_VERIFICATION_VALID",
+              "description": "Phase 18-6 final ABORT verification result is still FINAL_ABORT_VERIFICATION_PASSED and has not expired",
+              "pass_condition": "Phase 18-6 FINAL_ABORT_VERIFICATION_PASSED AND verification_timestamp + validity_window > current_utc",
+              "fail_outcome": "SAFETY_GATE_BLOCKED → re-run Phase 18-6 verification"
+            },
+            "check_MR2": {
+              "check_id": "PHASE18_8_LAUNCH_AUTHORIZATION_VALID",
+              "description": "Phase 18-8 launch authorization signature is still active and not expired",
+              "pass_condition": "Phase 18-8 authority_signature.revocation_status = ACTIVE AND signature_valid_to_utc > current_utc",
+              "fail_outcome": "SAFETY_GATE_BLOCKED → refresh Phase 18-8 authorization before proceeding"
+            },
+            "check_MR3": {
+              "check_id": "NO_ENVIRONMENT_CHANGES_SINCE_PHASE18",
+              "description": "No significant environment changes have occurred since Phase 18 pre-execution checks were completed",
+              "pass_condition": "Environment snapshot at Phase 18-2/18-3 still matches current environment",
+              "fail_outcome": "SAFETY_GATE_BLOCKED → re-run Phase 18-2/18-3 pre-execution checks for changed items"
+            },
+            "check_MR4": {
+              "check_id": "PHASE19_TEMPLATES_READY_FOR_ACTUAL_USE",
+              "description": "Phase 19-1 and 19-2 execution record templates are ready to be filled with actual measurement results",
+              "pass_condition": "Templates present and accessible; no format errors; authority who will fill them is identified",
+              "fail_outcome": "SAFETY_GATE_BLOCKED → resolve template accessibility issue"
+            }
+          }
+        },
+        "group_4_human_authority_confirmation": {
+          "group_id": "HUMAN_AUTHORITY",
+          "label": "Human authority explicit confirmation",
+          "checks": {
+            "check_HA1": {
+              "check_id": "HUMAN_APPROVAL_FOR_MEASUREMENT_EXECUTION",
+              "description": "Authorized human has explicitly approved commencement of actual Phase 15-7 measurement",
+              "pass_condition": "Human approval recorded with authority identifier, timestamp, and digital signature",
+              "fail_outcome": "SAFETY_GATE_BLOCKED → measurement must not begin without explicit human approval"
+            },
+            "check_HA2": {
+              "check_id": "UNDERSTANDING_CONFIRMED_NO_PREMATURE_IMPL",
+              "description": "Approving authority explicitly acknowledges that DUAL_GATE_UNLOCKED determination from Phase 19-8 is a design template and does NOT authorize implementation until actual measurements confirm GO and EFFECTIVE",
+              "pass_condition": "Acknowledgment recorded with authority identifier and timestamp",
+              "fail_outcome": "SAFETY_GATE_BLOCKED → acknowledgment required before measurement"
+            }
+          }
+        }
+      }
+    },
+    "scope_2_safety_gate_decision_logic": {
+      "scope_id": "SAFETY_GATE_DECISION",
+      "description": "Define the decision logic for the final safety gate",
+      "decision_rules": {
+        "rule_SG_1": {
+          "rule_id": "ALL_GROUPS_PASS",
+          "condition": "All checks in groups 1, 2, 3, 4 pass",
+          "outcome": "SAFETY_GATE_CLEARED",
+          "next_action": "Proceed to Phase 20-3 implementation start go/no-go template"
+        },
+        "rule_SG_2": {
+          "rule_id": "ANY_GROUP_1_2_FAILS",
+          "condition": "Any check in group_1 or group_2 fails",
+          "outcome": "SAFETY_GATE_BLOCKED",
+          "next_action": "Do not proceed; resolve blocking condition"
+        },
+        "rule_SG_3": {
+          "rule_id": "ANY_GROUP_2_HALT_CONDITION",
+          "condition": "SI1, SI2, SI3, or SI4 detects state invariant violation",
+          "outcome": "SAFETY_GATE_HALT",
+          "next_action": "Activate HALT procedure (Phase 19-6 HALT scenario 1 or 2); security investigation"
+        },
+        "rule_SG_4": {
+          "rule_id": "ANY_GROUP_3_4_FAILS",
+          "condition": "Any check in group_3 or group_4 fails (non-HALT)",
+          "outcome": "SAFETY_GATE_BLOCKED",
+          "next_action": "Resolve specific blocked item(s) then re-run safety confirmation"
+        }
+      }
+    },
+    "scope_3_safety_confirmation_report_structure": {
+      "scope_id": "SAFETY_CONFIRMATION_REPORT",
+      "description": "Design the safety confirmation report document structure",
+      "report_structure": {
+        "header": {
+          "report_id": "SAFETYGATE_<UTC_TIMESTAMP>",
+          "report_type": "pre_measurement_final_safety_confirmation",
+          "report_generated_utc": "RFC 3339",
+          "report_generated_by_authority": "identifier"
+        },
+        "section_1_group_1_design_completeness": {
+          "DC1_phase19_receipt": "PASS | FAIL",
+          "DC2_all_prior_phases_pass": "PASS | FAIL"
+        },
+        "section_2_group_2_state_invariants": {
+          "SI1_integrated_decision": "NO_GO (PASS) | other (HALT)",
+          "SI2_receiver_validator_permission": "NOT_EFFECTIVE (PASS) | other (HALT)",
+          "SI3_app_implementation": "NO_GO (PASS) | other (HALT)",
+          "SI4_tests_implementation": "NO_GO (PASS) | other (HALT)"
+        },
+        "section_3_group_3_measurement_readiness": {
+          "MR1_abort_verification_valid": "PASS | FAIL",
+          "MR2_launch_authorization_valid": "PASS | FAIL",
+          "MR3_no_env_changes": "PASS | FAIL",
+          "MR4_templates_ready": "PASS | FAIL"
+        },
+        "section_4_group_4_human_authority": {
+          "HA1_human_approval_recorded": "PASS | FAIL",
+          "HA2_no_premature_impl_acknowledged": "PASS | FAIL"
+        },
+        "section_5_safety_gate_determination": {
+          "safety_gate_status": "SAFETY_GATE_CLEARED | SAFETY_GATE_BLOCKED | SAFETY_GATE_HALT",
+          "failing_checks": "List of check IDs that failed (empty if CLEARED)",
+          "next_action": "Proceed to Phase 20-3 (CLEARED) OR Resolve blockers (BLOCKED) OR HALT procedure (HALT)"
+        },
+        "section_6_report_evidence_hash": {
+          "report_canonical_hash_sha256_plus": "SHA-256+ of sections 1-5",
+          "report_authority_signature": {
+            "algorithm": "RSA-2048 or ECDSA-256",
+            "signature_value": "Base64",
+            "signer_authority_id": "identifier",
+            "signed_at_utc": "RFC 3339"
+          }
+        }
+      }
+    }
+  },
+  "phase_20_2_governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "state_invariants": {
+      "integrated_decision": "NO_GO",
+      "receiver_validator_permission": "NOT_EFFECTIVE",
+      "app_implementation_status": "NO_GO",
+      "tests_implementation_status": "NO_GO"
+    },
+    "phase_20_2_completion_criteria": [
+      "4 precondition groups (design completeness, state invariants, measurement readiness, human authority) with 10 checks designed",
+      "4 safety gate decision rules (SG_1 through SG_4) designed",
+      "6-section safety confirmation report structure designed",
+      "All JSON validation passed",
+      "No changes to app/ or tests/ directories",
+      "All state invariants maintained"
+    ]
+  }
+}

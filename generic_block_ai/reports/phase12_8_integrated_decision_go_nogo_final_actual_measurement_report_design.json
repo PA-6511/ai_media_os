@@ -1,0 +1,69 @@
+{
+  "_meta": {
+    "phase": "12-8",
+    "phase_name": "integrated_decision GO/NO-GO 最終実測判定レポート設計",
+    "version": "1.0",
+    "created_date": "2026-05-12",
+    "status": "PASS_DESIGN_ONLY",
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only",
+    "description": "Phase 12 の安全更新ゲートを通過した後、integrated_decision を最終的に GO または NO_GO として実測記録するレポートを定義する。"
+  },
+  "references": [
+    "generic_block_ai/reports/phase12_2_integrated_decision_go_update_final_decision.json",
+    "generic_block_ai/reports/phase12_5_integrated_decision_go_update_evidence_lock_rules_design.json",
+    "generic_block_ai/reports/phase12_7_human_review_completed_reflection_final_update_procedure_design.json"
+  ],
+  "measurement_inputs": [
+    "actual_receipt_template",
+    "detection_template",
+    "evidence_lock_template",
+    "actual_final_decision",
+    "production_status"
+  ],
+  "decision_matrix": {
+    "go_requires": [
+      "input_received == true",
+      "consistency_confirmed == true",
+      "gaps_found == false and conflicts_found == false",
+      "all_evidence_locked == true",
+      "actual_final_decision.integrated_decision == GO",
+      "production_status == NO_GO"
+    ],
+    "no_go_requires": [
+      "any measurement input remains pending",
+      "evidence is not fully locked",
+      "actual_final_decision.integrated_decision == NO_GO",
+      "immediate stop condition can trigger"
+    ]
+  },
+  "actual_measurement_template": {
+    "measured_integrated_decision": "NO_GO",
+    "app_gate_result": "NO_GO",
+    "tests_gate_result": "NO_GO",
+    "decision_basis": [],
+    "reason": "安全更新ゲート内の実測更新が未完了のため、現時点では NO_GO を維持する。"
+  },
+  "blocked_actions": [
+    "core_ai_real_send",
+    "external_api_call",
+    "wordpress_operation",
+    "cron_registration",
+    "auto_execute",
+    "auto_post",
+    "auto_update",
+    "auto_delete",
+    "auto_export",
+    "production_execution"
+  ],
+  "phase_decision": {
+    "phase12_8_status": "PASS_DESIGN_ONLY",
+    "app_implementation_status": "NO_GO",
+    "tests_implementation_status": "NO_GO",
+    "note": "最終実測判定レポートの設計のみ。現時点では integrated_decision は NO_GO。"
+  }
+}

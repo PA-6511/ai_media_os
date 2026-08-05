@@ -1,0 +1,23 @@
+{
+  "status": "PASS",
+  "generated_at": "2026-06-14T04:38:38.913421+00:00",
+  "production_status": "NO_GO",
+  "external_api_called": false,
+  "external_network_called": false,
+  "wordpress_write_executed": false,
+  "checks": {
+    "intake_policy_exists": true,
+    "source_registry_exists": true,
+    "migration_policy_exists": true,
+    "sample_fixture_exists": true,
+    "normalized_sale_candidates_exists": true,
+    "sale_review_queue_exists": true,
+    "production_status_is_no_go": true,
+    "external_api_called_is_false": true,
+    "external_network_called_is_false": true,
+    "wordpress_write_executed_is_false": true,
+    "creators_api_allowed_is_false": true,
+    "amazon_scraping_allowed_is_false": true
+  },
+  "errors": []
+}

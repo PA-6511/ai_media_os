@@ -1,0 +1,12 @@
+{
+  "request_version": 1,
+  "phase_id": "LS-NEW-BATCH-4",
+  "batch_id": "example-20260717",
+  "review_status": "NOT_REVIEWED",
+  "approved_item_ids": [],
+  "rejected_items": [],
+  "human_approval_issued": false,
+  "approval_token": null,
+  "reviewed_at": null,
+  "reviewer_note": null
+}

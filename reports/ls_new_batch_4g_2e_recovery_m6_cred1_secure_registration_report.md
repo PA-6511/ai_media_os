@@ -1,0 +1,23 @@
+# LS-NEW-BATCH-4G-2E-RECOVERY-M6-CRED1
+
+- Status: `PASS_DMM_AFFILIATE_IDENTIFIER_SECURELY_REGISTERED_NO_SECRET_OUTPUT_NO_NETWORK`
+- Decision: `DMM_AFFILIATE_IDENTIFIER_READY_FOR_M6_AUTHORIZATION_GATE_RETRY`
+- Credential path: `/etc/ai-media-os/credential.env`
+- Credential key: `DMM_AFFILIATE_ID`
+- Key count before: `0`
+- Key count after: `1`
+- Mode: `0600`
+- Owner UID: `1001`
+- Hidden input used: `true`
+- Confirmation input used: `true`
+- Identifier format validated: `true`
+- Identifier value output: `false`
+- Identifier value persisted in evidence: `false`
+- Atomic replacement: `true`
+- M6 authorization created: `false`
+- Network accessed: `false`
+- Final affiliate link generated: `false`
+- Article modified: `false`
+- WordPress accessed: `false`
+- Production status: `NO_GO`
+- Ready for M6 authorization gate retry: `true`

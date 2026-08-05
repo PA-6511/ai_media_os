@@ -1,0 +1,26 @@
+# LS-NEW-BATCH-4G-2E-RECOVERY-M17
+
+- Status: `PASS_WORDPRESS_PUBLICATION_ONE_SHOT_AUTHORIZATION_CONSUMED_POST_192_PUBLISHED_NO_RETRY`
+- Decision: `WORDPRESS_POST_192_PUBLISHED_READY_FOR_POST_PUBLICATION_EVIDENCE_VERIFICATION`
+- Error code: `None`
+- WordPress post ID: `192`
+- Authorization consumed: `true`
+- Authorization reuse allowed: `false`
+- Automatic retry allowed: `false`
+- Automatic reissue allowed: `false`
+- Pre-publication GET count: `1`
+- Publication POST count: `1`
+- HTTP status: `200`
+- Returned status: `publish`
+- Post ID verified: `true`
+- Title exact match: `true`
+- Content exact match: `true`
+- Category ID 10 verified: `true`
+- Publication verified: `true`
+- Publication result unknown: `false`
+- Title field sent: `false`
+- Content field sent: `false`
+- Categories field sent: `false`
+- WordPress published: `true`
+- Production status: `NO_GO`
+- Ready for post-publication evidence review: `true`

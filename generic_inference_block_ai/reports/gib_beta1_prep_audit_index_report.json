@@ -1,0 +1,188 @@
+{
+  "schema_version": "gib.beta1.prep.audit_index.v0.1",
+  "block_id": "GIB",
+  "phase": "beta1_prep_a",
+  "report_type": "BETA1_PREP_AUDIT_INDEX_REPORTS_ONLY",
+  "production_status": "NO_GO",
+  "write_scope": "generic_inference_block_ai/reports",
+  "report_count": 16,
+  "index": [
+    {
+      "report_file": "gib_alpha1_validation_report.json",
+      "phase": "GIB-alpha0-design-only",
+      "final_status": "PASS_DESIGN_ONLY_ALPHA1_SCHEMA_STRICT",
+      "status": "N/A",
+      "production_status": "NO_GO",
+      "can_execute_now": null,
+      "real_llm_call_allowed": false,
+      "execution_allowed": false
+    },
+    {
+      "report_file": "gib_alpha2_validation_report.json",
+      "phase": "GIB-alpha0-design-only",
+      "final_status": "PASS_DESIGN_ONLY_ALPHA2_TEMPLATE_RENDERED",
+      "status": "N/A",
+      "production_status": "NO_GO",
+      "can_execute_now": null,
+      "real_llm_call_allowed": false,
+      "execution_allowed": false
+    },
+    {
+      "report_file": "gib_alpha3_validation_report.json",
+      "phase": "unknown",
+      "final_status": "PASS_DESIGN_ONLY_ALPHA3_RUNTIME_BLUEPRINT",
+      "status": "N/A",
+      "production_status": "NO_GO",
+      "can_execute_now": null,
+      "real_llm_call_allowed": false,
+      "execution_allowed": false
+    },
+    {
+      "report_file": "gib_alpha45_validation_report.json",
+      "phase": "unknown",
+      "final_status": "PASS_DESIGN_ONLY_ALPHA45_PROMOTION_CHECKLIST_FIXED",
+      "status": "N/A",
+      "production_status": "NO_GO",
+      "can_execute_now": null,
+      "real_llm_call_allowed": null,
+      "execution_allowed": null
+    },
+    {
+      "report_file": "gib_alpha4_validation_report.json",
+      "phase": "unknown",
+      "final_status": "PASS_DESIGN_ONLY_ALPHA4_RUNTIME_GATE_FIXED",
+      "status": "N/A",
+      "production_status": "NO_GO",
+      "can_execute_now": null,
+      "real_llm_call_allowed": null,
+      "execution_allowed": null
+    },
+    {
+      "report_file": "gib_alpha_validation_report.json",
+      "phase": "GIB-alpha0-design-only",
+      "final_status": "PASS_DESIGN_ONLY_ALPHA_TEMPLATE",
+      "status": "N/A",
+      "production_status": "NO_GO",
+      "can_execute_now": null,
+      "real_llm_call_allowed": false,
+      "execution_allowed": false
+    },
+    {
+      "report_file": "gib_beta05_validation_report.json",
+      "phase": "unknown",
+      "final_status": "PASS_DRY_RUN_BETA05_LOCAL_OLLAMA_PREFLIGHT_NO_GENERATE_CALL",
+      "status": "DRY_RUN_PREFLIGHT_ONLY",
+      "production_status": "NO_GO",
+      "can_execute_now": null,
+      "real_llm_call_allowed": false,
+      "execution_allowed": false
+    },
+    {
+      "report_file": "gib_beta06_validation_report.json",
+      "phase": "unknown",
+      "final_status": "PASS_DRY_RUN_BETA06_ENV_PREP_CHECK_NO_GENERATE",
+      "status": "DRY_RUN_ENV_PREP_ONLY",
+      "production_status": "NO_GO",
+      "can_execute_now": null,
+      "real_llm_call_allowed": null,
+      "execution_allowed": null
+    },
+    {
+      "report_file": "gib_beta07_validation_report.json",
+      "phase": "unknown",
+      "final_status": "PASS_DRY_RUN_BETA07_READY_SIM_NO_AUTOCONNECT",
+      "status": "DRY_RUN_READY_SIMULATION_ONLY",
+      "production_status": "NO_GO",
+      "can_execute_now": null,
+      "real_llm_call_allowed": false,
+      "execution_allowed": false
+    },
+    {
+      "report_file": "gib_beta08_validation_report.json",
+      "phase": "unknown",
+      "final_status": "PASS_DRY_RUN_BETA08_MANUAL_APPROVAL_GATE_NO_REAL_CALL",
+      "status": "DRY_RUN_MANUAL_APPROVAL_GATE_ONLY",
+      "production_status": "NO_GO",
+      "can_execute_now": null,
+      "real_llm_call_allowed": false,
+      "execution_allowed": false
+    },
+    {
+      "report_file": "gib_beta095_validation_report.json",
+      "phase": "unknown",
+      "final_status": "PASS_DRY_RUN_BETA095_APPROVAL_EVIDENCE_FORMAT_ONLY",
+      "status": "DRY_RUN_APPROVAL_EVIDENCE_FORMAT_ONLY",
+      "production_status": "NO_GO",
+      "can_execute_now": null,
+      "real_llm_call_allowed": false,
+      "execution_allowed": false
+    },
+    {
+      "report_file": "gib_beta099_freeze_report.json",
+      "phase": "freeze_alpha0_beta099",
+      "final_status": "BETA099_FINAL_FREEZE_REPORT",
+      "status": "N/A",
+      "production_status": "NO_GO",
+      "can_execute_now": false,
+      "real_llm_call_allowed": false,
+      "execution_allowed": false
+    },
+    {
+      "report_file": "gib_beta099_validation_report.json",
+      "phase": "unknown",
+      "final_status": "PASS_DRY_RUN_BETA099_FINAL_APPROVAL_GATE_NO_EXECUTION",
+      "status": "DRY_RUN_FINAL_APPROVAL_GATE_ONLY",
+      "production_status": "NO_GO",
+      "can_execute_now": false,
+      "real_llm_call_allowed": null,
+      "execution_allowed": null
+    },
+    {
+      "report_file": "gib_beta09_validation_report.json",
+      "phase": "unknown",
+      "final_status": "PASS_DRY_RUN_BETA09_FIRST_CALL_HANDOFF_NO_EXECUTION",
+      "status": "DRY_RUN_FIRST_CALL_HANDOFF_ONLY",
+      "production_status": "NO_GO",
+      "can_execute_now": false,
+      "real_llm_call_allowed": null,
+      "execution_allowed": null
+    },
+    {
+      "report_file": "gib_beta0_validation_report.json",
+      "phase": "unknown",
+      "final_status": "PASS_DRY_RUN_BETA0_LOCAL_OLLAMA_HARNESS",
+      "status": "DRY_RUN_HARNESS_ONLY",
+      "production_status": "NO_GO",
+      "can_execute_now": null,
+      "real_llm_call_allowed": null,
+      "execution_allowed": null
+    },
+    {
+      "report_file": "gib_beta1_prep_validation_report.json",
+      "phase": "beta1_prep",
+      "final_status": "PASS_DRY_RUN_BETA1_PREP_RUNBOOK_FIXED",
+      "status": "DRY_RUN_BETA1_PREP_ONLY",
+      "production_status": "NO_GO",
+      "can_execute_now": false,
+      "real_llm_call_allowed": false,
+      "execution_allowed": false
+    }
+  ],
+  "required_reference_reports": [
+    "gib_beta099_freeze_report.json",
+    "gib_beta1_prep_validation_report.json"
+  ],
+  "missing_reference_reports": [],
+  "reference_reports_ready": true,
+  "pre_beta1_final_reference": {
+    "freeze_report": "gib_beta099_freeze_report.json",
+    "prep_report": "gib_beta1_prep_validation_report.json"
+  },
+  "guardrail_continuity": {
+    "all_real_llm_call_allowed_false": true,
+    "all_execution_allowed_false": true,
+    "all_can_execute_now_false": true,
+    "violations": []
+  },
+  "final_status": "PASS_REPORTS_ONLY_BETA1_PREP_AUDIT_INDEX_FIXED"
+}

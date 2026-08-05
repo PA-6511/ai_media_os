@@ -1,0 +1,51 @@
+{
+  "_meta": {
+    "phase": "5-4",
+    "purpose": "core_receiver_validator_template",
+    "created_at": "2026-05-12",
+    "status": "TEMPLATE_ONLY",
+    "note": "Phase 5-1 受信スキーマ設計に対する validator 設計雛形。app 実装は行わない。"
+  },
+  "target": "reports/phase5_1_core_receiver_schema.json",
+  "runtime_constraints": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO"
+  },
+  "required_fields": [
+    {"path": "runtime_constraints.operation_mode", "must_be": "OBSERVE"},
+    {"path": "runtime_constraints.execution", "must_be": "dry_run"},
+    {"path": "runtime_constraints.production_status", "must_be": "NO_GO"},
+    {"path": "receiver_permissions.mode", "must_be": "observation_only"},
+    {"path": "receiver_permissions.execution_permission", "must_be": "none"},
+    {"path": "receiver_permissions.write_permission", "must_be": "none"},
+    {"path": "runtime_constraints.requires_human_approval", "must_be": true},
+    {"path": "runtime_constraints.auto_execute_allowed", "must_be": false}
+  ],
+  "forbidden_patterns": [
+    "execution_command",
+    "external_request",
+    "wordpress_instruction",
+    "cron_instruction",
+    "production_instruction"
+  ],
+  "required_blocked_capabilities": [
+    "core_ai_real_send",
+    "external_api_call",
+    "wordpress_operation",
+    "cron_registration",
+    "auto_execute",
+    "auto_post",
+    "auto_update",
+    "auto_delete",
+    "auto_export",
+    "production_execution"
+  ],
+  "judgment_rule": {
+    "pass_condition": "all required_fields matched and blocked capabilities complete",
+    "warn_condition": "optional metadata missing but safety constraints preserved",
+    "fail_condition": "operation_mode/execution/production_status/permissions mismatch",
+    "abort_condition": "requires live send or external connection"
+  },
+  "result": "PASS_DRY_RUN_ONLY"
+}

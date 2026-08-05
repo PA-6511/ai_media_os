@@ -1,0 +1,90 @@
+{
+  "_meta": {
+    "phase": "10-4",
+    "phase_name": "human review 署名必須項目の最終確認",
+    "version": "1.0",
+    "created_date": "2026-05-12",
+    "status": "PASS_DESIGN_ONLY",
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only",
+    "description": "Phase 10-1 の human review 記録を GO 判定に進める前に、署名必須項目と欠落時の扱いを最終固定する。"
+  },
+  "references": [
+    "generic_block_ai/reports/phase10_1_phase9_human_review_execution_record.json",
+    "generic_block_ai/reports/phase10_2_app_tests_implementation_go_nogo_actual_decision.json"
+  ],
+  "governance": {
+    "signature_required": true,
+    "signature_is_hard_gate": true,
+    "missing_signature_effect": "integrated_decision remains NO_GO",
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ]
+  },
+  "required_review_fields": [
+    {
+      "field": "review_record.review_id",
+      "required": true,
+      "failure_effect": "NO_GO"
+    },
+    {
+      "field": "review_record.review_datetime",
+      "required": true,
+      "failure_effect": "NO_GO"
+    },
+    {
+      "field": "review_record.reviewer.name",
+      "required": true,
+      "failure_effect": "NO_GO"
+    },
+    {
+      "field": "review_record.reviewer.role",
+      "required": true,
+      "allowed_value": "human_reviewer",
+      "failure_effect": "NO_GO"
+    },
+    {
+      "field": "review_record.reviewer.signature",
+      "required": true,
+      "failure_effect": "NO_GO"
+    },
+    {
+      "field": "review_record.safety_boundary_verification.*",
+      "required": true,
+      "required_value": true,
+      "failure_effect": "NO_GO"
+    },
+    {
+      "field": "review_record.unresolved_items",
+      "required": true,
+      "required_state": "empty",
+      "failure_effect": "NO_GO"
+    }
+  ],
+  "final_checklist": {
+    "all_required_fields_present": false,
+    "signature_verified": false,
+    "safety_boundary_all_true": false,
+    "unresolved_items_empty": false,
+    "current_result": "PENDING"
+  },
+  "phase_decision": {
+    "phase10_4_status": "PASS_DESIGN_ONLY",
+    "app_implementation_status": "NO_GO",
+    "tests_implementation_status": "NO_GO",
+    "note": "署名必須項目の最終確認設計であり、記入完了前は integrated_decision を GO に更新できない。"
+  }
+}

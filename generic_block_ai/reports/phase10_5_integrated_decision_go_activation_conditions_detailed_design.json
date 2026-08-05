@@ -1,0 +1,84 @@
+{
+  "_meta": {
+    "phase": "10-5",
+    "phase_name": "integrated_decision GO 化条件の詳細設計",
+    "version": "1.0",
+    "created_date": "2026-05-12",
+    "status": "PASS_DESIGN_ONLY",
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only",
+    "description": "Phase 10-2 の integrated_decision を GO に変更できる条件を、判定順序と拒否条件を含めて厳密化する。"
+  },
+  "references": [
+    "generic_block_ai/reports/phase10_1_phase9_human_review_execution_record.json",
+    "generic_block_ai/reports/phase10_2_app_tests_implementation_go_nogo_actual_decision.json",
+    "generic_block_ai/reports/phase10_4_human_review_signature_required_fields_final_check.json"
+  ],
+  "governance": {
+    "default_state": "NO_GO",
+    "manual_override_without_signature": "forbidden",
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ]
+  },
+  "activation_conditions": [
+    {
+      "condition_id": "GOC-01",
+      "condition": "phase10_4.final_checklist.all_required_fields_present == true"
+    },
+    {
+      "condition_id": "GOC-02",
+      "condition": "phase10_4.final_checklist.signature_verified == true"
+    },
+    {
+      "condition_id": "GOC-03",
+      "condition": "phase10_4.final_checklist.safety_boundary_all_true == true"
+    },
+    {
+      "condition_id": "GOC-04",
+      "condition": "phase10_4.final_checklist.unresolved_items_empty == true"
+    },
+    {
+      "condition_id": "GOC-05",
+      "condition": "app_implementation_gate and tests_implementation_gate can both be switched by human reviewer"
+    }
+  ],
+  "evaluation_order": [
+    "Verify signature fields",
+    "Verify safety boundary invariants",
+    "Verify unresolved items empty",
+    "Verify no blocked action activation",
+    "Update app/tests gates together",
+    "Update integrated_decision last"
+  ],
+  "rejection_conditions": [
+    "署名が欠落している",
+    "human_reviewer 以外の role が入っている",
+    "safety_boundary_verification に false がある",
+    "production_status が NO_GO 以外に変更されている",
+    "blocked_actions のいずれかが解除されている"
+  ],
+  "current_design_state": {
+    "integrated_decision_default": "NO_GO",
+    "go_transition_allowed_now": false,
+    "reason": "必要署名・最終確認・preflight が未完了のため、現時点では GO 化しない。"
+  },
+  "phase_decision": {
+    "phase10_5_status": "PASS_DESIGN_ONLY",
+    "app_implementation_status": "NO_GO",
+    "tests_implementation_status": "NO_GO"
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "schema_version": "X_R12_SLACK_DRAFT_REVIEW_DELIVERY_POLICY_V1",
+  "phase": "X-R12-SLACK-DRAFT-REVIEW-DELIVERY-PREP",
+  "status": "PREP_ONLY_NO_DELIVERY",
+  "delivery": {
+    "transport": "SLACK_INCOMING_WEBHOOK",
+    "credential_env_key": "SLACK_X_DRAFT_REVIEW_WEBHOOK_URL",
+    "credential_source": "/etc/ai-media-os/credential.env",
+    "credential_read_allowed_in_prep": false,
+    "slack_api_call_allowed_in_prep": false,
+    "message_send_allowed_in_prep": false,
+    "interactive_buttons_enabled": false,
+    "thread_reply_review_enabled": true
+  },
+  "review": {
+    "human_approval_required": true,
+    "approval_tokens": [
+      "APPROVE",
+      "REVISE",
+      "REJECT"
+    ],
+    "approval_meaning": {
+      "APPROVE": "本文・リンク・PR表記を確認し投稿可能",
+      "REVISE": "修正後に再レビューが必要",
+      "REJECT": "投稿候補を却下"
+    },
+    "approval_expires_after_text_change": true,
+    "approval_expires_after_url_change": true,
+    "approval_expires_after_account_change": true
+  },
+  "required_checks": [
+    "PR_DISCLOSURE_PRESENT",
+    "TITLE_PRESENT",
+    "VOLUME_PRESENT",
+    "AUTHOR_PRESENT",
+    "PUBLISHER_PRESENT",
+    "AFFILIATE_URL_VERIFIED",
+    "STORE_MATCH_VERIFIED",
+    "DUPLICATE_URL_ABSENT",
+    "UNVERIFIED_STORE_ABSENT"
+  ],
+  "storage": {
+    "canonical_draft_storage": "LOCAL_JSON",
+    "slack_is_canonical_storage": false,
+    "database_write_allowed_in_prep": false,
+    "workflow_write_allowed_in_prep": false
+  },
+  "posting": {
+    "x_posting_mode": "MANUAL",
+    "x_api_allowed": false,
+    "browser_automation_allowed": false,
+    "automatic_posting_allowed": false,
+    "post_url_registration_required": true
+  },
+  "failure_policy": {
+    "failure_action": "STOP",
+    "partial_send_allowed": false,
+    "automatic_retry_allowed": false,
+    "fallback_to_x_direct_draft": false
+  },
+  "production_status": "NO_GO"
+}

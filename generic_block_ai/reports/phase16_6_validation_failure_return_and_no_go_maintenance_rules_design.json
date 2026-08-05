@@ -1,0 +1,469 @@
+{
+  "phase_identifier": "16-6",
+  "phase_title": "検証失敗時の差し戻し・NO-GO維持ルール設計",
+  "phase_purpose": "Phase 16 実測入力データエントリ受領・検証層：Phase 16-4（形式検証）または Phase 16-2（完全性・署名・整合性検証）で失敗した場合、データを差し戻す手順と、integrated_decision・receiver_validator_permission が NO_GO・NOT_EFFECTIVE のままであることを保証するルールを設計する",
+  "execution_context": "reports-only design phase; design of validation failure handling and return procedures only, no actual failure handling yet",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only"
+  },
+  "governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "safety_rule": "All blocked_actions remain strictly prohibited. Validation failure handling is design-only; no actual failure response procedures are executed. No app/tests implementation permitted. NO_GO status must be maintained throughout failure scenarios.",
+    "hard_stop_condition": "This phase is design-only. No actual data return, status updates, or remediation actions are permitted."
+  },
+  "validation_failure_scenarios": {
+    "failure_scenario_categories": [
+      {
+        "category": "FORM_VALIDATION_FAILURES",
+        "source_phase": "Phase 16-4 post-receipt format validation",
+        "examples": [
+          "JSON parsing error",
+          "Required field missing",
+          "Field type mismatch (string expected, number received)",
+          "Enum value invalid",
+          "Timestamp in future",
+          "Signature/auth token malformed"
+        ]
+      },
+      {
+        "category": "COMPLETENESS_FAILURES",
+        "source_phase": "Phase 16-2 completeness validation",
+        "examples": [
+          "One or more required fields empty",
+          "Evidence reference array is empty",
+          "Supporting text field is blank"
+        ]
+      },
+      {
+        "category": "AUTHENTICATION_FAILURES",
+        "source_phase": "Phase 16-2 signature/authentication validation",
+        "examples": [
+          "Signature field missing",
+          "Signature algorithm is weak (MD5, SHA-1)",
+          "Reviewer's key/certificate not found or expired",
+          "Signature verification fails",
+          "Timestamp incoherent with signature timestamp"
+        ]
+      },
+      {
+        "category": "CONSISTENCY_FAILURES",
+        "source_phase": "Phase 16-2 consistency validation",
+        "examples": [
+          "Reviewer ID mismatch (15-1 and 15-2 from different uncoordinated reviewers)",
+          "Timestamp order reversed (15-2 before 15-1)",
+          "Decision logic violation (integrated_decision NO_GO but permission EFFECTIVE)",
+          "Evidence references contradict",
+          "Confidence-judgment alignment warning"
+        ]
+      },
+      {
+        "category": "INTEGRITY_FAILURES",
+        "source_phase": "Phase 16-5 evidence lock verification",
+        "examples": [
+          "Data hash mismatch (tampering detected)",
+          "Timestamp tampering attempt detected",
+          "Audit log integrity violation"
+        ]
+      }
+    ]
+  },
+  "return_vs_halt_classification": {
+    "return_eligible_failures": {
+      "definition": "Failures where human reviewer can correct the submission and resubmit",
+      "categorization": [
+        {
+          "failure_type": "FORM_VALIDATION_FAILURES",
+          "returnable": true,
+          "reason": "Reviewer can reformat data, fix field values, resubmit"
+        },
+        {
+          "failure_type": "COMPLETENESS_FAILURES",
+          "returnable": true,
+          "reason": "Reviewer can provide missing fields, resubmit"
+        },
+        {
+          "failure_type": "CONSISTENCY_FAILURES",
+          "returnable": true,
+          "reason": "Reviewer can reconcile decisions, coordinate timestamps, resubmit"
+        }
+      ]
+    },
+    "halt_non_returnable_failures": {
+      "definition": "Failures that indicate structural problems or tampering; cannot be resolved by reviewer alone",
+      "categorization": [
+        {
+          "failure_type": "AUTHENTICATION_FAILURES (signature invalid)",
+          "returnable": false,
+          "reason": "Indicates authentication system issue or tampering; escalate to authority"
+        },
+        {
+          "failure_type": "INTEGRITY_FAILURES (tampering detected)",
+          "returnable": false,
+          "reason": "Indicates potential malicious tampering; must be investigated by security team"
+        }
+      ]
+    }
+  },
+  "return_procedure_for_returnable_failures": {
+    "return_procedure_name": "Validation Failure Return and Correction Workflow",
+    "return_steps": [
+      {
+        "step_id": "RETURN_1_DETERMINE_FAILURE_TYPE",
+        "action": "Classify failure into category (form, completeness, consistency, etc.)",
+        "output": "Failure classification and reason"
+      },
+      {
+        "step_id": "RETURN_2_ASSESS_RETURNABILITY",
+        "action": "Determine if failure is returnable (reviewer can correct) or halt-required (needs escalation)",
+        "logic": "If returnable: proceed to step RETURN_3; if halt-required: proceed to step HALT_1"
+      },
+      {
+        "step_id": "RETURN_3_GENERATE_RETURN_REPORT",
+        "action": "Create detailed return report listing all validation failures and correction instructions",
+        "report_contents": [
+          "List of failing fields with current values",
+          "Specific validation rules that failed",
+          "Expected format or constraints",
+          "Correction instructions for reviewer",
+          "Example of correct format",
+          "Deadline for resubmission (e.g., 5 business days)"
+        ]
+      },
+      {
+        "step_id": "RETURN_4_NOTIFY_REVIEWER",
+        "action": "Notify reviewer of validation failure and return report via established channel (email, form portal, etc.)",
+        "notification_contents": [
+          "Validation failed; data returned for corrections",
+          "Return report attached with specific issues",
+          "Resubmission deadline",
+          "Contact info for clarification"
+        ],
+        "requirement": "Notification must be authenticated and timestamped"
+      },
+      {
+        "step_id": "RETURN_5_ARCHIVE_FAILED_SUBMISSION",
+        "action": "Store failed submission in archive with return report for audit trail",
+        "archive_structure": {
+          "original_data": "Failed Phase 15-1/15-2 submission",
+          "return_report": "Detailed failure analysis",
+          "validation_timestamp": "When validation was performed",
+          "return_timestamp": "When return notification was sent",
+          "reviewer_notified": "boolean - confirmation that reviewer was contacted"
+        }
+      },
+      {
+        "step_id": "RETURN_6_MAINTAIN_NO_GO_STATUS",
+        "action": "Ensure integrated_decision and receiver_validator_permission remain NO_GO and NOT_EFFECTIVE",
+        "enforcement": "Do not proceed to Phase 15-7 or Phase 15-8; no measurement until corrected data passes validation",
+        "requirement": "Status lock file must document that data is in RETURNED state"
+      },
+      {
+        "step_id": "RETURN_7_AWAIT_RESUBMISSION",
+        "action": "Wait for reviewer to resubmit corrected data",
+        "state": "In RETURN state; Phase 16-1 receipt and validation cycle restart upon resubmission",
+        "max_wait_period": "Resubmission deadline (e.g., 5 business days); if exceeded, escalate"
+      }
+    ],
+    "return_report_structure": {
+      "report_id": "VALIDATION_FAILURE_RETURN_REPORT_v1",
+      "report_elements": {
+        "return_timestamp": {
+          "field_name": "return_initiated_at",
+          "type": "ISO8601 datetime"
+        },
+        "original_submission_reference": {
+          "field_name": "failed_submission_id",
+          "type": "string - reference to original Phase 16-1 receipt"
+        },
+        "failure_summary": {
+          "field_name": "validation_failure_summary",
+          "type": "object",
+          "elements": {
+            "failure_count": "Total number of validation failures",
+            "failure_categories": "List of failure categories (FORM, COMPLETENESS, CONSISTENCY, etc.)",
+            "critical_failures": "List of failures that block progression (non-correctable)"
+          }
+        },
+        "detailed_failure_list": {
+          "field_name": "validation_failures_detailed",
+          "type": "array",
+          "elements_per_failure": [
+            "failure_id",
+            "field_name",
+            "current_value",
+            "validation_rule_failed",
+            "expected_format_or_constraint",
+            "correction_instruction"
+          ]
+        },
+        "correction_instructions": {
+          "field_name": "corrections_required_to_proceed",
+          "type": "object",
+          "contents": [
+            "For each failure: specific correction needed",
+            "Format examples where applicable",
+            "Reference to Phase 15-1 or 15-2 format specification"
+          ]
+        },
+        "resubmission_instructions": {
+          "field_name": "resubmission_procedure",
+          "type": "object",
+          "elements": {
+            "deadline": "Date/time by which corrected data must be resubmitted",
+            "submission_channel": "Same channel as original (Phase 16-1 receipt channel)",
+            "submission_format": "Data format expected (JSON, etc.)",
+            "required_acknowledgment": "Reviewer must acknowledge receipt of return report"
+          }
+        },
+        "status_after_return": {
+          "field_name": "status_after_return_notification",
+          "type": "enum",
+          "value": "RETURNED_FOR_CORRECTION",
+          "implication": "integrated_decision remains NO_GO; receiver_validator_permission remains NOT_EFFECTIVE; Phase 15-7 and 15-8 cannot execute"
+        }
+      }
+    }
+  },
+  "halt_procedure_for_non_returnable_failures": {
+    "halt_procedure_name": "Validation Failure Escalation and Halt Workflow",
+    "halt_steps": [
+      {
+        "step_id": "HALT_1_IDENTIFY_NON_RETURNABLE_FAILURE",
+        "action": "Confirm failure is non-returnable (authentication failure, tampering detection, etc.)",
+        "failure_types": [
+          "AUTHENTICATION_FAILURES (signature invalid, weak algorithm, key invalid)",
+          "INTEGRITY_FAILURES (data tampering detected)"
+        ]
+      },
+      {
+        "step_id": "HALT_2_IMMEDIATELY_HALT_PROCESSING",
+        "action": "Immediately halt all downstream processing",
+        "blocking": "Do not proceed to Phase 16-2 validation, Phase 16-3 assessment, Phase 15-7, or Phase 15-8",
+        "requirement": "Processing must halt within seconds of failure detection"
+      },
+      {
+        "step_id": "HALT_3_ALERT_SECURITY_AND_AUTHORITY",
+        "action": "Alert security team, Phase 16 authority, and audit function",
+        "alert_recipients": [
+          "Security officer",
+          "Phase 16 design authority",
+          "Audit log system",
+          "Human reviewer (escalation)"
+        ],
+        "alert_contents": [
+          "Failure classification (AUTHENTICATION or INTEGRITY)",
+          "Specific failure details (signature invalid, hash mismatch, etc.)",
+          "Data reference and timestamps",
+          "Recommendations for investigation"
+        ]
+      },
+      {
+        "step_id": "HALT_4_PRESERVE_FORENSIC_EVIDENCE",
+        "action": "Preserve all data, audit logs, and evidence for investigation",
+        "preservation": [
+          "Original submission data",
+          "Validation failure details",
+          "Audit trail of accesses/modifications",
+          "Failed validation report",
+          "Backup copy for forensic analysis"
+        ]
+      },
+      {
+        "step_id": "HALT_5_ESCALATE_TO_HUMAN_AUTHORITY",
+        "action": "Present issue to human authority for investigation and decision",
+        "escalation_package": [
+          "Failure details and forensic evidence",
+          "Possible causes (malicious tampering, system error, clock issue, etc.)",
+          "Recommended investigation steps",
+          "Options: request resubmission, deep investigation, reject submission"
+        ]
+      },
+      {
+        "step_id": "HALT_6_MAINTAIN_NO_GO_STATUS",
+        "action": "Ensure integrated_decision and receiver_validator_permission remain NO_GO and NOT_EFFECTIVE",
+        "enforcement": "Document halted state; Phase 15-7 and 15-8 cannot execute until human authority authorizes proceeding",
+        "requirement": "Status lock must be explicit: HALTED_PENDING_INVESTIGATION"
+      },
+      {
+        "step_id": "HALT_7_AWAIT_AUTHORITY_DECISION",
+        "action": "Wait for human authority decision on how to proceed",
+        "state": "In HALTED state; awaiting human review and decision",
+        "possible_outcomes": [
+          "APPROVED_TO_REQUEST_RESUBMISSION: Contact reviewer, request new submission",
+          "APPROVED_TO_REJECT_SUBMISSION: Reject data permanently, no resubmission",
+          "APPROVED_FOR_DEEP_INVESTIGATION: Launch security investigation before proceeding",
+          "APPROVED_WITH_OVERRIDE: In rare cases, authority may override failure (not recommended)"
+        ]
+      }
+    ],
+    "escalation_report_structure": {
+      "report_id": "VALIDATION_FAILURE_ESCALATION_REPORT_v1",
+      "report_elements": {
+        "escalation_timestamp": {
+          "field_name": "escalation_initiated_at",
+          "type": "ISO8601 datetime"
+        },
+        "original_submission_reference": {
+          "field_name": "failed_submission_id",
+          "type": "string"
+        },
+        "failure_classification": {
+          "field_name": "failure_type_non_returnable",
+          "type": "enum",
+          "values": ["AUTHENTICATION_FAILURE", "INTEGRITY_FAILURE", "OTHER_CRITICAL"]
+        },
+        "detailed_failure_analysis": {
+          "field_name": "failure_root_cause_analysis",
+          "type": "object",
+          "elements": [
+            "Specific failure description",
+            "Validation rule violated",
+            "Evidence of violation (e.g., stored hash vs current hash)",
+            "Possible root causes (malicious, accidental, system error, clock issue)",
+            "Impact assessment (how does this affect Phase 15-7/15-8 measurement?)"
+          ]
+        },
+        "forensic_evidence": {
+          "field_name": "preserved_evidence_summary",
+          "type": "object",
+          "elements": [
+            "Original data preserved: yes/no, location",
+            "Audit log preserved: yes/no, date range",
+            "Backup copy created: yes/no, timestamp",
+            "Forensic analysis performed: yes/no, findings"
+          ]
+        },
+        "recommendation": {
+          "field_name": "authority_decision_recommendation",
+          "type": "enum",
+          "values": [
+            "REQUEST_RESUBMISSION",
+            "REJECT_SUBMISSION",
+            "INVESTIGATE_FURTHER",
+            "OVERRIDE_FAILURE (only with explicit authority approval)"
+          ]
+        },
+        "status_after_halt": {
+          "field_name": "status_after_escalation",
+          "type": "enum",
+          "value": "HALTED_PENDING_AUTHORITY_DECISION",
+          "implication": "integrated_decision remains NO_GO; receiver_validator_permission remains NOT_EFFECTIVE; Phase 15-7 and 15-8 cannot execute until authority decides"
+        }
+      }
+    }
+  },
+  "no_go_maintenance_rules": {
+    "rule_id": "NO_GO_MAINTENANCE_RULE",
+    "rule": "integrated_decision and receiver_validator_permission must remain NO_GO and NOT_EFFECTIVE if validation fails",
+    "enforcement_points": [
+      {
+        "point": "At return initiation",
+        "requirement": "Lock status to RETURNED_FOR_CORRECTION; block Phase 15-7 and 15-8 execution"
+      },
+      {
+        "point": "During resubmission wait period",
+        "requirement": "Maintain NO_GO/NOT_EFFECTIVE; do not update statuses"
+      },
+      {
+        "point": "At halt initiation",
+        "requirement": "Lock status to HALTED_PENDING_INVESTIGATION; block all downstream processing"
+      },
+      {
+        "point": "During escalation investigation",
+        "requirement": "Maintain NO_GO/NOT_EFFECTIVE; do not update statuses without explicit authority approval"
+      },
+      {
+        "point": "Upon resubmission arrival",
+        "requirement": "Start new Phase 16-1 receipt and validation cycle; use no cached state from failed submission"
+      }
+    ]
+  },
+  "failure_tracking_and_auditing": {
+    "failure_tracking_purpose": "Maintain complete record of all validation failures, returns, and escalations",
+    "failure_record_fields": [
+      "failure_id (unique identifier)",
+      "original_submission_timestamp",
+      "failure_detected_timestamp",
+      "failure_classification",
+      "failure_is_returnable (yes/no)",
+      "return_or_halt_initiated_timestamp",
+      "reviewer_notified_timestamp (if return)",
+      "escalation_initiated_timestamp (if halt)",
+      "authority_decision (if halt)",
+      "resubmission_received_timestamp (if return + resubmit)",
+      "final_outcome (RETURNED_AND_RESUBMITTED, REJECTED, RESOLVED_AFTER_INVESTIGATION, etc.)"
+    ],
+    "failure_audit_report": {
+      "report_frequency": "Monthly or upon request",
+      "report_content": [
+        "Summary of validation failures in period",
+        "Failure breakdown by type (form, completeness, consistency, authentication, integrity)",
+        "Return rate (% of submissions returned)",
+        "Escalation rate (% of submissions halted)",
+        "Resubmission success rate (% that passed after return)",
+        "Root cause analysis of frequent failure types",
+        "Trends and patterns"
+      ]
+    }
+  },
+  "phase_dependencies": {
+    "depends_on": [
+      "Phase 16-4: Format validation (triggers returns/halts if failed)",
+      "Phase 16-2: Completeness, signature, consistency validation (triggers returns/halts if failed)",
+      "Phase 16-5: Evidence lock and integrity verification (triggers halts if tampering detected)"
+    ],
+    "feeds_into": [
+      "Phase 16-1: Upon resubmission, starts new receipt and validation cycle",
+      "Phase 16-3: Only proceeds if no returns or halts (validation passed)",
+      "Phase 15-7: Only executes if all validation passed and NO_GO/NOT_EFFECTIVE status maintained",
+      "Phase 15-8: Only executes if all validation passed and NO_GO/NOT_EFFECTIVE status maintained"
+    ]
+  },
+  "design_review_checklist": [
+    "Validation failure scenarios are comprehensive (form, completeness, authentication, consistency, integrity)",
+    "Return vs halt classification clearly separates returnable from non-returnable failures",
+    "Return procedure provides clear correction instructions to reviewer",
+    "Return report structure captures all necessary failure and correction information",
+    "Resubmission deadline is specified (e.g., 5 business days)",
+    "Halt procedure includes immediate security alert and forensic evidence preservation",
+    "Escalation report structure supports human authority decision-making",
+    "NO_GO maintenance rules ensure integrated_decision and receiver_validator_permission remain NO_GO throughout failure scenario",
+    "Phase 15-7 and 15-8 measurement workflows cannot execute if validation fails (blocking enforcement)",
+    "Failure tracking maintains audit trail of all validations, returns, escalations",
+    "Archive of failed submissions is preserved for investigation",
+    "Design acknowledges this is design-only; actual return/halt mechanisms TBD for implementation",
+    "All blocked actions remain in governance",
+    "production_status remains NO_GO (hardcoded)",
+    "Phase dependencies are accurate"
+  ],
+  "completion_gate": {
+    "gate_condition": "Failure handling design approved AND return/halt procedures specified AND NO_GO maintenance rules enforced",
+    "approval_required": "Human technical reviewer + Phase 16 design authority",
+    "prerequisite_for": "Phase 16-1 through 16-6 complete; ready for human review approval and next phase planning"
+  },
+  "status": {
+    "phase_status": "DESIGN_ONLY",
+    "actual_failure_handling_operational_status": "NOT_YET_STARTED",
+    "integrated_decision_status": "NO_GO",
+    "receiver_validator_implementation_permission_status": "NOT_EFFECTIVE",
+    "app_implementation_status": "NO_GO",
+    "tests_implementation_status": "NO_GO",
+    "production_status": "NO_GO"
+  }
+}

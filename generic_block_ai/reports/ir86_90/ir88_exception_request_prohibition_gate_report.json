@@ -1,0 +1,40 @@
+{
+  "schema_version": "ir88_exception_request_prohibition_gate_v1",
+  "phase": "IR88",
+  "generated_at": "2026-05-24T14:36:23.667366+00:00",
+  "source_task_id": "ir86_90_live_trial",
+  "exception_request_gate_decision": "UNLOCK_EXCEPTION_PROHIBITED_DRY_RUN_ONLY",
+  "gate_action": "Exception-based unlock remains prohibited under dry-run governance.",
+  "validation_result": "PASS",
+  "validation_failed_checks": [],
+  "validation_warnings": [],
+  "gate_record": {
+    "gate_id": "ir88_gate_ir86_90_live_trial_20260524T143623Z",
+    "generated_at": "2026-05-24T14:36:23.667362+00:00",
+    "source_task_id": "ir86_90_live_trial",
+    "decision": "UNLOCK_EXCEPTION_PROHIBITED_DRY_RUN_ONLY",
+    "exception_request_allowed": false,
+    "unlock_prohibited": true,
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "gate_hash": "fcd1a8c224d439c725b178576d388b6223bff50d056cd4a622e465af05dd7c02",
+  "safety_gate_snapshot": {
+    "dry_run": "maintained",
+    "OBSERVE": "maintained",
+    "submission_execution_blocked": true,
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "network_transmission_executed": false,
+    "production_release": false,
+    "GitHub_push": "未実行"
+  }
+}

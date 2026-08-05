@@ -1,0 +1,116 @@
+{
+  "package_type": "wordpress_draft_phase8_6_pre_publish_final_readiness",
+  "phase": "Phase 8-6",
+  "label": "WordPress公開前 最終readiness判定設計",
+  "design_status": "DESIGN_ONLY",
+  "wordpress_post_enabled": false,
+  "real_write_enabled": false,
+  "production_status": "NO_GO",
+  "wordpress_publish_execution": "NO_GO",
+  "wordpress_write_executed": false,
+  "target_draft": {
+    "wordpress_draft_id": 110,
+    "expected_status": "draft",
+    "source_logs": [
+      "exchange/logs/phase7_6_wordpress_draft_creation_overall_completion_report.json",
+      "exchange/logs/phase8_5_manual_publish_rehearsal_validation_result.json"
+    ]
+  },
+  "readiness_purpose": "Phase 8-1〜8-5 の結果を集約し、公開前の最終readiness判定条件を定義する。Phase 8-6 では公開を実行しない。",
+  "readiness_requirements": [
+    {
+      "id": "rd_01",
+      "check": "Phase 8-1 公開前レビュー設計が PASS",
+      "mandatory": true
+    },
+    {
+      "id": "rd_02",
+      "check": "Phase 8-2 手動レビュー decision=APPROVE",
+      "mandatory": true
+    },
+    {
+      "id": "rd_03",
+      "check": "Phase 8-3 公開ゲート設計が PASS",
+      "mandatory": true
+    },
+    {
+      "id": "rd_04",
+      "check": "Phase 8-4 公開実行プロトコル設計が PASS",
+      "mandatory": true
+    },
+    {
+      "id": "rd_05",
+      "check": "Phase 8-5 手動公開リハーサル設計が PASS",
+      "mandatory": true
+    },
+    {
+      "id": "rd_06",
+      "check": "対象下書きIDが全ログで一致",
+      "mandatory": true
+    },
+    {
+      "id": "rd_07",
+      "check": "対象ステータスが draft のまま",
+      "mandatory": true
+    },
+    {
+      "id": "rd_08",
+      "check": "人間レビュー要件が満たされている",
+      "mandatory": true
+    },
+    {
+      "id": "rd_09",
+      "check": "公開トークン仕様（one_time_only/30分/1件制限）が整合",
+      "mandatory": true
+    },
+    {
+      "id": "rd_10",
+      "check": "公開以外の禁止操作が継続されている",
+      "mandatory": true
+    }
+  ],
+  "readiness_constraints": {
+    "allow_publish_execution": false,
+    "allow_update": false,
+    "allow_delete": false,
+    "allow_export": false,
+    "allow_bulk": false,
+    "allow_cron": false,
+    "human_reviewer_required": true,
+    "token_name": "APPROVE_PUBLISH_ONE_TIME_MANUAL_ONLY",
+    "token_expiry_minutes": 30,
+    "publish_count_limit": 1
+  },
+  "abort_conditions": [
+    "upstream_phase_status_not_pass",
+    "draft_id_mismatch",
+    "status_not_draft",
+    "phase8_2_decision_not_approve",
+    "token_constraints_inconsistent",
+    "safety_constraint_violation",
+    "unexpected_execution_attempt_detected"
+  ],
+  "forbidden_actions_in_phase8_6": [
+    "wordpress_rest_publish_post",
+    "wordpress_rest_update_existing_post",
+    "wordpress_rest_delete_post",
+    "wordpress_rest_bulk_post",
+    "external_export",
+    "cron_automation",
+    "github_actions_trigger",
+    "slack_production_notification",
+    "vps_self_builder_execution",
+    "env_secret_auto_edit"
+  ],
+  "readiness_result": {
+    "description": "Phase 8-6 は最終readiness判定設計のみ。READYでも公開実行は NO_GO 維持。",
+    "result_values": [
+      "PRE_PUBLISH_FINAL_READINESS_READY",
+      "PRE_PUBLISH_FINAL_READINESS_NEEDS_FIX",
+      "PRE_PUBLISH_FINAL_READINESS_BLOCKED"
+    ],
+    "current_result": "PRE_PUBLISH_FINAL_READINESS_READY"
+  },
+  "next_step": "phase8_7_publish_no_go_or_go_decision_design_only",
+  "note": "Design-only phase. Keep publish NO_GO."
+}

@@ -1,0 +1,55 @@
+{
+  "request_version": 1,
+  "phase_id": "LS-NEW-BATCH-2",
+  "batch_id": "example-20260717",
+  "example_mode": true,
+  "observations": [
+    {
+      "item_id": "example-20260717-001",
+      "publisher_official": {
+        "status": "NOT_CHECKED",
+        "checked_at": null,
+        "url": null,
+        "title": null,
+        "volume_label": null,
+        "release_date": null
+      },
+      "stores": {
+        "amazon": {
+          "status": "NOT_CHECKED",
+          "checked_at": null,
+          "url": null,
+          "title": null,
+          "volume_label": null,
+          "release_date": null,
+          "price_jpy": null,
+          "image_url": null
+        },
+        "rakuten_kobo": {
+          "status": "NOT_CHECKED",
+          "checked_at": null,
+          "url": null,
+          "title": null,
+          "volume_label": null,
+          "release_date": null,
+          "price_jpy": null,
+          "image_url": null
+        },
+        "dmm": {
+          "status": "NOT_CHECKED",
+          "checked_at": null,
+          "url": null,
+          "title": null,
+          "volume_label": null,
+          "release_date": null,
+          "price_jpy": null,
+          "image_url": null
+        }
+      },
+      "cross_batch_duplicate_suspected": false,
+      "manual_exclusion": false,
+      "manual_exclusion_reason": null,
+      "notes": null
+    }
+  ]
+}

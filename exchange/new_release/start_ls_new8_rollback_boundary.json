@@ -1,0 +1,13 @@
+{
+  "phase": "LS-NEW-8",
+  "document_type": "START_LS_NEW8_ROLLBACK_BOUNDARY",
+  "status": "LSNEW8_ROLLBACK_BOUNDARY_READY_NO_EXECUTION",
+  "rollback_required_before_later_execution": true,
+  "rollback_scope": [
+    "If a later draft creation succeeds, rollback means moving the created draft to trash or reverting to draft-hold according to later approved policy.",
+    "No rollback action is executed in LS-NEW-8 because no WordPress draft exists yet."
+  ],
+  "target_post_id": null,
+  "rollback_executed": false,
+  "execution_allowed": false
+}

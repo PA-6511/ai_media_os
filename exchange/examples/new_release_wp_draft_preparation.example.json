@@ -1,0 +1,94 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4",
+  "policy_id": "NEW_RELEASE_WP_DRAFT_PREPARATION_POLICY_V1",
+  "package_id": "wp-draft-prep-example-20260717",
+  "batch_id": "example-20260717",
+  "template_contract_id": "POST185_STANDARD_TEMPLATE_V1_FIXED",
+  "source_phase_id": "LS-NEW-BATCH-3",
+  "source_generation_mode": "PREVIEW_ONLY",
+  "item_count": 1,
+  "items": [
+    {
+      "item_id": "example-20260717-001",
+      "preparation_state": "PREPARED_NOT_APPROVED",
+      "source_preview_digest_sha256": "6fad65d92af395ace314a68ef70dad4139cdc2d0eaf87172138e6359a02350d1",
+      "idempotency_key": "83913c6e739b3502a3761486e64d315805e3a7c0b52679fe606779db5a0c24bd",
+      "payload_digest_sha256": "bd48f9ab91d6898a15769ed23e44169122e47375e2d5c1c468551789de49003f",
+      "html_validation": {
+        "link_count": 2,
+        "image_count": 1
+      },
+      "store_button_order": [
+        "amazon",
+        "rakuten_kobo"
+      ],
+      "draft_payload": {
+        "title": "『サンプル作品 第1巻』電子書籍版の発売日・価格情報",
+        "slug": "example-20260717-001",
+        "status": "draft",
+        "excerpt": "『サンプル作品 第1巻』の発売日と電子書籍ストア情報をまとめています。",
+        "content_html": "<div class=\"ebook-new-release-article\" data-template-id=\"POST185_STANDARD_TEMPLATE_V1\">\n  <p class=\"ebook-pr-disclosure\">※本記事にはアフィリエイト広告を含みます。</p>\n  <div class=\"ebook-release-layout\">\n    <figure class=\"ebook-cover-image\">\n      <img src=\"https://thumbnail.image.rakuten.co.jp/test-cover.jpg\" alt=\"サンプル作品 第1巻の書影\" loading=\"lazy\">\n    </figure>\n    <section class=\"ebook-release-summary\">\n      <h2>サンプル作品 第1巻</h2>\n      <ul>\n        <li>発売日:7月17日</li>\n        <li>著者:著者A/著者B</li>\n        <li>出版社:サンプル出版社</li>\n        <li>分類:コミック新刊</li>\n      </ul>\n    </section>\n  </div>\n  <section class=\"ebook-store-section\">\n    <h2>電子書籍ストアの価格・販売ページ</h2>\n    <div class=\"ebook-price-card-grid\">\n<div class=\"ebook-price-card\" data-store=\"amazon\">\n  <p class=\"ebook-store-name\">Amazon Kindle</p>\n  <p class=\"ebook-store-price\">770円</p>\n  <a class=\"ebook-store-button\" href=\"https://www.amazon.co.jp/dp/BATCHTEST001\" target=\"_blank\" rel=\"nofollow sponsored noopener\">Amazon Kindleで確認</a>\n</div>\n<div class=\"ebook-price-card\" data-store=\"rakuten_kobo\">\n  <p class=\"ebook-store-name\">楽天Kobo</p>\n  <p class=\"ebook-store-price\">770円</p>\n  <a class=\"ebook-store-button\" href=\"https://books.rakuten.co.jp/rk/batch-test-001/\" target=\"_blank\" rel=\"nofollow sponsored noopener\">楽天Koboで確認</a>\n</div>\n    </div>\n  </section>\n</div>",
+        "category": {
+          "slug": "comic-new-release",
+          "name": "コミック新刊",
+          "wordpress_category_id": null,
+          "resolution_state": "PENDING_ID_LOOKUP"
+        },
+        "template_id": "POST185_STANDARD_TEMPLATE_V1",
+        "metadata": {
+          "item_id": "example-20260717-001",
+          "batch_id": "example-20260717",
+          "release_date": "2026-07-17",
+          "image_source": "rakuten_kobo",
+          "store_button_order": [
+            "amazon",
+            "rakuten_kobo"
+          ]
+        }
+      },
+      "approval_state": "NOT_APPROVED",
+      "approval_token": null,
+      "future_wordpress_post_id": null,
+      "rollback_plan": {
+        "required": true,
+        "action_if_future_creation_fails": "DO_NOT_RETRY_AUTOMATICALLY",
+        "action_if_future_draft_is_created_then_rejected": "DELETE_OR_TRASH_CREATED_DRAFT_AFTER_HUMAN_REVIEW"
+      },
+      "credential_read_allowed": false,
+      "wordpress_api_call_allowed": false,
+      "wordpress_write_allowed": false,
+      "execution_allowed": false
+    }
+  ],
+  "review": {
+    "review_status": "NOT_REVIEWED",
+    "approved_item_ids": [],
+    "human_approval_issued": false,
+    "approval_token": null,
+    "reviewed_at": null
+  },
+  "approval_gate": {
+    "state": "NOT_APPROVED",
+    "human_approval_required": true,
+    "approval_token_required": true,
+    "execution_allowed": false
+  },
+  "category_resolution": {
+    "required": true,
+    "completed": false,
+    "wordpress_api_lookup_allowed": false
+  },
+  "execution_boundary": {
+    "credential_read_allowed": false,
+    "wordpress_api_call_allowed": false,
+    "wordpress_write_allowed": false,
+    "wordpress_publish_allowed": false,
+    "x_post_allowed": false,
+    "external_api_call_allowed": false,
+    "execution_allowed": false,
+    "production_status": "NO_GO",
+    "safety_state": "PREPARATION_ONLY"
+  },
+  "batch_digest_sha256": "dece294a059a1fdbf3999d11d9f3720a06800ab5f1c462c6c8ad5e1f5e7ee2df"
+}

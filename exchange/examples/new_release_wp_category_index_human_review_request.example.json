@@ -1,0 +1,31 @@
+{
+  "request_version": 1,
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-C",
+  "source_phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-B",
+  "source_result_path": "exchange/logs/ls_new_batch_4g_2e_recovery_b_result.json",
+  "source_result_digest_sha256": "803ae802e7be4ae0255ada6a896837c8a793d5e82ee0c90f9b04efa589fc201d",
+  "source_lock_path": "exchange/locks/ls_new_batch_4g_2e_recovery_b_one_shot.lock.json",
+  "source_lock_digest_sha256": "a27c3fab643ff1a64e63f927a14e892abafa2d4a8526f182bbe9dfacee1b3d07",
+  "approval_path": "exchange/approvals/ls_new_batch_4g_2e_recovery_c_human_review_approval.json",
+  "approval_digest_sha256": "7f2f54397507f27240256ecb82d98a43d537ba6a629ff07ca98e432087dc3375",
+  "operation_mode": "HUMAN_CATEGORY_SELECTION_EVIDENCE_ONLY",
+  "selected_category": {
+    "id": 10,
+    "name": "最新巻",
+    "slug": "%e6%9c%80%e6%96%b0%e5%b7%bb",
+    "purpose": "コミック新刊・新巻配信開始記事",
+    "source_category_digest_sha256": "0a152459f2cf4e4908bc5a46df28923b7e3a64c8165f1c50d13a4195f66f3f82"
+  },
+  "human_selection_recording_requested": true,
+  "automatic_category_selection_requested": false,
+  "automatic_category_mapping_requested": false,
+  "category_mapping_fixation_requested": false,
+  "production_category_id_payload_injection_requested": false,
+  "wordpress_category_creation_requested": false,
+  "wordpress_write_requested": false,
+  "credential_file_read_requested": false,
+  "network_connection_requested": false,
+  "http_request_requested": false,
+  "production_payload_modification_requested": false,
+  "execution_requested": false
+}

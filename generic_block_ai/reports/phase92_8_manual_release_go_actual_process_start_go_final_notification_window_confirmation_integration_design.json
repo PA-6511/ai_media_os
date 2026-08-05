@@ -1,0 +1,17 @@
+{
+  "_meta": {
+    "phase": 92,
+    "sub_phase": 8,
+    "status": "PASS_DESIGN_ONLY",
+    "reports_only": true,
+    "layer": "integration_and_final",
+    "title": "manual_release_go / actual_process_start_go 最終通知ウィンドウ確認統合設計"
+  },
+  "governance": {
+    "production_status": "NO_GO",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "execution_start": "NO_GO",
+    "changed_area": "reports only"
+  }
+}

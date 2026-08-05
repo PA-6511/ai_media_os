@@ -1,0 +1,102 @@
+{
+  "phase_id": "28-7",
+  "phase_name": "Pre-Production Reflection Sealing and Non-Executable Boundary Integrated Final Judgment Report Design",
+  "phase_japanese_name": "本番反映前封印・実行不可境界の統合最終判定レポート設計",
+  "purpose": "Design integrated final judgment report synthesizing all Phase 28-1 through 28-6 results before any execution-start authorization.",
+  "layer": "pre_production_reflection_final_sealing_judgment_layer",
+  "design_category": "reports_only",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "operation_transition_go_authorization": "NOT_GRANTED",
+    "production_reflection_go_authorization": "NOT_GRANTED",
+    "execution_start_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "phase_28_7_scope": {
+    "scope_1_input_contract": {
+      "scope_id": "INPUT_CONTRACT",
+      "required_inputs": {
+        "phase28_1_to_28_3_status": "PASS_DESIGN_ONLY",
+        "phase28_4_to_28_6_status": "PASS_DESIGN_ONLY"
+      }
+    },
+    "scope_2_integrated_judgment_rules": {
+      "scope_id": "INTEGRATED_JUDGMENT_RULES",
+      "rules": {
+        "rule_PIJ1": "Collect all sealing and non-executable boundary outcomes from Phase 28-2 and 28-4",
+        "rule_PIJ2": "Verify all evidence locks are LOCK_CONFIRMED",
+        "rule_PIJ3": "Count unresolved_violations from Phase 28-5; if > 0 then NO_GO",
+        "rule_PIJ4": "Check Phase 28-6 abort conditions; if any TRIGGERED then ABORT",
+        "rule_PIJ5": "If all checks PASS and no violations, execution_start_status = GO_CANDIDATE",
+        "rule_PIJ6": "If any check FAIL or violations exist or ABORT triggered, execution_start_status = NO_GO"
+      }
+    },
+    "scope_3_report_structure": {
+      "scope_id": "REPORT_STRUCTURE",
+      "sections": {
+        "section_1_header": {
+          "report_id": "PHASE28_7_INTEGRATED_FINAL_JUDGMENT_<UTC_TIMESTAMP>",
+          "report_type": "pre_production_reflection_sealing_and_non_executable_boundary_integrated_final_judgment",
+          "generated_at_utc": "RFC3339",
+          "generated_by": "authority_identifier"
+        },
+        "section_2_phase28_4_lock_summary": {
+          "phase28_4_lock_count": "integer",
+          "phase28_4_lock_confirmed_count": "integer",
+          "phase28_4_evidence_integrity": "PASS | FAIL"
+        },
+        "section_3_phase28_5_violation_summary": {
+          "unresolved_violations_count": "integer",
+          "violation_status": "CLEAN | UNRESOLVED"
+        },
+        "section_4_phase28_6_abort_summary": {
+          "abort_condition_triggered": "TRIGGERED | NOT_TRIGGERED",
+          "abort_reason_codes": [
+            "EA1",
+            "EA2",
+            "EA3",
+            "EA4",
+            "EA5",
+            "EA6",
+            "EA7",
+            "EA8"
+          ]
+        },
+        "section_5_integrated_judgment": {
+          "integrated_judgment": "GO_CANDIDATE | NO_GO",
+          "production_status": "GO | NO_GO",
+          "operation_transition_go_authorization": "GRANTED | NOT_GRANTED",
+          "production_reflection_go_authorization": "GRANTED | NOT_GRANTED",
+          "execution_start_go_authorization": "GRANTED | NOT_GRANTED"
+        }
+      }
+    }
+  },
+  "phase_28_7_governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "state_invariants": {
+      "app_implementation_status": "NO_GO",
+      "tests_implementation_status": "NO_GO",
+      "production_status": "NO_GO",
+      "operation_transition_go_authorization": "NOT_GRANTED",
+      "production_reflection_go_authorization": "NOT_GRANTED",
+      "execution_start_go_authorization": "NOT_GRANTED",
+      "changed_area": "reports only"
+    }
+  }
+}

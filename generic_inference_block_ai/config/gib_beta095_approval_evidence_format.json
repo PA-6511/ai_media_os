@@ -1,0 +1,28 @@
+{
+  "schema_version": "gib.beta095.approval_evidence_format.v0.1",
+  "beta_version": "beta0.95",
+  "status": "DRY_RUN_APPROVAL_EVIDENCE_FORMAT_ONLY",
+  "production_status": "NO_GO",
+  "manual_approval_required": true,
+  "real_llm_call_allowed": false,
+  "execution_allowed": false,
+  "generate_call_allowed": false,
+  "chat_call_allowed": false,
+  "approval_evidence": {
+    "token_required": true,
+    "token_regex": "^APR-[0-9]{8}-[A-Z0-9]{6}$",
+    "token_sample": "APR-20260611-AB12CD",
+    "change_id_required": true,
+    "change_id_regex": "^CHG-[0-9]{4}-[0-9]{4,6}$",
+    "change_id_sample": "CHG-2026-000123",
+    "secret_value_handling_allowed": false
+  },
+  "artifact_policy": {
+    "report_write_scope": ["generic_inference_block_ai/reports"],
+    "reports_only": true
+  },
+  "notes": [
+    "Format validation only. No real approval secret is collected.",
+    "No runtime call or execution is allowed in beta0.95."
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "scenarios": [
+    "credential_missing",
+    "wordpress_auth_failed",
+    "wordpress_timeout",
+    "wordpress_5xx",
+    "duplicate_item_detected",
+    "missing_affiliate_disclosure",
+    "pr_label_missing",
+    "cta_policy_failed",
+    "one_shot_lock_exists",
+    "unexpected_api_write_attempt",
+    "secret_output_detected",
+    "post_creation_uncertain",
+    "evidence_generation_failed"
+  ]
+}

@@ -158,3 +158,7 @@ NOTE: draft 生成・投稿は `enqueue_sale_candidates.py` の外で行う。
 - 47-B の DRY_RUN 正常動作が 3日連続確認済み
 - Sheets 読み書き疎通確認済み（src/sheets.py が正常動作）
 - 本設計書（本ファイル）がレビュー済み
+
+実績（2026-05-16 確認）:
+- 47-B 3日連続OK（2026-05-14 / 2026-05-15 / 2026-05-16）
+- `python3 tools/diagnose_sheets.py` 実行結果: 接続・ヘッダー・必須列・追記確認すべて OK

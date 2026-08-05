@@ -1,0 +1,50 @@
+{
+  "phase": "8-9G",
+  "mode": "WORDPRESS_401_ROOT_CAUSE_OPERATOR_CHECKLIST",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "design_only": true,
+  "human_approval_required": true,
+  "human_approved": true,
+  "retry_consumed": true,
+  "retry_allowed": false,
+  "retry_limit": 0,
+  "freeze_required": true,
+  "execution_allowed": false,
+  "retry_limit_consumed": true,
+  "wordpress_api_call_allowed": false,
+  "wordpress_api_call_attempted": false,
+  "wordpress_write_allowed": false,
+  "wordpress_write_executed": false,
+  "wordpress_draft_created": false,
+  "publish_allowed": false,
+  "update_allowed": false,
+  "delete_allowed": false,
+  "export_allowed": false,
+  "unlock_in_this_phase": false,
+  "secret_values_included": false,
+  "operator_checklist": {
+    "base_url_public_site": true,
+    "username_is_login_username": true,
+    "app_password_is_application_password": true,
+    "user_has_editor_or_higher_role": true,
+    "rest_api_or_application_password_not_restricted": true,
+    "server_side_basic_auth_or_rest_block_not_active": true
+  },
+  "investigation_focus": [
+    "regenerate application password",
+    "confirm login username",
+    "confirm editor-or-higher role",
+    "confirm public site base URL",
+    "confirm security plugin/WAF/REST restrictions",
+    "confirm server-side auth / REST API not blocked"
+  ],
+  "decision": "APPROVE_401_ROOT_CAUSE_OPERATOR_CHECKLIST_ONLY",
+  "allowed_decisions": [
+    "APPROVE_401_ROOT_CAUSE_OPERATOR_CHECKLIST_ONLY",
+    "REQUEST_FIX",
+    "REJECT",
+    "ABORT"
+  ],
+  "operator_note": "This checklist is design-only and does not call WordPress API or retry the draft creation."
+}

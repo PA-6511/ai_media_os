@@ -1,0 +1,51 @@
+{
+  "phase": "Phase 8-31",
+  "phase_name": "Publish GO/NO-GO Decision Gate Design Only / No Execution",
+  "status": "PHASE8_31_PUBLISH_GO_NO_GO_GATE_DESIGN_ONLY_READY",
+  "target_post_id": 115,
+  "production_status": "NO_PUBLISH_PAUSE",
+  "design_only": true,
+  "go_conditions": [
+    "explicit_human_publish_go=true",
+    "pre_publish_business_content_checklist_all_true",
+    "post_status_is_draft_before_publish",
+    "no_new_safety_violations",
+    "final_link_and_legal_review_completed"
+  ],
+  "current_gate_state": {
+    "explicit_human_publish_go": false,
+    "pre_publish_business_content_checklist_all_true": false,
+    "post_status_is_draft_before_publish": true,
+    "no_new_safety_violations": true,
+    "final_link_and_legal_review_completed": false
+  },
+  "decision_now": "NO_GO_KEEP_PAUSE",
+  "publish_allowed": false,
+  "publish_executed": false,
+  "delete_allowed": false,
+  "delete_executed": false,
+  "wordpress_api_call_attempted": false,
+  "wordpress_write_executed": false,
+  "wordpress_draft_updated": false,
+  "secret_values_output": false,
+  "secret_values_written": false,
+  "errors": [],
+  "warnings": [
+    "this gate is design-only; publish execution must be in a separate explicit phase"
+  ],
+  "safety_violations": [],
+  "evidence_summary": [
+    {
+      "path": "exchange/logs/phase8_29_publish_readiness_design_only_no_execution_post_115_result.json",
+      "exists": true,
+      "status": "PHASE8_29_PUBLISH_READINESS_DESIGN_ONLY_NO_EXECUTION_READY"
+    },
+    {
+      "path": "exchange/logs/phase8_30_pre_publish_business_content_review_checklist_design_only_post_115_result.json",
+      "exists": true,
+      "status": "PHASE8_30_PRE_PUBLISH_BUSINESS_CONTENT_CHECKLIST_DESIGN_ONLY_READY"
+    }
+  ],
+  "next_step": "KEEP_NO_PUBLISH_PAUSE_UNTIL_EXPLICIT_HUMAN_GO_AND_CHECKLIST_COMPLETE",
+  "checked_at": "2026-06-09T13:55:18.318790+00:00"
+}

@@ -1,0 +1,34 @@
+{
+  "schema_version": "ir14_audit_log_integrity_v1",
+  "phase": "IR14",
+  "generated_at": "2026-05-23T14:58:23.088975+00:00",
+  "source_task_id": "ir14_live_trial",
+  "validation_result": "PASS",
+  "validation_failed_checks": [],
+  "validation_warnings": [],
+  "summary": {
+    "queue_log_entries": 4,
+    "manual_log_entries": 4,
+    "expected_queue_items": 4,
+    "missing_queue_items": 0,
+    "abort_tamper_checks": "completed",
+    "queue_manual_alignment": "checked"
+  },
+  "artifacts": {
+    "ir12_audit_log": "generic_block_ai/reports/ir12_core_decision_queue_audit.log",
+    "ir13_audit_log": "generic_block_ai/reports/ir13_manual_approval_audit.log",
+    "ir12_queue_reports": [
+      "generic_block_ai/reports/ir12_core_decision_queue_ir12_abort_live_trial.json",
+      "generic_block_ai/reports/ir12_core_decision_queue_ir12_fail_live_trial.json",
+      "generic_block_ai/reports/ir12_core_decision_queue_ir12_pass_live_trial.json",
+      "generic_block_ai/reports/ir12_core_decision_queue_ir12_warn_live_trial.json"
+    ]
+  },
+  "safeguards": {
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "production_release": false
+  }
+}

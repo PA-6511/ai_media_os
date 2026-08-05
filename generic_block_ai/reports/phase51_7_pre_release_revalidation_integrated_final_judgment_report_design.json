@@ -1,0 +1,34 @@
+{
+  "_meta": {
+    "phase": "51-7",
+    "phase_name": "リリース直前再検証層",
+    "layer": "統合最終判定層 (integrated final judgment layer)",
+    "title": "リリース直前再検証の統合最終判定レポート設計",
+    "created": "2026-05-15",
+    "author": "governance-framework",
+    "status": "PASS_DESIGN_ONLY",
+    "reports_only": true
+  },
+  "scope": "Phase 51-2/51-3 で再検証された manual_release_go / actual_process_start_go の最終解除候補について，リリース直前再検証の統合最終判定を設計層でレポートする。判定内容：(1) 各解除候補の再検証結果（NOT_GRANTED 維持 or 差し戻し），(2) 証跡・監査記録の整合性，(3) production_status = 'NO_GO' の維持確認，(4) Phase 51-8 以降への進行条件。",
+  "governance": {
+    "production_status": "NO_GO",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "report": {
+    "description": "Phase 51-7 では，Phase 51-2/51-3 で再検証された manual_release_go / actual_process_start_go の最終解除候補について，リリース直前再検証の統合最終判定を設計層でレポートする。(1) 各解除候補の再検証結果（NOT_GRANTED 維持 or 差し戻し），(2) 証跡・監査記録の整合性，(3) production_status = 'NO_GO' の維持確認，(4) Phase 51-8 以降への進行条件。これらは全て reports-only で実装され，実処理開始許可は含まれない。",
+    "invariants": [
+      "NO_GO 維持：統合最終判定時点で production_status = 'NO_GO' を維持",
+      "NOT_GRANTED 維持：manual_release_go / actual_process_start_go の NOT_GRANTED 状態を再確認",
+      "証跡・監査記録整合性：証跡・監査記録の整合性を厳格に検証",
+      "reports only：全統合最終判定は設計層の報告書形式で実施"
+    ],
+    "actions": [],
+    "notes": [
+      "Phase 51-7 は設計層のみで実装される（reports-only）",
+      "実処理開始許可は含まれない",
+      "統合最終判定は Phase 51-8 以降の証跡固定・完了宣言の前提"
+    ]
+  }
+}

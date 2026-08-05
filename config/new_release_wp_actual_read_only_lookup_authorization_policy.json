@@ -1,0 +1,136 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-2A",
+  "policy_id": "NEW_RELEASE_WP_ACTUAL_READ_ONLY_LOOKUP_AUTHORIZATION_POLICY_V1",
+  "source_phase_id": "LS-NEW-BATCH-4G-1",
+  "template_contract_id": "POST185_STANDARD_TEMPLATE_V1_FIXED",
+  "operation_mode": "ONE_SHOT_ACTUAL_READ_ONLY_LOOKUP_AUTHORIZATION_GATE",
+  "requested_approval": {
+    "approval_scope_id": "ONE_SHOT_WORDPRESS_CATEGORY_LOOKUP_COMIC_NEW_RELEASE",
+    "requested_approval_label": "APPROVED_FOR_ONE_SHOT_READ_ONLY_CATEGORY_LOOKUP_ONLY",
+    "approval_label_issued": false,
+    "approval_label_consumed": false,
+    "actual_go_decision_issued": false,
+    "approval_token_generation_allowed": false,
+    "approval_token_present": false,
+    "human_explicit_approval_required": true
+  },
+  "credential_contract": {
+    "credential_file_path": "/etc/ai-media-os/wordpress-readonly-category.env",
+    "required_keys": [
+      "WORDPRESS_BASE_URL",
+      "WORDPRESS_READONLY_USERNAME",
+      "WORDPRESS_READONLY_APP_PASSWORD"
+    ],
+    "credential_source": "VERIFIED_PRODUCTION_CREDENTIAL_FILE",
+    "environment_export_allowed": false,
+    "credential_values_output_allowed": false,
+    "credential_value_lengths_output_allowed": false,
+    "credential_value_hashes_output_allowed": false,
+    "credential_value_prefixes_output_allowed": false,
+    "credential_value_suffixes_output_allowed": false,
+    "authorization_header_output_allowed": false
+  },
+  "one_shot_http_scope": {
+    "maximum_http_requests": 1,
+    "maximum_attempts": 1,
+    "retry_allowed": false,
+    "allowed_method": "GET",
+    "allowed_rest_path": "/wp-json/wp/v2/categories",
+    "allowed_query_parameters": {
+      "slug": "comic-new-release",
+      "per_page": 100,
+      "_fields": "id,slug,name,count"
+    },
+    "request_body_allowed": false,
+    "redirect_follow_allowed": false,
+    "cross_origin_redirect_allowed": false,
+    "proxy_use_allowed": false,
+    "timeout_seconds": 15,
+    "maximum_response_bytes": 1048576,
+    "tls_verification_required": true,
+    "https_required": true,
+    "allowed_http_statuses": [
+      200
+    ],
+    "required_content_type_prefix": "application/json"
+  },
+  "target_category": {
+    "category_slug": "comic-new-release",
+    "category_name": "コミック新刊",
+    "exact_slug_match_required": true,
+    "exact_name_match_required": true,
+    "single_result_required": true,
+    "positive_integer_category_id_required": true
+  },
+  "fixture_isolation": {
+    "fixture_category_id": 980001,
+    "fixture_category_id_authorized": false,
+    "fixture_category_id_production_usable": false,
+    "fixture_category_id_payload_injection_allowed": false,
+    "fixture_category_id_discard_required": true
+  },
+  "actual_result_boundary": {
+    "production_category_id_candidate_recording_allowed_after_success": true,
+    "production_category_id_payload_injection_allowed": false,
+    "production_category_id_automatic_use_allowed": false,
+    "human_result_verification_required": true,
+    "category_mapping_fixation_allowed": false,
+    "wordpress_draft_preparation_allowed": false,
+    "wordpress_draft_creation_allowed": false
+  },
+  "failure_behavior": {
+    "fail_closed": true,
+    "partial_success_allowed": false,
+    "retry_after_failure_allowed_in_same_run": false,
+    "credential_failure_must_block": true,
+    "dns_failure_must_block": true,
+    "tls_failure_must_block": true,
+    "timeout_must_block": true,
+    "redirect_must_block": true,
+    "unexpected_status_must_block": true,
+    "invalid_content_type_must_block": true,
+    "oversized_response_must_block": true,
+    "invalid_json_must_block": true,
+    "missing_category_must_block": true,
+    "duplicate_category_must_block": true,
+    "name_mismatch_must_block": true,
+    "invalid_category_id_must_block": true
+  },
+  "current_phase_access": {
+    "credential_file_metadata_read_allowed": false,
+    "credential_file_content_read_allowed": false,
+    "environment_variable_read_allowed": false,
+    "authorization_header_construction_allowed": false,
+    "dns_resolution_allowed": false,
+    "network_connection_allowed": false,
+    "tls_connection_allowed": false,
+    "http_request_allowed": false,
+    "wordpress_response_read_allowed": false
+  },
+  "execution_boundary": {
+    "credential_value_output_allowed": false,
+    "environment_variable_export_allowed": false,
+    "dns_resolution_allowed": false,
+    "network_connection_allowed": false,
+    "tls_connection_allowed": false,
+    "wordpress_api_call_allowed": false,
+    "wordpress_category_lookup_allowed": false,
+    "wordpress_post_read_allowed": false,
+    "wordpress_media_read_allowed": false,
+    "wordpress_write_allowed": false,
+    "wordpress_publish_allowed": false,
+    "x_api_call_allowed": false,
+    "external_api_call_allowed": false,
+    "execution_approval_issued": false,
+    "execution_allowed": false,
+    "production_status": "NO_GO",
+    "safety_state": "AWAITING_EXPLICIT_ONE_SHOT_LOOKUP_APPROVAL"
+  },
+  "next_phase": {
+    "phase_id": "LS-NEW-BATCH-4G-2B",
+    "name": "One-Shot Actual Read-Only Category Lookup",
+    "requires_exact_approval_label": "APPROVED_FOR_ONE_SHOT_READ_ONLY_CATEGORY_LOOKUP_ONLY",
+    "execution_allowed": false
+  }
+}

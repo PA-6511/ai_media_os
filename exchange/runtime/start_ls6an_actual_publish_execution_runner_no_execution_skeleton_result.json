@@ -1,0 +1,18 @@
+{
+  "phase": "LS-6AN",
+  "document_type": "ACTUAL_PUBLISH_EXECUTION_RUNNER_NO_EXECUTION_SKELETON",
+  "status": "LS6AN_ACTUAL_PUBLISH_EXECUTION_RUNNER_NO_EXECUTION_SKELETON_READY",
+  "blueprint": {
+    "runner_name": "start_ls6an_actual_publish_execution_runner_no_execution_skeleton",
+    "execution_enabled": false,
+    "network_call_enabled": false,
+    "credential_read_enabled": false,
+    "publish_enabled": false,
+    "wordpress_write_enabled": false,
+    "authorization_header_enabled": false,
+    "requires_explicit_execute_now": true,
+    "requires_separate_publish_execution_phase": true,
+    "publish_execution_still_blocked": true
+  },
+  "generated_at": "2026-07-04T08:05:24.079267+00:00"
+}

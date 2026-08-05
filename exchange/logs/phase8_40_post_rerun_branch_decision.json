@@ -1,0 +1,36 @@
+{
+  "phase": "Phase 8-40",
+  "status": "BRANCH_TO_PHASE8_41_MANUAL_DRAFT_INSPECTION",
+  "production_status": "NO_GO",
+  "execution": "DRY_RUN",
+  "execution_allowed": false,
+  "actual_go_decision_issued": false,
+  "wordpress_api_call_allowed": false,
+  "wordpress_write_executed": false,
+  "wordpress_draft_created": false,
+  "publish_allowed": false,
+  "secret_values_output": false,
+  "branch_decision_is_execution_permission": false,
+  "commands_executed_in_this_phase": false,
+  "phase8_6_to_8_10_executed": false,
+  "target_item_count": 1,
+  "rerun_evidence_status": "RERUN_DRAFT_VERIFIED_PENDING_HUMAN_REVIEW",
+  "secret_values_written": false,
+  "evidence_summary": [
+    {
+      "path": "exchange/logs/phase8_39_manual_rerun_command_bundle.json",
+      "exists": true,
+      "status": "MANUAL_RERUN_COMMAND_BUNDLE_READY_BUT_NOT_EXECUTED"
+    },
+    {
+      "path": "exchange/logs/phase8_10_post_rerun_closure_report.json",
+      "exists": true,
+      "status": "RERUN_DRAFT_VERIFIED_PENDING_HUMAN_REVIEW"
+    }
+  ],
+  "errors": [],
+  "warnings": [],
+  "safety_violations": [],
+  "allowed_next_step": "Phase 8-41 manual inspection and draft evidence review",
+  "checked_at": "2026-06-14T00:23:03.477399+00:00"
+}

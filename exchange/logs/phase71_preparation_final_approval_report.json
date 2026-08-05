@@ -1,0 +1,138 @@
+{
+  "package_type": "phase71_preparation_final_approval_report",
+  "phase": "Phase 71",
+  "title": "Phase 71 Limited Dry-Run Preparation Final Approval Report",
+  "status": "PASS",
+  "final_approval_status": "PASS",
+  "source_report": "exchange/logs/phase70_preparation_final_review_report.json",
+  "source_report_type": "phase70_preparation_final_review_report",
+  "mode": "DRY_RUN",
+  "human_approval_required": true,
+  "can_execute": false,
+  "execute_allowed": false,
+  "max_files_to_execute": 1,
+  "sandbox_scope_required": true,
+  "single_file_scope_required": true,
+  "final_approval_package": {
+    "package_scope": "limited_dry_run_preparation_final_approval_package_only",
+    "does_not_execute": true,
+    "final_approval_target": "phase70_preparation_final_review_report",
+    "status": "PREPARATION_FINAL_APPROVAL_PACKAGE_READY"
+  },
+  "final_approval_controls": {
+    "controls_required": true,
+    "dry_run_required": true,
+    "human_approval_required": true,
+    "sandbox_scope_required": true,
+    "single_file_scope_required": true,
+    "does_not_execute": true,
+    "status": "PREPARATION_FINAL_APPROVAL_CONTROLS_READY"
+  },
+  "final_approval_evidence_checks": {
+    "evidence_required": true,
+    "required_evidence": [
+      "phase66_go_no_go_report_reference",
+      "preparation_scope_statement",
+      "target_files_manifest",
+      "sandbox_scope_confirmation",
+      "single_file_scope_confirmation",
+      "dry_run_mode_confirmation",
+      "non_execution_confirmation"
+    ],
+    "missing_evidence_blocks_progress": true,
+    "does_not_execute": true,
+    "status": "PREPARATION_FINAL_APPROVAL_EVIDENCE_CHECKS_READY"
+  },
+  "manual_final_approval_gate": {
+    "gate_required": true,
+    "allowed_decisions": [
+      "ALLOW_PHASE72_PLANNING_ONLY",
+      "REJECT"
+    ],
+    "does_not_execute": true,
+    "status": "MANUAL_PREPARATION_FINAL_APPROVAL_GATE_READY"
+  },
+  "phase72_readiness": {
+    "readiness_status": "READY_FOR_PHASE72_PLANNING_ONLY",
+    "planning_package_scope": "limited_dry_run_preparation_planning_package_only",
+    "human_approval_required": true,
+    "can_execute": false,
+    "execute_allowed": false
+  },
+  "production_status": "NO_GO",
+  "checks": [
+    {
+      "check": "input_phase=Phase 70",
+      "passed": true,
+      "actual": "Phase 70"
+    },
+    {
+      "check": "input_package_type=phase70_preparation_final_review_report",
+      "passed": true,
+      "actual": "phase70_preparation_final_review_report"
+    },
+    {
+      "check": "input_status=PASS",
+      "passed": true,
+      "actual": "PASS"
+    },
+    {
+      "check": "dry_run_fixed=true",
+      "passed": true,
+      "actual": "DRY_RUN"
+    },
+    {
+      "check": "human_approval_required=true",
+      "passed": true,
+      "actual": true
+    },
+    {
+      "check": "can_execute=false",
+      "passed": true,
+      "actual": false
+    },
+    {
+      "check": "execute_allowed=false",
+      "passed": true,
+      "actual": false
+    },
+    {
+      "check": "max_files_to_execute=1",
+      "passed": true,
+      "actual": 1
+    },
+    {
+      "check": "sandbox_scope_required=true",
+      "passed": true,
+      "actual": true
+    },
+    {
+      "check": "single_file_scope_required=true",
+      "passed": true,
+      "actual": true
+    },
+    {
+      "check": "final_approval_controls_does_not_execute=true",
+      "passed": true,
+      "actual": true
+    },
+    {
+      "check": "final_approval_evidence_checks_does_not_execute=true",
+      "passed": true,
+      "actual": true
+    },
+    {
+      "check": "manual_final_approval_gate_does_not_execute=true",
+      "passed": true,
+      "actual": true
+    },
+    {
+      "check": "phase71_readiness_status=READY_FOR_PHASE71_PLANNING_ONLY",
+      "passed": true,
+      "actual": "READY_FOR_PHASE71_PLANNING_ONLY"
+    }
+  ],
+  "all_checks_passed": true,
+  "next_step": "decide_whether_to_start_phase72_limited_dry_run_preparation_planning_package",
+  "created_at": "2026-05-09T14:42:41.352362+00:00"
+}

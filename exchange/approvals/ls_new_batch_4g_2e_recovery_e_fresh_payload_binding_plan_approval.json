@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-E",
+  "approval_id": "ls-new-batch-4g-2e-recovery-e-fresh-payload-binding-plan",
+  "approval_label": "FRESH_PAYLOAD_BINDING_PLAN_APPROVED",
+  "approved_by": "HUMAN_OPERATOR",
+  "human_explicit_approval": true,
+  "approved_at_utc": "2026-07-10T16:30:27.917453+00:00",
+  "approved_plan": {
+    "legacy_post185_lineage_excluded": true,
+    "legacy_title": "月曜日のたわわ",
+    "legacy_volume": "第15巻",
+    "legacy_wordpress_post_id": 185,
+    "future_source_root": "exchange/payloads/new_release/fresh",
+    "future_destination_root": "exchange/payloads/new_release/bound",
+    "binding_operation": "COPY_SOURCE_AND_SET_CATEGORIES_ONLY",
+    "only_mutable_json_pointer": "/categories",
+    "categories_after_binding": [
+      10
+    ],
+    "production_category_id": 10,
+    "production_category_name": "最新巻",
+    "source_overwrite_allowed": false,
+    "payload_creation_approved": false,
+    "payload_binding_approved": false,
+    "category_injection_approved": false,
+    "wordpress_access_approved": false,
+    "wordpress_write_approved": false
+  },
+  "source_result_digest_sha256": "8414f2abe0825eab2f6408327a2fc739297f35cdda3a0287de1301ba9bd90e20",
+  "source_mapping_file_sha256": "19c2598d65d9acd817778deae8c661bc4c6ea33cc2a4d2686d33ec671764c4c0",
+  "source_mapping_artifact_digest_sha256": "ff0bca22637eb271edde817d04d7a6288e6620edd3183beb9e7d5f3829019b3e",
+  "source_mapping_approval_digest_sha256": "7e0deabf49bece6b85fb08c3a3f2e8137e6ab0cce0737f9e08db564b3939587c",
+  "legacy_inspection_evidence": [
+    {
+      "path": "exchange/logs/start_ls_new15_lite_draft_payload_final_confirm.json",
+      "file_sha256": "da041111bc88fe335b3e215f0f3b4ce587274f5af74cf7107f673e977c12f65e",
+      "independent_payload_path_found": false,
+      "payload_body_found": false,
+      "categories_payload_found": false,
+      "eligible_as_fresh_payload": false,
+      "modification_allowed": false
+    },
+    {
+      "path": "exchange/logs/start_ls_new6_wp_draft_payload_prep_result.json",
+      "file_sha256": "d7b1fcb62c24332db6398a245186367c9209b1663d734da44bda80f292b07981",
+      "independent_payload_path_found": false,
+      "payload_body_found": false,
+      "categories_payload_found": false,
+      "eligible_as_fresh_payload": false,
+      "modification_allowed": false
+    },
+    {
+      "path": "exchange/logs/start_ls_new4_purchase_navigation_payload_dry_run_result.json",
+      "file_sha256": "03fe539f23d374b86948309e3fd6066784eb70d60fe3a54c02f5003a7f0bef3f",
+      "independent_payload_path_found": false,
+      "payload_body_found": false,
+      "categories_payload_found": false,
+      "eligible_as_fresh_payload": false,
+      "modification_allowed": false
+    }
+  ],
+  "approval_reuse_allowed": false,
+  "plan_change_requires_new_human_approval": true,
+  "execution_allowed": false,
+  "approval_evidence_digest_sha256": "43b2e96777df4e0721cb8c033961a6f907623cff889c9429da06dbe1e9d12e83"
+}

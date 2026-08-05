@@ -1,0 +1,28 @@
+{
+  "phase_id": "PHASE_S2",
+  "phase_name": "security_api_permission_map",
+  "status": "DESIGN_ONLY",
+  "openai_permissions": {
+    "monitor": "allowed",
+    "report": "allowed",
+    "post_write": "denied",
+    "update_write": "denied",
+    "delete_write": "denied"
+  },
+  "wordpress_permissions": {
+    "read": "allowed",
+    "draft_create": "denied",
+    "publish": "denied",
+    "update": "denied",
+    "delete": "denied"
+  },
+  "slack_permissions": {
+    "dry_run_notice": "allowed",
+    "live_notice": "denied"
+  },
+  "permission_scope_isolation_required": true,
+  "shared_token_across_roles_forbidden": true,
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "human_approval_required": true
+}

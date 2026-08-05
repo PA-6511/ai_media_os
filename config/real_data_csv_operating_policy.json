@@ -1,0 +1,53 @@
+{
+  "phase": "SFB-12",
+  "phase_name": "Real-Data CSV Operating Runbook Lock",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "sfb_hold_fixed": true,
+  "execution_allowed": false,
+  "wordpress_write_allowed": false,
+  "approval_token_consumption_allowed": false,
+  "required_files": [
+    "docs/runbooks/real_data_csv_import_runbook.md",
+    "docs/runbooks/sfb_v1_trial_operation_checklist.md"
+  ],
+  "required_runbook_sections": [
+    "目的",
+    "固定前提",
+    "CSV投入前チェック",
+    "CSV列ルール",
+    "NGデータ例",
+    "validate実行手順",
+    "import実行手順（運用固定のみ）",
+    "backup確認",
+    "SFB-1〜SFB-10B 再実行手順（必要時）",
+    "NO_GO維持確認",
+    "rollback手順",
+    "次へ進めてよい条件",
+    "止める条件",
+    "最終記録フォーマット"
+  ],
+  "required_checklist_items": [
+    "SFB-1",
+    "SFB-2",
+    "SFB-3",
+    "SFB-4",
+    "SFB-5",
+    "SFB-6",
+    "SFB-7",
+    "SFB-8",
+    "SFB-9",
+    "SFB-10A",
+    "SFB-10B",
+    "NO_GO"
+  ],
+  "stop_conditions": [
+    "required_columns_missing",
+    "duplicate_keys_detected",
+    "invalid_data_type_detected",
+    "no_go_invariant_violated",
+    "rollback_unavailable",
+    "review_not_completed"
+  ]
+}

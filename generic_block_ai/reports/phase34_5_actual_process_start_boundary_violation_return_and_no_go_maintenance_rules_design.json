@@ -1,0 +1,90 @@
+{
+  "phase_id": "34-5",
+  "phase_name": "Actual Process Start Boundary Violation Return and NO-GO Maintenance Rules Design",
+  "phase_japanese_name": "実処理開始GO不可時の差し戻し・NO_GO維持ルール設計",
+  "purpose": "Design return and NO_GO maintenance rules for actual-process-start boundary violations.",
+  "layer": "actual_process_start_go_actual_measurement_layer",
+  "design_category": "reports_only",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "operation_transition_go_authorization": "NOT_GRANTED",
+    "production_reflection_go_authorization": "NOT_GRANTED",
+    "freeze_release_go_authorization": "NOT_GRANTED",
+    "execution_start_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "phase_34_5_scope": {
+    "scope_1_input_contract": {
+      "scope_id": "INPUT_CONTRACT",
+      "required_inputs": {
+        "phase34_4_evidence_lock_status": "LOCKED | UNLOCK_FAILED"
+      }
+    },
+    "scope_2_return_and_no_go_maintenance_rules": {
+      "scope_id": "RETURN_AND_NO_GO_MAINTENANCE_RULES",
+      "rules": {
+        "rule_P34N1": "If actual_process_start_status from Phase 34-3 is NO_GO, do not proceed to Phase 35",
+        "rule_P34N2": "Identify root causes of the NO_GO judgment",
+        "rule_P34N3": "Return evidence to requester with detailed explanation",
+        "rule_P34N4": "Establish remediation plan for the identified NO_GO causes",
+        "rule_P34N5": "Maintain NO_GO state and actual_process_start_go_authorization = NOT_GRANTED until remediation complete"
+      }
+    },
+    "scope_3_report_structure": {
+      "scope_id": "REPORT_STRUCTURE",
+      "sections": {
+        "section_1_header": {
+          "report_id": "PHASE34_5_NO_GO_MAINTENANCE_<UTC_TIMESTAMP>",
+          "report_type": "actual_process_start_boundary_violation_return_and_no_go_maintenance",
+          "generated_at_utc": "RFC3339",
+          "generated_by": "authority_identifier"
+        },
+        "section_2_violation_status": {
+          "boundary_violation_detected": "YES | NO",
+          "root_cause_identified": "YES | NO",
+          "remediation_plan_established": "YES | NO"
+        },
+        "section_3_state_maintenance": {
+          "no_go_state_maintained": "YES | NO",
+          "production_status": "NO_GO",
+          "operation_transition_go_authorization": "NOT_GRANTED",
+          "production_reflection_go_authorization": "NOT_GRANTED",
+          "freeze_release_go_authorization": "NOT_GRANTED",
+          "execution_start_go_authorization": "NOT_GRANTED",
+          "actual_process_start_go_authorization": "NOT_GRANTED"
+        }
+      }
+    }
+  },
+  "phase_34_5_governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution",
+      "phase_35_entry"
+    ],
+    "state_invariants": {
+      "app_implementation_status": "NO_GO",
+      "tests_implementation_status": "NO_GO",
+      "production_status": "NO_GO",
+      "operation_transition_go_authorization": "NOT_GRANTED",
+      "production_reflection_go_authorization": "NOT_GRANTED",
+      "freeze_release_go_authorization": "NOT_GRANTED",
+      "execution_start_go_authorization": "NOT_GRANTED",
+      "actual_process_start_go_authorization": "NOT_GRANTED",
+      "changed_area": "reports only"
+    }
+  }
+}

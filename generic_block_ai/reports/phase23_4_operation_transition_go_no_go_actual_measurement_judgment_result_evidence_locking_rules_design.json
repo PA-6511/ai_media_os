@@ -1,0 +1,85 @@
+{
+  "phase_id": "23-4",
+  "phase_name": "Operation Transition GO/NO-GO Actual Measurement Judgment Result Evidence Locking Rules Design",
+  "phase_japanese_name": "運用移行GO/NO-GO 実測判定結果の証跡固定ルール設計",
+  "purpose": "Design immutable evidence-locking rules for measured operation-transition GO/NO-GO judgment results while maintaining NOT_GRANTED as default authorization state",
+  "layer": "operation_transition_actual_measurement_reinforcement_layer",
+  "design_category": "reports_only",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "operation_transition_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "phase_23_4_scope": {
+    "scope_1_input_contract": {
+      "scope_id": "INPUT_CONTRACT",
+      "required_inputs": {
+        "phase23_1_to_23_3_status": "PASS_DESIGN_ONLY",
+        "phase23_pre_measured_operation_transition_final_audit_status": "PASS_DESIGN_ONLY",
+        "source_template": "phase23_3_operation_transition_go_no_go_actual_measurement_judgment_template_design.json"
+      }
+    },
+    "scope_2_locking_rules": {
+      "scope_id": "LOCKING_RULES",
+      "rules": {
+        "rule_OTL1": "Canonicalize measured judgment payload before hashing",
+        "rule_OTL2": "Compute SHA-256 hash and record as operation_transition_measured_judgment_hash",
+        "rule_OTL3": "Sign hash with authority signature metadata",
+        "rule_OTL4": "Append signed record to immutable append-only audit trail",
+        "rule_OTL5": "Perform roundtrip hash/signature verification after append",
+        "rule_OTL6": "If verification fails, lock_status = LOCK_FAILED and operation_transition_go_authorization = NOT_GRANTED"
+      }
+    },
+    "scope_3_report_structure": {
+      "scope_id": "REPORT_STRUCTURE",
+      "sections": {
+        "section_1_header": {
+          "report_id": "PHASE23_4_OP_TRANSITION_JUDGMENT_LOCK_<UTC_TIMESTAMP>",
+          "report_type": "operation_transition_go_no_go_actual_measurement_judgment_result_evidence_lock",
+          "generated_at_utc": "RFC3339",
+          "generated_by": "authority_identifier"
+        },
+        "section_2_lock_inputs": {
+          "judgment_id": "OP_TRANSITION_MEASURED_JUDGMENT_<UTC_TIMESTAMP>",
+          "input_integrity_status": "PASS | FAIL"
+        },
+        "section_3_integrity_results": {
+          "operation_transition_measured_judgment_hash": "hex",
+          "signature_verification": "PASS | FAIL",
+          "audit_append_status": "PASS | FAIL",
+          "tamper_check_status": "PASS | FAIL"
+        },
+        "section_4_lock_determination": {
+          "lock_status": "LOCK_CONFIRMED | LOCK_FAILED",
+          "operation_transition_go_authorization": "NOT_GRANTED | CONDITIONALLY_READY_FOR_NEXT_GATE",
+          "production_status": "NO_GO"
+        }
+      }
+    }
+  },
+  "phase_23_4_governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "state_invariants": {
+      "app_implementation_status": "NO_GO",
+      "tests_implementation_status": "NO_GO",
+      "production_status": "NO_GO",
+      "operation_transition_go_authorization": "NOT_GRANTED",
+      "changed_area": "reports only"
+    }
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "phase_id": "PHASE_S4",
+  "phase_name": "block_ai_risk_classification",
+  "phase_status": "DESIGN_ONLY",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "human_approval_required": true,
+  "risk_classes": {
+    "core_ai": {
+      "risk_level": "critical",
+      "can_issue_commands": true,
+      "can_execute_external_actions": false,
+      "requires_human_approval": true
+    },
+    "generic_block_ai": {
+      "risk_level": "medium",
+      "can_issue_commands": false,
+      "can_execute_external_actions": false,
+      "requires_human_approval": true
+    },
+    "ebook_affiliate_block_ai": {
+      "risk_level": "medium_high",
+      "can_issue_commands": false,
+      "can_execute_external_actions": false,
+      "wordpress_write_allowed": false,
+      "requires_human_approval": true
+    },
+    "self_builder_ai": {
+      "risk_level": "high",
+      "can_issue_commands": false,
+      "can_modify_code": false,
+      "can_execute_external_actions": false,
+      "requires_human_approval": true
+    },
+    "experimental_block_ai": {
+      "risk_level": "high",
+      "can_issue_commands": false,
+      "can_execute_external_actions": false,
+      "must_be_isolated": true,
+      "requires_human_approval": true
+    },
+    "adult_or_risky_experiment_ai": {
+      "risk_level": "restricted",
+      "can_issue_commands": false,
+      "can_execute_external_actions": false,
+      "must_be_isolated": true,
+      "must_not_connect_to_production_core": true,
+      "requires_human_approval": true
+    }
+  },
+  "default_unknown_block_ai_policy": {
+    "risk_level": "unknown_high",
+    "can_issue_commands": false,
+    "can_execute_external_actions": false,
+    "must_be_isolated": true,
+    "requires_human_approval": true
+  }
+}

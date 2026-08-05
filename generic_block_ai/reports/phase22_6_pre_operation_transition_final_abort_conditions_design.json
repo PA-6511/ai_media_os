@@ -1,0 +1,97 @@
+{
+  "phase_id": "22-6",
+  "phase_name": "Pre-Operation Transition Final ABORT Conditions Design",
+  "phase_japanese_name": "運用移行直前の最終ABORT条件設計",
+  "purpose": "Design mandatory ABORT conditions immediately before operation transition to prevent unsafe or unauthorized production transition",
+  "layer": "go_establishment_and_transition_boundary_audit_layer",
+  "design_category": "reports_only",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only"
+  },
+  "phase_22_6_scope": {
+    "scope_1_abort_categories": {
+      "scope_id": "ABORT_CATEGORIES",
+      "categories": {
+        "OB1": "Any GO-establishment audit check is FAIL",
+        "OB2": "Any boundary violation category BV1-BV5 remains unresolved",
+        "OB3": "Any evidence lock verification from Phase 22-4 is FAIL",
+        "OB4": "Operation-transition independent audit evidence missing",
+        "OB5": "Signature invalid, revoked, or expired",
+        "OB6": "State invariant violation between implementation and operation layers",
+        "OB7": "Any unauthorized production trace detected",
+        "OB8": "Unclassified safety risk requiring mandatory human halt"
+      }
+    },
+    "scope_2_abort_handling_rules": {
+      "scope_id": "ABORT_HANDLING_RULES",
+      "rules": {
+        "rule_OBH1": "If any OB1-OB8 is TRIGGERED, transition_status = ABORTED",
+        "rule_OBH2": "Force production_status = NO_GO and operation_transition_go = NOT_GRANTED",
+        "rule_OBH3": "Record abort_reason_codes and evidence lock the abort decision",
+        "rule_OBH4": "Require human review clearance before re-entry",
+        "rule_OBH5": "Do not unlock dual_gate during ABORTED state"
+      }
+    },
+    "scope_3_report_structure": {
+      "scope_id": "REPORT_STRUCTURE",
+      "sections": {
+        "section_1_header": {
+          "report_id": "PHASE22_6_PRE_OPERATION_ABORT_<UTC_TIMESTAMP>",
+          "report_type": "pre_operation_transition_final_abort_conditions",
+          "generated_at_utc": "RFC3339",
+          "generated_by": "authority_identifier"
+        },
+        "section_2_abort_condition_evaluation": {
+          "OB1": "TRIGGERED | NOT_TRIGGERED",
+          "OB2": "TRIGGERED | NOT_TRIGGERED",
+          "OB3": "TRIGGERED | NOT_TRIGGERED",
+          "OB4": "TRIGGERED | NOT_TRIGGERED",
+          "OB5": "TRIGGERED | NOT_TRIGGERED",
+          "OB6": "TRIGGERED | NOT_TRIGGERED",
+          "OB7": "TRIGGERED | NOT_TRIGGERED",
+          "OB8": "TRIGGERED | NOT_TRIGGERED"
+        },
+        "section_3_final_abort_judgment": {
+          "transition_status": "ABORTED | NOT_ABORTED",
+          "operation_transition_go": "GRANTED | NOT_GRANTED",
+          "production_status": "NO_GO"
+        },
+        "section_4_state_reconfirmation": {
+          "integrated_decision": "NO_GO",
+          "receiver_validator_permission": "NOT_EFFECTIVE",
+          "dual_gate": "LOCKED",
+          "app_implementation_status": "NO_GO",
+          "tests_implementation_status": "NO_GO",
+          "production_status": "NO_GO"
+        }
+      }
+    }
+  },
+  "phase_22_6_governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "state_invariants": {
+      "integrated_decision": "NO_GO",
+      "receiver_validator_permission": "NOT_EFFECTIVE",
+      "dual_gate": "LOCKED",
+      "app_implementation_status": "NO_GO",
+      "tests_implementation_status": "NO_GO",
+      "production_status": "NO_GO"
+    }
+  }
+}

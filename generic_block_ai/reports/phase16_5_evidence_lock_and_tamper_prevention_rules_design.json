@@ -1,0 +1,325 @@
+{
+  "phase_identifier": "16-5",
+  "phase_title": "実測入力データの証跡固定・改変防止ルール設計",
+  "phase_purpose": "Phase 16 実測入力データエントリ受領・検証層：Phase 16-1 で受領した実測入力データに対して、改ざんやタイムスタンプ改変を防ぐための証跡固定（ハッシュ化、デジタルタイムスタンプ、監査ログ）ルールを設計する",
+  "execution_context": "reports-only design phase; design of evidence lock and tamper prevention mechanisms only, no actual locking or prevention execution yet",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only"
+  },
+  "governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "safety_rule": "All blocked_actions remain strictly prohibited. Evidence lock and tamper prevention is design-only; no actual data locking or protection mechanisms are activated. No app/tests implementation permitted.",
+    "hard_stop_condition": "This phase is design-only. No actual data immutability or protection mechanisms are enforced."
+  },
+  "evidence_lock_purpose": {
+    "purpose": "Create immutable, tamper-evident record of Phase 15-1 and Phase 15-2 human review input data from receipt through validation and measurement workflows",
+    "protection_mechanisms": [
+      "Cryptographic hashing (SHA-256 or stronger)",
+      "Digital timestamp (optional TSA for external timestamp)",
+      "Audit trail logging (access, modification attempts)",
+      "Tamper detection (hash change detection, signature verification)"
+    ],
+    "goal": "Ensure that if data is modified or timestamp manipulated after receipt, modification is detectable before Phase 15-7/15-8 measurement workflows execute"
+  },
+  "cryptographic_hashing_rules": {
+    "hash_purpose": "Create cryptographic fingerprint of Phase 15-1 and Phase 15-2 data at receipt time",
+    "hash_algorithm": {
+      "required_algorithm": "SHA-256 or stronger (SHA-512, SHA-3/256)",
+      "rule_id": "HASH_ALGORITHM_REQUIREMENT",
+      "rule": "Hash algorithm must be cryptographically secure and collision-resistant",
+      "weak_algorithms_blocked": ["MD5", "SHA-1", "CRC32"],
+      "acceptable_algorithms": ["SHA-256", "SHA-512", "SHA-3/256", "BLAKE2"]
+    },
+    "hash_input_specification": {
+      "rule_id": "HASH_INPUT_SPEC",
+      "rule": "Hash must be computed over complete, normalized data payload",
+      "normalization": "Canonical JSON (deterministic field ordering, no extra whitespace) or binary exact copy",
+      "hash_computation_steps": [
+        "1. Take Phase 15-1 or Phase 15-2 complete data payload",
+        "2. Normalize if text (e.g., canonical JSON format)",
+        "3. Compute hash using specified algorithm",
+        "4. Encode hash as hex string (lowercase)"
+      ]
+    },
+    "hash_storage": {
+      "rule_id": "HASH_STORAGE_RULE",
+      "rule": "Hash must be stored alongside receipt record with metadata",
+      "storage_fields": {
+        "data_hash_phase_15_1": "Hex-encoded SHA-256 hash of Phase 15-1 data payload",
+        "data_hash_phase_15_2": "Hex-encoded SHA-256 hash of Phase 15-2 data payload",
+        "hash_algorithm_used": "Algorithm identifier (e.g., 'SHA-256')",
+        "hash_computation_timestamp": "When hash was computed (must match or precede receipt timestamp)"
+      }
+    },
+    "hash_verification_procedure": {
+      "rule_id": "HASH_VERIFICATION",
+      "procedure": [
+        "1. Retrieve stored hash (data_hash_phase_15_1 or _15_2)",
+        "2. Retrieve stored algorithm identifier",
+        "3. Recompute hash of current data payload using same algorithm",
+        "4. Compare: stored_hash == recomputed_hash",
+        "5. If hashes match: data integrity OK; if mismatch: TAMPERED DETECTED"
+      ],
+      "tamper_detection": "If hash mismatch detected, data has been modified; trigger alert and halt further processing"
+    }
+  },
+  "digital_timestamp_rules": {
+    "timestamp_purpose": "Create external, independent timestamp of data receipt to prevent backdating or timestamp manipulation",
+    "timestamp_options": {
+      "option_1_system_timestamp": {
+        "method": "Record system time (UTC) at receipt and hash computation",
+        "advantage": "Simple, no external dependency",
+        "disadvantage": "Could be manipulated if system clock is compromised",
+        "fields": ["receipt_timestamp", "hash_computation_timestamp"],
+        "security_level": "BASIC"
+      },
+      "option_2_tsa_digital_timestamp": {
+        "method": "Use Time Stamping Authority (TSA) per RFC 3161 for external, independent timestamp",
+        "advantage": "External authority proves timestamp; tamper-evident if TSA communication logged",
+        "disadvantage": "Requires external service call; design-phase note: 'external_api_call' is blocked for actual execution",
+        "design_note": "This is design specification only; actual TSA call would require unblocking external_api_call",
+        "fields": ["tsa_timestamp_token", "tsa_issuer_id"],
+        "security_level": "HIGH"
+      },
+      "option_3_blockchain_or_distributed_ledger": {
+        "method": "Record hash or timestamp on immutable distributed ledger",
+        "advantage": "Highly tamper-evident; distributed consensus",
+        "disadvantage": "Complex, external dependency, design-phase only",
+        "design_note": "For future consideration; not implemented in initial design",
+        "security_level": "VERY_HIGH"
+      }
+    },
+    "recommended_timestamp_mechanism": "Option 1 (system UTC timestamp) as primary; Option 2 (TSA) recommended if external API calls become permitted",
+    "timestamp_storage": {
+      "rule_id": "TIMESTAMP_STORAGE_RULE",
+      "storage_fields": {
+        "receipt_system_timestamp": "System UTC time when data was received",
+        "hash_computation_timestamp": "System UTC time when hash was computed (must be >= receipt_system_timestamp)",
+        "phase_16_4_format_validation_timestamp": "When format validation completed",
+        "timestamp_format": "ISO8601 with UTC timezone indicator (e.g., '2026-05-13T12:34:56Z')"
+      }
+    },
+    "timestamp_verification_procedure": {
+      "rule_id": "TIMESTAMP_VERIFICATION",
+      "procedure": [
+        "1. Retrieve stored timestamps (receipt_timestamp, hash_timestamp, validation_timestamp)",
+        "2. Verify timestamp order: receipt <= hash <= validation",
+        "3. Verify all timestamps are not in future relative to current time",
+        "4. Verify timestamp interval is reasonable (< 1 hour typical)",
+        "5. Check for timestamp gaps (e.g., hash timestamp far from receipt could indicate manipulation attempt)"
+      ]
+    }
+  },
+  "audit_trail_logging_rules": {
+    "audit_purpose": "Create complete audit log of all accesses, reads, validations, and attempted modifications to Phase 15-1/15-2 data",
+    "audit_log_structure": {
+      "rule_id": "AUDIT_LOG_STRUCTURE",
+      "log_entries": [
+        {
+          "event_type": "RECEIPT",
+          "description": "Data received via Phase 16-1 receipt channel",
+          "log_fields": ["timestamp", "receipt_channel", "submitter_id", "data_payload_size", "data_hash"]
+        },
+        {
+          "event_type": "HASH_COMPUTED",
+          "description": "Cryptographic hash computed for integrity verification",
+          "log_fields": ["timestamp", "algorithm", "computed_hash", "input_size"]
+        },
+        {
+          "event_type": "FORMAT_VALIDATION_PERFORMED",
+          "description": "Format validation (Phase 16-4) executed",
+          "log_fields": ["timestamp", "validator_id", "validation_result", "issues_found"]
+        },
+        {
+          "event_type": "DATA_READ",
+          "description": "Data read for validation or measurement workflow",
+          "log_fields": ["timestamp", "reader_process_id", "purpose", "read_operation_id"]
+        },
+        {
+          "event_type": "MODIFICATION_ATTEMPT",
+          "description": "Attempt to modify data (should be blocked)",
+          "log_fields": ["timestamp", "attempt_by_id", "modification_requested", "result_BLOCKED"]
+        },
+        {
+          "event_type": "HASH_VERIFICATION",
+          "description": "Hash recomputation and verification",
+          "log_fields": ["timestamp", "verifier_id", "stored_hash", "recomputed_hash", "result_MATCH_or_MISMATCH"]
+        },
+        {
+          "event_type": "TAMPER_DETECTED",
+          "description": "Hash mismatch or integrity violation detected",
+          "log_fields": ["timestamp", "detection_system", "data_hash_stored", "data_hash_current", "alert_issued_to"]
+        }
+      ]
+    },
+    "audit_log_immutability": {
+      "rule_id": "AUDIT_LOG_IMMUTABLE",
+      "rule": "Audit log must be append-only; entries cannot be deleted or modified after creation",
+      "enforcement": "Stored in append-only file, database with write-once constraints, or similar mechanism",
+      "design_note": "Implementation details TBD; design specifies requirement only"
+    },
+    "audit_log_retention": {
+      "rule_id": "AUDIT_LOG_RETENTION",
+      "rule": "Audit log must be retained for minimum period (e.g., 1 year after Phase 15-7/15-8 measurement completion)",
+      "retention_period": "At least 1 year from measurement date",
+      "backup": "Backup copies maintained separately"
+    }
+  },
+  "data_integrity_verification_rules": {
+    "integrity_verification_purpose": "Periodically verify data has not been tampered with by comparing current state to stored hash",
+    "verification_triggers": [
+      "Before Phase 16-2 signature/completeness validation",
+      "Before Phase 16-3 pre-decision assessment",
+      "Before Phase 15-7 integrated_decision measurement",
+      "Before Phase 15-8 permission measurement",
+      "Periodically during storage (e.g., nightly background integrity checks)"
+    ],
+    "verification_procedure": {
+      "rule_id": "INTEGRITY_VERIFICATION_PROCEDURE",
+      "steps": [
+        {
+          "step": "1_retrieve_stored_hash",
+          "action": "Retrieve hash computed at receipt time (data_hash_phase_15_1 or _15_2)",
+          "requirement": "Hash must exist and be non-empty"
+        },
+        {
+          "step": "2_retrieve_current_data",
+          "action": "Retrieve current data payload from storage",
+          "requirement": "Data must be accessible and parseable"
+        },
+        {
+          "step": "3_recompute_hash",
+          "action": "Recompute hash of current data using same algorithm",
+          "requirement": "Must use same algorithm as stored hash"
+        },
+        {
+          "step": "4_compare_hashes",
+          "action": "Compare stored_hash == recomputed_hash",
+          "requirement": "Character-for-character match (case-sensitive)"
+        },
+        {
+          "step": "5_interpret_result",
+          "result_match": "Data integrity verified; continue processing",
+          "result_mismatch": "TAMPER DETECTED; halt processing, alert security team, investigate"
+        }
+      ]
+    },
+    "tamper_response_procedure": {
+      "rule_id": "TAMPER_RESPONSE",
+      "response_steps": [
+        {
+          "step": "1_halt_processing",
+          "action": "Immediately halt all downstream processing (Phase 16-2, 16-3, 15-7, 15-8)",
+          "requirement": "Data must not be used for measurement or decision until investigation complete"
+        },
+        {
+          "step": "2_alert_security",
+          "action": "Alert security/audit team of tampering detection",
+          "recipients": "Security officer, Phase 16 authority, audit log"
+        },
+        {
+          "step": "3_preserve_evidence",
+          "action": "Preserve both stored hash, current data state, and audit log for forensic analysis",
+          "requirement": "Create forensic backup before any remediation"
+        },
+        {
+          "step": "4_investigate_cause",
+          "action": "Determine root cause of tampering (malicious, accidental, system error)",
+          "investigation": "Review audit log, access controls, system logs"
+        },
+        {
+          "step": "5_remediation",
+          "options": [
+            "Option A: Restore from backup (if backup integrity verified)",
+            "Option B: Request data resubmission from reviewer",
+            "Option C: Escalate to human authority for decision"
+          ]
+        },
+        {
+          "step": "6_prevention_improvement",
+          "action": "Improve tamper prevention based on incident analysis",
+          "update_target": "Future Phase 16-5 design update"
+        }
+      ]
+    }
+  },
+  "evidence_lock_state_tracking": {
+    "lock_state_definition": "Data is considered 'locked' when hash is computed and stored, integrity verification succeeds, and no modification is permitted",
+    "lock_state_fields": {
+      "rule_id": "LOCK_STATE_TRACKING",
+      "fields": {
+        "phase_15_1_evidence_locked": "boolean - Phase 15-1 data hash computed, stored, and verified OK",
+        "phase_15_1_lock_timestamp": "ISO8601 - when Phase 15-1 lock was established",
+        "phase_15_2_evidence_locked": "boolean - Phase 15-2 data hash computed, stored, and verified OK",
+        "phase_15_2_lock_timestamp": "ISO8601 - when Phase 15-2 lock was established",
+        "both_locked_status": "BOTH_LOCKED / PARTIAL_LOCKED / UNLOCKED",
+        "lock_verification_status": "VERIFIED / UNVERIFIED / TAMPERING_DETECTED"
+      }
+    },
+    "lock_state_transitions": {
+      "initial_state": "UNLOCKED - data just received",
+      "transition_1": "Hash computed → HASHED (but not yet verified)",
+      "transition_2": "Hash verified OK → LOCKED (integrity confirmed)",
+      "transition_3_alert": "Hash mismatch detected → TAMPERING_DETECTED (alert issued, halt)"
+    }
+  },
+  "phase_dependencies": {
+    "depends_on": [
+      "Phase 16-1: Data receipt and storage",
+      "Phase 16-4: Format validation (occurs after hash is computed)"
+    ],
+    "feeds_into": [
+      "Phase 16-2: Completeness/signature/consistency validation (requires data integrity verified)",
+      "Phase 16-3: Pre-decision update feasibility (requires lock state confirmed)",
+      "Phase 15-7: integrated_decision measurement (requires data integrity verified)",
+      "Phase 15-8: Permission measurement (requires data integrity verified)"
+    ]
+  },
+  "design_review_checklist": [
+    "Cryptographic hashing algorithm is strong (SHA-256 or better) and weak algorithms explicitly blocked",
+    "Hash input specification ensures canonical, deterministic computation",
+    "Hash storage includes algorithm identifier and computation timestamp",
+    "Hash verification procedure is clear and testable",
+    "Timestamp mechanisms are designed (system UTC primary, TSA optional for future)",
+    "Timestamp verification checks order and reasonableness",
+    "Audit trail captures all relevant events (receipt, hash, validation, reads, attempts, verification)",
+    "Audit log immutability is specified (append-only requirement)",
+    "Integrity verification triggers cover all critical points",
+    "Tamper response procedure is detailed with escalation path",
+    "Lock state tracking clearly defines locked/unlocked states and transitions",
+    "Design acknowledges this is design-only; actual locking mechanisms TBD for implementation",
+    "All blocked actions remain in governance",
+    "production_status remains NO_GO (hardcoded)",
+    "Phase dependencies are accurate"
+  ],
+  "completion_gate": {
+    "gate_condition": "Evidence lock design approved AND tamper prevention mechanisms specified",
+    "approval_required": "Human technical reviewer + Phase 16 design authority",
+    "prerequisite_for": "Phase 16-6 (validation failure and return rules) can begin once evidence lock design is approved"
+  },
+  "status": {
+    "phase_status": "DESIGN_ONLY",
+    "actual_evidence_lock_operational_status": "NOT_YET_STARTED",
+    "integrated_decision_status": "NO_GO",
+    "receiver_validator_implementation_permission_status": "NOT_EFFECTIVE",
+    "app_implementation_status": "NO_GO",
+    "tests_implementation_status": "NO_GO",
+    "production_status": "NO_GO"
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "phase_id": "PHASE_S3_2",
+  "phase_name": "cross_phase_security_audit_view",
+  "status": "DESIGN_ONLY",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "human_approval_required": true,
+  "audit_view_only": true,
+  "recommendation_only": true,
+  "executor_action_allowed": false,
+  "audit_scope": [
+    "PHASE_S0",
+    "PHASE_S1",
+    "PHASE_S2",
+    "PHASE_S3",
+    "PHASE_S3_1"
+  ],
+  "required_evidence_files": {
+    "phase_s0": [
+      "exchange/logs/security_baseline_phase_s0_validation_result.json"
+    ],
+    "phase_s1": [
+      "exchange/logs/freeze_control_phase_s1_validation_result.json"
+    ],
+    "phase_s2": [
+      "exchange/logs/security_environment_isolation_phase_s2_validation_result.json",
+      "exchange/logs/security_read_only_policy_phase_s2_validation_result.json",
+      "exchange/logs/security_api_permission_map_phase_s2_validation_result.json",
+      "exchange/logs/security_emergency_revoke_phase_s2_validation_result.json",
+      "exchange/logs/security_phase_s2_overall_result.json"
+    ],
+    "phase_s3": [
+      "exchange/logs/security_observability_policy_phase_s3_validation_result.json",
+      "exchange/logs/security_scheduler_anomaly_detector_phase_s3_validation_result.json",
+      "exchange/logs/security_wordpress_write_observer_phase_s3_validation_result.json",
+      "exchange/logs/security_external_api_intent_observer_phase_s3_validation_result.json",
+      "exchange/logs/security_env_access_observer_phase_s3_validation_result.json",
+      "exchange/logs/security_process_anomaly_observer_phase_s3_validation_result.json",
+      "exchange/logs/security_phase_s3_overall_result.json"
+    ],
+    "phase_s3_1": [
+      "exchange/logs/security_observability_event_replay_phase_s3_1_validation_result.json",
+      "exchange/logs/security_observability_event_replay_phase_s3_1_result.json",
+      "exchange/logs/security_phase_s3_1_overall_result.json"
+    ]
+  },
+  "required_invariants": {
+    "production_status": "NO_GO",
+    "execution": "DRY_RUN",
+    "human_approval_required": true,
+    "executor_action_allowed": false,
+    "wordpress_write_executed": false,
+    "external_api_call_executed": false,
+    "state_change_executed": false,
+    "freeze_executed": false,
+    "revoke_executed": false,
+    "isolation_executed": false
+  },
+  "phase_s3_1_required_replay_invariants": {
+    "event_count_gt_zero": true,
+    "matched_expected_count_equals_event_count": true,
+    "mismatched_expected_count": 0,
+    "freeze_recommendation_detected": true,
+    "human_review_recommendation_detected": true
+  },
+  "allowed_final_statuses": [
+    "PASS_DRY_RUN_ONLY",
+    "PASS_DESIGN_ONLY",
+    "PASS_REVIEW_ONLY_NO_GO",
+    "READY_BUT_LOCKED",
+    "READY_FOR_PHASE8_HUMAN_APPROVAL_BUT_NO_GO",
+    "OBSERVABILITY_REVIEW_REQUIRED"
+  ],
+  "blocked_final_statuses": [
+    "GO",
+    "LIVE",
+    "UNLOCKED",
+    "EXECUTED",
+    "PRODUCTION_READY",
+    "WORDPRESS_WRITE_EXECUTED"
+  ],
+  "actions": {
+    "auto_freeze_execute": false,
+    "auto_revoke_execute": false,
+    "auto_isolation_execute": false,
+    "wordpress_api_call_execute": false,
+    "external_api_call_execute": false,
+    "state_change_execute": false
+  },
+  "next_step": "prepare_phase_s4_block_ai_isolation_design"
+}

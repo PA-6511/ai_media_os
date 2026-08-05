@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0",
+  "fixture_id": "TST-5D-W1-WORKFLOW-STATE-REPOSITORY-PRE-W2B",
+  "fixture_kind": "IMMUTABLE_HISTORICAL_SOURCE_PREIMAGE",
+  "created_at": "2026-07-25T12:16:36.285956+09:00",
+  "original_source_path": "app/db/repositories/workflow_state_repository.py",
+  "original_source_sha256": "ac3fbddee5d3edf3cfd3368d5e3ed1ed40a4ff13d8655ad44847c55d4596bdd7",
+  "fixture_sha256": "ac3fbddee5d3edf3cfd3368d5e3ed1ed40a4ff13d8655ad44847c55d4596bdd7",
+  "expected_sha256": "ac3fbddee5d3edf3cfd3368d5e3ed1ed40a4ff13d8655ad44847c55d4596bdd7",
+  "test_only": true,
+  "production_runtime_allowed": false,
+  "update_policy": "IMMUTABLE_NO_OVERWRITE"
+}

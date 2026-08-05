@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0.0",
+  "document_role": "DMM_ARTICLE_LINK_INJECTION_FIX1_ONE_SHOT_AUTHORIZATION",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M9-FIX1",
+  "content_item_id": "new-release-comic-20260703-001",
+  "authorization_id": "DMM_ARTICLE_LINK_INJECTION_FIX1_ONE_SHOT_AUTHORIZATION_V1",
+  "authorized_operation": "ONE_SHOT_ARTICLE_DMM_LINK_INJECTION_WITH_HTML_ENTITY_DECODED_POSTIMAGE_VALIDATION",
+  "article_preimage_sha256": "849a37519c6af70d2212ec01d5cddef5793bfa811e97ca9f248ce099a0350bf4",
+  "secret_link_file_sha256": "c5a70d9804a4e2dfd91049ee20bdda5379abf3e1fe3c25b0fb8cbd5fa587faa0",
+  "secret_link_artifact_digest_sha256": "4807e0a6d8a8416a936bafa978ba4f90d43ae7d304322bbd6a6ababcb2cd2db6",
+  "secret_link_fingerprint_sha256": "f01572020caf88cd0a017e0e739bc492394fa275eeac0e346328adba0fd99141",
+  "old_m9_failure_binding": {
+    "authorization_digest_sha256": "d274eaf6bd14c95ac43031fbff296d0d47e6051dbb4231407327d376f93fec7f",
+    "authorization_consumed": true,
+    "historical_error_code": "POSTIMAGE_FINAL_URL_MISSING",
+    "historical_diagnosis": "HTML_ENTITY_ESCAPING_FALSE_NEGATIVE"
+  },
+  "validator_contract": {
+    "postimage_html_reparse_required": true,
+    "href_entity_decode_required": true,
+    "decoded_href_exact_match_required": true,
+    "raw_url_substring_check_allowed": false
+  },
+  "single_use": true,
+  "authorization_consumed": false,
+  "authorization_reuse_allowed": false,
+  "automatic_retry_allowed": false,
+  "automatic_reissue_allowed": false,
+  "actual_execution_allowed": true,
+  "full_final_url_present": false,
+  "affiliate_identifier_present": false,
+  "network_connection_performed": false,
+  "wordpress_access_performed": false,
+  "production_status": "NO_GO",
+  "authorized_at_utc": "2026-07-11T07:37:13.138550+00:00",
+  "authorization_digest_sha256": "c25ddfa1023038f057ef0d403a00ffe1443f15097f8fc89c6402c7113d37b630"
+}

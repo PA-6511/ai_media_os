@@ -1,0 +1,21 @@
+{
+  "phase": "LS-NEW-14-DECISION-LITE",
+  "document_type": "START_LS_NEW14_TO_LS_NEW15_LITE_HANDOFF",
+  "status": "LSNEW14_DECISION_LITE_HANDOFF_TO_LS_NEW15_READY_NO_EXECUTION",
+  "next_phase": "LS-NEW-15-LITE",
+  "next_phase_name": "Draft Payload Final Confirm / No Execution",
+  "handoff_ready": true,
+  "ready_for_ls_new_15": true,
+  "approval_decision": "APPROVED",
+  "approval_scope": "ONE_SHOT_WORDPRESS_DRAFT_CREATION_ONLY",
+  "post_status_target": "draft",
+  "target_post_id": null,
+  "target_post_id_allocated": false,
+  "notes": [
+    "LS-NEW-14-DECISION-LITE records human approval only.",
+    "No WordPress draft was created in this step.",
+    "No WordPress API call was executed in this step.",
+    "No credential.env read was executed in this step.",
+    "LS-NEW-15-LITE may confirm the final draft payload only."
+  ]
+}

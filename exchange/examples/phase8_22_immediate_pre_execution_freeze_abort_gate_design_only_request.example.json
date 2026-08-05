@@ -1,0 +1,15 @@
+{
+  "mode": "PHASE8_22_DESIGN_ONLY",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "human_approval_required": true,
+  "target_item_count": 1,
+  "execution_allowed": false,
+  "wordpress_api_call_allowed": false,
+  "wordpress_write_allowed": false,
+  "wordpress_draft_creation_allowed": false,
+  "approve_draft_create_only_currently_allowed": false,
+  "unlock_in_this_phase": false,
+  "no_secret_leak_required": true,
+  "previous_phase": "8-21"
+}

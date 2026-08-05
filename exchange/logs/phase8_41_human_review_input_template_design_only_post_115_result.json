@@ -1,0 +1,54 @@
+{
+  "phase": "Phase 8-41",
+  "phase_name": "Human Business/Content/Legal Review Input Template Design Only",
+  "status": "PHASE8_41_HUMAN_REVIEW_INPUT_TEMPLATE_DESIGN_ONLY_READY",
+  "target_post_id": 115,
+  "production_status": "NO_PUBLISH_PAUSE",
+  "design_only": true,
+  "input_template": {
+    "business_facts_review": {
+      "work_title_verified": null,
+      "volume_info_verified": null,
+      "price_campaign_terms_verified": null,
+      "notes": ""
+    },
+    "content_accuracy_review": {
+      "claims_supported": null,
+      "official_link_checked": null,
+      "affiliate_link_checked": null,
+      "notes": ""
+    },
+    "legal_pr_affiliate_review": {
+      "pr_label_visible": null,
+      "affiliate_disclosure_visible": null,
+      "legal_compliance_checked": null,
+      "notes": ""
+    },
+    "final_human_decision": {
+      "publish_go": null,
+      "keep_no_go": null,
+      "decision_reason": ""
+    }
+  },
+  "publish_allowed": false,
+  "publish_executed": false,
+  "wordpress_api_call_attempted": false,
+  "wordpress_write_executed": false,
+  "wordpress_draft_updated": false,
+  "secret_values_output": false,
+  "secret_values_written": false,
+  "errors": [],
+  "warnings": [
+    "Template only. This phase does not execute publish or any WordPress write."
+  ],
+  "safety_violations": [],
+  "evidence_summary": [
+    {
+      "path": "exchange/logs/phase8_40_publish_readiness_overall_no_go_report_post_115_result.json",
+      "exists": true,
+      "status": "PHASE8_40_PUBLISH_READINESS_OVERALL_NO_GO_FIXED"
+    }
+  ],
+  "next_step": "phase8_42_manual_review_result_validator_design_only",
+  "checked_at": "2026-06-09T14:02:17.003707+00:00"
+}

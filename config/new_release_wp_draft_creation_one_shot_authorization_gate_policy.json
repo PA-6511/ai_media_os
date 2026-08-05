@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M12",
+  "policy_id": "WORDPRESS_DRAFT_CREATION_ONE_SHOT_AUTHORIZATION_GATE_POLICY_V1",
+  "operation_mode": "LOCAL_VALIDATION_AND_AUTHORIZATION_ISSUANCE_ONLY",
+  "content_item_id": "new-release-comic-20260703-001",
+  "payload_binding": {
+    "path": "exchange/payloads/new_release/fresh/new-release-comic-20260703-001.wordpress_draft_payload.json",
+    "required_file_sha256": "30a70be4110e863a85e2896f69f5b3e51d814a6fd82d5489f899d8a244166d8f",
+    "required_payload_digest_sha256": "2ab27b59305dbae98f997ca3a460400298152f173ef605b534df922c187411c6",
+    "required_mode": "0600"
+  },
+  "review_binding": {
+    "required_review_verdict": "APPROVED_NO_CHANGE_REQUIRED",
+    "required_review_digest_sha256": "52136cc8b50e8a7279e13ea4cb224033eca9790f354c7bcb18b0f6d694d71c25",
+    "required_result_digest_sha256": "dc08a7212e812e366b05952c8e8eceba85f8f8421e2f9fcc65a54ddaa82ea404"
+  },
+  "payload_contract": {
+    "title": "ダークギャザリング 第20巻｜配信開始",
+    "title_source_field": "article_title",
+    "post_status": "draft",
+    "status": "draft",
+    "publish": false,
+    "template_id": "POST185_STANDARD_TEMPLATE_V1_FIXED",
+    "category_mapping_id": "COMIC_NEW_RELEASE_LATEST_VOLUME_TO_WP_CATEGORY_10",
+    "category_id": 10,
+    "categories": [10],
+    "category_name": "最新巻",
+    "content_item_id": "new-release-comic-20260703-001",
+    "content_html_exact_article_match_required": true
+  },
+  "authorization_contract": {
+    "authorization_id": "WORDPRESS_DRAFT_CREATION_ONE_SHOT_AUTHORIZATION_V1",
+    "authorized_operation": "CREATE_ONE_WORDPRESS_DRAFT_FROM_BOUND_PAYLOAD",
+    "single_use": true,
+    "initially_unconsumed": true,
+    "reuse_allowed": false,
+    "automatic_retry_allowed": false,
+    "automatic_reissue_allowed": false,
+    "maximum_draft_count": 1,
+    "planned_execution_phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M13",
+    "explicit_execute_now_approval_required": true
+  },
+  "prohibited_wordpress_operations": {
+    "publish": true,
+    "update_existing_post": true,
+    "delete_post": true,
+    "create_category": true,
+    "update_category": true,
+    "media_upload": true,
+    "multiple_post_creation": true
+  },
+  "execution_boundary": {
+    "authorization_issuance_allowed": true,
+    "authorization_consumption_allowed": false,
+    "payload_modification_allowed": false,
+    "article_modification_allowed": false,
+    "network_connection_allowed": false,
+    "dns_resolution_allowed": false,
+    "http_request_allowed": false,
+    "dmm_recheck_allowed": false,
+    "wordpress_access_allowed": false,
+    "wordpress_write_allowed": false,
+    "wordpress_draft_creation_allowed": false,
+    "wordpress_publish_allowed": false,
+    "x_post_allowed": false,
+    "production_status": "NO_GO"
+  }
+}

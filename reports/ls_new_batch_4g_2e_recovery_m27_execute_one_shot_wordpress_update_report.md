@@ -1,0 +1,26 @@
+# LS-NEW-BATCH-4G-2E-RECOVERY-M27-EXECUTE
+
+- Status: `PASS_WORDPRESS_TAWAWA_REFERENCE_LAYOUT_UPDATE_ONE_SHOT_POST_RESPONSE_VALIDATED_AWAITING_GET_ONLY_VERIFICATION`
+- Decision: `ONE_SHOT_UPDATE_RESPONSE_MATCHED_AUTHORIZATION_AND_CONFIRMATION_CONSUMED_NO_RETRY`
+- WordPress post ID: `192`
+- Outcome: `VALIDATED_HTTP_200_UPDATE_RESPONSE`
+- POST request count: `1`
+- Non-POST request count: `0`
+- Automatic retry count: `0`
+- Redirect followed: `false`
+- HTTP response received: `true`
+- HTTP status: `200`
+- Response validated: `true`
+- Allowed update fields: `content, comment_status`
+- Target comment status: `closed`
+- Authorization consumed: `true`
+- Confirmation consumed: `true`
+- Consumption count: `1`
+- Second POST performed: `false`
+- Backlist carousel included: `false`
+- WordPress update confirmed: `true`
+- WordPress update may have occurred: `true`
+- Production status: `NO_GO`
+- Required next phase: `LS-NEW-BATCH-4G-2E-RECOVERY-M28-POST-UPDATE-VERIFY`
+- Ready for GET-only verification: `true`
+- Ready for retry: `false`

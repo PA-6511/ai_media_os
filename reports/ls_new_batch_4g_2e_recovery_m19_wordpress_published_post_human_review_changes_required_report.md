@@ -1,0 +1,24 @@
+# LS-NEW-BATCH-4G-2E-RECOVERY-M19
+
+- Status: `PASS_WORDPRESS_PUBLISHED_POST_HUMAN_REVIEW_CHANGES_REQUIRED_RECORDED_LOCAL_ONLY_NO_WORDPRESS_ACCESS`
+- Decision: `CORRECTIONS_REQUIRED_READY_FOR_SEPARATE_LAYOUT_CORRECTION_DESIGN_GATE`
+- WordPress post ID: `192`
+- Last verified WordPress status: `publish`
+- Review verdict: `CHANGES_REQUIRED`
+- Human review complete: `true`
+- Change required: `true`
+- Desktop cover position: `left`
+- Desktop right upper order: `Amazon / Rakuten Kobo / DMM`
+- Desktop right lower section: `responsive label-value work details`
+- Desktop PR position: `below work details`
+- Mobile order: `cover / details / Amazon / Rakuten Kobo / DMM / PR`
+- Ebook affiliate comments disabled required: `true`
+- PR-position compliance check before implementation: `true`
+- Network connection performed: `false`
+- WordPress access performed: `false`
+- WordPress write performed: `false`
+- WordPress update performed: `false`
+- WordPress republish performed: `false`
+- Production status: `NO_GO`
+- Ready for layout correction design gate: `true`
+- Ready for WordPress update: `false`

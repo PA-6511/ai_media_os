@@ -1,0 +1,34 @@
+{
+  "package_type": "phase17_8_pre_execute_live_no_go_maintenance_report",
+  "phase": "Phase 17-8",
+  "title": "Phase 17-8 Pre Execute Live NO-GO Maintenance Report",
+  "status": "PASS",
+  "phase17_8_maintenance_status": "PASS",
+  "source_report": "exchange/logs/phase17_7_execute_live_candidate_final_confirmation_report.json",
+  "current_decision": "KEEP_NO_GO",
+  "publish_candidate_unlocked_for_operator": false,
+  "wordpress_publish_execution": "NO_GO",
+  "wordpress_write_executed": false,
+  "production_status": "NO_GO",
+  "wordpress_draft_id": 110,
+  "target_draft_status": "draft",
+  "still_forbidden": [
+    "wordpress_publish",
+    "wordpress_update_existing_post",
+    "wordpress_delete_post",
+    "wordpress_export",
+    "wordpress_bulk_post",
+    "cron_automation",
+    "github_actions_trigger",
+    "slack_production_notification",
+    "vps_self_builder_execution",
+    "env_or_secrets_or_credentials_auto_edit"
+  ],
+  "summary": {
+    "phase17_pre_execute_live_preparation_progressed": true,
+    "execute_live_still_not_executed": true,
+    "no_go_boundary_maintained": true
+  },
+  "next_step": "phase17_9_phase17_overall_completion_report",
+  "created_at": "2026-05-10T04:54:26.469534+00:00"
+}

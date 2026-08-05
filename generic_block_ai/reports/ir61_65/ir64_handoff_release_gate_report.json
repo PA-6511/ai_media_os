@@ -1,0 +1,26 @@
+{
+  "schema_version": "ir64_handoff_package_release_gate_v1",
+  "phase": "IR64",
+  "generated_at": "2026-05-24T12:59:13.133341+00:00",
+  "source_task_id": "ir61_65_live_trial",
+  "handoff_release_gate_decision": "READY_FOR_DRY_RUN_HANDOFF_ONLY",
+  "gate_action": "Handoff package integrity confirmed. Ready for dry-run handoff only.",
+  "validation_result": "PASS",
+  "validation_failed_checks": [],
+  "hash_verification": {
+    "provided_handoff_hash": "ac937ddd5ac78cc50824d1373311e457365e1c1b9fa61e403dfa2f25f31532da",
+    "recalculated_handoff_hash": "ac937ddd5ac78cc50824d1373311e457365e1c1b9fa61e403dfa2f25f31532da",
+    "hash_match": true
+  },
+  "tamper_detection_summary": "NO_TAMPER",
+  "safety_gate_snapshot": {
+    "dry_run": "maintained",
+    "OBSERVE": "maintained",
+    "submission_execution_blocked": true,
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "network_transmission_executed": false,
+    "production_release": false,
+    "GitHub_push": "未実行"
+  }
+}

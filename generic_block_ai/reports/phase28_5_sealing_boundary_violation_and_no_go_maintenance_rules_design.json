@@ -1,0 +1,98 @@
+{
+  "phase_id": "28-5",
+  "phase_name": "Sealing Boundary Violation and NO_GO Maintenance Rules Design",
+  "phase_japanese_name": "封印境界違反時の差し戻し・NO_GO維持ルール設計",
+  "purpose": "Design return routing and NO_GO maintenance rules when sealing boundary violations are detected.",
+  "layer": "pre_production_reflection_final_sealing_reinforcement_layer",
+  "design_category": "reports_only",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "operation_transition_go_authorization": "NOT_GRANTED",
+    "production_reflection_go_authorization": "NOT_GRANTED",
+    "execution_start_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "phase_28_5_scope": {
+    "scope_1_violation_categories": {
+      "scope_id": "VIOLATION_CATEGORIES",
+      "categories": {
+        "SB1": "Sealing boundary integrity check failed",
+        "SB2": "Unauthorized boundary crossing trace detected",
+        "SB3": "Evidence lock or signature invalid/revoked/expired",
+        "SB4": "Implicit promotion from reflection GO to execution start GO detected",
+        "SB5": "Unclassified critical safety risk requiring halt"
+      }
+    },
+    "scope_2_return_and_maintenance_rules": {
+      "scope_id": "RETURN_AND_MAINTENANCE_RULES",
+      "rules": {
+        "rule_SBM1": "Any SB1-SB5 triggers production_status = NO_GO",
+        "rule_SBM2": "Force all authorizations to NOT_GRANTED while unresolved_violations_count > 0",
+        "rule_SBM3": "Route remediation to Phase 28-2 or Phase 28-4 based on violation category",
+        "rule_SBM4": "Maintain app_implementation_status/tests_implementation_status as NO_GO until clean re-audit",
+        "rule_SBM5": "Escalate to HALT_REVIEW_REQUIRED after repeated violation threshold"
+      }
+    },
+    "scope_3_report_structure": {
+      "scope_id": "REPORT_STRUCTURE",
+      "sections": {
+        "section_1_header": {
+          "report_id": "PHASE28_5_SEALING_BOUNDARY_VIOLATION_<UTC_TIMESTAMP>",
+          "report_type": "sealing_boundary_violation_and_no_go_maintenance",
+          "generated_at_utc": "RFC3339",
+          "generated_by": "authority_identifier"
+        },
+        "section_2_violation_summary": {
+          "triggered_categories": [
+            "SB1",
+            "SB2",
+            "SB3",
+            "SB4",
+            "SB5"
+          ],
+          "unresolved_violations_count": "integer"
+        },
+        "section_3_maintenance_state": {
+          "app_implementation_status": "NO_GO",
+          "tests_implementation_status": "NO_GO",
+          "production_status": "NO_GO",
+          "operation_transition_go_authorization": "NOT_GRANTED",
+          "production_reflection_go_authorization": "NOT_GRANTED",
+          "execution_start_go_authorization": "NOT_GRANTED",
+          "changed_area": "reports only"
+        },
+        "section_4_next_actions": {
+          "remediation_route": "Phase 28-2 / 28-4",
+          "re_audit_required": true
+        }
+      }
+    }
+  },
+  "phase_28_5_governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "state_invariants": {
+      "app_implementation_status": "NO_GO",
+      "tests_implementation_status": "NO_GO",
+      "production_status": "NO_GO",
+      "operation_transition_go_authorization": "NOT_GRANTED",
+      "production_reflection_go_authorization": "NOT_GRANTED",
+      "execution_start_go_authorization": "NOT_GRANTED",
+      "changed_area": "reports only"
+    }
+  }
+}

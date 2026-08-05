@@ -1,0 +1,25 @@
+@echo off
+setlocal
+
+rem Edit these values for your environment.
+set "SSH_HOST=deploy@v133-18-123-32-vir"
+set "REMOTE_ROOT=/home/deploy/ai_media_os"
+set "LOCAL_PORT=8765"
+set "REMOTE_PORT=8765"
+set "GUI_PATH=http://127.0.0.1:%LOCAL_PORT%/"
+
+ssh %SSH_HOST% "cd %REMOTE_ROOT% && bash scripts/start_new_release_gui.sh --port %REMOTE_PORT%"
+if errorlevel 1 (
+  echo Failed to start remote GUI.
+  pause
+  exit /b 1
+)
+
+netstat -ano -p TCP | findstr /R /C:":%LOCAL_PORT% .*LISTENING" >nul
+if errorlevel 1 (
+  start "new-release-gui-tunnel" /min ssh -N -L %LOCAL_PORT%:127.0.0.1:%REMOTE_PORT% %SSH_HOST%
+)
+
+timeout /t 2 /nobreak >nul
+start "" "%GUI_PATH%"
+exit /b 0

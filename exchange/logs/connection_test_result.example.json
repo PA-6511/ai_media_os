@@ -1,0 +1,23 @@
+{
+  "package_type": "connection_test_result",
+  "source": "ebook_affiliate_block",
+  "target": "core_consensus_ai",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "human_approval_required": true,
+  "result": "WARN",
+  "auto_post": false,
+  "auto_update": false,
+  "auto_delete": false,
+  "auto_export": false,
+  "checked_items": {
+    "decision_package_exists": "PASS",
+    "patch_proposal_exists": "PASS",
+    "test_report_exists": "PASS",
+    "human_review_required": "PASS",
+    "dangerous_operations_blocked": "PASS",
+    "wordpress_write_not_executed": "PASS",
+    "link_check": "WARN"
+  },
+  "next_step": "human_review"
+}

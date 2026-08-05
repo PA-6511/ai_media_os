@@ -1,0 +1,352 @@
+{
+  "phase_id": "19-6",
+  "phase_name": "Measurement Execution Record Deficiency Return and HALT Rules Design",
+  "phase_japanese_name": "測定実行記録不備時の差し戻し・HALTルール設計",
+  "purpose": "Design return (remediation) and HALT procedures for Phase 19-1 and 19-2 measurement execution record deficiencies, covering format validation failures, evidence lock failures, tamper detection events, and irrecoverable integrity violations",
+  "layer": "measurement_execution_record_layer",
+  "design_category": "reports_only",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only"
+  },
+  "phase_19_6_scope": {
+    "scope_1_deficiency_classification": {
+      "scope_id": "DEFICIENCY_CLASSIFICATION",
+      "description": "Classify record deficiencies into remedial, recoverable, or terminal categories",
+      "deficiency_categories": {
+        "category_1_format_deficiency": {
+          "category_id": "FORMAT_DEFICIENCY",
+          "description": "Phase 19-4 format validation fails due to missing fields, wrong types, or violated enums",
+          "failure_examples": [
+            "SECTION_MISSING: One or more of 5 sections absent",
+            "EXECUTION_STEPS_INCOMPLETE: Fewer than 7 steps recorded",
+            "MANDATORY_FIELD_NULL: Required field is null in completed record",
+            "ENUM_VIOLATION: integrated_decision_result not in [GO, NO_GO]",
+            "TIMESTAMP_FORMAT_VIOLATION: RFC 3339 format not followed",
+            "HASH_FORMAT_VIOLATION: evidence hash not 64+ hex characters"
+          ],
+          "severity": "MINOR_TO_MODERATE",
+          "remediation_action": "RETURN → Submitter corrects specific fields → Re-submit → Re-run Phase 19-4",
+          "halt_required": false,
+          "authority_approval_for_remediation": "No (technical correction only)"
+        },
+        "category_2_business_logic_violation": {
+          "category_id": "BUSINESS_LOGIC_VIOLATION",
+          "description": "Phase 19-4 business logic rules fail (cross-field inconsistency, state invariant violations)",
+          "failure_examples": [
+            "BL_1 violation: integrated_decision_before != NO_GO in Phase 19-1",
+            "BL_2 violation: receiver_validator_permission_before != NOT_EFFECTIVE",
+            "BL_3 violation: phase_18_6_final_abort_verification_result != FINAL_ABORT_VERIFICATION_PASSED",
+            "BL_4 violation: GO/NO_GO determination inconsistent with criteria evaluations",
+            "BL_5 violation: Sequential mode but Phase 15-7 result is not GO",
+            "BL_6 violation: Execution step timestamps not monotonically increasing"
+          ],
+          "severity": "MODERATE_TO_SEVERE",
+          "remediation_action": {
+            "BL_1_or_BL_2": "HALT → STATE_INVARIANT_VIOLATION: unauthorized state change detected before execution. Security investigation required.",
+            "BL_3": "RETURN → Re-run Phase 18-6 ABORT verification. Do not accept record without FINAL_ABORT_VERIFICATION_PASSED.",
+            "BL_4": "RETURN → Re-evaluate all criteria and regenerate determination. Re-submit corrected record.",
+            "BL_5": "HOLD → Phase 15-7 must complete with GO result. Then re-submit Phase 19-2 record.",
+            "BL_6": "RETURN → Correct execution step timestamps. Investigate clock synchronization issue."
+          },
+          "halt_required": "BL_1 and BL_2 only (state invariant violations require HALT)"
+        },
+        "category_3_evidence_lock_failure": {
+          "category_id": "EVIDENCE_LOCK_FAILURE",
+          "description": "Phase 19-5 evidence locking procedure fails",
+          "failure_examples": [
+            "Hash computation fails (infrastructure error)",
+            "Authority signature generation fails (key unavailable, signing error)",
+            "Audit trail append fails (storage error)",
+            "Lock entry integrity verification fails after append"
+          ],
+          "severity": "MODERATE",
+          "remediation_action": "HOLD → Identify and resolve infrastructure/signing issue → Retry Phase 19-5 locking procedure",
+          "halt_required": false,
+          "authority_approval_for_remediation": "No (infrastructure fix) except for authority key unavailability (Yes)"
+        },
+        "category_4_tamper_detection": {
+          "category_id": "TAMPER_DETECTED",
+          "description": "Phase 19-5 tamper detection rules (TD_1 through TD_5) detect evidence modification after locking",
+          "failure_examples": [
+            "TD_1: Hash recompute mismatch (record modified after locking)",
+            "TD_2: Authority signature invalid/revoked/expired",
+            "TD_3: Secondary tamper checksum mismatch (lock entry modified)",
+            "TD_4: Lock entry missing from audit trail (evidence loss)",
+            "TD_5: Measurement result summary in lock entry differs from full record"
+          ],
+          "severity": "CRITICAL",
+          "remediation_action": "HALT → Security incident response. Tampered records cannot be remediated; must re-execute measurement.",
+          "halt_required": true,
+          "authority_approval_for_remediation": "Yes (executive + security authority)"
+        },
+        "category_5_cross_validation_failure": {
+          "category_id": "CROSS_VALIDATION_FAILURE",
+          "description": "Phase 19-3 cross-validation consistency checks fail",
+          "failure_examples": [
+            "Timestamp ordering inconsistent (Phase 15-7 after 15-8 in sequential mode)",
+            "Authority identities inconsistent without documented delegation",
+            "Phase 18-8 authorization references invalid or different records",
+            "Pre-execution state snapshots logically inconsistent",
+            "Post-state transitions inconsistent with determined results"
+          ],
+          "severity": "MODERATE_TO_SEVERE",
+          "remediation_action": "HOLD or HALT depending on root cause (see scope_3 decision table)",
+          "halt_required": "Depends on root cause"
+        }
+      }
+    },
+    "scope_2_return_procedure": {
+      "scope_id": "RETURN_PROCEDURE",
+      "description": "Return (差し戻し) procedure for remediable deficiencies",
+      "return_procedure_steps": {
+        "step_1_identify_failing_rules": {
+          "step_id": "IDENTIFY_FAILURES",
+          "action": "Collect all failing rule IDs from Phase 19-4 validation (e.g., FT_2, BL_4, SC_2)",
+          "output": "List of failing rule IDs with failure descriptions"
+        },
+        "step_2_classify_failures": {
+          "step_id": "CLASSIFY_FAILURES",
+          "action": "Map each failing rule to deficiency category (category_1 through category_5)",
+          "halt_check": "If any failure maps to category_4 (tamper) or HALT-required category_2 (BL_1/BL_2): route to HALT immediately"
+        },
+        "step_3_generate_return_notice": {
+          "step_id": "GENERATE_RETURN_NOTICE",
+          "action": "Generate formal return notice documenting deficiencies",
+          "return_notice_content": {
+            "return_notice_id": "RETURN_PHASE15_[7|8]_<UTC_TIMESTAMP>",
+            "target_execution_record_id": "EXEC_PHASE15_[7|8]_... (being returned)",
+            "failing_rule_ids": "List of rule IDs",
+            "deficiency_descriptions": "Human-readable explanation per failure",
+            "required_corrections": "Specific corrections required per failure",
+            "re_submission_constraints": "Conditions for re-submission (e.g., re-run Phase 19-4, re-execute Phase 15-7/15-8)",
+            "return_timestamp_utc": "RFC 3339",
+            "return_authority_identifier": "Who issued the return notice"
+          }
+        },
+        "step_4_notify_submitter": {
+          "step_id": "NOTIFY_SUBMITTER",
+          "action": "Notify submitting authority of return notice via secure channel",
+          "notification_channels": ["Email", "Dashboard alert", "Audit trail entry"]
+        },
+        "step_5_remediation_and_resubmission": {
+          "step_id": "REMEDIATE_AND_RESUBMIT",
+          "action": "Submitter corrects deficiencies and re-submits corrected record",
+          "remediation_options": {
+            "field_correction_only": {
+              "applicable_to": "category_1 FORMAT_DEFICIENCY (field-level errors)",
+              "procedure": "Correct specific fields → Re-submit same execution record → Re-run Phase 19-4",
+              "note": "Do not re-execute measurement unless step-level data is incorrect"
+            },
+            "criteria_re_evaluation": {
+              "applicable_to": "category_2 BL_4 (determination inconsistency)",
+              "procedure": "Re-evaluate all GO/EFFECTIVE criteria → Update section_2 and step_5 → Re-submit → Re-run Phase 19-4"
+            },
+            "re_execution_required": {
+              "applicable_to": "category_2 BL_3 (ABORT verification not passed), BL_5 (sequential dependency)",
+              "procedure": "BL_3: Re-run Phase 18-6 verification → BL_5: Wait for Phase 15-7 GO result. Only then re-execute measurement and re-fill Phase 19-1/19-2 template."
+            }
+          }
+        },
+        "step_6_re_validation_after_resubmission": {
+          "step_id": "RE_VALIDATE",
+          "action": "After re-submission, re-run Phase 19-4 format validation on corrected record",
+          "success_outcome": "FORMAT_VALIDATION_PASS → proceed to Phase 19-5 locking",
+          "failure_outcome": "Iterate: re-classify failures and issue new return notice if still failing"
+        }
+      }
+    },
+    "scope_3_halt_procedure": {
+      "scope_id": "HALT_PROCEDURE",
+      "description": "HALT procedure for irrecoverable deficiencies",
+      "halt_scenarios": {
+        "halt_scenario_1_state_invariant_violation": {
+          "scenario_id": "HALT_STATE_INVARIANT",
+          "trigger": "BL_1 or BL_2 violation: integrated_decision_before != NO_GO (Phase 19-1) or receiver_validator_permission_before != NOT_EFFECTIVE",
+          "severity": "CRITICAL - unauthorized state change before measurement",
+          "halt_procedure": {
+            "step_1": "HALT all measurement activity immediately",
+            "step_2": "Preserve the violating record as evidence (do not modify)",
+            "step_3": "Alert authority: state invariant violated before execution",
+            "step_4": "Security investigation: determine how state was changed without authorization",
+            "step_5": "Remediation: restore correct state, identify and revoke unauthorized change",
+            "step_6": "Executive authority approval to resume measurement",
+            "step_7": "Re-execute full Phase 18-6 ABORT verification before re-attempting measurement"
+          },
+          "re_measurement_allowed": "Yes, after investigation complete and executive approval obtained"
+        },
+        "halt_scenario_2_tamper_detected": {
+          "scenario_id": "HALT_TAMPER_DETECTED",
+          "trigger": "Any Phase 19-5 tamper detection rule (TD_1 through TD_5) detects modification",
+          "severity": "CRITICAL - evidence integrity compromised",
+          "halt_procedure": {
+            "step_1": "HALT all measurement and cross-validation activity immediately",
+            "step_2": "Preserve all evidence (locked records, audit trail) for forensics",
+            "step_3": "Activate security incident response",
+            "step_4": "Forensic investigation: determine scope of tampering",
+            "step_5": "Remediation: restore from backup if available; harden infrastructure",
+            "step_6": "Executive + security authority approval to resume",
+            "step_7": "Re-execute Phase 15-7 and/or 15-8 from scratch with fresh records"
+          },
+          "re_measurement_allowed": "Yes, only after investigation + approval + fresh execution (cannot re-use tampered records)"
+        },
+        "halt_scenario_3_cross_validation_critical_failure": {
+          "scenario_id": "HALT_CROSS_VALIDATION_CRITICAL",
+          "trigger": "Phase 19-3 cross-validation fails with integrity-level inconsistency (e.g., both records show identical execution_record_ids, timestamps identical but results different, same hash but different content)",
+          "severity": "CRITICAL - logical impossibility suggests tampering or system fault",
+          "halt_procedure": {
+            "step_1": "HALT further processing",
+            "step_2": "Preserve all records and locks for forensics",
+            "step_3": "Determine root cause: data corruption, deliberate tampering, or system fault",
+            "step_4": "Authority review: determine whether re-measurement is possible or root cause must be resolved first",
+            "step_5": "If re-measurement possible: re-execute from Phase 18-6 ABORT verification"
+          },
+          "re_measurement_allowed": "Depends on root cause investigation"
+        },
+        "halt_scenario_4_audit_trail_evidence_loss": {
+          "scenario_id": "HALT_EVIDENCE_LOSS",
+          "trigger": "TD_4: lock entry missing from audit trail or audit trail corrupted",
+          "severity": "CRITICAL - audit evidence lost",
+          "halt_procedure": {
+            "step_1": "HALT all activity",
+            "step_2": "Attempt to restore audit trail from backup (if available)",
+            "step_3": "If backup available: verify restore integrity → re-verify all lock entries present",
+            "step_4": "If no backup: permanent evidence loss; executive decision on whether to re-execute",
+            "step_5": "Document incident for compliance record"
+          },
+          "re_measurement_allowed": "Yes after audit trail restored; otherwise executive decision required"
+        }
+      }
+    },
+    "scope_4_decision_table": {
+      "scope_id": "DECISION_TABLE",
+      "description": "Consolidated decision table mapping deficiency type to RETURN or HALT",
+      "decision_table": [
+        {
+          "deficiency_type": "FORMAT: Missing section",
+          "category": "category_1",
+          "outcome": "RETURN",
+          "re_execution_required": false,
+          "authority_approval": "No"
+        },
+        {
+          "deficiency_type": "FORMAT: Missing mandatory field",
+          "category": "category_1",
+          "outcome": "RETURN",
+          "re_execution_required": false,
+          "authority_approval": "No"
+        },
+        {
+          "deficiency_type": "FORMAT: Type/enum violation",
+          "category": "category_1",
+          "outcome": "RETURN",
+          "re_execution_required": false,
+          "authority_approval": "No"
+        },
+        {
+          "deficiency_type": "LOGIC: BL_3 ABORT verification not passed",
+          "category": "category_2",
+          "outcome": "RETURN (re-run Phase 18-6)",
+          "re_execution_required": true,
+          "authority_approval": "No"
+        },
+        {
+          "deficiency_type": "LOGIC: BL_4 determination inconsistency",
+          "category": "category_2",
+          "outcome": "RETURN (re-evaluate criteria)",
+          "re_execution_required": false,
+          "authority_approval": "No"
+        },
+        {
+          "deficiency_type": "LOGIC: BL_5 sequential dependency not met",
+          "category": "category_2",
+          "outcome": "HOLD (await Phase 15-7 GO)",
+          "re_execution_required": true,
+          "authority_approval": "No"
+        },
+        {
+          "deficiency_type": "LOGIC: BL_1/BL_2 state invariant violated",
+          "category": "category_2",
+          "outcome": "HALT",
+          "re_execution_required": true,
+          "authority_approval": "Yes (executive)"
+        },
+        {
+          "deficiency_type": "LOCK: Infrastructure/signing failure",
+          "category": "category_3",
+          "outcome": "HOLD (resolve and retry)",
+          "re_execution_required": false,
+          "authority_approval": "Conditional"
+        },
+        {
+          "deficiency_type": "TAMPER: Hash mismatch (TD_1)",
+          "category": "category_4",
+          "outcome": "HALT",
+          "re_execution_required": true,
+          "authority_approval": "Yes (executive + security)"
+        },
+        {
+          "deficiency_type": "TAMPER: Signature invalid (TD_2)",
+          "category": "category_4",
+          "outcome": "HALT",
+          "re_execution_required": true,
+          "authority_approval": "Yes (executive + security)"
+        },
+        {
+          "deficiency_type": "TAMPER: Audit trail evidence loss (TD_4)",
+          "category": "category_4",
+          "outcome": "HALT",
+          "re_execution_required": true,
+          "authority_approval": "Yes (executive)"
+        },
+        {
+          "deficiency_type": "CROSS_VAL: Timestamp or authority inconsistency",
+          "category": "category_5",
+          "outcome": "HOLD (investigate root cause)",
+          "re_execution_required": "Conditional",
+          "authority_approval": "Conditional"
+        },
+        {
+          "deficiency_type": "CROSS_VAL: Logical impossibility (identical IDs, hash/content mismatch)",
+          "category": "category_5",
+          "outcome": "HALT",
+          "re_execution_required": true,
+          "authority_approval": "Yes (executive)"
+        }
+      ]
+    }
+  },
+  "phase_19_6_governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "state_invariants": {
+      "integrated_decision": "NO_GO",
+      "receiver_validator_permission": "NOT_EFFECTIVE",
+      "app_implementation_status": "NO_GO",
+      "tests_implementation_status": "NO_GO"
+    },
+    "phase_19_6_completion_criteria": [
+      "5 deficiency categories classified (format, logic, lock failure, tamper, cross-validation)",
+      "6-step return procedure designed",
+      "4 HALT scenarios designed (state invariant, tamper, cross-validation critical, evidence loss)",
+      "Decision table (13 rows mapping deficiency to RETURN/HOLD/HALT) designed",
+      "All JSON validation passed",
+      "No changes to app/ or tests/ directories",
+      "All state invariants maintained"
+    ]
+  }
+}

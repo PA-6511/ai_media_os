@@ -1,0 +1,18 @@
+{
+  "phase": "LS-NEW-14-DECISION",
+  "document_type": "START_LS_NEW14_DRAFT_CREATION_EXECUTION_APPROVAL_DECISION_INPUT",
+  "human_approval_completed": false,
+  "human_approved_for_draft_creation": false,
+  "approval_label": "",
+  "reviewer_notes": "",
+  "approval_scope_confirmed": false,
+  "one_shot_only_confirmed": false,
+  "target_post_id_null_confirmed": false,
+  "post119_post183_forbidden_confirmed": false,
+  "execution_allowed": false,
+  "runner_execution_allowed": false,
+  "final_execution_command_created": false,
+  "actual_executable_command_created": false,
+  "wordpress_draft_creation_allowed_for_later_phase": false,
+  "ready_for_ls_new_15": false
+}

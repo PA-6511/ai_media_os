@@ -1,0 +1,63 @@
+{
+  "schema_version": "ir23_evidence_pack_lifecycle_audit_v1",
+  "phase": "IR23",
+  "generated_at": "2026-05-23T15:40:20.648977+00:00",
+  "source_task_id": "ir23_live_trial",
+  "validation_result": "PASS",
+  "validation_failed_checks": [],
+  "validation_warnings": [],
+  "summary": {
+    "profiles_checked": 3,
+    "profile_result_counts": {
+      "PASS": 3
+    },
+    "failed_check_count": 0,
+    "warning_count": 0
+  },
+  "traceability": {
+    "ir20_bundle_report": "generic_block_ai/reports/ir20_cross_phase_evidence_bundle_ir20_live_trial.json",
+    "ir21_verifier_report": "generic_block_ai/reports/ir21_evidence_pack_verifier_report_ir21_live_trial.json",
+    "ir22_completion_report": "generic_block_ai/reports/implementation_restart_phase22_completion_report.json",
+    "ir22_profile_reports": [
+      "generic_block_ai/reports/ir22_submission_profile_report_audit_submission_ir22_live_audit.json",
+      "generic_block_ai/reports/ir22_submission_profile_report_review_minimal_ir22_live_review.json",
+      "generic_block_ai/reports/ir22_submission_profile_report_policy_focus_ir22_live_policy.json"
+    ],
+    "profiles": [
+      {
+        "profile_name": "audit_submission",
+        "profile_source_task_id": "ir22_live_audit",
+        "profile_report": "generic_block_ai/reports/ir22_submission_profile_report_audit_submission_ir22_live_audit.json",
+        "selected_artifact_count": 12,
+        "missing_in_ir20_count": 0,
+        "sha_mismatch_count": 0,
+        "validation_result": "PASS"
+      },
+      {
+        "profile_name": "review_minimal",
+        "profile_source_task_id": "ir22_live_review",
+        "profile_report": "generic_block_ai/reports/ir22_submission_profile_report_review_minimal_ir22_live_review.json",
+        "selected_artifact_count": 5,
+        "missing_in_ir20_count": 0,
+        "sha_mismatch_count": 0,
+        "validation_result": "PASS"
+      },
+      {
+        "profile_name": "policy_focus",
+        "profile_source_task_id": "ir22_live_policy",
+        "profile_report": "generic_block_ai/reports/ir22_submission_profile_report_policy_focus_ir22_live_policy.json",
+        "selected_artifact_count": 11,
+        "missing_in_ir20_count": 0,
+        "sha_mismatch_count": 0,
+        "validation_result": "PASS"
+      }
+    ]
+  },
+  "safeguards": {
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "production_release": false
+  }
+}

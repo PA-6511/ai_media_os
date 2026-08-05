@@ -1,0 +1,23 @@
+{
+  "schema_version": "ir29_release_candidate_submission_dryrun_v1",
+  "phase": "IR29",
+  "generated_at": "2026-05-23T16:06:30.396838+00:00",
+  "source_task_id": "ir29_live_trial",
+  "checks": {
+    "ir28_report_exists": true,
+    "ir28_validation_pass": true,
+    "trace_manifest_exists": true,
+    "trace_sha256_manifest_exists": true,
+    "release_candidate_id_present": true,
+    "submission_mode_dry_run_only": true,
+    "external_transmission_attempted": false
+  },
+  "safeguards": {
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "production_release": false,
+    "network_transmission_executed": false
+  }
+}

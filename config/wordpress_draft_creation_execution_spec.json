@@ -1,0 +1,148 @@
+{
+  "phase": "Phase 6-5",
+  "spec_name": "wordpress_draft_creation_execution_spec_design",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "spec_status": "DESIGN_ONLY",
+  "production_status": "NO_GO",
+  "wordpress_draft_creation": "NO_GO",
+  "execution_enabled": false,
+  "target_scope": {
+    "operation": "create_single_wordpress_draft",
+    "max_posts_per_run": 1,
+    "target_post_status": "draft",
+    "existing_post_impact_must_be_zero": true
+  },
+  "input_contract": {
+    "required_fields": [
+      "request_id",
+      "candidate_id",
+      "title",
+      "body_markdown",
+      "content_url",
+      "pr_disclosure",
+      "affiliate_check_result",
+      "human_review_decision",
+      "reviewer_id",
+      "reviewed_at"
+    ],
+    "constraints": [
+      "title_non_empty",
+      "body_markdown_non_empty",
+      "content_url_must_be_valid_https",
+      "pr_disclosure_must_exist",
+      "affiliate_check_result in [PASS, WARN_WITH_EXPLICIT_HUMAN_OVERRIDE]",
+      "human_review_decision == APPROVE_DRAFT_CREATE_ONLY"
+    ]
+  },
+  "execution_sequence": [
+    {
+      "step": 1,
+      "name": "load_and_validate_inputs",
+      "description": "入力契約を検証し欠損や形式不備があれば停止",
+      "stop_on_failure": true
+    },
+    {
+      "step": 2,
+      "name": "validate_phase_gates",
+      "description": "Phase 6-1/6-2/6-3/6-4 のPASSと NO_GO維持状態を確認",
+      "stop_on_failure": true
+    },
+    {
+      "step": 3,
+      "name": "validate_human_review_freshness",
+      "description": "レビュー承認トークンと有効期限を確認",
+      "stop_on_failure": true
+    },
+    {
+      "step": 4,
+      "name": "validate_wordpress_permission",
+      "description": "専用ユーザー・権限・アプリパスワード状態を確認",
+      "stop_on_failure": true
+    },
+    {
+      "step": 5,
+      "name": "dry_run_payload_build_only",
+      "description": "WordPress送信用payloadを構築するが送信しない",
+      "stop_on_failure": true
+    },
+    {
+      "step": 6,
+      "name": "record_planned_evidence_schema",
+      "description": "将来実行時の証跡項目を確認し、設計段階では保存のみ",
+      "stop_on_failure": true
+    }
+  ],
+  "gates_before_any_write": {
+    "required": true,
+    "checks": [
+      "phase6_1_release_policy_validation_result.status == PASS",
+      "phase6_2_preflight_gate_validation_result.status == PASS",
+      "phase6_3_release_decision_rules_validation_result.status == PASS",
+      "phase6_4_controlled_unlock_plan_validation_result.status == PASS",
+      "unlock_currently_allowed == false in phase6_5",
+      "wordpress_write_executed == false"
+    ]
+  },
+  "evidence_spec": {
+    "required_in_phase6_5": false,
+    "future_required_fields": [
+      "request_id",
+      "candidate_id",
+      "draft_post_id",
+      "wordpress_user",
+      "reviewer_id",
+      "decision_token",
+      "executed_at",
+      "payload_hash",
+      "result_status"
+    ]
+  },
+  "immediate_stop_conditions": [
+    "input_validation_failed == true",
+    "required_phase_gate_missing == true",
+    "human_review_missing_or_expired == true",
+    "wordpress_role_not_allowed == true",
+    "secrets_env_auto_edit_detected == true",
+    "publish_request_detected == true",
+    "update_request_detected == true",
+    "delete_request_detected == true",
+    "wordpress_rest_post_requested == true",
+    "wordpress_rest_put_patch_requested == true",
+    "cron_change_requested == true",
+    "github_actions_trigger_requested == true",
+    "slack_production_notification_requested == true",
+    "vps_self_builder_execution_enabled == true"
+  ],
+  "retry_policy": {
+    "retry_on_failure": false,
+    "auto_retry_forbidden": true,
+    "manual_requeue_requires_new_review": true
+  },
+  "runtime_restrictions": {
+    "wordpress_rest_post_forbidden": true,
+    "wordpress_rest_put_patch_forbidden": true,
+    "publish_forbidden": true,
+    "update_existing_post_forbidden": true,
+    "delete_post_forbidden": true,
+    "cron_change_forbidden": true,
+    "github_actions_trigger_forbidden": true,
+    "slack_production_notification_forbidden": true,
+    "vps_self_builder_execution_forbidden": true,
+    "env_secret_credential_auto_edit_forbidden": true
+  },
+  "forbidden_actions": [
+    "wordpress_rest_post",
+    "wordpress_rest_put_patch",
+    "publish_post",
+    "update_existing_post",
+    "delete_post",
+    "bulk_posting",
+    "external_export",
+    "github_actions_trigger",
+    "slack_production_notification",
+    "cron_automation",
+    "env_secret_auto_edit",
+    "vps_self_builder_execution"
+  ]
+}

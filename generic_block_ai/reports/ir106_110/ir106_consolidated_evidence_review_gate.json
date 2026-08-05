@@ -1,0 +1,71 @@
+{
+  "schema_version": "ir106_consolidated_evidence_review_gate_v1",
+  "phase": "IR106",
+  "generated_at": "2026-05-24T15:23:29.780212+00:00",
+  "source_task_id": "ir106_110_live_trial",
+  "validation_result": "PASS",
+  "validation_failed_checks": [],
+  "validation_warnings": [],
+  "consolidated_evidence_review_gate": {
+    "gate_id": "ir106_review_ir106_110_live_trial_20260524T152329Z",
+    "generated_at": "2026-05-24T15:23:29.780190+00:00",
+    "source_task_id": "ir106_110_live_trial",
+    "new_cycle_id": "IR71_PLUS_CYCLE_A",
+    "review_entries": [
+      {
+        "queue_item_id": "queue_1",
+        "item": "go_decision_document",
+        "review_status": "REVIEW_PENDING",
+        "reviewed": false
+      },
+      {
+        "queue_item_id": "queue_2",
+        "item": "release_approver_signature",
+        "review_status": "REVIEW_PENDING",
+        "reviewed": false
+      },
+      {
+        "queue_item_id": "queue_3",
+        "item": "safety_redeclaration_record",
+        "review_status": "REVIEW_PENDING",
+        "reviewed": false
+      },
+      {
+        "queue_item_id": "queue_4",
+        "item": "full_test_matrix_record",
+        "review_status": "REVIEW_PENDING",
+        "reviewed": false
+      },
+      {
+        "queue_item_id": "queue_5",
+        "item": "execution_authorization_record",
+        "review_status": "REVIEW_PENDING",
+        "reviewed": false
+      }
+    ],
+    "review_entry_count": 5,
+    "all_reviewed": false,
+    "unlock_eligible": false,
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "gate_hash": "d11eba5f800571b8b35cf6f5cbaa63677ff813b88173f4f08d288c0bb12c0071",
+  "safety_gate_snapshot": {
+    "dry_run": "maintained",
+    "OBSERVE": "maintained",
+    "submission_execution_blocked": true,
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "network_transmission_executed": false,
+    "production_release": false,
+    "GitHub_push": "未実行"
+  }
+}

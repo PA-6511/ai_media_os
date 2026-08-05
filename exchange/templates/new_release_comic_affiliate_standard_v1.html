@@ -1,0 +1,38 @@
+<!-- title format:
+{work_title} {volume_label}｜配信開始
+Do not include "Kindle版" when Amazon / Rakuten Kobo / DMM are all present.
+-->
+
+<!-- wp:html -->
+<div class="ls-store-card">
+  <div class="ls-book-cover">
+    <a href="{cover_affiliate_url}" target="_blank" rel="nofollow sponsored noopener">
+      <img src="{cover_image_url}" alt="{work_title} {volume_label} 書影" loading="lazy">
+    </a>
+  </div>
+
+  <div class="ls-store-buttons">
+    <a class="ls-store-btn ls-store-amazon" href="{amazon_url}" target="_blank" rel="nofollow sponsored noopener">Amazonで見る</a>
+    <a class="ls-store-btn ls-store-kobo" href="{rakuten_kobo_url}" target="_blank" rel="nofollow sponsored noopener">楽天Koboで見る</a>
+    <a class="ls-store-btn ls-store-dmm" href="{dmm_books_url}" target="_blank" rel="nofollow sponsored noopener">DMMブックスで見る</a>
+  </div>
+</div>
+<!-- /wp:html -->
+
+<!-- wp:paragraph {"className":"ls-lead-box"} -->
+<p class="ls-lead-box"><strong>{work_title} {volume_label}</strong> が配信開始です。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list {"className":"ls-info-card"} -->
+<ul class="ls-info-card">
+<li>作品名：{work_title}</li>
+<li>価格：{price_text}</li>
+<li>作者：{author}</li>
+<li>出版社：{publisher}</li>
+<li>発売日：{release_date}</li>
+</ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"ls-pr-note"} -->
+<p class="ls-pr-note">※本ページはプロモーションを含みます。価格・配信状況は各ストアで確認してください。</p>
+<!-- /wp:paragraph -->

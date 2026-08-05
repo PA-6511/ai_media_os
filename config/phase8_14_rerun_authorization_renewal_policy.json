@@ -1,0 +1,53 @@
+{
+  "phase": "Phase 8-14",
+  "name": "rerun_authorization_renewal_policy",
+  "policy_status": "AUTHORIZATION_RENEWAL_ONLY",
+  "production_status": "NO_GO",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "human_approval_required": true,
+  "authorization_is_execution_permission": false,
+  "wordpress_api_call_allowed": false,
+  "wordpress_write_executed": false,
+  "publish_allowed": false,
+  "target_item_count": 1,
+  "required_evidence": [
+    "exchange/logs/phase8_13_post_credential_readiness_recheck_result.json"
+  ],
+  "required_credential_ready_status": "POST_CREDENTIALS_READY_NO_SECRET_OUTPUT",
+  "allowed_if_not_ready_status": "POST_CREDENTIALS_NOT_READY_NO_SECRET_OUTPUT",
+  "allowed_decisions": [
+    "ACKNOWLEDGE_RERUN_AUTHORIZATION_RENEWAL_ONLY",
+    "REQUEST_FIX",
+    "REJECT",
+    "ABORT"
+  ],
+  "forbidden_decisions": [
+    "APPROVE_PUBLISH",
+    "APPROVE_UPDATE",
+    "APPROVE_DELETE",
+    "APPROVE_BULK_RUN",
+    "APPROVE_EXPORT"
+  ],
+  "required_acknowledgements": [
+    "acknowledged_credentials_checked_without_secret_output",
+    "acknowledged_single_item_only",
+    "acknowledged_draft_only",
+    "acknowledged_no_publish",
+    "acknowledged_no_update",
+    "acknowledged_no_delete",
+    "acknowledged_no_bulk",
+    "acknowledged_no_auto_cleanup",
+    "acknowledged_manual_review_after_creation"
+  ],
+  "approval_scope_required": {
+    "rerun_handoff_only": true,
+    "draft_create_only": false,
+    "publish": false,
+    "update": false,
+    "delete": false,
+    "bulk": false,
+    "external_export": false
+  },
+  "allowed_next_step": "Phase 8-15 rerun handoff report for Phase 8-6 to Phase 8-10 re-execution"
+}

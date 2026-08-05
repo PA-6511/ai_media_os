@@ -1,0 +1,51 @@
+{
+  "phase": "Implementation Restart Phase 7",
+  "status": "COMPLETED",
+  "generated_at": "2026-05-23T00:00:00Z",
+  "test_result": {
+    "summary": "115 passed / 0 failed",
+    "command": "python3 -m pytest -q generic_block_ai/tests"
+  },
+  "tasks": {
+    "IR7-T1": {
+      "name": "Generated package formalization",
+      "result": "completed",
+      "artifact": "reports/affiliate_block_package_descriptor.json"
+    },
+    "IR7-T2": {
+      "name": "affiliate runner payload to core handshake transform",
+      "result": "completed",
+      "module": "app/affiliate_integration_trial.py"
+    },
+    "IR7-T3": {
+      "name": "affiliate -> generic -> core three-party dry-run trial",
+      "result": "completed",
+      "artifact": "reports/ir7_three_party_dryrun_ir7_live_trial.json"
+    },
+    "IR7-T4": {
+      "name": "Integration trial runbook",
+      "result": "completed",
+      "artifact": "reports/ir7_generated_affiliate_integration_runbook.json"
+    },
+    "IR7-T5": {
+      "name": "Completion report",
+      "result": "completed",
+      "artifact": "reports/implementation_restart_phase7_completion_report.json"
+    }
+  },
+  "key_changes": [
+    "app/affiliate_integration_trial.py added",
+    "tests/test_affiliate_integration_trial.py added",
+    "reports artifacts generated for descriptor/trial/runbook"
+  ],
+  "safety_gates": {
+    "dry_run": "maintained",
+    "OBSERVE": "maintained",
+    "human_review_required": "maintained",
+    "external_write_executed": false,
+    "external_network_call": "none",
+    "github_push": "not_executed",
+    "wordpress_post": "not_executed",
+    "vps_release": "not_executed"
+  }
+}

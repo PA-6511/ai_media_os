@@ -1,0 +1,41 @@
+{
+  "phase": "SFB-15",
+  "phase_name": "SFB Dashboard Operations Runbook Lock",
+  "mode": "DRY_RUN",
+  "production_status": "NO_GO",
+  "external_api_allowed": false,
+  "external_network_allowed": false,
+  "wordpress_write_allowed": false,
+  "approval_token_consumption_allowed": false,
+  "required_files": {
+    "runbook": "docs/runbooks/sfb_dashboard_operations_runbook_lock.md",
+    "checklist": "docs/runbooks/sfb_dashboard_operations_checklist.md",
+    "sfb13_json": "logs/sfb_13_csv_import_diff_report.json",
+    "sfb14_json": "logs/sfb_14_dashboard_aggregation.json"
+  },
+  "required_runbook_sections": [
+    "目的",
+    "固定前提",
+    "dashboard再生成コマンド",
+    "確認すべきJSON/MD",
+    "WARN確認",
+    "artifact_missing確認",
+    "NO_GO確認",
+    "差分レポート確認",
+    "再実行タイミング",
+    "停止条件",
+    "最終判定"
+  ],
+  "required_checklist_tokens": [
+    "SFB-13",
+    "SFB-14",
+    "SFB-15",
+    "artifact_missing = 0",
+    "production_status = NO_GO",
+    "mode = DRY_RUN",
+    "STOP_AND_FIX"
+  ],
+  "output": {
+    "readiness_json": "logs/sfb_15_dashboard_operations_readiness.json"
+  }
+}

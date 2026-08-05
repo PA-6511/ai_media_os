@@ -1,0 +1,73 @@
+{
+  "_meta": {
+    "phase": "15-4",
+    "phase_name": "最終実測入力の形式検証ルール設計",
+    "version": "1.0",
+    "created_date": "2026-05-13",
+    "status": "PASS_DESIGN_ONLY",
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only",
+    "description": "integrated_decision と receiver validator 実装許可の最終実測入力に対する形式検証ルールを固定する。"
+  },
+  "references": [
+    "generic_block_ai/reports/phase15_1_integrated_decision_final_measurement_input_format_spec.json",
+    "generic_block_ai/reports/phase15_2_receiver_validator_permission_final_measurement_input_format_spec.json",
+    "generic_block_ai/reports/phase15_3_go_candidate_to_measured_go_pre_promotion_final_acceptance_gate_design.json"
+  ],
+  "format_validation_rules": [
+    {
+      "rule_id": "MVR-01",
+      "check": "phase15_1.accepted_input_format.required_fields の全項目が存在する",
+      "failure_effect": "integrated_decision input invalid"
+    },
+    {
+      "rule_id": "MVR-02",
+      "check": "phase15_2.accepted_input_format.required_fields の全項目が存在する",
+      "failure_effect": "permission input invalid"
+    },
+    {
+      "rule_id": "MVR-03",
+      "check": "candidate_confidence と effective_feasibility が許容値に一致する",
+      "failure_effect": "input invalid"
+    },
+    {
+      "rule_id": "MVR-04",
+      "check": "production_status == NO_GO",
+      "failure_effect": "validation aborted"
+    },
+    {
+      "rule_id": "MVR-05",
+      "check": "forbidden_mutations が検出されない",
+      "failure_effect": "validation aborted"
+    }
+  ],
+  "validation_template": {
+    "integrated_input_valid": false,
+    "permission_input_valid": false,
+    "invalid_fields": [],
+    "overall_result": "PENDING",
+    "reason": "最終実測入力の実データ検証前のため未確定。"
+  },
+  "blocked_actions": [
+    "core_ai_real_send",
+    "external_api_call",
+    "wordpress_operation",
+    "cron_registration",
+    "auto_execute",
+    "auto_post",
+    "auto_update",
+    "auto_delete",
+    "auto_export",
+    "production_execution"
+  ],
+  "phase_decision": {
+    "phase15_4_status": "PASS_DESIGN_ONLY",
+    "app_implementation_status": "NO_GO",
+    "tests_implementation_status": "NO_GO",
+    "note": "最終実測入力の形式検証ルール設計のみ。実装開始は含まない。"
+  }
+}

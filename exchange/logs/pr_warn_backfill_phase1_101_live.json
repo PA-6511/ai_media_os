@@ -1,0 +1,21 @@
+{
+  "phase": "PR WARN Backfill Phase 1",
+  "mode": "LIVE",
+  "post_id": 101,
+  "title": "呪術廻戦は何巻まで出てる？最新巻・関連情報まとめ",
+  "source_file": "data/items/manga_0001_volume_guide_article_output_with_links.json",
+  "dry_run_strategy": "insert_after_h1",
+  "proposed_notice_html": "<p class=\"pr-notice\">※本記事にはアフィリエイト広告（PR）が含まれます。</p>",
+  "classification": "existing_draft_backfill",
+  "source_age": "修正前生成",
+  "wordpress_write_executed": false,
+  "human_approval_required": true,
+  "created_at": "2026-06-14T13:34:41.184666+00:00",
+  "status": "ABORT",
+  "reason": "approval validation failed",
+  "errors": [
+    "approved must be true",
+    "wordpress_write_allowed must be true"
+  ],
+  "next_step": "fix approval file"
+}

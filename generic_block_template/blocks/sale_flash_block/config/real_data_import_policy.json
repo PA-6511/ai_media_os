@@ -1,0 +1,64 @@
+{
+  "phase": "SFB-11",
+  "block_name": "sale_flash_block",
+  "mode": "DRY_RUN",
+  "production_status": "NO_GO",
+  "external_api_allowed": false,
+  "external_network_allowed": false,
+  "wordpress_write_allowed": false,
+  "strict_stop_on_invalid_rows": true,
+  "max_rows_per_import": 200,
+  "required_columns": [
+    "source",
+    "title",
+    "author",
+    "isbn",
+    "asin",
+    "campaign",
+    "sale_status",
+    "confidence",
+    "note"
+  ],
+  "required_non_empty_columns": [
+    "source",
+    "title",
+    "author",
+    "sale_status",
+    "confidence"
+  ],
+  "allowed_sources": [
+    "manual_csv",
+    "openbd_candidate",
+    "rakuten_books_candidate",
+    "publisher_news_candidate"
+  ],
+  "allowed_sale_status": [
+    "candidate",
+    "hold",
+    "exclude"
+  ],
+  "confidence_range": {
+    "min": 0.0,
+    "max": 1.0
+  },
+  "require_isbn_or_asin": true,
+  "duplicate_strategy": "keep_first",
+  "fixture_columns": [
+    "source",
+    "title",
+    "author",
+    "isbn",
+    "asin",
+    "campaign",
+    "sale_status",
+    "confidence",
+    "note"
+  ],
+  "paths": {
+    "incoming_csv": "data/incoming/sale_flash_candidates.csv",
+    "fixture_csv": "fixtures/sample_sale_candidates.csv",
+    "history_dir": "data/import_history",
+    "report_json": "logs/real_sale_csv_import_report.json",
+    "report_md": "logs/real_sale_csv_import_report.md"
+  }
+}

@@ -1,0 +1,124 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-K0",
+  "policy_id": "NEW_RELEASE_WP_FRESH_ARTICLE_TEMPLATE_RECONCILIATION_POLICY_V1",
+  "source_phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-J",
+  "template_contract_id": "POST185_STANDARD_TEMPLATE_V1_FIXED",
+  "template_id": "POST185_STANDARD_TEMPLATE_V1",
+  "reconciliation_contract_id": "FRESH_NEW_RELEASE_COMIC_TEMPLATE_RECONCILIATION_V1",
+  "operation_mode": "APPROVED_TEMPLATE_RECONCILIATION_CONTRACT_FIXATION_ONLY",
+  "fixed_article": {
+    "content_item_id": "new-release-comic-20260703-001",
+    "work_title": "ダークギャザリング",
+    "volume_label": "第20巻",
+    "article_title": "ダークギャザリング 第20巻｜配信開始",
+    "wordpress_status": "draft"
+  },
+  "source_artifacts": {
+    "template_contract_path": "config/post185_standard_template_contract.json",
+    "template_contract_file_sha256": "c74bc716c5c8b192d7c8a4409704465994d9dfea024c137dd7591e3e863a79e1",
+    "standard_policy_path": "config/new_release_article_standard_template_policy.json",
+    "standard_policy_file_sha256": "0876a7912a452dc16f9fc1766b4a57a5672bf7e089ed93e3b520748662a5c642",
+    "legacy_renderer_path": "scripts/build_ls_new_batch_3.py",
+    "legacy_renderer_file_sha256": "149aecd769cf94d299374f2a303b4da6f49fd3299107eddfeedc43d013ebe2aa",
+    "final_snapshot_path": "exchange/info_card/post_185_content_after_info_card_price_update_20260710_004454.html",
+    "final_snapshot_file_sha256": "a2d8ec9a51ed400339c41705dc51cbea4f6fd6d2b55c32e950a8b1b854088745"
+  },
+  "reconciliation_rules": {
+    "final_snapshot_used_as_structural_reference_only": true,
+    "legacy_renderer_used_as_template_id_reference": true,
+    "post185_product_data_inheritance_allowed": false,
+    "post185_url_inheritance_allowed": false,
+    "post185_image_url_inheritance_allowed": false,
+    "legacy_disclosure_text_inheritance_allowed": false,
+    "reconciled_disclosure_text": "【PR】本記事にはアフィリエイト広告を含みます。価格・配信状況は各ストアで確認してください。",
+    "reconciled_disclosure_must_precede_store_navigation": true
+  },
+  "resolved_structure": {
+    "template_root_id": "POST185_STANDARD_TEMPLATE_V1",
+    "cover_required": true,
+    "cover_anchor_allowed_before_final_affiliate_link_fixation": false,
+    "information_card_required": true,
+    "information_card_fields": [
+      "作品名",
+      "価格",
+      "作者",
+      "出版社",
+      "発売日"
+    ],
+    "store_navigation_structure_reserved": true,
+    "store_button_order": [
+      "amazon",
+      "rakuten_kobo",
+      "dmm_books"
+    ],
+    "store_navigation_html_rendering_allowed_before_final_link_fixation": false,
+    "categories_field_allowed": false
+  },
+  "link_boundary": {
+    "registered_store_links_are_verification_sources_only": true,
+    "registered_store_links_are_final_affiliate_links": false,
+    "final_affiliate_link_generation_allowed": false,
+    "final_affiliate_link_rendering_allowed": false,
+    "snapshot_href_reuse_allowed": false,
+    "dmm_latest_alias_recheck_completed": false,
+    "dmm_url_rendering_allowed": false,
+    "dmm_final_link_use_allowed": false
+  },
+  "legacy_exclusion": {
+    "forbidden_product_tokens": [
+      "月曜日のたわわ",
+      "比村奇石",
+      "講談社",
+      "税込792円",
+      "B0H6DQLPPB",
+      "4071859"
+    ],
+    "legacy_product_token_output_allowed": false
+  },
+  "authorization_boundary": {
+    "source_authorization_path": "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.offline_content_generation_authorization.json",
+    "authorized_phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-K",
+    "authorization_must_remain_unconsumed": true,
+    "authorization_modification_allowed": false,
+    "consumption_evidence_creation_allowed": false
+  },
+  "current_phase_activity": {
+    "template_reconciliation_contract_fixed": true,
+    "template_artifact_resolved": true,
+    "article_content_generated": false,
+    "content_output_created": false,
+    "authorization_consumed": false,
+    "consumption_evidence_created": false,
+    "fresh_payload_created": false,
+    "payload_binding_complete": false,
+    "category_id_injected": false,
+    "network_access": false,
+    "wordpress_access": false,
+    "wordpress_write": false
+  },
+  "execution_boundary": {
+    "template_reconciliation_contract_fixation_allowed": true,
+    "article_content_generation_allowed": false,
+    "content_output_creation_allowed": false,
+    "authorization_consumption_allowed": false,
+    "consumption_evidence_creation_allowed": false,
+    "fresh_payload_creation_allowed": false,
+    "payload_binding_allowed": false,
+    "production_category_id_payload_injection_allowed": false,
+    "credential_file_read_allowed": false,
+    "network_connection_allowed": false,
+    "wordpress_api_call_allowed": false,
+    "wordpress_write_allowed": false,
+    "wordpress_draft_creation_allowed": false,
+    "wordpress_publish_allowed": false,
+    "execution_allowed": false,
+    "production_status": "NO_GO",
+    "safety_state": "TEMPLATE_RECONCILIATION_FIXED_AUTHORIZATION_UNCONSUMED"
+  },
+  "next_phase": {
+    "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-K",
+    "name": "Fresh Article One-Shot Offline Content Generation",
+    "execution_allowed": false
+  }
+}

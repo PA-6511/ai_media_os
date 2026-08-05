@@ -1,0 +1,25 @@
+{
+  "phase": "LS-NEW-13",
+  "document_type": "START_LS_NEW13_ONE_SHOT_DRAFT_CREATION_BOUNDARY",
+  "status": "LSNEW13_ONE_SHOT_DRAFT_CREATION_BOUNDARY_READY_NO_EXECUTION",
+  "one_shot_draft_creation_planned": true,
+  "one_shot_execution_count_target": 1,
+  "one_shot_execution_actual_count": 0,
+  "draft_creation_executed_in_current_phase": false,
+  "wordpress_draft_created": false,
+  "target_post_id": null,
+  "target_post_id_allocated": false,
+  "post119_update_forbidden": true,
+  "post183_update_forbidden": true,
+  "rerun_allowed": false,
+  "publish_rerun_allowed": false,
+  "execution_allowed": false,
+  "required_before_execution": [
+    "LS-NEW-14 separate draft creation execution approval gate must pass",
+    "A later human approval decision must approve one draft creation only",
+    "A separate execution phase must create the executable command",
+    "target_post_id must remain null before creation",
+    "post119/post183 update must remain forbidden",
+    "rollback/freeze boundary must remain available"
+  ]
+}

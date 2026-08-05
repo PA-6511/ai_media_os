@@ -1,0 +1,26 @@
+# LS-NEW-BATCH-4G-2E-RECOVERY-M7
+
+- Status: `PASS_DMM_FINAL_AFFILIATE_LINK_GENERATED_OFFLINE_AUTHORIZATION_CONSUMED_NO_NETWORK`
+- Decision: `DMM_FINAL_AFFILIATE_LINK_SECRET_ARTIFACT_READY_FOR_HUMAN_REVIEW_AND_ARTICLE_INJECTION_GATE`
+- Authorization consumed: `true`
+- Authorization reuse allowed: `false`
+- Automatic retry allowed: `false`
+- Link artifact path: `exchange/links/new_release/fresh/new-release-comic-20260703-001.dmm_final_affiliate_link_generation_result.json`
+- Link artifact mode: `0600`
+- Full final URL output: `false`
+- Affiliate identifier output: `false`
+- Final URL fingerprint: `f01572020caf88cd0a017e0e739bc492394fa275eeac0e346328adba0fd99141`
+- Required scheme verified: `true`
+- Required host verified: `true`
+- Destination exact binding verified: `true`
+- Identifier exact binding verified: `true`
+- CRED1 commitment revalidated: `true`
+- Network accessed: `false`
+- DMM recheck performed: `false`
+- Article URL injected: `false`
+- DMM slot activated: `false`
+- Article modified: `false`
+- Payload created: `false`
+- WordPress accessed: `false`
+- Production status: `NO_GO`
+- Ready for M8 human review gate: `true`

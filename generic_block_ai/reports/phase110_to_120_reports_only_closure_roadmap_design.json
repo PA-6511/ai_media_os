@@ -1,0 +1,157 @@
+{
+  "_meta": {
+    "phase_range": "110-120",
+    "status": "PASS_DESIGN_ONLY",
+    "reports_only": true,
+    "title": "Phase 110-120 reports-only 区間締めロードマップ"
+  },
+  "invariants": {
+    "production_status": "NO_GO",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "execution_start": "NO_GO",
+    "changed_area": "reports only"
+  },
+  "phases": [
+    {
+      "phase": 110,
+      "layer": "最終復旧担当確認層",
+      "purpose": "復旧作業の確認・判断・停止責任を reports-only で固定",
+      "sub_phases": {
+        "1": "Phase 109 完了証跡の受領・整合確認",
+        "2": "manual_release_go 最終復旧担当確認設計",
+        "3": "actual_process_start_go 最終復旧担当確認設計",
+        "4_to_6": "証跡固定・NO_GO維持補強",
+        "7_to_9": "統合判定・最終証跡固定・完了宣言"
+      }
+    },
+    {
+      "phase": 111,
+      "layer": "最終復旧連絡経路確認層",
+      "purpose": "通知先・連絡経路・確認先の整合固定",
+      "sub_phases": {
+        "1": "Phase 110 完了証跡の受領・整合確認",
+        "2": "manual_release_go 最終復旧連絡経路確認設計",
+        "3": "actual_process_start_go 最終復旧連絡経路確認設計",
+        "4_to_6": "証跡固定・NO_GO維持補強",
+        "7_to_9": "統合判定・最終証跡固定・完了宣言"
+      }
+    },
+    {
+      "phase": 112,
+      "layer": "最終ロールバック復旧セット整合確認層",
+      "purpose": "ロールバック手順・復旧手順・証跡保存先・通知先の整合最終確認",
+      "sub_phases": {
+        "1": "Phase 111 完了証跡の受領・整合確認",
+        "2": "manual_release_go 最終ロールバック復旧セット整合確認設計",
+        "3": "actual_process_start_go 最終ロールバック復旧セット整合確認設計",
+        "4_to_6": "証跡固定・NO_GO維持補強",
+        "7_to_9": "統合判定・最終証跡固定・完了宣言"
+      }
+    },
+    {
+      "phase": 113,
+      "layer": "最終解除候補重複・矛盾検査層",
+      "purpose": "Phase 75-112 の重複・矛盾・命名ずれ・statusずれ総点検",
+      "sub_phases": {
+        "1": "Phase 75-112 証跡群の受領・整合確認",
+        "2": "manual_release_go 解除候補重複・矛盾検査設計",
+        "3": "actual_process_start_go 解除候補重複・矛盾検査設計",
+        "4_to_6": "検査結果証跡固定・NO_GO維持補強",
+        "7_to_9": "統合判定・完了宣言"
+      }
+    },
+    {
+      "phase": 114,
+      "layer": "最終解除候補インベントリ固定層",
+      "purpose": "解除候補と非解除対象の reports-only 証跡を切り分け固定",
+      "sub_phases": {
+        "1": "Phase 113 完了証跡の受領・整合確認",
+        "2": "manual_release_go 解除候補インベントリ固定設計",
+        "3": "actual_process_start_go 解除候補インベントリ固定設計",
+        "4_to_6": "インベントリ証跡固定・NO_GO維持補強",
+        "7_to_9": "統合判定・完了宣言"
+      }
+    },
+    {
+      "phase": 115,
+      "layer": "最終解除候補 GO/NO-GO 分離確認層",
+      "purpose": "manual_release_go と actual_process_start_go の完全分離固定",
+      "sub_phases": {
+        "1": "Phase 114 完了証跡の受領・整合確認",
+        "2": "manual_release_go GO/NO-GO 分離確認設計",
+        "3": "actual_process_start_go GO/NO-GO 分離確認設計",
+        "4_to_6": "分離結果証跡固定・NO_GO維持補強",
+        "7_to_9": "統合判定・完了宣言"
+      }
+    },
+    {
+      "phase": 116,
+      "layer": "最終解除前封印確認層",
+      "purpose": "本番実行・実処理開始・自動投稿・自動更新が封印状態であることを確認",
+      "sub_phases": {
+        "1": "Phase 115 完了証跡の受領・整合確認",
+        "2": "manual_release_go 解除前封印確認設計",
+        "3": "actual_process_start_go 解除前封印確認設計",
+        "4_to_6": "封印証跡固定・NO_GO維持補強",
+        "7_to_9": "統合判定・完了宣言"
+      }
+    },
+    {
+      "phase": 117,
+      "layer": "最終人間承認入力待機層",
+      "purpose": "承認入力要件の明示のみ行い、承認状態は未付与を維持",
+      "sub_phases": {
+        "1": "Phase 116 完了証跡の受領・整合確認",
+        "2": "manual_release_go 人間承認入力待機設計",
+        "3": "actual_process_start_go 人間承認入力待機設計",
+        "4_to_6": "承認入力待機証跡固定・NO_GO維持補強",
+        "7_to_9": "統合判定・完了宣言"
+      }
+    },
+    {
+      "phase": 118,
+      "layer": "最終人間承認フォーマット固定層",
+      "purpose": "承認文言・承認ID・対象範囲・取消条件の固定",
+      "sub_phases": {
+        "1": "Phase 117 完了証跡の受領・整合確認",
+        "2": "manual_release_go 人間承認フォーマット固定設計",
+        "3": "actual_process_start_go 人間承認フォーマット固定設計",
+        "4_to_6": "承認フォーマット証跡固定・NO_GO維持補強",
+        "7_to_9": "統合判定・完了宣言"
+      }
+    },
+    {
+      "phase": 119,
+      "layer": "Phase 75-118 reports-only 最終総括層",
+      "purpose": "reports-only 設計証跡群の総括確認",
+      "sub_phases": {
+        "1": "Phase 75-118 完了証跡の受領・整合確認",
+        "2": "manual_release_go reports-only 最終総括確認設計",
+        "3": "actual_process_start_go reports-only 最終総括確認設計",
+        "4_to_6": "総括証跡固定・NO_GO維持補強",
+        "7_to_9": "統合判定・完了宣言"
+      }
+    },
+    {
+      "phase": 120,
+      "layer": "reports-only 設計区間完了宣言層",
+      "purpose": "reports-only 設計区間完了を宣言し、実処理は未開始維持",
+      "sub_phases": {
+        "1": "Phase 119 完了証跡の受領・整合確認",
+        "2": "manual_release_go reports-only 設計区間完了宣言設計",
+        "3": "actual_process_start_go reports-only 設計区間完了宣言設計",
+        "4_to_6": "完了宣言証跡固定・NO_GO維持補強",
+        "7_to_9": "最終統合判定・最終完了宣言"
+      },
+      "target_state": {
+        "phase75_to_120_reports_only_design_status": "PASS_DESIGN_ONLY",
+        "production_status": "NO_GO",
+        "manual_release_go_authorization": "NOT_GRANTED",
+        "actual_process_start_go_authorization": "NOT_GRANTED",
+        "execution_start": "NO_GO",
+        "changed_area": "reports only"
+      }
+    }
+  ]
+}

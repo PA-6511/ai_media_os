@@ -1,0 +1,53 @@
+{
+  "_meta": {
+    "phase": "5-1",
+    "purpose": "core_receiver_schema_design",
+    "created_at": "2026-05-12",
+    "status": "DESIGN_ONLY",
+    "note": "Core側受信スキーマ設計。実送信・外部接続・本番反映は行わない。"
+  },
+  "runtime_constraints": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "connection_test_mode": true,
+    "connection_scope": "decision_package_handoff_only",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false
+  },
+  "receiver_permissions": {
+    "mode": "observation_only",
+    "execution_permission": "none",
+    "write_permission": "none"
+  },
+  "accepted_payload": {
+    "artifact_type": "decision_package",
+    "required_fields": [
+      "handoff_id",
+      "created_at",
+      "decision_package_ref",
+      "blocked_actions",
+      "required_review_state"
+    ],
+    "forbidden_fields": [
+      "execution_command",
+      "external_request",
+      "wordpress_instruction",
+      "cron_instruction",
+      "production_instruction"
+    ]
+  },
+  "blocked_capabilities": [
+    "core_ai_real_send",
+    "external_api_call",
+    "wordpress_operation",
+    "cron_registration",
+    "auto_execute",
+    "auto_post",
+    "auto_update",
+    "auto_delete",
+    "auto_export",
+    "production_execution"
+  ],
+  "result": "PASS_DRY_RUN_ONLY"
+}

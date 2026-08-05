@@ -1,0 +1,35 @@
+{
+  "package_id": "phase8_17_draft_body_update_human_approval_package_post_114_v1",
+  "phase": "Phase 8-17",
+  "operator": "human",
+  "decision": "ACKNOWLEDGE_PACKAGE_READY_ONLY",
+  "target_post_id": 114,
+  "target_item_count": 1,
+  "summary": "Design-only approval package for evaluating whether one-time body update permission should be granted in a later phase.",
+  "acknowledged_no_go": true,
+  "acknowledged_no_wordpress_api_call": true,
+  "acknowledged_no_wordpress_write": true,
+  "acknowledged_no_publish": true,
+  "acknowledged_no_update": true,
+  "acknowledged_no_delete": true,
+  "acknowledged_no_export": true,
+  "acknowledged_no_auto_post": true,
+  "acknowledged_no_systemctl": true,
+  "approval_scope": {
+    "wordpress_api_call": false,
+    "wordpress_body_update": false,
+    "publish": false,
+    "update": false,
+    "delete": false,
+    "export": false,
+    "auto_post": false,
+    "systemctl": false,
+    "credential_env_edit": false,
+    "gate_is_execution_permission": false
+  },
+  "change_request": {
+    "intent": "Prepare decision package only",
+    "execute_now": false,
+    "requires_additional_human_approval_for_execution": true
+  }
+}

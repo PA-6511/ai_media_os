@@ -1,0 +1,45 @@
+{
+  "phase": "LS-6C",
+  "status": "LS6C_REAL_DRAFT_PAYLOAD_REBUILT_DRY_RUN_READY",
+  "execution_mode": "DRY_RUN_ONLY",
+  "production_status": "NO_GO",
+  "payload_ready": true,
+  "input_status": "ACTUAL_MANUAL_INPUT",
+  "max_items": 1,
+  "payload_count": 1,
+  "wordpress_api_call_executed": false,
+  "wordpress_write_executed": false,
+  "wordpress_draft_creation_executed": false,
+  "wordpress_existing_post_update_executed": false,
+  "post119_update_executed": false,
+  "publish_executed": false,
+  "approval_token_consumed": false,
+  "payloads": [
+    {
+      "post_status": "draft",
+      "title": "2.5次元の誘惑",
+      "content_format": "html",
+      "content": "<p><strong>PR</strong> このページには広告リンクが含まれます。</p>\n<h2>作品情報</h2>\n<ul>\n  <li>作品名: 2.5次元の誘惑</li>\n  <li>著者: 橋本悠</li>\n  <li>巻数: 1</li>\n  <li>発売日: 2019-10-04</li>\n</ul>\n<p>現実の女に興味無し！　2次元のキャラクター・リリエルを愛す漫画研究部部長・奥村のもとにやってきたのは、「リリエルになりたい」という3次元女子・天乃リリサ。彼女の頼みでコスプレの撮影に協力することになった奥村だが、目の前に現れたのは――本物（リアル）なリリエル!?　この誘惑は2次元（フィクション）じゃない！　ドキドキコスプレコメディ開幕!!</p>\n<p><a href=\"https://www.amazon.co.jp/dp/B07X2G67B4?tag=ktkr77-22\" rel=\"nofollow sponsored noopener\" target=\"_blank\">Amazonで確認する</a></p>\n<p>価格や在庫状況は変動する場合があります。購入前にAmazonの商品ページで最新情報をご確認ください。</p>",
+      "affiliate_disclosure_present": true,
+      "affiliate_link_present": true,
+      "html_link_present": true,
+      "markdown_link_present": false,
+      "category": "電子書籍",
+      "tags": [
+        "既刊",
+        "電子書籍"
+      ],
+      "category_or_tag_present": true,
+      "sample_content_detected": false,
+      "core_boundary_ref": null,
+      "audit_observation_ref": null,
+      "risk_score": null,
+      "rollback_pointer": {
+        "required": true,
+        "status": "DRY_RUN_PLACEHOLDER"
+      }
+    }
+  ],
+  "errors": [],
+  "generated_at": "2026-06-21T12:39:12.156928+00:00"
+}

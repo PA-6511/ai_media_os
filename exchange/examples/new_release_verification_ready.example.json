@@ -1,0 +1,110 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-2",
+  "policy_id": "NEW_RELEASE_VERIFICATION_POLICY_V1",
+  "input_schema_id": "NEW_RELEASE_BATCH_INPUT_SCHEMA_V1",
+  "template_contract_id": "POST185_STANDARD_TEMPLATE_V1_FIXED",
+  "batch_id": "example-20260717",
+  "request_version": 1,
+  "example_mode": true,
+  "record_count": 1,
+  "classification_counts": {
+    "READY_FOR_DRAFT": 1
+  },
+  "ready_for_draft_count": 1,
+  "all_records_classified": true,
+  "items": [
+    {
+      "item_id": "example-20260717-001",
+      "batch_id": "example-20260717",
+      "title": "サンプル作品",
+      "volume_label": "第1巻",
+      "release_date": "2026-07-17",
+      "publisher": "サンプル出版社",
+      "authors": [
+        "著者A",
+        "著者B"
+      ],
+      "category": "comic",
+      "source_record_status": "STORE_PAGE_NOT_FOUND",
+      "verification_classification": "READY_FOR_DRAFT",
+      "classification_reasons": [
+        "publisher_official_confirmed",
+        "found_store_count=2",
+        "confirmed_price_count=2",
+        "verified_image_available"
+      ],
+      "mismatches": [],
+      "publisher_official": {
+        "status": "CHECKED",
+        "checked_at": "2026-07-10T12:00:00+09:00",
+        "url": "https://www.example.jp/publisher/sample-book",
+        "title": "サンプル作品",
+        "volume_label": "第1巻",
+        "release_date": "2026-07-17"
+      },
+      "stores": {
+        "amazon": {
+          "status": "FOUND",
+          "checked_at": "2026-07-10T12:00:00+09:00",
+          "url": "https://www.amazon.co.jp/dp/BATCHTEST001",
+          "title": "サンプル作品",
+          "volume_label": "第1巻",
+          "release_date": "2026-07-17",
+          "price_jpy": 770,
+          "image_url": null
+        },
+        "rakuten_kobo": {
+          "status": "FOUND",
+          "checked_at": "2026-07-10T12:00:00+09:00",
+          "url": "https://books.rakuten.co.jp/rk/batch-test-001/",
+          "title": "サンプル作品",
+          "volume_label": "第1巻",
+          "release_date": "2026-07-17",
+          "price_jpy": 770,
+          "image_url": "https://thumbnail.image.rakuten.co.jp/test-cover.jpg"
+        },
+        "dmm": {
+          "status": "NOT_FOUND",
+          "checked_at": "2026-07-10T12:00:00+09:00",
+          "url": null,
+          "title": null,
+          "volume_label": null,
+          "release_date": null,
+          "price_jpy": null,
+          "image_url": null
+        }
+      },
+      "resolved_store_links": {
+        "amazon": "https://www.amazon.co.jp/dp/BATCHTEST001",
+        "rakuten_kobo": "https://books.rakuten.co.jp/rk/batch-test-001/",
+        "dmm": null
+      },
+      "resolved_prices_jpy": {
+        "amazon": 770,
+        "rakuten_kobo": 770,
+        "dmm": null
+      },
+      "resolved_image": {
+        "source": "rakuten_kobo",
+        "url": "https://thumbnail.image.rakuten.co.jp/test-cover.jpg"
+      },
+      "cross_batch_duplicate_suspected": false,
+      "manual_exclusion": false,
+      "manual_exclusion_reason": null,
+      "notes": null,
+      "wordpress_status": "draft",
+      "wordpress_write_allowed": false
+    }
+  ],
+  "execution_boundary": {
+    "external_api_call_allowed": false,
+    "web_scraping_allowed": false,
+    "wordpress_write_allowed": false,
+    "wordpress_publish_allowed": false,
+    "x_post_allowed": false,
+    "automatic_draft_creation_allowed": false,
+    "production_status": "NO_GO",
+    "safety_state": "DRY_RUN_ONLY"
+  }
+}

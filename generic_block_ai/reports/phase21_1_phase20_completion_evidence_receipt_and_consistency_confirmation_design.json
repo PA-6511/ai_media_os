@@ -1,0 +1,71 @@
+{
+  "phase_id": "21-1",
+  "phase_name": "Phase 20 Completion Evidence Receipt and Consistency Confirmation Design",
+  "phase_japanese_name": "Phase 20 完了証跡の受領・整合確認設計",
+  "purpose": "Design the receipt and consistency confirmation process that accepts Phase 20 completion evidence as PASS_DESIGN_ONLY while preserving implementation NO_GO state",
+  "layer": "pre_measurement_final_gate_layer",
+  "design_category": "reports_only",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only"
+  },
+  "phase_21_1_scope": {
+    "scope_1_receipt_targets": {
+      "scope_id": "RECEIPT_TARGETS",
+      "required_phase20_artifacts": [
+        "phase20_7_app_tests_implementation_start_final_judgment_report_design.json",
+        "phase20_8_app_tests_implementation_start_authorization_candidate_final_evidence_lock_report_design.json",
+        "phase20_9_phase20_app_tests_implementation_start_go_no_go_judgment_layer_completion_declaration.json"
+      ],
+      "required_status": "PASS_DESIGN_ONLY"
+    },
+    "scope_2_consistency_checks": {
+      "scope_id": "CONSISTENCY_CHECKS",
+      "checks": [
+        "integrated_decision = NO_GO",
+        "receiver_validator_permission = NOT_EFFECTIVE",
+        "dual_gate = LOCKED",
+        "app_implementation_status = NO_GO",
+        "tests_implementation_status = NO_GO",
+        "production_status = NO_GO",
+        "changed_area = reports only"
+      ],
+      "all_checks_required": true
+    },
+    "scope_3_output_contract": {
+      "scope_id": "OUTPUT_CONTRACT",
+      "output_fields": {
+        "phase20_7_to_20_9_status": "PASS_DESIGN_ONLY",
+        "phase20_app_tests_implementation_start_go_no_go_judgment_layer_status": "PASS_DESIGN_ONLY",
+        "receipt_and_consistency_status": "PASS_DESIGN_ONLY"
+      },
+      "transition_rule": "Proceed to Phase 21-2 only when all consistency checks pass"
+    }
+  },
+  "phase_21_1_governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "state_invariants": {
+      "integrated_decision": "NO_GO",
+      "receiver_validator_permission": "NOT_EFFECTIVE",
+      "dual_gate": "LOCKED",
+      "app_implementation_status": "NO_GO",
+      "tests_implementation_status": "NO_GO",
+      "production_status": "NO_GO"
+    }
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "phase": "Phase 8-47",
+  "phase_name": "Human Review Completed Input Evidence",
+  "status": "PHASE8_47_HUMAN_REVIEW_INPUT_COMPLETED_EVIDENCE_RECORDED",
+  "target_post_id": 115,
+  "production_status": "NO_PUBLISH_PAUSE",
+  "human_review_input_received": true,
+  "human_review_input_complete": true,
+  "human_review_input": {
+    "business_facts_review": {
+      "work_title_verified": false,
+      "volume_info_verified": false,
+      "price_campaign_terms_verified": false,
+      "notes": "human final verification not completed yet; values explicitly recorded as false"
+    },
+    "content_accuracy_review": {
+      "claims_supported": false,
+      "official_link_checked": false,
+      "affiliate_link_checked": false,
+      "notes": "content/link final check pending; explicitly recorded as false"
+    },
+    "legal_pr_affiliate_review": {
+      "pr_label_visible": false,
+      "affiliate_disclosure_visible": false,
+      "legal_compliance_checked": false,
+      "notes": "legal/PR/affiliate final check pending; explicitly recorded as false"
+    },
+    "final_human_decision": {
+      "publish_go": false,
+      "keep_no_go": true,
+      "decision_reason": "required human reviews are not finalized; keep no-go"
+    }
+  },
+  "publish_allowed": false,
+  "publish_executed": false,
+  "wordpress_api_call_attempted": false,
+  "wordpress_write_executed": false,
+  "wordpress_draft_updated": false,
+  "secret_values_output": false,
+  "secret_values_written": false,
+  "errors": [],
+  "warnings": [
+    "Inputs are complete but currently indicate NO_GO (all review checks false)."
+  ],
+  "safety_violations": [],
+  "evidence_summary": [
+    {
+      "path": "exchange/logs/phase8_46_publish_readiness_re_evaluation_after_human_review_post_115_result.json",
+      "exists": true,
+      "status": "PHASE8_46_PUBLISH_READINESS_RE_EVALUATION_AFTER_HUMAN_REVIEW_NO_GO"
+    }
+  ],
+  "next_step": "phase8_48_manual_review_result_revalidation",
+  "checked_at": "2026-06-09T14:08:31.282694+00:00"
+}

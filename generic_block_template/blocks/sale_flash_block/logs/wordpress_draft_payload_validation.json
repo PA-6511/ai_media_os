@@ -1,0 +1,56 @@
+{
+  "status": "PASS",
+  "phase": "SFB-6",
+  "block_name": "sale_flash_block",
+  "generated_at": "2026-06-14T04:38:38.918249+00:00",
+  "production_status": "NO_GO",
+  "input_wordpress_draft_handoff_status": "PASS",
+  "input_draft_payload_count": 1,
+  "validated_item_count": 1,
+  "valid_item_count": 1,
+  "needs_fix_item_count": 0,
+  "high_severity_item_count": 0,
+  "external_api_called": false,
+  "external_network_called": false,
+  "wordpress_write_executed": false,
+  "creators_api_called": false,
+  "amazon_scraping_called": false,
+  "publish_executed": false,
+  "update_executed": false,
+  "delete_executed": false,
+  "export_executed": false,
+  "human_approval_consumed": false,
+  "final_publish_decision_allowed": false,
+  "final_human_gate": {
+    "status": "READY_FOR_FINAL_HUMAN_GATE",
+    "human_approval_required": true,
+    "human_approval_consumed": false,
+    "final_publish_decision_allowed": false
+  },
+  "valid_items": [
+    {
+      "draft_handoff_id": "sfb5-draft-001",
+      "candidate_id": "sfb-cand-001",
+      "title": "Crimson Library",
+      "priority_score": 94,
+      "post_title": "【SUMMER_FLASH】Crimson Library をチェック",
+      "validation_checks": {
+        "post_format_valid": true,
+        "pr_disclosure_present": true,
+        "link_candidate_present": true,
+        "body_required_fields_present": true,
+        "no_price_claim": true,
+        "no_discount_claim": true,
+        "safety_flags_no_go": true
+      },
+      "blocking_reasons": [],
+      "validation_severity": "LOW",
+      "human_review_status": "NOT_REVIEWED",
+      "suggested_actions": [
+        "format/pr/link checks and final human review"
+      ]
+    }
+  ],
+  "needs_fix_items": [],
+  "next_recommended_phase": "SFB-7: Final human approval package (still NO_GO)"
+}

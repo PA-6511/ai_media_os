@@ -1,0 +1,72 @@
+{
+  "_meta": {
+    "phase": "13-4",
+    "phase_name": "human review 実入力受入後の形式検証ルール設計",
+    "version": "1.0",
+    "created_date": "2026-05-12",
+    "status": "PASS_DESIGN_ONLY",
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only",
+    "description": "受け入れた human review 実入力に対して、形式面の妥当性を確認するルールを固定する。"
+  },
+  "references": [
+    "generic_block_ai/reports/phase13_1_human_review_actual_input_acceptance_format_spec.json",
+    "generic_block_ai/reports/phase13_2_human_review_input_validation_checklist_fixed.json",
+    "generic_block_ai/reports/phase13_3_integrated_decision_pre_update_final_acceptance_gate_design.json"
+  ],
+  "format_validation_rules": [
+    {
+      "rule_id": "FVR-01",
+      "check": "accepted_format.record_fields の全項目が存在する",
+      "failure_effect": "input invalid"
+    },
+    {
+      "rule_id": "FVR-02",
+      "check": "review_datetime が ISO 8601 形式である",
+      "failure_effect": "input invalid"
+    },
+    {
+      "rule_id": "FVR-03",
+      "check": "reviewer.name と reviewer.signature が空文字でない",
+      "failure_effect": "input invalid"
+    },
+    {
+      "rule_id": "FVR-04",
+      "check": "safety_boundary_verification が真偽値セットとして完備され、全て true である",
+      "failure_effect": "GO update forbidden"
+    },
+    {
+      "rule_id": "FVR-05",
+      "check": "unresolved_items が配列であり空である",
+      "failure_effect": "acceptance blocked"
+    }
+  ],
+  "format_validation_template": {
+    "format_valid": false,
+    "invalid_fields": [],
+    "overall_result": "PENDING",
+    "reason": "実入力の形式検証前のため未判定。"
+  },
+  "blocked_actions": [
+    "core_ai_real_send",
+    "external_api_call",
+    "wordpress_operation",
+    "cron_registration",
+    "auto_execute",
+    "auto_post",
+    "auto_update",
+    "auto_delete",
+    "auto_export",
+    "production_execution"
+  ],
+  "phase_decision": {
+    "phase13_4_status": "PASS_DESIGN_ONLY",
+    "app_implementation_status": "NO_GO",
+    "tests_implementation_status": "NO_GO",
+    "note": "形式検証ルールの設計のみ。実装や GO 更新は含まない。"
+  }
+}

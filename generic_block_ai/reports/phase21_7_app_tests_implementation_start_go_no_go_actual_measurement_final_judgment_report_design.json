@@ -1,0 +1,90 @@
+{
+  "phase_id": "21-7",
+  "phase_name": "App/Tests Implementation Start GO/NO-GO Actual Measurement Final Judgment Report Design",
+  "phase_japanese_name": "app/tests 実装開始GO/NO-GO 実測最終判定レポート設計",
+  "purpose": "Design the final judgment report that aggregates Phase 21-3 through 21-6 outcomes and determines whether implementation-start GO can be issued after actual measurement",
+  "layer": "actual_measurement_final_judgment_layer",
+  "design_category": "reports_only",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only"
+  },
+  "phase_21_7_scope": {
+    "scope_1_input_aggregation": {
+      "scope_id": "INPUT_AGGREGATION",
+      "required_inputs": {
+        "phase21_3_template_status": "PASS_DESIGN_ONLY",
+        "phase21_4_status": "PASS_DESIGN_ONLY",
+        "phase21_5_status": "PASS_DESIGN_ONLY",
+        "phase21_6_status": "PASS_DESIGN_ONLY",
+        "phase21_4_to_21_6_status": "PASS_DESIGN_ONLY",
+        "phase21_actual_measurement_judgment_reinforcement_status": "PASS_DESIGN_ONLY"
+      }
+    },
+    "scope_2_final_judgment_logic": {
+      "scope_id": "FINAL_JUDGMENT_LOGIC",
+      "rules": {
+        "rule_FM1": "All measured minimum conditions from Phase 21-3 are MET and no ABORT condition is TRIGGERED",
+        "rule_FM2": "Evidence lock result from Phase 21-4 is LOCK_CONFIRMED",
+        "rule_FM3": "No unresolved rejection category from Phase 21-5",
+        "rule_FM4": "Human final approval signature is VALID and ACTIVE",
+        "rule_FM5": "If any FM1-FM4 is NOT_MET, determination = IMPLEMENTATION_START_NO_GO"
+      }
+    },
+    "scope_3_report_structure": {
+      "scope_id": "REPORT_STRUCTURE",
+      "sections": {
+        "section_1_header": {
+          "report_id": "PHASE21_7_MEASURED_FINAL_JUDGMENT_<UTC_TIMESTAMP>",
+          "report_type": "app_tests_impl_start_go_no_go_actual_measurement_final_judgment",
+          "generated_at_utc": "RFC3339",
+          "generated_by": "authority_identifier"
+        },
+        "section_2_phase_status_summary": {
+          "phase21_3_status": "PASS_DESIGN_ONLY | FAIL",
+          "phase21_4_status": "PASS_DESIGN_ONLY | FAIL",
+          "phase21_5_status": "PASS_DESIGN_ONLY | FAIL",
+          "phase21_6_status": "PASS_DESIGN_ONLY | FAIL"
+        },
+        "section_3_gate_evaluation": {
+          "measured_conditions": "MET | NOT_MET",
+          "evidence_lock": "LOCK_CONFIRMED | LOCK_FAILED",
+          "rejection_clearance": "CLEAR | NOT_CLEAR",
+          "abort_status": "NOT_ABORTED | ABORTED",
+          "human_approval": "VALID_ACTIVE | INVALID_OR_MISSING"
+        },
+        "section_4_final_determination": {
+          "determination": "IMPLEMENTATION_START_GO | IMPLEMENTATION_START_NO_GO",
+          "app_implementation_status": "GO | NO_GO",
+          "tests_implementation_status": "GO | NO_GO",
+          "production_status": "NO_GO",
+          "reason_summary": "human-readable reason"
+        }
+      }
+    }
+  },
+  "phase_21_7_governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "state_invariants": {
+      "integrated_decision": "NO_GO",
+      "receiver_validator_permission": "NOT_EFFECTIVE",
+      "dual_gate": "LOCKED",
+      "production_status": "NO_GO"
+    }
+  }
+}

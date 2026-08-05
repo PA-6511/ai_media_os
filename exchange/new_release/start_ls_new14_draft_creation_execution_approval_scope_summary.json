@@ -1,0 +1,16 @@
+{
+  "phase": "LS-NEW-14",
+  "document_type": "START_LS_NEW14_DRAFT_CREATION_EXECUTION_APPROVAL_SCOPE_SUMMARY",
+  "status": "LSNEW14_DRAFT_CREATION_EXECUTION_APPROVAL_SCOPE_READY",
+  "approval_scope": "ONE_SHOT_WORDPRESS_DRAFT_CREATION_ONLY",
+  "allowed_future_execution_count_after_later_decision": 1,
+  "current_execution_count": 0,
+  "publish_scope_allowed": false,
+  "update_existing_post_allowed": false,
+  "target_post_id_allocation_allowed": false,
+  "post119_forbidden": true,
+  "post183_forbidden": true,
+  "rerun_allowed": false,
+  "publish_rerun_allowed": false,
+  "execution_allowed": false
+}

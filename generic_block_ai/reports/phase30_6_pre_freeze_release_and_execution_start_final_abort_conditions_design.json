@@ -1,0 +1,110 @@
+{
+  "phase_id": "30-6",
+  "phase_name": "Pre-Freeze Release and Execution Start Final ABORT Conditions Design",
+  "phase_japanese_name": "凍結解除・実行開始直前の最終ABORT条件設計",
+  "purpose": "Design mandatory final ABORT conditions immediately before freeze-release and execution-start gate decisions.",
+  "layer": "pre_execution_start_manual_approval_and_freeze_release_boundary_reinforcement_layer",
+  "design_category": "reports_only",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "manual_execution_start_approval": "REQUIRED",
+    "manual_execution_start_approval_status": "PENDING",
+    "auto_execute_allowed": false,
+    "operation_transition_go_authorization": "NOT_GRANTED",
+    "production_reflection_go_authorization": "NOT_GRANTED",
+    "freeze_release_go_authorization": "NOT_GRANTED",
+    "execution_start_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "phase_30_6_scope": {
+    "scope_1_abort_categories": {
+      "scope_id": "ABORT_CATEGORIES",
+      "categories": {
+        "FA1": "Any freeze-release minimum condition is NOT_MET",
+        "FA2": "Any manual approval evidence lock verification from Phase 30-4 is FAIL",
+        "FA3": "Any unresolved rejection from Phase 30-5 exists",
+        "FA4": "Pre-freeze-release or pre-execution-start boundary confirmation is NOT_CLEARED",
+        "FA5": "Human final approval signature is invalid or inactive",
+        "FA6": "Detected divergence between approval evidence and decision payload",
+        "FA7": "Any unauthorized freeze-release or execution-start trace is detected",
+        "FA8": "Unclassified critical safety risk requiring mandatory halt"
+      }
+    },
+    "scope_2_abort_handling_rules": {
+      "scope_id": "ABORT_HANDLING_RULES",
+      "rules": {
+        "rule_FAH1": "If any FA1-FA8 is TRIGGERED, transition_status = ABORTED",
+        "rule_FAH2": "Force production_status = NO_GO",
+        "rule_FAH3": "Force all GO authorizations to NOT_GRANTED",
+        "rule_FAH4": "Record abort_reason_codes and evidence-lock abort decision",
+        "rule_FAH5": "Require human review clearance before re-entry"
+      }
+    },
+    "scope_3_report_structure": {
+      "scope_id": "REPORT_STRUCTURE",
+      "sections": {
+        "section_1_header": {
+          "report_id": "PHASE30_6_PRE_FREEZE_RELEASE_AND_EXECUTION_START_ABORT_<UTC_TIMESTAMP>",
+          "report_type": "pre_freeze_release_and_execution_start_final_abort_conditions",
+          "generated_at_utc": "RFC3339",
+          "generated_by": "authority_identifier"
+        },
+        "section_2_abort_condition_evaluation": {
+          "FA1": "TRIGGERED | NOT_TRIGGERED",
+          "FA2": "TRIGGERED | NOT_TRIGGERED",
+          "FA3": "TRIGGERED | NOT_TRIGGERED",
+          "FA4": "TRIGGERED | NOT_TRIGGERED",
+          "FA5": "TRIGGERED | NOT_TRIGGERED",
+          "FA6": "TRIGGERED | NOT_TRIGGERED",
+          "FA7": "TRIGGERED | NOT_TRIGGERED",
+          "FA8": "TRIGGERED | NOT_TRIGGERED"
+        },
+        "section_3_final_abort_judgment": {
+          "transition_status": "ABORTED | NOT_ABORTED",
+          "production_status": "GO | NO_GO",
+          "operation_transition_go_authorization": "GRANTED | NOT_GRANTED",
+          "production_reflection_go_authorization": "GRANTED | NOT_GRANTED",
+          "freeze_release_go_authorization": "GRANTED | NOT_GRANTED",
+          "execution_start_go_authorization": "GRANTED | NOT_GRANTED"
+        },
+        "section_4_state_reconfirmation": {
+          "app_implementation_status": "NO_GO",
+          "tests_implementation_status": "NO_GO",
+          "production_status": "NO_GO",
+          "operation_transition_go_authorization": "NOT_GRANTED",
+          "production_reflection_go_authorization": "NOT_GRANTED",
+          "freeze_release_go_authorization": "NOT_GRANTED",
+          "execution_start_go_authorization": "NOT_GRANTED",
+          "changed_area": "reports only"
+        }
+      }
+    }
+  },
+  "phase_30_6_governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "state_invariants": {
+      "app_implementation_status": "NO_GO",
+      "tests_implementation_status": "NO_GO",
+      "production_status": "NO_GO",
+      "operation_transition_go_authorization": "NOT_GRANTED",
+      "production_reflection_go_authorization": "NOT_GRANTED",
+      "freeze_release_go_authorization": "NOT_GRANTED",
+      "execution_start_go_authorization": "NOT_GRANTED",
+      "changed_area": "reports only"
+    }
+  }
+}

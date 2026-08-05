@@ -1,0 +1,20 @@
+{
+  "phase": "PR_WARN_BACKFILL_PHASE1X_EVIDENCE_REGISTRATION",
+  "status": "PASS_PHASE1X_EVIDENCE_POINTERS_CREATED",
+  "target_post_id": 101,
+  "evidence_files": {
+    "phase1w_live_write_result": "exchange/logs/pr_warn_backfill_phase1w_rerun_101_one_post_live_write_result.json",
+    "phase1w_pre_write_get_check": "exchange/logs/pr_warn_backfill_phase1w_rerun_101_pre_write_get_check.json",
+    "phase1w_post_write_verification": "exchange/logs/pr_warn_backfill_phase1w_rerun_101_post_write_verification.json",
+    "phase1x_final_read_only_verification": "exchange/logs/pr_warn_backfill_phase1x_101_final_read_only_verification.json",
+    "phase1x_freeze_result": "exchange/logs/pr_warn_backfill_phase1x_101_post_live_freeze_result.json",
+    "true_approval_file": "exchange/human_review/pr_warn_backfill_phase1u_101_final_approval_true.active.json"
+  },
+  "wordpress_write_executed_in_phase1x": false,
+  "live_execution_executed_in_phase1x": false,
+  "additional_update_count": 0,
+  "snapshot_body_displayed": false,
+  "payload_body_displayed": false,
+  "secrets_displayed": false,
+  "created_at": "2026-06-21T01:16:31.955605+00:00"
+}

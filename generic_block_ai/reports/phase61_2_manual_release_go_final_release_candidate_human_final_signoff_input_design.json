@@ -1,0 +1,37 @@
+{
+  "_meta": {
+    "phase": "61-2",
+    "phase_name": "最終解除候補の人間最終サインオフ入力層",
+    "layer": "manual_release_go 人間最終サインオフ入力設計層 (manual_release_go human final signoff input design layer)",
+    "title": "manual_release_go 最終解除候補の人間最終サインオフ入力設計",
+    "created": "2026-05-15",
+    "author": "governance-framework",
+    "status": "PASS_DESIGN_ONLY",
+    "reports_only": true
+  },
+  "scope": "Phase 61-1 で受領・整合確認した Phase 60 完了証跡をもとに，manual_release_go 最終解除候補に対する人間最終サインオフ入力ルールを設計層で定義する。内容：(1) manual_release_go の NOT_GRANTED 維持状態再確認，(2) サインオフ入力項目・入力責任者・入力証跡要件の定義，(3) サインオフ入力値の整合性確認項目と判定基準定義，(4) 不備検出時の差し戻し条件定義，(5) production_status = 'NO_GO' と execution_start = 'NO_GO' の維持確認。",
+  "governance": {
+    "production_status": "NO_GO",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "execution_start": "NO_GO",
+    "changed_area": "reports only"
+  },
+  "report": {
+    "description": "Phase 61-2 では，manual_release_go 最終解除候補の人間最終サインオフ入力観点を設計層で定義する。対象はサインオフ入力要件，入力整合性，入力不備時の差し戻し条件であり，許可発行を目的としない。",
+    "invariants": [
+      "NO_GO 維持：確認設計時点で production_status = 'NO_GO' を維持",
+      "実処理開始 NO_GO 維持：execution_start = 'NO_GO' を維持",
+      "NOT_GRANTED 維持：manual_release_go は NOT_GRANTED を維持",
+      "入力確認明示：サインオフ入力項目・責任者・証跡要件を明確化",
+      "改ざん防止：確認記録は署名・時刻・ハッシュ等で改ざん防止を担保",
+      "reports only：全設計は報告書形式で実施"
+    ],
+    "actions": [],
+    "notes": [
+      "Phase 61-2 は設計工程であり，解除許可工程ではない。",
+      "manual_release_go_authorization は NOT_GRANTED を維持する。",
+      "実処理開始許可は含まれない。"
+    ]
+  }
+}

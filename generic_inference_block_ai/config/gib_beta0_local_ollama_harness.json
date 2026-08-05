@@ -1,0 +1,37 @@
+{
+  "schema_version": "gib.beta0.local_ollama_harness.v0.1",
+  "beta_version": "beta0",
+  "status": "DRY_RUN_HARNESS_ONLY",
+  "production_status": "NO_GO",
+  "execution_mode": "DRY_RUN_ONLY",
+  "runtime_target": "ollama",
+  "fallback_runtime": "stub",
+  "network_policy": {
+    "external_network_allowed": true,
+    "external_network_scope": "localhost_only",
+    "allowed_hosts": ["127.0.0.1", "localhost"],
+    "allowed_ports": [11434]
+  },
+  "safety_flags": {
+    "execution_allowed": false,
+    "credential_access_allowed": false,
+    "wordpress_write_allowed": false,
+    "systemd_operation_allowed": false,
+    "real_llm_call_allowed": false,
+    "model_runtime_enabled": true
+  },
+  "artifact_policy": {
+    "report_write_scope": ["generic_inference_block_ai/reports"],
+    "persist_outputs": true
+  },
+  "ollama_design": {
+    "base_url": "http://127.0.0.1:11434",
+    "health_path": "/api/tags",
+    "generate_path": "/api/generate",
+    "model": "gemma-4-qat-e2b"
+  },
+  "notes": [
+    "beta0 harness is dry-run only; runtime call remains disabled.",
+    "This stage validates wiring and safeguards before enabling real model calls."
+  ]
+}

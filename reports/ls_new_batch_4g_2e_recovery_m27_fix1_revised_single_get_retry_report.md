@@ -1,0 +1,26 @@
+# LS-NEW-BATCH-4G-2E-RECOVERY-M27-FIX1-RETRY-APPROVAL
+
+- Status: `PASS_WORDPRESS_TAWAWA_REFERENCE_LAYOUT_UPDATE_PREFLIGHT_REVISED_SINGLE_GET_RETRY_READY_FOR_EXPLICIT_EXECUTE_NOW_CONFIRMATION`
+- Decision: `WORDPRESS_CURRENT_STATE_MATCHED_M26_AUTHORIZATION_REMAINS_UNCONSUMED`
+- WordPress post ID: `192`
+- Transport: `URLLIB_REQUEST_SINGLE_OPEN`
+- Preflight passed: `true`
+- GET request count: `1`
+- Non-GET request count: `0`
+- Automatic retry count: `0`
+- Redirect followed: `false`
+- HTTP status: `200`
+- Current post ID matches: `true`
+- Current status is publish: `true`
+- Current title matches: `true`
+- Current categories match: `true`
+- Current comment status: `open`
+- Current content matches rollback: `true`
+- Update content matches M24: `true`
+- Authorization consumed: `false`
+- WordPress write performed: `false`
+- WordPress update performed: `false`
+- Backlist carousel included: `false`
+- Production status: `NO_GO`
+- Ready for execute-now confirmation: `true`
+- Ready for WordPress update: `false`

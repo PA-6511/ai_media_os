@@ -1,0 +1,25 @@
+# LS-NEW-BATCH-4G-2E-RECOVERY-M26
+
+- Status: `PASS_WORDPRESS_TAWAWA_REFERENCE_LAYOUT_UPDATE_ONE_SHOT_AUTHORIZATION_ISSUED_LOCAL_ONLY_NO_WORDPRESS_ACCESS`
+- Decision: `ONE_SHOT_UPDATE_AUTHORIZATION_RECORDED_AWAITING_SEPARATE_AUTHENTICATED_PREFLIGHT_AND_EXPLICIT_EXECUTE_NOW_CONFIRMATION`
+- WordPress post ID: `192`
+- Authorization issued: `true`
+- Authorization consumed: `false`
+- Single use: `true`
+- Maximum update count: `1`
+- Reuse allowed: `false`
+- Automatic retry allowed: `false`
+- Automatic reissue allowed: `false`
+- Allowed fields: `content, comment_status`
+- Comment status target: `closed`
+- Backlist carousel included: `false`
+- Network connection performed: `false`
+- WordPress access performed: `false`
+- WordPress update performed: `false`
+- Execution allowed in M26: `false`
+- Production status: `NO_GO`
+- Required preflight phase: `LS-NEW-BATCH-4G-2E-RECOVERY-M27-PRE-NETWORK`
+- Authorized execution phase: `LS-NEW-BATCH-4G-2E-RECOVERY-M27`
+- Ready for authenticated preflight: `true`
+- Ready for execute-now confirmation: `false`
+- Ready for WordPress update: `false`

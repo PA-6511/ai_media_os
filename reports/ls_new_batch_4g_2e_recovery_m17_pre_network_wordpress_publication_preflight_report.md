@@ -1,0 +1,23 @@
+# LS-NEW-BATCH-4G-2E-RECOVERY-M17-PRE-NETWORK
+
+- Status: `PASS_WORDPRESS_PUBLICATION_AUTHENTICATED_GET_ONLY_PREFLIGHT_VERIFIED_NO_AUTH_CONSUMPTION_NO_WRITE`
+- Decision: `WORDPRESS_DRAFT_192_VERIFIED_READY_FOR_EXPLICIT_PUBLICATION_EXECUTE_NOW_GATE`
+- Error code: `None`
+- WordPress post ID: `192`
+- Post ID verified: `true`
+- WordPress post status: `draft`
+- WordPress HTTP status: `200`
+- WordPress GET request count: `1`
+- WordPress non-GET request count: `0`
+- Automatic retry performed: `false`
+- Title exact match: `true`
+- Content exact match: `true`
+- Category ID 10 verified: `true`
+- M16 authorization consumed: `false`
+- Authorization consumed in this phase: `false`
+- WordPress write performed: `false`
+- WordPress update performed: `false`
+- WordPress publish performed: `false`
+- Production status: `NO_GO`
+- Ready for publication execute-now gate: `true`
+- Ready for WordPress publish: `false`

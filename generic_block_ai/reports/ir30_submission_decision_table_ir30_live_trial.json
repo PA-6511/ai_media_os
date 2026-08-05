@@ -1,0 +1,68 @@
+{
+  "schema_version": "ir30_submission_decision_summary_v1",
+  "phase": "IR30",
+  "generated_at": "2026-05-23T16:10:10.508620+00:00",
+  "source_task_id": "ir30_live_trial",
+  "release_candidate_id": "rc_20260523T155148Z_ir26_live_trial_b940393b490b",
+  "final_submission_decision": "READY_FOR_SUBMISSION_SUMMARY",
+  "decision_reasons": [
+    "dryrun_submission_summary_ready"
+  ],
+  "submission_allowed_conditions": [
+    {
+      "id": "A1",
+      "description": "IR29 validation_result is PASS",
+      "status": true
+    },
+    {
+      "id": "A2",
+      "description": "release_candidate_id is present",
+      "status": true
+    },
+    {
+      "id": "A3",
+      "description": "send_allowed remains false in dry-run",
+      "status": true
+    }
+  ],
+  "submission_not_allowed_conditions": [
+    {
+      "id": "N1",
+      "description": "send_executed must remain false",
+      "status": true
+    },
+    {
+      "id": "N2",
+      "description": "network_transmission_executed must remain false",
+      "status": true
+    },
+    {
+      "id": "N3",
+      "description": "execution_policy_execute must remain false",
+      "status": true
+    }
+  ],
+  "submission_hold_conditions": [
+    {
+      "id": "H1",
+      "description": "validation warnings must be reviewed if present",
+      "status": true
+    },
+    {
+      "id": "H2",
+      "description": "failed checks must be zero",
+      "status": true
+    }
+  ],
+  "validation_result": "PASS",
+  "validation_failed_checks": [],
+  "validation_warnings": [],
+  "safeguards": {
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "production_release": false,
+    "network_transmission_executed": false
+  }
+}

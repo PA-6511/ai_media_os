@@ -1,0 +1,52 @@
+{
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "design_only": true,
+  "execution_allowed": false,
+  "wordpress_api_call_allowed": false,
+  "wordpress_write_allowed": false,
+  "wordpress_write_executed": false,
+  "wordpress_draft_created": false,
+  "publish_allowed": false,
+  "rollback_executed": false,
+  "freeze_executed": false,
+  "secret_values_output": false,
+  "field_design": {
+    "target_item_selected": {
+      "generation_layer": "candidate_selector",
+      "validation_layer": "preflight_bridge",
+      "lock_rule": "must_be_true_before_phase8_38"
+    },
+    "target_item_schema_valid": {
+      "generation_layer": "schema_guard",
+      "validation_layer": "schema_guard",
+      "lock_rule": "schema_contract_version_v1_required"
+    },
+    "target_item_duplicate_check_passed": {
+      "generation_layer": "duplicate_guard",
+      "validation_layer": "duplicate_guard",
+      "lock_rule": "duplicate_detected_then_abort"
+    },
+    "affiliate_disclosure_present": {
+      "generation_layer": "adapter_enricher",
+      "validation_layer": "policy_checker",
+      "lock_rule": "missing_affiliate_disclosure_then_block"
+    },
+    "pr_label_present": {
+      "generation_layer": "adapter_enricher",
+      "validation_layer": "policy_checker",
+      "lock_rule": "missing_pr_label_then_block"
+    },
+    "cta_policy_checked": {
+      "generation_layer": "policy_checker",
+      "validation_layer": "policy_checker",
+      "lock_rule": "cta_check_must_be_true"
+    },
+    "category_tag_policy_checked": {
+      "generation_layer": "policy_checker",
+      "validation_layer": "policy_checker",
+      "lock_rule": "category_tag_check_must_be_true"
+    }
+  }
+}

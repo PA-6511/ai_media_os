@@ -1,0 +1,26 @@
+{
+  "request_version": 1,
+  "phase_id": "LS-NEW-BATCH-4G-1",
+  "source_design_package_path": "exchange/examples/new_release_wp_read_only_category_lookup_design_package.example.json",
+  "source_design_package_digest_sha256": "5f7ea5b931c92989c4085120cb64bdd0cb84e0d47af189fe13058db7bce50229",
+  "operation_mode": "LOCAL_WORDPRESS_API_MOCK_ONLY",
+  "mock_fixture_path": "exchange/fixtures/wordpress_api/categories.comic-new-release.valid.json",
+  "target_categories": [
+    {
+      "category_slug": "comic-new-release",
+      "category_name": "コミック新刊"
+    }
+  ],
+  "credential_file_read_requested": false,
+  "environment_variable_read_requested": false,
+  "dns_resolution_requested": false,
+  "network_connection_requested": false,
+  "tls_connection_requested": false,
+  "http_request_requested": false,
+  "wordpress_response_read_requested": false,
+  "wordpress_write_requested": false,
+  "credential_value_output_requested": false,
+  "automatic_payload_injection_requested": false,
+  "execution_approval_issued": false,
+  "approval_token": null
+}

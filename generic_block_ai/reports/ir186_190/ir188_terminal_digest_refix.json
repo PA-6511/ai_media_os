@@ -1,0 +1,71 @@
+{
+  "schema_version": "ir188_terminal_digest_refix_v1",
+  "phase": "IR188",
+  "generated_at": "2026-05-26T13:10:38.856263+00:00",
+  "source_task_id": "ir186_190_batch",
+  "validation_result": "PASS",
+  "validation_failed_checks": [],
+  "validation_warnings": [],
+  "terminal_digest_refix": {
+    "digest_id": "ir188_digest_ir186_190_batch_20260526T131038Z",
+    "generated_at": "2026-05-26T13:10:38.856260+00:00",
+    "source_task_id": "ir186_190_batch",
+    "new_cycle_id": "IR71_PLUS_CYCLE_A",
+    "digest_entries": [
+      {
+        "evidence_item_id": "evidence_1",
+        "source_phase": "IR181",
+        "digest_id": "70d889b7947407ee9a2d3f24f39ae0461246d85a626cf818f5aa0126f241551a",
+        "digest_status": "TERMINAL_DIGEST_REFIXED"
+      },
+      {
+        "evidence_item_id": "evidence_2",
+        "source_phase": "IR182",
+        "digest_id": "0189241b1084763f2ff29d2a035c0885ec8d137fe1b8e32255fb84bcd61d0677",
+        "digest_status": "TERMINAL_DIGEST_REFIXED"
+      },
+      {
+        "evidence_item_id": "evidence_3",
+        "source_phase": "IR183",
+        "digest_id": "ceddd36ab1b63741bd66958d69f33b3e7a695eb977e80e7c40fabd99c2619358",
+        "digest_status": "TERMINAL_DIGEST_REFIXED"
+      },
+      {
+        "evidence_item_id": "evidence_4",
+        "source_phase": "IR184",
+        "digest_id": "c895bf1560395364763f512610fe1360836e27f81053992bd77128a77787054e",
+        "digest_status": "TERMINAL_DIGEST_REFIXED"
+      },
+      {
+        "evidence_item_id": "evidence_5",
+        "source_phase": "IR185",
+        "digest_id": "5e2d3f5bd78c304d59793261e6acdc1b7f80dd4f590482846d4142b4d15a1cff",
+        "digest_status": "TERMINAL_DIGEST_REFIXED"
+      }
+    ],
+    "entry_count": 5,
+    "terminal_digest_refix_ready": true,
+    "unlock_eligible": false,
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "digest_hash": "2a168f53567a5f2a034dac0ba9e1e24fb4fe0ff83c92f36bb90a7a77b2c23cfa",
+  "safety_gate_snapshot": {
+    "dry_run": "maintained",
+    "OBSERVE": "maintained",
+    "submission_execution_blocked": true,
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "network_transmission_executed": false,
+    "production_release": false,
+    "GitHub_push": "未実行"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "phase": "Phase 8-36",
+  "phase_name": "Business Facts Review Template Design Only",
+  "status": "PHASE8_36_BUSINESS_FACTS_REVIEW_TEMPLATE_DESIGN_ONLY_READY",
+  "target_post_id": 115,
+  "production_status": "NO_PUBLISH_PAUSE",
+  "design_only": true,
+  "review_template": {
+    "work_title_verified": false,
+    "volume_number_verified": false,
+    "price_sale_terms_verified": false,
+    "campaign_period_verified": false,
+    "merchant_product_page_verified": false,
+    "source_of_truth_recorded": false,
+    "review_owner": "manual_human_reviewer"
+  },
+  "publish_allowed": false,
+  "publish_executed": false,
+  "wordpress_api_call_attempted": false,
+  "wordpress_write_executed": false,
+  "wordpress_draft_updated": false,
+  "secret_values_output": false,
+  "secret_values_written": false,
+  "errors": [],
+  "warnings": [
+    "Template only. No publish action or WordPress write is included."
+  ],
+  "safety_violations": [],
+  "evidence_summary": [
+    {
+      "path": "exchange/logs/phase8_35_publish_readiness_final_no_go_or_ready_decision_design_only_post_115_result.json",
+      "exists": true,
+      "status": "PHASE8_35_PUBLISH_READINESS_FINAL_NO_GO_DESIGN_ONLY"
+    }
+  ],
+  "next_step": "phase8_37_content_accuracy_and_link_review_template_design_only",
+  "checked_at": "2026-06-09T13:58:55.175461+00:00"
+}

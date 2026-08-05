@@ -1,0 +1,50 @@
+{
+  "schema_version": "gib.alpha45.promotion_checklist.v0.1",
+  "alpha_version": "alpha4.5",
+  "design_status": "DESIGN_ONLY",
+  "production_status": "NO_GO",
+  "beta0_ready": false,
+  "check_items": {
+    "runtime_target": {
+      "allowed_values": ["ollama", "llama_cpp"],
+      "selected": "ollama",
+      "decided": true
+    },
+    "execution_host": {
+      "allowed_values": ["current_vps", "separate_vps", "local_pc"],
+      "selected": "local_pc",
+      "decided": true
+    },
+    "model_allowlist": {
+      "allowed_patterns": ["gemma-4-qat"],
+      "selected_models": ["gemma-4-qat-e2b"],
+      "decided": true
+    },
+    "network_policy": {
+      "localhost_only_required": true,
+      "localhost_only_confirmed": true,
+      "decided": true
+    },
+    "artifact_policy": {
+      "report_write_scope": ["generic_inference_block_ai/reports"],
+      "reports_only_confirmed": true,
+      "decided": true
+    },
+    "failure_fallback": {
+      "fallback_runtime": "stub",
+      "fallback_mandatory": true,
+      "decided": true
+    }
+  },
+  "beta0_guardrails": {
+    "wordpress_write_allowed": false,
+    "credential_access_allowed": false,
+    "execution_allowed": false,
+    "model_runtime_enabled": true,
+    "real_llm_call_allowed": false
+  },
+  "notes": [
+    "alpha4.5 is checklist fixation only; no runtime call is performed.",
+    "beta0 promotion requires explicit decision completion and approval."
+  ]
+}

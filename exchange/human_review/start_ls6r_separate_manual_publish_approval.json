@@ -1,0 +1,43 @@
+{
+  "phase": "LS-6R",
+  "document_type": "SEPARATE_MANUAL_PUBLISH_APPROVAL",
+  "approval_status": "APPROVED_NO_PUBLISH_EXECUTION",
+  "target_post": {
+    "post_id": 183,
+    "post_link": "https://hoshido.jp/?p=183",
+    "title": "2.5次元の誘惑",
+    "asin": "B07X2G67B4",
+    "expected_current_status": "draft"
+  },
+  "approval": {
+    "approval_label": "APPROVED_FOR_SEPARATE_MANUAL_PUBLISH_APPROVAL_GATE_ONLY",
+    "required_approval_label": "APPROVED_FOR_SEPARATE_MANUAL_PUBLISH_APPROVAL_GATE_ONLY",
+    "approval_reason": "Human review in LS-6Q approved only the manual publish decision gate. LS-6R records a separate approval gate to proceed to final preflight. This does not authorize publish execution in this phase.",
+    "approval_label_consumed": false,
+    "manual_publish_allowed_by_this_phase": false,
+    "manual_publish_execution_allowed_by_this_phase": false,
+    "manual_publish_executed": false,
+    "requires_next_phase": "LS-6S"
+  },
+  "current_phase_execution": {
+    "wordpress_api_call_executed": false,
+    "wordpress_write_executed": false,
+    "wordpress_draft_creation_executed": false,
+    "wordpress_existing_post_update_executed": false,
+    "wordpress_publish_executed": false,
+    "publish_executed": false,
+    "future_schedule_executed": false,
+    "delete_executed": false,
+    "post119_update_executed": false,
+    "credential_env_read_executed": false,
+    "credential_value_output": false,
+    "credential_value_persisted": false,
+    "credential_secret_output": false,
+    "secret_length_output": false,
+    "secret_hash_output": false,
+    "authorization_header_output": false,
+    "ls6oc1_rerun_executed": false,
+    "rerun_allowed": false
+  },
+  "human_confirmation_text": "I approve only the separate manual publish approval gate for post_id=183. I do not authorize publish execution in LS-6R. Publish execution requires LS-6S final preflight and a later explicit execute-now approval."
+}

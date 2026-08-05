@@ -1,0 +1,43 @@
+{
+  "phase": "LS-NEW-6",
+  "name": "WP Draft Payload Prep",
+  "japanese_name": "新刊コミック購入ナビ WordPress下書きpayload準備",
+  "execution_mode": "WP_DRAFT_PAYLOAD_PREP_ONLY_NO_EXECUTION",
+  "production_status": "NO_EXECUTION_WP_DRAFT_PAYLOAD_PREP_ONLY",
+  "required_previous_phase": {
+    "ls_new5_decision_result": "exchange/runtime/start_ls_new5_decision_result.json",
+    "ls_new5_decision_validation_result": "exchange/logs/start_ls_new5_decision_validation_result.json",
+    "required_ls_new5_status": "LSNEW5_HUMAN_REVIEW_DECISION_HUMAN_APPROVED_NO_EXECUTION",
+    "required_ls_new5_validation_status": "LSNEW5_DECISION_VALIDATED_NO_EXECUTION",
+    "required_ready_for_ls_new_6": true,
+    "required_execution_allowed": false,
+    "required_approval_label": "APPROVED_FOR_LS_NEW_6_WP_DRAFT_PAYLOAD_PREP_ONLY"
+  },
+  "payload_prep_policy": {
+    "wp_draft_payload_prep_allowed": true,
+    "wordpress_api_call_allowed": false,
+    "wordpress_write_allowed": false,
+    "wordpress_draft_create_allowed": false,
+    "wordpress_publish_allowed": false,
+    "external_fetch_allowed": false,
+    "x_api_call_allowed": false,
+    "x_post_allowed": false,
+    "credential_env_read_allowed": false,
+    "target_post_id_allocation_allowed": false,
+    "approval_label_consumption_allowed": false,
+    "execution_allowed": false
+  },
+  "content_policy": {
+    "purchase_navigation_media_required": true,
+    "work_explanation_media_allowed": false,
+    "long_work_explanation_required": false,
+    "official_synopsis_copy_allowed": false,
+    "store_description_copy_allowed": false,
+    "review_copy_allowed": false,
+    "affiliate_disclosure_required": true,
+    "external_fetch_notice_required": true,
+    "source_unverified_notice_required": true,
+    "post_status_target": "draft",
+    "post_id_allocated": false
+  }
+}

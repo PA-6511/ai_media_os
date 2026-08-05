@@ -1,0 +1,47 @@
+{
+  "schema_version": "ir58_pre_release_archive_builder_v1",
+  "phase": "IR58",
+  "generated_at": "2026-05-24T12:51:47.502765+00:00",
+  "source_task_id": "ir56_60_live_trial",
+  "validation_result": "PASS",
+  "validation_failed_checks": [],
+  "validation_warnings": [],
+  "archive_manifest": {
+    "archive_id": "archive_ir56_60_live_trial_20260524T125147Z",
+    "source_task_id": "ir56_60_live_trial",
+    "included_phases": [
+      "IR51",
+      "IR52",
+      "IR53",
+      "IR54",
+      "IR55"
+    ],
+    "ir55_completion_bundle_ref": "generic_block_ai/reports/ir51_55/ir55_completion_bundle.json",
+    "ir56_audit_trail_ref": "audit_ir56_60_live_trial_20260524T125147Z",
+    "ir57_finalization_decision": "FINALIZED_DRY_RUN_COMPLETE",
+    "generated_at": "2026-05-24T12:51:47.502729+00:00",
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    },
+    "archive_execution_blocked": true,
+    "network_write_blocked": true
+  },
+  "archive_hash": "f355dfafbd712946be2e645d91ea3a574901b9f7f4ca32b72d9eb461fdc65af3",
+  "safety_gate_snapshot": {
+    "dry_run": "maintained",
+    "OBSERVE": "maintained",
+    "submission_execution_blocked": true,
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "network_transmission_executed": false,
+    "production_release": false,
+    "GitHub_push": "未実行"
+  }
+}

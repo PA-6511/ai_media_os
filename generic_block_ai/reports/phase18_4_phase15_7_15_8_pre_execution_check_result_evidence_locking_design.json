@@ -1,0 +1,228 @@
+{
+  "phase_id": "18-4",
+  "phase_name": "Phase 15-7/15-8 Pre-Execution Check Result Evidence Locking Design",
+  "phase_japanese_name": "Phase 15-7/15-8 実行直前チェック結果の証跡固定ルール設計",
+  "purpose": "Design cryptographic evidence locking procedures for Phase 18-2 and 18-3 pre-execution check results to prevent tampering and provide authoritative audit trails before measurement workflow execution",
+  "layer": "pre_measurement_execution_gate_layer",
+  "design_category": "reports_only",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only"
+  },
+  "phase_18_4_scope": {
+    "scope_1_phase18_2_check_result_locking": {
+      "scope_id": "LOCK_PHASE15_7_CHECKS",
+      "description": "Design evidence locking for Phase 15-7 pre-execution check results (20 checks from Phase 18-2)",
+      "locking_procedure": {
+        "step_1_capture_check_results": {
+          "step_id": "CAPTURE_CHECK_RESULTS",
+          "action": "Capture all 20 check results from Phase 18-2 (Groups 1-5) in JSON structure",
+          "data_to_capture": [
+            "check_1_phase18_1_receipt_confirmation result",
+            "check_2_governance_state_consistency result",
+            "check_3_timing_gate result",
+            "check_4_authority_authorization result",
+            "check_5_blocking_conditions_clearance result",
+            "check_6_measurement_scope_precision result",
+            "check_7_infrastructure_readiness result",
+            "check_8_audit_trail_startup result",
+            "overall_phase15_7_pre_execution_status (READY_TO_EXECUTE | HOLD_PENDING_RESOLUTION | HALT_BLOCKERS_DETECTED)"
+          ],
+          "required_fields": [
+            "timestamp_utc (RFC 3339 format)",
+            "authority_identifier (unique signature of approver)",
+            "check_execution_log (all 8 checks with pass/fail + evidence)",
+            "phase18_2_reference (link to design artifact)"
+          ]
+        },
+        "step_2_compute_sha256_plus_hash": {
+          "step_id": "COMPUTE_EVIDENCE_HASH",
+          "action": "Compute SHA-256+ hash (or stronger: SHA-3, Blake2b) of complete JSON check results",
+          "hash_algorithm": "SHA-256+ (minimum; SHA-3-256 / Blake2b-256 preferred)",
+          "hash_input": "Complete Phase 18-2 check result JSON serialized with consistent field ordering",
+          "hash_output": "evidence_hash_phase15_7_checks (hexadecimal string, 64+ characters)",
+          "verification_note": "Hash must be computed deterministically; JSON field order must be canonical"
+        },
+        "step_3_create_evidence_lock_record": {
+          "step_id": "CREATE_EVIDENCE_LOCK",
+          "action": "Create immutable evidence lock record with hash, timestamp, and authority signature",
+          "lock_record_structure": {
+            "lock_id": "EL_PHASE15_7_CHECKS_<UTC_TIMESTAMP>_<RANDOM_NONCE>",
+            "locked_artifact_type": "phase_18_2_pre_execution_checks",
+            "locked_artifact_phase_reference": "15-7",
+            "timestamp_lock_created_utc": "RFC 3339 format, must match check execution timestamp",
+            "evidence_hash_sha256_plus": "hexadecimal hash from step 2",
+            "overall_check_status": "READY_TO_EXECUTE | HOLD_PENDING_RESOLUTION | HALT_BLOCKERS_DETECTED",
+            "authority_signature": {
+              "algorithm": "RSA-2048 or ECDSA-256",
+              "signature_value": "Base64-encoded signature of (lock_id + evidence_hash + timestamp)",
+              "signer_authority_id": "unique identifier of approving authority",
+              "signature_valid_from_utc": "RFC 3339 format",
+              "signature_valid_to_utc": "RFC 3339 format (expiry)",
+              "revocation_status": "ACTIVE | REVOKED | EXPIRED"
+            },
+            "tamper_detection_checksum": "Secondary hash of (lock_id + authority_signature + timestamp) for early tamper alerts"
+          }
+        },
+        "step_4_store_evidence_lock_in_audit_trail": {
+          "step_id": "STORE_EVIDENCE_LOCK",
+          "action": "Store evidence lock record in immutable audit trail (append-only log)",
+          "storage_location": "generic_block_ai/reports/audit_trail_phase15_7_checks.json (append-only array)",
+          "storage_format": "JSON array, new lock records appended, never modified or deleted",
+          "access_control": "Read-only for Phase 15-7 workflow; Write-only via Phase 18-4 locking procedure",
+          "integrity_verification": "Verify storage success by re-reading and comparing hash against original lock_id"
+        }
+      }
+    },
+    "scope_2_phase18_3_check_result_locking": {
+      "scope_id": "LOCK_PHASE15_8_CHECKS",
+      "description": "Design evidence locking for Phase 15-8 pre-execution check results (22-23 checks from Phase 18-3)",
+      "locking_procedure": {
+        "step_1_to_4": "Identical to scope_1 (steps 1-4) with Phase 18-3 check results (Groups 1-6, 22-23 checks)",
+        "phase_15_8_specific_considerations": [
+          "Include Phase 15-7 result integration (Group 6) in locked evidence if Phase 15-7 pre-execution checks are READY_TO_EXECUTE",
+          "If sequential execution mode: require Phase 15-7 check result lock evidence in Phase 15-8 lock record",
+          "If parallel execution mode: Phase 15-8 lock can be independent of Phase 15-7 lock"
+        ],
+        "lock_record_structure": {
+          "lock_id": "EL_PHASE15_8_CHECKS_<UTC_TIMESTAMP>_<RANDOM_NONCE>",
+          "locked_artifact_type": "phase_18_3_pre_execution_checks",
+          "locked_artifact_phase_reference": "15-8",
+          "timestamp_lock_created_utc": "RFC 3339 format",
+          "evidence_hash_sha256_plus": "SHA-256+ hash of Phase 18-3 complete check results",
+          "phase_15_7_integration": {
+            "execution_mode": "SEQUENTIAL | PARALLEL",
+            "phase_15_7_lock_reference": "EL_PHASE15_7_CHECKS_... (if sequential and Phase 15-7 executed)",
+            "phase_15_7_results_hash": "If sequential, include hash of Phase 15-7 check results for dependency proof"
+          },
+          "overall_check_status": "READY_TO_EXECUTE | HOLD_PENDING_RESOLUTION | HALT_BLOCKERS_DETECTED",
+          "authority_signature": {
+            "algorithm": "RSA-2048 or ECDSA-256",
+            "signature_value": "Base64-encoded signature",
+            "signer_authority_id": "unique identifier",
+            "signature_valid_from_utc": "RFC 3339 format",
+            "signature_valid_to_utc": "RFC 3339 format",
+            "revocation_status": "ACTIVE | REVOKED | EXPIRED"
+          },
+          "tamper_detection_checksum": "Secondary hash for early tamper alerts"
+        }
+      }
+    }
+  },
+  "phase_18_4_verification_procedures": {
+    "procedure_1_evidence_lock_integrity_verification": {
+      "procedure_id": "VERIFY_LOCK_INTEGRITY",
+      "purpose": "Before Phase 15-7/15-8 execution, verify evidence locks have not been tampered with",
+      "verification_steps": [
+        {
+          "step": 1,
+          "action": "Read evidence lock record (lock_id, evidence_hash, authority_signature, timestamp)",
+          "verification": "Confirm lock_id format matches expected pattern (EL_PHASE15_[7|8]_CHECKS_*)"
+        },
+        {
+          "step": 2,
+          "action": "Recompute SHA-256+ hash from original Phase 18-[2|3] check results JSON",
+          "verification": "Compare recomputed hash against evidence_hash_sha256_plus in lock record. If mismatch → TAMPER_DETECTED"
+        },
+        {
+          "step": 3,
+          "action": "Verify authority signature validity (signature algorithm, expiry, revocation status)",
+          "verification": "Confirm signature is ACTIVE and not expired. If invalid → TAMPER_DETECTED or AUTHORITY_REVOKED"
+        },
+        {
+          "step": 4,
+          "action": "Verify tamper_detection_checksum (secondary hash of lock_id + signature + timestamp)",
+          "verification": "Recompute and compare. If checksum mismatch → TAMPER_DETECTED"
+        },
+        {
+          "step": 5,
+          "action": "Verify lock record exists in immutable audit trail and has not been deleted or modified",
+          "verification": "Confirm audit trail append-only integrity. If missing from audit trail → EVIDENCE_LOSS_DETECTED"
+        }
+      ],
+      "verification_outcomes": {
+        "all_checks_pass": {
+          "outcome": "EVIDENCE_LOCK_VERIFIED_INTACT",
+          "action": "Proceed to Phase 15-7/15-8 measurement workflow execution"
+        },
+        "hash_mismatch": {
+          "outcome": "EVIDENCE_TAMPERING_DETECTED",
+          "action": "HALT execution. Alert authority. Initiate tampering investigation procedure (Phase 18-6)"
+        },
+        "signature_invalid_or_expired": {
+          "outcome": "AUTHORITY_SIGNATURE_INVALID",
+          "action": "HALT execution. Alert authority. Require re-authorization from current authority"
+        },
+        "audit_trail_missing": {
+          "outcome": "EVIDENCE_LOSS_DETECTED",
+          "action": "HALT execution. Critical security incident. Escalate to incident response"
+        }
+      }
+    },
+    "procedure_2_evidence_lock_chain_of_custody": {
+      "procedure_id": "VERIFY_CHAIN_OF_CUSTODY",
+      "purpose": "Verify unbroken chain of custody from Phase 18-2/18-3 check execution → Phase 18-4 evidence locking → Phase 15-7/15-8 execution",
+      "chain_of_custody_verification": {
+        "link_1_phase18_2_to_18_4_evidence_lock": {
+          "verification": "Phase 18-4 evidence_hash must match hash of Phase 18-2 original JSON output",
+          "timestamp_constraint": "Phase 18-4 lock timestamp must be within 5 minutes of Phase 18-2 check execution timestamp",
+          "authority_constraint": "Phase 18-4 signer must match Phase 18-2 execution authority (or explicitly delegated signer)"
+        },
+        "link_2_18_4_evidence_lock_to_phase15_7_execution": {
+          "verification": "Phase 15-7 execution must reference Phase 18-4 lock_id as prerequisite",
+          "timestamp_constraint": "Phase 15-7 execution timestamp must be after Phase 18-4 lock creation timestamp",
+          "consistency": "No Phase 18-2 check results may be modified between Phase 18-4 locking and Phase 15-7 execution"
+        },
+        "link_3_phase18_3_to_18_4_evidence_lock": {
+          "verification": "Phase 18-4 Phase 15-8 section must reference Phase 18-3 original check execution",
+          "sequential_execution_link": "If sequential mode: Phase 15-8 lock must reference Phase 15-7 lock_id and overall Phase 15-7 result hash"
+        }
+      },
+      "chain_of_custody_outcomes": {
+        "complete_unbroken_chain": {
+          "outcome": "CHAIN_OF_CUSTODY_VERIFIED",
+          "action": "Proceed to Phase 15-7/15-8 measurement workflow execution"
+        },
+        "timestamp_gap_or_mismatch": {
+          "outcome": "CHAIN_OF_CUSTODY_BROKEN",
+          "action": "HOLD execution. Investigate time discrepancy. Require re-locking with current timestamp"
+        },
+        "authority_mismatch": {
+          "outcome": "AUTHORITY_MISMATCH_DETECTED",
+          "action": "HOLD execution. Verify delegation authority. Require explicit re-authorization"
+        }
+      }
+    }
+  },
+  "phase_18_4_governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "state_invariants": {
+      "integrated_decision": "NO_GO",
+      "receiver_validator_permission": "NOT_EFFECTIVE",
+      "app_implementation_status": "NO_GO",
+      "tests_implementation_status": "NO_GO"
+    },
+    "phase_18_4_completion_criteria": [
+      "Evidence locking procedure (steps 1-4) designed for both Phase 15-7 and Phase 15-8 check results",
+      "Verification procedure (two sub-procedures) designed to detect tampering and verify chain of custody",
+      "All JSON validation passed",
+      "No changes to app/ or tests/ directories",
+      "All state invariants maintained"
+    ]
+  }
+}

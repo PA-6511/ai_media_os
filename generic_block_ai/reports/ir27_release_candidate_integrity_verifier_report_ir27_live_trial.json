@@ -1,0 +1,36 @@
+{
+  "schema_version": "ir27_release_candidate_integrity_verifier_v1",
+  "phase": "IR27",
+  "generated_at": "2026-05-23T15:55:38.313387+00:00",
+  "source_task_id": "ir27_live_trial",
+  "validation_result": "PASS",
+  "release_candidate_id": "rc_20260523T155148Z_ir26_live_trial_b940393b490b",
+  "validation_failed_checks": [],
+  "validation_warnings": [],
+  "integrity": {
+    "recalculated_approval_snapshot_hash": "b940393b490bac4b413602f7909b5c9a229852e515eaa914c8fbe5104dda60b8",
+    "marker_approval_snapshot_hash": "b940393b490bac4b413602f7909b5c9a229852e515eaa914c8fbe5104dda60b8",
+    "tamper_flags": {
+      "snapshot_hash_mismatch": false,
+      "immutable_policy_mismatch": false,
+      "reference_mismatch": false
+    }
+  },
+  "summary": {
+    "validation_result": "PASS",
+    "failed_check_count": 0,
+    "warning_count": 0,
+    "tamper_detected": false
+  },
+  "artifacts": {
+    "ir26_marker_report": "generic_block_ai/reports/ir26_submission_release_candidate_marker_report_ir26_live_trial.json",
+    "completion_report": "reports/implementation_restart_phase27_completion_report.json"
+  },
+  "safeguards": {
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "production_release": false
+  }
+}

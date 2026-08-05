@@ -1,0 +1,136 @@
+{
+  "phase": "LS-6O-C-1",
+  "name": "Actual WordPress One-shot Draft Creation Execution",
+  "status": "ACTUAL_WORDPRESS_ONE_SHOT_DRAFT_CREATION_EXECUTION",
+  "execution_mode": "ACTUAL_WORDPRESS_ONE_SHOT_DRAFT_CREATION_ONE_SHOT_ONLY",
+  "production_status": "GO_FOR_ONE_SHOT_DRAFT_CREATION_ONLY",
+  "purpose": "Execute exactly one new WordPress draft creation using the locked LS-6C target payload after final execute-now confirmation.",
+  "required_previous_phase": {
+    "ls6oc0": {
+      "required_status": "LS6OC0_FINAL_EXECUTE_NOW_CONFIRMATION_READY_NO_EXECUTION",
+      "ready_result": "exchange/logs/start_ls6oc0_final_execute_now_confirmation_ready_result.json",
+      "confirmation": "exchange/human_review/start_ls6oc0_final_execute_now_confirmation.json",
+      "required_label": "FINAL_EXECUTE_NOW_FOR_ACTUAL_WORDPRESS_ONE_SHOT_DRAFT_CREATION_ONLY"
+    },
+    "ls6ob": {
+      "required_run_status": "LS6OB_ACTUAL_EXECUTION_RUNNER_FINAL_PREFLIGHT_PASSED_NO_WRITE",
+      "required_validation_status": "LS6OB_ACTUAL_EXECUTION_RUNNER_FINAL_PREFLIGHT_VALIDATED_NO_WRITE",
+      "preflight_result": "exchange/runtime/start_ls6ob_actual_execution_runner_final_preflight_result.json",
+      "run_result": "exchange/logs/start_ls6ob_actual_execution_runner_final_preflight_gate_result.json",
+      "validation_result": "exchange/logs/start_ls6ob_actual_execution_runner_final_preflight_gate_validation_result.json"
+    },
+    "ls6oa": {
+      "required_status": "LS6OA_ACTUAL_WORDPRESS_ONE_SHOT_DRAFT_CREATION_GO_READY_NO_EXECUTION",
+      "ready_result": "exchange/logs/start_ls6oa_actual_wordpress_one_shot_draft_creation_go_gate_ready_result.json",
+      "actual_go": "exchange/human_review/start_ls6oa_actual_wordpress_one_shot_draft_creation_go.json",
+      "required_go_label": "ACTUAL_WORDPRESS_ONE_SHOT_DRAFT_CREATION_GO_ONLY"
+    },
+    "ls6n": {
+      "one_shot_lock": "exchange/locks/start_ls6n_one_shot_actual_execution.lock.json",
+      "final_execution_preflight": "exchange/runtime/start_ls6n_final_execution_preflight_result.json",
+      "required_lock_active": true,
+      "required_lock_consumed": false
+    },
+    "ls6m": {
+      "credential_presence_result": "exchange/runtime/start_ls6m_credential_presence_check_result.json",
+      "runtime_freeze_state": "exchange/runtime/start_ls6m_runtime_freeze_active_state.json",
+      "runtime_freeze_lock": "exchange/locks/start_ls6m_runtime_freeze_active.lock.json",
+      "required_runtime_freeze_active": true,
+      "required_runtime_freeze_restored": false
+    },
+    "ls6i": {
+      "required_validation_status": "LS6I_EXECUTION_RUNNER_IMPLEMENTED_AND_VALIDATED_PREFLIGHT_ONLY_NO_EXECUTION",
+      "validation_result": "exchange/logs/start_ls6i_real_payload_one_shot_draft_creation_execution_runner_validation_result.json"
+    },
+    "ls6c": {
+      "required_payload_status": "LS6C_REAL_DRAFT_PAYLOAD_REBUILT_DRY_RUN_READY",
+      "payload_preview": "exchange/logs/start_ls6c_real_draft_payload_preview.json",
+      "result": "exchange/logs/start_ls6c_real_draft_payload_rebuild_dry_run_result.json"
+    },
+    "ls6b": {
+      "lock": "exchange/locks/start_ls6b_wordpress_one_shot_draft_creation.lock.json",
+      "required_rerun_allowed": false
+    }
+  },
+  "target_payload": {
+    "title": "2.5次元の誘惑",
+    "asin": "B07X2G67B4",
+    "post_status": "draft",
+    "content_format": "html",
+    "max_items": 1,
+    "payload_count": 1
+  },
+  "actual_execution_policy": {
+    "execute_now_cli_required": true,
+    "confirm_final_label_required": true,
+    "required_confirm_final_label": "FINAL_EXECUTE_NOW_FOR_ACTUAL_WORDPRESS_ONE_SHOT_DRAFT_CREATION_ONLY",
+    "credential_env_read_allowed_by_this_phase": true,
+    "credential_env_path": "/etc/ai-media-os/credential.env",
+    "required_credential_keys": [
+      "WORDPRESS_BASE_URL",
+      "WORDPRESS_USERNAME",
+      "WORDPRESS_APP_PASSWORD"
+    ],
+    "credential_value_output_allowed": false,
+    "credential_length_output_allowed": false,
+    "credential_hash_output_allowed": false,
+    "authorization_header_output_allowed": false,
+    "wordpress_api_call_allowed_by_this_phase": true,
+    "wordpress_write_allowed_by_this_phase": true,
+    "wordpress_draft_creation_allowed_by_this_phase": true,
+    "wordpress_update_allowed_by_this_phase": false,
+    "wordpress_publish_allowed_by_this_phase": false,
+    "wordpress_schedule_allowed_by_this_phase": false,
+    "wordpress_delete_allowed_by_this_phase": false,
+    "max_items_allowed": 1,
+    "post_status_must_be": "draft",
+    "new_post_only": true,
+    "post119_update_allowed": false,
+    "actual_go_consumption_allowed_by_this_phase": true,
+    "final_execute_now_consumption_allowed_by_this_phase": true,
+    "one_shot_actual_execution_lock_consumption_allowed_by_this_phase": true,
+    "runtime_freeze_restore_allowed_by_this_phase": false
+  },
+  "allowed_true_flags_this_phase": {
+    "credential_env_read_executed": true,
+    "wordpress_api_call_executed": true,
+    "wordpress_write_executed": true,
+    "wordpress_draft_creation_executed": true,
+    "runner_executed": true,
+    "actual_execution_executed": true,
+    "actual_wordpress_go_consumed_by_this_phase": true,
+    "final_execute_now_consumed_by_this_phase": true,
+    "one_shot_actual_execution_lock_consumed_by_this_phase": true
+  },
+  "must_remain_false_flags": {
+    "publish_executed": false,
+    "future_schedule_executed": false,
+    "delete_executed": false,
+    "wordpress_existing_post_update_executed": false,
+    "post119_update_executed": false,
+    "credential_value_output": false,
+    "credential_value_persisted": false,
+    "credential_secret_output": false,
+    "secret_length_output": false,
+    "secret_hash_output": false,
+    "authorization_header_output": false,
+    "runtime_freeze_restored": false,
+    "ls6b_rerun_executed": false
+  },
+  "outputs": {
+    "execution_result": "exchange/runtime/start_ls6oc1_actual_wordpress_one_shot_draft_creation_execution_result.json",
+    "consumption_lock": "exchange/locks/start_ls6oc1_actual_execution_consumption.lock.json",
+    "run_result": "exchange/logs/start_ls6oc1_actual_wordpress_one_shot_draft_creation_result.json",
+    "validation_result": "exchange/logs/start_ls6oc1_actual_wordpress_one_shot_draft_creation_validation_result.json",
+    "run_report": "reports/start_ls6oc1_actual_wordpress_one_shot_draft_creation_report.md",
+    "validation_report": "reports/start_ls6oc1_actual_wordpress_one_shot_draft_creation_validation_report.md"
+  },
+  "next_phase": {
+    "phase": "LS-6P",
+    "name": "Post-execution Evidence, Draft Verification, Freeze Restore, and Rerun Prevention",
+    "execution_allowed_by_this_phase": false,
+    "requires_post_id_verification": true,
+    "requires_draft_status_verification": true,
+    "requires_runtime_freeze_restore": true
+  }
+}

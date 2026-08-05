@@ -1,0 +1,101 @@
+{
+  "phase_id": "27-6",
+  "phase_name": "Pre-Production Reflection Final ABORT Conditions Design",
+  "phase_japanese_name": "実本番反映直前の最終ABORT条件設計",
+  "purpose": "Design mandatory final ABORT conditions immediately before production reflection.",
+  "layer": "production_reflection_go_actual_measurement_reinforcement_layer",
+  "design_category": "reports_only",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "operation_transition_go_authorization": "NOT_GRANTED",
+    "production_reflection_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "phase_27_6_scope": {
+    "scope_1_abort_categories": {
+      "scope_id": "ABORT_CATEGORIES",
+      "categories": {
+        "PA1": "Any production-reflection minimum condition is NOT_MET",
+        "PA2": "Any evidence lock verification from Phase 27-4 is FAIL",
+        "PA3": "Any unresolved rejection from Phase 27-5 exists",
+        "PA4": "Pre-production reflection boundary confirmation is NOT_CLEARED",
+        "PA5": "Human final approval signature is invalid or inactive",
+        "PA6": "Detected divergence between measured evidence and decision payload",
+        "PA7": "Any unauthorized production reflection trace is detected",
+        "PA8": "Unclassified critical safety risk requiring mandatory halt"
+      }
+    },
+    "scope_2_abort_handling_rules": {
+      "scope_id": "ABORT_HANDLING_RULES",
+      "rules": {
+        "rule_PAH1": "If any PA1-PA8 is TRIGGERED, reflection_transition_status = ABORTED",
+        "rule_PAH2": "Force production_status = NO_GO",
+        "rule_PAH3": "Force operation_transition_go_authorization = NOT_GRANTED",
+        "rule_PAH4": "Force production_reflection_go_authorization = NOT_GRANTED",
+        "rule_PAH5": "Record abort_reason_codes and evidence-lock abort decision",
+        "rule_PAH6": "Require human review clearance before re-entry"
+      }
+    },
+    "scope_3_report_structure": {
+      "scope_id": "REPORT_STRUCTURE",
+      "sections": {
+        "section_1_header": {
+          "report_id": "PHASE27_6_PRE_PRODUCTION_REFLECTION_ABORT_<UTC_TIMESTAMP>",
+          "report_type": "pre_production_reflection_final_abort_conditions",
+          "generated_at_utc": "RFC3339",
+          "generated_by": "authority_identifier"
+        },
+        "section_2_abort_condition_evaluation": {
+          "PA1": "TRIGGERED | NOT_TRIGGERED",
+          "PA2": "TRIGGERED | NOT_TRIGGERED",
+          "PA3": "TRIGGERED | NOT_TRIGGERED",
+          "PA4": "TRIGGERED | NOT_TRIGGERED",
+          "PA5": "TRIGGERED | NOT_TRIGGERED",
+          "PA6": "TRIGGERED | NOT_TRIGGERED",
+          "PA7": "TRIGGERED | NOT_TRIGGERED",
+          "PA8": "TRIGGERED | NOT_TRIGGERED"
+        },
+        "section_3_final_abort_judgment": {
+          "reflection_transition_status": "ABORTED | NOT_ABORTED",
+          "production_status": "GO | NO_GO",
+          "operation_transition_go_authorization": "GRANTED | NOT_GRANTED",
+          "production_reflection_go_authorization": "GRANTED | NOT_GRANTED"
+        },
+        "section_4_state_reconfirmation": {
+          "app_implementation_status": "NO_GO",
+          "tests_implementation_status": "NO_GO",
+          "production_status": "NO_GO",
+          "operation_transition_go_authorization": "NOT_GRANTED",
+          "production_reflection_go_authorization": "NOT_GRANTED",
+          "changed_area": "reports only"
+        }
+      }
+    }
+  },
+  "phase_27_6_governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "state_invariants": {
+      "app_implementation_status": "NO_GO",
+      "tests_implementation_status": "NO_GO",
+      "production_status": "NO_GO",
+      "operation_transition_go_authorization": "NOT_GRANTED",
+      "production_reflection_go_authorization": "NOT_GRANTED",
+      "changed_area": "reports only"
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "package_type": "phase7_5f_keep_freeze_completion_report",
+  "phase": "Phase 7-5F",
+  "status": "PASS",
+  "reason": "KEEP_FREEZE decision confirmed and live execution remains locked",
+  "phase7_5f_decision": "KEEP_FREEZE",
+  "keep_freeze_confirmed": true,
+  "live_execution_allowed": false,
+  "phase7_5c_execution_unlocked_for_operator": false,
+  "production_status": "NO_GO",
+  "wordpress_draft_creation": "NO_GO",
+  "wordpress_post_enabled": false,
+  "real_write_enabled": false,
+  "wordpress_write_executed": false,
+  "auto_post": false,
+  "auto_update": false,
+  "auto_delete": false,
+  "auto_export": false,
+  "phase_checks": [
+    {
+      "phase": "7-5C",
+      "check": "wordpress_write_executed=false",
+      "passed": true
+    },
+    {
+      "phase": "7-5E",
+      "check": "status=PASS and current_decision=FREEZE",
+      "passed": true
+    },
+    {
+      "phase": "7-5F",
+      "check": "status=PASS and decision=KEEP_FREEZE and unlocked=false",
+      "passed": true
+    }
+  ],
+  "next_step": "maintain_freeze_or_manual_go_redecision",
+  "generated_at": "2026-07-29T14:25:55.783509+00:00"
+}

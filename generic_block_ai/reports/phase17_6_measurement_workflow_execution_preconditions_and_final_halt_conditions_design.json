@@ -1,0 +1,485 @@
+{
+  "phase_identifier": "17-6",
+  "phase_title": "測定ワークフロー実行前の最終停止条件設計",
+  "phase_purpose": "Phase 15-7（integrated_decision 測定ワークフロー）と Phase 15-8（receiver_validator_permission 測定ワークフロー）の実行直前に、本当に実行してよいかを判定するための最終停止条件を設計する。Phase 17-5 で PROCEED 判定を受けた場合でも、実行時刻直前に追加チェックを行い、状態の不整合、改ざん、ステップの実行順序違反が発見された場合は即座に実行を停止する。",
+  "execution_context": "reports-only design phase; design of final execution preconditions only, no actual workflow execution or precondition checking yet",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only"
+  },
+  "governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "safety_rule": "All blocked_actions remain strictly prohibited. Phase 17-6 execution preconditions are design-only; no actual workflow execution or precondition checking occurs. No app/tests implementation permitted.",
+    "hard_stop_condition": "This phase is design-only. No actual execution of Phase 15-7 or Phase 15-8 occurs."
+  },
+  "execution_preconditions_framework": {
+    "overview": "Before Phase 15-7 or Phase 15-8 measurement workflow executes, a series of final preconditions must be verified. These preconditions are checked at the moment of execution entry, not at Phase 17-2/17-3 judgment time. They ensure no state changes, tampering, or ordering violations have occurred between judgment and execution.",
+    "precondition_timing": "Checked immediately before Phase 15-7 or Phase 15-8 starts; if any precondition fails, execution is halted immediately",
+    "precondition_failure_response": "Stop workflow execution, log failure, alert authority, preserve forensic evidence, request diagnostic investigation"
+  },
+  "phase15_7_measurement_workflow_execution_preconditions": {
+    "precondition_group_1_judgment_result_integrity": {
+      "group_name": "Phase 17-2 Judgment Result Integrity",
+      "purpose": "Verify Phase 17-2 PROCEED judgment result has not been tampered with or modified since locking",
+      "preconditions": [
+        {
+          "precondition_id": "PC_17_2_LOCK_VALID",
+          "precondition_name": "Phase 17-2 Judgment Lock Valid",
+          "check": "Verify Phase 17-2 judgment result lock exists and is in LOCKED state (from Phase 17-4 procedures)",
+          "if_pass": "Proceed to PC_17_2_HASH_VERIFIED",
+          "if_fail": "HALT: Phase 17-2 judgment lock is missing or not locked; cannot execute Phase 15-7"
+        },
+        {
+          "precondition_id": "PC_17_2_HASH_VERIFIED",
+          "precondition_name": "Phase 17-2 Judgment Hash Verification",
+          "check": "Recompute hash of Phase 17-2 judgment report and verify it matches stored hash (from Phase 17-4 lock record)",
+          "if_pass": "Proceed to PC_17_2_NO_TAMPERING",
+          "if_fail": "HALT: Phase 17-2 judgment hash mismatch; tampering detected; forensic investigation required"
+        },
+        {
+          "precondition_id": "PC_17_2_NO_TAMPERING",
+          "precondition_name": "Phase 17-2 Judgment No Tampering Flag",
+          "check": "Verify audit trail (from Phase 17-4) contains no TAMPERING_DETECTED entries for Phase 17-2",
+          "if_pass": "Proceed to PC_17_2_PROCEED_RESULT",
+          "if_fail": "HALT: Phase 17-2 audit trail shows tampering flag; measurement execution forbidden"
+        },
+        {
+          "precondition_id": "PC_17_2_PROCEED_RESULT",
+          "precondition_name": "Phase 17-2 Overall Result is PROCEED",
+          "check": "Verify Phase 17-2 overall_phase15_7_execution_feasibility_result == PROCEED_TO_PHASE_15_7_MEASUREMENT",
+          "if_pass": "Precondition Group 1 PASSED; continue to Group 2",
+          "if_fail": "HALT: Phase 17-2 result is not PROCEED (is HOLD or HALT); measurement execution forbidden"
+        }
+      ]
+    },
+    "precondition_group_2_state_consistency": {
+      "group_name": "Current System State Consistency",
+      "purpose": "Verify system state (integrated_decision, receiver_validator_permission, etc.) is still NO_GO / NOT_EFFECTIVE, confirming no external changes have occurred",
+      "preconditions": [
+        {
+          "precondition_id": "PC_STATE_INTEGRATED_DECISION_NO_GO",
+          "precondition_name": "integrated_decision State is NO_GO",
+          "check": "Verify current integrated_decision == NO_GO (has not been changed to GO or unknown state)",
+          "if_pass": "Proceed to PC_STATE_RECEIVER_VALIDATOR",
+          "if_fail": "HALT: integrated_decision has changed from NO_GO; state inconsistency detected; Phase 15-7 measurement execution forbidden"
+        },
+        {
+          "precondition_id": "PC_STATE_RECEIVER_VALIDATOR_NOT_EFFECTIVE",
+          "precondition_name": "receiver_validator_permission State is NOT_EFFECTIVE",
+          "check": "Verify current receiver_validator_permission == NOT_EFFECTIVE (has not been changed to EFFECTIVE or unknown state)",
+          "if_pass": "Proceed to PC_STATE_APP_TESTS_NO_GO",
+          "if_fail": "HALT: receiver_validator_permission has changed from NOT_EFFECTIVE; state inconsistency detected; Phase 15-7 measurement execution forbidden"
+        },
+        {
+          "precondition_id": "PC_STATE_APP_TESTS_NO_GO",
+          "precondition_name": "app_implementation_status and tests_implementation_status remain NO_GO",
+          "check": "Verify current app_implementation_status == NO_GO and tests_implementation_status == NO_GO (no implementation has occurred)",
+          "if_pass": "Precondition Group 2 PASSED; continue to Group 3",
+          "if_fail": "HALT: app or tests implementation status is not NO_GO; unauthorized implementation detected; Phase 15-7 measurement execution forbidden"
+        }
+      ]
+    },
+    "precondition_group_3_phase_ordering": {
+      "group_name": "Phase Execution Ordering Compliance",
+      "purpose": "Verify Phase 15-7 is being executed in correct sequence (after Phase 17 gate layer, not before Phase 17-5 decision handling)",
+      "preconditions": [
+        {
+          "precondition_id": "PC_ORDER_PHASE17_2_COMPLETE",
+          "precondition_name": "Phase 17-2 Execution Completed",
+          "check": "Verify Phase 17-2 judgment report exists and is finalized (completion status recorded)",
+          "if_pass": "Proceed to PC_ORDER_PHASE17_5_COMPLETE",
+          "if_fail": "HALT: Phase 17-2 not completed; cannot execute Phase 15-7 before Phase 17-2 gate"
+        },
+        {
+          "precondition_id": "PC_ORDER_PHASE17_5_COMPLETE",
+          "precondition_name": "Phase 17-5 Decision Handling Completed",
+          "check": "Verify Phase 17-2 judgment result was processed through Phase 17-5 decision handling (PROCEED decision recorded and locked per Phase 17-4)",
+          "if_pass": "Proceed to PC_ORDER_AUTHORITY_APPROVAL",
+          "if_fail": "HALT: Phase 17-5 decision handling not completed; PROCEED decision not yet issued or locked"
+        },
+        {
+          "precondition_id": "PC_ORDER_AUTHORITY_APPROVAL",
+          "precondition_name": "Authority Execution Approval Obtained",
+          "check": "Verify Phase 15-7 execution authorization (from Phase 17-5 PROCEED handling) has been signed by authority with timestamp",
+          "if_pass": "Precondition Group 3 PASSED; continue to Group 4",
+          "if_fail": "HALT: Authority has not approved Phase 15-7 execution; measurement cannot proceed without authorization"
+        }
+      ]
+    },
+    "precondition_group_4_measurement_workflow_readiness": {
+      "group_name": "Phase 15-7 Measurement Workflow Technical Readiness",
+      "purpose": "Verify Phase 15-7 measurement workflow code and configuration are in place and valid",
+      "preconditions": [
+        {
+          "precondition_id": "PC_READY_WF_CODE_EXISTS",
+          "precondition_name": "Phase 15-7 Measurement Workflow Code Exists",
+          "check": "Verify Phase 15-7 measurement workflow code is deployed and accessible (no missing files, no corrupted code)",
+          "if_pass": "Proceed to PC_READY_WF_CONFIG",
+          "if_fail": "HALT: Phase 15-7 workflow code missing or corrupted; cannot execute measurement"
+        },
+        {
+          "precondition_id": "PC_READY_WF_CONFIG",
+          "precondition_name": "Phase 15-7 Measurement Workflow Configuration Valid",
+          "check": "Verify Phase 15-7 workflow configuration is present, valid, and contains correct parameters (input sources, output destinations, measurement scope)",
+          "if_pass": "Proceed to PC_READY_DEPENDENCIES",
+          "if_fail": "HALT: Phase 15-7 workflow configuration missing or invalid; measurement cannot execute with invalid config"
+        },
+        {
+          "precondition_id": "PC_READY_DEPENDENCIES",
+          "precondition_name": "Phase 15-7 External Dependencies Available",
+          "check": "Verify all Phase 15-7 external dependencies (API endpoints, databases, file systems) are healthy and accessible",
+          "if_pass": "Precondition Group 4 PASSED; continue to Group 5",
+          "if_fail": "HALT: Phase 15-7 external dependencies unavailable; cannot execute measurement without dependencies"
+        }
+      ]
+    },
+    "precondition_group_5_measurement_scope_precision": {
+      "group_name": "Phase 15-7 Measurement Scope Precision",
+      "purpose": "Verify Phase 15-7 measurement scope (what will be measured, where, when) is precisely defined and unambiguous",
+      "preconditions": [
+        {
+          "precondition_id": "PC_SCOPE_MEASUREMENT_TARGET",
+          "precondition_name": "Measurement Target (integrated_decision) is Unambiguous",
+          "check": "Verify Phase 15-7 measurement target is clearly defined: 'Measure the current value of integrated_decision in the system state'",
+          "if_pass": "Proceed to PC_SCOPE_MEASUREMENT_TIME",
+          "if_fail": "HALT: Measurement target is ambiguous; cannot proceed without clear scope"
+        },
+        {
+          "precondition_id": "PC_SCOPE_MEASUREMENT_TIME",
+          "precondition_name": "Measurement Time is Specified",
+          "check": "Verify Phase 15-7 measurement will occur at precise timestamp (e.g., UTC now, or scheduled future time); time must be specified before execution starts",
+          "if_pass": "Proceed to PC_SCOPE_MEASUREMENT_AUTHORITY",
+          "if_fail": "HALT: Measurement time is not specified; cannot measure without knowing when to measure"
+        },
+        {
+          "precondition_id": "PC_SCOPE_MEASUREMENT_AUTHORITY",
+          "precondition_name": "Measurement Authority (who is authorized to perform measurement) is Clear",
+          "check": "Verify Phase 15-7 measurement is authorized to be performed by recognized authority (system component or human with delegation)",
+          "if_pass": "Precondition Group 5 PASSED; continue to Group 6",
+          "if_fail": "HALT: Measurement authority is not clear; cannot execute without clear authorization chain"
+        }
+      ]
+    },
+    "precondition_group_6_no_blocking_halt_conditions": {
+      "group_name": "No Blocking Halt Conditions Present",
+      "purpose": "Final check: verify no hard stops or blocking conditions exist that would absolutely prevent execution",
+      "preconditions": [
+        {
+          "precondition_id": "PC_HALT_SECURITY_INCIDENT",
+          "precondition_name": "No Active Security Incident Affecting Phase 15-7",
+          "check": "Verify no security incidents (tampering, breach, data corruption) are active or blocking Phase 15-7 measurement",
+          "if_pass": "Proceed to PC_HALT_RESOURCE_FAILURE",
+          "if_fail": "HALT: Active security incident; Phase 15-7 measurement execution forbidden until incident resolved"
+        },
+        {
+          "precondition_id": "PC_HALT_RESOURCE_FAILURE",
+          "precondition_name": "No Critical Resource Failure Affecting Phase 15-7",
+          "check": "Verify no critical system resource failures (out of memory, disk full, CPU unavailable) block Phase 15-7 execution",
+          "if_pass": "Proceed to PC_HALT_AUTHORITY_OVERRIDE",
+          "if_fail": "HALT: Critical resource failure detected; Phase 15-7 measurement execution forbidden until resource recovered"
+        },
+        {
+          "precondition_id": "PC_HALT_AUTHORITY_OVERRIDE",
+          "precondition_name": "No Authority Override or Cancellation Order",
+          "check": "Verify no authority has issued a cancellation or halt order that supersedes Phase 17-5 PROCEED decision",
+          "if_pass": "All Precondition Groups PASSED; Phase 15-7 Measurement Execution Approved",
+          "if_fail": "HALT: Authority cancellation order detected; Phase 15-7 measurement execution forbidden per authority decision"
+        }
+      ]
+    }
+  },
+  "phase15_8_measurement_workflow_execution_preconditions": {
+    "precondition_group_1_judgment_result_integrity": {
+      "group_name": "Phase 17-3 Judgment Result Integrity",
+      "purpose": "Verify Phase 17-3 PROCEED judgment result has not been tampered with or modified since locking",
+      "preconditions": [
+        {
+          "precondition_id": "PC_17_3_LOCK_VALID",
+          "precondition_name": "Phase 17-3 Judgment Lock Valid",
+          "check": "Verify Phase 17-3 judgment result lock exists and is in LOCKED state (from Phase 17-4 procedures)",
+          "if_pass": "Proceed to PC_17_3_HASH_VERIFIED",
+          "if_fail": "HALT: Phase 17-3 judgment lock is missing or not locked; cannot execute Phase 15-8"
+        },
+        {
+          "precondition_id": "PC_17_3_HASH_VERIFIED",
+          "precondition_name": "Phase 17-3 Judgment Hash Verification",
+          "check": "Recompute hash of Phase 17-3 judgment report and verify it matches stored hash (from Phase 17-4 lock record)",
+          "if_pass": "Proceed to PC_17_3_NO_TAMPERING",
+          "if_fail": "HALT: Phase 17-3 judgment hash mismatch; tampering detected; forensic investigation required"
+        },
+        {
+          "precondition_id": "PC_17_3_NO_TAMPERING",
+          "precondition_name": "Phase 17-3 Judgment No Tampering Flag",
+          "check": "Verify audit trail (from Phase 17-4) contains no TAMPERING_DETECTED entries for Phase 17-3",
+          "if_pass": "Proceed to PC_17_3_PROCEED_RESULT",
+          "if_fail": "HALT: Phase 17-3 audit trail shows tampering flag; measurement execution forbidden"
+        },
+        {
+          "precondition_id": "PC_17_3_PROCEED_RESULT",
+          "precondition_name": "Phase 17-3 Overall Result is PROCEED",
+          "check": "Verify Phase 17-3 overall_phase15_8_execution_feasibility_result == PROCEED_TO_PHASE_15_8_MEASUREMENT",
+          "if_pass": "Precondition Group 1 PASSED; continue to Group 2",
+          "if_fail": "HALT: Phase 17-3 result is not PROCEED (is HOLD or HALT); measurement execution forbidden"
+        }
+      ]
+    },
+    "precondition_group_2_state_consistency": {
+      "group_name": "Current System State Consistency",
+      "purpose": "Verify system state (integrated_decision, receiver_validator_permission, etc.) is still NO_GO / NOT_EFFECTIVE, confirming no external changes have occurred since Phase 17-2/17-3",
+      "preconditions": [
+        {
+          "precondition_id": "PC_STATE_INTEGRATED_DECISION_STILL_NO_GO",
+          "precondition_name": "integrated_decision State is Still NO_GO",
+          "check": "Verify current integrated_decision == NO_GO (has not changed to GO since Phase 17-2/17-3 judgment; Phase 15-7 measurement may have affected this, or may not yet have executed)",
+          "note": "If Phase 15-7 executed first and changed integrated_decision to GO, Phase 15-8 execution must account for this state change and validate whether Phase 15-8 execution is still valid with integrated_decision=GO",
+          "if_pass": "Proceed to PC_STATE_RECEIVER_VALIDATOR_STILL_NOT_EFFECTIVE",
+          "if_fail": "CONDITIONAL: If integrated_decision changed from NO_GO to GO due to Phase 15-7 execution, proceed to conditional check; if changed to GO by other means, halt and investigate"
+        },
+        {
+          "precondition_id": "PC_STATE_RECEIVER_VALIDATOR_NOT_EFFECTIVE",
+          "precondition_name": "receiver_validator_permission State is NOT_EFFECTIVE",
+          "check": "Verify current receiver_validator_permission == NOT_EFFECTIVE (has not been changed to EFFECTIVE or unknown state)",
+          "if_pass": "Proceed to PC_STATE_APP_TESTS_NO_GO",
+          "if_fail": "HALT: receiver_validator_permission has changed from NOT_EFFECTIVE; state inconsistency detected; Phase 15-8 measurement execution forbidden"
+        },
+        {
+          "precondition_id": "PC_STATE_APP_TESTS_NO_GO",
+          "precondition_name": "app_implementation_status and tests_implementation_status remain NO_GO",
+          "check": "Verify current app_implementation_status == NO_GO and tests_implementation_status == NO_GO (no implementation has occurred)",
+          "if_pass": "Precondition Group 2 PASSED; continue to Group 3",
+          "if_fail": "HALT: app or tests implementation status is not NO_GO; unauthorized implementation detected; Phase 15-8 measurement execution forbidden"
+        }
+      ]
+    },
+    "precondition_group_3_phase_ordering": {
+      "group_name": "Phase Execution Ordering Compliance",
+      "purpose": "Verify Phase 15-8 is being executed in correct sequence and respects Phase 15-7 results if Phase 15-7 has already executed",
+      "preconditions": [
+        {
+          "precondition_id": "PC_ORDER_PHASE17_3_COMPLETE",
+          "precondition_name": "Phase 17-3 Execution Completed",
+          "check": "Verify Phase 17-3 judgment report exists and is finalized (completion status recorded)",
+          "if_pass": "Proceed to PC_ORDER_PHASE15_7_STATUS_CHECK",
+          "if_fail": "HALT: Phase 17-3 not completed; cannot execute Phase 15-8 before Phase 17-3 gate"
+        },
+        {
+          "precondition_id": "PC_ORDER_PHASE15_7_STATUS_CHECK",
+          "precondition_name": "Phase 15-7 Status Check (if applicable)",
+          "check": "Check if Phase 15-7 measurement has already executed. If YES: verify Phase 15-7 result is recorded and available. If NO: Phase 15-7 execution ordering depends on authority decision (concurrent or sequential allowed).",
+          "if_yes_phase15_7_executed": {
+            "action": "Retrieve Phase 15-7 measurement result (integrated_decision measured value)",
+            "use_result": "Phase 15-8 may conditionally depend on Phase 15-7 result; verify Phase 17-3 gate 6 (integrated_decision observation gate) is satisfied",
+            "next": "Proceed to PC_ORDER_PHASE17_5_COMPLETE"
+          },
+          "if_no_phase15_7_not_executed": {
+            "action": "Phase 15-8 can proceed independently; Phase 15-7 may execute concurrently or sequentially",
+            "next": "Proceed to PC_ORDER_PHASE17_5_COMPLETE"
+          }
+        },
+        {
+          "precondition_id": "PC_ORDER_PHASE17_5_COMPLETE",
+          "precondition_name": "Phase 17-5 Decision Handling Completed",
+          "check": "Verify Phase 17-3 judgment result was processed through Phase 17-5 decision handling (PROCEED decision recorded and locked per Phase 17-4)",
+          "if_pass": "Proceed to PC_ORDER_AUTHORITY_APPROVAL",
+          "if_fail": "HALT: Phase 17-5 decision handling not completed; PROCEED decision not yet issued or locked"
+        },
+        {
+          "precondition_id": "PC_ORDER_AUTHORITY_APPROVAL",
+          "precondition_name": "Authority Execution Approval Obtained",
+          "check": "Verify Phase 15-8 execution authorization (from Phase 17-5 PROCEED handling) has been signed by authority with timestamp",
+          "if_pass": "Precondition Group 3 PASSED; continue to Group 4",
+          "if_fail": "HALT: Authority has not approved Phase 15-8 execution; measurement cannot proceed without authorization"
+        }
+      ]
+    },
+    "precondition_group_4_measurement_workflow_readiness": {
+      "group_name": "Phase 15-8 Measurement Workflow Technical Readiness",
+      "purpose": "Verify Phase 15-8 measurement workflow code and configuration are in place and valid",
+      "preconditions": [
+        {
+          "precondition_id": "PC_READY_WF_CODE_EXISTS",
+          "precondition_name": "Phase 15-8 Measurement Workflow Code Exists",
+          "check": "Verify Phase 15-8 measurement workflow code is deployed and accessible (no missing files, no corrupted code)",
+          "if_pass": "Proceed to PC_READY_WF_CONFIG",
+          "if_fail": "HALT: Phase 15-8 workflow code missing or corrupted; cannot execute measurement"
+        },
+        {
+          "precondition_id": "PC_READY_WF_CONFIG",
+          "precondition_name": "Phase 15-8 Measurement Workflow Configuration Valid",
+          "check": "Verify Phase 15-8 workflow configuration is present, valid, and contains correct parameters (input sources, output destinations, measurement scope)",
+          "if_pass": "Proceed to PC_READY_DEPENDENCIES",
+          "if_fail": "HALT: Phase 15-8 workflow configuration missing or invalid; measurement cannot execute with invalid config"
+        },
+        {
+          "precondition_id": "PC_READY_DEPENDENCIES",
+          "precondition_name": "Phase 15-8 External Dependencies Available",
+          "check": "Verify all Phase 15-8 external dependencies (API endpoints, databases, file systems) are healthy and accessible",
+          "if_pass": "Precondition Group 4 PASSED; continue to Group 5",
+          "if_fail": "HALT: Phase 15-8 external dependencies unavailable; cannot execute measurement without dependencies"
+        }
+      ]
+    },
+    "precondition_group_5_measurement_scope_precision": {
+      "group_name": "Phase 15-8 Measurement Scope Precision",
+      "purpose": "Verify Phase 15-8 measurement scope (what will be measured, where, when) is precisely defined and unambiguous",
+      "preconditions": [
+        {
+          "precondition_id": "PC_SCOPE_MEASUREMENT_TARGET",
+          "precondition_name": "Measurement Target (receiver_validator_permission) is Unambiguous",
+          "check": "Verify Phase 15-8 measurement target is clearly defined: 'Measure the current value of receiver_validator_permission in the system state'",
+          "if_pass": "Proceed to PC_SCOPE_MEASUREMENT_TIME",
+          "if_fail": "HALT: Measurement target is ambiguous; cannot proceed without clear scope"
+        },
+        {
+          "precondition_id": "PC_SCOPE_MEASUREMENT_TIME",
+          "precondition_name": "Measurement Time is Specified",
+          "check": "Verify Phase 15-8 measurement will occur at precise timestamp (e.g., UTC now, or scheduled future time); time must be specified before execution starts",
+          "if_pass": "Proceed to PC_SCOPE_MEASUREMENT_AUTHORITY",
+          "if_fail": "HALT: Measurement time is not specified; cannot measure without knowing when to measure"
+        },
+        {
+          "precondition_id": "PC_SCOPE_MEASUREMENT_AUTHORITY",
+          "precondition_name": "Measurement Authority (who is authorized to perform measurement) is Clear",
+          "check": "Verify Phase 15-8 measurement is authorized to be performed by recognized authority (system component or human with delegation)",
+          "if_pass": "Precondition Group 5 PASSED; continue to Group 6",
+          "if_fail": "HALT: Measurement authority is not clear; cannot execute without clear authorization chain"
+        }
+      ]
+    },
+    "precondition_group_6_no_blocking_halt_conditions": {
+      "group_name": "No Blocking Halt Conditions Present",
+      "purpose": "Final check: verify no hard stops or blocking conditions exist that would absolutely prevent execution",
+      "preconditions": [
+        {
+          "precondition_id": "PC_HALT_SECURITY_INCIDENT",
+          "precondition_name": "No Active Security Incident Affecting Phase 15-8",
+          "check": "Verify no security incidents (tampering, breach, data corruption) are active or blocking Phase 15-8 measurement",
+          "if_pass": "Proceed to PC_HALT_RESOURCE_FAILURE",
+          "if_fail": "HALT: Active security incident; Phase 15-8 measurement execution forbidden until incident resolved"
+        },
+        {
+          "precondition_id": "PC_HALT_RESOURCE_FAILURE",
+          "precondition_name": "No Critical Resource Failure Affecting Phase 15-8",
+          "check": "Verify no critical system resource failures (out of memory, disk full, CPU unavailable) block Phase 15-8 execution",
+          "if_pass": "Proceed to PC_HALT_AUTHORITY_OVERRIDE",
+          "if_fail": "HALT: Critical resource failure detected; Phase 15-8 measurement execution forbidden until resource recovered"
+        },
+        {
+          "precondition_id": "PC_HALT_AUTHORITY_OVERRIDE",
+          "precondition_name": "No Authority Override or Cancellation Order",
+          "check": "Verify no authority has issued a cancellation or halt order that supersedes Phase 17-5 PROCEED decision",
+          "if_pass": "All Precondition Groups PASSED; Phase 15-8 Measurement Execution Approved",
+          "if_fail": "HALT: Authority cancellation order detected; Phase 15-8 measurement execution forbidden per authority decision"
+        }
+      ]
+    }
+  },
+  "precondition_evaluation_and_halt_logic": {
+    "evaluation_algorithm": {
+      "step_1_evaluate_group_1": "Evaluate all preconditions in Group 1 (Judgment Result Integrity); if any fails, HALT immediately and skip remaining groups",
+      "step_2_evaluate_group_2": "Evaluate all preconditions in Group 2 (State Consistency); if any fails, HALT immediately and skip remaining groups",
+      "step_3_evaluate_group_3": "Evaluate all preconditions in Group 3 (Phase Ordering); if any fails, HALT immediately and skip remaining groups",
+      "step_4_evaluate_group_4": "Evaluate all preconditions in Group 4 (Workflow Readiness); if any fails, HALT immediately and skip remaining groups",
+      "step_5_evaluate_group_5": "Evaluate all preconditions in Group 5 (Measurement Scope); if any fails, HALT immediately and skip remaining groups",
+      "step_6_evaluate_group_6": "Evaluate all preconditions in Group 6 (No Blocking Halts); if any fails, HALT immediately",
+      "all_groups_passed": "If all 6 groups PASSED, proceed to measurement workflow execution"
+    },
+    "halt_conditions_summary": {
+      "judgment_result_integrity_halt": "HALT if Phase 17-2/17-3 judgment lock invalid, hash mismatch, tampering detected, or result is not PROCEED",
+      "state_inconsistency_halt": "HALT if integrated_decision, receiver_validator_permission, app_implementation_status, or tests_implementation_status changed from expected values",
+      "phase_ordering_violation_halt": "HALT if Phase 17-2/17-3 not completed, Phase 17-5 not completed, or authority approval not obtained",
+      "workflow_readiness_halt": "HALT if Phase 15-7/15-8 workflow code, configuration, or dependencies missing or unavailable",
+      "measurement_scope_ambiguity_halt": "HALT if measurement target, time, or authority is not clearly specified",
+      "blocking_condition_halt": "HALT if security incident active, resource failure present, or authority cancellation order issued"
+    }
+  },
+  "execution_precondition_verification_record_structure": {
+    "record_id": "EXECUTION_PRECONDITION_VERIFICATION_RECORD_v1",
+    "record_elements": {
+      "verification_timestamp": "ISO8601 UTC when precondition verification began",
+      "target_phase": "Phase 15-7 or Phase 15-8",
+      "precondition_group_results": [
+        {
+          "group_name": "Group 1: Judgment Result Integrity",
+          "group_status": "PASSED or FAILED",
+          "precondition_results": [
+            {
+              "precondition_id": "PC_17_2_LOCK_VALID",
+              "precondition_status": "PASSED or FAILED",
+              "detail": "Lock status, evidence"
+            }
+          ]
+        }
+      ],
+      "overall_execution_precondition_result": "ALL_PRECONDITIONS_PASSED or PRECONDITION_FAILED",
+      "halt_reason_if_failed": "Which precondition failed and why (if overall result is FAILED)",
+      "execution_decision": "PROCEED_TO_MEASUREMENT_WORKFLOW or HALT_DO_NOT_EXECUTE",
+      "authority_halt_timestamp": "If authority issued cancellation, timestamp of cancellation order",
+      "forensic_evidence_reference": "If halt due to tampering or failure, reference to forensic evidence location"
+    }
+  },
+  "precondition_failure_escalation_procedure": {
+    "step_1_detect_failure": "During precondition evaluation (any group, any precondition), detect failure condition",
+    "step_2_log_failure": "Append audit log entry documenting failure: timestamp, precondition ID, failure reason, halt decision",
+    "step_3_preserve_state_snapshot": "Capture system state snapshot at moment of failure (state values, judgment result lock status, audit trail, logs)",
+    "step_4_alert_authority": "Issue alert to authority: 'Execution precondition failed; Phase 15-7/15-8 measurement execution halted; forensic investigation initiated'",
+    "step_5_initiate_forensic_investigation": "Launch diagnostic investigation: compare expected vs actual precondition states; identify root cause (tampering, external change, clock skew, etc.)",
+    "step_6_preserve_forensic_evidence": "Archive state snapshot, logs, audit trails, precondition evaluation results to immutable forensic storage",
+    "step_7_escalate_for_authority_decision": "Submit forensic report to authority for decision: (a) clear root cause and permit re-evaluation, (b) require remediation before re-evaluation, or (c) cancel Phase 15-7/15-8 measurement indefinitely"
+  },
+  "phase_dependencies": {
+    "depends_on": [
+      "Phase 17-2: Phase 15-7 measurement workflow execution feasibility judgment report (provides PROCEED/HOLD/HALT result to evaluate)",
+      "Phase 17-3: Phase 15-8 measurement workflow execution feasibility judgment report (provides PROCEED/HOLD/HALT result to evaluate)",
+      "Phase 17-4: Judgment result evidence lock and tamper detection rules (provides lock verification procedures)",
+      "Phase 17-5: PROCEED/HOLD/HALT judgment result decision handling and return rules (provides authority approval and lock procedures)"
+    ],
+    "feeds_into": [
+      "Phase 15-7: integrated_decision measurement workflow (executes only if all preconditions PASSED)",
+      "Phase 15-8: receiver_validator_permission measurement workflow (executes only if all preconditions PASSED)"
+    ]
+  },
+  "design_review_checklist": [
+    "Phase 15-7 precondition groups (6) designed: judgment integrity, state consistency, ordering, readiness, scope, no halts",
+    "Phase 15-8 precondition groups (6) designed: identical structure with Phase 15-8 specific checks",
+    "Precondition failure responses defined: log, alert, preserve evidence, escalate",
+    "Each precondition has clear if_pass and if_fail outcomes",
+    "Halt conditions enumerated and mapped to precondition failures",
+    "Execution precondition verification record structure defined",
+    "Precondition failure escalation procedure complete",
+    "Phase 15-7 and Phase 15-8 can have concurrent or sequential execution (ordering precondition allows both)",
+    "All blocked actions remain in governance",
+    "production_status remains NO_GO (hardcoded)",
+    "Phase dependencies are accurate and complete"
+  ],
+  "completion_gate": {
+    "gate_condition": "Measurement workflow execution preconditions approved AND precondition verification procedures finalized",
+    "approval_required": "Human technical reviewer + Phase 17 design authority + System architect",
+    "prerequisite_for": "Phase 15-7 and Phase 15-8 measurement workflows can execute only after Phase 17-6 precondition verification passes"
+  },
+  "status": {
+    "phase_status": "DESIGN_ONLY",
+    "actual_precondition_verification_status": "NOT_YET_STARTED",
+    "actual_execution_status": "NOT_YET_STARTED",
+    "integrated_decision_status": "NO_GO",
+    "receiver_validator_implementation_permission_status": "NOT_EFFECTIVE",
+    "app_implementation_status": "NO_GO",
+    "tests_implementation_status": "NO_GO",
+    "production_status": "NO_GO"
+  }
+}

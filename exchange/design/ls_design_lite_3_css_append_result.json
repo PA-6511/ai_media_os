@@ -1,0 +1,13 @@
+{
+  "phase": "LS-DESIGN-LITE-3",
+  "status": "LS_DESIGN_LITE_3_CHILD_THEME_CSS_APPENDED",
+  "target_style_css": "/var/www/wordpress/wp-content/themes/cocoon-child-manga/style.css",
+  "backup_path": "/var/www/wordpress/wp-content/themes/cocoon-child-manga/style.css.backup_ls_design_lite_20260709_232744",
+  "wordpress_api_call_executed": false,
+  "credential_env_read_executed": false,
+  "post_update_executed": false,
+  "theme_parent_modified": false,
+  "child_theme_modified": true,
+  "recommended_next_action": "BROWSER_HARD_RELOAD_AND_VISUAL_CHECK",
+  "errors": []
+}

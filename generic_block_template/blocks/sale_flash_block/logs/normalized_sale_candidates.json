@@ -1,0 +1,44 @@
+{
+  "status": "PASS",
+  "generated_at": "2026-06-14T04:38:38.911014+00:00",
+  "production_status": "NO_GO",
+  "external_api_called": false,
+  "external_network_called": false,
+  "wordpress_write_executed": false,
+  "input_csv": "/home/deploy/ai_media_os/generic_block_template/blocks/sale_flash_block/fixtures/sample_sale_candidates.csv",
+  "item_count": 2,
+  "candidates": [
+    {
+      "candidate_id": "sfb-cand-001",
+      "source": "manual_csv",
+      "title": "Crimson Library",
+      "author": "Aki Mori",
+      "isbn": "9786000000001",
+      "asin": "B0REAL00001",
+      "campaign": "SUMMER_FLASH",
+      "sale_status": "candidate",
+      "confidence": 0.92,
+      "note": "real-data dry run candidate",
+      "normalized_status": "PASS",
+      "review_required": false,
+      "review_reasons": [],
+      "link_strategy": "amazon_product_link_candidate"
+    },
+    {
+      "candidate_id": "sfb-cand-002",
+      "source": "publisher_news_candidate",
+      "title": "Glass Moon",
+      "author": "Yuna Sato",
+      "isbn": "9786000000002",
+      "asin": "",
+      "campaign": "NEWS_DIGEST",
+      "sale_status": "candidate",
+      "confidence": 0.77,
+      "note": "asin missing allowed for search candidate",
+      "normalized_status": "PASS",
+      "review_required": false,
+      "review_reasons": [],
+      "link_strategy": "amazon_search_link_candidate"
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "schema_version": "ir168_immutable_tracking_digest_v1",
+  "phase": "IR168",
+  "generated_at": "2026-05-26T12:36:31.858300+00:00",
+  "source_task_id": "ir166_170_batch",
+  "validation_result": "PASS",
+  "validation_failed_checks": [],
+  "validation_warnings": [],
+  "immutable_tracking_digest": {
+    "digest_id": "ir168_digest_ir166_170_batch_20260526T123631Z",
+    "generated_at": "2026-05-26T12:36:31.858296+00:00",
+    "source_task_id": "ir166_170_batch",
+    "new_cycle_id": "IR71_PLUS_CYCLE_A",
+    "digest_entries": [
+      {
+        "tracking_item_id": "track_1",
+        "meta_item": "new_cycle_start",
+        "digest_id": "ee716b0ab87abfab24a66908983e5611f61cff5313c6380cfc473e41c04a197d",
+        "digest_status": "DIGESTED_IMMUTABLE"
+      },
+      {
+        "tracking_item_id": "track_2",
+        "meta_item": "governance_preparation",
+        "digest_id": "904321451845ae87eba017868b5e20b42e362cd9adb41b86fe6e613510a6c53e",
+        "digest_status": "DIGESTED_IMMUTABLE"
+      },
+      {
+        "tracking_item_id": "track_3",
+        "meta_item": "prohibition_continuity",
+        "digest_id": "8eae985ec1d09a737625944392e9d62ce77543718e241b915bee8e9f3a26ee8e",
+        "digest_status": "DIGESTED_IMMUTABLE"
+      },
+      {
+        "tracking_item_id": "track_4",
+        "meta_item": "evidence_fixation",
+        "digest_id": "111cccd8a0d87036f3cdb44383f1b6e6a6da3977d13a9ccda937da56498ccddc",
+        "digest_status": "DIGESTED_IMMUTABLE"
+      },
+      {
+        "tracking_item_id": "track_5",
+        "meta_item": "long_term_retention",
+        "digest_id": "278ff720787e4c626175846d7c8e94a315ea851218f11a6b5801bf7c1abe4625",
+        "digest_status": "DIGESTED_IMMUTABLE"
+      },
+      {
+        "tracking_item_id": "track_6",
+        "meta_item": "terminal_seal",
+        "digest_id": "b3b6151335b1372680ca0c3b8386579e590fe3abeaaca2be34954fdfaec7f1f2",
+        "digest_status": "DIGESTED_IMMUTABLE"
+      },
+      {
+        "tracking_item_id": "track_7",
+        "meta_item": "cycle_summary",
+        "digest_id": "e2056a2b4eb9ae998529312c44e71fc37344a90da2db2f3b8d093d0a5efde590",
+        "digest_status": "DIGESTED_IMMUTABLE"
+      }
+    ],
+    "entry_count": 7,
+    "immutable_digest_ready": true,
+    "unlock_eligible": false,
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "digest_hash": "0869d3616abd4aa551a588744880570b8818f9c163299d21c522e98fc0fbbd4f",
+  "safety_gate_snapshot": {
+    "dry_run": "maintained",
+    "OBSERVE": "maintained",
+    "submission_execution_blocked": true,
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "network_transmission_executed": false,
+    "production_release": false,
+    "GitHub_push": "未実行"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "schema_version": "ir59_archive_integrity_gate_v1",
+  "phase": "IR59",
+  "generated_at": "2026-05-24T12:51:47.503236+00:00",
+  "source_task_id": "ir56_60_live_trial",
+  "archive_integrity_gate_decision": "READY_FOR_DRY_RUN_HANDOFF_ONLY",
+  "gate_action": "Archive integrity confirmed. Ready for dry-run handoff only.",
+  "validation_result": "PASS",
+  "validation_failed_checks": [],
+  "hash_verification": {
+    "provided_archive_hash": "f355dfafbd712946be2e645d91ea3a574901b9f7f4ca32b72d9eb461fdc65af3",
+    "recalculated_archive_hash": "f355dfafbd712946be2e645d91ea3a574901b9f7f4ca32b72d9eb461fdc65af3",
+    "hash_match": true
+  },
+  "tamper_detection_summary": "NO_TAMPER",
+  "safety_gate_snapshot": {
+    "dry_run": "maintained",
+    "OBSERVE": "maintained",
+    "submission_execution_blocked": true,
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "network_transmission_executed": false,
+    "production_release": false,
+    "GitHub_push": "未実行"
+  }
+}

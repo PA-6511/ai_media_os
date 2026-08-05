@@ -1,0 +1,57 @@
+{
+  "phase": "Phase 7-5",
+  "status": "LIVE_CANDIDATE_BUT_LOCKED",
+  "production_status": "NO_GO",
+  "wordpress_draft_creation": "NO_GO",
+  "wordpress_write_executed": false,
+  "approve_draft_create_only_currently_allowed": false,
+  "unlock_in_this_phase": false,
+  "live_is_execution_permission": false,
+  "decision": "LIVE_CANDIDATE_BUT_LOCKED",
+  "phase7_5_decision": "LIVE_CANDIDATE_BUT_LOCKED",
+  "all_prerequisite_phases_pass": true,
+  "live_execution_allowed": false,
+  "errors": [],
+  "warnings": [],
+  "safety_violations": [],
+  "evidence_summary": [
+    {
+      "path": "exchange/logs/phase7_1_eligible_single_controlled_run_policy_result.json",
+      "exists": true,
+      "status": "ELIGIBLE_DRY_RUN_ONLY"
+    },
+    {
+      "path": "exchange/logs/phase7_2_approve_draft_create_only_pre_unlock_review_result.json",
+      "exists": true,
+      "status": "PASS_DESIGN_ONLY"
+    },
+    {
+      "path": "exchange/logs/phase7_3_single_draft_final_preflight_design_result.json",
+      "exists": true,
+      "status": "PASS_DESIGN_ONLY"
+    },
+    {
+      "path": "exchange/logs/phase7_4_execution_gate_no_go_freeze_result.json",
+      "exists": true,
+      "status": "PASS_DESIGN_ONLY"
+    }
+  ],
+  "allowed_next_step": "Phase 7-6 human approval evidence package design only",
+  "blocked_next_steps": [
+    "wordpress_draft_create",
+    "wordpress_publish",
+    "wordpress_update",
+    "wordpress_delete",
+    "bulk_posting",
+    "external_export",
+    "vps_self_builder_execution"
+  ],
+  "wordpress_post_enabled": false,
+  "real_write_enabled": false,
+  "publish_allowed": false,
+  "auto_post": false,
+  "auto_update": false,
+  "auto_delete": false,
+  "auto_export": false,
+  "generated_at": "2026-05-27T13:41:24.733325+00:00"
+}

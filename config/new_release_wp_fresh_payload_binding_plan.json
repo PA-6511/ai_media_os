@@ -1,0 +1,117 @@
+{
+  "schema_version": "1.0.0",
+  "plan_id": "FRESH_NEW_RELEASE_PAYLOAD_OFFLINE_CATEGORY_BINDING_PLAN_V1",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-E",
+  "template_contract_id": "POST185_STANDARD_TEMPLATE_V1_FIXED",
+  "article_scope_id": "COMIC_NEW_RELEASE_LATEST_VOLUME_DISTRIBUTION_START",
+  "article_scope_label": "コミック新刊・新巻配信開始記事",
+  "mapping": {
+    "mapping_id": "COMIC_NEW_RELEASE_LATEST_VOLUME_TO_WP_CATEGORY_10",
+    "mapping_artifact_path": "config/new_release_wp_production_category_mapping.json",
+    "mapping_artifact_digest_sha256": "ff0bca22637eb271edde817d04d7a6288e6620edd3183beb9e7d5f3829019b3e",
+    "production_category_id": 10,
+    "production_category_name": "最新巻",
+    "mapping_fixed": true
+  },
+  "legacy_exclusion": {
+    "legacy_post185_lineage_excluded": true,
+    "legacy_title": "月曜日のたわわ",
+    "legacy_volume": "第15巻",
+    "legacy_wordpress_post_id": 185,
+    "legacy_artifact_reuse_allowed": false,
+    "legacy_artifact_modification_allowed": false,
+    "verified_inspection_evidence": [
+      {
+        "path": "exchange/logs/start_ls_new15_lite_draft_payload_final_confirm.json",
+        "file_sha256": "da041111bc88fe335b3e215f0f3b4ce587274f5af74cf7107f673e977c12f65e",
+        "independent_payload_path_found": false,
+        "payload_body_found": false,
+        "categories_payload_found": false,
+        "eligible_as_fresh_payload": false,
+        "modification_allowed": false
+      },
+      {
+        "path": "exchange/logs/start_ls_new6_wp_draft_payload_prep_result.json",
+        "file_sha256": "d7b1fcb62c24332db6398a245186367c9209b1663d734da44bda80f292b07981",
+        "independent_payload_path_found": false,
+        "payload_body_found": false,
+        "categories_payload_found": false,
+        "eligible_as_fresh_payload": false,
+        "modification_allowed": false
+      },
+      {
+        "path": "exchange/logs/start_ls_new4_purchase_navigation_payload_dry_run_result.json",
+        "file_sha256": "03fe539f23d374b86948309e3fd6066784eb70d60fe3a54c02f5003a7f0bef3f",
+        "independent_payload_path_found": false,
+        "payload_body_found": false,
+        "categories_payload_found": false,
+        "eligible_as_fresh_payload": false,
+        "modification_allowed": false
+      }
+    ]
+  },
+  "future_source_contract": {
+    "source_root": "exchange/payloads/new_release/fresh",
+    "source_must_be_created_after_plan_fixation": true,
+    "source_must_be_new_json_object": true,
+    "required_fields": [
+      "title",
+      "content",
+      "status"
+    ],
+    "required_status": "draft",
+    "categories_allowed_before_binding": [
+      "ABSENT",
+      "EMPTY_LIST"
+    ],
+    "source_file_sha256_required": true,
+    "source_payload_digest_required": true,
+    "source_must_remain_immutable": true,
+    "source_must_not_be_result_log": true,
+    "source_must_not_be_confirmation_log": true,
+    "source_must_not_reference_post_185": true,
+    "human_review_required_before_binding": true
+  },
+  "offline_binding_contract": {
+    "operation": "COPY_SOURCE_AND_SET_CATEGORIES_ONLY",
+    "destination_root": "exchange/payloads/new_release/bound",
+    "destination_must_be_new_file": true,
+    "source_overwrite_allowed": false,
+    "only_mutable_json_pointer": "/categories",
+    "categories_after_binding": [
+      10
+    ],
+    "semantic_diff_must_be_categories_only": true,
+    "source_file_sha256_must_be_recorded": true,
+    "destination_file_sha256_must_be_recorded": true,
+    "human_review_required_after_binding": true,
+    "wordpress_submission_allowed": false,
+    "wordpress_draft_creation_allowed": false,
+    "wordpress_publish_allowed": false
+  },
+  "approval": {
+    "approval_label": "FRESH_PAYLOAD_BINDING_PLAN_APPROVED",
+    "approval_evidence_digest_sha256": "43b2e96777df4e0721cb8c033961a6f907623cff889c9429da06dbe1e9d12e83",
+    "human_explicit_approval": true,
+    "approval_reuse_allowed": false,
+    "plan_change_requires_new_human_approval": true,
+    "execution_allowed": false
+  },
+  "current_state": {
+    "fresh_payload_exists": false,
+    "fresh_payload_created": false,
+    "fresh_payload_read": false,
+    "fresh_payload_copied": false,
+    "payload_binding_complete": false,
+    "payload_modified": false,
+    "category_id_injected": false,
+    "network_access_performed": false,
+    "wordpress_access_performed": false,
+    "wordpress_write_performed": false,
+    "execution_allowed": false,
+    "production_status": "NO_GO",
+    "safety_state": "FRESH_PAYLOAD_BINDING_PLAN_FIXED_NO_PAYLOAD_EXISTS"
+  },
+  "plan_fixed_at_utc": "2026-07-10T16:30:28.116777+00:00",
+  "plan_artifact_digest_sha256": "e7cee302af303c87367865d7eeb965ee45de128f92a62c21ef2cd90c135793f8"
+}

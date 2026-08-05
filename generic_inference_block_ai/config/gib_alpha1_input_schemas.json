@@ -1,0 +1,143 @@
+{
+  "schema_version": "gib.alpha1.input_schemas.v0.1",
+  "task_schemas": {
+    "phase_log_summary": {
+      "type": "object",
+      "required": [
+        "phase_name",
+        "status",
+        "log_excerpt"
+      ],
+      "properties": {
+        "phase_name": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "log_excerpt": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "validator_result_explain": {
+      "type": "object",
+      "required": [
+        "validator_name",
+        "result",
+        "issues"
+      ],
+      "properties": {
+        "validator_name": {
+          "type": "string"
+        },
+        "result": {
+          "type": "string"
+        },
+        "issues": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "product_summary": {
+      "type": "object",
+      "required": [
+        "title",
+        "publisher",
+        "genre"
+      ],
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "publisher": {
+          "type": "string"
+        },
+        "genre": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "social_post_draft": {
+      "type": "object",
+      "required": [
+        "topic",
+        "source_summary",
+        "target_audience"
+      ],
+      "properties": {
+        "topic": {
+          "type": "string"
+        },
+        "source_summary": {
+          "type": "string"
+        },
+        "target_audience": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "article_outline": {
+      "type": "object",
+      "required": [
+        "topic",
+        "target_reader",
+        "key_points"
+      ],
+      "properties": {
+        "topic": {
+          "type": "string"
+        },
+        "target_reader": {
+          "type": "string"
+        },
+        "key_points": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "compliance_classify": {
+      "type": "object",
+      "required": [
+        "content_excerpt",
+        "context"
+      ],
+      "properties": {
+        "content_excerpt": {
+          "type": "string"
+        },
+        "context": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "security_log_explain": {
+      "type": "object",
+      "required": [
+        "log_excerpt",
+        "detector_result"
+      ],
+      "properties": {
+        "log_excerpt": {
+          "type": "string"
+        },
+        "detector_result": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

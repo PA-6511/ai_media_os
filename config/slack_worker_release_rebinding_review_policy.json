@@ -1,0 +1,240 @@
+{
+  "schema_version": "slack_worker_release_rebinding_review_policy_schema_candidate_v1",
+  "schema_status": "SCHEMA_CANDIDATE_NOT_ACTIVE",
+  "phase": "DB-SAFE-TST-5C",
+  "bundle_status": "READY_FOR_HUMAN_REVIEW_NOT_APPROVED",
+  "baseline_commit": "5441bd1506bb28d1938865f8818c60182df89058",
+  "candidate_manifest_sha256": "7f45e822d2d59ad3db9d88615a343db35503bb9fa1743e9891949f12423bdb68",
+  "production_manifest": {
+    "path": "config/slack_worker_release_source_manifest.json",
+    "sha256": "ea201edeba978e1d0b3cf6219cc16efac8641567216885c5a245c66e99fc9c2d"
+  },
+  "source_contract": {
+    "app/db/config.py": {
+      "baseline_sha256": "4056cad744af633b2949bc514163e3565c63854c89f68ef12721f9f14b30d25c",
+      "current_sha256": "5eeef8af4343d1e16412df40945f19667ee0f41dcbdea4a9f74386f12f7ddd59"
+    },
+    "app/db/session.py": {
+      "baseline_sha256": "5a2ff748c0bd35156cb89e24fbd96b4be257448b91c69fdd49348fc5643f1944",
+      "current_sha256": "0d6a0c2de0f5ab4691eae5d1dc311bf7d800461b7949d5ef1895fbc4b5b1d818"
+    },
+    "app/db/access_guard.py": {
+      "baseline_sha256": null,
+      "current_sha256": "1584ac2975a39433fbf4670bbd2ea9974870866f6193cf8036f9528e72669583"
+    },
+    "app/db/repositories/workflow_state_repository.py": {
+      "baseline_sha256": "ff91599f2d9c0e6f848957a2f3bdea7d1118680436f8c6a623eb14d8341cc4ca",
+      "current_sha256": "ac3fbddee5d3edf3cfd3368d5e3ed1ed40a4ff13d8655ad44847c55d4596bdd7"
+    },
+    "scripts/run_slack_approval_socket.py": {
+      "baseline_sha256": "aa686ae4223ec1961326567c88f1fa8cf903a39466cf6b2a06fbefe0fc51901a",
+      "current_sha256": "c2ab37a7e86fbdca79a456ed17a8c55b20fdd0dc0f8e1f3b426f0ba75cebe3e6"
+    }
+  },
+  "review_units": [
+    {
+      "unit_id": "UNIT_DB_SAFETY",
+      "change_category": "DB_SAFETY_REFACTOR",
+      "sources": [
+        "app/db/access_guard.py",
+        "app/db/config.py",
+        "app/db/session.py"
+      ],
+      "intended_behavior": "Centralize the production SQLite target, reject production and non-temporary SQLite access under tests, and construct the SQLAlchemy engine lazily.",
+      "changed_public_runtime_interfaces": [
+        "app.db.access_guard.assert_database_target_allowed",
+        "app.db.access_guard.is_test_environment",
+        "app.db.session.get_engine",
+        "app.db.session.get_session_factory",
+        "app.db.session.SessionLocal",
+        "app.db.session.dispose_engine"
+      ],
+      "review_dimensions": {
+        "production_db_behavior": "Normal runtime retains configured SQLite engine creation; this packet does not open the production database.",
+        "test_environment_behavior": "Pytest, APP_ENV testing values, AI_MEDIA_OS_TESTING, and pytest argv signals force isolated targets below /tmp.",
+        "sqlite_uri_path_behavior": "Raw paths, sqlite URLs, and file URIs are normalized before the fail-closed directory and inode checks.",
+        "symlink_hardlink_behavior": "Resolved/lexical production-directory aliases and hard links to the protected inode are rejected during tests.",
+        "lazy_engine_behavior": "Importing session no longer creates or connects an engine; creation occurs on first get_engine/SessionLocal use.",
+        "wal_behavior": "WAL is enabled only for non-test SQLite connections; tests do not enable WAL.",
+        "import_time_side_effects": "No engine construction, connection, or PRAGMA occurs on import."
+      },
+      "rollback_considerations": "Treat config, access_guard, and session as one rollback unit. A rollback must not silently restore import-time production database side effects.",
+      "risk_matrix": {
+        "data_integrity": "HIGH",
+        "production_db_access": "HIGH",
+        "authorization_boundary": "LOW",
+        "credential_exposure": "LOW",
+        "network_activation": "LOW",
+        "runtime_lifecycle": "MEDIUM",
+        "rollback_complexity": "HIGH",
+        "compatibility": "MEDIUM",
+        "observability": "MEDIUM",
+        "test_coverage": "MEDIUM"
+      },
+      "security_impact": "Fail-closed production database targeting is strengthened without a permission expansion.",
+      "data_integrity_impact": "Incorrect target classification can block valid runtime use or expose the production database to tests, so human review is mandatory.",
+      "performance_impact": "Path resolution and inode checks add bounded setup overhead; engine construction is deferred.",
+      "known_limitations": [
+        "Bind-mount aliasing cannot be proven absent portably.",
+        "Production behavior is reviewed from source and isolated tests, not by opening the production SQLite database."
+      ],
+      "unresolved_issues": [],
+      "test_evidence_gaps": [
+        "No test deliberately restores the old import-time side effect because that behavior must not be reintroduced."
+      ],
+      "human_review_checklist": [
+        "本番runtimeでDB engineが正常に生成されるか",
+        "pytest時だけproduction DBを拒否するか",
+        "URI、relative path、symlink、hard-linkがfail-closedか",
+        "importだけで本番DBへ接続しないか",
+        "WAL設定が本番で維持されるか",
+        "credentialやnetwork権限が増えていないか",
+        "rollback時に旧import副作用を復活させないか"
+      ],
+      "test_nodes": [
+        ["tests/database/test_production_database_access_guard.py::test_production_path_and_uri_variants_are_rejected", "Production path and SQLite URI variants fail closed"],
+        ["tests/database/test_production_database_access_guard.py::test_symlink_to_production_is_rejected", "Symlink aliases are rejected"],
+        ["tests/database/test_production_database_access_guard.py::test_hard_link_inode_is_rejected_with_isolated_protected_file", "Hard-link inode aliases are rejected"],
+        ["tests/database/test_production_database_access_guard.py::test_session_import_does_not_create_engine_connect_or_run_pragma", "Session import has no engine/connect/PRAGMA side effect"],
+        ["tests/database/test_production_database_access_guard.py::test_normal_runtime_engine_mode_can_be_created_only_on_a_temp_database", "Normal engine/WAL behavior is exercised only on an isolated temporary database"],
+        ["tests/database/test_production_database_access_guard.py::test_cli_subprocess_rejects_its_production_default", "CLI subprocess inherits the production-target guard"],
+        ["tests/database/test_production_database_access_guard.py::test_arbitrary_python_subprocess_inherits_direct_sqlite_guard", "Arbitrary Python subprocess inherits direct SQLite protection"],
+        ["tests/test_build_ls_new_batch_4f_a.py::test_result_contains_no_secret_values", "Credential fixture evidence remains sanitized"]
+      ]
+    },
+    {
+      "unit_id": "UNIT_WORKFLOW_STATE",
+      "change_category": "WORDPRESS_STATE_RECONCILIATION_CHANGE",
+      "sources": ["app/db/repositories/workflow_state_repository.py"],
+      "intended_behavior": "Validate and store a positive WordPress post ID without writing it into the restricted workflow-history value field, then reconcile draft status.",
+      "changed_public_runtime_interfaces": [
+        "WorkflowStateRepository.set_wordpress_post_id",
+        "WorkflowStateRepository.mark_wordpress_draft_created"
+      ],
+      "review_dimensions": {
+        "wordpress_post_id_behavior": "Boolean, zero, negative, empty, and nonnumeric values fail; a positive integer is normalized to text; None clears the value.",
+        "workflow_transition_impact": "mark_wordpress_draft_created updates the post ID and requests DRAFT status only.",
+        "duplicate_handling": "Writing the same normalized post ID is idempotent; cross-item uniqueness is not enforced here.",
+        "repository_mutation_boundary": "The repository mutates the supplied ORM item and flushes the caller-owned session.",
+        "transaction_behavior": "Commit/rollback remains owned by the surrounding service/session boundary.",
+        "approval_binding": "This repository has no authority to issue approval; callers remain responsible for the approval transition.",
+        "failure_stop_behavior": "Invalid values raise before mutation; surrounding service tests require rollback on illegal transitions."
+      },
+      "rollback_considerations": "Confirm no callers depend on the new post-ID methods before reverting; preserve the production workflow-history schema constraint.",
+      "risk_matrix": {
+        "data_integrity": "HIGH",
+        "production_db_access": "MEDIUM",
+        "authorization_boundary": "HIGH",
+        "credential_exposure": "LOW",
+        "network_activation": "LOW",
+        "runtime_lifecycle": "LOW",
+        "rollback_complexity": "MEDIUM",
+        "compatibility": "MEDIUM",
+        "observability": "MEDIUM",
+        "test_coverage": "MEDIUM"
+      },
+      "security_impact": "Mutation remains within a caller-owned transaction but affects approval-driven workflow state.",
+      "data_integrity_impact": "Post ID and draft status must remain coordinated and must not create a disallowed history record.",
+      "performance_impact": "At most two flush-backed repository changes are added to draft reconciliation.",
+      "known_limitations": ["Cross-item WordPress post ID uniqueness is not enforced by this repository."],
+      "unresolved_issues": ["Human review must decide whether cross-item post ID reuse needs a separate invariant."],
+      "test_evidence_gaps": [
+        "No focused test injects a failure between post-ID flush and draft-status flush inside mark_wordpress_draft_created.",
+        "No focused test covers cross-item duplicate WordPress post IDs."
+      ],
+      "human_review_checklist": [
+        "post IDが不正な場合にfail-closedか",
+        "PUBLISHED等への誤遷移が起きないか",
+        "READY／APPROVED状態を壊さないか",
+        "同じWordPress post IDの再利用を誤許可しないか",
+        "transaction途中失敗で部分更新しないか",
+        "Slack approval経由で想定外mutationが起きないか"
+      ],
+      "test_nodes": [
+        ["tests/test_x_r13_wordpress_state_reconciliation.py::test_set_wordpress_post_id_avoids_workflow_history_value_path", "Post ID bypasses the disallowed workflow-history value path"],
+        ["tests/test_x_r13_wordpress_state_reconciliation.py::test_set_wordpress_post_id_rejects_invalid_values", "Invalid post ID values fail closed"],
+        ["tests/test_x_r13_wordpress_state_reconciliation.py::test_mark_wordpress_draft_created_updates_id_and_status", "Draft reconciliation requests only post ID and DRAFT changes"],
+        ["tests/test_x_r13_wordpress_post_id_history_constraint.py::test_wordpress_post_id_avoids_disallowed_history_field", "Schema-level history constraint remains satisfied"],
+        ["tests/database/test_workflow_action_service.py::test_illegal_transition_rolls_back", "Illegal workflow transitions rollback"],
+        ["tests/database/test_workflow_action_service.py::test_review_to_ready_requires_formal_approval", "REVIEW to READY remains approval-bound"],
+        ["tests/database/test_workflow_action_service.py::test_invalid_token_is_rejected_without_change", "Invalid approval token causes no mutation"]
+      ]
+    },
+    {
+      "unit_id": "UNIT_SLACK_RUNTIME",
+      "change_category": "SLACK_RUNTIME_LIFECYCLE_CHANGE",
+      "sources": ["scripts/run_slack_approval_socket.py"],
+      "intended_behavior": "Delay Slack Bolt loading until worker construction, allow factory injection, report a fixed missing-dependency error, and close Socket Mode once on SIGTERM or KeyboardInterrupt.",
+      "changed_public_runtime_interfaces": [
+        "load_slack_runtime",
+        "build_app(app_factory=...)",
+        "WorkerStopController",
+        "main(handler_factory=...)"
+      ],
+      "review_dimensions": {
+        "slack_bolt_lazy_import": "Slack Bolt is imported only by load_slack_runtime during explicit app construction.",
+        "factory_injection": "Tests can supply app/handler factories without starting the real Socket Mode client.",
+        "dependency_missing_behavior": "ImportError is converted to SLACK_BOLT_DEPENDENCY_NOT_AVAILABLE.",
+        "idempotent_close": "WorkerStopController.close_once prevents duplicate handler close calls.",
+        "signal_behavior": "SIGTERM requests stop by raising KeyboardInterrupt into the common shutdown path.",
+        "keyboard_interrupt_behavior": "KeyboardInterrupt is treated as controlled shutdown and closes the handler once.",
+        "startup_shutdown_sequence": "Config, app, handler, signal handler, start, and final close remain ordered.",
+        "secret_boundary": "Configuration status prints presence only; token values are not printed.",
+        "network_start_boundary": "Network starts only when handler.start is explicitly reached after readiness/configuration.",
+        "dry_run_test_boundary": "Injected handlers and import-smoke guards prevent real network start in tests.",
+        "runtime_permission_impact": "No permission expansion is introduced."
+      },
+      "rollback_considerations": "Eager imports and the previous shutdown path must be restored together only after confirming readiness and signal semantics.",
+      "risk_matrix": {
+        "data_integrity": "MEDIUM",
+        "production_db_access": "MEDIUM",
+        "authorization_boundary": "HIGH",
+        "credential_exposure": "HIGH",
+        "network_activation": "HIGH",
+        "runtime_lifecycle": "HIGH",
+        "rollback_complexity": "MEDIUM",
+        "compatibility": "MEDIUM",
+        "observability": "MEDIUM",
+        "test_coverage": "MEDIUM"
+      },
+      "security_impact": "Token output and network-start boundaries are intended to remain unchanged.",
+      "data_integrity_impact": "Shutdown during an approval requires service/session rollback semantics to remain intact.",
+      "performance_impact": "Slack Bolt import and handler allocation are deferred until explicit start.",
+      "known_limitations": ["No real Slack connection is made by this review preparation."],
+      "unresolved_issues": ["Human review must confirm production factory defaults are behaviorally equivalent."],
+      "test_evidence_gaps": [
+        "No focused test forces Slack Bolt ImportError and asserts the fixed dependency error.",
+        "No integration test interrupts a real in-flight approval because Slack communication and production DB access are prohibited."
+      ],
+      "human_review_checklist": [
+        "importだけでSlack接続しないか",
+        "dependency欠落時に固定エラーで停止するか",
+        "signal処理が二重closeを起こさないか",
+        "factory injectionが本番経路を変更しないか",
+        "tokenやcredentialの読取り範囲が増えていないか",
+        "socket mode開始前のreadiness gateが維持されるか",
+        "shutdown時に処理中approvalを破損しないか"
+      ],
+      "test_nodes": [
+        ["tests/test_slack_worker_runtime_import_smoke.py::test_safe_module_import_passes", "Import smoke proves no network, DB connection, sensitive path read, subprocess, or entrypoint execution"],
+        ["tests/test_slack_worker_runtime_import_smoke.py::test_prohibited_operation_fails", "Runtime smoke rejects network, database, and subprocess operations"],
+        ["tests/test_slack_worker_runtime_import_smoke.py::test_sqlalchemy_engine_construction_allowed", "Engine construction without connection remains allowed"],
+        ["tests/test_slack_worker_runtime_import_smoke.py::test_sqlalchemy_engine_connection_rejected", "Engine connection is rejected by import smoke"],
+        ["tests/test_run_slack_approval_socket.py::test_check_config_does_not_expose_secrets", "Configuration check does not print token values"],
+        ["tests/test_run_slack_approval_socket.py::test_start_returns_zero_on_keyboard_interrupt", "Factory-injected handler closes once on KeyboardInterrupt"],
+        ["tests/test_run_slack_approval_socket.py::test_sigterm_handler_requests_clean_stop", "SIGTERM requests controlled stop and close-once semantics"]
+      ]
+    }
+  ],
+  "governance": {
+    "production_release": false,
+    "production_approval_created": false,
+    "deployment_allowed": false,
+    "runtime_execution_allowed": false,
+    "production_manifest_replacement_allowed": false,
+    "human_decision_required": true,
+    "human_decision_recorded": false,
+    "generated_by": "scripts/build_slack_worker_release_rebinding_review_bundle.py",
+    "update_policy": "IMMUTABLE_REVIEW_ONLY_SNAPSHOT_CREATE_NEW_BUNDLE_FOR_ANY_CHANGE"
+  }
+}

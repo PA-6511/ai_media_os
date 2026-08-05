@@ -1,0 +1,24 @@
+{
+  "phase": "8-17",
+  "approval_scope": "HANDOFF_ONLY_NO_EXECUTION",
+  "decision": "APPROVE_HANDOFF_ONLY",
+  "allowed_decisions": [
+    "APPROVE_HANDOFF_ONLY",
+    "REQUEST_FIX",
+    "REJECT",
+    "ABORT"
+  ],
+  "target_item_count": 1,
+  "human_approval_required": true,
+  "human_approved": true,
+  "approved_for_wordpress_api_call": false,
+  "approved_for_wordpress_write": false,
+  "approved_for_draft_creation": false,
+  "approved_for_publish": false,
+  "approved_for_update": false,
+  "approved_for_delete": false,
+  "approved_for_export": false,
+  "approved_for_unlock": false,
+  "secret_values_included": false,
+  "operator_note": "Phase 8-17 approves handoff design only. It does not approve WordPress API calls or draft creation."
+}

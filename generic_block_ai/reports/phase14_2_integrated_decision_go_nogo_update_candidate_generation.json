@@ -1,0 +1,61 @@
+{
+  "_meta": {
+    "phase": "14-2",
+    "phase_name": "integrated_decision GO/NO-GO 更新候補の生成",
+    "version": "1.0",
+    "created_date": "2026-05-12",
+    "status": "PASS_DESIGN_ONLY",
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only",
+    "description": "最終確認済みの受入証跡に基づき、integrated_decision の GO/NO-GO 更新候補を生成する設計。"
+  },
+  "references": [
+    "generic_block_ai/reports/phase14_1_human_review_accepted_evidence_final_verification.json",
+    "generic_block_ai/reports/phase12_2_integrated_decision_go_update_final_decision.json",
+    "generic_block_ai/reports/phase13_8_integrated_decision_pre_update_acceptance_completion_measurement_report_design.json"
+  ],
+  "candidate_generation_rules": {
+    "go_candidate_requires": [
+      "verification_passed == true",
+      "acceptance_completion_status == COMPLETE",
+      "integrated_decision_pre_update_ready == true",
+      "production_status == NO_GO"
+    ],
+    "no_go_candidate_requires": [
+      "verification_passed == false",
+      "acceptance_completion_status == INCOMPLETE",
+      "return for revision exists",
+      "receiver validator permission not effective"
+    ],
+    "default_candidate": "NO_GO"
+  },
+  "actual_candidate_template": {
+    "generated_candidate": "NO_GO",
+    "app_gate_candidate": "NO_GO",
+    "tests_gate_candidate": "NO_GO",
+    "candidate_basis": [],
+    "reason": "最終確認が未完了のため、現時点では NO_GO 候補のみ。"
+  },
+  "blocked_actions": [
+    "core_ai_real_send",
+    "external_api_call",
+    "wordpress_operation",
+    "cron_registration",
+    "auto_execute",
+    "auto_post",
+    "auto_update",
+    "auto_delete",
+    "auto_export",
+    "production_execution"
+  ],
+  "phase_decision": {
+    "phase14_2_status": "PASS_DESIGN_ONLY",
+    "app_implementation_status": "NO_GO",
+    "tests_implementation_status": "NO_GO",
+    "note": "更新候補生成の設計のみ。現時点では integrated_decision は NO_GO 候補を維持。"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "version": "0.1.0",
+  "mode": "DESIGN_ONLY",
+  "production_status": "NO_GO",
+  "core_impact": "NONE",
+  "thresholds": {
+    "secret_abort_count": {
+      "window": "7d",
+      "operator": ">",
+      "value": 0,
+      "recommended_action": "REQUIRE_HUMAN_REVIEW"
+    },
+    "disclosure_missing_rate": {
+      "window": "7d",
+      "operator": ">=",
+      "value": 0.5,
+      "recommended_action": "REQUIRE_HUMAN_REVIEW"
+    },
+    "api_terms_pending_rate": {
+      "window": "30d",
+      "operator": ">=",
+      "value": 0.5,
+      "recommended_action": "REQUIRE_POLICY_REVIEW"
+    }
+  },
+  "safety_constraints": {
+    "core_routing_integration": "DISABLED",
+    "auto_stop": false,
+    "auto_block": false,
+    "auto_freeze": false,
+    "auto_go_nogo_change": false
+  }
+}

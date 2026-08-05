@@ -1,0 +1,31 @@
+{
+  "phase": "8-39A",
+  "phase_name": "Adapter Route Abort/Rollback/Freeze Simulation Check",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "hold_state": "HOLD",
+  "required_reports": {
+    "phase8_39": "exchange/logs/phase8_39_abort_rollback_freeze_simulation_result.json",
+    "phase8_38a": "exchange/logs/phase8_38a_adapter5_to_phase8_38_preflight_reconnection_baseline_lock_result.json",
+    "adapter5_result": "exchange/logs/ebook_trial_adapter_5_phase8_38_request_mapping_result.json",
+    "adapter5_mapped_request": "exchange/logs/ebook_trial_adapter_5_phase8_38_mapped_request.json"
+  },
+  "required_statuses": {
+    "phase8_39": "PHASE8_39_ABORT_ROLLBACK_FREEZE_SIMULATION_PASS_NO_EXECUTION",
+    "phase8_38a": "PHASE8_38A_ADAPTER5_TO_PHASE8_38_RECONNECTION_BASELINE_LOCK_PASS_HOLD_NO_EXECUTION",
+    "adapter5_result": "EBOOK_TRIAL_ADAPTER_5_PHASE8_38_REQUEST_MAPPING_PASS_DRY_RUN_NO_EXECUTION"
+  },
+  "required_scenario_count": 13,
+  "required_false_flags": [
+    "execution_allowed",
+    "wordpress_api_call_allowed",
+    "wordpress_write_allowed",
+    "wordpress_write_executed",
+    "wordpress_draft_created",
+    "publish_allowed",
+    "rollback_executed",
+    "freeze_executed",
+    "secret_values_output"
+  ]
+}

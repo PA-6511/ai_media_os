@@ -1,0 +1,41 @@
+{
+  "_meta": {
+    "phase": "46-6",
+    "phase_name": "最終実測GO入力の受領・検証層",
+    "layer": "補強層 (reinforcement layer)",
+    "title": "最終実測入力受領後の最終ABORT条件設計",
+    "created": "2026-05-14",
+    "author": "governance-framework",
+    "status": "PASS_DESIGN_ONLY",
+    "reports_only": true
+  },
+  "scope": "Phase 46-3～46-5 で実施された最終実測GO入力の受領・検証・差し戻し判定に基づいて、以下の条件下で最終ABORT（実処理開始の完全中止）を宣言する設計を行う：(1) 検証不合格（Phase 46-3～46-4 で不合格判定された場合）、(2) 重大な矛盾検出（Phase 41-1～Phase 46-5 全プロセスとの不整合が重大度で判定された場合）、(3) 権限確認失敗（確認者権限が所定レベルに達しない場合、manual_release_go / actual_process_start_go 両方で），(4) 遡及確認での新たな問題検出（Phase 45 / 44 / 43 への遡及で問題が検出された場合）、(5) メタデータの改ざん跡（署名・日時不整合など），(6) その他の異常条件。これらのABORT条件が1つでも満たされた場合、実処理開始は完全に中止（ABORT）され、production_status / manual_release_go_authorization / actual_process_start_go_authorization は恒久的に NO_GO / NOT_GRANTED に固定される。",
+  "governance": {
+    "production_status": "NO_GO",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "report": {
+    "description": "Phase 46-6 では、Phase 46-3～46-5 で収集された全ての情報に基づいて、最終ABORT条件を 設計層で定義する。最終ABORTは、実処理開始を完全に中止する最後の安全弁である。(1) 検証不合格ABORT条件：Phase 46-3 の受領・検証で不合格と判定された場合、即座に最終ABORT を宣言する。不合格の理由（フォーマット不完全・型エラー・範囲エラー・メタデータ矛盾・Phase 45 結果との不整合・権限不足・全プロセス矛盾・その他）に関わらず、ABORT対象となる。(2) 重大矛盾ABORT条件：Phase 41-1～Phase 46-5 の全プロセス記録を検査し、矛盾が検出された場合、その矛盾が「重大度が高い」と判定される場合は最終ABORT を宣言する。重大度の判定基準：①権限経路の矛盾（確認者権限の不正な昇格など），②ステータス遷移の矛盾（NO_GO が GRANTED に変わったなど），③証跡の改ざん痕跡，④プロセスの欠落（重大なプロセス段階が跳ばされている）。これらの重大矛盾が1つでも検出された場合、最終ABORT を宣言する。(3) 権限確認失敗ABORT条件：最終実測入力の確認者権限が所定レベルに達していない場合、最終ABORT を宣言する。manual_release_go / actual_process_start_go 両方で権限確認が実施され、いずれかで権限不足が検出された場合も最終ABORT 対象となる。actual_process_start_go では manual_release_go より厳格な権限レベルが要求されることを反映する。(4) 遡及確認での問題検出ABORT条件：Phase 46-5 で実施された遡及確認（Phase 45 / 44 / 43 への確認）で新たな問題が検出された場合、最終ABORT を宣言する。問題の種類：①Phase 45 の最終変換可否判定が誤っていた可能性，②Phase 44 の手動確認プロセスに新たな瑕疵が検出，③Phase 43 の実行不可境界確認で未検出のリスクが発見，④その他の重大問題。これらが検出された場合、最終ABORT を宣言する。(5) メタデータ改ざん跡ABORT条件：最終実測入力のメタデータ（署名、日時、チェックサムなど）に改ざん跡が検出された場合、即座に最終ABORT を宣言する。改ざん跡の判定：①署名の検証失敗，②日時の不整合（入力日時が遡及する、あるいは未来），③チェックサムの不一致，④その他メタデータの矛盾。(6) その他の異常条件ABORT条件：上記の条件に該当しない異常条件が検出された場合でも、その異常が「実処理開始に適さない」と判定される場合は最終ABORT を宣言する。異常の判定は設計層で定義されるが、実装時は保守的に解釈される。(7) ABORT宣言後の処理：最終ABORT が宣言された場合、以下の処理が自動的に実行される（報告書形式）：①production_status を NO_GO に固定、②manual_release_go_authorization を NOT_GRANTED に固定、③actual_process_start_go_authorization を NOT_GRANTED に固定、④ABORT理由を詳細なレポートで記録、⑤Phase 46-7～46-9 の最終判定層に ABORT情報を引き継ぎ。これらのルールは全て 設計層（reports only）で実装され、実処理開始許可を含まない。",
+    "invariants": [
+      "ABORT強制：上記6つのABORT条件のいずれかが満たされた場合、最終ABORTは即座に宣言される（例外なし）",
+      "NO_GO固定：ABORT宣言時、production_status は恒久的に NO_GO に固定される",
+      "NOT_GRANTED固定：ABORT宣言時、manual_release_go_authorization / actual_process_start_go_authorization は恒久的に NOT_GRANTED に固定される",
+      "reports only：ABORT条件設計全体は報告書形式で実装され、実処理への権限付与を含まない",
+      "即座判定：ABORT条件の判定は遅延なく即座に行われる（待機・猶予なし）",
+      "自動実行：ABORT宣言後の NO_GO / NOT_GRANTED 固定は自動的に実行される（手動介入なし）"
+    ],
+    "actions": [],
+    "notes": [
+      "Phase 46-6 は 設計層のみで実装される（実処理開始許可ではない）",
+      "最終ABORT条件設計は reports only であり、生産環境コード変更を含まない",
+      "最終ABORTは実処理開始の完全中止を意味する最後の安全弁である",
+      "ABORT条件は全て設計層で定義され、いずれかが満たされた場合は確実に機能する",
+      "矛盾・権限不足・改ざん跡など重大な異常が検出された場合、躊躇なくABORT を宣言",
+      "ABORT理由はレポートで完全に記録され、以後の分析・改善に活用される",
+      "Phase 46-7～46-9 の最終判定層でもABORT情報は最優先で扱われる",
+      "実処理開始は NO_GO のまま（ABORT で確定）"
+    ]
+  }
+}

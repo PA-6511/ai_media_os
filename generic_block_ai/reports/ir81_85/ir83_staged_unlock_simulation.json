@@ -1,0 +1,55 @@
+{
+  "schema_version": "ir83_staged_unlock_simulation_v1",
+  "phase": "IR83",
+  "generated_at": "2026-05-24T14:32:03.874859+00:00",
+  "source_task_id": "ir81_85_live_trial",
+  "validation_result": "PASS",
+  "validation_failed_checks": [],
+  "validation_warnings": [],
+  "staged_unlock_simulation": {
+    "simulation_id": "ir83_sim_ir81_85_live_trial_20260524T143203Z",
+    "generated_at": "2026-05-24T14:32:03.874855+00:00",
+    "source_task_id": "ir81_85_live_trial",
+    "new_cycle_id": "IR71_PLUS_CYCLE_A",
+    "stage_results": [
+      {
+        "stage": "STAGE_1_GOVERNANCE_REVIEW",
+        "unlock_possible": false,
+        "reason": "go_decision_document missing"
+      },
+      {
+        "stage": "STAGE_2_APPROVER_CONFIRMATION",
+        "unlock_possible": false,
+        "reason": "release_approver_signature missing"
+      },
+      {
+        "stage": "STAGE_3_EXECUTION_AUTHORIZATION",
+        "unlock_possible": false,
+        "reason": "execution_authorization_record missing"
+      }
+    ],
+    "unlock_simulation_result": "REMAINS_BLOCKED",
+    "execution_unlocked": false,
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "simulation_hash": "a350de3a9814ed0d574e6e1054535047f8cd6ac94fdda0142ab813086f1dc5e1",
+  "safety_gate_snapshot": {
+    "dry_run": "maintained",
+    "OBSERVE": "maintained",
+    "submission_execution_blocked": true,
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "network_transmission_executed": false,
+    "production_release": false,
+    "GitHub_push": "未実行"
+  }
+}

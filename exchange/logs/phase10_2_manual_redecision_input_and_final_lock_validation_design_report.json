@@ -1,0 +1,134 @@
+{
+  "package_type": "phase10_2_manual_redecision_input_and_final_lock_validation_design_report",
+  "phase": "Phase 10-2",
+  "title": "Phase 10-2 Manual Redecision Input and Final Lock Validation Design Report",
+  "status": "PASS",
+  "phase10_2_design_status": "PASS",
+  "design_scope": "manual_redecision_input_and_final_lock_validation_design_only",
+  "source_report": "exchange/logs/phase10_1_publish_go_redecision_reopen_conditions_and_manual_pre_publish_final_lock_design_report.json",
+  "current_decision": "KEEP_NO_GO",
+  "phase9_2_decision": "KEEP_NO_GO",
+  "wordpress_draft_id": 110,
+  "target_draft_status": "draft",
+  "publish_candidate_unlocked_for_operator": false,
+  "wordpress_publish_execution": "NO_GO",
+  "wordpress_write_executed": false,
+  "production_status": "NO_GO",
+  "manual_redecision_input_design": {
+    "allowed_decisions": [
+      "GO_PUBLISH_ONE_TIME_MANUAL_ONLY",
+      "KEEP_NO_GO",
+      "REQUEST_FIX",
+      "ABORT"
+    ],
+    "decision_required": true,
+    "reviewer_is_human_required": true,
+    "reviewed_at_required": true,
+    "reason_required": true,
+    "target_draft_id_required": 110,
+    "target_status_required": "draft"
+  },
+  "final_lock_validation_design": {
+    "default_lock_state": "LOCKED",
+    "unlock_allowed_only_when": "decision_is_GO_PUBLISH_ONE_TIME_MANUAL_ONLY_and_all_conditions_met",
+    "required_token": "APPROVE_PUBLISH_ONE_TIME_MANUAL_ONLY",
+    "token_expiry_minutes": 30,
+    "max_publish_count": 1,
+    "relock_required_after_attempt": true,
+    "if_decision_keep_no_go_then_lock_remains": true,
+    "if_decision_request_fix_then_lock_remains": true,
+    "if_decision_abort_then_lock_remains": true,
+    "even_if_go_publish_in_phase10_2": "NOT_EXECUTED",
+    "wordpress_publish_execution_in_phase10_2": "NO_GO",
+    "wordpress_write_executed_in_phase10_2": false
+  },
+  "decision_flow_design": [
+    {
+      "decision": "GO_PUBLISH_ONE_TIME_MANUAL_ONLY",
+      "final_lock_validation": "validate_token_and_scope_only",
+      "publish_execution_in_phase10_2": "NO_GO",
+      "next_step": "phase10_3_manual_redecision_record_and_final_lock_gate_design"
+    },
+    {
+      "decision": "KEEP_NO_GO",
+      "final_lock_validation": "lock_remains_locked",
+      "publish_execution_in_phase10_2": "NO_GO",
+      "next_step": "maintain_no_go"
+    },
+    {
+      "decision": "REQUEST_FIX",
+      "final_lock_validation": "lock_remains_locked",
+      "publish_execution_in_phase10_2": "NO_GO",
+      "next_step": "apply_requested_fix_before_redecision"
+    },
+    {
+      "decision": "ABORT",
+      "final_lock_validation": "lock_remains_locked",
+      "publish_execution_in_phase10_2": "NO_GO",
+      "next_step": "abort_and_stop"
+    }
+  ],
+  "still_forbidden": [
+    "wordpress_publish",
+    "wordpress_update_existing_post",
+    "wordpress_delete_post",
+    "wordpress_export",
+    "wordpress_bulk_post",
+    "cron_automation",
+    "github_actions_trigger",
+    "slack_production_notification",
+    "vps_self_builder_execution",
+    "env_or_secrets_or_credentials_auto_edit"
+  ],
+  "validation_checks": [
+    {
+      "check": "phase10_1_status=PASS",
+      "passed": true,
+      "actual": "PASS"
+    },
+    {
+      "check": "current_decision=KEEP_NO_GO",
+      "passed": true,
+      "actual": "KEEP_NO_GO"
+    },
+    {
+      "check": "publish_candidate_unlocked_for_operator=false",
+      "passed": true,
+      "actual": false
+    },
+    {
+      "check": "wordpress_publish_execution=NO_GO",
+      "passed": true,
+      "actual": "NO_GO"
+    },
+    {
+      "check": "wordpress_write_executed=false",
+      "passed": true,
+      "actual": false
+    },
+    {
+      "check": "production_status=NO_GO",
+      "passed": true,
+      "actual": "NO_GO"
+    },
+    {
+      "check": "wordpress_draft_id=110",
+      "passed": true,
+      "actual": 110
+    },
+    {
+      "check": "target_draft_status=draft",
+      "passed": true,
+      "actual": "draft"
+    }
+  ],
+  "validation_passed": true,
+  "summary": {
+    "manual_input_design_fixed": true,
+    "final_lock_validation_design_fixed": true,
+    "go_decision_allowed_as_input_but_not_executed_in_phase10_2": true,
+    "publish_still_not_executed": true
+  },
+  "next_step": "phase10_3_manual_redecision_record_and_final_lock_gate_design",
+  "created_at": "2026-05-09T17:00:10.203584+00:00"
+}

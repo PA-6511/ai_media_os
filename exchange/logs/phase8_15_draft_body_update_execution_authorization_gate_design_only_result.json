@@ -1,0 +1,56 @@
+{
+  "phase": "Phase 8-15",
+  "status": "PHASE8_15_DRAFT_BODY_UPDATE_EXECUTION_AUTHORIZATION_READY_BUT_LOCKED_DESIGN_ONLY_NO_EXECUTION",
+  "production_status": "NO_GO",
+  "execution": "DRY_RUN",
+  "target_post_id": 114,
+  "phase8_13_status": "PHASE8_13_APPROVE_FIX_DRY_RUN_ONLY",
+  "phase8_14_status": "PHASE8_14_DRAFT_BODY_UPDATE_AUTHORIZATION_GATE_READY_DESIGN_ONLY_NO_EXECUTION",
+  "phase8_14b_status": "PHASE8_14B_DRAFT_BODY_UPDATE_FINAL_PREFLIGHT_READY_DESIGN_ONLY_NO_EXECUTION",
+  "phase8_13_decision": "APPROVE_FIX_DRY_RUN_ONLY",
+  "evidence_summary": [
+    {
+      "path": "exchange/logs/phase8_13_final_draft_fix_review_post_114_result.json",
+      "exists": true,
+      "status": "PHASE8_13_APPROVE_FIX_DRY_RUN_ONLY"
+    },
+    {
+      "path": "exchange/logs/phase8_14_draft_body_update_authorization_gate_design_only_result.json",
+      "exists": true,
+      "status": "PHASE8_14_DRAFT_BODY_UPDATE_AUTHORIZATION_GATE_READY_DESIGN_ONLY_NO_EXECUTION"
+    },
+    {
+      "path": "exchange/logs/phase8_14b_draft_body_update_final_preflight_design_only_result.json",
+      "exists": true,
+      "status": "PHASE8_14B_DRAFT_BODY_UPDATE_FINAL_PREFLIGHT_READY_DESIGN_ONLY_NO_EXECUTION"
+    }
+  ],
+  "checks": {
+    "phase8_13_status_ok": true,
+    "phase8_14_status_ok": true,
+    "phase8_14b_status_ok": true,
+    "phase8_13_decision_ok": true,
+    "phase8_14_gate_not_execution_permission": true,
+    "phase8_14b_gate_not_execution_permission": true
+  },
+  "errors": [],
+  "warnings": [],
+  "safety_violations": [],
+  "allowed_next_step": "Prepare separate explicit release gate for body update execution (still NO_EXECUTION here)",
+  "checked_at": "2026-06-06T13:22:51.647669+00:00",
+  "wordpress_api_call_allowed": false,
+  "wordpress_api_call_attempted": false,
+  "wordpress_write_allowed": false,
+  "wordpress_write_executed": false,
+  "publish_allowed": false,
+  "update_allowed": false,
+  "delete_allowed": false,
+  "export_allowed": false,
+  "auto_post": false,
+  "auto_update": false,
+  "auto_delete": false,
+  "auto_export": false,
+  "gate_is_execution_permission": false,
+  "systemctl_restart_allowed": false,
+  "systemctl_daemon_reload_allowed": false
+}

@@ -1,0 +1,90 @@
+{
+  "phase_id": "PHASE_S3_1",
+  "phase_name": "dry_run_observability_event_replay",
+  "replay_result": "FAIL",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "human_approval_required": true,
+  "detector_only": true,
+  "recommendation_only": true,
+  "executor_action_allowed": false,
+  "event_count": 5,
+  "matched_expected_count": 5,
+  "mismatched_expected_count": 0,
+  "event_results": [
+    {
+      "event_id": "scheduler_retry_loop_sample",
+      "event_type": "scheduler_anomaly",
+      "expected_result": "WARN",
+      "actual_result": "WARN",
+      "freeze_recommendation": true,
+      "human_review_recommendation": true,
+      "reasons": [
+        "retry_count>=warn"
+      ]
+    },
+    {
+      "event_id": "wordpress_publish_intent_sample",
+      "event_type": "wordpress_write_intent",
+      "expected_result": "FAIL",
+      "actual_result": "FAIL",
+      "freeze_recommendation": true,
+      "human_review_recommendation": true,
+      "reasons": [
+        "publish_intent"
+      ]
+    },
+    {
+      "event_id": "unknown_external_api_intent_sample",
+      "event_type": "external_api_intent",
+      "expected_result": "WARN",
+      "actual_result": "WARN",
+      "freeze_recommendation": false,
+      "human_review_recommendation": true,
+      "reasons": [
+        "unknown_api_call"
+      ]
+    },
+    {
+      "event_id": "env_secret_echo_intent_sample",
+      "event_type": "env_access_intent",
+      "expected_result": "FAIL",
+      "actual_result": "FAIL",
+      "freeze_recommendation": true,
+      "human_review_recommendation": true,
+      "reasons": [
+        "secret_value_echo"
+      ]
+    },
+    {
+      "event_id": "process_duplicate_runner_sample",
+      "event_type": "process_anomaly",
+      "expected_result": "FAIL",
+      "actual_result": "FAIL",
+      "freeze_recommendation": true,
+      "human_review_recommendation": true,
+      "reasons": [
+        "duplicated_runner"
+      ]
+    }
+  ],
+  "freeze_recommendation_detected": true,
+  "human_review_recommendation_detected": true,
+  "abort_reasons": [],
+  "fail_reasons": [
+    "failure event detected in replay"
+  ],
+  "warnings": [
+    "warning event detected in replay"
+  ],
+  "state_change_executed": false,
+  "freeze_executed": false,
+  "revoke_executed": false,
+  "isolation_executed": false,
+  "process_kill_executed": false,
+  "scheduler_stop_executed": false,
+  "wordpress_write_executed": false,
+  "external_api_call_executed": false,
+  "timestamp": "2026-05-28T13:35:35.893420+00:00",
+  "next_step": "prepare_cross_phase_security_audit_view"
+}

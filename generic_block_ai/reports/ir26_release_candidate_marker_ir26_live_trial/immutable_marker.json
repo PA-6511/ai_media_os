@@ -1,0 +1,20 @@
+{
+  "schema_version": "ir26_submission_release_candidate_marker_v1",
+  "phase": "IR26",
+  "generated_at": "2026-05-23T15:51:48.424150+00:00",
+  "source_task_id": "ir26_live_trial",
+  "release_candidate_id": "rc_20260523T155148Z_ir26_live_trial_b940393b490b",
+  "approval_snapshot_hash": "b940393b490bac4b413602f7909b5c9a229852e515eaa914c8fbe5104dda60b8",
+  "immutable": {
+    "marker_locked": true,
+    "mutation_policy": "append_only_no_overwrite",
+    "marker_rewrite_allowed": false
+  },
+  "safeguards": {
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "production_release": false
+  }
+}

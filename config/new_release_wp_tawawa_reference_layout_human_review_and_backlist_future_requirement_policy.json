@@ -1,0 +1,76 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M25",
+  "policy_id": "WORDPRESS_TAWAWA_REFERENCE_LAYOUT_HUMAN_REVIEW_AND_BACKLIST_FUTURE_REQUIREMENT_POLICY_V1",
+  "operation_mode": "LOCAL_HUMAN_REVIEW_EVIDENCE_AND_FUTURE_REQUIREMENT_RECORDING_ONLY",
+  "content_item_id": "new-release-comic-20260703-001",
+  "wordpress_post_id": 192,
+  "required_approval_label": "WORDPRESS_TAWAWA_REFERENCE_LAYOUT_HUMAN_REVIEW_APPROVED_NO_CHANGE_REQUIRED_WITH_BACKLIST_CAROUSEL_FUTURE_REQUIREMENT",
+  "human_review_contract": {
+    "required_verdict": "APPROVED_NO_CHANGE_REQUIRED",
+    "desktop_review_completed": true,
+    "mobile_review_completed": true,
+    "layout_change_required": false,
+    "m24_rendered_html_change_allowed": false,
+    "m24_css_change_allowed": false,
+    "m24_update_payload_change_allowed": false
+  },
+  "approved_visual_findings": {
+    "desktop_cover_left_buttons_right": true,
+    "mobile_single_column_layout": true,
+    "pr_before_first_affiliate_interaction": true,
+    "store_button_order": [
+      "amazon",
+      "rakuten_kobo",
+      "dmm"
+    ],
+    "store_button_width_and_spacing_approved": true,
+    "description_details_and_notice_separated": true,
+    "text_wrapping_approved": true,
+    "horizontal_scroll_detected": false,
+    "overall_balance_approved": true
+  },
+  "current_update_contract": {
+    "allowed_request_fields": [
+      "content",
+      "comment_status"
+    ],
+    "target_comment_status": "closed",
+    "title_update_allowed": false,
+    "status_update_allowed": false,
+    "categories_update_allowed": false,
+    "future_backlist_requirement_in_current_payload_allowed": false,
+    "execution_allowed": false
+  },
+  "future_requirement_contract": {
+    "requirement_id": "SERIES_BACKLIST_COVER_AFFILIATE_CAROUSEL_V1",
+    "recommended_phase_id": "LS-NEW-SERIES-BACKLIST-1",
+    "status": "FUTURE_REQUIREMENT_RECORDED_NOT_IMPLEMENTED",
+    "current_m24_artifact_change_allowed": false,
+    "current_wordpress_update_scope_change_allowed": false,
+    "implementation_authorized": false
+  },
+  "execution_boundary": {
+    "network_connection_allowed": false,
+    "dns_resolution_allowed": false,
+    "http_request_allowed": false,
+    "wordpress_access_allowed": false,
+    "wordpress_write_allowed": false,
+    "wordpress_update_allowed": false,
+    "wordpress_republish_allowed": false,
+    "wordpress_delete_allowed": false,
+    "authorization_issue_allowed": false,
+    "authorization_consumption_allowed": false,
+    "authorization_reuse_allowed": false,
+    "automatic_retry_allowed": false,
+    "automatic_reissue_allowed": false,
+    "x_post_allowed": false
+  },
+  "next_gate": {
+    "ready_for_wordpress_update_authorization_gate": true,
+    "ready_for_wordpress_update": false,
+    "ready_for_wordpress_publish": false,
+    "ready_for_backlist_carousel_implementation": false
+  },
+  "production_status": "NO_GO"
+}

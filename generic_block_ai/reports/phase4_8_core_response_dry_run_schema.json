@@ -1,0 +1,50 @@
+{
+  "_meta": {
+    "phase": "4-8",
+    "purpose": "core_response_dry_run_schema",
+    "created_at": "2026-05-12",
+    "status": "SCHEMA_ONLY",
+    "note": "Core AI が dry-run receiver に対して返す想定の応答スキーマ雛形。実応答送信・実行トリガーは含まない。"
+  },
+  "response_contract": {
+    "component": "core_ai",
+    "mode": "observation_only",
+    "operation_mode": "OBSERVE",
+    "connection_test_mode": true,
+    "connection_scope": "decision_package_handoff_only",
+    "execution": "dry_run",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "transport": "none",
+    "external_api_call": false
+  },
+  "schema": {
+    "response_id": "__FILL_IN__",
+    "received_handoff_id": "__FILL_IN__",
+    "created_at": "__FILL_IN__",
+    "assessment_summary": "__FILL_IN__",
+    "assessment_type": "observation_only",
+    "recommended_next_action": "human_review_only",
+    "execution_permission": "none",
+    "write_permission": "none",
+    "blocked_actions_echo": [
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "no_go_status_preserved": true
+  },
+  "validation_expectations": {
+    "must_not_contain_execution_command": true,
+    "must_not_contain_external_request": true,
+    "must_not_change_operation_mode": true,
+    "must_preserve_human_review_requirement": true
+  },
+  "result": "PASS_DRY_RUN_ONLY"
+}

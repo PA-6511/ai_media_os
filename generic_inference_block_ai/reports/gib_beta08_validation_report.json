@@ -1,0 +1,38 @@
+{
+  "schema_version": "gib.beta08.validation_report.v0.1",
+  "block_id": "GIB",
+  "beta_version": "beta0.8",
+  "final_status": "PASS_DRY_RUN_BETA08_MANUAL_APPROVAL_GATE_NO_REAL_CALL",
+  "status": "DRY_RUN_MANUAL_APPROVAL_GATE_ONLY",
+  "production_status": "NO_GO",
+  "runtime_target": "ollama",
+  "manual_approval_required": true,
+  "approval_granted": false,
+  "first_real_call_approval_text": "I APPROVE FIRST REAL LOCAL LLM CALL FOR GIB BETA1 UNDER CHANGE CONTROL.",
+  "real_llm_call_allowed": false,
+  "execution_allowed": false,
+  "generate_call_allowed": false,
+  "chat_call_allowed": false,
+  "denied_scenario": {
+    "scenario_name": "approval_false",
+    "approval_granted": false,
+    "ready_source": true,
+    "call_allowed": false,
+    "blocked_reason": "manual_approval_required"
+  },
+  "approved_sim_scenario": {
+    "scenario_name": "approval_true_simulation",
+    "approval_granted": true,
+    "ready_source": true,
+    "call_allowed": false,
+    "blocked_reason": "real_llm_call_allowed_false"
+  },
+  "auto_connect_on_ready": false,
+  "auto_connect_triggered": false,
+  "beta07_snapshot": {
+    "final_status": "PASS_DRY_RUN_BETA07_READY_SIM_NO_AUTOCONNECT",
+    "simulated_ready_conditions_ok": true,
+    "auto_connect_triggered": false,
+    "production_status": "NO_GO"
+  }
+}

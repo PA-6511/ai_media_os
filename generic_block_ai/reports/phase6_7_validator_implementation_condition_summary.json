@@ -1,0 +1,367 @@
+{
+  "_meta": {
+    "phase": "6-7",
+    "purpose": "validator_implementation_condition_summary",
+    "created_at": "2026-05-12",
+    "status": "DESIGN_ONLY",
+    "note": "Phase 6-7: validator 実装条件の総まとめ。Phase 6-4〜6-6 の詳細設計を統合し、実装前必須条件、実装禁止条件、human review 条件を一つの証跡に集約。"
+  },
+  "implementation_summary_scope": {
+    "target_validators": [
+      "receiver_validator",
+      "rejection_validator",
+      "human_review_validator"
+    ],
+    "design_basis": [
+      "reports/phase6_4_receiver_validator_detail_design.json",
+      "reports/phase6_5_rejection_validator_detail_design.json",
+      "reports/phase6_6_human_review_validator_detail_design.json"
+    ],
+    "summary_purpose": "Phase 7 以降の実装に向けて、設計条件を統一された形式で提示"
+  },
+  "receiver_validator_implementation_summary": {
+    "title": "receiver_validator 実装条件",
+    "mandatory_preconditions": [
+      "Phase 6-4 詳細設計の完全なコンプライアンス",
+      "observation / decision_package_reference スキーマの厳密実装",
+      "permission 境界の硬コード化（execution=none, write=none）",
+      "safety_flags の全て true チェック"
+    ],
+    "mandatory_validations": [
+      {
+        "validation": "schema conformance",
+        "required": true,
+        "description": "observation_id / timestamp / source_id の UUID / ISO8601 検証"
+      },
+      {
+        "validation": "permission enforcement",
+        "required": true,
+        "description": "execution_permission != none → REJECT"
+      },
+      {
+        "validation": "dry_run enforcement",
+        "required": true,
+        "description": "dry_run_mode != true → REJECT"
+      },
+      {
+        "validation": "blocked actions scan",
+        "required": true,
+        "description": "external_api_call / wordpress / cron / auto_* → REJECT"
+      },
+      {
+        "validation": "warning conditions",
+        "required": true,
+        "description": "depth/size/timestamp_gap/reference_lookup/type → WARN（human review 要求）"
+      }
+    ],
+    "pass_failure_modes": {
+      "PASS": "all mandatory validations succeeded",
+      "WARN": "warning conditions detected",
+      "REJECT": "any mandatory validation failed",
+      "ABORT": "critical security violation"
+    },
+    "implementation_not_permitted_until": "Phase 7 human review APPROVED",
+    "candidate_files": [
+      "app/core_receiver_validator.py (DESIGN_ONLY)",
+      "app/receiver_schema_validator.py (DESIGN_ONLY)",
+      "tests/test_core_receiver_validator_schema.py (DESIGN_ONLY)"
+    ]
+  },
+  "rejection_validator_implementation_summary": {
+    "title": "rejection_validator 実装条件",
+    "mandatory_preconditions": [
+      "Phase 6-5 詳細設計の完全なコンプライアンス",
+      "operation_mode / execution / permission / safety_flags の違反検知",
+      "10個の banned actions の即時 REJECT 実装",
+      "23個の rejection_code の定義"
+    ],
+    "mandatory_validations": [
+      {
+        "validation": "operation_mode check",
+        "required": true,
+        "rejection_codes": ["MODE_VIOLATION", "MODE_UNDEFINED", "MODE_MISMATCH"]
+      },
+      {
+        "validation": "execution check",
+        "required": true,
+        "rejection_codes": ["EXECUTION_VIOLATION", "EXECUTION_UNDEFINED", "PRODUCTION_MODE_DETECTED"]
+      },
+      {
+        "validation": "permission check",
+        "required": true,
+        "rejection_codes": ["EXEC_PERMISSION_VIOLATION", "WRITE_PERMISSION_VIOLATION", "TRANSPORT_PERMISSION_VIOLATION", "PERMISSION_UNDEFINED"]
+      },
+      {
+        "validation": "blocked actions scan",
+        "required": true,
+        "rejection_codes": ["EXTERNAL_API_BLOCKED", "WORDPRESS_BLOCKED", "CRON_BLOCKED", "AUTO_EXECUTE_BLOCKED", "AUTO_POST_BLOCKED", "AUTO_UPDATE_BLOCKED", "AUTO_DELETE_BLOCKED", "AUTO_EXPORT_BLOCKED", "PRODUCTION_BLOCKED", "REAL_SEND_BLOCKED"]
+      },
+      {
+        "validation": "safety flags check",
+        "required": true,
+        "rejection_codes": ["DRY_RUN_DISABLED", "SAFETY_FLAG_VIOLATION", "SAFETY_FLAG_UNDEFINED"]
+      },
+      {
+        "validation": "warning conditions",
+        "required": true,
+        "description": "audit_trail / reference_artifacts / human_review_completed / safety_justification / decision_logic → WARN"
+      }
+    ],
+    "pass_failure_modes": {
+      "IMMEDIATE_REJECT": "operation_mode / execution / permission / safety_flags / banned_action violations",
+      "IMMEDIATE_REJECT_ABORT": "PRODUCTION_MODE_DETECTED / REAL_SEND_BLOCKED",
+      "WARN": "audit trail / reference / human review / safety justification incomplete"
+    },
+    "implementation_not_permitted_until": "Phase 7 human review APPROVED",
+    "candidate_files": [
+      "app/core_rejection_validator.py (DESIGN_ONLY)",
+      "app/rejection_mode_checker.py (DESIGN_ONLY)",
+      "app/rejection_blocked_action_scanner.py (DESIGN_ONLY)",
+      "tests/test_core_rejection_validator_*.py (DESIGN_ONLY)"
+    ]
+  },
+  "human_review_validator_implementation_summary": {
+    "title": "human_review_validator 実装条件",
+    "mandatory_preconditions": [
+      "Phase 6-6 詳細設計の完全なコンプライアンス",
+      "6つの mandatory review conditions の実装",
+      "pre/post approval 禁止操作 10個ずつの強制",
+      "自動承認禁止（auto_approval=false）の硬コード化"
+    ],
+    "mandatory_features": [
+      {
+        "feature": "mandatory review gate",
+        "requirement": "ANY warning detected → MUST_REVIEW",
+        "implementation": "warning 検知時に human_review_validator へ自動ルート"
+      },
+      {
+        "feature": "pre-approval prohibitions",
+        "requirement": "承認前に 10個の banned actions をブロック",
+        "actions_blocked": ["external_api_call", "wordpress_operation", "cron_registration", "auto_execute", "auto_post", "auto_update", "auto_delete", "auto_export", "production_execution", "core_ai_real_send"]
+      },
+      {
+        "feature": "post-approval prohibitions",
+        "requirement": "承認後も 10個の banned actions を継続ブロック（dry_run only）",
+        "actions_blocked": ["external_api_call", "wordpress_operation", "cron_registration", "auto_execute", "auto_post", "auto_update", "auto_delete", "auto_export", "production_execution", "core_ai_real_send"]
+      },
+      {
+        "feature": "decision types",
+        "requirement": "APPROVE_DRY_RUN_ONLY / REQUEST_FIX / REJECT / ABORT を実装",
+        "enforcement": "自動承認は禁止"
+      },
+      {
+        "feature": "reviewer signature",
+        "requirement": "reviewer_id + timestamp + signature の記録必須",
+        "enforcement": "改ざん防止"
+      },
+      {
+        "feature": "decision output",
+        "requirement": "decision / reviewer_id / timestamp / comment / checklist_results / signature を出力"
+      }
+    ],
+    "pass_failure_modes": {
+      "APPROVE_DRY_RUN_ONLY": "dry_run 範囲で実行承認（本番・外部・WordPress・cron・auto_* 継続禁止）",
+      "REQUEST_FIX": "修正を要求、修正後に再審査",
+      "REJECT": "根本的な問題、再開発が必要",
+      "ABORT": "重大な安全違反、即座に停止"
+    },
+    "implementation_not_permitted_until": "Phase 7 human review APPROVED",
+    "candidate_files": [
+      "app/core_human_review_validator.py (DESIGN_ONLY)",
+      "app/human_review_gatekeeper.py (DESIGN_ONLY)",
+      "app/human_review_decision_logger.py (DESIGN_ONLY)",
+      "app/human_review_auto_approval_blocker.py (DESIGN_ONLY)",
+      "tests/test_core_human_review_*.py (DESIGN_ONLY)"
+    ]
+  },
+  "unified_implementation_constraints": {
+    "title": "全 validator 統一制約",
+    "constraints": [
+      {
+        "constraint": "operation_mode = OBSERVE",
+        "enforcement": "全 validator で検証・強制"
+      },
+      {
+        "constraint": "execution = dry_run",
+        "enforcement": "全 validator で検証・強制"
+      },
+      {
+        "constraint": "requires_human_approval = true",
+        "enforcement": "human_review_validator で人間署名必須"
+      },
+      {
+        "constraint": "auto_execute_allowed = false",
+        "enforcement": "全 validator で自動実行を禁止"
+      },
+      {
+        "constraint": "banned actions = 10個全て BLOCKED",
+        "enforcement": "rejection_validator で即時検知・拒否"
+      },
+      {
+        "constraint": "permission = none / internal_dry_run_reference only",
+        "enforcement": "receiver_validator で permission チェック"
+      },
+      {
+        "constraint": "auto_approval = false",
+        "enforcement": "human_review_validator で硬コード化"
+      }
+    ]
+  },
+  "phase7_implementation_gate_conditions": {
+    "title": "Phase 7 以降に進む場合の必須条件",
+    "gate_conditions": [
+      {
+        "id": "phase6_design_complete",
+        "condition": "Phase 6-1〜6-7 の全設計証跡が揃っている",
+        "status": "MANDATORY"
+      },
+      {
+        "id": "human_review_approved",
+        "condition": "human reviewer による Phase 6 設計の承認",
+        "status": "MANDATORY"
+      },
+      {
+        "id": "no_app_implementation",
+        "condition": "app/ への実装ファイル追加なし（設計のみ）",
+        "status": "MANDATORY"
+      },
+      {
+        "id": "no_tests_implementation",
+        "condition": "tests/ へのテストファイル追加なし（設計のみ）",
+        "status": "MANDATORY"
+      },
+      {
+        "id": "operation_mode_maintain",
+        "condition": "operation_mode = OBSERVE 維持",
+        "status": "MANDATORY"
+      },
+      {
+        "id": "execution_maintain",
+        "condition": "execution = dry_run 維持",
+        "status": "MANDATORY"
+      },
+      {
+        "id": "production_status_maintain",
+        "condition": "production_status = NO_GO 維持",
+        "status": "MANDATORY"
+      },
+      {
+        "id": "no_core_send",
+        "condition": "Core AI への実送信なし",
+        "status": "MANDATORY"
+      },
+      {
+        "id": "no_external_connection",
+        "condition": "外部 API 接続なし",
+        "status": "MANDATORY"
+      },
+      {
+        "id": "no_wordpress",
+        "condition": "WordPress 操作なし",
+        "status": "MANDATORY"
+      },
+      {
+        "id": "no_cron",
+        "condition": "cron 登録なし",
+        "status": "MANDATORY"
+      },
+      {
+        "id": "no_auto_execute",
+        "condition": "auto_execute 実行なし",
+        "status": "MANDATORY"
+      }
+    ]
+  },
+  "phase7_implementation_prohibitions": {
+    "title": "Phase 7 以降でも継続禁止",
+    "prohibited": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "enforcement": "すべて rejection_validator で IMMEDIATE_REJECT / ABORT"
+  },
+  "implementation_candidate_summary": {
+    "note": "以下は Phase 7 以降での実装候補。設計のみ、実装未実施。",
+    "total_candidate_files": 17,
+    "breakdown": {
+      "receiver_validator": 3,
+      "rejection_validator": 5,
+      "human_review_validator": 4,
+      "tests": 5
+    },
+    "files": [
+      "app/core_receiver_validator.py",
+      "app/receiver_schema_validator.py",
+      "app/core_rejection_validator.py",
+      "app/rejection_mode_checker.py",
+      "app/rejection_permission_checker.py",
+      "app/rejection_blocked_action_scanner.py",
+      "app/rejection_response_mapper.py",
+      "app/core_human_review_validator.py",
+      "app/human_review_gatekeeper.py",
+      "app/human_review_decision_logger.py",
+      "app/human_review_auto_approval_blocker.py",
+      "tests/test_core_receiver_validator_schema.py",
+      "tests/test_core_rejection_validator_mode.py",
+      "tests/test_core_rejection_validator_permission.py",
+      "tests/test_core_rejection_validator_actions.py",
+      "tests/test_core_human_review_mandatory_conditions.py",
+      "tests/test_core_human_review_decision_types.py"
+    ]
+  },
+  "safety_audit": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "app_implementation_added": false,
+    "tests_implementation_added": false,
+    "validator_implementation_blocked": true,
+    "core_ai_real_send_blocked": true,
+    "external_connection_blocked": true,
+    "wordpress_operation_blocked": true,
+    "cron_registration_blocked": true
+  },
+  "judgment": {
+    "phase6_7_summary_status": "PASS",
+    "design_completeness": "COMPLETE",
+    "receiver_validator_conditions_clear": true,
+    "rejection_validator_conditions_clear": true,
+    "human_review_validator_conditions_clear": true,
+    "unified_constraints_defined": true,
+    "phase7_gate_conditions_defined": true,
+    "phase7_prohibitions_defined": true,
+    "implementation_candidates_noted": true,
+    "implementation_not_performed": true,
+    "production_status": "NO_GO",
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "allowed_state": [
+      "OBSERVE",
+      "DRY_RUN",
+      "HUMAN_REVIEW_REQUIRED"
+    ],
+    "blocked": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "next_phase": "phase6_8_design_artifact_inventory"
+  }
+}

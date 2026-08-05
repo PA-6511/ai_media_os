@@ -1,0 +1,2481 @@
+{
+  "phase": "N-8",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "human_approval_required": true,
+  "wordpress_write_executed": false,
+  "wordpress_post_created": false,
+  "external_state_change": false,
+  "executor_action_allowed": false,
+  "network_observation_only": true,
+  "communication_test_only": true,
+  "log_rotation_executed": false,
+  "log_deleted": false,
+  "checked_at": "2026-05-31T14:00:11.502632+00:00",
+  "status": "PASS",
+  "warn_size_mb": 10.0,
+  "fail_size_mb": 100.0,
+  "dirs": [
+    {
+      "dir": "/home/deploy/ai_media_os/exchange/logs",
+      "exists": true,
+      "total_size_bytes": 776104,
+      "total_size_mb": 0.7402,
+      "file_count": 611,
+      "files": [
+        {
+          "name": "connection_test_result.example.json",
+          "size_bytes": 638
+        },
+        {
+          "name": "decision_reason_validation_result.json",
+          "size_bytes": 340
+        },
+        {
+          "name": "draft_candidate_approval_evidence.json",
+          "size_bytes": 1408
+        },
+        {
+          "name": "dry_run_approval_evidence.json",
+          "size_bytes": 1266
+        },
+        {
+          "name": "freeze_control_phase_s1_validation_result.json",
+          "size_bytes": 559
+        },
+        {
+          "name": "freeze_control_phase_s1_validation_result.md",
+          "size_bytes": 453
+        },
+        {
+          "name": "human_decision_result.json",
+          "size_bytes": 620
+        },
+        {
+          "name": "human_review_diff.example.json",
+          "size_bytes": 911
+        },
+        {
+          "name": "n1_vps_connectivity_result.json",
+          "size_bytes": 1167
+        },
+        {
+          "name": "n2_wordpress_api_stability_result.json",
+          "size_bytes": 1742
+        },
+        {
+          "name": "n3_slack_path_stability_result.json",
+          "size_bytes": 852
+        },
+        {
+          "name": "n4_github_connectivity_result.json",
+          "size_bytes": 1026
+        },
+        {
+          "name": "n5_recovery_simulation_result.json",
+          "size_bytes": 3084
+        },
+        {
+          "name": "n6_continuous_monitoring_dry_run_result.json",
+          "size_bytes": 7961
+        },
+        {
+          "name": "n7_cron_lock_guard_result.json",
+          "size_bytes": 881
+        },
+        {
+          "name": "n_series_overall_report.json",
+          "size_bytes": 1418
+        },
+        {
+          "name": "n_series_overall_report.md",
+          "size_bytes": 1017
+        },
+        {
+          "name": "phase10_10_default_stop_guard_confirmation_report.json",
+          "size_bytes": 3265
+        },
+        {
+          "name": "phase10_10_default_stop_guard_confirmation_report.md",
+          "size_bytes": 1121
+        },
+        {
+          "name": "phase10_11_post_execution_evidence_and_relock_confirmation_design_report.json",
+          "size_bytes": 3667
+        },
+        {
+          "name": "phase10_11_post_execution_evidence_and_relock_confirmation_design_report.md",
+          "size_bytes": 1208
+        },
+        {
+          "name": "phase10_12_manual_live_execution_readiness_review_report.json",
+          "size_bytes": 3675
+        },
+        {
+          "name": "phase10_12_manual_live_execution_readiness_review_report.md",
+          "size_bytes": 1173
+        },
+        {
+          "name": "phase10_13_execute_live_final_human_authorization_gate_report.json",
+          "size_bytes": 3674
+        },
+        {
+          "name": "phase10_13_execute_live_final_human_authorization_gate_report.md",
+          "size_bytes": 1367
+        },
+        {
+          "name": "phase10_14_pre_execution_final_freeze_release_judgment_report.json",
+          "size_bytes": 3912
+        },
+        {
+          "name": "phase10_14_pre_execution_final_freeze_release_judgment_report.md",
+          "size_bytes": 1400
+        },
+        {
+          "name": "phase10_15_pre_publish_no_go_maintenance_completion_report.json",
+          "size_bytes": 3689
+        },
+        {
+          "name": "phase10_15_pre_publish_no_go_maintenance_completion_report.md",
+          "size_bytes": 1125
+        },
+        {
+          "name": "phase10_16_phase10_overall_completion_report.json",
+          "size_bytes": 5277
+        },
+        {
+          "name": "phase10_16_phase10_overall_completion_report.md",
+          "size_bytes": 1421
+        },
+        {
+          "name": "phase10_1_publish_go_redecision_reopen_conditions_and_manual_pre_publish_final_lock_design_report.json",
+          "size_bytes": 3442
+        },
+        {
+          "name": "phase10_1_publish_go_redecision_reopen_conditions_and_manual_pre_publish_final_lock_design_report.md",
+          "size_bytes": 2234
+        },
+        {
+          "name": "phase10_2_manual_redecision_input_and_final_lock_validation_design_report.json",
+          "size_bytes": 4296
+        },
+        {
+          "name": "phase10_2_manual_redecision_input_and_final_lock_validation_design_report.md",
+          "size_bytes": 2529
+        },
+        {
+          "name": "phase10_3_manual_redecision_record_and_final_lock_gate_design_report.json",
+          "size_bytes": 4433
+        },
+        {
+          "name": "phase10_3_manual_redecision_record_and_final_lock_gate_design_report.md",
+          "size_bytes": 2478
+        },
+        {
+          "name": "phase10_4_manual_unlock_candidate_validation_design_report.json",
+          "size_bytes": 4338
+        },
+        {
+          "name": "phase10_4_manual_unlock_candidate_validation_design_report.md",
+          "size_bytes": 2571
+        },
+        {
+          "name": "phase10_5_manual_unlock_candidate_execution_guard_design_report.json",
+          "size_bytes": 4336
+        },
+        {
+          "name": "phase10_5_manual_unlock_candidate_execution_guard_design_report.md",
+          "size_bytes": 2620
+        },
+        {
+          "name": "phase10_6_manual_publish_pre_execution_confirmation_design_report.json",
+          "size_bytes": 4335
+        },
+        {
+          "name": "phase10_6_manual_publish_pre_execution_confirmation_design_report.md",
+          "size_bytes": 2635
+        },
+        {
+          "name": "phase10_7_manual_publish_immediate_pre_execution_go_freeze_decision_design_report.json",
+          "size_bytes": 4281
+        },
+        {
+          "name": "phase10_7_manual_publish_immediate_pre_execution_go_freeze_decision_design_report.md",
+          "size_bytes": 2593
+        },
+        {
+          "name": "phase10_8_manual_publish_command_dry_run_payload_validation_report.json",
+          "size_bytes": 4608
+        },
+        {
+          "name": "phase10_8_manual_publish_command_dry_run_payload_validation_report.md",
+          "size_bytes": 2963
+        },
+        {
+          "name": "phase10_9_single_publish_manual_execution_script_implementation_report.json",
+          "size_bytes": 4546
+        },
+        {
+          "name": "phase10_9_single_publish_manual_execution_script_implementation_report.md",
+          "size_bytes": 2025
+        },
+        {
+          "name": "phase11_10_phase11_overall_completion_report.json",
+          "size_bytes": 3039
+        },
+        {
+          "name": "phase11_10_phase11_overall_completion_report.md",
+          "size_bytes": 724
+        },
+        {
+          "name": "phase11_11_phase12_start_conditions_check_design_report.json",
+          "size_bytes": 2299
+        },
+        {
+          "name": "phase11_11_phase12_start_conditions_check_design_report.md",
+          "size_bytes": 820
+        },
+        {
+          "name": "phase11_1_publish_redecision_route_restart_design_report.json",
+          "size_bytes": 3078
+        },
+        {
+          "name": "phase11_1_publish_redecision_route_restart_design_report.md",
+          "size_bytes": 967
+        },
+        {
+          "name": "phase11_2_pre_production_audit_design_report.json",
+          "size_bytes": 2803
+        },
+        {
+          "name": "phase11_2_pre_production_audit_design_report.md",
+          "size_bytes": 1125
+        },
+        {
+          "name": "phase11_3_single_publish_final_execution_plan_report.json",
+          "size_bytes": 2661
+        },
+        {
+          "name": "phase11_3_single_publish_final_execution_plan_report.md",
+          "size_bytes": 867
+        },
+        {
+          "name": "phase11_4_pre_publish_final_no_go_or_go_judgment_design_report.json",
+          "size_bytes": 2700
+        },
+        {
+          "name": "phase11_4_pre_publish_final_no_go_or_go_judgment_design_report.md",
+          "size_bytes": 882
+        },
+        {
+          "name": "phase11_5_publish_command_final_dry_run_confirmation_report.json",
+          "size_bytes": 2744
+        },
+        {
+          "name": "phase11_5_publish_command_final_dry_run_confirmation_report.md",
+          "size_bytes": 894
+        },
+        {
+          "name": "phase11_6_execute_live_authorization_gate_report.json",
+          "size_bytes": 2394
+        },
+        {
+          "name": "phase11_6_execute_live_authorization_gate_report.md",
+          "size_bytes": 586
+        },
+        {
+          "name": "phase11_7_pre_execution_final_freeze_release_judgment_report.json",
+          "size_bytes": 2163
+        },
+        {
+          "name": "phase11_7_pre_execution_final_freeze_release_judgment_report.md",
+          "size_bytes": 648
+        },
+        {
+          "name": "phase11_8_post_execution_evidence_and_relock_final_confirmation_report.json",
+          "size_bytes": 2335
+        },
+        {
+          "name": "phase11_8_post_execution_evidence_and_relock_final_confirmation_report.md",
+          "size_bytes": 579
+        },
+        {
+          "name": "phase11_9_pre_publish_no_go_maintenance_report.json",
+          "size_bytes": 2014
+        },
+        {
+          "name": "phase11_9_pre_publish_no_go_maintenance_report.md",
+          "size_bytes": 558
+        },
+        {
+          "name": "phase12_1_phase12_start_conditions_actual_value_check_report.json",
+          "size_bytes": 2015
+        },
+        {
+          "name": "phase12_1_phase12_start_conditions_actual_value_check_report.md",
+          "size_bytes": 569
+        },
+        {
+          "name": "phase12_2_single_publish_final_go_redecision_input_design_report.json",
+          "size_bytes": 1422
+        },
+        {
+          "name": "phase12_2_single_publish_final_go_redecision_input_design_report.md",
+          "size_bytes": 248
+        },
+        {
+          "name": "phase12_3_publish_candidate_unlock_final_gate_design_report.json",
+          "size_bytes": 1453
+        },
+        {
+          "name": "phase12_3_publish_candidate_unlock_final_gate_design_report.md",
+          "size_bytes": 236
+        },
+        {
+          "name": "phase12_4_publish_candidate_unlock_judgment_record_design_report.json",
+          "size_bytes": 1542
+        },
+        {
+          "name": "phase12_4_publish_candidate_unlock_judgment_record_design_report.md",
+          "size_bytes": 225
+        },
+        {
+          "name": "phase12_5_pre_execution_lock_reconfirmation_design_report.json",
+          "size_bytes": 1497
+        },
+        {
+          "name": "phase12_5_pre_execution_lock_reconfirmation_design_report.md",
+          "size_bytes": 211
+        },
+        {
+          "name": "phase12_6_pre_execution_final_dry_run_audit_report.json",
+          "size_bytes": 1398
+        },
+        {
+          "name": "phase12_6_pre_execution_final_dry_run_audit_report.md",
+          "size_bytes": 201
+        },
+        {
+          "name": "phase12_7_publish_candidate_unlock_final_confirmation_report.json",
+          "size_bytes": 1404
+        },
+        {
+          "name": "phase12_7_publish_candidate_unlock_final_confirmation_report.md",
+          "size_bytes": 223
+        },
+        {
+          "name": "phase12_8_pre_publish_no_go_maintenance_report.json",
+          "size_bytes": 1192
+        },
+        {
+          "name": "phase12_8_pre_publish_no_go_maintenance_report.md",
+          "size_bytes": 205
+        },
+        {
+          "name": "phase12_9_phase12_overall_completion_report.json",
+          "size_bytes": 1334
+        },
+        {
+          "name": "phase12_9_phase12_overall_completion_report.md",
+          "size_bytes": 238
+        },
+        {
+          "name": "phase13_1_publish_execution_conditions_reconfirmation_report.json",
+          "size_bytes": 1472
+        },
+        {
+          "name": "phase13_1_publish_execution_conditions_reconfirmation_report.md",
+          "size_bytes": 223
+        },
+        {
+          "name": "phase13_2_human_final_go_input_file_creation_report.json",
+          "size_bytes": 1347
+        },
+        {
+          "name": "phase13_2_human_final_go_input_file_creation_report.md",
+          "size_bytes": 208
+        },
+        {
+          "name": "phase13_3_execute_live_pre_final_stop_gate_report.json",
+          "size_bytes": 1346
+        },
+        {
+          "name": "phase13_3_execute_live_pre_final_stop_gate_report.md",
+          "size_bytes": 211
+        },
+        {
+          "name": "phase13_4_human_final_decision_file_read_design_report.json",
+          "size_bytes": 1449
+        },
+        {
+          "name": "phase13_4_human_final_decision_file_read_design_report.md",
+          "size_bytes": 229
+        },
+        {
+          "name": "phase13_5_unlock_candidate_judgment_on_go_conditions_design_report.json",
+          "size_bytes": 1442
+        },
+        {
+          "name": "phase13_5_unlock_candidate_judgment_on_go_conditions_design_report.md",
+          "size_bytes": 243
+        },
+        {
+          "name": "phase13_6_pre_execute_live_final_no_go_maintenance_report.json",
+          "size_bytes": 1228
+        },
+        {
+          "name": "phase13_6_pre_execute_live_final_no_go_maintenance_report.md",
+          "size_bytes": 214
+        },
+        {
+          "name": "phase13_7_pre_publish_no_go_maintenance_report.json",
+          "size_bytes": 1189
+        },
+        {
+          "name": "phase13_7_pre_publish_no_go_maintenance_report.md",
+          "size_bytes": 205
+        },
+        {
+          "name": "phase13_8_phase13_overall_completion_report.json",
+          "size_bytes": 1322
+        },
+        {
+          "name": "phase13_8_phase13_overall_completion_report.md",
+          "size_bytes": 246
+        },
+        {
+          "name": "phase13_9_phase14_start_conditions_check_design_report.json",
+          "size_bytes": 1523
+        },
+        {
+          "name": "phase13_9_phase14_start_conditions_check_design_report.md",
+          "size_bytes": 219
+        },
+        {
+          "name": "phase14_1_phase14_start_conditions_actual_value_check_report.json",
+          "size_bytes": 1446
+        },
+        {
+          "name": "phase14_1_phase14_start_conditions_actual_value_check_report.md",
+          "size_bytes": 233
+        },
+        {
+          "name": "phase14_2_execute_live_final_go_input_file_design_report.json",
+          "size_bytes": 1472
+        },
+        {
+          "name": "phase14_2_execute_live_final_go_input_file_design_report.md",
+          "size_bytes": 224
+        },
+        {
+          "name": "phase14_3_execute_live_candidate_unlock_final_gate_design_report.json",
+          "size_bytes": 1442
+        },
+        {
+          "name": "phase14_3_execute_live_candidate_unlock_final_gate_design_report.md",
+          "size_bytes": 231
+        },
+        {
+          "name": "phase14_4_execute_live_candidate_unlock_judgment_record_design_report.json",
+          "size_bytes": 1495
+        },
+        {
+          "name": "phase14_4_execute_live_candidate_unlock_judgment_record_design_report.md",
+          "size_bytes": 243
+        },
+        {
+          "name": "phase14_5_execute_live_pre_execution_lock_reconfirmation_design_report.json",
+          "size_bytes": 1458
+        },
+        {
+          "name": "phase14_5_execute_live_pre_execution_lock_reconfirmation_design_report.md",
+          "size_bytes": 235
+        },
+        {
+          "name": "phase14_6_execute_live_pre_command_final_dry_run_audit_report.json",
+          "size_bytes": 1467
+        },
+        {
+          "name": "phase14_6_execute_live_pre_command_final_dry_run_audit_report.md",
+          "size_bytes": 212
+        },
+        {
+          "name": "phase14_7_execute_live_candidate_unlock_final_confirmation_report.json",
+          "size_bytes": 1440
+        },
+        {
+          "name": "phase14_7_execute_live_candidate_unlock_final_confirmation_report.md",
+          "size_bytes": 233
+        },
+        {
+          "name": "phase14_8_pre_execute_live_no_go_maintenance_report.json",
+          "size_bytes": 1217
+        },
+        {
+          "name": "phase14_8_pre_execute_live_no_go_maintenance_report.md",
+          "size_bytes": 210
+        },
+        {
+          "name": "phase14_9_phase14_overall_completion_report.json",
+          "size_bytes": 1329
+        },
+        {
+          "name": "phase14_9_phase14_overall_completion_report.md",
+          "size_bytes": 238
+        },
+        {
+          "name": "phase15_1_execute_live_resume_conditions_actual_value_check_report.json",
+          "size_bytes": 1442
+        },
+        {
+          "name": "phase15_1_execute_live_resume_conditions_actual_value_check_report.md",
+          "size_bytes": 238
+        },
+        {
+          "name": "phase15_2_human_final_go_input_record_file_design_report.json",
+          "size_bytes": 1526
+        },
+        {
+          "name": "phase15_2_human_final_go_input_record_file_design_report.md",
+          "size_bytes": 220
+        },
+        {
+          "name": "phase15_3_execute_live_final_stop_gate_implementation_report.json",
+          "size_bytes": 1413
+        },
+        {
+          "name": "phase15_3_execute_live_final_stop_gate_implementation_report.md",
+          "size_bytes": 227
+        },
+        {
+          "name": "phase15_4_human_final_go_record_file_read_gate_report.json",
+          "size_bytes": 1427
+        },
+        {
+          "name": "phase15_4_human_final_go_record_file_read_gate_report.md",
+          "size_bytes": 215
+        },
+        {
+          "name": "phase15_5_execute_live_candidate_unlock_judgment_report.json",
+          "size_bytes": 1383
+        },
+        {
+          "name": "phase15_5_execute_live_candidate_unlock_judgment_report.md",
+          "size_bytes": 219
+        },
+        {
+          "name": "phase15_6_pre_execute_live_no_go_maintenance_report.json",
+          "size_bytes": 1212
+        },
+        {
+          "name": "phase15_6_pre_execute_live_no_go_maintenance_report.md",
+          "size_bytes": 215
+        },
+        {
+          "name": "phase15_7_execute_live_candidate_final_confirmation_report.json",
+          "size_bytes": 1453
+        },
+        {
+          "name": "phase15_7_execute_live_candidate_final_confirmation_report.md",
+          "size_bytes": 226
+        },
+        {
+          "name": "phase15_8_pre_execute_live_no_go_maintenance_report.json",
+          "size_bytes": 1210
+        },
+        {
+          "name": "phase15_8_pre_execute_live_no_go_maintenance_report.md",
+          "size_bytes": 210
+        },
+        {
+          "name": "phase15_9_phase15_overall_completion_report.json",
+          "size_bytes": 1329
+        },
+        {
+          "name": "phase15_9_phase15_overall_completion_report.md",
+          "size_bytes": 238
+        },
+        {
+          "name": "phase16_1_phase16_start_conditions_check_design_report.json",
+          "size_bytes": 1519
+        },
+        {
+          "name": "phase16_1_phase16_start_conditions_check_design_report.md",
+          "size_bytes": 228
+        },
+        {
+          "name": "phase16_2_execute_live_execution_conditions_final_audit_design_report.json",
+          "size_bytes": 1539
+        },
+        {
+          "name": "phase16_2_execute_live_execution_conditions_final_audit_design_report.md",
+          "size_bytes": 257
+        },
+        {
+          "name": "phase16_3_execute_live_immediate_pre_execution_default_stop_gate_confirmation_report.json",
+          "size_bytes": 1526
+        },
+        {
+          "name": "phase16_3_execute_live_immediate_pre_execution_default_stop_gate_confirmation_report.md",
+          "size_bytes": 250
+        },
+        {
+          "name": "phase16_4_execute_live_candidate_final_human_approval_input_design_report.json",
+          "size_bytes": 1584
+        },
+        {
+          "name": "phase16_4_execute_live_candidate_final_human_approval_input_design_report.md",
+          "size_bytes": 232
+        },
+        {
+          "name": "phase16_5_execute_live_candidate_unlock_judgment_report.json",
+          "size_bytes": 1411
+        },
+        {
+          "name": "phase16_5_execute_live_candidate_unlock_judgment_report.md",
+          "size_bytes": 219
+        },
+        {
+          "name": "phase16_6_pre_execute_live_no_go_maintenance_report.json",
+          "size_bytes": 1215
+        },
+        {
+          "name": "phase16_6_pre_execute_live_no_go_maintenance_report.md",
+          "size_bytes": 218
+        },
+        {
+          "name": "phase16_7_execute_live_candidate_final_confirmation_report.json",
+          "size_bytes": 1453
+        },
+        {
+          "name": "phase16_7_execute_live_candidate_final_confirmation_report.md",
+          "size_bytes": 226
+        },
+        {
+          "name": "phase16_8_pre_execute_live_no_go_maintenance_report.json",
+          "size_bytes": 1210
+        },
+        {
+          "name": "phase16_8_pre_execute_live_no_go_maintenance_report.md",
+          "size_bytes": 210
+        },
+        {
+          "name": "phase16_9_phase16_overall_completion_report.json",
+          "size_bytes": 1329
+        },
+        {
+          "name": "phase16_9_phase16_overall_completion_report.md",
+          "size_bytes": 238
+        },
+        {
+          "name": "phase17_1_execute_live_final_reconfirmation_actual_value_check_report.json",
+          "size_bytes": 1468
+        },
+        {
+          "name": "phase17_1_execute_live_final_reconfirmation_actual_value_check_report.md",
+          "size_bytes": 255
+        },
+        {
+          "name": "phase17_2_execute_live_execution_command_final_dry_run_assembly_report.json",
+          "size_bytes": 1520
+        },
+        {
+          "name": "phase17_2_execute_live_execution_command_final_dry_run_assembly_report.md",
+          "size_bytes": 267
+        },
+        {
+          "name": "phase17_3_execute_live_immediate_pre_execution_final_human_go_or_keep_no_go_decision_report.json",
+          "size_bytes": 1534
+        },
+        {
+          "name": "phase17_3_execute_live_immediate_pre_execution_final_human_go_or_keep_no_go_decision_report.md",
+          "size_bytes": 258
+        },
+        {
+          "name": "phase17_4_final_human_decision_file_read_gate_report.json",
+          "size_bytes": 1463
+        },
+        {
+          "name": "phase17_4_final_human_decision_file_read_gate_report.md",
+          "size_bytes": 214
+        },
+        {
+          "name": "phase17_5_execute_live_candidate_unlock_judgment_report.json",
+          "size_bytes": 1390
+        },
+        {
+          "name": "phase17_5_execute_live_candidate_unlock_judgment_report.md",
+          "size_bytes": 219
+        },
+        {
+          "name": "phase17_6_pre_execute_live_no_go_maintenance_report.json",
+          "size_bytes": 1215
+        },
+        {
+          "name": "phase17_6_pre_execute_live_no_go_maintenance_report.md",
+          "size_bytes": 218
+        },
+        {
+          "name": "phase17_7_execute_live_candidate_final_confirmation_report.json",
+          "size_bytes": 1453
+        },
+        {
+          "name": "phase17_7_execute_live_candidate_final_confirmation_report.md",
+          "size_bytes": 226
+        },
+        {
+          "name": "phase17_8_pre_execute_live_no_go_maintenance_report.json",
+          "size_bytes": 1210
+        },
+        {
+          "name": "phase17_8_pre_execute_live_no_go_maintenance_report.md",
+          "size_bytes": 210
+        },
+        {
+          "name": "phase17_9_phase17_overall_completion_report.json",
+          "size_bytes": 1329
+        },
+        {
+          "name": "phase17_9_phase17_overall_completion_report.md",
+          "size_bytes": 238
+        },
+        {
+          "name": "phase18_1_phase18_start_conditions_actual_value_check_report.json",
+          "size_bytes": 1457
+        },
+        {
+          "name": "phase18_1_phase18_start_conditions_actual_value_check_report.md",
+          "size_bytes": 244
+        },
+        {
+          "name": "phase18_2_execute_live_production_candidate_final_risk_audit_report.json",
+          "size_bytes": 1433
+        },
+        {
+          "name": "phase18_2_execute_live_production_candidate_final_risk_audit_report.md",
+          "size_bytes": 241
+        },
+        {
+          "name": "phase18_3_execute_live_final_human_go_no_go_decision_design_report.json",
+          "size_bytes": 1519
+        },
+        {
+          "name": "phase18_3_execute_live_final_human_go_no_go_decision_design_report.md",
+          "size_bytes": 231
+        },
+        {
+          "name": "phase18_4_final_human_decision_file_read_gate_report.json",
+          "size_bytes": 1391
+        },
+        {
+          "name": "phase18_4_final_human_decision_file_read_gate_report.md",
+          "size_bytes": 219
+        },
+        {
+          "name": "phase18_5_execute_live_candidate_unlock_judgment_report.json",
+          "size_bytes": 1476
+        },
+        {
+          "name": "phase18_5_execute_live_candidate_unlock_judgment_report.md",
+          "size_bytes": 219
+        },
+        {
+          "name": "phase18_6_pre_execute_live_no_go_maintenance_report.json",
+          "size_bytes": 1392
+        },
+        {
+          "name": "phase18_6_pre_execute_live_no_go_maintenance_report.md",
+          "size_bytes": 224
+        },
+        {
+          "name": "phase18_7_execute_live_candidate_final_confirmation_report.json",
+          "size_bytes": 1398
+        },
+        {
+          "name": "phase18_7_execute_live_candidate_final_confirmation_report.md",
+          "size_bytes": 220
+        },
+        {
+          "name": "phase18_8_pre_closure_no_go_maintenance_report.json",
+          "size_bytes": 1383
+        },
+        {
+          "name": "phase18_8_pre_closure_no_go_maintenance_report.md",
+          "size_bytes": 210
+        },
+        {
+          "name": "phase18_9_phase18_overall_completion_report.json",
+          "size_bytes": 1300
+        },
+        {
+          "name": "phase18_9_phase18_overall_completion_report.md",
+          "size_bytes": 238
+        },
+        {
+          "name": "phase19_1_execute_live_final_start_conditions_actual_value_check_report.json",
+          "size_bytes": 1408
+        },
+        {
+          "name": "phase19_1_execute_live_final_start_conditions_actual_value_check_report.md",
+          "size_bytes": 260
+        },
+        {
+          "name": "phase19_2_one_item_limited_publish_execution_plan_finalization_report.json",
+          "size_bytes": 1490
+        },
+        {
+          "name": "phase19_2_one_item_limited_publish_execution_plan_finalization_report.md",
+          "size_bytes": 237
+        },
+        {
+          "name": "phase19_3_execute_live_pre_execution_stop_gate_report.json",
+          "size_bytes": 1403
+        },
+        {
+          "name": "phase19_3_execute_live_pre_execution_stop_gate_report.md",
+          "size_bytes": 212
+        },
+        {
+          "name": "phase19_4_human_final_go_execution_record_file_read_gate_report.json",
+          "size_bytes": 1442
+        },
+        {
+          "name": "phase19_4_human_final_go_execution_record_file_read_gate_report.md",
+          "size_bytes": 230
+        },
+        {
+          "name": "phase19_5_execute_live_candidate_unlock_judgment_report.json",
+          "size_bytes": 1507
+        },
+        {
+          "name": "phase19_5_execute_live_candidate_unlock_judgment_report.md",
+          "size_bytes": 229
+        },
+        {
+          "name": "phase19_6_execute_live_pre_execution_no_go_maintenance_report.json",
+          "size_bytes": 1437
+        },
+        {
+          "name": "phase19_6_execute_live_pre_execution_no_go_maintenance_report.md",
+          "size_bytes": 234
+        },
+        {
+          "name": "phase19_7_execute_live_candidate_final_confirmation_report.json",
+          "size_bytes": 1420
+        },
+        {
+          "name": "phase19_7_execute_live_candidate_final_confirmation_report.md",
+          "size_bytes": 232
+        },
+        {
+          "name": "phase19_8_execute_live_unexecuted_no_go_maintenance_report.json",
+          "size_bytes": 1425
+        },
+        {
+          "name": "phase19_8_execute_live_unexecuted_no_go_maintenance_report.md",
+          "size_bytes": 216
+        },
+        {
+          "name": "phase19_9_phase19_overall_completion_report.json",
+          "size_bytes": 1300
+        },
+        {
+          "name": "phase19_9_phase19_overall_completion_report.md",
+          "size_bytes": 238
+        },
+        {
+          "name": "phase20_1_start_conditions_check_design_report.json",
+          "size_bytes": 1431
+        },
+        {
+          "name": "phase20_1_start_conditions_check_design_report.md",
+          "size_bytes": 199
+        },
+        {
+          "name": "phase20_2_final_human_go_record_validation_report.json",
+          "size_bytes": 1322
+        },
+        {
+          "name": "phase20_2_final_human_go_record_validation_report.md",
+          "size_bytes": 215
+        },
+        {
+          "name": "phase20_3_execute_live_pre_execution_hard_stop_gate_report.json",
+          "size_bytes": 1346
+        },
+        {
+          "name": "phase20_3_execute_live_pre_execution_hard_stop_gate_report.md",
+          "size_bytes": 206
+        },
+        {
+          "name": "phase20_4_execute_live_candidate_unlock_judgment_report.json",
+          "size_bytes": 1448
+        },
+        {
+          "name": "phase20_4_execute_live_candidate_unlock_judgment_report.md",
+          "size_bytes": 268
+        },
+        {
+          "name": "phase20_5_execute_live_pre_execution_no_go_maintenance_report.json",
+          "size_bytes": 1415
+        },
+        {
+          "name": "phase20_5_execute_live_pre_execution_no_go_maintenance_report.md",
+          "size_bytes": 235
+        },
+        {
+          "name": "phase20_6_execute_live_unexecuted_final_confirmation_report.json",
+          "size_bytes": 1410
+        },
+        {
+          "name": "phase20_6_execute_live_unexecuted_final_confirmation_report.md",
+          "size_bytes": 258
+        },
+        {
+          "name": "phase20_7_execute_live_candidate_final_confirmation_report.json",
+          "size_bytes": 1403
+        },
+        {
+          "name": "phase20_7_execute_live_candidate_final_confirmation_report.md",
+          "size_bytes": 232
+        },
+        {
+          "name": "phase20_8_execute_live_unexecuted_no_go_maintenance_report.json",
+          "size_bytes": 1404
+        },
+        {
+          "name": "phase20_8_execute_live_unexecuted_no_go_maintenance_report.md",
+          "size_bytes": 216
+        },
+        {
+          "name": "phase20_9_phase20_overall_completion_report.json",
+          "size_bytes": 1300
+        },
+        {
+          "name": "phase20_9_phase20_overall_completion_report.md",
+          "size_bytes": 238
+        },
+        {
+          "name": "phase21_1_start_conditions_check_design_report.json",
+          "size_bytes": 1438
+        },
+        {
+          "name": "phase21_1_start_conditions_check_design_report.md",
+          "size_bytes": 199
+        },
+        {
+          "name": "phase21_2_final_human_go_record_validation_report.json",
+          "size_bytes": 1313
+        },
+        {
+          "name": "phase21_2_final_human_go_record_validation_report.md",
+          "size_bytes": 215
+        },
+        {
+          "name": "phase21_3_execute_live_pre_execution_hard_stop_gate_report.json",
+          "size_bytes": 1352
+        },
+        {
+          "name": "phase21_3_execute_live_pre_execution_hard_stop_gate_report.md",
+          "size_bytes": 206
+        },
+        {
+          "name": "phase21_4_execute_live_candidate_unlock_judgment_report.json",
+          "size_bytes": 1432
+        },
+        {
+          "name": "phase21_4_execute_live_candidate_unlock_judgment_report.md",
+          "size_bytes": 222
+        },
+        {
+          "name": "phase21_5_execute_live_pre_execution_no_go_maintenance_report.json",
+          "size_bytes": 1406
+        },
+        {
+          "name": "phase21_5_execute_live_pre_execution_no_go_maintenance_report.md",
+          "size_bytes": 235
+        },
+        {
+          "name": "phase21_6_execute_live_unexecuted_final_confirmation_report.json",
+          "size_bytes": 1410
+        },
+        {
+          "name": "phase21_6_execute_live_unexecuted_final_confirmation_report.md",
+          "size_bytes": 216
+        },
+        {
+          "name": "phase21_7_execute_live_candidate_final_confirmation_report.json",
+          "size_bytes": 1403
+        },
+        {
+          "name": "phase21_7_execute_live_candidate_final_confirmation_report.md",
+          "size_bytes": 232
+        },
+        {
+          "name": "phase21_8_execute_live_unexecuted_no_go_maintenance_report.json",
+          "size_bytes": 1404
+        },
+        {
+          "name": "phase21_8_execute_live_unexecuted_no_go_maintenance_report.md",
+          "size_bytes": 216
+        },
+        {
+          "name": "phase21_9_phase21_overall_completion_report.json",
+          "size_bytes": 1300
+        },
+        {
+          "name": "phase21_9_phase21_overall_completion_report.md",
+          "size_bytes": 238
+        },
+        {
+          "name": "phase22_1_start_conditions_check_design_report.json",
+          "size_bytes": 1434
+        },
+        {
+          "name": "phase22_1_start_conditions_check_design_report.md",
+          "size_bytes": 192
+        },
+        {
+          "name": "phase22_2_final_human_go_input_read_report.json",
+          "size_bytes": 1292
+        },
+        {
+          "name": "phase22_2_final_human_go_input_read_report.md",
+          "size_bytes": 204
+        },
+        {
+          "name": "phase22_3_execute_live_final_viability_judgment_report.json",
+          "size_bytes": 1314
+        },
+        {
+          "name": "phase22_3_execute_live_final_viability_judgment_report.md",
+          "size_bytes": 202
+        },
+        {
+          "name": "phase22_4_execute_live_candidate_unlock_judgment_report.json",
+          "size_bytes": 1429
+        },
+        {
+          "name": "phase22_4_execute_live_candidate_unlock_judgment_report.md",
+          "size_bytes": 222
+        },
+        {
+          "name": "phase22_5_execute_live_pre_execution_no_go_maintenance_report.json",
+          "size_bytes": 1406
+        },
+        {
+          "name": "phase22_5_execute_live_pre_execution_no_go_maintenance_report.md",
+          "size_bytes": 235
+        },
+        {
+          "name": "phase22_6_execute_live_unexecuted_final_confirmation_report.json",
+          "size_bytes": 1410
+        },
+        {
+          "name": "phase22_6_execute_live_unexecuted_final_confirmation_report.md",
+          "size_bytes": 216
+        },
+        {
+          "name": "phase22_7_execute_live_candidate_final_confirmation_report.json",
+          "size_bytes": 1403
+        },
+        {
+          "name": "phase22_7_execute_live_candidate_final_confirmation_report.md",
+          "size_bytes": 232
+        },
+        {
+          "name": "phase22_8_execute_live_unexecuted_no_go_maintenance_report.json",
+          "size_bytes": 1404
+        },
+        {
+          "name": "phase22_8_execute_live_unexecuted_no_go_maintenance_report.md",
+          "size_bytes": 216
+        },
+        {
+          "name": "phase22_9_phase22_overall_completion_report.json",
+          "size_bytes": 1300
+        },
+        {
+          "name": "phase22_9_phase22_overall_completion_report.md",
+          "size_bytes": 238
+        },
+        {
+          "name": "phase4_connection_test_completion_report.json",
+          "size_bytes": 1400
+        },
+        {
+          "name": "phase4_connection_test_completion_report.md",
+          "size_bytes": 1457
+        },
+        {
+          "name": "phase5_draft_candidate_flow_completion_report.json",
+          "size_bytes": 1548
+        },
+        {
+          "name": "phase5_draft_candidate_flow_completion_report.md",
+          "size_bytes": 1653
+        },
+        {
+          "name": "phase5_overall_completion_report.json",
+          "size_bytes": 1991
+        },
+        {
+          "name": "phase5_overall_completion_report.md",
+          "size_bytes": 2086
+        },
+        {
+          "name": "phase65_completion_report.json",
+          "size_bytes": 1178
+        },
+        {
+          "name": "phase66_go_no_go_report.json",
+          "size_bytes": 374
+        },
+        {
+          "name": "phase67_preparation_evidence_report.json",
+          "size_bytes": 2001
+        },
+        {
+          "name": "phase68_preparation_review_report.json",
+          "size_bytes": 3884
+        },
+        {
+          "name": "phase69_preparation_approval_report.json",
+          "size_bytes": 3862
+        },
+        {
+          "name": "phase6_10_existing_generated_test_fix_report.json",
+          "size_bytes": 747
+        },
+        {
+          "name": "phase6_10_existing_generated_test_fix_report.md",
+          "size_bytes": 1168
+        },
+        {
+          "name": "phase6_1_design_validation_result.json",
+          "size_bytes": 605
+        },
+        {
+          "name": "phase6_2_preflight_gate_validation_result.json",
+          "size_bytes": 1015
+        },
+        {
+          "name": "phase6_3_release_decision_rules_validation_result.json",
+          "size_bytes": 633
+        },
+        {
+          "name": "phase6_4_controlled_unlock_plan_validation_result.json",
+          "size_bytes": 677
+        },
+        {
+          "name": "phase6_5_execution_spec_validation_result.json",
+          "size_bytes": 304
+        },
+        {
+          "name": "phase6_6_pre_execution_rehearsal_validation_result.json",
+          "size_bytes": 704
+        },
+        {
+          "name": "phase6_6_quality_gate_validation_result.json",
+          "size_bytes": 362
+        },
+        {
+          "name": "phase6_7_slack_approval_dry_run_result.json",
+          "size_bytes": 419
+        },
+        {
+          "name": "phase6_7_unlock_readiness_decision_result.json",
+          "size_bytes": 718
+        },
+        {
+          "name": "phase6_8_final_unlock_go_no_go_result.json",
+          "size_bytes": 698
+        },
+        {
+          "name": "phase6_8_runbook_validation_result.json",
+          "size_bytes": 140
+        },
+        {
+          "name": "phase6_9_hardening_preflight_report.json",
+          "size_bytes": 1250
+        },
+        {
+          "name": "phase6_9_hardening_preflight_report.md",
+          "size_bytes": 968
+        },
+        {
+          "name": "phase6_9_manual_unlock_protocol_validation_result.json",
+          "size_bytes": 716
+        },
+        {
+          "name": "phase6_completion_report.json",
+          "size_bytes": 2524
+        },
+        {
+          "name": "phase6_completion_report.md",
+          "size_bytes": 1575
+        },
+        {
+          "name": "phase70_preparation_final_review_report.json",
+          "size_bytes": 3920
+        },
+        {
+          "name": "phase71_preparation_final_approval_report.json",
+          "size_bytes": 3972
+        },
+        {
+          "name": "phase72_preparation_final_signoff_report.json",
+          "size_bytes": 3966
+        },
+        {
+          "name": "phase73_preparation_lock_report.json",
+          "size_bytes": 3817
+        },
+        {
+          "name": "phase74_limited_dry_run_sandbox_plan_report.json",
+          "size_bytes": 3888
+        },
+        {
+          "name": "phase75_limited_dry_run_fixture_plan_report.json",
+          "size_bytes": 3950
+        },
+        {
+          "name": "phase76_limited_dry_run_rollback_plan_report.json",
+          "size_bytes": 3966
+        },
+        {
+          "name": "phase77_limited_dry_run_evidence_plan_report.json",
+          "size_bytes": 3991
+        },
+        {
+          "name": "phase78_limited_dry_run_operator_checklist_report.json",
+          "size_bytes": 4063
+        },
+        {
+          "name": "phase79_limited_dry_run_final_go_no_go_planning_report.json",
+          "size_bytes": 4160
+        },
+        {
+          "name": "phase7_10_human_unlock_decision_result.json",
+          "size_bytes": 1223
+        },
+        {
+          "name": "phase7_10_human_unlock_decision_result.md",
+          "size_bytes": 937
+        },
+        {
+          "name": "phase7_11_approve_draft_create_only_token_validation_result.json",
+          "size_bytes": 830
+        },
+        {
+          "name": "phase7_11_approve_draft_create_only_token_validation_result.md",
+          "size_bytes": 721
+        },
+        {
+          "name": "phase7_12_one_item_draft_execution_plan_result.json",
+          "size_bytes": 1748
+        },
+        {
+          "name": "phase7_12_one_item_draft_execution_plan_result.md",
+          "size_bytes": 858
+        },
+        {
+          "name": "phase7_13_operator_runbook_validation_result.json",
+          "size_bytes": 719
+        },
+        {
+          "name": "phase7_13_operator_runbook_validation_result.md",
+          "size_bytes": 597
+        },
+        {
+          "name": "phase7_14_pre_live_unlock_final_report.json",
+          "size_bytes": 1469
+        },
+        {
+          "name": "phase7_14_pre_live_unlock_final_report.md",
+          "size_bytes": 1271
+        },
+        {
+          "name": "phase7_1_eligible_single_controlled_run_policy_result.json",
+          "size_bytes": 1850
+        },
+        {
+          "name": "phase7_1_eligible_single_controlled_run_policy_result.md",
+          "size_bytes": 1622
+        },
+        {
+          "name": "phase7_1_pre_release_checklist_validation_result.json",
+          "size_bytes": 791
+        },
+        {
+          "name": "phase7_1_vps_connection_policy_validation_result.json",
+          "size_bytes": 614
+        },
+        {
+          "name": "phase7_2_approve_draft_create_only_pre_unlock_review_result.json",
+          "size_bytes": 1437
+        },
+        {
+          "name": "phase7_2_approve_draft_create_only_pre_unlock_review_result.md",
+          "size_bytes": 1135
+        },
+        {
+          "name": "phase7_2_single_draft_create_execution_dry_run_result.json",
+          "size_bytes": 1722
+        },
+        {
+          "name": "phase7_3_single_draft_create_final_approval_result.json",
+          "size_bytes": 845
+        },
+        {
+          "name": "phase7_3_single_draft_final_preflight_design_result.json",
+          "size_bytes": 1630
+        },
+        {
+          "name": "phase7_3_single_draft_final_preflight_design_result.md",
+          "size_bytes": 1283
+        },
+        {
+          "name": "phase7_4_execution_gate_no_go_freeze_result.json",
+          "size_bytes": 1319
+        },
+        {
+          "name": "phase7_4_execution_gate_no_go_freeze_result.md",
+          "size_bytes": 911
+        },
+        {
+          "name": "phase7_4_single_draft_create_execution_gate_result.json",
+          "size_bytes": 2253
+        },
+        {
+          "name": "phase7_5_freeze_or_live_decision_report.json",
+          "size_bytes": 1735
+        },
+        {
+          "name": "phase7_5_freeze_or_live_decision_report.md",
+          "size_bytes": 1268
+        },
+        {
+          "name": "phase7_5b_live_final_approval_result.json",
+          "size_bytes": 1112
+        },
+        {
+          "name": "phase7_5c_single_draft_create_live_result.json",
+          "size_bytes": 6106
+        },
+        {
+          "name": "phase7_5d_single_draft_live_manual_runbook.json",
+          "size_bytes": 3823
+        },
+        {
+          "name": "phase7_5d_single_draft_live_manual_runbook.md",
+          "size_bytes": 2357
+        },
+        {
+          "name": "phase7_5d_single_draft_live_manual_runbook_generation_result.json",
+          "size_bytes": 892
+        },
+        {
+          "name": "phase7_5e_freeze_completion_report.json",
+          "size_bytes": 1064
+        },
+        {
+          "name": "phase7_5e_freeze_completion_report.md",
+          "size_bytes": 805
+        },
+        {
+          "name": "phase7_5e_manual_go_freeze_decision_result.json",
+          "size_bytes": 751
+        },
+        {
+          "name": "phase7_5f_keep_freeze_completion_report.json",
+          "size_bytes": 1105
+        },
+        {
+          "name": "phase7_5f_keep_freeze_completion_report.md",
+          "size_bytes": 927
+        },
+        {
+          "name": "phase7_5f_manual_go_redecision_result.json",
+          "size_bytes": 916
+        },
+        {
+          "name": "phase7_5g_post_draft_creation_verification_report.json",
+          "size_bytes": 1673
+        },
+        {
+          "name": "phase7_5g_post_draft_creation_verification_report.md",
+          "size_bytes": 1203
+        },
+        {
+          "name": "phase7_5h_manual_wp_admin_verification_result.json",
+          "size_bytes": 925
+        },
+        {
+          "name": "phase7_5i_single_draft_creation_completion_report.json",
+          "size_bytes": 2485
+        },
+        {
+          "name": "phase7_5i_single_draft_creation_completion_report.md",
+          "size_bytes": 1330
+        },
+        {
+          "name": "phase7_5j_single_draft_creation_final_summary_report.json",
+          "size_bytes": 3701
+        },
+        {
+          "name": "phase7_5j_single_draft_creation_final_summary_report.md",
+          "size_bytes": 1894
+        },
+        {
+          "name": "phase7_6_human_approval_evidence_package_result.json",
+          "size_bytes": 1019
+        },
+        {
+          "name": "phase7_6_human_approval_evidence_package_result.md",
+          "size_bytes": 770
+        },
+        {
+          "name": "phase7_6_wordpress_draft_creation_overall_completion_report.json",
+          "size_bytes": 4533
+        },
+        {
+          "name": "phase7_6_wordpress_draft_creation_overall_completion_report.md",
+          "size_bytes": 2129
+        },
+        {
+          "name": "phase7_7_approve_draft_create_only_readiness_gate_result.json",
+          "size_bytes": 1149
+        },
+        {
+          "name": "phase7_7_approve_draft_create_only_readiness_gate_result.md",
+          "size_bytes": 912
+        },
+        {
+          "name": "phase7_8_single_draft_create_simulation_result.json",
+          "size_bytes": 1526
+        },
+        {
+          "name": "phase7_8_single_draft_create_simulation_result.md",
+          "size_bytes": 725
+        },
+        {
+          "name": "phase7_9_pre_unlock_overall_report.json",
+          "size_bytes": 2111
+        },
+        {
+          "name": "phase7_9_pre_unlock_overall_report.md",
+          "size_bytes": 1755
+        },
+        {
+          "name": "phase7_vps_connection_test_completion_report.json",
+          "size_bytes": 738
+        },
+        {
+          "name": "phase7_vps_connection_test_completion_report.md",
+          "size_bytes": 629
+        },
+        {
+          "name": "phase80_limited_dry_run_preparation_chain_completion_report.json",
+          "size_bytes": 13468
+        },
+        {
+          "name": "phase8_10_keep_no_go_redecision_completion_report.json",
+          "size_bytes": 1662
+        },
+        {
+          "name": "phase8_10_keep_no_go_redecision_completion_report.md",
+          "size_bytes": 1191
+        },
+        {
+          "name": "phase8_10_post_rerun_closure_report.json",
+          "size_bytes": 1344
+        },
+        {
+          "name": "phase8_10_post_rerun_closure_report.md",
+          "size_bytes": 1232
+        },
+        {
+          "name": "phase8_11_credentials_manual_runbook_validation_result.json",
+          "size_bytes": 493
+        },
+        {
+          "name": "phase8_11_credentials_manual_runbook_validation_result.md",
+          "size_bytes": 595
+        },
+        {
+          "name": "phase8_11_pre_publish_no_go_overall_completion_report.json",
+          "size_bytes": 3340
+        },
+        {
+          "name": "phase8_11_pre_publish_no_go_overall_completion_report.md",
+          "size_bytes": 1562
+        },
+        {
+          "name": "phase8_12_no_secret_leak_audit_result.json",
+          "size_bytes": 1419
+        },
+        {
+          "name": "phase8_12_no_secret_leak_audit_result.md",
+          "size_bytes": 1132
+        },
+        {
+          "name": "phase8_13_post_credential_readiness_recheck_result.json",
+          "size_bytes": 677
+        },
+        {
+          "name": "phase8_13_post_credential_readiness_recheck_result.md",
+          "size_bytes": 686
+        },
+        {
+          "name": "phase8_14_rerun_authorization_renewal_result.json",
+          "size_bytes": 492
+        },
+        {
+          "name": "phase8_14_rerun_authorization_renewal_result.md",
+          "size_bytes": 525
+        },
+        {
+          "name": "phase8_15_rerun_handoff_report.json",
+          "size_bytes": 1249
+        },
+        {
+          "name": "phase8_15_rerun_handoff_report.md",
+          "size_bytes": 1069
+        },
+        {
+          "name": "phase8_16_credential_operator_confirmation_result.json",
+          "size_bytes": 543
+        },
+        {
+          "name": "phase8_16_credential_operator_confirmation_result.md",
+          "size_bytes": 843
+        },
+        {
+          "name": "phase8_16_credential_readiness_no_secret_leak_final_gate_report.json",
+          "size_bytes": 950
+        },
+        {
+          "name": "phase8_16_credential_readiness_no_secret_leak_final_gate_report.md",
+          "size_bytes": 804
+        },
+        {
+          "name": "phase8_16_credential_readiness_no_secret_leak_final_gate_result.json",
+          "size_bytes": 1998
+        },
+        {
+          "name": "phase8_17_env_credential_presence_smoke_check_result.json",
+          "size_bytes": 697
+        },
+        {
+          "name": "phase8_17_env_credential_presence_smoke_check_result.md",
+          "size_bytes": 765
+        },
+        {
+          "name": "phase8_17_single_controlled_draft_creation_human_approval_handoff_report.json",
+          "size_bytes": 762
+        },
+        {
+          "name": "phase8_17_single_controlled_draft_creation_human_approval_handoff_report.md",
+          "size_bytes": 787
+        },
+        {
+          "name": "phase8_17_single_controlled_draft_creation_human_approval_handoff_result.json",
+          "size_bytes": 1221
+        },
+        {
+          "name": "phase8_18_rerun_readiness_transition_report.json",
+          "size_bytes": 942
+        },
+        {
+          "name": "phase8_18_rerun_readiness_transition_report.md",
+          "size_bytes": 964
+        },
+        {
+          "name": "phase8_18_single_controlled_wordpress_draft_creation_execution_design_only_report.json",
+          "size_bytes": 601
+        },
+        {
+          "name": "phase8_18_single_controlled_wordpress_draft_creation_execution_design_only_report.md",
+          "size_bytes": 549
+        },
+        {
+          "name": "phase8_18_single_controlled_wordpress_draft_creation_execution_design_only_result.json",
+          "size_bytes": 1244
+        },
+        {
+          "name": "phase8_18_to_8_22_preparation_pack_overall_report.json",
+          "size_bytes": 569
+        },
+        {
+          "name": "phase8_18_to_8_22_preparation_pack_overall_report.md",
+          "size_bytes": 435
+        },
+        {
+          "name": "phase8_19_controlled_rerun_command_plan.json",
+          "size_bytes": 1023
+        },
+        {
+          "name": "phase8_19_controlled_rerun_command_plan.md",
+          "size_bytes": 1062
+        },
+        {
+          "name": "phase8_19_post_draft_creation_verification_design_only_report.json",
+          "size_bytes": 595
+        },
+        {
+          "name": "phase8_19_post_draft_creation_verification_design_only_report.md",
+          "size_bytes": 563
+        },
+        {
+          "name": "phase8_19_post_draft_creation_verification_design_only_result.json",
+          "size_bytes": 1238
+        },
+        {
+          "name": "phase8_1_explicit_human_approval_result.json",
+          "size_bytes": 1035
+        },
+        {
+          "name": "phase8_1_explicit_human_approval_result.md",
+          "size_bytes": 899
+        },
+        {
+          "name": "phase8_1_pre_publish_review_design_validation_result.json",
+          "size_bytes": 930
+        },
+        {
+          "name": "phase8_20_final_pre_rerun_handoff_report.json",
+          "size_bytes": 1337
+        },
+        {
+          "name": "phase8_20_final_pre_rerun_handoff_report.md",
+          "size_bytes": 1308
+        },
+        {
+          "name": "phase8_20_first_draft_creation_completion_report_design_only_report.json",
+          "size_bytes": 595
+        },
+        {
+          "name": "phase8_20_first_draft_creation_completion_report_design_only_report.md",
+          "size_bytes": 557
+        },
+        {
+          "name": "phase8_20_first_draft_creation_completion_report_design_only_result.json",
+          "size_bytes": 1238
+        },
+        {
+          "name": "phase8_21_manual_credential_completion_checklist_result.json",
+          "size_bytes": 532
+        },
+        {
+          "name": "phase8_21_manual_credential_completion_checklist_result.md",
+          "size_bytes": 681
+        },
+        {
+          "name": "phase8_21_post_credentials_ready_rehandoff_design_only_report.json",
+          "size_bytes": 591
+        },
+        {
+          "name": "phase8_21_post_credentials_ready_rehandoff_design_only_report.md",
+          "size_bytes": 558
+        },
+        {
+          "name": "phase8_21_post_credentials_ready_rehandoff_design_only_result.json",
+          "size_bytes": 1234
+        },
+        {
+          "name": "phase8_22_credential_ready_path_switch_result.json",
+          "size_bytes": 700
+        },
+        {
+          "name": "phase8_22_credential_ready_path_switch_result.md",
+          "size_bytes": 860
+        },
+        {
+          "name": "phase8_22_immediate_pre_execution_freeze_abort_gate_design_only_report.json",
+          "size_bytes": 583
+        },
+        {
+          "name": "phase8_22_immediate_pre_execution_freeze_abort_gate_design_only_report.md",
+          "size_bytes": 542
+        },
+        {
+          "name": "phase8_22_immediate_pre_execution_freeze_abort_gate_design_only_result.json",
+          "size_bytes": 1226
+        },
+        {
+          "name": "phase8_23_post_credentials_ready_credential_revalidation_design_only_report.json",
+          "size_bytes": 697
+        },
+        {
+          "name": "phase8_23_post_credentials_ready_credential_revalidation_design_only_report.md",
+          "size_bytes": 730
+        },
+        {
+          "name": "phase8_23_post_credentials_ready_credential_revalidation_design_only_result.json",
+          "size_bytes": 1795
+        },
+        {
+          "name": "phase8_23_pre_rerun_safety_snapshot.json",
+          "size_bytes": 1337
+        },
+        {
+          "name": "phase8_23_pre_rerun_safety_snapshot.md",
+          "size_bytes": 1188
+        },
+        {
+          "name": "phase8_23_to_8_25_post_credentials_ready_preparation_pack_overall_report.json",
+          "size_bytes": 1189
+        },
+        {
+          "name": "phase8_23_to_8_25_post_credentials_ready_preparation_pack_overall_report.md",
+          "size_bytes": 591
+        },
+        {
+          "name": "phase8_24_operator_go_no_go_result.json",
+          "size_bytes": 556
+        },
+        {
+          "name": "phase8_24_operator_go_no_go_result.md",
+          "size_bytes": 682
+        },
+        {
+          "name": "phase8_24_single_controlled_draft_creation_final_execution_authorization_design_only_report.json",
+          "size_bytes": 707
+        },
+        {
+          "name": "phase8_24_single_controlled_draft_creation_final_execution_authorization_design_only_report.md",
+          "size_bytes": 740
+        },
+        {
+          "name": "phase8_24_single_controlled_draft_creation_final_execution_authorization_design_only_result.json",
+          "size_bytes": 1805
+        },
+        {
+          "name": "phase8_25_final_manual_rerun_handoff_package.json",
+          "size_bytes": 1312
+        },
+        {
+          "name": "phase8_25_final_manual_rerun_handoff_package.md",
+          "size_bytes": 1258
+        },
+        {
+          "name": "phase8_25_one_shot_execution_lock_rollback_post_run_evidence_design_only_report.json",
+          "size_bytes": 701
+        },
+        {
+          "name": "phase8_25_one_shot_execution_lock_rollback_post_run_evidence_design_only_report.md",
+          "size_bytes": 730
+        },
+        {
+          "name": "phase8_25_one_shot_execution_lock_rollback_post_run_evidence_design_only_result.json",
+          "size_bytes": 1797
+        },
+        {
+          "name": "phase8_26_credential_provisioned_declaration_result.json",
+          "size_bytes": 972
+        },
+        {
+          "name": "phase8_26_credential_provisioned_declaration_result.md",
+          "size_bytes": 959
+        },
+        {
+          "name": "phase8_26_credential_readiness_recheck_orchestration_design_only_report.json",
+          "size_bytes": 822
+        },
+        {
+          "name": "phase8_26_credential_readiness_recheck_orchestration_design_only_report.md",
+          "size_bytes": 846
+        },
+        {
+          "name": "phase8_26_credential_readiness_recheck_orchestration_design_only_result.json",
+          "size_bytes": 1960
+        },
+        {
+          "name": "phase8_26_to_8_28_final_pre_execution_decision_pack_overall_report.json",
+          "size_bytes": 1378
+        },
+        {
+          "name": "phase8_26_to_8_28_final_pre_execution_decision_pack_overall_report.md",
+          "size_bytes": 655
+        },
+        {
+          "name": "phase8_27_credential_ready_reevaluation_sequence.json",
+          "size_bytes": 967
+        },
+        {
+          "name": "phase8_27_credential_ready_reevaluation_sequence.md",
+          "size_bytes": 913
+        },
+        {
+          "name": "phase8_27_final_no_go_go_decision_rule_design_only_report.json",
+          "size_bytes": 804
+        },
+        {
+          "name": "phase8_27_final_no_go_go_decision_rule_design_only_report.md",
+          "size_bytes": 828
+        },
+        {
+          "name": "phase8_27_final_no_go_go_decision_rule_design_only_result.json",
+          "size_bytes": 1942
+        },
+        {
+          "name": "phase8_28_final_pre_execution_handoff_evidence_design_only_report.json",
+          "size_bytes": 820
+        },
+        {
+          "name": "phase8_28_final_pre_execution_handoff_evidence_design_only_report.md",
+          "size_bytes": 844
+        },
+        {
+          "name": "phase8_28_final_pre_execution_handoff_evidence_design_only_result.json",
+          "size_bytes": 1958
+        },
+        {
+          "name": "phase8_28_manual_rerun_dry_command_checklist_result.json",
+          "size_bytes": 984
+        },
+        {
+          "name": "phase8_28_manual_rerun_dry_command_checklist_result.md",
+          "size_bytes": 1055
+        },
+        {
+          "name": "phase8_29_credential_readiness_recheck_no_secret_leak_gate_report.json",
+          "size_bytes": 777
+        },
+        {
+          "name": "phase8_29_credential_readiness_recheck_no_secret_leak_gate_report.md",
+          "size_bytes": 839
+        },
+        {
+          "name": "phase8_29_credential_readiness_recheck_no_secret_leak_gate_result.json",
+          "size_bytes": 2457
+        },
+        {
+          "name": "phase8_29_one_time_rerun_execution_guard_result.json",
+          "size_bytes": 1011
+        },
+        {
+          "name": "phase8_29_one_time_rerun_execution_guard_result.md",
+          "size_bytes": 954
+        },
+        {
+          "name": "phase8_29_to_8_31_pre_execution_approval_pack_overall_report.json",
+          "size_bytes": 1284
+        },
+        {
+          "name": "phase8_29_to_8_31_pre_execution_approval_pack_overall_report.md",
+          "size_bytes": 682
+        },
+        {
+          "name": "phase8_2_final_live_preflight_result.json",
+          "size_bytes": 1213
+        },
+        {
+          "name": "phase8_2_final_live_preflight_result.md",
+          "size_bytes": 1174
+        },
+        {
+          "name": "phase8_2_manual_pre_publish_review_result.json",
+          "size_bytes": 990
+        },
+        {
+          "name": "phase8_30_final_operator_rerun_handoff_report.json",
+          "size_bytes": 1365
+        },
+        {
+          "name": "phase8_30_final_operator_rerun_handoff_report.md",
+          "size_bytes": 1342
+        },
+        {
+          "name": "phase8_30_final_preflight_before_single_controlled_draft_creation_report.json",
+          "size_bytes": 782
+        },
+        {
+          "name": "phase8_30_final_preflight_before_single_controlled_draft_creation_report.md",
+          "size_bytes": 846
+        },
+        {
+          "name": "phase8_30_final_preflight_before_single_controlled_draft_creation_result.json",
+          "size_bytes": 2461
+        },
+        {
+          "name": "phase8_31_human_execution_approval_validation_handoff_report.json",
+          "size_bytes": 786
+        },
+        {
+          "name": "phase8_31_human_execution_approval_validation_handoff_report.md",
+          "size_bytes": 833
+        },
+        {
+          "name": "phase8_31_human_execution_approval_validation_handoff_result.json",
+          "size_bytes": 2504
+        },
+        {
+          "name": "phase8_31_secret_safe_credential_procedure_result.json",
+          "size_bytes": 633
+        },
+        {
+          "name": "phase8_31_secret_safe_credential_procedure_result.md",
+          "size_bytes": 788
+        },
+        {
+          "name": "phase8_32_final_execution_gate_decision_design_only_report.json",
+          "size_bytes": 850
+        },
+        {
+          "name": "phase8_32_final_execution_gate_decision_design_only_report.md",
+          "size_bytes": 886
+        },
+        {
+          "name": "phase8_32_final_execution_gate_decision_design_only_result.json",
+          "size_bytes": 2270
+        },
+        {
+          "name": "phase8_32_provisioned_declaration_overlay_result.json",
+          "size_bytes": 994
+        },
+        {
+          "name": "phase8_32_provisioned_declaration_overlay_result.md",
+          "size_bytes": 1181
+        },
+        {
+          "name": "phase8_32_to_8_34_one_shot_execution_gate_pack_overall_report.json",
+          "size_bytes": 1595
+        },
+        {
+          "name": "phase8_32_to_8_34_one_shot_execution_gate_pack_overall_report.md",
+          "size_bytes": 711
+        },
+        {
+          "name": "phase8_33_one_shot_lock_enforcement_abort_condition_design_only_report.json",
+          "size_bytes": 865
+        },
+        {
+          "name": "phase8_33_one_shot_lock_enforcement_abort_condition_design_only_report.md",
+          "size_bytes": 897
+        },
+        {
+          "name": "phase8_33_one_shot_lock_enforcement_abort_condition_design_only_result.json",
+          "size_bytes": 2243
+        },
+        {
+          "name": "phase8_33_post_provision_env_recheck_result.json",
+          "size_bytes": 1021
+        },
+        {
+          "name": "phase8_33_post_provision_env_recheck_result.md",
+          "size_bytes": 945
+        },
+        {
+          "name": "phase8_34_one_time_manual_rerun_lock.json",
+          "size_bytes": 1086
+        },
+        {
+          "name": "phase8_34_one_time_manual_rerun_lock.md",
+          "size_bytes": 992
+        },
+        {
+          "name": "phase8_34_post_run_evidence_contract_rollback_trigger_design_only_report.json",
+          "size_bytes": 874
+        },
+        {
+          "name": "phase8_34_post_run_evidence_contract_rollback_trigger_design_only_report.md",
+          "size_bytes": 906
+        },
+        {
+          "name": "phase8_34_post_run_evidence_contract_rollback_trigger_design_only_result.json",
+          "size_bytes": 2402
+        },
+        {
+          "name": "phase8_35_final_pre_execution_confirmation_report.json",
+          "size_bytes": 1084
+        },
+        {
+          "name": "phase8_35_final_pre_execution_confirmation_report.md",
+          "size_bytes": 1005
+        },
+        {
+          "name": "phase8_35_final_pre_execution_confirmation_result.json",
+          "size_bytes": 1867
+        },
+        {
+          "name": "phase8_35_final_ready_blocked_rerun_decision.json",
+          "size_bytes": 1353
+        },
+        {
+          "name": "phase8_35_final_ready_blocked_rerun_decision.md",
+          "size_bytes": 1294
+        },
+        {
+          "name": "phase8_35_pre_execution_final_confirmation_design_only_report.json",
+          "size_bytes": 878
+        },
+        {
+          "name": "phase8_35_pre_execution_final_confirmation_design_only_report.md",
+          "size_bytes": 825
+        },
+        {
+          "name": "phase8_35_pre_execution_final_confirmation_design_only_result.json",
+          "size_bytes": 1627
+        },
+        {
+          "name": "phase8_36_provisioned_overlay_rerun_result.json",
+          "size_bytes": 983
+        },
+        {
+          "name": "phase8_36_provisioned_overlay_rerun_result.md",
+          "size_bytes": 1134
+        },
+        {
+          "name": "phase8_37_credential_ready_revalidation_result.json",
+          "size_bytes": 1040
+        },
+        {
+          "name": "phase8_37_credential_ready_revalidation_result.md",
+          "size_bytes": 890
+        },
+        {
+          "name": "phase8_38_one_time_rerun_authorization_checkpoint_result.json",
+          "size_bytes": 879
+        },
+        {
+          "name": "phase8_38_one_time_rerun_authorization_checkpoint_result.md",
+          "size_bytes": 893
+        },
+        {
+          "name": "phase8_39_manual_rerun_command_bundle.json",
+          "size_bytes": 897
+        },
+        {
+          "name": "phase8_39_manual_rerun_command_bundle.md",
+          "size_bytes": 856
+        },
+        {
+          "name": "phase8_3_first_one_item_wordpress_draft_create_result.json",
+          "size_bytes": 1150
+        },
+        {
+          "name": "phase8_3_first_one_item_wordpress_draft_create_result.md",
+          "size_bytes": 1017
+        },
+        {
+          "name": "phase8_3_publish_gate_design_validation_result.json",
+          "size_bytes": 978
+        },
+        {
+          "name": "phase8_40_post_rerun_branch_decision.json",
+          "size_bytes": 1024
+        },
+        {
+          "name": "phase8_40_post_rerun_branch_decision.md",
+          "size_bytes": 855
+        },
+        {
+          "name": "phase8_4_post_execution_verification_result.json",
+          "size_bytes": 685
+        },
+        {
+          "name": "phase8_4_post_execution_verification_result.md",
+          "size_bytes": 703
+        },
+        {
+          "name": "phase8_4_publish_execution_protocol_validation_result.json",
+          "size_bytes": 1061
+        },
+        {
+          "name": "phase8_5_first_controlled_draft_completion_report.json",
+          "size_bytes": 1274
+        },
+        {
+          "name": "phase8_5_first_controlled_draft_completion_report.md",
+          "size_bytes": 1188
+        },
+        {
+          "name": "phase8_5_manual_publish_rehearsal_validation_result.json",
+          "size_bytes": 1108
+        },
+        {
+          "name": "phase8_6_pre_publish_final_readiness_validation_result.json",
+          "size_bytes": 1164
+        },
+        {
+          "name": "phase8_6_wordpress_credentials_readiness_result.json",
+          "size_bytes": 970
+        },
+        {
+          "name": "phase8_6_wordpress_credentials_readiness_result.md",
+          "size_bytes": 905
+        },
+        {
+          "name": "phase8_7_publish_go_no_go_decision_result.json",
+          "size_bytes": 992
+        },
+        {
+          "name": "phase8_7_rerun_approval_review_result.json",
+          "size_bytes": 1248
+        },
+        {
+          "name": "phase8_7_rerun_approval_review_result.md",
+          "size_bytes": 1114
+        },
+        {
+          "name": "phase8_8_final_credentialed_live_preflight_result.json",
+          "size_bytes": 1423
+        },
+        {
+          "name": "phase8_8_final_credentialed_live_preflight_result.md",
+          "size_bytes": 1362
+        },
+        {
+          "name": "phase8_8_keep_no_go_completion_report.json",
+          "size_bytes": 1536
+        },
+        {
+          "name": "phase8_8_keep_no_go_completion_report.md",
+          "size_bytes": 1141
+        },
+        {
+          "name": "phase8_9_first_one_item_wordpress_draft_create_rerun_result.json",
+          "size_bytes": 1047
+        },
+        {
+          "name": "phase8_9_first_one_item_wordpress_draft_create_rerun_result.md",
+          "size_bytes": 978
+        },
+        {
+          "name": "phase8_9_manual_publish_go_redecision_result.json",
+          "size_bytes": 997
+        },
+        {
+          "name": "phase9_1_publish_go_redecision_manual_publish_runbook.json",
+          "size_bytes": 2596
+        },
+        {
+          "name": "phase9_1_publish_go_redecision_manual_publish_runbook.md",
+          "size_bytes": 1783
+        },
+        {
+          "name": "phase9_1_publish_go_redecision_manual_publish_runbook_generation_result.json",
+          "size_bytes": 1048
+        },
+        {
+          "name": "phase9_1_publish_go_redecision_manual_publish_runbook_validation_result.json",
+          "size_bytes": 1927
+        },
+        {
+          "name": "phase9_2_publish_go_redecision_input_gate_result.json",
+          "size_bytes": 1028
+        },
+        {
+          "name": "phase9_3_keep_no_go_input_gate_completion_report.json",
+          "size_bytes": 2750
+        },
+        {
+          "name": "phase9_3_keep_no_go_input_gate_completion_report.md",
+          "size_bytes": 2265
+        },
+        {
+          "name": "phase9_4_publish_go_redecision_no_go_maintenance_overall_report.json",
+          "size_bytes": 3809
+        },
+        {
+          "name": "phase9_4_publish_go_redecision_no_go_maintenance_overall_report.md",
+          "size_bytes": 1372
+        },
+        {
+          "name": "phase9_5_publish_go_redecision_route_no_go_maintenance_closure_report.json",
+          "size_bytes": 3971
+        },
+        {
+          "name": "phase9_5_publish_go_redecision_route_no_go_maintenance_closure_report.md",
+          "size_bytes": 1597
+        },
+        {
+          "name": "phase_sec_0_completion_report.json",
+          "size_bytes": 1650
+        },
+        {
+          "name": "phase_sec_0_completion_report.md",
+          "size_bytes": 1626
+        },
+        {
+          "name": "security_api_permission_map_phase_s2_validation_result.json",
+          "size_bytes": 442
+        },
+        {
+          "name": "security_api_permission_map_phase_s2_validation_result.md",
+          "size_bytes": 373
+        },
+        {
+          "name": "security_baseline_phase_s0_validation_result.json",
+          "size_bytes": 446
+        },
+        {
+          "name": "security_baseline_phase_s0_validation_result.md",
+          "size_bytes": 351
+        },
+        {
+          "name": "security_block_ai_isolation_design_phase_s4_validation_result.json",
+          "size_bytes": 1077
+        },
+        {
+          "name": "security_block_ai_isolation_design_phase_s4_validation_result.md",
+          "size_bytes": 976
+        },
+        {
+          "name": "security_cross_phase_audit_view_phase_s3_2_result.json",
+          "size_bytes": 4591
+        },
+        {
+          "name": "security_cross_phase_audit_view_phase_s3_2_result.md",
+          "size_bytes": 755
+        },
+        {
+          "name": "security_emergency_revoke_phase_s2_validation_result.json",
+          "size_bytes": 438
+        },
+        {
+          "name": "security_emergency_revoke_phase_s2_validation_result.md",
+          "size_bytes": 369
+        },
+        {
+          "name": "security_env_access_observer_phase_s3_validation_result.json",
+          "size_bytes": 794
+        },
+        {
+          "name": "security_env_access_observer_phase_s3_validation_result.md",
+          "size_bytes": 753
+        },
+        {
+          "name": "security_environment_isolation_phase_s2_validation_result.json",
+          "size_bytes": 445
+        },
+        {
+          "name": "security_environment_isolation_phase_s2_validation_result.md",
+          "size_bytes": 376
+        },
+        {
+          "name": "security_external_api_intent_observer_phase_s3_validation_result.json",
+          "size_bytes": 803
+        },
+        {
+          "name": "security_external_api_intent_observer_phase_s3_validation_result.md",
+          "size_bytes": 771
+        },
+        {
+          "name": "security_final_isolation_design_gate_phase_s4_4_result.json",
+          "size_bytes": 2332
+        },
+        {
+          "name": "security_final_isolation_design_gate_phase_s4_4_result.md",
+          "size_bytes": 2126
+        },
+        {
+          "name": "security_isolation_audit_design_review_phase_s4_3_result.json",
+          "size_bytes": 2050
+        },
+        {
+          "name": "security_isolation_audit_design_review_phase_s4_3_result.md",
+          "size_bytes": 574
+        },
+        {
+          "name": "security_isolation_event_simulation_phase_s4_2_result.json",
+          "size_bytes": 4778
+        },
+        {
+          "name": "security_isolation_event_simulation_phase_s4_2_result.md",
+          "size_bytes": 1939
+        },
+        {
+          "name": "security_isolation_policy_dry_run_phase_s4_1_result.json",
+          "size_bytes": 4098
+        },
+        {
+          "name": "security_isolation_policy_dry_run_phase_s4_1_result.md",
+          "size_bytes": 1686
+        },
+        {
+          "name": "security_observability_event_replay_phase_s3_1_result.json",
+          "size_bytes": 2549
+        },
+        {
+          "name": "security_observability_event_replay_phase_s3_1_result.md",
+          "size_bytes": 1563
+        },
+        {
+          "name": "security_observability_event_replay_phase_s3_1_validation_result.json",
+          "size_bytes": 982
+        },
+        {
+          "name": "security_observability_event_replay_phase_s3_1_validation_result.md",
+          "size_bytes": 917
+        },
+        {
+          "name": "security_observability_policy_phase_s3_validation_result.json",
+          "size_bytes": 795
+        },
+        {
+          "name": "security_observability_policy_phase_s3_validation_result.md",
+          "size_bytes": 755
+        },
+        {
+          "name": "security_phase_s2_overall_result.json",
+          "size_bytes": 1199
+        },
+        {
+          "name": "security_phase_s2_overall_result.md",
+          "size_bytes": 826
+        },
+        {
+          "name": "security_phase_s3_1_overall_result.json",
+          "size_bytes": 986
+        },
+        {
+          "name": "security_phase_s3_1_overall_result.md",
+          "size_bytes": 1502
+        },
+        {
+          "name": "security_phase_s3_overall_result.json",
+          "size_bytes": 2143
+        },
+        {
+          "name": "security_phase_s3_overall_result.md",
+          "size_bytes": 1526
+        },
+        {
+          "name": "security_phase_s4_1_overall_result.json",
+          "size_bytes": 945
+        },
+        {
+          "name": "security_phase_s4_1_overall_result.md",
+          "size_bytes": 560
+        },
+        {
+          "name": "security_phase_s4_2_overall_result.json",
+          "size_bytes": 1236
+        },
+        {
+          "name": "security_phase_s4_2_overall_result.md",
+          "size_bytes": 1055
+        },
+        {
+          "name": "security_phase_s4_3_overall_result.json",
+          "size_bytes": 857
+        },
+        {
+          "name": "security_phase_s4_3_overall_result.md",
+          "size_bytes": 738
+        },
+        {
+          "name": "security_phase_s4_4_overall_result.json",
+          "size_bytes": 1002
+        },
+        {
+          "name": "security_phase_s4_4_overall_result.md",
+          "size_bytes": 871
+        },
+        {
+          "name": "security_phase_s4_overall_completion_report.json",
+          "size_bytes": 3172
+        },
+        {
+          "name": "security_phase_s4_overall_completion_report.md",
+          "size_bytes": 2722
+        },
+        {
+          "name": "security_phase_s4_overall_result.json",
+          "size_bytes": 504
+        },
+        {
+          "name": "security_phase_s4_overall_result.md",
+          "size_bytes": 419
+        },
+        {
+          "name": "security_phase_sec_0_validation_result.json",
+          "size_bytes": 524
+        },
+        {
+          "name": "security_process_anomaly_observer_phase_s3_validation_result.json",
+          "size_bytes": 799
+        },
+        {
+          "name": "security_process_anomaly_observer_phase_s3_validation_result.md",
+          "size_bytes": 763
+        },
+        {
+          "name": "security_read_only_policy_phase_s2_validation_result.json",
+          "size_bytes": 442
+        },
+        {
+          "name": "security_read_only_policy_phase_s2_validation_result.md",
+          "size_bytes": 373
+        },
+        {
+          "name": "security_scheduler_anomaly_detector_phase_s3_validation_result.json",
+          "size_bytes": 801
+        },
+        {
+          "name": "security_scheduler_anomaly_detector_phase_s3_validation_result.md",
+          "size_bytes": 767
+        },
+        {
+          "name": "security_wordpress_write_observer_phase_s3_validation_result.json",
+          "size_bytes": 799
+        },
+        {
+          "name": "security_wordpress_write_observer_phase_s3_validation_result.md",
+          "size_bytes": 763
+        },
+        {
+          "name": "slack_approval_action_validation_result.json",
+          "size_bytes": 582
+        },
+        {
+          "name": "validation_result.example.json",
+          "size_bytes": 991
+        },
+        {
+          "name": "validation_result.json",
+          "size_bytes": 1773
+        },
+        {
+          "name": "vps_connection_failure_classification_result.json",
+          "size_bytes": 452
+        },
+        {
+          "name": "vps_connection_stability_evaluation_result.json",
+          "size_bytes": 532
+        },
+        {
+          "name": "vps_connectivity_check.example.json",
+          "size_bytes": 588
+        },
+        {
+          "name": "vps_stability_samples.example.json",
+          "size_bytes": 2023
+        },
+        {
+          "name": "wordpress_draft_candidate_result.json",
+          "size_bytes": 661
+        },
+        {
+          "name": "wordpress_draft_candidate_review_result.json",
+          "size_bytes": 515
+        },
+        {
+          "name": "wordpress_draft_candidate_validation_result.json",
+          "size_bytes": 866
+        }
+      ],
+      "logrotate_config_found": true,
+      "found_paths": [
+        "/etc/logrotate.d"
+      ],
+      "status": "PASS"
+    }
+  ],
+  "warns": [],
+  "fails": []
+}

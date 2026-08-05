@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M9-FIX1",
+  "policy_id": "DMM_ARTICLE_LINK_INJECTION_HTML_ENTITY_VALIDATOR_FIX_POLICY_V1",
+  "operation_mode": "NEW_ONE_SHOT_AUTHORIZATION_AND_LOCAL_ARTICLE_INJECTION",
+  "content_item_id": "new-release-comic-20260703-001",
+  "failure_cause": {
+    "historical_phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M9",
+    "historical_error_code": "POSTIMAGE_FINAL_URL_MISSING",
+    "diagnosis": "HTML_ENTITY_ESCAPING_FALSE_NEGATIVE",
+    "historical_authorization_reuse_allowed": false
+  },
+  "article_preimage": {
+    "path": "exchange/content/new_release/fresh/new-release-comic-20260703-001.article.json",
+    "required_sha256": "849a37519c6af70d2212ec01d5cddef5793bfa811e97ca9f248ce099a0350bf4"
+  },
+  "validator_fix": {
+    "raw_url_substring_validation_allowed": false,
+    "postimage_html_reparse_required": true,
+    "href_attribute_entity_decode_required": true,
+    "decoded_href_exact_secret_link_match_required": true,
+    "url_structure_validation_required": true
+  },
+  "new_authorization_contract": {
+    "authorization_id": "DMM_ARTICLE_LINK_INJECTION_FIX1_ONE_SHOT_AUTHORIZATION_V1",
+    "single_use": true,
+    "initially_unconsumed": true,
+    "reuse_allowed": false,
+    "automatic_retry_allowed": false,
+    "automatic_reissue_allowed": false
+  },
+  "target_anchor_contract": {
+    "match_count": 1,
+    "tag": "a",
+    "class_tokens_exact": [
+      "ls-store-btn",
+      "ls-store-dmm"
+    ],
+    "text": "DMMブックスで確認",
+    "target": "_blank",
+    "rel_tokens_required": [
+      "nofollow",
+      "sponsored",
+      "noopener"
+    ],
+    "disabled_class_allowed": false,
+    "aria_disabled_allowed": false
+  },
+  "store_navigation_contract": {
+    "render_mode": "PARTIAL_ACTIVE_STORE_LINKS",
+    "anchor_elements_included": true,
+    "href_attributes_included": true,
+    "final_affiliate_urls_included": true,
+    "dmm_url_included": true
+  },
+  "execution_boundary": {
+    "new_authorization_creation_allowed": true,
+    "new_authorization_consumption_allowed": true,
+    "article_atomic_replacement_allowed": true,
+    "network_connection_allowed": false,
+    "dns_resolution_allowed": false,
+    "http_request_allowed": false,
+    "dmm_recheck_allowed": false,
+    "payload_generation_allowed": false,
+    "category_id_injection_allowed": false,
+    "wordpress_access_allowed": false,
+    "wordpress_write_allowed": false,
+    "wordpress_publish_allowed": false,
+    "x_post_allowed": false,
+    "production_status": "NO_GO"
+  }
+}

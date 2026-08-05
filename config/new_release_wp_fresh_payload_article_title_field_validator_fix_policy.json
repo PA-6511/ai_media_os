@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M11-FIX1",
+  "policy_id": "FRESH_PAYLOAD_ARTICLE_TITLE_FIELD_VALIDATOR_FIX_POLICY_V1",
+  "operation_mode": "TITLE_FIELD_VALIDATOR_FIX_AND_ONE_SHOT_OFFLINE_PAYLOAD_GENERATION",
+  "content_item_id": "new-release-comic-20260703-001",
+  "diagnosis": {
+    "previous_error_code": "ARTICLE_TITLE_MISMATCH",
+    "cause": "ARTICLE_TITLE_STORED_IN_ARTICLE_TITLE_NOT_TITLE",
+    "formal_title_field": "article_title",
+    "root_title_key_must_be_absent": true
+  },
+  "article_binding": {
+    "path": "exchange/content/new_release/fresh/new-release-comic-20260703-001.article.json",
+    "required_sha256": "de2739c8ae1aa4a50973b983964b05844086a2187b9ef337383ad6fa7123697d",
+    "required_article_title": "ダークギャザリング 第20巻｜配信開始"
+  },
+  "source_authorization": {
+    "authorization_id": "FRESH_PAYLOAD_GENERATION_ONE_SHOT_AUTHORIZATION_V1",
+    "required_digest_sha256": "fed0e3c217c654f5e9803f750fd1d07269bff3eed4917a58638e61c9b571bc5b",
+    "single_use": true,
+    "must_be_unconsumed": true,
+    "reuse_allowed": false,
+    "automatic_retry_allowed": false,
+    "automatic_reissue_allowed": false
+  },
+  "payload_contract": {
+    "title_source_field": "article_title",
+    "title_transformation_allowed": false,
+    "post_status": "draft",
+    "status": "draft",
+    "publish": false,
+    "template_id": "POST185_STANDARD_TEMPLATE_V1_FIXED",
+    "category_mapping_id": "COMIC_NEW_RELEASE_LATEST_VOLUME_TO_WP_CATEGORY_10",
+    "category_id": 10,
+    "categories": [10],
+    "category_name": "最新巻",
+    "content_html_exact_article_match_required": true,
+    "output_mode": "0600"
+  },
+  "execution_boundary": {
+    "authorization_consumption_allowed": true,
+    "offline_payload_generation_allowed": true,
+    "article_modification_allowed": false,
+    "network_connection_allowed": false,
+    "dmm_recheck_allowed": false,
+    "wordpress_access_allowed": false,
+    "wordpress_write_allowed": false,
+    "wordpress_publish_allowed": false,
+    "x_post_allowed": false,
+    "production_status": "NO_GO"
+  }
+}

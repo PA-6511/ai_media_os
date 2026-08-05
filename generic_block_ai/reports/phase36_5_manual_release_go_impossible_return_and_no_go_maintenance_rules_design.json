@@ -1,0 +1,98 @@
+{
+  "phase_id": "36-5",
+  "phase_name": "Manual Release GO Impossible Return and NO-GO Maintenance Rules Design",
+  "phase_japanese_name": "manual_release_go 不可時の差し戻し・NO_GO維持ルール設計",
+  "purpose": "Design return and NO_GO maintenance rules when manual_release_go cannot be granted.",
+  "layer": "manual_release_go_actual_measurement_layer",
+  "design_category": "reports_only",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "operation_transition_go_authorization": "NOT_GRANTED",
+    "production_reflection_go_authorization": "NOT_GRANTED",
+    "freeze_release_go_authorization": "NOT_GRANTED",
+    "execution_start_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "phase_36_5_scope": {
+    "scope_1_input_contract": {
+      "scope_id": "INPUT_CONTRACT",
+      "required_inputs": {
+        "phase36_4_evidence_lock_status": "LOCKED | UNLOCK_FAILED"
+      }
+    },
+    "scope_2_return_and_no_go_maintenance_rules": {
+      "scope_id": "RETURN_AND_NO_GO_MAINTENANCE_RULES",
+      "rules": {
+        "rule_P36N1": "If manual_release_status from Phase 36-3 is NO_GO, do not proceed to Phase 37",
+        "rule_P36N2": "Identify root causes of NO_GO judgment",
+        "rule_P36N3": "Return evidence to requester with detailed explanation",
+        "rule_P36N4": "Establish remediation plan for identified NO_GO causes",
+        "rule_P36N5": "Maintain NO_GO state and keep manual_release_go_authorization and actual_process_start_go_authorization as NOT_GRANTED"
+      }
+    },
+    "scope_3_report_structure": {
+      "scope_id": "REPORT_STRUCTURE",
+      "sections": {
+        "section_1_header": {
+          "report_id": "PHASE36_5_MANUAL_RELEASE_NO_GO_MAINTENANCE_<UTC_TIMESTAMP>",
+          "report_type": "manual_release_go_impossible_return_and_no_go_maintenance",
+          "generated_at_utc": "RFC3339",
+          "generated_by": "authority_identifier"
+        },
+        "section_2_judgment_status": {
+          "manual_release_status_from_P36_3": "NO_GO | GO_CANDIDATE"
+        },
+        "section_3_no_go_case_handling": {
+          "no_go_triggered": "YES | NO",
+          "root_cause_identified": "YES | NO",
+          "remediation_plan_established": "YES | NO"
+        },
+        "section_4_state_maintenance": {
+          "no_go_state_maintained": "YES | NO",
+          "production_status": "NO_GO",
+          "operation_transition_go_authorization": "NOT_GRANTED",
+          "production_reflection_go_authorization": "NOT_GRANTED",
+          "freeze_release_go_authorization": "NOT_GRANTED",
+          "execution_start_go_authorization": "NOT_GRANTED",
+          "actual_process_start_go_authorization": "NOT_GRANTED",
+          "manual_release_go_authorization": "NOT_GRANTED"
+        }
+      }
+    }
+  },
+  "phase_36_5_governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution",
+      "phase_37_entry",
+      "manual_release_execution",
+      "actual_process_start_execution"
+    ],
+    "state_invariants": {
+      "app_implementation_status": "NO_GO",
+      "tests_implementation_status": "NO_GO",
+      "production_status": "NO_GO",
+      "operation_transition_go_authorization": "NOT_GRANTED",
+      "production_reflection_go_authorization": "NOT_GRANTED",
+      "freeze_release_go_authorization": "NOT_GRANTED",
+      "execution_start_go_authorization": "NOT_GRANTED",
+      "actual_process_start_go_authorization": "NOT_GRANTED",
+      "manual_release_go_authorization": "NOT_GRANTED",
+      "changed_area": "reports only"
+    }
+  }
+}

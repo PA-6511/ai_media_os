@@ -1,0 +1,22 @@
+{
+  "phase": "PR_WARN_BACKFILL_PHASE1T_FINAL_APPROVAL_TRUE_CREATION_PREP",
+  "file_type": "FINAL_APPROVAL_TRUE_ACTIVE_EXAMPLE_ONLY",
+  "created_for_execution": false,
+  "actual_true_file_created": false,
+  "target_post_id": 101,
+  "target_title": "呪術廻戦は何巻まで出てる？最新巻・関連情報まとめ",
+  "approved": false,
+  "wordpress_live_write_allowed": false,
+  "live_execution_allowed": false,
+  "wordpress_write_allowed": false,
+  "max_live_updates": 1,
+  "allowed_changed_fields": [
+    "content"
+  ],
+  "required_pre_live_snapshot_path": "exchange/logs/pr_warn_backfill_phase1n_reaction_rerun4_101_pre_live_resnapshot.json",
+  "required_pre_live_snapshot_result_path": "exchange/logs/pr_warn_backfill_phase1n_reaction_rerun4_101_pre_live_resnapshot_result.json",
+  "pre_live_snapshot_valid_until": "2026-06-20T16:31:23.487030+00:00",
+  "source_active_approval_path": "exchange/human_review/pr_warn_backfill_phase1o_101_final_live_approval.active.json",
+  "source_phase1s_result_path": "exchange/logs/pr_warn_backfill_phase1s_reaction_101_final_approval_true_prep_result.json",
+  "note": "This is an example/specification file only. It is not an executable approval and must not be used to perform WordPress write."
+}

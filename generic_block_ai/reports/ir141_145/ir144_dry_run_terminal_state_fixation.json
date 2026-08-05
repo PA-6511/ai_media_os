@@ -1,0 +1,40 @@
+{
+  "schema_version": "ir144_dry_run_terminal_state_fixation_v1",
+  "phase": "IR144",
+  "generated_at": "2026-05-25T12:52:55.194804+00:00",
+  "source_task_id": "ir141_145_batch",
+  "dry_run_terminal_state_fixation_decision": "PROHIBITION_CONTINUITY_FINALIZED_DRY_RUN_ONLY",
+  "gate_action": "Dry-run terminal state fixation confirmed.",
+  "validation_result": "PASS",
+  "validation_failed_checks": [],
+  "validation_warnings": [],
+  "dry_run_terminal_state_fixation": {
+    "fixation_id": "ir144_fixation_ir141_145_batch_20260525T125255Z",
+    "generated_at": "2026-05-25T12:52:55.194800+00:00",
+    "source_task_id": "ir141_145_batch",
+    "decision": "PROHIBITION_CONTINUITY_FINALIZED_DRY_RUN_ONLY",
+    "unlock_prohibited": true,
+    "terminal_state_fixed": true,
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "fixation_hash": "e72ee9f2a84cdb8e5432557f8ffa4ad85dac0b5b42457854326236620cfdb86c",
+  "safety_gate_snapshot": {
+    "dry_run": "maintained",
+    "OBSERVE": "maintained",
+    "submission_execution_blocked": true,
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "network_transmission_executed": false,
+    "production_release": false,
+    "GitHub_push": "未実行"
+  }
+}

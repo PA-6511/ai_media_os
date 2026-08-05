@@ -1,0 +1,47 @@
+{
+  "phase": "Implementation Restart Phase 43",
+  "status": "COMPLETED",
+  "generated_at": "2026-05-24T02:57:19.886572+00:00",
+  "schema_version": "ir43_destination_evidence_bundle_verifier_v1",
+  "test_result": {
+    "focused_tests": {
+      "passed": 7,
+      "failed": 0
+    },
+    "adjacent_ir41_ir43": {
+      "passed": 13,
+      "failed": 0
+    },
+    "scoped_regression": {
+      "passed": 314,
+      "failed": 0
+    }
+  },
+  "overall_approval_decision": "APPROVE_DRY_RUN",
+  "overall_verifier_action": "Destination evidence bundles verified for manifest, summary, recomputation, and completeness.",
+  "release_candidate_id": "rc_20260523T155148Z_ir26_live_trial_b940393b490b",
+  "final_submission_decision": "READY_FOR_SUBMISSION_SUMMARY",
+  "validation_result": "PASS",
+  "validation_failed_check_count": 0,
+  "validation_warning_count": 0,
+  "summary": {
+    "destination_count": 3,
+    "verification_pass_count": 3,
+    "verification_fail_count": 0,
+    "hash_manifest_verified_count": 3,
+    "summary_verified_count": 3,
+    "completeness_verified_count": 3
+  },
+  "artifacts": {
+    "runbook_report": "generic_block_ai/reports/ir43_destination_evidence_bundle_verifier_report_ir43_live_trial.json",
+    "completion_report": "reports/implementation_restart_phase43_completion_report.json"
+  },
+  "safeguards": {
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "network_transmission_executed": false,
+    "production_release": false
+  }
+}

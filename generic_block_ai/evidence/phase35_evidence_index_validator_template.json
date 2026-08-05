@@ -1,0 +1,51 @@
+{
+  "_meta": {
+    "template_version": "1.0",
+    "phase": "3.5-13",
+    "purpose": "evidence_index_validator_template",
+    "created_at": "2026-05-12",
+    "status": "TEMPLATE_ONLY",
+    "note": "このファイルは検証ルール定義の雛形です。実際のexport・外部転送・自動収集・証跡削除は一切行いません。"
+  },
+  "target_template": "evidence/phase35_evidence_index_template.json",
+  "required_fields": [
+    {"path": "_meta.status",                            "expected_type": "string"},
+    {"path": "index_metadata.block_id",                 "expected_type": "string"},
+    {"path": "index_metadata.mode",                     "expected_type": "string",  "allowed_values": ["dry_run"]},
+    {"path": "index_metadata.operation_mode",           "expected_type": "string",  "allowed_values": ["OBSERVE"]},
+    {"path": "index_metadata.auto_export_allowed",      "expected_type": "boolean", "must_be": false},
+    {"path": "index_metadata.requires_human_approval",  "expected_type": "boolean", "must_be": true},
+    {"path": "export_policy.auto_export",               "expected_type": "boolean", "must_be": false},
+    {"path": "export_policy.allowed_destinations",      "expected_type": "array",   "must_be_empty": true}
+  ],
+  "forbidden_values": [
+    {"path": "index_metadata.mode",           "forbidden": ["live", "production", "execute"]},
+    {"path": "index_metadata.operation_mode", "forbidden": ["EXECUTE", "WRITE", "PUBLISH"]},
+    {"path": "export_policy.forbidden_actions", "must_contain": [
+      "auto_upload_to_external",
+      "overwrite_existing_evidence",
+      "delete_evidence",
+      "export_without_approval"
+    ]},
+    {"path": "entries[*].status", "forbidden": ["deleted", "overwritten"]}
+  ],
+  "safety_checks": [
+    "mode が dry_run 以外は REJECT",
+    "operation_mode が OBSERVE 以外は REJECT",
+    "auto_export_allowed が true は REJECT",
+    "requires_human_approval が false は REJECT",
+    "auto_export が true は REJECT",
+    "allowed_destinations が空でない場合は WARN（外部送信先の事前承認が必要）",
+    "forbidden_actions に必須4項目が揃っていない場合は WARN",
+    "entries に status=deleted / overwritten が存在する場合は FAIL"
+  ],
+  "validation_result_schema": {
+    "validation_id": "__FILL_IN__",
+    "target_file": "__FILL_IN__",
+    "validated_at": "__FILL_IN__",
+    "result": "PASS | WARN | FAIL",
+    "failed_checks": [],
+    "warnings": [],
+    "validated_by": "__FILL_IN__"
+  }
+}

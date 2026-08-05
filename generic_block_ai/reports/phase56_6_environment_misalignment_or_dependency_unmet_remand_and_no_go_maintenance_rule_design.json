@@ -1,0 +1,38 @@
+{
+  "_meta": {
+    "phase": "56-6",
+    "phase_name": "最終解除候補の環境整合・依存関係確認層",
+    "layer": "差し戻し/NO_GO維持設計層 (remand/NO_GO maintenance design layer)",
+    "title": "環境不整合・依存未充足時の差し戻し/NO_GO維持ルール設計",
+    "created": "2026-05-15",
+    "author": "governance-framework",
+    "status": "PASS_DESIGN_ONLY",
+    "reports_only": true
+  },
+  "scope": "Phase 56-2/56-3 で設計された環境整合確認・依存関係確認において，不整合または未充足が検出された場合に，差し戻し・NO_GO維持を厳格に行うルールを設計層で定義する。内容：(1) 環境不整合・依存未充足の検出条件，(2) 差し戻し手順・記録，(3) NO_GO 維持と NOT_GRANTED 維持の強制，(4) 再設計・再確認プロセスの明示。",
+  "governance": {
+    "phase56_1_to_56_3_status": "PASS_DESIGN_ONLY",
+    "phase56_environment_dependency_alignment_layer_status": "PASS_DESIGN_ONLY",
+    "production_status": "NO_GO",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "execution_start": "NO_GO",
+    "changed_area": "reports only"
+  },
+  "report": {
+    "description": "Phase 56-6 では，環境整合確認または依存関係確認で不整合・未充足が検出された場合に，差し戻しと NO_GO 維持を強制するルールを設計層で定義する。これは許可発行ではなく，安全側へ戻すための統制設計であり，reports-only で実施される。",
+    "invariants": [
+      "NO_GO 維持：不整合・未充足検出時は production_status = 'NO_GO' を強制維持",
+      "実処理開始 NO_GO 維持：execution_start = 'NO_GO' を強制維持",
+      "NOT_GRANTED 維持：manual_release_go / actual_process_start_go は NOT_GRANTED を維持",
+      "差し戻し手順明示：不整合・未充足時は必ず差し戻し・再設計・再確認を実施",
+      "reports only：全差し戻し/NO_GO維持ルールは設計層の報告書形式で実施"
+    ],
+    "actions": [],
+    "notes": [
+      "Phase 56-6 は設計工程であり，解除許可工程ではない。",
+      "NO_GO / NOT_GRANTED 維持は絶対条件。",
+      "実処理開始許可は含まれない。"
+    ]
+  }
+}

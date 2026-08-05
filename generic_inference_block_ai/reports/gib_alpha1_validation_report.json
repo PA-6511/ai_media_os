@@ -1,0 +1,104 @@
+{
+  "schema_version": "gib.alpha1.validation_report.v0.1",
+  "block_id": "GIB",
+  "alpha_version": "alpha1",
+  "phase": "GIB-alpha0-design-only",
+  "final_status": "PASS_DESIGN_ONLY_ALPHA1_SCHEMA_STRICT",
+  "production_status": "NO_GO",
+  "execution_allowed": false,
+  "external_network_allowed": false,
+  "credential_access_allowed": false,
+  "wordpress_write_allowed": false,
+  "systemd_operation_allowed": false,
+  "model_runtime_enabled": false,
+  "real_llm_call_allowed": false,
+  "schema_coverage": {
+    "task_count": 7,
+    "input_schemas": 7,
+    "output_schemas": 7,
+    "missing_input": [],
+    "missing_output": [],
+    "coverage_complete": true
+  },
+  "all_samples_schema_valid": true,
+  "sample_request_count": 7,
+  "sample_results": [
+    {
+      "index": 0,
+      "task_type": "phase_log_summary",
+      "status": "DRY_RUN_STUB_OUTPUT",
+      "blocked": false,
+      "schema_valid": true,
+      "input_schema_issues": [],
+      "output_schema_issues": [],
+      "execution_effect": "none",
+      "model_runtime": "stub_no_model_loaded"
+    },
+    {
+      "index": 1,
+      "task_type": "validator_result_explain",
+      "status": "DRY_RUN_STUB_OUTPUT",
+      "blocked": false,
+      "schema_valid": true,
+      "input_schema_issues": [],
+      "output_schema_issues": [],
+      "execution_effect": "none",
+      "model_runtime": "stub_no_model_loaded"
+    },
+    {
+      "index": 2,
+      "task_type": "product_summary",
+      "status": "DRY_RUN_STUB_OUTPUT",
+      "blocked": false,
+      "schema_valid": true,
+      "input_schema_issues": [],
+      "output_schema_issues": [],
+      "execution_effect": "none",
+      "model_runtime": "stub_no_model_loaded"
+    },
+    {
+      "index": 3,
+      "task_type": "social_post_draft",
+      "status": "DRY_RUN_STUB_OUTPUT",
+      "blocked": false,
+      "schema_valid": true,
+      "input_schema_issues": [],
+      "output_schema_issues": [],
+      "execution_effect": "none",
+      "model_runtime": "stub_no_model_loaded"
+    },
+    {
+      "index": 4,
+      "task_type": "article_outline",
+      "status": "DRY_RUN_STUB_OUTPUT",
+      "blocked": false,
+      "schema_valid": true,
+      "input_schema_issues": [],
+      "output_schema_issues": [],
+      "execution_effect": "none",
+      "model_runtime": "stub_no_model_loaded"
+    },
+    {
+      "index": 5,
+      "task_type": "compliance_classify",
+      "status": "DRY_RUN_STUB_OUTPUT",
+      "blocked": false,
+      "schema_valid": true,
+      "input_schema_issues": [],
+      "output_schema_issues": [],
+      "execution_effect": "none",
+      "model_runtime": "stub_no_model_loaded"
+    },
+    {
+      "index": 6,
+      "task_type": "security_log_explain",
+      "status": "DRY_RUN_STUB_OUTPUT",
+      "blocked": false,
+      "schema_valid": true,
+      "input_schema_issues": [],
+      "output_schema_issues": [],
+      "execution_effect": "none",
+      "model_runtime": "stub_no_model_loaded"
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "ir28_release_candidate_trace_bundle_v1",
+  "phase": "IR28",
+  "generated_at": "2026-05-23T16:03:15.500989+00:00",
+  "source_task_id": "ir28_live_trial",
+  "release_candidate_id": "rc_20260523T155148Z_ir26_live_trial_b940393b490b",
+  "validation_result": "PASS",
+  "included_artifacts": [
+    "generic_block_ai/reports/implementation_restart_phase20_completion_report.json",
+    "generic_block_ai/reports/implementation_restart_phase21_completion_report.json",
+    "generic_block_ai/reports/implementation_restart_phase22_completion_report.json",
+    "generic_block_ai/reports/implementation_restart_phase23_completion_report.json",
+    "generic_block_ai/reports/implementation_restart_phase24_completion_report.json",
+    "generic_block_ai/reports/implementation_restart_phase25_completion_report.json",
+    "generic_block_ai/reports/implementation_restart_phase26_completion_report.json",
+    "generic_block_ai/reports/implementation_restart_phase27_completion_report.json",
+    "generic_block_ai/reports/ir20_cross_phase_evidence_bundle_ir20_live_trial.json",
+    "generic_block_ai/reports/ir21_evidence_pack_verifier_report_ir21_live_trial.json",
+    "generic_block_ai/reports/ir22_submission_profile_report_audit_submission_ir22_live_audit.json",
+    "generic_block_ai/reports/ir22_submission_profile_report_policy_focus_ir22_live_policy.json",
+    "generic_block_ai/reports/ir22_submission_profile_report_review_minimal_ir22_live_review.json",
+    "generic_block_ai/reports/ir23_evidence_pack_lifecycle_audit_report_ir23_live_trial.json",
+    "generic_block_ai/reports/ir23_evidence_pack_lifecycle_audit_report_ir23_resubmission_trial.json",
+    "generic_block_ai/reports/ir24_submission_version_diff_audit_report_ir24_live_trial.json",
+    "generic_block_ai/reports/ir25_submission_change_approval_gate_report_ir25_live_trial.json",
+    "generic_block_ai/reports/ir26_release_candidate_marker_ir26_live_trial/README.md",
+    "generic_block_ai/reports/ir26_release_candidate_marker_ir26_live_trial/approval_snapshot.json",
+    "generic_block_ai/reports/ir26_release_candidate_marker_ir26_live_trial/immutable_marker.json",
+    "generic_block_ai/reports/ir26_submission_release_candidate_marker_report_ir26_live_trial.json",
+    "generic_block_ai/reports/ir27_release_candidate_integrity_verifier_report_ir27_live_trial.json"
+  ],
+  "missing_required_artifacts": [],
+  "counts": {
+    "included": 22,
+    "missing_required": 0
+  },
+  "trace_summary": {
+    "ir23_reports": 2,
+    "ir22_profile_reports": 6,
+    "phase_completion_reports": 8
+  },
+  "safeguards": {
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "production_release": false
+  }
+}

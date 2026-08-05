@@ -1,0 +1,125 @@
+{
+  "phase_id": "PHASE_S4_1",
+  "phase_name": "isolation_policy_dry_run_validation",
+  "phase_status": "DESIGN_ONLY",
+  "replay_result": "PASS",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "human_approval_required": true,
+  "isolation_recommendation_only": true,
+  "isolation_execution_allowed": false,
+  "isolation_executed": false,
+  "executor_action_allowed": false,
+  "request_count": 7,
+  "matched_expected_count": 7,
+  "mismatched_expected_count": 0,
+  "request_results": [
+    {
+      "request_id": "unknown_block_connects_to_generic",
+      "source_block_ai": "unknown_block_ai",
+      "target": "generic_block_ai",
+      "requested_action": "connect_block_ai",
+      "expected_decision": "RECOMMEND_ISOLATION",
+      "actual_decision": "RECOMMEND_ISOLATION",
+      "isolation_recommendation": true,
+      "human_review_recommendation": true,
+      "reasons": [
+        "unknown_block_ai_default_deny"
+      ]
+    },
+    {
+      "request_id": "restricted_to_production_core",
+      "source_block_ai": "adult_or_risky_experiment_ai",
+      "target": "production_core_ai",
+      "requested_action": "connect_block_ai",
+      "expected_decision": "BLOCK_ROUTE",
+      "actual_decision": "BLOCK_ROUTE",
+      "isolation_recommendation": true,
+      "human_review_recommendation": true,
+      "reasons": [
+        "restricted_route_to_production_core_blocked"
+      ]
+    },
+    {
+      "request_id": "experimental_to_production_core",
+      "source_block_ai": "experimental_block_ai",
+      "target": "production_core_ai",
+      "requested_action": "connect_block_ai",
+      "expected_decision": "BLOCK_ROUTE",
+      "actual_decision": "BLOCK_ROUTE",
+      "isolation_recommendation": true,
+      "human_review_recommendation": true,
+      "reasons": [
+        "experimental_route_to_production_core_blocked"
+      ]
+    },
+    {
+      "request_id": "ebook_wordpress_write",
+      "source_block_ai": "ebook_affiliate_block_ai",
+      "target": "wordpress",
+      "requested_action": "wordpress_write",
+      "expected_decision": "DENY_CAPABILITY",
+      "actual_decision": "DENY_CAPABILITY",
+      "isolation_recommendation": true,
+      "human_review_recommendation": true,
+      "reasons": [
+        "ebook_affiliate_wordpress_write_denied"
+      ]
+    },
+    {
+      "request_id": "self_builder_code_modify",
+      "source_block_ai": "self_builder_ai",
+      "target": "repository",
+      "requested_action": "code_modify",
+      "expected_decision": "DENY_CAPABILITY",
+      "actual_decision": "DENY_CAPABILITY",
+      "isolation_recommendation": true,
+      "human_review_recommendation": true,
+      "reasons": [
+        "self_builder_code_modify_denied"
+      ]
+    },
+    {
+      "request_id": "core_external_action_request",
+      "source_block_ai": "core_ai",
+      "target": "external_api",
+      "requested_action": "external_action",
+      "expected_decision": "DENY_CAPABILITY",
+      "actual_decision": "DENY_CAPABILITY",
+      "isolation_recommendation": true,
+      "human_review_recommendation": true,
+      "reasons": [
+        "core_external_action_denied"
+      ]
+    },
+    {
+      "request_id": "core_proposal_to_generic",
+      "source_block_ai": "core_ai",
+      "target": "generic_block_ai",
+      "requested_action": "proposal",
+      "expected_decision": "ALLOW_PROPOSAL",
+      "actual_decision": "ALLOW_PROPOSAL",
+      "isolation_recommendation": false,
+      "human_review_recommendation": true,
+      "reasons": [
+        "core_proposal_route_allowed"
+      ]
+    }
+  ],
+  "isolation_recommendation_detected": true,
+  "human_review_recommendation_detected": true,
+  "s4_design_verified": true,
+  "network_policy_applied": false,
+  "container_stop_executed": false,
+  "process_kill_executed": false,
+  "firewall_applied": false,
+  "scheduler_stop_executed": false,
+  "wordpress_write_executed": false,
+  "external_api_call_executed": false,
+  "state_change_executed": false,
+  "abort_reasons": [],
+  "fail_reasons": [],
+  "warnings": [],
+  "timestamp": "2026-05-28T13:57:24.771662+00:00",
+  "next_step": "phase_s4_2_isolation_event_simulation"
+}

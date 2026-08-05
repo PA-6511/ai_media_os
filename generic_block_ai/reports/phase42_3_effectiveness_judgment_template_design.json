@@ -1,0 +1,33 @@
+{
+  "_meta": {
+    "phase": "42-3",
+    "phase_name": "最終承認後・発効可否確認層",
+    "layer": "受領/確認層 (receipt and confirmation layer)",
+    "title": "発効可否判定テンプレット設計",
+    "created": "2026-05-14",
+    "author": "governance-framework",
+    "status": "PASS_DESIGN_ONLY",
+    "reports_only": true
+  },
+  "scope": "Phase 42-2 で実施された manual_release_go_authorization / actual_process_start_go_authorization の発効可否確認に基づいて、実際の発効可否判定を実施するためのテンプレットを 設計層で定義する。判定項目：(1) Phase 41 の二重承認設計が適切に構築されているか、(2) 両承認候補の分離が明確であるか、(3) 権限要件が明確に定義されているか、(4) 発効時の検証ポイントが設計されているか。全ての判定は報告書形式で記録される。",
+  "governance": {
+    "production_status": "NO_GO",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "report": {
+    "description": "Phase 42-3 では、Phase 42-2 で実施した発効可否確認の結果に基づいて、発効可否判定テンプレットを 設計層で定義する。(1) 二重承認設計適切性検証テンプレット：Phase 41-7 で設計された二重承認層の仕組みが、技術的・組織的に適切に構築されているか を検証するテンプレットを設計する。検証項目：①権限分離の明確性、②承認フロー設計の正確性、③バックアップ・フェイルオーバー設計の完全性。(2) 承認候補分離検証テンプレット：manual_release_go_authorization と actual_process_start_go_authorization が完全に分離された状態で管理されているか を検証するテンプレットを設計する。(3) 権限要件検証テンプレット：各承認候補に対する権限要件（ロール、レベル、署名権など）が明確に定義されているか を検証するテンプレットを設計する。actual_process_start_go がより厳格な権限要件を持つことを確認する。(4) 発効時検証ポイント設計テンプレット：実際の発効時に検証すべきポイント（メタデータ整合性、権限確認、最後の安全弁チェックなど）を事前に設計するテンプレットを定義する。これらのテンプレットは全て 設計層（reports only）で実装され、実処理開始許可を含まない。",
+    "invariants": [
+      "NO_GO 維持：テンプレット設計を通じて production_status = 'NO_GO' は維持される",
+      "NOT_GRANTED 維持：テンプレット設計を通じて manual_release_go_authorization / actual_process_start_go_authorization は 'NOT_GRANTED' のままである",
+      "reports only：テンプレット全体は報告書形式で実装され、実処理への権限付与を含まない"
+    ],
+    "actions": [],
+    "notes": [
+      "Phase 42-3 は 設計層のみで実装される",
+      "テンプレットは Phase 42-4～42-6 での判定・記録の基礎となる",
+      "実処理開始は NO_GO のまま"
+    ]
+  }
+}

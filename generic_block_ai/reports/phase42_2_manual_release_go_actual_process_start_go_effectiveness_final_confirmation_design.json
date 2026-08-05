@@ -1,0 +1,34 @@
+{
+  "_meta": {
+    "phase": "42-2",
+    "phase_name": "最終承認後・発効可否確認層",
+    "layer": "受領/確認層 (receipt and confirmation layer)",
+    "title": "manual_release_go / actual_process_start_go 発効可否最終確認設計",
+    "created": "2026-05-14",
+    "author": "governance-framework",
+    "status": "PASS_DESIGN_ONLY",
+    "reports_only": true
+  },
+  "scope": "Phase 42-1 で受領・整合確認された Phase 41 完了証跡に基づいて、以下の最終確認を設計する：(1) manual_release_go_authorization が実測で GO 状態に到達する可能性があるか、(2) actual_process_start_go_authorization が実測で GO 状態に到達する可能性があるか。この確認は Phase 41 の二重承認設計の妥当性を再確認し、Phase 43 以降への進行可否を判定する設計層のみのプロセス。",
+  "governance": {
+    "production_status": "NO_GO",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "report": {
+    "description": "Phase 42-2 では、Phase 41 の分離承認設計に基づいて、manual_release_go_authorization / actual_process_start_go_authorization が発効（GO状態到達）可能であるか否かを最終確認するプロセスを 設計層で定義する。(1) manual_release_go_authorization 発効可否確認：Phase 41-8 で記録された manual_release_go_authorization の分離監査内容、二重承認層設計の妥当性を再確認し、将来的に manual_release_go_authorization が GO 状態に到達する技術的・組織的な可能性があるか を判定する。可能性が認められない場合はレポートで理由を記録する。(2) actual_process_start_go_authorization 発効可否確認：Phase 41-8 で記録された actual_process_start_go_authorization の分離監査内容、二重承認層設計の厳格性を再確認し、将来的に actual_process_start_go_authorization が GO 状態に到達する技術的・組織的な可能性があるか を判定する。厳格性がより高いことを確認し、可能性が認められない場合はレポートで理由を記録する。(3) 発効不可の場合の判定：いずれかの候補が発効不可と判定された場合、即座に NO_GO を再確認し、Phase 42 / 43 以降の進行を中止する判断を設計層で記録する。これらの確認は全て 設計層（reports only）で行われ、実処理開始許可を含まない。",
+    "invariants": [
+      "NO_GO 維持：確認プロセスを通じて production_status = 'NO_GO' は維持される",
+      "NOT_GRANTED 維持：確認を通じて manual_release_go_authorization / actual_process_start_go_authorization は 'NOT_GRANTED' のままである",
+      "reports only：確認プロセス全体は報告書形式で実装され、実処理への権限付与を含まない"
+    ],
+    "actions": [],
+    "notes": [
+      "Phase 42-2 は 設計層のみで実装される",
+      "発効可否は技術的・組織的な可能性を判定（実測ではなく設計層の判定）",
+      "発効不可判定の場合、Phase 42 / 43 以降を中止する判断も設計層で行われる",
+      "実処理開始は NO_GO のまま"
+    ]
+  }
+}

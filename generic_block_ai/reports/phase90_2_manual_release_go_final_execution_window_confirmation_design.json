@@ -1,0 +1,17 @@
+{
+  "_meta": {
+    "phase": 90,
+    "sub_phase": 2,
+    "status": "PASS_DESIGN_ONLY",
+    "reports_only": true,
+    "layer": "receipt_and_confirmation",
+    "title": "manual_release_go 最終実行ウィンドウ確認設計（Part 1）"
+  },
+  "governance": {
+    "production_status": "NO_GO",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "execution_start": "NO_GO",
+    "changed_area": "reports only"
+  }
+}

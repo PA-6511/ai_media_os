@@ -1,0 +1,148 @@
+{
+  "phase": "LS-6Y",
+  "name": "Manual Publish Actual Publish Runner Execution Boundary / No Publish Execution",
+  "status": "MANUAL_PUBLISH_ACTUAL_PUBLISH_RUNNER_EXECUTION_BOUNDARY_GATE",
+  "execution_mode": "ACTUAL_PUBLISH_RUNNER_BOUNDARY_PREFLIGHT_ONLY_NO_PUBLISH",
+  "production_status": "NO_PUBLISH",
+  "purpose": "Record the actual publish runner execution boundary after LS-6X separated actual publish execution gate. This phase must not publish, schedule, update, delete, create, read credentials, call the WordPress API, or consume prior approval/command/gate labels.",
+  "required_previous_phase": {
+    "ls6x": {
+      "required_ready_status": "LS6X_MANUAL_PUBLISH_SEPARATED_ACTUAL_PUBLISH_EXECUTION_GATE_READY_NO_PUBLISH",
+      "required_gate_status": "ACTUAL_PUBLISH_EXECUTION_GATE_RECORDED_NO_PUBLISH_EXECUTION",
+      "required_actual_publish_execution_gate_label": "APPROVED_FOR_SEPARATED_ACTUAL_PUBLISH_EXECUTION_GATE_ONLY",
+      "required_actual_publish_execution_gate_consumed": false,
+      "required_requires_next_actual_publish_runner_phase": true,
+      "required_publish_execution_still_blocked": true,
+      "ready_result": "exchange/logs/start_ls6x_manual_publish_separated_actual_publish_execution_gate_ready_result.json",
+      "gate_result": "exchange/human_review/start_ls6x_manual_publish_separated_actual_publish_execution_gate.json"
+    },
+    "ls6w": {
+      "required_run_status": "LS6W_MANUAL_PUBLISH_ACTUAL_EXECUTION_FINAL_RUNNER_PREFLIGHT_PASSED_NO_PUBLISH",
+      "required_validation_status": "LS6W_MANUAL_PUBLISH_ACTUAL_EXECUTION_FINAL_RUNNER_PREFLIGHT_VALIDATED_NO_PUBLISH",
+      "required_draft_verified": true,
+      "required_returned_post_status": "draft",
+      "required_final_execution_command_consumed": false,
+      "required_requires_separate_publish_execution": true,
+      "validation_result": "exchange/logs/start_ls6w_manual_publish_actual_execution_final_runner_preflight_validation_result.json",
+      "run_result": "exchange/logs/start_ls6w_manual_publish_actual_execution_final_runner_preflight_result.json",
+      "final_runner_preflight_result": "exchange/runtime/start_ls6w_manual_publish_actual_execution_final_runner_preflight_result.json",
+      "final_runner_preflight_lock": "exchange/locks/start_ls6w_manual_publish_actual_execution_final_runner_preflight.lock.json"
+    },
+    "ls6v": {
+      "required_ready_status": "LS6V_MANUAL_PUBLISH_FINAL_EXECUTION_COMMAND_READY_NO_PUBLISH",
+      "required_command_status": "FINAL_EXECUTION_COMMAND_RECORDED_NO_PUBLISH_EXECUTION",
+      "required_final_execution_command_label": "FINAL_COMMAND_FOR_MANUAL_PUBLISH_EXECUTION_GATE_ONLY",
+      "required_final_execution_command_consumed": false,
+      "ready_result": "exchange/logs/start_ls6v_manual_publish_final_execution_command_ready_result.json",
+      "command_result": "exchange/human_review/start_ls6v_manual_publish_final_execution_command.json"
+    },
+    "ls6t": {
+      "required_ready_status": "LS6T_MANUAL_PUBLISH_EXECUTE_NOW_CONFIRMATION_READY_NO_PUBLISH",
+      "required_execute_now_confirmation_consumed": false,
+      "ready_result": "exchange/logs/start_ls6t_manual_publish_execute_now_confirmation_ready_result.json",
+      "confirmation_result": "exchange/human_review/start_ls6t_manual_publish_execute_now_confirmation.json"
+    },
+    "ls6r": {
+      "required_ready_status": "LS6R_SEPARATE_MANUAL_PUBLISH_APPROVAL_READY_NO_PUBLISH",
+      "required_approval_label": "APPROVED_FOR_SEPARATE_MANUAL_PUBLISH_APPROVAL_GATE_ONLY",
+      "required_approval_label_consumed": false,
+      "ready_result": "exchange/logs/start_ls6r_separate_manual_publish_approval_ready_result.json",
+      "approval_result": "exchange/human_review/start_ls6r_separate_manual_publish_approval.json"
+    },
+    "ls6p": {
+      "rerun_prevention_final_lock": "exchange/locks/start_ls6p_rerun_prevention_final.lock.json",
+      "required_rerun_allowed": false
+    },
+    "ls6oc1": {
+      "consumption_lock": "exchange/locks/start_ls6oc1_actual_execution_consumption.lock.json",
+      "required_rerun_allowed": false
+    }
+  },
+  "target_post": {
+    "post_id": 183,
+    "post_link": "https://hoshido.jp/?p=183",
+    "title": "2.5次元の誘惑",
+    "asin": "B07X2G67B4",
+    "expected_current_status": "draft",
+    "created_count": 1
+  },
+  "actual_publish_runner_boundary_policy": {
+    "actual_publish_runner_boundary_required": true,
+    "actual_publish_runner_boundary_ready": true,
+    "actual_publish_runner_boundary_consumed": false,
+    "actual_publish_execution_gate_consumed": false,
+    "final_execution_command_consumed": false,
+    "approval_label_consumed": false,
+    "execute_now_confirmation_consumed": false,
+    "actual_publish_execution_allowed_by_this_phase": false,
+    "actual_runner_execution_allowed_by_this_phase": false,
+    "manual_publish_allowed_by_this_phase": false,
+    "manual_publish_execution_allowed_by_this_phase": false,
+    "manual_publish_executed": false,
+    "requires_final_explicit_publish_execution_command": true,
+    "requires_separate_actual_publish_execution_phase": true,
+    "publish_execution_still_blocked": true,
+    "wordpress_api_call_allowed_by_this_phase": false,
+    "wordpress_read_allowed_by_this_phase": false,
+    "wordpress_write_allowed_by_this_phase": false,
+    "wordpress_publish_allowed_by_this_phase": false,
+    "wordpress_schedule_allowed_by_this_phase": false,
+    "wordpress_update_allowed_by_this_phase": false,
+    "wordpress_delete_allowed_by_this_phase": false,
+    "credential_env_read_allowed_by_this_phase": false
+  },
+  "must_remain_false_flags": {
+    "wordpress_api_call_executed": false,
+    "wordpress_get_executed": false,
+    "wordpress_post_executed": false,
+    "wordpress_put_executed": false,
+    "wordpress_patch_executed": false,
+    "wordpress_delete_executed": false,
+    "wordpress_write_executed_by_this_phase": false,
+    "wordpress_draft_creation_executed_by_this_phase": false,
+    "wordpress_existing_post_update_executed": false,
+    "wordpress_publish_executed": false,
+    "publish_executed": false,
+    "future_schedule_executed": false,
+    "delete_executed": false,
+    "post119_update_executed": false,
+    "credential_env_read_executed": false,
+    "credential_value_output": false,
+    "credential_value_persisted": false,
+    "credential_secret_output": false,
+    "secret_length_output": false,
+    "secret_hash_output": false,
+    "authorization_header_output": false,
+    "approval_label_consumed": false,
+    "execute_now_confirmation_consumed": false,
+    "final_execution_command_consumed": false,
+    "actual_publish_execution_gate_consumed": false,
+    "actual_publish_runner_boundary_consumed": false,
+    "actual_publish_execution_allowed_by_this_phase": false,
+    "actual_runner_execution_allowed_by_this_phase": false,
+    "manual_publish_allowed_by_this_phase": false,
+    "manual_publish_execution_allowed_by_this_phase": false,
+    "manual_publish_executed": false,
+    "ls6oc1_rerun_executed": false,
+    "rerun_allowed": false
+  },
+  "outputs": {
+    "actual_publish_runner_boundary_preflight_result": "exchange/runtime/start_ls6y_manual_publish_actual_publish_runner_execution_boundary_preflight_result.json",
+    "actual_publish_runner_boundary_lock": "exchange/locks/start_ls6y_manual_publish_actual_publish_runner_execution_boundary.lock.json",
+    "run_result": "exchange/logs/start_ls6y_manual_publish_actual_publish_runner_execution_boundary_result.json",
+    "validation_result": "exchange/logs/start_ls6y_manual_publish_actual_publish_runner_execution_boundary_validation_result.json",
+    "run_report": "reports/start_ls6y_manual_publish_actual_publish_runner_execution_boundary_report.md",
+    "validation_report": "reports/start_ls6y_manual_publish_actual_publish_runner_execution_boundary_validation_report.md"
+  },
+  "next_phase": {
+    "phase": "LS-6Z",
+    "name": "Manual Publish Final Explicit Publish Execution Command / No Publish Execution",
+    "execution_allowed_by_this_phase": false,
+    "manual_publish_execution_allowed_by_this_phase": false,
+    "actual_publish_execution_allowed_by_this_phase": false,
+    "actual_runner_execution_allowed_by_this_phase": false,
+    "requires_final_explicit_publish_execution_command": true,
+    "requires_separate_actual_publish_execution_phase": true,
+    "publish_execution_still_blocked": true
+  }
+}

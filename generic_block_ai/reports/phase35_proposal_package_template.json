@@ -1,0 +1,48 @@
+{
+  "_meta": {
+    "template_version": "1.0",
+    "phase": "3.5-8",
+    "purpose": "proposal_package_template",
+    "created_at": "2026-05-11",
+    "status": "TEMPLATE_ONLY",
+    "note": "このファイルは雛形です。実際の提案生成・外部出力・自動実行は一切行いません。"
+  },
+  "proposal": {
+    "proposal_id": "__FILL_IN__",
+    "block_id": "generic_block",
+    "created_by": "__FILL_IN__",
+    "created_at": "__FILL_IN__",
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "proposal_type": "__FILL_IN__",
+    "title": "__FILL_IN__",
+    "description": "__FILL_IN__",
+    "target_resource": "__FILL_IN__",
+    "proposed_action": "__FILL_IN__",
+    "estimated_impact": {
+      "scope": "none",
+      "reversible": true,
+      "requires_human_approval": true,
+      "auto_execute_allowed": false
+    }
+  },
+  "safety_constraints": {
+    "publish_content": false,
+    "delete_data": false,
+    "change_config": false,
+    "observe_only": true,
+    "forbidden_actions_checked": true
+  },
+  "review_requirements": {
+    "requires_human_approval": true,
+    "approver": "__FILL_IN__",
+    "approval_deadline": "__FILL_IN__",
+    "review_notes": "__FILL_IN__"
+  },
+  "status": {
+    "state": "pending_review",
+    "last_updated": "__FILL_IN__",
+    "reviewer_decision": null,
+    "rejection_reason": null
+  }
+}

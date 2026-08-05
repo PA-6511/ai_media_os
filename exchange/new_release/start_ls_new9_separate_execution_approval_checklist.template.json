@@ -1,0 +1,39 @@
+{
+  "phase": "LS-NEW-9",
+  "document_type": "START_LS_NEW9_SEPARATE_EXECUTION_APPROVAL_CHECKLIST_TEMPLATE",
+  "candidate_review": {
+    "content_item_id_checked": false,
+    "title_checked": false,
+    "volume_checked": false,
+    "author_checked": false,
+    "publisher_checked": false,
+    "release_date_checked": false,
+    "post_status_target_checked": false
+  },
+  "preflight_review": {
+    "ls_new8_validated_checked": false,
+    "freeze_boundary_checked": false,
+    "rollback_boundary_checked": false,
+    "abort_conditions_checked": false,
+    "handoff_ready_checked": false,
+    "abort_triggered_false_checked": false
+  },
+  "safety_review": {
+    "runner_execution_not_allowed_checked": false,
+    "final_execution_command_not_created_checked": false,
+    "wordpress_api_not_executed_checked": false,
+    "wordpress_draft_not_created_checked": false,
+    "credential_env_not_read_checked": false,
+    "credential_existence_not_checked": false,
+    "target_post_id_not_allocated_checked": false,
+    "post119_not_updated_checked": false,
+    "post183_not_updated_checked": false,
+    "secret_not_output_checked": false
+  },
+  "human_decision": {
+    "human_approval_completed": false,
+    "human_approved_for_execution": false,
+    "approval_label": "",
+    "reviewer_notes": ""
+  }
+}

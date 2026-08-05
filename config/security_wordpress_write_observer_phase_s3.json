@@ -1,0 +1,41 @@
+{
+  "phase_id": "PHASE_S3",
+  "detector_name": "wordpress_write_attempt_observer",
+  "status": "DESIGN_ONLY",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "human_approval_required": true,
+  "detector_only": true,
+  "recommendation_only": true,
+  "executor_action_allowed": false,
+  "wordpress_mode": "READ_ONLY",
+  "wordpress_write_allowed": false,
+  "wordpress_draft_create_allowed": false,
+  "wordpress_publish_allowed": false,
+  "wordpress_update_allowed": false,
+  "wordpress_delete_allowed": false,
+  "wordpress_write_executed": false,
+  "sample_intent": "none",
+  "observe_intents": [
+    "draft_create_intent",
+    "publish_intent",
+    "update_intent",
+    "delete_intent",
+    "bulk_write_intent"
+  ],
+  "recommendations": {
+    "allow_freeze_recommendation": true,
+    "allow_human_review_recommendation": true,
+    "allow_wordpress_permission_review_recommendation": true
+  },
+  "actions": {
+    "wordpress_api_call_execute": false,
+    "auto_freeze_execute": false,
+    "auto_revoke_execute": false
+  },
+  "state_change_executed": false,
+  "freeze_executed": false,
+  "revoke_executed": false,
+  "isolation_executed": false,
+  "external_api_call_executed": false
+}

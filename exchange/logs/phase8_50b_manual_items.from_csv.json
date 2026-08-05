@@ -1,0 +1,47 @@
+{
+  "phase": "Phase 8-50-MANUAL",
+  "execution_mode": "DRY_RUN_ONLY",
+  "amazon_api_call_allowed": false,
+  "wordpress_write_allowed": false,
+  "publish_allowed": false,
+  "approval_token_consumed": false,
+  "production_status": "NO_GO",
+  "source": {
+    "type": "csv",
+    "path": "manual_affiliate_builder/manual_items.csv.example"
+  },
+  "items": [
+    {
+      "asin": "B0DUMMY001",
+      "canonical_item_id": "amazon_jp:B0DUMMY001",
+      "title": "Sample Volume 1",
+      "author": "Sample Author",
+      "volume": "1",
+      "release_date": "2026-06-01",
+      "manual_affiliate_url": "https://www.amazon.co.jp/dp/B0DUMMY001?tag=exampletag-22",
+      "notes": "manual sample item 1",
+      "phase": "Phase 8-50-MANUAL",
+      "source_mode": "manual",
+      "migration_status": "manual_active",
+      "api_verified": false,
+      "human_review_status": "pending",
+      "wordpress_status": "not_created"
+    },
+    {
+      "asin": "B0DUMMY002",
+      "canonical_item_id": "amazon_jp:B0DUMMY002",
+      "title": "Sample Volume 2",
+      "author": "Sample Author",
+      "volume": "2",
+      "release_date": "2026-07-01",
+      "manual_affiliate_url": "https://www.amazon.co.jp/dp/B0DUMMY002?tag=exampletag-22",
+      "notes": "manual sample item 2",
+      "phase": "Phase 8-50-MANUAL",
+      "source_mode": "manual",
+      "migration_status": "manual_active",
+      "api_verified": false,
+      "human_review_status": "pending",
+      "wordpress_status": "not_created"
+    }
+  ]
+}

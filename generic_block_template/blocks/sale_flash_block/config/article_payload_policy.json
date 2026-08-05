@@ -1,0 +1,32 @@
+{
+  "block_name": "sale_flash_block",
+  "phase": "SFB-3",
+  "mode": "DRY_RUN",
+  "production_status": "NO_GO",
+  "external_api_allowed": false,
+  "external_network_allowed": false,
+  "wordpress_write_allowed": false,
+  "creators_api_allowed": false,
+  "amazon_scraping_allowed": false,
+  "max_payloads_per_run": 10,
+  "input_quality_gate_log": "logs/sale_review_quality_gate.json",
+  "output_json": "logs/sale_article_payloads.json",
+  "output_markdown": "logs/sale_article_payloads.md",
+  "allowed_review_buckets": [
+    "ready_high_priority",
+    "needs_asin_confirmation"
+  ],
+  "excluded_review_buckets": [
+    "needs_metadata_fix",
+    "duplicate_review",
+    "blocked_or_invalid"
+  ],
+  "require_pr_disclosure": true,
+  "generate_wordpress_payload": false,
+  "generate_sns_draft": true,
+  "publish_allowed": false,
+  "update_allowed": false,
+  "delete_allowed": false,
+  "export_allowed": false,
+  "human_review_required": true
+}

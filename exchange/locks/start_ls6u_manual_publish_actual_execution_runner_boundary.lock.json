@@ -1,0 +1,22 @@
+{
+  "phase": "LS-6U",
+  "document_type": "MANUAL_PUBLISH_ACTUAL_EXECUTION_RUNNER_BOUNDARY_LOCK",
+  "status": "MANUAL_PUBLISH_ACTUAL_EXECUTION_RUNNER_BOUNDARY_LOCKED_NO_PUBLISH",
+  "locked": true,
+  "post_id": 183,
+  "target_post_status": "draft",
+  "approval_label": "APPROVED_FOR_SEPARATE_MANUAL_PUBLISH_APPROVAL_GATE_ONLY",
+  "approval_label_consumed": false,
+  "execute_now_confirmation_label": "CONFIRMED_FOR_MANUAL_PUBLISH_EXECUTE_NOW_GATE_ONLY",
+  "execute_now_confirmation_consumed": false,
+  "manual_publish_runner_boundary_ready": true,
+  "actual_runner_execution_allowed_by_this_phase": false,
+  "manual_publish_allowed_by_this_phase": false,
+  "manual_publish_execution_allowed_by_this_phase": false,
+  "manual_publish_executed": false,
+  "rerun_allowed": false,
+  "ls6oc1_rerun_executed": false,
+  "requires_next_phase": "LS-6V",
+  "requires_final_execution_command": true,
+  "publish_execution_still_blocked": true
+}

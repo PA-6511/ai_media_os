@@ -1,0 +1,101 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4E",
+  "policy_id": "NEW_RELEASE_WP_CREDENTIAL_ISOLATED_READ_ONLY_PREFLIGHT_POLICY_V1",
+  "preflight_package_id": "wp-readonly-category-preflight-example-20260717",
+  "source_discovery_package_id": "wp-category-discovery-example-20260717",
+  "batch_id": "example-20260717",
+  "template_contract_id": "POST185_STANDARD_TEMPLATE_V1_FIXED",
+  "source_discovery_package_digest_sha256": "ba643626f6b35b7df2df9419561e21e8724db4e5755b9d0456fa725740cc80ec",
+  "preflight_mode": "DESIGN_ONLY_NO_CREDENTIAL_ACCESS",
+  "credential_contract": {
+    "credential_file_path": "/etc/ai-media-os/wordpress-readonly-category.env",
+    "required_environment_variable_names": [
+      "WORDPRESS_BASE_URL",
+      "WORDPRESS_READONLY_USERNAME",
+      "WORDPRESS_READONLY_APP_PASSWORD"
+    ],
+    "separate_read_only_wordpress_account_required": true,
+    "production_writer_credentials_reuse_allowed": false,
+    "credential_file_touched": false,
+    "credential_values_loaded": false,
+    "environment_variables_read": false,
+    "secret_output_generated": false
+  },
+  "network_preflight": {
+    "base_url_present": false,
+    "dns_resolution_performed": false,
+    "tcp_connection_performed": false,
+    "tls_connection_performed": false,
+    "http_request_performed": false,
+    "wordpress_response_read": false
+  },
+  "query_plan_count": 1,
+  "query_plans": [
+    {
+      "category_slug": "comic-new-release",
+      "category_name": "コミック新刊",
+      "http_method": "GET",
+      "base_url": null,
+      "rest_path": "/wp-json/wp/v2/categories",
+      "query_parameters": {
+        "slug": "comic-new-release",
+        "per_page": 100,
+        "_fields": "id,slug,name,count"
+      },
+      "request_body": null,
+      "authorization_header": null,
+      "request_url_constructed": false,
+      "credential_values_loaded": false,
+      "dns_resolution_performed": false,
+      "network_connection_performed": false,
+      "http_request_performed": false,
+      "wordpress_response_read": false,
+      "future_result_requires_exact_slug_match": true,
+      "future_result_requires_exact_name_match": true,
+      "future_result_requires_single_match": true,
+      "future_result_requires_human_verification": true,
+      "automatic_payload_injection_allowed": false,
+      "query_plan_digest_sha256": "5057b7267ffbe82cee94331de624bb56c34ed23e5a5d2774d0b142e34323839f"
+    }
+  ],
+  "preexecution_gate": {
+    "state": "BLOCKED_NO_SITE_URL_NO_CREDENTIAL_PREFLIGHT_NO_NETWORK_AUTHORITY",
+    "read_only_request_contract_ready": true,
+    "credential_contract_ready": true,
+    "credential_presence_verified": false,
+    "base_url_resolved": false,
+    "network_preflight_completed": false,
+    "production_category_lookup_completed": false,
+    "execution_approval_issued": false,
+    "approval_token": null,
+    "execution_allowed": false
+  },
+  "execution_boundary": {
+    "credential_read_allowed": false,
+    "environment_variable_read_allowed": false,
+    "dns_resolution_allowed": false,
+    "network_connection_allowed": false,
+    "wordpress_api_call_allowed": false,
+    "wordpress_category_lookup_allowed": false,
+    "wordpress_database_read_allowed": false,
+    "wordpress_database_write_allowed": false,
+    "wordpress_write_allowed": false,
+    "wordpress_publish_allowed": false,
+    "x_post_allowed": false,
+    "external_api_call_allowed": false,
+    "execution_approval_issued": false,
+    "approval_token_present": false,
+    "execution_allowed": false,
+    "production_status": "NO_GO",
+    "safety_state": "CREDENTIAL_ISOLATED_READ_ONLY_PREFLIGHT_DESIGN"
+  },
+  "verified_checks": [
+    "source_phase_identity",
+    "source_discovery_digest_verified",
+    "source_fixture_candidates_isolated",
+    "source_production_category_ids_absent",
+    "source_execution_gate_closed"
+  ],
+  "preflight_package_digest_sha256": "64f18de01f834ffdc7ce6d983926160a31f1b1aac52d2c9b11a2309c22d5a283"
+}

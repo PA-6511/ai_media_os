@@ -1,0 +1,33 @@
+{
+  "phase": "Phase 8-14",
+  "name": "draft_body_update_authorization_gate_design_only_policy",
+  "policy_status": "DESIGN_ONLY",
+  "production_status": "NO_GO",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "target_post_id": 114,
+  "required_evidence": [
+    "exchange/logs/phase8_13_final_draft_fix_review_post_114_result.json"
+  ],
+  "required_previous_status": "PHASE8_13_APPROVE_FIX_DRY_RUN_ONLY",
+  "blocked_previous_statuses": [
+    "PHASE8_13_REQUEST_FIX",
+    "PHASE8_13_REJECTED",
+    "PENDING_REVIEW_INCOMPLETE"
+  ],
+  "wordpress_api_call_allowed": false,
+  "wordpress_api_call_attempted": false,
+  "wordpress_write_allowed": false,
+  "wordpress_write_executed": false,
+  "publish_allowed": false,
+  "update_allowed": false,
+  "delete_allowed": false,
+  "export_allowed": false,
+  "auto_post": false,
+  "auto_update": false,
+  "auto_delete": false,
+  "auto_export": false,
+  "gate_is_execution_permission": false,
+  "allowed_next_step_if_ready": "Create human-reviewed update execution gate (still NO_GO until explicit release)",
+  "allowed_next_step_if_blocked": "Keep REQUEST_FIX and wait for real URLs before re-reviewing Phase 8-13"
+}

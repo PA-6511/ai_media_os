@@ -1,0 +1,14 @@
+{
+  "phase": "Phase 8-14",
+  "status": "RERUN_AUTHORIZATION_NOT_READY_CREDENTIALS_MISSING",
+  "wordpress_api_call_allowed": false,
+  "wordpress_write_executed": false,
+  "publish_allowed": false,
+  "authorization_is_execution_permission": false,
+  "secret_values_written": false,
+  "errors": [],
+  "warnings": [],
+  "safety_violations": [],
+  "allowed_next_step": "Phase 8-15 rerun handoff report for Phase 8-6 to Phase 8-10 re-execution",
+  "checked_at": "2026-05-27T14:50:29.486668+00:00"
+}

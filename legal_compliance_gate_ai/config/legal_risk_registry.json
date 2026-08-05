@@ -1,0 +1,97 @@
+{
+  "version": "0.1.0",
+  "mode": "DRY_RUN",
+  "block_id": "legal_compliance_gate_ai",
+  "risks": [
+    {
+      "risk_id": "AFFILIATE_DISCLOSURE_REQUIRED",
+      "domain": "affiliate_marketing",
+      "severity": "HIGH",
+      "triggers": [
+        "affiliate_link",
+        "product_recommendation",
+        "monetized_article"
+      ],
+      "required_actions": [
+        "PR表記または広告表記を記事上部に含める",
+        "アフィリエイトリンクであることを明示する",
+        "disclosure_checked=true を証跡に保存する"
+      ],
+      "release_blocking": true
+    },
+    {
+      "risk_id": "API_TERMS_CHECK_REQUIRED",
+      "domain": "external_api",
+      "severity": "HIGH",
+      "triggers": [
+        "amazon_pa_api",
+        "rakuten_api",
+        "dmm_api",
+        "x_api",
+        "discord_api",
+        "slack_api"
+      ],
+      "required_actions": [
+        "対象APIの利用規約確認日を保存する",
+        "規約URLまたは参照元を証跡に保存する",
+        "商用利用・保存・表示・再配布条件を確認する"
+      ],
+      "release_blocking": true
+    },
+    {
+      "risk_id": "OSS_LICENSE_REVIEW_REQUIRED",
+      "domain": "license",
+      "severity": "MEDIUM",
+      "triggers": [
+        "new_dependency",
+        "package_added",
+        "copilot_generated_code",
+        "third_party_library"
+      ],
+      "required_actions": [
+        "依存ライブラリ名とライセンスを保存する",
+        "商用利用可否を確認する",
+        "再配布条件を確認する"
+      ],
+      "release_blocking": false
+    },
+    {
+      "risk_id": "SECRETS_EXPOSURE_RISK",
+      "domain": "security_compliance",
+      "severity": "CRITICAL",
+      "triggers": [
+        "api_key",
+        "token",
+        "secret",
+        "password",
+        "webhook_url",
+        "private_key"
+      ],
+      "required_actions": [
+        "Secretsがログ・証跡・公開ファイルに含まれていないか確認する",
+        "検出時はABORTにする",
+        "Human Reviewを必須にする"
+      ],
+      "release_blocking": true
+    },
+    {
+      "risk_id": "PERSONAL_DATA_REVIEW_REQUIRED",
+      "domain": "privacy",
+      "severity": "HIGH",
+      "triggers": [
+        "email",
+        "ip_address",
+        "cookie",
+        "user_id",
+        "personal_data",
+        "access_log"
+      ],
+      "required_actions": [
+        "個人情報・識別子の保存有無を確認する",
+        "保存目的・保存期間・マスキング方針を証跡化する",
+        "外部送信がある場合はHuman Reviewを必須にする"
+      ],
+      "release_blocking": true
+    }
+  ]
+}

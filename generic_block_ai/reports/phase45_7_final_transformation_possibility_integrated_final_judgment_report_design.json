@@ -1,0 +1,38 @@
+{
+  "_meta": {
+    "phase": "45-7",
+    "phase_name": "手動最終確認後・発効可否分離確認層",
+    "layer": "最終判定層 (final judgment layer)",
+    "title": "最終変換可否の統合最終判定レポート設計",
+    "created": "2026-05-14",
+    "author": "governance-framework",
+    "status": "PASS_DESIGN_ONLY",
+    "reports_only": true
+  },
+  "scope": "Phase 45-1～45-6 の全ての設計層プロセス（Phase 44 完了証跡受領、manual_release_go 変換可否確認、actual_process_start_go 変換可否確認、証跡固定ルール、差し戻し・NO_GO維持ルール）に基づいて、統合的な最終判定レポートを設計する。判定項目：(1) Phase 44-9 完了宣言との整合性確認、(2) manual_release_go_authorization 変換可否の最終判定（変換可能 / 変換不可とその理由）、(3) actual_process_start_go_authorization 変換可否の最終判定（変換可能 / 変換不可とその理由、厳格条件の確認含む）、(4) 両承認候補の最終状態（NOT_GRANTED 維持の確認）、(5) 変換不可の場合の差し戻し方針・修正経路、(6) 最終判定に向けた全プロセス記録の完全性確認。",
+  "governance": {
+    "production_status": "NO_GO",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "report": {
+    "description": "Phase 45-7 では、Phase 45-1～45-6 で設計された全ての確認・検証・維持ルールの結果に基づいて、統合的な最終判定レポートを 設計層で定義する。(1) 整合性確認レポート：Phase 44-9 の完了宣言から Phase 45-1～45-6 の全プロセスを通じて、ステータスの整合性が保たれているか を詳細にレポートする（矛盾の有無、矛盾の内容）。(2) manual_release_go_authorization 最終判定レポート：Phase 45-2～45-4 で実施した manual_release_go_authorization の変換可否判定の結果をまとめ、最終的に GRANTED 変換可能 / GRANTED 変換不可のいずれであるかを記録する。変換不可の場合は不可理由（権限不足・フォーマット不完全・矛盾・異常・その他）を詳細に記録する。(3) actual_process_start_go_authorization 最終判定レポート：Phase 45-3～45-5 で実施した actual_process_start_go_authorization の変換可否判定の結果をまとめ、最終的に GRANTED 変換可能 / GRANTED 変換不可のいずれであるかを記録する。変換不可の場合は不可理由（権限不足・フォーマット不完全・矛盾・異常・リスク残存・その他）を詳細に記録する。特に actual_process_start_go が manual_release_go より厳格であることを明記する。(4) 最終ステータス確認レポート：production_status / manual_release_go_authorization / actual_process_start_go_authorization の最終状態を明記し、NO_GO / NOT_GRANTED / NOT_GRANTED の状態が維持されているかを確認する。(5) 変換不可時の差し戻し・修正経路レポート：変換不可と判定された場合、Phase 45-6 で設計された差し戻し方針に基づいて、修正経路（遡及確認の方向性、修正すべき項目、期待される改善方向）を詳細に記録する。(6) プロセス完全性レポート：Phase 41-1～Phase 45-6 の全てのプロセス記録が完全に揃っているか、欠落がないか を検証し、結果をレポートする。これら全てのレポートは 設計層（reports only）で作成され、実処理開始許可を含まない。",
+    "invariants": [
+      "NO_GO 維持：整合性・manual_release_go・actual_process_start_go・ステータス・差し戻し・完全性の全てのレポート項目を通じて production_status = 'NO_GO' は維持される",
+      "NOT_GRANTED 維持：全てのレポート項目を通じて manual_release_go_authorization / actual_process_start_go_authorization は 'NOT_GRANTED' のまま",
+      "reports only：統合最終判定レポート全体は報告書形式で実装され、実処理への権限付与を含まない",
+      "矛盾検出時対応：整合性レポートで矛盾を検出した場合、その矛盾を詳細に記録し、NO_GO を再確認する",
+      "変換不可時対応：変換不可判定で異常を検出した場合、その異常と差し戻し方針を詳細に記録し、NOT_GRANTED を再確認する"
+    ],
+    "actions": [],
+    "notes": [
+      "Phase 45-7 は 設計層のみで実装される（実処理開始許可ではない）",
+      "統合最終判定レポートは reports only であり、生産環境コード変更を含まない",
+      "Phase 45-8 / 45-9 の最終決定に向けた判定情報の集約層である",
+      "矛盾・変換不可・異常・権限不足の全てのケースで NO_GO を記録",
+      "manual_release_go_authorization=GRANTED / actual_process_start_go_authorization=GRANTED は実測で確定するまでは出現しない",
+      "実処理開始は NO_GO のまま"
+    ]
+  }
+}

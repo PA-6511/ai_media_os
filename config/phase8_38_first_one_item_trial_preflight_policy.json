@@ -1,0 +1,16 @@
+{
+  "phase": "8-38",
+  "phase_name": "First One-Item Trial Preflight",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "human_approval_required": true,
+  "execution_allowed": false,
+  "wordpress_api_call_allowed": false,
+  "wordpress_write_allowed": false,
+  "one_shot_target_count": 1,
+  "one_shot_lock_required": true,
+  "secret_output_safe": true,
+  "phase8_36_evidence": "exchange/logs/phase8_36_one_shot_draft_creation_dry_run_handoff_result.json",
+  "phase8_37_evidence": "exchange/logs/phase8_37_first_trial_operation_runbook_result.json"
+}

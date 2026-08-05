@@ -1,0 +1,41 @@
+{
+  "phase": "Phase 8-48",
+  "phase_name": "Manual Review Result Re-Validation",
+  "status": "PHASE8_48_MANUAL_REVIEW_REVALIDATION_COMPLETED_NO_GO",
+  "target_post_id": 115,
+  "production_status": "NO_PUBLISH_PAUSE",
+  "design_only": true,
+  "validation_result": {
+    "is_input_complete": true,
+    "all_required_review_checks_true": false,
+    "is_publish_go_eligible": false,
+    "decision_now": "NO_GO_KEEP_PAUSE",
+    "failed_rules": []
+  },
+  "publish_allowed": false,
+  "publish_executed": false,
+  "wordpress_api_call_attempted": false,
+  "wordpress_write_executed": false,
+  "wordpress_draft_updated": false,
+  "secret_values_output": false,
+  "secret_values_written": false,
+  "errors": [],
+  "warnings": [
+    "Re-validation completed; publish eligibility remains false."
+  ],
+  "safety_violations": [],
+  "evidence_summary": [
+    {
+      "path": "exchange/logs/phase8_47_human_review_completed_input_evidence_post_115_result.json",
+      "exists": true,
+      "status": "PHASE8_47_HUMAN_REVIEW_INPUT_COMPLETED_EVIDENCE_RECORDED"
+    },
+    {
+      "path": "exchange/logs/phase8_42_manual_review_result_validator_design_only_post_115_result.json",
+      "exists": true,
+      "status": "PHASE8_42_MANUAL_REVIEW_RESULT_VALIDATOR_DESIGN_ONLY_READY"
+    }
+  ],
+  "next_step": "phase8_49_publish_readiness_re_evaluation_after_revalidation",
+  "checked_at": "2026-06-09T14:08:31.282694+00:00"
+}

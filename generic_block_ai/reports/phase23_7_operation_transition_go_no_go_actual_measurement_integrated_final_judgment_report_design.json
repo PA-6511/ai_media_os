@@ -1,0 +1,85 @@
+{
+  "phase_id": "23-7",
+  "phase_name": "Operation Transition GO/NO-GO Actual Measurement Integrated Final Judgment Report Design",
+  "phase_japanese_name": "運用移行GO/NO-GO 実測統合最終判定レポート設計",
+  "purpose": "Design the integrated final judgment report that combines measured operation-transition conditions, evidence locking, rejection handling, and final ABORT checks",
+  "layer": "operation_transition_actual_measurement_reinforcement_layer",
+  "design_category": "reports_only",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "operation_transition_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "phase_23_7_scope": {
+    "scope_1_input_aggregation": {
+      "scope_id": "INPUT_AGGREGATION",
+      "required_inputs": {
+        "phase23_4_to_23_6_status": "PASS_DESIGN_ONLY",
+        "phase23_operation_transition_actual_measurement_reinforcement_status": "PASS_DESIGN_ONLY",
+        "source_reports": [
+          "phase23_4_operation_transition_go_no_go_actual_measurement_judgment_result_evidence_locking_rules_design.json",
+          "phase23_5_operation_transition_go_rejection_and_no_go_maintenance_rules_design.json",
+          "phase23_6_pre_operation_transition_final_abort_conditions_design.json"
+        ]
+      }
+    },
+    "scope_2_integrated_judgment_logic": {
+      "scope_id": "INTEGRATED_JUDGMENT_LOGIC",
+      "rules": {
+        "rule_OI1": "All measured operation-transition minimum conditions are MET",
+        "rule_OI2": "Evidence lock is LOCK_CONFIRMED and integrity checks are PASS",
+        "rule_OI3": "No unresolved rejection and no ABORT category is TRIGGERED",
+        "rule_OI4": "If any OI1-OI3 is NOT_MET, operation_transition_go_authorization = NOT_GRANTED and production_status = NO_GO"
+      }
+    },
+    "scope_3_report_structure": {
+      "scope_id": "REPORT_STRUCTURE",
+      "sections": {
+        "section_1_header": {
+          "report_id": "PHASE23_7_OP_TRANSITION_INTEGRATED_FINAL_JUDGMENT_<UTC_TIMESTAMP>",
+          "report_type": "operation_transition_go_no_go_actual_measurement_integrated_final_judgment",
+          "generated_at_utc": "RFC3339",
+          "generated_by": "authority_identifier"
+        },
+        "section_2_component_status": {
+          "measured_conditions": "PASS | FAIL",
+          "evidence_locking": "PASS | FAIL",
+          "rejection_maintenance": "PASS | FAIL",
+          "pre_operation_abort": "PASS | FAIL"
+        },
+        "section_3_integrated_determination": {
+          "operation_transition_go_authorization": "GRANTED | NOT_GRANTED",
+          "operation_transition_go": "GO | NO_GO",
+          "app_implementation_status": "NO_GO",
+          "tests_implementation_status": "NO_GO",
+          "production_status": "NO_GO",
+          "reason_summary": "human-readable reason"
+        }
+      }
+    }
+  },
+  "phase_23_7_governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "state_invariants": {
+      "app_implementation_status": "NO_GO",
+      "tests_implementation_status": "NO_GO",
+      "production_status": "NO_GO",
+      "changed_area": "reports only"
+    }
+  }
+}

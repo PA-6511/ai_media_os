@@ -1,0 +1,53 @@
+{
+  "phase": "LS-NEW-PUBLISH-DECISION-LITE",
+  "document_type": "START_LS_NEW_PUBLISH_DECISION_LITE",
+  "status": "LSNEW_PUBLISH_DECISION_LITE_APPROVED_FOR_NEXT_PUBLISH_STEP_NO_EXECUTION",
+  "execution_mode": "PUBLISH_DECISION_RECORD_ONLY_NO_WP_CALL",
+  "production_status": "PUBLISH_DECISION_RECORDED_PUBLISH_NOT_EXECUTED",
+
+  "previous_phase": "LS-NEW-REVIEW-LITE-1",
+  "previous_status": "LSNEW_REVIEW_LITE_1_MANUAL_REVIEW_PASSED_NO_PUBLISH",
+
+  "content_item_id": "new-comic-001",
+  "title": "月曜日のたわわ",
+  "volume": "第15巻",
+  "created_post_id": 185,
+  "created_post_link": "https://hoshido.jp/?p=185",
+  "created_post_status": "draft",
+
+  "manual_review_completed": true,
+  "manual_review_result": "PASS",
+
+  "publish_decision": "APPROVED_FOR_NEXT_STEP",
+  "publish_approval_scope": "ONE_SHOT_PUBLISH_POST_185_ONLY",
+  "publish_target_post_id": 185,
+  "publish_target_status_from": "draft",
+  "publish_target_status_to": "publish",
+
+  "publish_execution_allowed_in_this_step": false,
+  "publish_executed_in_this_step": false,
+  "wordpress_api_call_executed_in_this_step": false,
+  "wordpress_write_executed_in_this_step": false,
+  "wordpress_publish_executed": false,
+  "wordpress_update_executed": false,
+  "wordpress_delete_executed": false,
+
+  "credential_env_read_executed": false,
+  "credential_value_output": false,
+  "credential_secret_output": false,
+  "authorization_header_output": false,
+  "basic_auth_output": false,
+  "base64_auth_output": false,
+  "response_body_output": false,
+  "user_identity_output": false,
+
+  "post119_update_executed": false,
+  "post183_update_executed": false,
+  "draft_create_rerun_allowed": false,
+  "publish_rerun_allowed": false,
+
+  "ready_for_one_shot_publish": true,
+  "ready_for_publish": false,
+  "recommended_next_action": "BEGIN_LS_NEW_PUBLISH_LITE_1_ONE_SHOT_PUBLISH_POST_185",
+  "errors": []
+}

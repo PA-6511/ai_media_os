@@ -1,0 +1,115 @@
+{
+  "phase": "Phase 7-1",
+  "name": "eligible_single_controlled_run_policy",
+  "policy_status": "DESIGN_ONLY",
+  "production_status": "NO_GO",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "human_approval_required": true,
+  "eligible_is_execution_permission": false,
+  "wordpress_draft_creation": "NO_GO",
+  "wordpress_write_executed": false,
+  "publish_allowed": false,
+  "future_reserved_decision_token": {
+    "token": "APPROVE_DRAFT_CREATE_ONLY",
+    "currently_allowed": false,
+    "phase7_1_allows_this_token": false,
+    "meaning": "Reserved for future controlled one-item WordPress draft creation after later gates."
+  },
+  "single_item_limit": {
+    "enabled": true,
+    "required": true,
+    "max_items": 1,
+    "bulk_run_allowed": false
+  },
+  "required_phase6_evidence": [
+    "exchange/logs/phase6_5_execution_spec_validation_result.json",
+    "exchange/logs/phase6_6_quality_gate_validation_result.json",
+    "exchange/logs/phase6_7_slack_approval_dry_run_result.json",
+    "exchange/logs/phase6_8_runbook_validation_result.json",
+    "exchange/logs/phase6_9_hardening_preflight_report.json",
+    "exchange/logs/phase6_10_existing_generated_test_fix_report.json"
+  ],
+  "acceptable_phase6_statuses": [
+    "PASS",
+    "PASS_DRY_RUN_ONLY",
+    "PASS_DRY_RUN_ONLY_WITH_WARN"
+  ],
+  "candidate_required_fields": [
+    "candidate_id",
+    "source",
+    "target_item_count",
+    "duplicate_check",
+    "quality_gate",
+    "pr_notice",
+    "cta",
+    "affiliate_links",
+    "human_review",
+    "freeze_plan",
+    "safety_flags"
+  ],
+  "eligible_conditions": {
+    "target_item_count_must_equal": 1,
+    "duplicate_check_status": "PASS",
+    "quality_gate_statuses": [
+      "PASS",
+      "PASS_DRY_RUN_ONLY",
+      "PASS_DRY_RUN_ONLY_WITH_WARN"
+    ],
+    "pr_notice_required": true,
+    "cta_required": true,
+    "affiliate_links_required": true,
+    "affiliate_link_scheme_required": "https",
+    "human_review_required": true,
+    "human_review_status_required": "REQUIRED_NOT_APPROVED_IN_PHASE7_1",
+    "freeze_plan_required": true,
+    "rollback_or_freeze_path_required": true
+  },
+  "dangerous_operations": {
+    "auto_post": false,
+    "auto_update": false,
+    "auto_delete": false,
+    "auto_export": false,
+    "publish_allowed": false,
+    "wordpress_write_executed": false,
+    "wordpress_rest_api_post": false,
+    "wordpress_rest_api_put": false,
+    "wordpress_rest_api_patch": false,
+    "wordpress_rest_api_delete": false,
+    "bulk_execution": false,
+    "external_write": false,
+    "vps_self_builder_execution": false
+  },
+  "freeze_conditions": [
+    "missing_phase6_evidence",
+    "phase6_evidence_fail_or_abort",
+    "target_item_count_not_1",
+    "duplicate_check_not_pass",
+    "quality_gate_fail_or_abort",
+    "missing_pr_notice",
+    "missing_cta",
+    "missing_affiliate_link",
+    "non_https_affiliate_link",
+    "human_review_missing",
+    "freeze_plan_missing",
+    "any_dangerous_operation_true",
+    "wordpress_write_attempt_detected",
+    "approve_draft_create_only_used_in_phase7_1"
+  ],
+  "decision_rules": {
+    "all_conditions_met": "ELIGIBLE_DRY_RUN_ONLY",
+    "minor_warning_without_safety_issue": "ELIGIBLE_DRY_RUN_ONLY_WITH_WARN",
+    "missing_required_condition": "NOT_ELIGIBLE",
+    "safety_violation": "ABORT"
+  },
+  "allowed_next_step": "Phase 7-2 APPROVE_DRAFT_CREATE_ONLY pre-unlock review design only",
+  "blocked_next_steps": [
+    "wordpress_draft_create",
+    "wordpress_publish",
+    "wordpress_update",
+    "wordpress_delete",
+    "bulk_posting",
+    "external_export",
+    "vps_self_builder_execution"
+  ]
+}

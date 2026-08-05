@@ -1,0 +1,26 @@
+{
+  "mode": "SINGLE_CONTROLLED_DRAFT_CREATION_HUMAN_APPROVAL_HANDOFF",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "human_approval_required": true,
+  "target_item_count": 1,
+  "credential_check_only": false,
+  "handoff_only": true,
+  "execution_allowed": false,
+  "wordpress_api_call_allowed": false,
+  "wordpress_write_allowed": false,
+  "wordpress_draft_creation_allowed": false,
+  "approve_draft_create_only_currently_allowed": false,
+  "unlock_in_this_phase": false,
+  "no_secret_leak_required": true,
+  "previous_phase": "8-16",
+  "required_previous_final_status": [
+    "CREDENTIALS_READY_NO_SECRET_LEAK_PASS",
+    "CREDENTIALS_NOT_READY_NO_SECRET_OUTPUT"
+  ],
+  "current_expected_previous_final_status": "CREDENTIALS_NOT_READY_NO_SECRET_OUTPUT",
+  "next_step_if_credentials_not_ready": "manual_credential_provisioning_then_repeat_credential_readiness_gate",
+  "next_step_if_credentials_ready_and_human_approved": "phase8_18_single_controlled_wordpress_draft_creation_execution",
+  "next_step_if_human_rejected": "stop_without_execution",
+  "next_step_if_policy_violation": "abort_without_execution"
+}

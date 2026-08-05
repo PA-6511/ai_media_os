@@ -1,0 +1,67 @@
+{
+  "package_type": "phase9_1_publish_go_redecision_manual_publish_runbook",
+  "phase": "Phase 9-1",
+  "status": "PASS",
+  "purpose": "Prepare manual-only runbook from GO redecision to one-time publish execution without executing publish in this phase",
+  "phase8_overall_status": "PASS",
+  "phase8_final_decision": "KEEP_NO_GO",
+  "target_draft_id": 110,
+  "target_draft_status": "draft",
+  "manual_publish_executable_now": false,
+  "publish_execution_started": false,
+  "wordpress_publish_execution": "NO_GO",
+  "wordpress_write_executed": false,
+  "production_status": "NO_GO",
+  "publish_allowed": false,
+  "update_allowed": false,
+  "delete_allowed": false,
+  "export_allowed": false,
+  "auto_post": false,
+  "auto_update": false,
+  "auto_delete": false,
+  "auto_export": false,
+  "go_redecision_definition": {
+    "decision_choices": [
+      "GO_PUBLISH_ONE_TIME_MANUAL_ONLY",
+      "KEEP_NO_GO",
+      "REQUEST_FIX",
+      "ABORT"
+    ],
+    "approval_token_name": "APPROVE_PUBLISH_ONE_TIME_MANUAL_ONLY",
+    "approval_token_required_only_when_go": true,
+    "token_expiry_minutes": 30,
+    "publish_count_limit": 1,
+    "human_reviewer_required": true
+  },
+  "fixed_manual_procedure": [
+    "confirm phase8_11 status is PASS and decision is KEEP_NO_GO",
+    "confirm target draft id and status are unchanged",
+    "prepare manual redecision sheet with all confirmations",
+    "record redecision result to exchange/human_review for phase9",
+    "if decision is GO, verify token and timebox constraints",
+    "prepare one-time manual publish command and operator assignment",
+    "dry-run command review only; do not execute publish in phase9_1",
+    "define rollback and abort criteria before any future execution",
+    "define post-execution evidence list for future manual publish",
+    "close phase9_1 with NO_GO maintained and runbook frozen"
+  ],
+  "forbidden_in_phase9_1": [
+    "wordpress_publish_execute",
+    "update_existing_post",
+    "delete_post",
+    "external_export",
+    "bulk_publish",
+    "cron_registration",
+    "github_actions_trigger",
+    "slack_production_notification",
+    "vps_self_builder_execute",
+    "env_or_secrets_auto_edit"
+  ],
+  "required_evidence_files": [
+    "exchange/logs/phase8_11_pre_publish_no_go_overall_completion_report.json",
+    "exchange/logs/phase9_1_publish_go_redecision_manual_publish_runbook.json",
+    "exchange/logs/phase9_1_publish_go_redecision_manual_publish_runbook_generation_result.json"
+  ],
+  "next_step": "phase9_2_validate_go_redecision_input_and_manual_publish_gate",
+  "created_at": "2026-07-29T14:26:19.869828+00:00"
+}

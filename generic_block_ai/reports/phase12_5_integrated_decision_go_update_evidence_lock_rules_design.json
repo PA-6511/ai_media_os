@@ -1,0 +1,67 @@
+{
+  "_meta": {
+    "phase": "12-5",
+    "phase_name": "integrated_decision GO 更新時の証跡固定ルール設計",
+    "version": "1.0",
+    "created_date": "2026-05-12",
+    "status": "PASS_DESIGN_ONLY",
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only",
+    "description": "integrated_decision を GO に更新する場合に、必要証跡を固定し欠落を防ぐルールを定義する。"
+  },
+  "references": [
+    "generic_block_ai/reports/phase12_2_integrated_decision_go_update_final_decision.json",
+    "generic_block_ai/reports/phase11_8_integrated_decision_go_nogo_actual_measurement_report_design.json",
+    "generic_block_ai/reports/phase12_4_human_review_completed_input_gap_and_conflict_detection_rules_design.json"
+  ],
+  "evidence_lock_rules": [
+    {
+      "rule_id": "ELR-01",
+      "required_evidence": "human review completed input receipt",
+      "lock_condition": "input_received == true and consistency_confirmed == true"
+    },
+    {
+      "rule_id": "ELR-02",
+      "required_evidence": "gap_and_conflict detection result",
+      "lock_condition": "gaps_found == false and conflicts_found == false"
+    },
+    {
+      "rule_id": "ELR-03",
+      "required_evidence": "integrated decision measurement basis",
+      "lock_condition": "decision_basis is non-empty"
+    },
+    {
+      "rule_id": "ELR-04",
+      "required_evidence": "production safety invariant",
+      "lock_condition": "production_status == NO_GO and blocked_actions remain prohibited"
+    }
+  ],
+  "evidence_lock_template": {
+    "all_evidence_locked": false,
+    "missing_evidence": [],
+    "go_update_blocked": true,
+    "reason": "PENDING"
+  },
+  "blocked_actions": [
+    "core_ai_real_send",
+    "external_api_call",
+    "wordpress_operation",
+    "cron_registration",
+    "auto_execute",
+    "auto_post",
+    "auto_update",
+    "auto_delete",
+    "auto_export",
+    "production_execution"
+  ],
+  "phase_decision": {
+    "phase12_5_status": "PASS_DESIGN_ONLY",
+    "app_implementation_status": "NO_GO",
+    "tests_implementation_status": "NO_GO",
+    "note": "証跡固定ルールの設計のみ。現時点では GO 更新を許可しない。"
+  }
+}

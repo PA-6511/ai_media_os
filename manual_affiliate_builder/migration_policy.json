@@ -1,0 +1,16 @@
+{
+  "phase": "Phase 8-50B",
+  "execution_mode": "DRY_RUN_ONLY",
+  "production_status": "NO_GO",
+  "allowed_migration_statuses": [
+    "manual_active",
+    "manual_only",
+    "migrated_without_api"
+  ],
+  "phase8_51_lock": {
+    "phase": "Phase 8-51-MIGRATION-SKELETON",
+    "execution_state": "UNEXECUTED",
+    "lock": "NOT_STARTED_LOCKED",
+    "execution_allowed": false
+  }
+}

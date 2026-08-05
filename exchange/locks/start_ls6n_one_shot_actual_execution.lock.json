@@ -1,0 +1,41 @@
+{
+  "phase": "LS-6N",
+  "document_type": "ONE_SHOT_ACTUAL_EXECUTION_LOCK",
+  "status": "ONE_SHOT_ACTUAL_EXECUTION_LOCK_CREATED_NO_CONSUMPTION_NO_WORDPRESS_WRITE",
+  "locked": true,
+  "one_shot_actual_execution_lock_created": true,
+  "one_shot_actual_execution_lock_active": true,
+  "one_shot_actual_execution_lock_consumed": false,
+  "rerun_allowed": false,
+  "created_by_phase": "LS-6N",
+  "target_payload": {
+    "title": "2.5次元の誘惑",
+    "asin": "B07X2G67B4",
+    "post_status": "draft",
+    "max_items": 1
+  },
+  "lock_scope": {
+    "block_second_execution": true,
+    "block_repeated_execution": true,
+    "block_publish": true,
+    "block_existing_post_update": true,
+    "block_non_target_payload": true,
+    "block_non_target_asin": true,
+    "block_non_draft_status": true,
+    "block_max_items_over_one": true
+  },
+  "depends_on": {
+    "ls6m_runtime_freeze_active": true,
+    "ls6m_credential_presence_validated": true,
+    "ls6l_final_confirmation_ready": true,
+    "ls6j_separate_execution_command_ready": true
+  },
+  "current_phase_execution": {
+    "wordpress_api_call_executed": false,
+    "wordpress_write_executed": false,
+    "wordpress_draft_creation_executed": false,
+    "one_shot_actual_execution_lock_consumed": false,
+    "runner_executed": false,
+    "actual_execution_executed": false
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ai-media-os.local/schemas/phase_evidence.schema.json",
+  "title": "Phase Evidence Record",
+  "type": "object",
+  "required": [
+    "timestamp_utc",
+    "phase",
+    "component",
+    "mode",
+    "status",
+    "human_review_required",
+    "production_status",
+    "summary",
+    "reason",
+    "novelty",
+    "files_changed",
+    "tests_executed",
+    "approval_state",
+    "side_effect_policy",
+    "sha256"
+  ],
+  "properties": {
+    "timestamp_utc": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "phase": {
+      "type": "string",
+      "minLength": 1
+    },
+    "component": {
+      "type": "string",
+      "minLength": 1
+    },
+    "mode": {
+      "type": "string",
+      "enum": ["DRY_RUN"]
+    },
+    "status": {
+      "type": "string",
+      "enum": ["PASS", "WARN", "FAIL", "ABORT"]
+    },
+    "human_review_required": {
+      "type": "boolean",
+      "const": true
+    },
+    "production_status": {
+      "type": "string",
+      "enum": ["NO_GO"]
+    },
+    "summary": {
+      "type": "string"
+    },
+    "reason": {
+      "type": "string"
+    },
+    "novelty": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "files_changed": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "tests_executed": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "approval_state": {
+      "type": "string"
+    },
+    "side_effect_policy": {
+      "type": "object",
+      "required": [
+        "wordpress_write",
+        "external_send",
+        "auto_post",
+        "auto_update",
+        "auto_delete",
+        "auto_export",
+        "vps_execution",
+        "production_reflection"
+      ],
+      "properties": {
+        "wordpress_write": {"type": "boolean", "const": false},
+        "external_send": {"type": "boolean", "const": false},
+        "auto_post": {"type": "boolean", "const": false},
+        "auto_update": {"type": "boolean", "const": false},
+        "auto_delete": {"type": "boolean", "const": false},
+        "auto_export": {"type": "boolean", "const": false},
+        "vps_execution": {"type": "boolean", "const": false},
+        "production_reflection": {"type": "boolean", "const": false}
+      },
+      "additionalProperties": false
+    },
+    "sha256": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "additionalProperties": true
+}

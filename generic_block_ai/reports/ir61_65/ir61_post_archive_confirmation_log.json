@@ -1,0 +1,93 @@
+{
+  "schema_version": "ir61_post_archive_confirmation_logger_v1",
+  "phase": "IR61",
+  "generated_at": "2026-05-24T12:59:13.132272+00:00",
+  "source_task_id": "ir61_65_live_trial",
+  "validation_result": "PASS",
+  "validation_failed_checks": [],
+  "validation_warnings": [],
+  "confirmation_entry": {
+    "confirmation_id": "confirm_ir61_65_live_trial_20260524T125913Z",
+    "confirmed_at": "2026-05-24T12:59:13.132163+00:00",
+    "source_phase": "IR60",
+    "source_task_id": "ir61_65_live_trial",
+    "final_decision_confirmed": "READY_FOR_DRY_RUN_HANDOFF_ONLY",
+    "completion_table_snapshot": [
+      {
+        "phase": "IR56",
+        "content": "Post-Bundle Audit Trail Recorder",
+        "focused": "PASS",
+        "adjacent": "PASS",
+        "scoped": "PASS",
+        "live": "PASS",
+        "judgement": "完了"
+      },
+      {
+        "phase": "IR57",
+        "content": "Dry-Run Finalization Verifier",
+        "focused": "PASS",
+        "adjacent": "PASS",
+        "scoped": "PASS",
+        "live": "PASS",
+        "judgement": "完了"
+      },
+      {
+        "phase": "IR58",
+        "content": "Pre-Release Archive Builder",
+        "focused": "PASS",
+        "adjacent": "PASS",
+        "scoped": "PASS",
+        "live": "PASS",
+        "judgement": "完了"
+      },
+      {
+        "phase": "IR59",
+        "content": "Archive Integrity Gate",
+        "focused": "PASS",
+        "adjacent": "PASS",
+        "scoped": "PASS",
+        "live": "PASS",
+        "judgement": "完了"
+      },
+      {
+        "phase": "IR60",
+        "content": "Phase 56-60 Completion Bundle",
+        "focused": "PASS",
+        "adjacent": "PASS",
+        "scoped": "PASS",
+        "live": "PASS",
+        "judgement": "完了"
+      }
+    ],
+    "live_summary_snapshot": {
+      "ir56": "PASS",
+      "ir57": "PASS",
+      "ir58": "PASS",
+      "ir59": "PASS",
+      "ir60": "PASS"
+    },
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    },
+    "retention_policy": "dry_run_artifacts_only",
+    "long_term_retention_blocked_until_live": true
+  },
+  "confirmation_hash": "04f69d13aa6d5d281d19d5474a59777a1aafc03aa5483c61204f2f41b0fa9034",
+  "safety_gate_snapshot": {
+    "dry_run": "maintained",
+    "OBSERVE": "maintained",
+    "submission_execution_blocked": true,
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "network_transmission_executed": false,
+    "production_release": false,
+    "GitHub_push": "未実行"
+  }
+}

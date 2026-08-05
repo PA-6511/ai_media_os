@@ -1,0 +1,86 @@
+{
+  "package_type": "phase6_completion_report",
+  "phase": "Phase 6",
+  "phase_range": "Phase 6-1 to 6-9",
+  "overall_status": "COMPLETE_DESIGN_ONLY",
+  "production_status": "NO_GO",
+  "wordpress_draft_creation": "NO_GO",
+  "real_write_enabled": false,
+  "manual_unlock_status": "DESIGN_ONLY",
+  "wordpress_write_executed": false,
+  "auto_post": false,
+  "auto_update": false,
+  "auto_delete": false,
+  "auto_export": false,
+  "subphase_results": [
+    {
+      "phase": "Phase 6-1",
+      "label": "実下書き作成ポリシー設計",
+      "file": "phase6_1_design_validation_result.json",
+      "status": "PASS"
+    },
+    {
+      "phase": "Phase 6-2",
+      "label": "preflight gate 設計",
+      "file": "phase6_2_preflight_gate_validation_result.json",
+      "status": "PASS"
+    },
+    {
+      "phase": "Phase 6-3",
+      "label": "限定解放可否の最終意思決定ルール設計",
+      "file": "phase6_3_release_decision_rules_validation_result.json",
+      "status": "PASS"
+    },
+    {
+      "phase": "Phase 6-4",
+      "label": "制御付き限定解放プラン設計",
+      "file": "phase6_4_controlled_unlock_plan_validation_result.json",
+      "status": "PASS"
+    },
+    {
+      "phase": "Phase 6-5",
+      "label": "実行仕様書設計",
+      "file": "phase6_5_execution_spec_validation_result.json",
+      "status": "PASS"
+    },
+    {
+      "phase": "Phase 6-6",
+      "label": "実行直前リハーサル設計",
+      "file": "phase6_6_pre_execution_rehearsal_validation_result.json",
+      "status": "PASS"
+    },
+    {
+      "phase": "Phase 6-7",
+      "label": "readiness 判定設計",
+      "file": "phase6_7_unlock_readiness_decision_result.json",
+      "status": "PASS"
+    },
+    {
+      "phase": "Phase 6-8",
+      "label": "最終GO/NO-GO設計",
+      "file": "phase6_8_final_unlock_go_no_go_result.json",
+      "status": "PASS"
+    },
+    {
+      "phase": "Phase 6-9",
+      "label": "手動限定解放プロトコル設計",
+      "file": "phase6_9_manual_unlock_protocol_validation_result.json",
+      "status": "PASS"
+    }
+  ],
+  "no_go_items": [
+    "wordpress_rest_post",
+    "wordpress_rest_put_patch",
+    "publish_post",
+    "update_existing_post",
+    "delete_post",
+    "external_export",
+    "github_actions_trigger",
+    "slack_production_notification",
+    "cron_automation",
+    "env_secret_auto_edit",
+    "vps_self_builder_execution"
+  ],
+  "next_step": "Phase 7 or manual decision outside automation",
+  "generated_at": "2026-05-05T05:45:32.287640+00:00"
+}

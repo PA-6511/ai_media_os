@@ -1,0 +1,48 @@
+{
+  "request_version": 1,
+  "phase_id": "LS-NEW-BATCH-4E",
+  "discovery_package_id": "wp-category-discovery-example-20260717",
+  "batch_id": "example-20260717",
+  "source_discovery_package_digest_sha256": "ba643626f6b35b7df2df9419561e21e8724db4e5755b9d0456fa725740cc80ec",
+  "preflight_mode": "DESIGN_ONLY_NO_CREDENTIAL_ACCESS",
+  "endpoint_plan": {
+    "base_url": null,
+    "rest_path": "/wp-json/wp/v2/categories",
+    "http_method": "GET",
+    "query_template": {
+      "slug": "{category_slug}",
+      "per_page": 100,
+      "_fields": "id,slug,name,count"
+    },
+    "request_body": null,
+    "custom_headers": null
+  },
+  "credential_plan": {
+    "credential_file_path": "/etc/ai-media-os/wordpress-readonly-category.env",
+    "required_environment_variable_names": [
+      "WORDPRESS_BASE_URL",
+      "WORDPRESS_READONLY_USERNAME",
+      "WORDPRESS_READONLY_APP_PASSWORD"
+    ],
+    "credential_values_present": false,
+    "credential_file_exists_check_requested": false,
+    "credential_file_metadata_read_requested": false,
+    "credential_file_content_read_requested": false,
+    "environment_variable_read_requested": false
+  },
+  "network_plan": {
+    "dns_resolution_requested": false,
+    "tcp_connection_requested": false,
+    "tls_connection_requested": false,
+    "http_request_requested": false,
+    "wordpress_response_read_requested": false
+  },
+  "expected_categories": [
+    {
+      "category_slug": "comic-new-release",
+      "category_name": "コミック新刊"
+    }
+  ],
+  "execution_approval_issued": false,
+  "approval_token": null
+}

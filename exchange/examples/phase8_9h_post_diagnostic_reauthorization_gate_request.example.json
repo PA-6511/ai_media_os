@@ -1,0 +1,51 @@
+{
+  "phase": "8-9H",
+  "mode": "POST_DIAGNOSTIC_REAUTHORIZATION_GATE",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "design_only": true,
+  "human_approval_required": true,
+  "human_approved": true,
+  "retry_consumed": true,
+  "retry_allowed": false,
+  "retry_limit": 0,
+  "freeze_required": true,
+  "execution_allowed": false,
+  "retry_limit_consumed": true,
+  "wordpress_api_call_allowed": false,
+  "wordpress_api_call_attempted": false,
+  "wordpress_write_allowed": false,
+  "wordpress_write_executed": false,
+  "wordpress_draft_created": false,
+  "publish_allowed": false,
+  "update_allowed": false,
+  "delete_allowed": false,
+  "export_allowed": false,
+  "unlock_in_this_phase": false,
+  "secret_values_included": false,
+  "diagnostic_reauth_conditions": {
+    "phase8_9g_completed": true,
+    "wordpress_root_cause_checklist_completed": true,
+    "credential_env_reinjected": true,
+    "phase8_16_ready_maintained": true,
+    "phase8_17_ready_maintained": true,
+    "freeze_maintained": true,
+    "no_go_maintained": true
+  },
+  "operator_confirmations": {
+    "base_url_public_site": true,
+    "username_is_login_username": true,
+    "user_role_editor_or_higher": true,
+    "application_password_regenerated": true,
+    "wp_json_reachable": true,
+    "security_or_waf_not_restricting": true
+  },
+  "decision": "APPROVE_POST_DIAGNOSTIC_REAUTH_GATE_ONLY",
+  "allowed_decisions": [
+    "APPROVE_POST_DIAGNOSTIC_REAUTH_GATE_ONLY",
+    "REQUEST_FIX",
+    "REJECT",
+    "ABORT"
+  ],
+  "operator_note": "This gate is design-only. It records reauthorization conditions without enabling retry or WordPress execution."
+}

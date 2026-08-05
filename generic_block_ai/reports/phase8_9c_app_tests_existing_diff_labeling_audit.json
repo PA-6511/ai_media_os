@@ -1,0 +1,89 @@
+{
+  "_meta": {
+    "phase": "8-9C",
+    "phase_name": "app/tests 既存差分ラベリング監査",
+    "version": "1.0",
+    "created_date": "2026-05-12",
+    "status": "PASS_WITH_SCOPE_CAVEAT",
+    "production_status": "NO_GO",
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "changed_area": "reports only",
+    "description": "Phase 8-9A/8-9B の方針に従い、app/tests の既存差分17件を分類のみ実施した監査レポート。"
+  },
+  "inputs": {
+    "from_phase8_9a": "generic_block_ai/reports/phase8_9a_diff_scope_audit.json",
+    "from_phase8_9b": "generic_block_ai/reports/phase8_9b_workspace_diff_handling_policy.json",
+    "target_diff_count": 17
+  },
+  "classification_rules": {
+    "label_1": "前工程の正当差分",
+    "label_2": "要再確認差分",
+    "label_3": "危険要素あり差分",
+    "label_4": "Phase 8-7〜8-9とは無関係な既存差分"
+  },
+  "classification_result": {
+    "label_1_legitimate_prior_phase_diffs": {
+      "count": 11,
+      "files": [
+        "generic_block_ai/app/connection_test_result_validator.py",
+        "generic_block_ai/app/evidence_index_validator.py",
+        "generic_block_ai/app/handoff_payload_validator.py",
+        "generic_block_ai/app/phase4_validator_runner.py",
+        "generic_block_ai/app/proposal_validator.py",
+        "generic_block_ai/app/review_queue_validator.py",
+        "generic_block_ai/app/validator_runner.py",
+        "generic_block_ai/tests/test_dry_run_enforcement.py",
+        "generic_block_ai/tests/test_guard_policy_alignment.py",
+        "generic_block_ai/tests/test_phase4_validators.py",
+        "generic_block_ai/tests/test_validators.py"
+      ],
+      "reason": "validator/runner/test の命名と内容が既存の安全境界検証文脈と整合し、Phase 8-7〜8-9 reports 作業とは独立した既存差分と判断。"
+    },
+    "label_2_recheck_required_diffs": {
+      "count": 5,
+      "files": [
+        "generic_block_ai/app/block_contract.py",
+        "generic_block_ai/app/block_runner.py",
+        "generic_block_ai/app/safety_guard.py",
+        "generic_block_ai/tests/test_manifest.py",
+        "generic_block_ai/tests/conftest.py"
+      ],
+      "reason": "中核挙動に関わる既存変更または共通設定であり、前工程由来の可能性は高いが採用可否の再確認を要する。"
+    },
+    "label_3_risky_diffs": {
+      "count": 0,
+      "files": [],
+      "reason": "キーワード文脈確認の範囲では、外部実行を有効化する実装変更は検出しなかった。"
+    },
+    "label_4_unrelated_to_phase8_7_to_8_9_existing_diffs": {
+      "count": 1,
+      "files": [
+        "generic_block_ai/tests/test_observe_mode.py"
+      ],
+      "reason": "観測モード単体テストであり、Phase 8-7〜8-9 の reports 証跡作成とは直接関係しない既存差分枠として分離。"
+    }
+  },
+  "safety_recheck": {
+    "core_ai_real_send": "not_detected",
+    "external_api_call": "not_detected",
+    "wordpress_operation_execution": "not_detected_as_execution",
+    "cron_registration_execution": "not_detected_as_execution",
+    "production_execution_enable": "not_detected_as_execution",
+    "note": "wordpress/cron/auto_execute/production_execution の語は主に禁止項目検証文脈で出現。"
+  },
+  "decision": {
+    "phase8_7_to_8_9_reports_status": "PASS_DESIGN_ONLY",
+    "workspace_overall_status": "WARN",
+    "phase8_final_gate_design_status": "PASS_DESIGN_ONLY_WITH_SCOPE_CAVEAT",
+    "production_status": "NO_GO",
+    "rationale": "17件を分類して分離管理可能な状態になったが、label_2 の再確認が完了するまで workspace 全体PASSは確定しない。"
+  },
+  "next_action": {
+    "recommended": "label_2 の5件について前工程記録との照合を実施し、採用/保留を確定する。",
+    "do_not": [
+      "削除",
+      "巻き戻し"
+    ]
+  }
+}

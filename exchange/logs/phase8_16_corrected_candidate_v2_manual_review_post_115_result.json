@@ -1,0 +1,57 @@
+{
+  "phase": "Phase 8-16",
+  "status": "PHASE8_16_CORRECTED_CANDIDATE_V2_REVIEW_APPROVED",
+  "decision": "APPROVE",
+  "reason": "v2 candidate satisfies placeholder removal, disclosure, link policy, and category/tag policy checks",
+  "production_status": "NO_GO",
+  "execution": "MANUAL_REVIEW_ONLY",
+  "target_post_id": 115,
+  "checklist": {
+    "candidate_exists": true,
+    "placeholder_url_removed": true,
+    "title_ok": true,
+    "body_ok": true,
+    "affiliate_disclosure_ok": true,
+    "pr_label_ok": true,
+    "link_policy_ok": true,
+    "category_tag_ok": true,
+    "safe_to_update_existing_draft_later": true
+  },
+  "action": "approve",
+  "manual_review_notes": [
+    "placeholder URL is removed and replaced with concrete links",
+    "PR and affiliate disclosure are clearly retained",
+    "link policy is explicit and affiliate tag is defined",
+    "category/tag proposal is fixed for later controlled update design",
+    "this phase is review only; no WordPress mutation is executed"
+  ],
+  "wordpress_api_call_allowed": false,
+  "wordpress_api_call_attempted": false,
+  "wordpress_write_allowed": false,
+  "wordpress_write_executed": false,
+  "wordpress_draft_updated": false,
+  "publish_allowed": false,
+  "publish_executed": false,
+  "update_allowed": false,
+  "update_executed": false,
+  "delete_allowed": false,
+  "delete_executed": false,
+  "auto_post": false,
+  "timer_enable_allowed": false,
+  "systemd_enable_start_allowed": false,
+  "human_review_required": true,
+  "evidence_summary": [
+    {
+      "path": "exchange/logs/phase8_15_corrected_draft_candidate_v2_dry_run_post_115_result.json",
+      "exists": true,
+      "status": "PHASE8_15_CORRECTED_CANDIDATE_V2_DRY_RUN_READY"
+    }
+  ],
+  "next_step": "design_limited_update_plan_for_post_115_without_execution",
+  "errors": [],
+  "warnings": [],
+  "policy_violations": [],
+  "safety_violations": [],
+  "reviewed_at_utc": "2026-06-09T13:28:04+00:00",
+  "checked_at": "2026-06-09T13:28:05.442089+00:00"
+}

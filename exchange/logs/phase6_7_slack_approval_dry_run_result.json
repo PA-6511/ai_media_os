@@ -1,0 +1,13 @@
+{
+  "phase": "Phase 6-7",
+  "status": "PASS_DRY_RUN_ONLY",
+  "decision": "APPROVE_DRY_RUN_ONLY",
+  "reserved_future_decision": "APPROVE_DRAFT_CREATE_ONLY",
+  "reserved_future_decision_currently_allowed": false,
+  "wordpress_draft_creation": "NO_GO",
+  "wordpress_write_executed": false,
+  "errors": [],
+  "warnings": [],
+  "next_step": "phase6_8_runbook_validation",
+  "checked_at": "2026-05-26T13:54:21.077044+00:00"
+}

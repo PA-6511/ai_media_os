@@ -1,0 +1,61 @@
+{
+  "package_type": "phase8_13_final_draft_fix_review",
+  "phase": "Phase 8-13",
+  "mode": "FINAL_DRAFT_FIX_REVIEW",
+  "execution": "DRY_RUN",
+  "source": "human_operator",
+  "reviewer": "manual_human_reviewer",
+  "reviewed_at_utc": "2026-06-04T13:40:00+00:00",
+  "target_post_id": 114,
+  "decision": "APPROVE_FIX_DRY_RUN_ONLY",
+  "decision_choices": [
+    "APPROVE_FIX_DRY_RUN_ONLY",
+    "REQUEST_FIX",
+    "REJECT",
+    "ABORT"
+  ],
+  "manual_checks": {
+    "pr_disclosure_kept": true,
+    "dangerous_html_not_included": true,
+    "placeholder_links_identified": true,
+    "replace_plan_defined": true,
+    "no_wordpress_update_executed": true,
+    "no_publish_executed": true
+  },
+  "review_notes": {
+    "summary": "Phase 8-12 の修正文案を確認。PR表記の維持と危険HTMLなしを確認し、Amazon商品ページ上で作品名・8巻・tag=ktkr77-22 の反映を手動確認済み。WordPress本文更新・公開は未実行のまま、Phase 8-13 を APPROVE_FIX_DRY_RUN_ONLY とする。",
+    "fix_requests": [
+      "Keep NO_GO and no-write conditions for all WordPress operations.",
+      "Use URL 2 (dp/B0FTZ75PWH, linkCode=ll1, tag=ktkr77-22) as affiliate_url.",
+      "Treat URL 3 (same ASIN, linkCode=sl2) as reference only."
+    ]
+  },
+  "replace_plan": {
+    "official_product_url": "https://www.amazon.co.jp/dp/B0FTZ75PWH",
+    "affiliate_url": "https://www.amazon.co.jp/%E7%89%87%E7%94%B0%E8%88%8E%E3%81%AE%E3%81%8A%E3%81%A3%E3%81%95%E3%82%93%E3%80%81%E5%89%A3%E8%81%96%E3%81%AB%E3%81%AA%E3%82%8B%EF%BD%9E%E3%81%9F%E3%81%A0%E3%81%AE%E7%94%B0%E8%88%8E%E3%81%AE%E5%89%A3%E8%A1%93%E5%B8%AB%E7%AF%84%E3%81%A0%E3%81%A3%E3%81%9F%E3%81%AE%E3%81%AB%E3%80%81%E5%A4%A7%E6%88%90%E3%81%97%E3%81%9F%E5%BC%9F%E5%AD%90%E3%81%9F%E3%81%A1%E3%81%8C%E4%BF%BA%E3%82%92%E6%94%BE%E3%81%A3%E3%81%A6%E3%81%8F%E3%82%8C%E3%81%AA%E3%81%84%E4%BB%B6-%EF%BC%98-%E4%BD%90%E8%B3%80%E5%B4%8E%E3%81%97%E3%81%92%E3%82%8B-ebook/dp/B0FTZ75PWH?dib=eyJ2IjoiMSJ9._jH4n8C3U8l3M6QWlYm2tA.WjC4R9d5M1R8D6x1u9a7bLqkT2q3z4n5o6p7r8s9t0A&dib_tag=se&qid=1760702098&sr=8-3&linkCode=ll1&tag=ktkr77-22&linkId=3f6bbf7bbf2b6b9ad1f5d40ef8e0f84b&language=ja_JP&ref_=as_li_ss_tl",
+    "link_validation_memo": "Amazonの商品ページ上で、作品名・8巻・tag=ktkr77-22 の反映を手動確認済み。3番URLも同一ASIN B0FTZ75PWH の確認用リンクとして参照。PR表記あり。WordPress本文更新・公開は未実行。"
+  },
+  "prohibited_operations_confirmed": {
+    "publish": true,
+    "update": true,
+    "delete": true,
+    "export": true,
+    "auto_post": true,
+    "additional_retry": true,
+    "systemctl_restart": true,
+    "systemctl_daemon_reload": true
+  },
+  "safety_flags": {
+    "wordpress_api_call_allowed": false,
+    "wordpress_write_executed": false,
+    "publish_allowed": false,
+    "update_allowed": false,
+    "delete_allowed": false,
+    "export_allowed": false,
+    "auto_post": false,
+    "auto_update": false,
+    "auto_delete": false,
+    "auto_export": false
+  },
+  "production_status": "NO_GO"
+}

@@ -1,0 +1,396 @@
+{
+  "phase_id": "18-6",
+  "phase_name": "Final ABORT Conditions Before Measurement Workflow Execution Design",
+  "phase_japanese_name": "測定ワークフロー実行直前の最終ABORT条件設計",
+  "purpose": "Design final ABORT (emergency stop) conditions that must be continuously monitored and evaluated immediately before Phase 15-7 and 15-8 measurement workflow execution begins, serving as the last-line-of-defense safety gate",
+  "layer": "pre_measurement_execution_gate_layer",
+  "design_category": "reports_only",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only"
+  },
+  "phase_18_6_scope": {
+    "scope_1_final_abort_condition_categories": {
+      "scope_id": "FINAL_ABORT_CONDITIONS",
+      "description": "Design 6 categories of final ABORT conditions that, if detected immediately before execution, must trigger immediate execution termination",
+      "abort_categories": {
+        "category_1_state_consistency_violation": {
+          "category_id": "ABORT_STATE_VIOLATION",
+          "description": "ABORT if any final state consistency check fails at execution time (after Phase 18-2/18-3 passed but before Phase 15-7/15-8 starts)",
+          "abort_triggers": [
+            {
+              "trigger": "integrated_decision changed from NO_GO to GO by unauthorized actor",
+              "check": "integrated_decision must remain NO_GO until Phase 15-7 measurement changes it",
+              "action": "ABORT. Alert authority. Investigate unauthorized state change."
+            },
+            {
+              "trigger": "receiver_validator_permission changed from NOT_EFFECTIVE to EFFECTIVE by unauthorized actor",
+              "check": "receiver_validator_permission must remain NOT_EFFECTIVE until Phase 15-8 measurement changes it",
+              "action": "ABORT. Alert authority. Investigate unauthorized state change."
+            },
+            {
+              "trigger": "app_implementation_status changed from NO_GO to GO before Phase 15-7/15-8 completion",
+              "check": "app_implementation_status must remain NO_GO until measurement workflows complete",
+              "action": "ABORT. Critical safety violation. Emergency security review."
+            },
+            {
+              "trigger": "tests_implementation_status changed from NO_GO to GO before Phase 15-7/15-8 completion",
+              "check": "tests_implementation_status must remain NO_GO until measurement workflows complete",
+              "action": "ABORT. Critical safety violation. Emergency security review."
+            },
+            {
+              "trigger": "production_status changed from NO_GO (should never change)",
+              "check": "production_status must ALWAYS remain NO_GO during design phases",
+              "action": "ABORT. CRITICAL security incident. Immediate escalation."
+            }
+          ]
+        },
+        "category_2_evidence_integrity_violation": {
+          "category_id": "ABORT_EVIDENCE_VIOLATION",
+          "description": "ABORT if any evidence lock or audit trail has been tampered with since Phase 18-4 locking",
+          "abort_triggers": [
+            {
+              "trigger": "Phase 18-4 evidence lock hash verification fails (hash mismatch detected)",
+              "check": "Recompute SHA-256+ hash of Phase 18-2/18-3 check results and compare against Phase 18-4 stored hash",
+              "action": "ABORT. Evidence tampering detected. Security incident response activated."
+            },
+            {
+              "trigger": "Phase 18-4 authority signature verification fails (signature invalid, revoked, or expired)",
+              "check": "Verify authority signature validity, revocation status, and expiry time",
+              "action": "ABORT. Authority signature invalid. Require fresh signature and full re-check."
+            },
+            {
+              "trigger": "Audit trail missing or corrupted since Phase 18-4 locking",
+              "check": "Verify audit trail append-only integrity. Confirm Phase 18-4 lock record exists and is unmodified.",
+              "action": "ABORT. Evidence loss detected. Critical security incident."
+            },
+            {
+              "trigger": "Phase 18-2/18-3 check results JSON modified since Phase 18-4 locking",
+              "check": "Compare Phase 18-4 stored check results hash against current file hash",
+              "action": "ABORT. Check results tampered. Restart from Phase 18-2/18-3 with fresh verification."
+            }
+          ]
+        },
+        "category_3_authority_and_permission_violation": {
+          "category_id": "ABORT_AUTHORITY_VIOLATION",
+          "description": "ABORT if authority signature or approver permissions have become invalid or insufficient",
+          "abort_triggers": [
+            {
+              "trigger": "Approving authority has been revoked or disabled since Phase 18-2/18-3 execution",
+              "check": "Verify authority is still ACTIVE and not marked REVOKED or DISABLED in authorization system",
+              "action": "ABORT. Authority revoked. Obtain fresh signature from new authority."
+            },
+            {
+              "trigger": "Authority signature has expired (current_utc > signature_valid_to_utc)",
+              "check": "Compare signature expiry timestamp against system UTC clock",
+              "action": "ABORT. Signature expired. Obtain fresh signature from authority."
+            },
+            {
+              "trigger": "Authority role or permission scope has been reduced since Phase 18-2/18-3 execution",
+              "check": "Verify authority has permissions to approve Phase 15-7 and/or Phase 15-8 execution (role must not change)",
+              "action": "ABORT. Authority permissions insufficient. Escalate to higher authority."
+            },
+            {
+              "trigger": "Multi-authority requirement not met (if Phase 18-2/18-3 requires dual signatures)",
+              "check": "Verify all required authority signatures are present, valid, and not expired",
+              "action": "ABORT. Missing required authority signature. Obtain second signature."
+            }
+          ]
+        },
+        "category_4_security_threat_or_incident": {
+          "category_id": "ABORT_SECURITY_THREAT",
+          "description": "ABORT if any active security threat or incident condition detected immediately before execution",
+          "abort_triggers": [
+            {
+              "trigger": "Security threat alert triggered (ransomware detection, intrusion detection, malware signature match)",
+              "check": "Query security monitoring system for active threat alerts in execution environment",
+              "action": "ABORT. Active security threat. Incident response activated."
+            },
+            {
+              "trigger": "Network connectivity anomaly or suspicious activity detected",
+              "check": "Monitor for unusual network patterns (port scanning, unusual traffic, connection attempts to unauthorized systems)",
+              "action": "ABORT. Network security anomaly. Incident investigation required."
+            },
+            {
+              "trigger": "Infrastructure compromise detected or suspected",
+              "check": "Verify infrastructure integrity: file system consistency, system file checksums, process integrity",
+              "action": "ABORT. Infrastructure compromise suspected. Forensic investigation required."
+            },
+            {
+              "trigger": "Privilege escalation or unauthorized access attempt detected",
+              "check": "Monitor system logs for privilege escalation, unauthorized sudo/admin access, role elevation attempts",
+              "action": "ABORT. Unauthorized access attempt. Security lockdown activated."
+            }
+          ]
+        },
+        "category_5_blocking_condition_reactivation": {
+          "category_id": "ABORT_BLOCKING_CONDITION_REACTIVATED",
+          "description": "ABORT if a blocking condition that was previously cleared has become active again since Phase 18-2/18-3 checks",
+          "abort_triggers": [
+            {
+              "trigger": "Phase 43 (ai_media_os initial stable operation) enters unstable state or reverts to NO_GO",
+              "check": "Verify Phase 43 still reports stable operation status before Phase 15-7/15-8 execution",
+              "action": "ABORT. Blocking condition reactivated. Restart Phase 43 stability verification."
+            },
+            {
+              "trigger": "Phase 47-B dry-run reverts to NO-GO or incomplete status",
+              "check": "Verify Phase 47-B dry-run completion status has not regressed",
+              "action": "ABORT. Prerequisite workflow regressed. Re-execute Phase 47-B dry-run."
+            },
+            {
+              "trigger": "receiver_validator_implementation_change detected (Phase 18-3 only)",
+              "check": "Verify receiver_validator code and configuration have not changed since Phase 18-3 check_5 execution",
+              "action": "ABORT. Implementation change detected. Update design, re-lock evidence, restart checks."
+            },
+            {
+              "trigger": "Dependent system or external service becomes unavailable",
+              "check": "Monitor availability of all dependencies required for Phase 15-7/15-8 execution",
+              "action": "ABORT. Dependency unavailable. Restore dependency and retry."
+            }
+          ]
+        },
+        "category_6_timing_and_authorization_window_violation": {
+          "category_id": "ABORT_TIMING_VIOLATION",
+          "description": "ABORT if execution falls outside authorized time window or required delay conditions",
+          "abort_triggers": [
+            {
+              "trigger": "Current UTC timestamp outside authorized execution window",
+              "check": "Verify current_utc is within authorized_execution_window_start and authorized_execution_window_end",
+              "action": "ABORT. Outside authorized window. Defer to next authorized execution window."
+            },
+            {
+              "trigger": "Insufficient delay since last Phase 15-7/15-8 execution (if repeated measurement prohibited)",
+              "check": "Verify minimum_delay_since_last_execution has elapsed since previous Phase 15-7/15-8 completion",
+              "action": "ABORT. Minimum delay not met. Defer execution."
+            },
+            {
+              "trigger": "Phase 18-2/18-3 check results stale (too much time elapsed since checks completed)",
+              "check": "Verify execution_time_utc - phase18_check_completion_time_utc < maximum_staleness_threshold (e.g., 24 hours)",
+              "action": "ABORT. Check results stale. Re-execute Phase 18-2/18-3 fresh checks."
+            },
+            {
+              "trigger": "Authority signature approaching expiry (expiring within next execution window)",
+              "check": "Verify signature_valid_to_utc - current_utc > minimum_remaining_validity (e.g., 1 hour)",
+              "action": "ABORT. Signature expiring soon. Obtain fresh signature before execution."
+            }
+          ]
+        }
+      }
+    },
+    "scope_2_final_abort_verification_procedure": {
+      "scope_id": "FINAL_ABORT_VERIFICATION",
+      "description": "Design the final verification procedure to be executed immediately before Phase 15-7/15-8 measurement workflow launch",
+      "verification_procedure": {
+        "pre_launch_verification_step_1_state_consistency_check": {
+          "step_id": "VERIFY_FINAL_STATE",
+          "timing": "Immediately before Phase 15-7/15-8 launch (< 10 seconds before execution begins)",
+          "checks": [
+            "Verify integrated_decision == NO_GO (must not change until Phase 15-7 measurement)",
+            "Verify receiver_validator_permission == NOT_EFFECTIVE (must not change until Phase 15-8 measurement)",
+            "Verify app_implementation_status == NO_GO",
+            "Verify tests_implementation_status == NO_GO",
+            "Verify production_status == NO_GO"
+          ],
+          "failure_action": "ABORT immediately. Do not launch Phase 15-7/15-8. Alert authority."
+        },
+        "pre_launch_verification_step_2_evidence_integrity_check": {
+          "step_id": "VERIFY_EVIDENCE_INTEGRITY",
+          "timing": "Immediately before Phase 15-7/15-8 launch (< 10 seconds before execution begins)",
+          "checks": [
+            "Verify Phase 18-4 evidence lock hash (re-hash Phase 18-2/18-3 results, compare against stored hash)",
+            "Verify Phase 18-4 authority signature validity and non-expiry",
+            "Verify audit trail integrity (Phase 18-4 lock record present and unmodified)",
+            "Verify Phase 18-2/18-3 check results JSON has not been modified since Phase 18-4 locking"
+          ],
+          "failure_action": "ABORT immediately. Evidence tampering or corruption detected. Activate security incident response."
+        },
+        "pre_launch_verification_step_3_authority_validity_check": {
+          "step_id": "VERIFY_AUTHORITY_VALIDITY",
+          "timing": "Immediately before Phase 15-7/15-8 launch (< 10 seconds before execution begins)",
+          "checks": [
+            "Verify approving authority is ACTIVE (not revoked, disabled, or deactivated)",
+            "Verify authority signature has not expired (current_utc < signature_valid_to_utc)",
+            "Verify authority has permission to approve Phase 15-7 and/or Phase 15-8 execution",
+            "Verify all required multi-authority signatures present (if applicable)"
+          ],
+          "failure_action": "ABORT immediately. Authority invalid or insufficient. Obtain fresh signature or escalate authority."
+        },
+        "pre_launch_verification_step_4_security_posture_check": {
+          "step_id": "VERIFY_SECURITY_POSTURE",
+          "timing": "Immediately before Phase 15-7/15-8 launch (< 10 seconds before execution begins)",
+          "checks": [
+            "Query security monitoring system: Any active threat alerts? (Response must be: NO)",
+            "Query infrastructure integrity system: Any integrity violations detected? (Response must be: NO)",
+            "Query network monitoring: Any suspicious activity or anomalies? (Response must be: NO)",
+            "Query access logs: Any unauthorized access attempts or privilege escalation? (Response must be: NO)"
+          ],
+          "failure_action": "ABORT immediately. Security threat detected. Incident response activated."
+        },
+        "pre_launch_verification_step_5_blocking_condition_recheck": {
+          "step_id": "VERIFY_BLOCKING_CONDITIONS_STILL_CLEAR",
+          "timing": "Immediately before Phase 15-7/15-8 launch (< 10 seconds before execution begins)",
+          "checks": [
+            "Verify Phase 43 status is still STABLE (not regressed to NO-GO)",
+            "Verify Phase 47-B dry-run completion status is still COMPLETE (not regressed)",
+            "Verify receiver_validator implementation has not changed (Phase 18-3 only)",
+            "Verify all dependency services are still AVAILABLE"
+          ],
+          "failure_action": "ABORT immediately. Blocking condition reactivated. Restart prerequisite verification."
+        },
+        "pre_launch_verification_step_6_timing_and_window_check": {
+          "step_id": "VERIFY_TIMING_AND_WINDOW",
+          "timing": "Immediately before Phase 15-7/15-8 launch (< 10 seconds before execution begins)",
+          "checks": [
+            "Verify current_utc is within authorized_execution_window (start ≤ current_utc ≤ end)",
+            "Verify minimum delay since last execution has elapsed (if repeated execution restricted)",
+            "Verify Phase 18-2/18-3 check results are not stale (within maximum_staleness_threshold)",
+            "Verify authority signature has sufficient remaining validity (> minimum_remaining_validity)"
+          ],
+          "failure_action": "ABORT immediately. Timing constraint violated. Defer to next authorized window or refresh signatures."
+        }
+      },
+      "verification_outcomes": {
+        "all_6_steps_pass": {
+          "outcome": "FINAL_ABORT_VERIFICATION_PASSED",
+          "action": "Proceed to Phase 15-7/15-8 measurement workflow execution launch. Record execution start timestamp in audit trail."
+        },
+        "any_step_fails": {
+          "outcome": "FINAL_ABORT_VERIFICATION_FAILED",
+          "action": "ABORT execution immediately. Do not launch Phase 15-7/15-8. Document ABORT reason. Alert authority. Return to appropriate remediation procedure from Phase 18-5."
+        }
+      }
+    },
+    "scope_3_abort_execution_and_recovery": {
+      "scope_id": "ABORT_EXECUTION_RECOVERY",
+      "description": "Procedures for executing ABORT if any final verification fails, and recovery workflow",
+      "abort_execution_procedure": {
+        "step_1_abort_initiation": {
+          "step_id": "INITIATE_ABORT",
+          "action": "If any of the 6 verification steps fail, immediately initiate ABORT",
+          "actions_to_perform": [
+            "STOP Phase 15-7/15-8 execution (if already started, terminate immediately)",
+            "Set execution_status = ABORTED",
+            "Record ABORT timestamp in audit trail",
+            "Document ABORT reason and failing verification step",
+            "Alert authority via secure channel (email, SMS, dashboard notification)",
+            "Lock execution environment (prevent further launch attempts until approval)"
+          ],
+          "timeline": "Immediate (< 1 second)"
+        },
+        "step_2_abort_reason_classification": {
+          "step_id": "CLASSIFY_ABORT_REASON",
+          "action": "Determine ABORT reason category to guide recovery workflow",
+          "classification": {
+            "category_1_state_violation": "Route to Phase 18-5 HALT scenario: unauthorized state change",
+            "category_2_evidence_violation": "Route to Phase 18-5 HALT scenario: evidence tampering",
+            "category_3_authority_violation": "Route to Phase 18-5 HOLD scenario: authority failure",
+            "category_4_security_threat": "Route to Phase 18-5 HALT scenario: security incident",
+            "category_5_blocking_condition_reactivated": "Route to Phase 18-5 HOLD scenario: blocking condition cleared",
+            "category_6_timing_violation": "Route to Phase 18-5 HOLD scenario: minor remedial (timing only) or defer to next window"
+          }
+        },
+        "step_3_authority_notification": {
+          "step_id": "NOTIFY_AUTHORITY",
+          "action": "Notify appropriate authority of ABORT and required recovery action",
+          "notification_content": {
+            "ABORT_timestamp": "UTC timestamp of ABORT",
+            "failing_verification_step": "Which of 6 steps failed (STEP_1 through STEP_6)",
+            "ABORT_reason": "Detailed explanation of failure",
+            "recommended_recovery_action": "Suggested procedure from Phase 18-5 HOLD/HALT"
+          },
+          "notification_channels": [
+            "Email to authority",
+            "Dashboard alert",
+            "SMS notification (if critical)",
+            "Log entry in audit trail"
+          ]
+        },
+        "step_4_recovery_workflow": {
+          "step_id": "EXECUTE_RECOVERY",
+          "action": "Execute recovery workflow based on ABORT reason category",
+          "recovery_options": [
+            {
+              "option": "HOLD recovery (e.g., timing, authority, blocking condition)",
+              "procedure": "Apply remediation from Phase 18-5 HOLD procedure. Then restart from Step 1 of pre-launch verification (Step_6 of scope_2)."
+            },
+            {
+              "option": "HALT recovery (e.g., state violation, evidence tampering, security incident)",
+              "procedure": "Apply remediation from Phase 18-5 HALT procedure. Then restart from full Phase 18-2/18-3 fresh check suite."
+            }
+          ]
+        },
+        "step_5_re_launch_authorization": {
+          "step_id": "AUTHORIZATION_FOR_RE_LAUNCH",
+          "action": "After recovery, obtain authority approval to attempt re-launch",
+          "approval_requirement": {
+            "same_authority": "If HOLD recovery (minor issue), same authority who signed Phase 18-2/18-3 can approve re-launch",
+            "escalated_authority": "If HALT recovery (critical issue), escalated or new authority must approve re-launch",
+            "documentation": "Authority must document recovery action taken and re-launch approval in audit trail"
+          }
+        },
+        "step_6_re_launch_attempt": {
+          "step_id": "RESTART_PRE_LAUNCH_VERIFICATION",
+          "action": "After recovery and re-authorization, restart final pre-launch verification (scope_2, Step_1 through Step_6)",
+          "success_outcome": "If all 6 verification steps pass: Proceed to Phase 15-7/15-8 launch",
+          "failure_outcome": "If any step fails again: Return to Step_2 (classify reason) and iterate recovery"
+        }
+      }
+    }
+  },
+  "phase_18_6_abort_monitoring_architecture": {
+    "monitoring_model": "Continuous passive monitoring + active verification immediately before launch",
+    "continuous_passive_monitoring": {
+      "description": "Background monitoring of abort conditions (does not block execution)",
+      "monitoring_targets": [
+        "State consistency (integrated_decision, receiver_validator_permission, app/tests status, production_status)",
+        "Evidence integrity (audit trail append-only integrity, lock record existence)",
+        "Authority status (revocation status, role changes)",
+        "Security posture (threat alerts, access logs, integrity monitoring)",
+        "Blocking conditions (Phase 43 status, Phase 47-B status, dependency availability)"
+      ],
+      "monitoring_frequency": "Continuous (every 5-60 seconds depending on target)",
+      "alerts_triggered": "If any condition violates ABORT threshold, generate alert to authority but do NOT automatically ABORT (only human authority triggers ABORT)"
+    },
+    "active_verification_immediately_before_launch": {
+      "description": "Active verification procedure executed only once, immediately before Phase 15-7/15-8 execution begins",
+      "verification_timing": "< 10 seconds before execution launch",
+      "verification_scope": "All 6 categories + 6 verification steps from scope_2",
+      "verification_outcome": "PROCEED or ABORT (binary decision)",
+      "launch_only_if": "ALL 6 verification steps PASS"
+    }
+  },
+  "phase_18_6_governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "state_invariants": {
+      "integrated_decision": "NO_GO",
+      "receiver_validator_permission": "NOT_EFFECTIVE",
+      "app_implementation_status": "NO_GO",
+      "tests_implementation_status": "NO_GO"
+    },
+    "phase_18_6_completion_criteria": [
+      "6 ABORT condition categories designed with specific triggers and actions",
+      "Final pre-launch verification procedure (6 steps) designed",
+      "ABORT execution and recovery workflow (6 steps) designed",
+      "Monitoring architecture (continuous passive + active verification) defined",
+      "ABORT reason classification to Phase 18-5 recovery routing designed",
+      "All JSON validation passed",
+      "No changes to app/ or tests/ directories",
+      "All state invariants maintained"
+    ]
+  }
+}

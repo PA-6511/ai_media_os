@@ -1,0 +1,184 @@
+#ebook-tawawa-reference-192,
+#ebook-tawawa-reference-192 * {
+  box-sizing: border-box;
+}
+
+#ebook-tawawa-reference-192 {
+  display: grid;
+  gap: 1.35rem;
+  width: 100%;
+  max-width: 860px;
+  margin-inline: auto;
+}
+
+#ebook-tawawa-reference-192 .tawawa-reference-main-card,
+#ebook-tawawa-reference-192 .tawawa-reference-description,
+#ebook-tawawa-reference-192 .tawawa-reference-details,
+#ebook-tawawa-reference-192 .tawawa-reference-notice {
+  width: 100%;
+  margin: 0;
+  border: 1px solid #dedede;
+  border-radius: 0.9rem;
+  background: #ffffff;
+}
+
+#ebook-tawawa-reference-192 .tawawa-reference-main-card {
+  display: grid;
+  grid-template-columns: minmax(150px, 180px) minmax(0, 1fr);
+  gap: 1.5rem;
+  align-items: center;
+  padding: 1.35rem;
+}
+
+#ebook-tawawa-reference-192 .tawawa-reference-cover {
+  min-width: 0;
+}
+
+#ebook-tawawa-reference-192 .tawawa-reference-cover figure {
+  margin: 0;
+}
+
+#ebook-tawawa-reference-192 .tawawa-reference-cover img {
+  display: block;
+  width: 100%;
+  max-width: 180px;
+  height: auto;
+  margin-inline: auto;
+  border-radius: 0.25rem;
+}
+
+#ebook-tawawa-reference-192 .tawawa-reference-actions {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+#ebook-tawawa-reference-192 .tawawa-reference-pr {
+  margin: 0;
+  padding: 0.58rem 0.72rem;
+  border-left: 4px solid #ff9f1a;
+  background: #fff8ec;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.55;
+}
+
+#ebook-tawawa-reference-192 .tawawa-reference-stores {
+  display: grid;
+  gap: 0.75rem;
+}
+
+#ebook-tawawa-reference-192 .tawawa-reference-stores > * {
+  display: flex;
+  width: 100%;
+  min-height: 3.15rem;
+  margin: 0;
+  padding: 0.72rem 1rem;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 999px;
+  box-shadow: 0 8px 16px rgb(0 0 0 / 8%);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.4;
+  text-align: center;
+  text-decoration: none;
+}
+
+#ebook-tawawa-reference-192 .ls-store-amazon {
+  background: linear-gradient(90deg, #ff9800, #ffb544);
+  color: #111111;
+}
+
+#ebook-tawawa-reference-192 .ls-store-kobo {
+  background: linear-gradient(90deg, #d90000, #e93636);
+  color: #ffffff;
+}
+
+#ebook-tawawa-reference-192 .ls-store-dmm {
+  background: linear-gradient(90deg, #2468e8, #4b86ef);
+  color: #ffffff;
+}
+
+#ebook-tawawa-reference-192 .ls-store-disabled {
+  cursor: not-allowed;
+  opacity: 0.62;
+}
+
+#ebook-tawawa-reference-192 .tawawa-reference-description {
+  padding: 1.15rem 1.25rem;
+  border-color: #efc88d;
+  background: #fffaf1;
+}
+
+#ebook-tawawa-reference-192 .tawawa-reference-description p {
+  margin: 0;
+  line-height: 1.75;
+}
+
+#ebook-tawawa-reference-192 .tawawa-reference-details {
+  padding: 1.15rem 1.25rem;
+  background: #fbfbfb;
+}
+
+#ebook-tawawa-reference-192 .tawawa-reference-details ul {
+  display: grid;
+  gap: 0.65rem;
+  margin: 0;
+  padding-left: 1.3rem;
+}
+
+#ebook-tawawa-reference-192 .tawawa-reference-details li {
+  margin: 0;
+  line-height: 1.65;
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+
+#ebook-tawawa-reference-192 .tawawa-reference-details strong {
+  display: inline;
+  white-space: nowrap;
+}
+
+#ebook-tawawa-reference-192 .tawawa-reference-notice {
+  padding: 0.9rem 1rem;
+  border: 0;
+  border-left: 5px solid #c9c9c9;
+  border-radius: 0.45rem;
+  background: #f5f5f5;
+  font-size: 0.9rem;
+  line-height: 1.65;
+}
+
+@media (max-width: 699px) {
+  #ebook-tawawa-reference-192 {
+    gap: 1rem;
+  }
+
+  #ebook-tawawa-reference-192 .tawawa-reference-main-card {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.1rem;
+    padding: 1rem;
+  }
+
+  #ebook-tawawa-reference-192 .tawawa-reference-cover img {
+    width: min(68vw, 240px);
+    max-width: 100%;
+  }
+
+  #ebook-tawawa-reference-192 .tawawa-reference-actions {
+    gap: 0.75rem;
+  }
+
+  #ebook-tawawa-reference-192 .tawawa-reference-stores > * {
+    min-height: 3rem;
+    font-size: 0.98rem;
+  }
+
+  #ebook-tawawa-reference-192 .tawawa-reference-description,
+  #ebook-tawawa-reference-192 .tawawa-reference-details {
+    padding: 1rem;
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "_meta": {
+    "phase": "50-6",
+    "phase_name": "発効・実処理開始層",
+    "layer": "ABORT条件設計層 (abort condition design layer)",
+    "title": "最終解除候補監査前のABORT条件設計",
+    "created": "2026-05-14",
+    "author": "governance-framework",
+    "status": "PASS_DESIGN_ONLY",
+    "reports_only": true
+  },
+  "scope": "Phase 50-3 で設計された監査対象リストに基づき，最終解除候補の監査前にABORT（中断）すべき条件・ルールを設計層で定義する。内容：(1) ABORT条件の明示（重大不備・不整合・外部要因等），(2) ABORT時のNO_GO維持・記録，(3) ABORT後の再設計・再監査プロセス，(4) ABORT条件の監査証跡化。",
+  "governance": {
+    "production_status": "NO_GO",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "report": {
+    "description": "Phase 50-6 では，Phase 50-3 で設計された監査対象リストに基づき，最終解除候補の監査前にABORT（中断）すべき条件・ルールを設計層で定義する。(1) ABORT条件の明示（重大不備・不整合・外部要因等），(2) ABORT時のNO_GO維持・記録，(3) ABORT後の再設計・再監査プロセス，(4) ABORT条件の監査証跡化。これらは全て reports-only で実装され，実処理開始許可は含まれない。",
+    "invariants": [
+      "NO_GO 維持：ABORT条件発生時は production_status = 'NO_GO' を強制維持",
+      "NOT_GRANTED 維持：manual_release_go / actual_process_start_go の NOT_GRANTED 状態を維持",
+      "ABORT条件明示：重大不備・不整合・外部要因等を網羅的に定義",
+      "ABORT時の記録・証跡化：ABORT発生時は必ず記録・証跡化を実施",
+      "reports only：全ABORT条件設計は設計層の報告書形式で実施"
+    ],
+    "actions": [],
+    "notes": [
+      "Phase 50-6 は設計層のみで実装される（reports-only）",
+      "実処理開始許可は含まれない",
+      "ABORT条件は厳格に定義・記録される"
+    ]
+  }
+}

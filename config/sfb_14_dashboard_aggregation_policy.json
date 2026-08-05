@@ -1,0 +1,34 @@
+{
+  "phase": "SFB-14",
+  "phase_name": "SFB Dashboard Aggregation",
+  "mode": "DRY_RUN",
+  "production_status": "NO_GO",
+  "external_api_allowed": false,
+  "external_network_allowed": false,
+  "wordpress_write_allowed": false,
+  "approval_token_consumption_allowed": false,
+  "output_paths": {
+    "report_json": "logs/sfb_14_dashboard_aggregation.json",
+    "report_md": "logs/sfb_14_dashboard_aggregation.md"
+  },
+  "artifacts": {
+    "sfb_10b_baseline": "generic_block_template/blocks/sale_flash_block/logs/sale_flash_block_baseline_lock_report.json",
+    "sfb_11_import": "generic_block_template/blocks/sale_flash_block/logs/real_sale_csv_import_report.json",
+    "sfb_11b_dry_run_evidence": "generic_block_template/blocks/sale_flash_block/logs/real_data_import_dry_run_evidence.json",
+    "sfb_11c_import_baseline_lock": "generic_block_template/blocks/sale_flash_block/logs/real_data_import_dry_run_baseline_lock_report.json",
+    "sfb_12_operating_readiness": "logs/real_data_csv_operating_readiness.json",
+    "sfb_13_diff_report": "logs/sfb_13_csv_import_diff_report.json"
+  },
+  "display_name_mapping": {
+    "sfb_10b_baseline": "SFB-10B",
+    "sfb_11_import": "SFB-11",
+    "sfb_11b_dry_run_evidence": "SFB-11B",
+    "sfb_11c_import_baseline_lock": "SFB-11C",
+    "sfb_12_operating_readiness": "SFB-12",
+    "sfb_13_diff_report": "SFB-13"
+  },
+  "mapping_guard": {
+    "warn_on_undefined_phase_mapping": true,
+    "stop_on_undefined_phase_mapping": false
+  }
+}

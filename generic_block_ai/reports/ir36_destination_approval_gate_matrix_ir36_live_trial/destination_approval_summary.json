@@ -1,0 +1,16 @@
+{
+  "schema_version": "ir36_destination_approval_gate_matrix_v1",
+  "phase": "IR36",
+  "source_task_id": "ir36_live_trial",
+  "release_candidate_id": "rc_20260523T155148Z_ir26_live_trial_b940393b490b",
+  "overall_approval_decision": "APPROVE_DRY_RUN",
+  "summary": {
+    "destination_count": 3,
+    "approve_dry_run_count": 3,
+    "human_review_required_count": 0,
+    "reject_count": 0,
+    "abort_count": 0,
+    "global_abort": false
+  },
+  "global_abort_reasons": []
+}

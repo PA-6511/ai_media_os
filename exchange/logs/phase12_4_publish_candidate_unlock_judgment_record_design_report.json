@@ -1,0 +1,46 @@
+{
+  "package_type": "phase12_4_publish_candidate_unlock_judgment_record_design_report",
+  "phase": "Phase 12-4",
+  "title": "Phase 12-4 Publish Candidate Unlock Judgment Record Design Report",
+  "status": "PASS",
+  "phase12_4_design_status": "PASS",
+  "source_report": "exchange/logs/phase12_3_publish_candidate_unlock_final_gate_design_report.json",
+  "current_decision": "KEEP_NO_GO",
+  "publish_candidate_unlocked_for_operator": false,
+  "unlock_judgment_record_design": {
+    "record_fields": [
+      "judgment_timestamp",
+      "operator_id",
+      "requested_decision",
+      "decision_reason",
+      "final_lock_state"
+    ],
+    "default_recorded_decision": "KEEP_NO_GO",
+    "requires_manual_signature": true
+  },
+  "wordpress_publish_execution": "NO_GO",
+  "wordpress_write_executed": false,
+  "production_status": "NO_GO",
+  "wordpress_draft_id": 110,
+  "target_draft_status": "draft",
+  "still_forbidden": [
+    "wordpress_publish",
+    "wordpress_update_existing_post",
+    "wordpress_delete_post",
+    "wordpress_export",
+    "wordpress_bulk_post",
+    "cron_automation",
+    "github_actions_trigger",
+    "slack_production_notification",
+    "vps_self_builder_execution",
+    "env_or_secrets_or_credentials_auto_edit"
+  ],
+  "summary": {
+    "unlock_judgment_record_design_ready": true,
+    "candidate_still_locked": true,
+    "publish_still_not_executed": true,
+    "no_go_boundary_maintained": true
+  },
+  "next_step": "phase12_5_pre_execution_lock_reconfirmation_design",
+  "created_at": "2026-05-10T04:04:55.363556+00:00"
+}

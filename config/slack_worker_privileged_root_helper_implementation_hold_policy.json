@@ -1,0 +1,139 @@
+{
+  "phase": "SQL-B2-4B-5G-3B-1D-2D-1D",
+  "schema_version": 1,
+  "result": "PASS_PRIVILEGED_ROOT_HELPER_IMPLEMENTATION_HOLD_FIXED_NO_HOST_CHANGE_NO_AUTHORIZATION_NO_GO",
+  "design_source_commit": "29a8519a380e1df6a7489a1be5039b434ec81111",
+  "bindings": {
+    "release_id": "slack-worker-5441bd1-1590693d6ae7",
+    "candidate_root_helper_path": "/usr/local/libexec/ai-media-os/slack-worker-release-installer.py",
+    "final_release_path": "/opt/ai-media-os/slack-worker/releases/slack-worker-5441bd1-1590693d6ae7",
+    "expected_plan_sha256": "f7f71ee447cc55020c4e87b8c2af56dfbaa432fe14af33108cb34792da35872d",
+    "expected_plan_bytes": 3401,
+    "source_files": {
+      "plan_policy": {
+        "path": "config/slack_worker_root_helper_plan_builder_policy.json",
+        "sha256": "e5ca8c97543cab19231bc41d930306d2463b61c4fc19aa2588630eb54bf89c9b"
+      },
+      "implementation_policy": {
+        "path": "config/slack_worker_root_helper_plan_builder_implementation_policy.json",
+        "sha256": "488ee1d820e925a06472feae8aa7c8c8a37787cbdaad1a9a0bbc9d99d746e549"
+      },
+      "adversarial_policy": {
+        "path": "config/slack_worker_root_helper_plan_builder_adversarial_validation_policy.json",
+        "sha256": "10704de960ece0b58443af9686cabe4bc91369c952643b5948e3778e532b3f99"
+      },
+      "plan_script": {
+        "path": "scripts/slack_worker_root_helper_plan_builder.py",
+        "sha256": "9664ec6ecd696f0c01f7b11a495c650bafc1ee89aec3063ffc8e28d809063be8"
+      }
+    }
+  },
+  "completed_unprivileged_scope": {
+    "plan_builder_policy_fixed": true,
+    "plan_builder_implemented": true,
+    "deterministic_plan_rendering_validated": true,
+    "logical_adversarial_validation_passed": true,
+    "target_test_file_count": 11,
+    "verified_test_count": 113
+  },
+  "privileged_implementation_gate": {
+    "state": "HOLD",
+    "execution_allowed": false,
+    "root_helper_source_creation_allowed": false,
+    "root_helper_install_allowed": false,
+    "root_release_install_allowed": false,
+    "authorization_capsule_issue_allowed": false,
+    "authorization_capsule_consumption_allowed": false,
+    "host_path_creation_allowed": false,
+    "root_ownership_change_allowed": false,
+    "sudo_invocation_allowed": false,
+    "systemd_operation_allowed": false,
+    "service_start_allowed": false,
+    "unit_enable_allowed": false,
+    "production_database_write_allowed": false,
+    "secret_file_content_read_allowed": false
+  },
+  "required_preconditions": {
+    "root_helper_source_review": {
+      "required": true,
+      "satisfied": false
+    },
+    "root_helper_native_dependency_review": {
+      "required": true,
+      "satisfied": false
+    },
+    "root_helper_toctou_threat_model": {
+      "required": true,
+      "satisfied": false
+    },
+    "root_helper_host_path_custody_review": {
+      "required": true,
+      "satisfied": false
+    },
+    "authorization_issuer_implementation": {
+      "required": true,
+      "satisfied": false
+    },
+    "durable_authorization_consumer_implementation": {
+      "required": true,
+      "satisfied": false
+    },
+    "pending_reconciliation_executor_implementation": {
+      "required": true,
+      "satisfied": false
+    },
+    "root_owned_test_environment": {
+      "required": true,
+      "satisfied": false
+    },
+    "rollback_rehearsal": {
+      "required": true,
+      "satisfied": false
+    },
+    "separate_human_authorization": {
+      "required": true,
+      "satisfied": false
+    }
+  },
+  "scope_limitations": {
+    "application_logical_validation_complete": true,
+    "kernel_isolation_proven": false,
+    "seccomp_isolation_proven": false,
+    "mount_namespace_isolation_proven": false,
+    "native_extension_containment_proven": false,
+    "toctou_resistance_proven": false,
+    "root_execution_safety_proven": false,
+    "production_readiness_proven": false
+  },
+  "resume_contract": {
+    "automatic_resume_allowed": false,
+    "repository_commit_is_authorization": false,
+    "policy_file_is_authorization": false,
+    "report_file_is_authorization": false,
+    "test_pass_is_authorization": false,
+    "separate_future_human_decision_required": true,
+    "new_preflight_required_before_resume": true,
+    "all_required_preconditions_must_be_satisfied": true
+  },
+  "governance": {
+    "hold_policy_created": true,
+    "plan_builder_series_complete": true,
+    "privileged_implementation_authorized": false,
+    "root_helper_implemented": false,
+    "root_helper_installed": false,
+    "root_release_install_authorized": false,
+    "root_release_install_executed": false,
+    "authorization_capsule_issued": false,
+    "authorization_capsule_consumed": false,
+    "durable_consumption_record_created": false,
+    "host_change_executed": false,
+    "current_host_link_created": false,
+    "secret_migration_executed": false,
+    "systemd_operation_executed": false,
+    "service_start_executed": false,
+    "unit_enable_executed": false,
+    "privileged_implementation_decision": "HOLD",
+    "production_status": "NO_GO",
+    "final_decision": "NO_GO"
+  }
+}

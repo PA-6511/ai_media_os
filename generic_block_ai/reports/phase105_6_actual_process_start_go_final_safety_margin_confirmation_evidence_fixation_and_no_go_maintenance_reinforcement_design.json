@@ -1,0 +1,16 @@
+{
+  "_meta": {
+    "phase": 105,
+    "sub_phase": 6,
+    "description": "actual_process_start_go 最終安全余白確認の証跡固定・NO_GO維持補強設計",
+    "status": "PASS_DESIGN_ONLY",
+    "reports_only": true
+  },
+  "governance": {
+    "production_status": "NO_GO",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "execution_start": "NO_GO",
+    "changed_area": "reports only"
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "_meta": {
+    "phase": "8-8",
+    "phase_name": "final decision 実施記録テンプレート",
+    "version": "1.0",
+    "status": "PASS_DESIGN_ONLY",
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "created_date": "2026-05-12",
+    "changed_area": "reports only",
+    "description": "Phase 8-6 の final decision report 設計を、実施記録として記述するためのテンプレート。最終確定 GO はここで行わない。"
+  },
+  "critical_interpretation": {
+    "statement": "Phase 8-6 は最終判定レポートの設計であり、最終判定の実測確定そのものではない。",
+    "implication": "current_conclusion は NO_GO/PENDING/REQUEST_FIX/ABORT の範囲に限定する。"
+  },
+  "references": [
+    "generic_block_ai/reports/phase8_1_no_go_boundary_reconfirmation_design.json",
+    "generic_block_ai/reports/phase8_2_receiver_validator_implementation_difference_design.json",
+    "generic_block_ai/reports/phase8_3_app_tests_implementation_gate_design.json",
+    "generic_block_ai/reports/phase8_4_gate_evaluation_execution_design.json",
+    "generic_block_ai/reports/phase8_5_human_review_implementation_permission_template.json",
+    "generic_block_ai/reports/phase8_6_phase8_final_implementation_permission_report.json"
+  ],
+  "template_fields": {
+    "record_id": "PR-YYYYMMDD-8-8-XXX",
+    "record_datetime": "YYYY-MM-DDTHH:MM:SS+09:00",
+    "decision_inputs": [
+      {
+        "input_id": "DI-001",
+        "artifact": "",
+        "summary": "",
+        "owner": ""
+      }
+    ],
+    "evidence_matrix": [
+      {
+        "criterion_id": "C-001",
+        "criterion": "",
+        "evidence": "",
+        "assessment": "SATISFIED/NOT_SATISFIED/PARTIAL"
+      }
+    ],
+    "missing_evidence": [
+      {
+        "id": "ME-001",
+        "missing_item": "",
+        "impact": "",
+        "required_action": ""
+      }
+    ],
+    "required_followups": [
+      {
+        "id": "FA-001",
+        "action": "",
+        "owner": "",
+        "deadline": ""
+      }
+    ],
+    "current_conclusion": "PENDING",
+    "current_conclusion_allowed_values": [
+      "NO_GO",
+      "PENDING",
+      "REQUEST_FIX",
+      "ABORT"
+    ],
+    "explicitly_disallowed_conclusion": "GO",
+    "safety_flags": {
+      "operation_mode": "OBSERVE",
+      "execution": "dry_run",
+      "production_status": "NO_GO",
+      "requires_human_approval": true,
+      "auto_execute_allowed": false
+    },
+    "review_notes": ""
+  },
+  "fixed_boundary": {
+    "app_implementation_permission": "NO_GO",
+    "tests_implementation_permission": "NO_GO",
+    "phase9_design_start_permission": "PENDING",
+    "phase9_app_implementation_permission": "NO_GO",
+    "core_ai_real_send": false,
+    "external_api_call": false,
+    "wordpress_operation": false,
+    "cron_registration": false,
+    "auto_execute": false,
+    "production_execution": false
+  },
+  "phase_8_8_completion_criteria": {
+    "criterion_1": "判定材料・証跡マトリクス・不足情報・追加アクションの記録欄がある",
+    "criterion_2": "current_conclusion が NO_GO/PENDING/REQUEST_FIX/ABORT に限定される",
+    "criterion_3": "GO を明示的に禁止している",
+    "criterion_4": "OBSERVE/dry_run/NO_GO を維持",
+    "criterion_5": "reports only の変更範囲を維持",
+    "phase_8_8_status": "PASS"
+  }
+}

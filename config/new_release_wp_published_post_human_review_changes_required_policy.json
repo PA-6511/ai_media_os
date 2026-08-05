@@ -1,0 +1,99 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M19",
+  "policy_id": "WORDPRESS_PUBLISHED_POST_HUMAN_REVIEW_CHANGES_REQUIRED_POLICY_V1",
+  "operation_mode": "LOCAL_HUMAN_REVIEW_CHANGE_REQUIREMENTS_RECORDING_ONLY",
+  "content_item_id": "new-release-comic-20260703-001",
+  "wordpress_post_id": 192,
+  "required_review_verdict": "CHANGES_REQUIRED",
+  "human_review_findings": {
+    "published_page_displayed": true,
+    "layout_change_required": true,
+    "detail_card_balance_issue_detected": true,
+    "desktop_store_button_reposition_required": true,
+    "pr_disclosure_reposition_required": true,
+    "comments_disable_required": true
+  },
+  "requested_layout_contract": {
+    "desktop": {
+      "layout_type": "TWO_COLUMN_COVER_AND_CONTENT",
+      "left_column": [
+        "cover_image"
+      ],
+      "right_column_order": [
+        "amazon_button",
+        "rakuten_kobo_button",
+        "dmm_button",
+        "responsive_work_details",
+        "pr_disclosure"
+      ],
+      "store_buttons_vertical": true,
+      "work_details_format": "LABEL_VALUE_RESPONSIVE",
+      "eliminate_excess_right_whitespace": true,
+      "prevent_narrow_fragmented_wrapping": true
+    },
+    "mobile": {
+      "layout_type": "SINGLE_COLUMN",
+      "content_order": [
+        "cover_image",
+        "responsive_work_details",
+        "amazon_button",
+        "rakuten_kobo_button",
+        "dmm_button",
+        "pr_disclosure"
+      ]
+    },
+    "comments": {
+      "target_scope": "EBOOK_AFFILIATE_ARTICLES",
+      "comment_status_required": "closed",
+      "comment_form_visible": false,
+      "comment_list_visible": false,
+      "comment_heading_visible": false
+    }
+  },
+  "governance_boundary": {
+    "pr_position_requires_pre_implementation_compliance_check": true,
+    "this_phase_authorizes_design_change": false,
+    "this_phase_authorizes_wordpress_update": false
+  },
+  "source_evidence_contract": {
+    "m18_result_digest_sha256": "a278655efbd252455d95b063cf2cc8ed4ec4de78f009d9991156cb1a10b02c95",
+    "m17_result_digest_sha256": "e405bd6b44b45c8246388b0ea2fa55ac501e728563cf97d9b82be6c5dad2e93e",
+    "m17_consumption_digest_sha256": "9fa836ec2fe8c49b160101351e5a913b0c606af857131b5a0550b81fb04f443e",
+    "m17_secret_response_digest_sha256": "edc92fb39dafda7948d6d7e53918147343507b50239d0ae2608311ed306de741",
+    "m17_secret_response_file_sha256": "cab1e674bbac70daae4cbc017f8e01c6dea7fcd79353c887581fbbf1239d2660",
+    "m17_pre_network_result_digest_sha256": "f2650043127b69ef5d6cc1b539a7f2fe523f2d53d53ea0cfdd37b0b81a6b8944",
+    "m16_authorization_file_sha256": "0b8eb340f4551497e99d91dc64ab5d47c149efb098d50ebf6cf981d416624e58",
+    "m16_authorization_digest_sha256": "3af20632d3fabe77f04e795318406ecd0ad9bd7b6d2eb60646e82f108556cc9e",
+    "m16_result_digest_sha256": "9eda577486ceaf77be2baf0346cf7152ff3e5113bd091625715e487224c3150a",
+    "m15_result_digest_sha256": "03d777e3e34c4d68c4b55027db87f7b20cee59f947640f3d68b125d6c79f5b06",
+    "m15_human_review_digest_sha256": "be8aafa191df793ecbe2695b662378fef078ce42ae4169a93651a9d2b6141d4c",
+    "payload_file_sha256": "30a70be4110e863a85e2896f69f5b3e51d814a6fd82d5489f899d8a244166d8f",
+    "payload_digest_sha256": "2ab27b59305dbae98f997ca3a460400298152f173ef605b534df922c187411c6",
+    "article_file_sha256": "de2739c8ae1aa4a50973b983964b05844086a2187b9ef337383ad6fa7123697d"
+  },
+  "execution_boundary": {
+    "network_connection_allowed": false,
+    "dns_resolution_allowed": false,
+    "http_request_allowed": false,
+    "wordpress_access_allowed": false,
+    "wordpress_get_allowed": false,
+    "wordpress_write_allowed": false,
+    "wordpress_update_allowed": false,
+    "wordpress_republish_allowed": false,
+    "wordpress_delete_allowed": false,
+    "authorization_reuse_allowed": false,
+    "authorization_reissue_allowed": false,
+    "automatic_retry_allowed": false,
+    "automatic_reissue_allowed": false,
+    "m17_rerun_allowed": false,
+    "m18_rerun_allowed": false,
+    "x_post_allowed": false
+  },
+  "next_gate": {
+    "ready_for_layout_correction_design_gate": true,
+    "ready_for_wordpress_update": false,
+    "ready_for_wordpress_publish": false
+  },
+  "production_status": "NO_GO"
+}

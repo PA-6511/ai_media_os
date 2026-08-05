@@ -1,0 +1,20 @@
+{
+  "_meta": {
+    "phase": 120,
+    "status": "PASS_DESIGN_ONLY",
+    "reports_only": true
+  },
+  "governance": {
+    "production_status": "NO_GO",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "execution_start": "NO_GO",
+    "changed_area": "reports only"
+  },
+  "description": "Phase 120 Final: Phase 75〜120 reports-only 設計区間の総合完了レポート",
+  "summary": {
+    "phase75_to_120_reports_only_design_status": "PASS_DESIGN_ONLY",
+    "phase120_overall_status": "PASS_DESIGN_ONLY",
+    "governance_interpretation": "Phase 120-9 is completion declaration only; no manual_release_go or actual_process_start_go authorization granted."
+  }
+}

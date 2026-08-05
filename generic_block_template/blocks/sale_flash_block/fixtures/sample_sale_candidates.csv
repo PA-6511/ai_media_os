@@ -1,0 +1,3 @@
+source,title,author,isbn,asin,campaign,sale_status,confidence,note
+manual_csv,Crimson Library,Aki Mori,9786000000001,B0REAL00001,SUMMER_FLASH,candidate,0.92,real-data dry run candidate
+publisher_news_candidate,Glass Moon,Yuna Sato,9786000000002,,NEWS_DIGEST,candidate,0.77,asin missing allowed for search candidate

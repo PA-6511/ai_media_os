@@ -1,0 +1,26 @@
+[
+  {
+    "item_id": "sample-1",
+    "title": "新刊セール注目作A",
+    "new_release_score": 1.0,
+    "sale_score": 0.9,
+    "author_score": 0.6,
+    "publisher_score": 0.5
+  },
+  {
+    "item_id": "sample-2",
+    "title": "定番人気作B",
+    "new_release_score": 0.4,
+    "sale_score": 0.3,
+    "author_score": 0.9,
+    "publisher_score": 0.8
+  },
+  {
+    "item_id": "sample-3",
+    "title": "話題作C",
+    "new_release_score": 0.8,
+    "sale_score": 0.5,
+    "author_score": 0.7,
+    "publisher_score": 0.6
+  }
+]

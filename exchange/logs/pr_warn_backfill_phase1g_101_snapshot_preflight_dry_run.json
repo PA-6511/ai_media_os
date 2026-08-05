@@ -1,0 +1,67 @@
+{
+  "phase": "PR_WARN_BACKFILL_PHASE1G_PREFLIGHT",
+  "mode": "DRY_RUN",
+  "status": "PASS_SNAPSHOT_PREFLIGHT_DRY_RUN_ONLY",
+  "target_post_id": 101,
+  "approved": true,
+  "wordpress_write_allowed": true,
+  "max_live_updates": 1,
+  "phase0_source": "reports/pr_warn_backfill_phase0_dry_run_20260614.json",
+  "phase1f_dry_run_source": "exchange/logs/pr_warn_backfill_phase1f_live_route_101_dry_run.json",
+  "env_preflight_source": "reports/pr_warn_backfill_phase1e_env_preflight.md",
+  "wordpress_read_executed": false,
+  "wordpress_write_executed": false,
+  "update_count": 0,
+  "snapshot_required_before_live": true,
+  "snapshot_get_allowed_next_phase": true,
+  "snapshot_allowed_operation": "GET_ONLY",
+  "forbidden_operations": [
+    "POST",
+    "PUT",
+    "PATCH",
+    "DELETE",
+    "publish"
+  ],
+  "snapshot_fields": [
+    "post_id",
+    "title",
+    "content",
+    "status",
+    "link",
+    "modified",
+    "slug",
+    "categories",
+    "tags",
+    "featured_media"
+  ],
+  "snapshot_storage_path": "exchange/logs/pr_warn_backfill_phase1g_101_pre_live_snapshot.json",
+  "content_hash_required": true,
+  "title_hash_required": true,
+  "rollback_source": "snapshot.content",
+  "rollback_required_if": [
+    "content_corruption",
+    "pr_notice_position_invalid",
+    "non_content_change_detected",
+    "api_abnormal_response",
+    "post_id_mismatch"
+  ],
+  "post_live_verification_plan": {
+    "fetch_target_post_again": true,
+    "verify_pr_notice_inserted": true,
+    "verify_immutable_fields": [
+      "title",
+      "url",
+      "cta",
+      "featured_image",
+      "status",
+      "category",
+      "tag"
+    ],
+    "verify_update_count_equals": 1,
+    "run_draft_check": true,
+    "verify_pr_warn_decrease_for_target": true,
+    "if_any_mismatch": "stop_additional_execution"
+  },
+  "next_required_phase": "Phase 1G-READONLY-SNAPSHOT",
+  "created_at": "2026-06-20T00:00:00Z"
+}

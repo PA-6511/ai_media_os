@@ -1,0 +1,13 @@
+{
+  "phase": "LS-NEW-9",
+  "document_type": "START_LS_NEW9_SEPARATE_EXECUTION_APPROVAL_DECISION_RECORD",
+  "status": "LSNEW9_SEPARATE_EXECUTION_APPROVAL_DECISION_WAITING_FOR_HUMAN_NO_EXECUTION",
+  "human_approval_completed": false,
+  "human_approved_for_execution": false,
+  "approval_label": "",
+  "approval_label_consumed": false,
+  "reviewer_notes": "",
+  "ready_for_ls_new_9_decision": true,
+  "ready_for_ls_new_10": false,
+  "execution_allowed": false
+}

@@ -1,0 +1,72 @@
+{
+  "_meta": {
+    "phase": "13-2",
+    "phase_name": "human review 入力検証チェックリスト固定",
+    "version": "1.0",
+    "created_date": "2026-05-12",
+    "status": "PASS_DESIGN_ONLY",
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only",
+    "description": "受け入れた human review 実入力を検証するためのチェックリストを固定し、不足や不整合を判定可能にする。"
+  },
+  "references": [
+    "generic_block_ai/reports/phase13_1_human_review_actual_input_acceptance_format_spec.json",
+    "generic_block_ai/reports/phase12_4_human_review_completed_input_gap_and_conflict_detection_rules_design.json",
+    "generic_block_ai/reports/phase12_5_integrated_decision_go_update_evidence_lock_rules_design.json"
+  ],
+  "validation_checklist": [
+    {
+      "check_id": "IVC-01",
+      "check": "accepted_format に定義された全必須フィールドが存在する",
+      "failure_effect": "input rejected"
+    },
+    {
+      "check_id": "IVC-02",
+      "check": "reviewer.role == human_reviewer",
+      "failure_effect": "input invalid"
+    },
+    {
+      "check_id": "IVC-03",
+      "check": "reviewer.signature が空でない",
+      "failure_effect": "input invalid"
+    },
+    {
+      "check_id": "IVC-04",
+      "check": "safety_boundary_verification の全項目が true",
+      "failure_effect": "GO update forbidden"
+    },
+    {
+      "check_id": "IVC-05",
+      "check": "unresolved_items が空であり、forbidden_mutations が発生していない",
+      "failure_effect": "final acceptance blocked"
+    }
+  ],
+  "checklist_result_template": {
+    "all_checks_passed": false,
+    "failed_checks": [],
+    "overall_result": "PENDING",
+    "reason": "実入力の検証前のため未判定。"
+  },
+  "blocked_actions": [
+    "core_ai_real_send",
+    "external_api_call",
+    "wordpress_operation",
+    "cron_registration",
+    "auto_execute",
+    "auto_post",
+    "auto_update",
+    "auto_delete",
+    "auto_export",
+    "production_execution"
+  ],
+  "phase_decision": {
+    "phase13_2_status": "PASS_DESIGN_ONLY",
+    "app_implementation_status": "NO_GO",
+    "tests_implementation_status": "NO_GO",
+    "note": "入力検証チェックリストの設計のみ。現時点では NO_GO を維持する。"
+  }
+}

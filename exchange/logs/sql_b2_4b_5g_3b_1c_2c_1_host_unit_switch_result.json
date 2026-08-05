@@ -1,0 +1,76 @@
+{
+  "phase": "SQL-B2-4B-5G-3B-1C-2C-1",
+  "result": "PASS_AUTHORIZED_HOST_UNIT_SWITCH_DAEMON_RELOAD_GATE_ABSENT_NO_GO",
+  "recorded_at": "2026-07-14T16:15:32.156882+00:00",
+  "git": {
+    "branch": "feature/sql-b2-4b-slack-production-readiness",
+    "authorization_implementation_commit": "569ab79",
+    "authorization_evidence_commit": "9186a88",
+    "current_evidence_source_commit": "6012c238b81bca6c76c599c32e424b5a60b4f4a7",
+    "current_evidence_source_commit_short": "6012c23"
+  },
+  "operation": {
+    "previous_failed_attempt_rolled_back": true,
+    "bounded_authorization_validated": true,
+    "atomic_installed_unit_replacement": true,
+    "repository_unit_systemd_verify": true,
+    "temporary_unit_systemd_verify": true,
+    "installed_unit_systemd_verify": true,
+    "daemon_reload_executed": true,
+    "repository_unit_sha256": "1d71fead2e78cc490042c22a3529aaea6295e0f6fd463daa24273e8215bbcccd",
+    "installed_unit_sha256": "1d71fead2e78cc490042c22a3529aaea6295e0f6fd463daa24273e8215bbcccd",
+    "repository_and_installed_match": true,
+    "installed_unit_metadata": {
+      "owner": "root",
+      "group": "root",
+      "mode": "0644"
+    },
+    "installed_verifier_sha256": "439903b8b7b3710ea23e1963bac34a7d019da3364b63ab70f780db66f71f020a",
+    "installed_verifier_metadata": {
+      "owner": "root",
+      "group": "root",
+      "mode": "0755"
+    }
+  },
+  "verifier_state": {
+    "isolated_execution": true,
+    "exit_code": 3,
+    "gate_missing": true,
+    "fail_closed": true,
+    "autostart_approval": "NOT_APPROVED"
+  },
+  "database_safety": {
+    "production_sha256": "a4c5c6b3c9f016cd745cdb9c531c807fe5bc4a3ac28f9422609dfa96cd7b37d8",
+    "production_database_unchanged": true,
+    "readiness_quick_check": "ok",
+    "readiness_approval_count": 0
+  },
+  "systemd_state": {
+    "fragment_path": "/etc/systemd/system/ai-media-os-slack-approval-readiness.service",
+    "need_daemon_reload": "no",
+    "active_state": "inactive",
+    "sub_state": "dead",
+    "unit_file_state": "disabled",
+    "main_pid": 0,
+    "enabled": false,
+    "running": false
+  },
+  "decision": {
+    "authorization_consumed_by_host_state": true,
+    "repository_unit_trusted_switched": true,
+    "installed_unit_trusted_switched": true,
+    "autostart_gate": "ABSENT",
+    "systemd_block_test_executed": false,
+    "unit_enabled": false,
+    "service_running": false,
+    "autostart_approval": "NOT_APPROVED",
+    "final_decision": "NO_GO"
+  },
+  "governance": {
+    "production_status": "NO_GO",
+    "gate_creation_allowed": false,
+    "systemd_block_test_allowed": false,
+    "service_start_allowed": false,
+    "unit_enable_allowed": false
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "phase": "Phase 7-8",
+  "name": "single_draft_create_simulation_policy",
+  "policy_status": "DRY_RUN_SIMULATION_ONLY",
+  "production_status": "NO_GO",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "human_approval_required": true,
+  "simulation_only": true,
+  "wordpress_api_call_allowed": false,
+  "wordpress_draft_creation": "NO_GO",
+  "wordpress_write_executed": false,
+  "publish_allowed": false,
+  "approve_draft_create_only_currently_allowed": false,
+  "unlock_in_this_phase": false,
+  "target_item_count": 1,
+  "required_evidence": [
+    "exchange/logs/phase7_7_approve_draft_create_only_readiness_gate_result.json"
+  ],
+  "required_readiness_status": "READY_BUT_LOCKED",
+  "payload_generation_allowed": true,
+  "payload_write_allowed": false,
+  "dangerous_operations": {
+    "auto_post": false,
+    "auto_update": false,
+    "auto_delete": false,
+    "auto_export": false,
+    "publish_allowed": false,
+    "wordpress_write_executed": false,
+    "wordpress_api_call_allowed": false,
+    "bulk_execution": false,
+    "external_write": false,
+    "vps_self_builder_execution": false
+  },
+  "allowed_next_step": "Phase 7-9 Phase 7 pre-unlock overall completion report"
+}

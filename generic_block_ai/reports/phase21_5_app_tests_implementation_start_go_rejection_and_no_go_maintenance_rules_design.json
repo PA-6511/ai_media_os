@@ -1,0 +1,93 @@
+{
+  "phase_id": "21-5",
+  "phase_name": "App/Tests Implementation Start GO Rejection and NO-GO Maintenance Rules Design",
+  "phase_japanese_name": "GO不可時の差し戻し・NO-GO維持ルール設計",
+  "purpose": "Design rejection routing and NO-GO maintenance rules when implementation-start GO cannot be issued after actual measurement judgment",
+  "layer": "actual_measurement_rejection_and_maintenance_layer",
+  "design_category": "reports_only",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only"
+  },
+  "phase_21_5_scope": {
+    "scope_1_rejection_categories": {
+      "scope_id": "REJECTION_CATEGORIES",
+      "categories": {
+        "RJ1": "minimum condition NOT_MET",
+        "RJ2": "judgment evidence lock failure",
+        "RJ3": "signature invalid or expired",
+        "RJ4": "cross-source consistency mismatch",
+        "RJ5": "human final approval absent or revoked"
+      }
+    },
+    "scope_2_return_and_hold_rules": {
+      "scope_id": "RETURN_AND_HOLD_RULES",
+      "rules": {
+        "rule_RM1": "Any RJ1-RJ5 triggers IMPLEMENTATION_START_NO_GO",
+        "rule_RM2": "Record remediation_target_phase and required evidence updates",
+        "rule_RM3": "Disallow transition to app/tests implementation while unresolved_rejections_count > 0",
+        "rule_RM4": "Maintain integrated_decision = NO_GO until all rejection categories are closed and re-measured",
+        "rule_RM5": "If repeated failure count exceeds threshold, escalate to HALT_REVIEW_REQUIRED"
+      }
+    },
+    "scope_3_maintenance_report_structure": {
+      "scope_id": "MAINTENANCE_REPORT_STRUCTURE",
+      "sections": {
+        "section_1_header": {
+          "report_id": "PHASE21_5_NO_GO_MAINTENANCE_<UTC_TIMESTAMP>",
+          "report_type": "app_tests_impl_start_go_rejection_and_no_go_maintenance",
+          "generated_at_utc": "RFC3339",
+          "generated_by": "authority_identifier"
+        },
+        "section_2_rejection_summary": {
+          "triggered_categories": [
+            "RJ1",
+            "RJ2",
+            "RJ3",
+            "RJ4",
+            "RJ5"
+          ],
+          "unresolved_rejections_count": "integer"
+        },
+        "section_3_maintenance_state": {
+          "integrated_decision": "NO_GO",
+          "receiver_validator_permission": "NOT_EFFECTIVE",
+          "dual_gate": "LOCKED",
+          "app_implementation_status": "NO_GO",
+          "tests_implementation_status": "NO_GO",
+          "production_status": "NO_GO"
+        },
+        "section_4_next_actions": {
+          "remediation_route": "Phase 21-3 or Phase 21-4 evidence update",
+          "re_measurement_required": true
+        }
+      }
+    }
+  },
+  "phase_21_5_governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "state_invariants": {
+      "integrated_decision": "NO_GO",
+      "receiver_validator_permission": "NOT_EFFECTIVE",
+      "dual_gate": "LOCKED",
+      "app_implementation_status": "NO_GO",
+      "tests_implementation_status": "NO_GO",
+      "production_status": "NO_GO"
+    }
+  }
+}

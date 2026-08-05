@@ -1,0 +1,68 @@
+{
+  "phase": "LS-6A",
+  "name": "One-shot Draft Actual Human Approval Gate",
+  "status": "ACTUAL_HUMAN_APPROVAL_GATE",
+  "execution_mode": "DRY_RUN_ONLY",
+  "production_status": "NO_GO",
+  "required_previous_phases": {
+    "ls3": {
+      "required_status": "LS3_WORDPRESS_CREDENTIAL_READY_DRY_RUN_ONLY",
+      "result": "exchange/logs/start_ls3_wordpress_credential_ready_result.json"
+    },
+    "ls4": {
+      "required_status": "LS4_WORDPRESS_DRAFT_RUNNER_DRY_RUN_READY",
+      "payload_preview": "exchange/logs/start_ls4_wordpress_draft_payload_preview.json",
+      "result": "exchange/logs/start_ls4_wordpress_draft_runner_dry_run_result.json"
+    },
+    "ls5": {
+      "required_status": "LS5_APPROVAL_GATE_EXAMPLE_PASS_NO_EXECUTION",
+      "result": "exchange/logs/start_ls5_one_shot_draft_approval_result.json"
+    }
+  },
+  "required_approval_label": "APPROVED_FOR_ONE_SHOT_DRAFT_CREATION_ONLY",
+  "required_approval_status": "HUMAN_APPROVED",
+  "approval_file": "exchange/human_review/start_ls6a_one_shot_draft_actual_approval.json",
+  "approval_template": "exchange/human_review/start_ls6a_one_shot_draft_actual_approval.template.json",
+  "approval_scope_for_next_phase": {
+    "next_phase": "LS-6B",
+    "wordpress_write_allowed_for_next_phase": true,
+    "wordpress_draft_creation_allowed_for_next_phase": true,
+    "max_items": 1,
+    "post_status": "draft",
+    "publish_allowed": false,
+    "future_schedule_allowed": false,
+    "existing_post_update_allowed": false,
+    "delete_allowed": false,
+    "freeze_after_run": true,
+    "rollback_pointer_required": true
+  },
+  "current_phase_safety_flags": {
+    "wordpress_api_call_executed": false,
+    "wordpress_write_executed": false,
+    "wordpress_draft_creation_executed": false,
+    "publish_executed": false,
+    "future_schedule_executed": false,
+    "existing_post_update_executed": false,
+    "delete_executed": false,
+    "amazon_api_call_executed": false,
+    "x_api_call_executed": false,
+    "x_post_executed": false,
+    "credential_secret_output": false,
+    "approval_token_consumed": false,
+    "phase_forward_execution_executed": false
+  },
+  "approval_source_policy": {
+    "human_approval_required": true,
+    "auto_approval_allowed": false,
+    "core_ai_self_approval_allowed": false,
+    "block_ai_self_approval_allowed": false,
+    "audit_block_ai_approval_allowed": false,
+    "template_must_not_be_treated_as_actual": true
+  },
+  "next_phase": {
+    "phase": "LS-6B",
+    "name": "WordPress One-shot Draft Creation",
+    "execution_allowed_by_this_phase": false,
+    "requires_valid_human_approval": true
+  }
+}

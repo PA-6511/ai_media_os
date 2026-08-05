@@ -1,0 +1,46 @@
+{
+  "phase": "Implementation Restart Phase 36",
+  "status": "COMPLETED",
+  "generated_at": "2026-05-24T02:18:22.865740+00:00",
+  "schema_version": "ir36_destination_approval_gate_matrix_v1",
+  "test_result": {
+    "focused_tests": {
+      "passed": 6,
+      "failed": 0
+    },
+    "adjacent_ir34_ir36": {
+      "passed": 18,
+      "failed": 0
+    },
+    "scoped_regression": {
+      "passed": 271,
+      "failed": 0
+    }
+  },
+  "overall_approval_decision": "APPROVE_DRY_RUN",
+  "source_validation_result": "PASS",
+  "release_candidate_id": "rc_20260523T155148Z_ir26_live_trial_b940393b490b",
+  "final_submission_decision": "READY_FOR_SUBMISSION_SUMMARY",
+  "validation_failed_check_count": 0,
+  "validation_warning_count": 0,
+  "summary": {
+    "destination_count": 3,
+    "approve_dry_run_count": 3,
+    "human_review_required_count": 0,
+    "reject_count": 0,
+    "abort_count": 0,
+    "global_abort": false
+  },
+  "artifacts": {
+    "approval_report": "generic_block_ai/reports/ir36_destination_approval_gate_matrix_report_ir36_live_trial.json",
+    "completion_report": "reports/implementation_restart_phase36_completion_report.json"
+  },
+  "safeguards": {
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "network_transmission_executed": false,
+    "production_release": false
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "phase": "LS-6M",
+  "document_type": "RUNTIME_FREEZE_ACTIVE_LOCK",
+  "status": "RUNTIME_FREEZE_ACTIVE_LOCK_CREATED_NO_WORDPRESS_WRITE",
+  "locked": true,
+  "runtime_freeze_active": true,
+  "runtime_freeze_applied": true,
+  "runtime_freeze_restored": false,
+  "rerun_allowed": false,
+  "target_payload": {
+    "title": "2.5次元の誘惑",
+    "asin": "B07X2G67B4",
+    "post_status": "draft",
+    "max_items": 1
+  },
+  "lock_scope": {
+    "block_publish": true,
+    "block_existing_post_update": true,
+    "block_non_target_payload": true,
+    "block_repeated_execution": true
+  },
+  "current_phase_execution": {
+    "one_shot_actual_execution_lock_created": false,
+    "one_shot_actual_execution_lock_consumed": false,
+    "wordpress_write_executed": false,
+    "actual_execution_executed": false
+  }
+}

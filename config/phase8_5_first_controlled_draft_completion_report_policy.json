@@ -1,0 +1,28 @@
+{
+  "phase": "Phase 8-5",
+  "name": "first_controlled_draft_completion_report_policy",
+  "policy_status": "REPORT_ONLY",
+  "human_approval_required": true,
+  "publish_allowed": false,
+  "update_allowed": false,
+  "delete_allowed": false,
+  "auto_post": false,
+  "auto_update": false,
+  "auto_delete": false,
+  "auto_export": false,
+  "required_evidence": [
+    "exchange/logs/phase8_1_explicit_human_approval_result.json",
+    "exchange/logs/phase8_2_final_live_preflight_result.json",
+    "exchange/logs/phase8_3_first_one_item_wordpress_draft_create_result.json",
+    "exchange/logs/phase8_4_post_execution_verification_result.json"
+  ],
+  "decision_rules": {
+    "verified_pending_human_review": "FIRST_DRAFT_CREATED_PENDING_HUMAN_REVIEW",
+    "not_executed": "FIRST_DRAFT_NOT_EXECUTED",
+    "freeze_required": "FIRST_DRAFT_FREEZE_REQUIRED",
+    "abort": "ABORT"
+  },
+  "allowed_next_step_on_success": "Phase 8-6 manual inspection of created WordPress draft",
+  "allowed_next_step_on_not_executed": "Provide credentials or keep NO_GO, then rerun Phase 8-3 only after approval",
+  "allowed_next_step_on_freeze": "Manual review and freeze investigation"
+}

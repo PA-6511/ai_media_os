@@ -1,0 +1,79 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M4-FIX1",
+  "policy_id": "DMM_VOLUME_AND_CANONICAL_BINDING_REMEDIATION_POLICY_V1",
+  "source_phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M4",
+  "operation_mode": "APPROVED_OFFLINE_MATCHING_LOGIC_REMEDIATION_ONLY",
+  "content_item_id": "new-release-comic-20260703-001",
+  "volume_remediation": {
+    "expected_work_title": "ダークギャザリング",
+    "expected_volume_number": 20,
+    "accepted_normalized_notations": [
+      "20",
+      "20(最新刊)",
+      "20巻",
+      "第20巻"
+    ],
+    "candidate_scope": "TITLE_OR_STRUCTURED_DATA_CONTAINING_EXPECTED_WORK_TITLE_ONLY",
+    "body_wide_numeric_fallback_allowed": false,
+    "numeric_substring_match_allowed": false,
+    "normalized_output": "第20巻"
+  },
+  "canonical_binding_remediation": {
+    "allowed_scheme": "https",
+    "allowed_host": "book.dmm.com",
+    "explicit_port_allowed": false,
+    "expected_series_id": "861056",
+    "required_path_shape": "/product/861056/<product_id>/",
+    "product_id_required": true,
+    "latest_alias_allowed": false,
+    "query_allowed": false,
+    "fragment_allowed": false,
+    "extra_path_segments_allowed": false,
+    "binding_must_be_independent_of_other_identity_fields": true
+  },
+  "runner_consistency": {
+    "m4_expected_parser_hash_must_be_updated": true,
+    "m4_parser_loader_must_accept_remediated_parser": true
+  },
+  "historical_evidence_preservation": {
+    "m4_result_modification_allowed": false,
+    "m4_recheck_result_modification_allowed": false,
+    "m4_consumption_modification_allowed": false,
+    "m4_execute_approval_modification_allowed": false,
+    "m3_authorization_modification_allowed": false,
+    "m2_fix1_result_modification_allowed": false,
+    "m4_response_body_sha256_modification_allowed": false,
+    "historical_result_reclassification_allowed": false
+  },
+  "execution_boundary": {
+    "parser_source_patch_allowed": true,
+    "canonical_binding_source_patch_allowed": true,
+    "runner_hash_binding_update_allowed": true,
+    "regression_test_creation_allowed": true,
+    "fix_evidence_creation_allowed": true,
+    "historical_result_reclassification_allowed": false,
+    "new_authorization_creation_allowed": false,
+    "existing_authorization_reuse_allowed": false,
+    "network_connection_allowed": false,
+    "http_request_allowed": false,
+    "dns_resolution_allowed": false,
+    "dmm_recheck_allowed": false,
+    "final_affiliate_link_generation_allowed": false,
+    "article_modification_allowed": false,
+    "article_url_injection_allowed": false,
+    "fresh_payload_creation_allowed": false,
+    "production_category_id_payload_injection_allowed": false,
+    "wordpress_access_allowed": false,
+    "wordpress_write_allowed": false,
+    "wordpress_publish_allowed": false,
+    "production_status": "NO_GO",
+    "safety_state": "OFFLINE_MATCHING_LOGIC_REMEDIATION_ONLY"
+  },
+  "next_phase": {
+    "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M5",
+    "name": "Post-Remediation Historical M4 Evidence Human Review",
+    "execution_allowed": false,
+    "human_approval_required": true
+  }
+}

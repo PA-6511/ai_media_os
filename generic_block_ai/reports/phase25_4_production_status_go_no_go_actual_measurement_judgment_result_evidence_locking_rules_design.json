@@ -1,0 +1,85 @@
+{
+  "phase_id": "25-4",
+  "phase_name": "Production Status GO/NO-GO Actual Measurement Judgment Result Evidence Locking Rules Design",
+  "phase_japanese_name": "production_status GO/NO-GO 実測判定結果の証跡固定ルール設計",
+  "purpose": "Design immutable evidence-locking rules for measured production_status GO/NO-GO judgment results",
+  "layer": "production_status_actual_measurement_reinforcement_layer",
+  "design_category": "reports_only",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "operation_transition_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "phase_25_4_scope": {
+    "scope_1_input_contract": {
+      "scope_id": "INPUT_CONTRACT",
+      "required_inputs": {
+        "phase25_1_to_25_3_status": "PASS_DESIGN_ONLY",
+        "phase25_pre_production_transition_final_boundary_confirmation_status": "PASS_DESIGN_ONLY",
+        "source_template": "phase25_3_production_status_go_no_go_actual_measurement_judgment_template_design.json"
+      }
+    },
+    "scope_2_locking_rules": {
+      "scope_id": "LOCKING_RULES",
+      "rules": {
+        "rule_PRL1": "Canonicalize production-status measured judgment payload before hashing",
+        "rule_PRL2": "Compute SHA-256 hash and record as production_status_measured_judgment_hash",
+        "rule_PRL3": "Sign hash with authority signature metadata",
+        "rule_PRL4": "Append signed record to immutable append-only audit trail",
+        "rule_PRL5": "Perform roundtrip hash/signature verification after append",
+        "rule_PRL6": "If verification fails, lock_status = LOCK_FAILED and production_status = NO_GO"
+      }
+    },
+    "scope_3_report_structure": {
+      "scope_id": "REPORT_STRUCTURE",
+      "sections": {
+        "section_1_header": {
+          "report_id": "PHASE25_4_PRODUCTION_STATUS_JUDGMENT_LOCK_<UTC_TIMESTAMP>",
+          "report_type": "production_status_go_no_go_actual_measurement_judgment_result_evidence_lock",
+          "generated_at_utc": "RFC3339",
+          "generated_by": "authority_identifier"
+        },
+        "section_2_lock_inputs": {
+          "judgment_id": "PRODUCTION_STATUS_MEASURED_JUDGMENT_<UTC_TIMESTAMP>",
+          "input_integrity_status": "PASS | FAIL"
+        },
+        "section_3_integrity_results": {
+          "production_status_measured_judgment_hash": "hex",
+          "signature_verification": "PASS | FAIL",
+          "audit_append_status": "PASS | FAIL",
+          "tamper_check_status": "PASS | FAIL"
+        },
+        "section_4_lock_determination": {
+          "lock_status": "LOCK_CONFIRMED | LOCK_FAILED",
+          "production_status": "GO | NO_GO",
+          "operation_transition_go_authorization": "GRANTED | NOT_GRANTED"
+        }
+      }
+    }
+  },
+  "phase_25_4_governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "state_invariants": {
+      "app_implementation_status": "NO_GO",
+      "tests_implementation_status": "NO_GO",
+      "production_status": "NO_GO",
+      "operation_transition_go_authorization": "NOT_GRANTED",
+      "changed_area": "reports only"
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "_meta": {
+    "phase": "46-5",
+    "phase_name": "最終実測GO入力の受領・検証層",
+    "layer": "補強層 (reinforcement layer)",
+    "title": "最終実測入力不備・不整合時の差し戻し/NO_GO維持ルール設計",
+    "created": "2026-05-14",
+    "author": "governance-framework",
+    "status": "PASS_DESIGN_ONLY",
+    "reports_only": true
+  },
+  "scope": "Phase 46-3 / 46-4 で実施された最終実測GO入力の検証において、検証不合格と判定された場合、以下のルールを設計する：(1) 即座な NO_GO 再宣言ルール、(2) 検証不合格の詳細理由の差し戻し・報告ルール、(3) Phase 45 プロセスへの遡及確認（必要に応じて Phase 44 / 43 への再確認）ルール、(4) 差し戻し後の修正経路の設計、(5) NO_GO 状態の恒久的維持ルール（検証不合格が最終判定されるまで NO_GO は解除されない）、(6) 差し戻し判定と Phase 46-6 ABORT条件の連携、(7) Phase 46-7～46-9 の最終判定層への引き継ぎ。",
+  "governance": {
+    "production_status": "NO_GO",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "report": {
+    "description": "Phase 46-5 では、Phase 46-3 / 46-4 で最終実測GO入力の検証不合格が判定された場合、その後のプロセスを 設計層で定義する。(1) 即座な NO_GO 再宣言ルール：Phase 46-3 で最終実測GO入力の検証不合格と判定された場合、即座に 'production_status: NO_GO' と 'manual_release_go_authorization: NOT_GRANTED' と 'actual_process_start_go_authorization: NOT_GRANTED' を再宣言し、レポートで明記する。(2) 検証不合格理由の詳細差し戻しルール：検証不合格の理由（フォーマット不完全・型エラー・範囲エラー・メタデータ矛盾・Phase 45 結果との不整合・権限不足・全プロセス矛盾・その他）を詳細に分類したレポートを生成し、それを次の修正段階への差し戻し資料とする。差し戻し資料は改ざん不可の報告書形式で保存される。(3) 遡及確認ルール：検証不合格の理由によっては、Phase 45 プロセス全体の再確認、またはさらに Phase 44 / 43 への遡及が必要となる場合がある。Phase 45 結果との不整合・権限不足・全プロセス矛盾などが理由の場合は遡及確認をトリガーする。遡及確認の結果と判定をレポートに記録する。(4) 修正経路の設計：検証不合格と判定された場合、その理由に応じた修正の方向性を提示する。例：①フォーマット不完全 → 欠落項目の補足を提案、②型エラー・範囲エラー → 入力値の型・範囲の修正を提案、③メタデータ矛盾 → メタデータの再検査・修正を提案、④Phase 45 結果との不整合 → Phase 45 結果の再確認と入力値の修正を提案、⑤権限不足 → 権限レベルの高い確認者による再確認を提案、⑥全プロセス矛盾 → 矛盾箇所の詳細分析と修正を提案。(5) NO_GO 恒久維持ルール：検証不合格と最終判定されるまで、production_status = 'NO_GO' / manual_release_go_authorization = 'NOT_GRANTED' / actual_process_start_go_authorization = 'NOT_GRANTED' は解除されない。修正後の再検証が行われても、最終的に検証不合格となれば NO_GO が再確認される。(6) Phase 46-6 ABORT条件との連携：検証不合格判定で特定の重大な矛盾・権限不足・全プロセス矛盾が検出された場合、その情報は Phase 46-6 の ABORT条件の判定に引き継がれる。(7) 最終判定層への引き継ぎ：Phase 46-3 / 46-4 の検証不合格判定、Phase 46-5 の差し戻し・NO_GO維持判定、Phase 46-6 の ABORT条件判定の全てを、Phase 46-7～46-9 の最終判定層に引き継ぎ、最終的な NO_GO / NOT_GRANTED の確認を行う。これらのルールは全て 設計層（reports only）で実装され、実処理開始許可を含まない。",
+    "invariants": [
+      "NO_GO 強制：検証不合格判定時は即座に production_status = 'NO_GO' を再宣言（例外なし）",
+      "NOT_GRANTED 強制：検証不合格判定時は即座に manual_release_go_authorization / actual_process_start_go_authorization = 'NOT_GRANTED' を再宣言（例外なし）",
+      "reports only：差し戻し・NO_GO維持ルール全体は報告書形式で実装され、実処理への権限付与を含まない",
+      "即座判定：検証不合格判定の NO_GO 再宣言は遅延なく即座に行われる（待機・猶予なし）",
+      "レポート記録：全ての検証不合格判定、差し戻し理由、遡及確認、修正経路提示はレポートで完全に記録される（改ざん不可）",
+      "恒久維持：検証不合格と最終判定されるまで NO_GO は解除されない"
+    ],
+    "actions": [],
+    "notes": [
+      "Phase 46-5 は 設計層のみで実装される（実処理開始許可ではない）",
+      "検証不合格時の差し戻し・NO_GO維持ルールは reports only であり、生産環境コード変更を含まない",
+      "検証不合格 → NO_GO 再宣言は自動的に動作し、例外や手動判定による上書きはない",
+      "遡及確認が必要な場合は Phase 45 / 44 / 43 への確認をトリガー（段階的な対応）",
+      "修正経路の提案は推奨であり、実際の修正は Phase 47 以降で行われる（予定）",
+      "検証不合格が複数の理由を持つ場合、全ての理由を分類して記録",
+      "Phase 46-6 ABORT条件との連携で、より重大な判定が行われる可能性あり",
+      "実処理開始は NO_GO のまま"
+    ]
+  }
+}

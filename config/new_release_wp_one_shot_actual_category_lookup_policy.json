@@ -1,0 +1,116 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-2B",
+  "policy_id": "NEW_RELEASE_WP_ONE_SHOT_ACTUAL_CATEGORY_LOOKUP_POLICY_V1",
+  "source_phase_id": "LS-NEW-BATCH-4G-2A",
+  "template_contract_id": "POST185_STANDARD_TEMPLATE_V1_FIXED",
+  "operation_mode": "APPROVED_ONE_SHOT_ACTUAL_READ_ONLY_CATEGORY_LOOKUP",
+  "approval_contract": {
+    "required_approval_label": "APPROVED_FOR_ONE_SHOT_READ_ONLY_CATEGORY_LOOKUP_ONLY",
+    "approval_evidence_path": "exchange/approvals/ls_new_batch_4g_2b_approval.json",
+    "human_explicit_approval_required": true,
+    "approval_consumed_on_attempt_reservation": true,
+    "approval_reuse_allowed": false
+  },
+  "source_contract": {
+    "authorization_package_path": "exchange/examples/new_release_wp_actual_read_only_lookup_authorization_package.example.json",
+    "authorization_result_path": "exchange/logs/ls_new_batch_4g_2a_result.json",
+    "required_source_status": "PASS_ONE_SHOT_READ_ONLY_LOOKUP_AUTHORIZATION_GATE_READY_NO_NETWORK",
+    "required_source_decision": "AWAITING_EXPLICIT_APPROVAL_FOR_ONE_SHOT_GET"
+  },
+  "credential_contract": {
+    "credential_file_path": "/etc/ai-media-os/wordpress-readonly-category.env",
+    "expected_owner": "deploy",
+    "expected_group": "deploy",
+    "required_mode_octal": "0600",
+    "required_keys": [
+      "WORDPRESS_BASE_URL",
+      "WORDPRESS_READONLY_USERNAME",
+      "WORDPRESS_READONLY_APP_PASSWORD"
+    ],
+    "expected_hostname": "hoshido.jp",
+    "https_required": true,
+    "allowed_ports": [
+      null,
+      443
+    ],
+    "environment_export_allowed": false,
+    "credential_values_output_allowed": false,
+    "credential_value_lengths_output_allowed": false,
+    "credential_value_hashes_output_allowed": false,
+    "authorization_header_output_allowed": false
+  },
+  "one_shot_http_scope": {
+    "maximum_http_requests": 1,
+    "maximum_attempts": 1,
+    "retry_allowed": false,
+    "method": "GET",
+    "rest_path": "/wp-json/wp/v2/categories",
+    "query_parameters": {
+      "slug": "comic-new-release",
+      "per_page": 100,
+      "_fields": "id,slug,name,count"
+    },
+    "request_body_allowed": false,
+    "redirect_follow_allowed": false,
+    "cross_origin_redirect_allowed": false,
+    "proxy_use_allowed": false,
+    "timeout_seconds": 15,
+    "maximum_response_bytes": 1048576,
+    "tls_verification_required": true,
+    "allowed_http_statuses": [
+      200
+    ],
+    "required_content_type_prefix": "application/json"
+  },
+  "target_category": {
+    "category_slug": "comic-new-release",
+    "category_name": "コミック新刊",
+    "exact_slug_match_required": true,
+    "exact_name_match_required": true,
+    "single_result_required": true,
+    "positive_integer_category_id_required": true
+  },
+  "one_shot_lock": {
+    "lock_path": "exchange/locks/ls_new_batch_4g_2b_one_shot.lock.json",
+    "exclusive_create_required": true,
+    "existing_lock_must_block": true,
+    "lock_created_before_credential_read": true,
+    "lock_created_before_network_access": true,
+    "failed_attempt_consumes_approval": true
+  },
+  "result_boundary": {
+    "production_category_id_candidate_recording_allowed": true,
+    "production_category_id_payload_injection_allowed": false,
+    "production_category_id_automatic_use_allowed": false,
+    "category_mapping_fixation_allowed": false,
+    "human_result_verification_required": true,
+    "wordpress_draft_preparation_allowed": false,
+    "wordpress_draft_creation_allowed": false
+  },
+  "execution_boundary": {
+    "credential_file_read_allowed": true,
+    "authorization_header_construction_allowed": true,
+    "dns_resolution_allowed": true,
+    "network_connection_allowed": true,
+    "tls_connection_allowed": true,
+    "wordpress_api_call_allowed": true,
+    "wordpress_category_lookup_allowed": true,
+    "wordpress_response_read_allowed": true,
+    "wordpress_post_read_allowed": false,
+    "wordpress_media_read_allowed": false,
+    "wordpress_write_allowed": false,
+    "wordpress_publish_allowed": false,
+    "x_api_call_allowed": false,
+    "external_api_call_allowed": false,
+    "production_payload_modification_allowed": false,
+    "execution_allowed_only_with_unused_one_shot_approval": true,
+    "production_status_after_execution": "NO_GO",
+    "safety_state": "ONE_SHOT_READ_ONLY_CATEGORY_LOOKUP_ONLY"
+  },
+  "next_phase": {
+    "phase_id": "LS-NEW-BATCH-4H",
+    "name": "Production Category Mapping Human Verification",
+    "execution_allowed": false
+  }
+}

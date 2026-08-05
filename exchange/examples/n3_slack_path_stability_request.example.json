@@ -1,0 +1,7 @@
+{
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "webhook_url": "ENV:SLACK_WEBHOOK_URL",
+  "timeout_seconds": 3
+}

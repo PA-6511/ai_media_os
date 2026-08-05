@@ -1,0 +1,82 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-2",
+  "policy_id": "NEW_RELEASE_VERIFICATION_POLICY_V1",
+  "input_schema_id": "NEW_RELEASE_BATCH_INPUT_SCHEMA_V1",
+  "template_contract_id": "POST185_STANDARD_TEMPLATE_V1_FIXED",
+  "authority_order": [
+    "publisher_official",
+    "amazon",
+    "rakuten_kobo",
+    "dmm"
+  ],
+  "publisher_statuses": [
+    "CHECKED",
+    "NOT_CHECKED"
+  ],
+  "store_statuses": [
+    "FOUND",
+    "NOT_FOUND",
+    "NOT_CHECKED"
+  ],
+  "store_names": [
+    "amazon",
+    "rakuten_kobo",
+    "dmm"
+  ],
+  "classification_order": [
+    "EXCLUDED",
+    "DUPLICATE_SUSPECTED",
+    "NEEDS_RELEASE_DATE_CONFIRMATION",
+    "FACT_MISMATCH",
+    "STORE_PAGE_NOT_FOUND",
+    "MISSING_IMAGE",
+    "PARTIAL_STORE_COVERAGE",
+    "NEEDS_PRICE_CONFIRMATION",
+    "READY_FOR_DRAFT"
+  ],
+  "draft_readiness": {
+    "publisher_official_confirmation_required": true,
+    "minimum_found_store_count": 2,
+    "minimum_confirmed_price_count": 1,
+    "image_required": true,
+    "title_match_required": true,
+    "volume_label_match_required": true,
+    "release_date_match_required": true
+  },
+  "comparison": {
+    "unicode_normalization": "NFKC",
+    "trim_outer_whitespace": true,
+    "casefold_for_comparison": true,
+    "release_date_format": "YYYY-MM-DD",
+    "checked_at_requires_timezone": true
+  },
+  "reserved_test_domains": [
+    "example.test",
+    "publisher.test",
+    "amazon.test",
+    "rakuten.test",
+    "dmm.test"
+  ],
+  "example_mode": {
+    "reserved_test_domains_allowed": true,
+    "production_reserved_test_domains_forbidden": true
+  },
+  "execution_boundary": {
+    "local_json_read_allowed": true,
+    "verification_output_write_allowed": true,
+    "external_api_call_allowed": false,
+    "web_scraping_allowed": false,
+    "wordpress_write_allowed": false,
+    "wordpress_publish_allowed": false,
+    "x_post_allowed": false,
+    "automatic_draft_creation_allowed": false,
+    "production_status": "NO_GO",
+    "safety_state": "DRY_RUN_ONLY"
+  },
+  "next_phase": {
+    "phase_id": "LS-NEW-BATCH-3",
+    "name": "New Release Article Batch Dry Run",
+    "execution_allowed": false
+  }
+}

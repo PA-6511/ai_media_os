@@ -1,0 +1,71 @@
+{
+  "schema_version": "ir118_reference_lock_integrity_gate_v1",
+  "phase": "IR118",
+  "generated_at": "2026-05-25T12:27:37.561279+00:00",
+  "source_task_id": "ir116_120_batch",
+  "validation_result": "PASS",
+  "validation_failed_checks": [],
+  "validation_warnings": [],
+  "reference_lock_integrity_gate": {
+    "gate_id": "ir118_gate_ir116_120_batch_20260525T122737Z",
+    "generated_at": "2026-05-25T12:27:37.561274+00:00",
+    "source_task_id": "ir116_120_batch",
+    "new_cycle_id": "IR71_PLUS_CYCLE_A",
+    "lock_entries": [
+      {
+        "retention_item_id": "queue_1",
+        "item": "go_decision_document",
+        "lock_status": "LOCK_INTEGRITY_CONFIRMED",
+        "reference_mutable": false
+      },
+      {
+        "retention_item_id": "queue_2",
+        "item": "release_approver_signature",
+        "lock_status": "LOCK_INTEGRITY_CONFIRMED",
+        "reference_mutable": false
+      },
+      {
+        "retention_item_id": "queue_3",
+        "item": "safety_redeclaration_record",
+        "lock_status": "LOCK_INTEGRITY_CONFIRMED",
+        "reference_mutable": false
+      },
+      {
+        "retention_item_id": "queue_4",
+        "item": "full_test_matrix_record",
+        "lock_status": "LOCK_INTEGRITY_CONFIRMED",
+        "reference_mutable": false
+      },
+      {
+        "retention_item_id": "queue_5",
+        "item": "execution_authorization_record",
+        "lock_status": "LOCK_INTEGRITY_CONFIRMED",
+        "reference_mutable": false
+      }
+    ],
+    "lock_entry_count": 5,
+    "all_reference_locked": true,
+    "unlock_eligible": false,
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "gate_hash": "5776ed99f2c3eebca7f9146c9e3a0b097dd818927c8a1f00873dc7a97bc924c5",
+  "safety_gate_snapshot": {
+    "dry_run": "maintained",
+    "OBSERVE": "maintained",
+    "submission_execution_blocked": true,
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "network_transmission_executed": false,
+    "production_release": false,
+    "GitHub_push": "未実行"
+  }
+}

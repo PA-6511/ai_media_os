@@ -1,0 +1,30 @@
+{
+  "phase": "8-38A",
+  "phase_name": "Adapter5 to Phase8-38 Preflight Reconnection Baseline Lock",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "hold_state": "HOLD",
+  "required_reports": {
+    "adapter5_result": "exchange/logs/ebook_trial_adapter_5_phase8_38_request_mapping_result.json",
+    "adapter5_mapped_request": "exchange/logs/ebook_trial_adapter_5_phase8_38_mapped_request.json",
+    "phase8_38_from_adapter5": "exchange/logs/phase8_38_first_one_item_trial_preflight_from_adapter5_result.json",
+    "adapter6_lock": "exchange/logs/ebook_trial_adapter_6_baseline_lock_result.json"
+  },
+  "required_statuses": {
+    "adapter5_result": "EBOOK_TRIAL_ADAPTER_5_PHASE8_38_REQUEST_MAPPING_PASS_DRY_RUN_NO_EXECUTION",
+    "phase8_38_from_adapter5": "PHASE8_38_FIRST_ONE_ITEM_TRIAL_PREFLIGHT_READY_NO_EXECUTION",
+    "adapter6_lock": "EBOOK_TRIAL_ADAPTER_6_BASELINE_LOCK_PASS_HOLD_NO_EXECUTION"
+  },
+  "required_false_flags": [
+    "execution_allowed",
+    "wordpress_api_call_allowed",
+    "wordpress_write_allowed",
+    "wordpress_write_executed",
+    "wordpress_draft_created",
+    "publish_allowed",
+    "rollback_executed",
+    "freeze_executed",
+    "secret_values_output"
+  ]
+}

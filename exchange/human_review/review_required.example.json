@@ -1,0 +1,21 @@
+{
+  "package_type": "human_review",
+  "source": "core_consensus_ai",
+  "target": "human_operator",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "human_approval_required": true,
+  "risk_level": "LOW",
+  "auto_post": false,
+  "auto_update": false,
+  "auto_delete": false,
+  "auto_export": false,
+  "review_status": "REQUIRED",
+  "review_reason": "DRY_RUN接続試験。link_check が WARN のため人間確認が必要。",
+  "approval_options": [
+    "APPROVE_DRY_RUN_ONLY",
+    "REQUEST_FIX",
+    "REJECT",
+    "ABORT"
+  ]
+}

@@ -1,0 +1,120 @@
+{
+  "status": "PASS",
+  "phase": "SFB-4",
+  "block_name": "sale_flash_block",
+  "generated_at": "2026-06-14T04:38:38.916190+00:00",
+  "production_status": "NO_GO",
+  "input_article_payload_status": "PASS",
+  "input_article_payload_count": 2,
+  "handoff_item_count": 2,
+  "adopt_candidate_count": 1,
+  "needs_fix_candidate_count": 1,
+  "excluded_candidate_count": 0,
+  "top_review_targets": [
+    {
+      "handoff_id": "sfb4-handoff-001",
+      "title": "Crimson Library",
+      "handoff_bucket": "adopt_candidate",
+      "priority_score": 94
+    },
+    {
+      "handoff_id": "sfb4-handoff-002",
+      "title": "Glass Moon",
+      "handoff_bucket": "needs_fix_candidate",
+      "priority_score": 59
+    }
+  ],
+  "external_api_called": false,
+  "external_network_called": false,
+  "wordpress_write_executed": false,
+  "creators_api_called": false,
+  "amazon_scraping_called": false,
+  "publish_executed": false,
+  "update_executed": false,
+  "delete_executed": false,
+  "export_executed": false,
+  "human_approval_consumed": false,
+  "final_publish_decision_allowed": false,
+  "adopt_candidates": [
+    {
+      "handoff_id": "sfb4-handoff-001",
+      "payload_id": "sfb3-payload-001",
+      "candidate_id": "sfb-cand-001",
+      "title": "Crimson Library",
+      "author": "Aki Mori",
+      "source": "manual_csv",
+      "review_bucket": "ready_high_priority",
+      "priority_score": 94,
+      "article_title": "【SUMMER_FLASH】Crimson Library をチェック",
+      "short_intro": "Crimson Library は、セール候補として確認したい注目作品です。価格や販売状況はリンク先で確認してください。",
+      "recommended_reader": "短時間でセール候補をチェックしたい人におすすめです。",
+      "pr_disclosure": "PRを含みます。リンク先の価格・販売状況は変更される場合があります。",
+      "amazon_link_candidate": {
+        "link_type": "amazon_product_link_candidate",
+        "asin": "B0REAL00001",
+        "url": "https://www.amazon.co.jp/dp/B0REAL00001",
+        "final_human_confirmation_required": true
+      },
+      "sns_post_candidate": "PRを含みます。『Crimson Library』をセール候補としてチェック。価格・販売状況はリンク先で確認してください。",
+      "human_review_status": "NOT_REVIEWED",
+      "handoff_bucket": "adopt_candidate",
+      "fix_priority": "LOW",
+      "review_checks": {
+        "pr_disclosure_present": true,
+        "link_candidate_present": true,
+        "sns_post_candidate_present": true,
+        "human_review_required": true,
+        "no_price_claim": true,
+        "no_discount_claim": true,
+        "safety_flags_no_go": true
+      },
+      "review_notes": "human review required before any publish decision",
+      "blocking_reasons": [],
+      "suggested_human_actions": [
+        "人間レビューで最終確認してください。"
+      ]
+    }
+  ],
+  "needs_fix_candidates": [
+    {
+      "handoff_id": "sfb4-handoff-002",
+      "payload_id": "sfb3-payload-002",
+      "candidate_id": "sfb-cand-002",
+      "title": "Glass Moon",
+      "author": "Yuna Sato",
+      "source": "publisher_news_candidate",
+      "review_bucket": "needs_asin_confirmation",
+      "priority_score": 59,
+      "article_title": "【NEWS_DIGEST】Glass Moon をチェック",
+      "short_intro": "Glass Moon は、セール候補として確認したい注目作品です。価格や販売状況はリンク先で確認してください。",
+      "recommended_reader": "出版社の告知ベースで作品を追いたい人におすすめです。",
+      "pr_disclosure": "PRを含みます。リンク先の価格・販売状況は変更される場合があります。",
+      "amazon_link_candidate": {
+        "link_type": "amazon_search_link_candidate",
+        "search_terms": "Glass Moon Yuna Sato",
+        "url": "https://www.amazon.co.jp/s?k=Glass+Moon+Yuna+Sato",
+        "final_human_confirmation_required": true
+      },
+      "sns_post_candidate": "PRを含みます。『Glass Moon』をセール候補としてチェック。価格・販売状況はリンク先で確認してください。",
+      "human_review_status": "NOT_REVIEWED",
+      "handoff_bucket": "needs_fix_candidate",
+      "fix_priority": "MEDIUM",
+      "review_checks": {
+        "pr_disclosure_present": true,
+        "link_candidate_present": true,
+        "sns_post_candidate_present": true,
+        "human_review_required": true,
+        "no_price_claim": true,
+        "no_discount_claim": true,
+        "safety_flags_no_go": true
+      },
+      "review_notes": "human review required before any publish decision",
+      "blocking_reasons": [],
+      "suggested_human_actions": [
+        "ASIN候補または検索キーワードを人手確認してください。"
+      ]
+    }
+  ],
+  "excluded_candidates": [],
+  "next_recommended_phase": "SFB-5: Human-reviewed article candidate selection / WordPress DRY_RUN handoff"
+}

@@ -1,0 +1,61 @@
+{
+  "phase": "AB-T3",
+  "status": "PASS_DESIGN_ONLY_NO_EXECUTION",
+  "purpose": "related_file_selector",
+  "execution_mode": "DESIGN_ONLY",
+  "production_status": "NO_GO",
+  "safety_state": "DRY_RUN_ONLY",
+  "selection_rules": {
+    "max_related_files": 5,
+    "max_lines_per_file": 120,
+    "prefer_same_directory": true,
+    "prefer_matching_test_file": true,
+    "prefer_matching_config": true,
+    "exclude_patterns": [
+      ".git/",
+      "__pycache__/",
+      ".pytest_cache/",
+      "reports/",
+      "exchange/logs/",
+      "node_modules/",
+      "venv/",
+      "credential.env",
+      "*.log"
+    ],
+    "selection_priority": [
+      "target_file",
+      "matching_test",
+      "matching_config",
+      "same_directory",
+      "shared_module",
+      "documentation"
+    ],
+    "minimum_score": 0.5
+  },
+  "output_mode": "RELATED_FILE_LIST_ONLY",
+  "allowed_outputs": [
+    "related_file_list",
+    "selection_score",
+    "selection_reason",
+    "bounded_context_summary"
+  ],
+  "forbidden_outputs": [
+    "credential_contents",
+    "secret_values",
+    "wordpress_command",
+    "external_api_payload",
+    "production_execution"
+  ],
+  "copilot_send_allowed": false,
+  "external_api_call_allowed": false,
+  "wordpress_api_call_allowed": false,
+  "credential_read_allowed": false,
+  "credential_output_allowed": false,
+  "production_write_allowed": false,
+  "destructive_operation_allowed": false,
+  "next_phase": {
+    "phase": "AB-T4",
+    "name": "Patch Draft Generator",
+    "execution_allowed": false
+  }
+}

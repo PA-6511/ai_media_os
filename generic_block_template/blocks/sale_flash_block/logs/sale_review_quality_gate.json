@@ -1,0 +1,76 @@
+{
+  "status": "PASS",
+  "generated_at": "2026-06-14T04:38:38.911810+00:00",
+  "phase": "SFB-2",
+  "production_status": "NO_GO",
+  "external_api_called": false,
+  "external_network_called": false,
+  "wordpress_write_executed": false,
+  "creators_api_called": false,
+  "amazon_scraping_called": false,
+  "item_count": 2,
+  "bucket_counts": {
+    "ready_high_priority": 1,
+    "needs_asin_confirmation": 1,
+    "needs_metadata_fix": 0,
+    "duplicate_review": 0,
+    "blocked_or_invalid": 0
+  },
+  "bucket_order": [
+    "ready_high_priority",
+    "needs_asin_confirmation",
+    "needs_metadata_fix",
+    "duplicate_review",
+    "blocked_or_invalid"
+  ],
+  "quality_queue": [
+    {
+      "candidate_id": "sfb-cand-001",
+      "source": "manual_csv",
+      "title": "Crimson Library",
+      "author": "Aki Mori",
+      "asin": "B0REAL00001",
+      "asin_present": true,
+      "asin_missing": false,
+      "duplicate_key": "crimson library::aki mori",
+      "duplicate_detected": false,
+      "missing_title": false,
+      "missing_author": false,
+      "invalid_confidence": false,
+      "low_confidence": false,
+      "confidence": 0.92,
+      "source_trust": 0.9,
+      "priority_score": 94,
+      "review_bucket": "ready_high_priority",
+      "quality_gate_status": "PASS",
+      "review_required": false,
+      "review_reasons": []
+    },
+    {
+      "candidate_id": "sfb-cand-002",
+      "source": "publisher_news_candidate",
+      "title": "Glass Moon",
+      "author": "Yuna Sato",
+      "asin": "",
+      "asin_present": false,
+      "asin_missing": true,
+      "duplicate_key": "glass moon::yuna sato",
+      "duplicate_detected": false,
+      "missing_title": false,
+      "missing_author": false,
+      "invalid_confidence": false,
+      "low_confidence": false,
+      "confidence": 0.77,
+      "source_trust": 0.7,
+      "priority_score": 59,
+      "review_bucket": "needs_asin_confirmation",
+      "quality_gate_status": "PASS",
+      "review_required": false,
+      "review_reasons": []
+    }
+  ],
+  "source": {
+    "policy": "/home/deploy/ai_media_os/generic_block_template/blocks/sale_flash_block/config/quality_gate_policy.json",
+    "queue": "/home/deploy/ai_media_os/generic_block_template/blocks/sale_flash_block/logs/sale_review_queue.json"
+  }
+}

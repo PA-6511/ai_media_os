@@ -1,0 +1,140 @@
+{
+  "schema_version": "1.0.0",
+  "document_role": "DMM_LATEST_ALIAS_ONE_SHOT_READ_ONLY_RECHECK_AUTHORIZATION",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M1",
+  "authorization_id": "DMM_LATEST_ALIAS_861056_ONE_SHOT_READ_ONLY_RECHECK_AUTHORIZATION_V1",
+  "content_item_id": "new-release-comic-20260703-001",
+  "work_title": "ダークギャザリング",
+  "volume_label": "第20巻",
+  "dmm_series_id": "861056",
+  "authorized_next_phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M2",
+  "authorized_operation": "ONE_SHOT_READ_ONLY_GET_DMM_LATEST_ALIAS_RECHECK",
+  "single_use": true,
+  "authorization_consumed": false,
+  "authorization_reuse_allowed": false,
+  "target_request": {
+    "method": "GET",
+    "url": "https://book.dmm.com/product/861056/latest/",
+    "scheme": "https",
+    "initial_host": "book.dmm.com",
+    "request_body_allowed": false,
+    "authentication_allowed": false,
+    "login_allowed": false,
+    "cookie_send_allowed": false,
+    "cookie_persistence_allowed": false,
+    "credential_file_read_allowed": false,
+    "write_operation_allowed": false,
+    "allowed_request_headers": [
+      "Accept",
+      "Accept-Language",
+      "User-Agent"
+    ],
+    "forbidden_request_headers": [
+      "Authorization",
+      "Cookie",
+      "Proxy-Authorization",
+      "X-Api-Key",
+      "X-CSRF-Token"
+    ]
+  },
+  "redirect_requirements": {
+    "follow_redirects": true,
+    "maximum_redirect_count": 5,
+    "allowed_schemes": [
+      "https"
+    ],
+    "allowed_hosts": [
+      "book.dmm.com"
+    ],
+    "cross_host_redirect_allowed": false,
+    "https_downgrade_allowed": false,
+    "redirect_chain_recording_required": true,
+    "final_url_recording_required": true
+  },
+  "response_requirements": {
+    "accepted_final_http_statuses": [
+      200
+    ],
+    "http_status_recording_required": true,
+    "response_body_sha256_required": true,
+    "full_response_body_persistence_allowed": false,
+    "minimal_extraction_only": true
+  },
+  "identity_requirements": {
+    "expected_work_title": "ダークギャザリング",
+    "expected_volume_label": "第20巻",
+    "expected_volume_number": 20,
+    "expected_author_name": "近藤憲一",
+    "expected_publisher_name": "集英社",
+    "expected_series_id": "861056",
+    "work_title_match_required": true,
+    "volume_match_required": true,
+    "author_match_required": true,
+    "publisher_match_required": true,
+    "series_identity_match_required": true,
+    "missing_required_field_is_failure": true
+  },
+  "canonical_resolution_requirements": {
+    "canonical_product_url_required": true,
+    "allowed_scheme": "https",
+    "allowed_hosts": [
+      "book.dmm.com"
+    ],
+    "canonical_url_must_not_equal_latest_alias": true,
+    "canonical_url_must_bind_to_expected_series": true,
+    "latest_alias_as_final_affiliate_link_allowed": false
+  },
+  "planned_evidence": {
+    "recheck_result_path": "exchange/rechecks/new_release/fresh/new-release-comic-20260703-001.dmm_latest_alias_recheck_result.json",
+    "consumption_evidence_path": "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.dmm_latest_alias_recheck_consumption.json"
+  },
+  "failure_actions": {
+    "communication_failure": "HIDE_DMM_SLOT_AND_RETURN_TO_HUMAN_REVIEW",
+    "identity_mismatch": "HIDE_DMM_SLOT_AND_RETURN_TO_HUMAN_REVIEW",
+    "required_identity_field_missing": "HIDE_DMM_SLOT_AND_RETURN_TO_HUMAN_REVIEW",
+    "canonical_product_unresolved": "HIDE_DMM_SLOT_AND_KEEP_DMM_LINK_UNAVAILABLE",
+    "redirect_to_unapproved_host": "ABORT_AND_HIDE_DMM_SLOT",
+    "automatic_fallback_url_allowed": false,
+    "dummy_url_allowed": false
+  },
+  "approval_path": "exchange/approvals/ls_new_batch_4g_2e_recovery_m1_dmm_latest_alias_recheck_authorization_approval.json",
+  "approval_digest_sha256": "c0a038b8814ccc18f89f4083ce049e893a1472c136144a4ede4dccca68d351f0",
+  "source_bindings": {
+    "m0_result_path": "exchange/logs/ls_new_batch_4g_2e_recovery_m0_result.json",
+    "m0_result_file_sha256": "b1cd75e4101435c86c6f8eff8802c436bfa695a1aacc26e95251a1d7bdffe1f2",
+    "m0_fix1_path": "exchange/logs/ls_new_batch_4g_2e_recovery_m0_fix1_result.json",
+    "m0_fix1_file_sha256": "40e279e217a7d77d4c525ec82026b6e7002cbd58646156dec4bdb1dcbcaffb1b",
+    "m0_fix1_artifact_digest_sha256": "c78cfcfe7c4160c46c98b8970cf8acbaabec1371cfe0a618e5616f2a2f71b22c",
+    "store_link_finalization_plan_path": "exchange/plans/new_release/fresh/new-release-comic-20260703-001.store_link_finalization_plan.json",
+    "store_link_finalization_plan_file_sha256": "3004d586cab8b98f39101d7d85164d0bdeea68882da66ecde9b6b37f9a16fb7a",
+    "store_link_finalization_plan_artifact_digest_sha256": "1c18c3184c2db2c8a4a37aeab07ad97451a731c5340e98dcd5dc0cf5d4db3443",
+    "generated_article_path": "exchange/content/new_release/fresh/new-release-comic-20260703-001.article.json",
+    "generated_article_file_sha256": "849a37519c6af70d2212ec01d5cddef5793bfa811e97ca9f248ce099a0350bf4",
+    "generated_article_artifact_digest_sha256": "7e2da10675d4efb384267e478ba6d2c90716b2ef14865325507285107507ec86",
+    "content_human_review_path": "exchange/reviews/new_release/fresh/new-release-comic-20260703-001.article_content_human_review.json",
+    "content_human_review_file_sha256": "532576598bd87dbaebc5d2a275b2e313c6187f9b2ea94176cfd064d6ec929f1d",
+    "content_human_review_artifact_digest_sha256": "823b1d9b0babd276c7ba1e9ff35a5d6e981f4d7f268e895db08590f365fbf532",
+    "generation_consumption_path": "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.offline_content_generation_consumption.json",
+    "generation_consumption_file_sha256": "04d4a3be9286ab35dae2f4f635f883ea63f5c108d64f1c390804f0b7defeedf8",
+    "generation_consumption_artifact_digest_sha256": "3f00327697d4d3e4a66a0cca5e46bd5efa889eb413c194192529cd42db4bf9aa",
+    "article_input_path": "exchange/inputs/new_release/fresh/new-release-comic-20260703-001.input.json",
+    "article_input_file_sha256": "0e7c87975fd3adaa8d8e8f8bcd13d49e75f4ef390d8a71e416089c85bfe4cd6f",
+    "article_input_artifact_digest_sha256": "341e5a5dbad8aee79a3ac7ccba69a3b9592d165b24b9ef0f20ba40361e1726f2"
+  },
+  "actual_network_recheck_performed": false,
+  "authorization_consumption_evidence_created": false,
+  "recheck_result_created": false,
+  "final_affiliate_link_generated": false,
+  "article_modified": false,
+  "article_url_injection_performed": false,
+  "fresh_payload_created": false,
+  "production_category_id_payload_injected": false,
+  "network_access_performed": false,
+  "wordpress_access_performed": false,
+  "wordpress_write_performed": false,
+  "execution_allowed": false,
+  "production_status": "NO_GO",
+  "safety_state": "DMM_RECHECK_AUTHORIZATION_RECORDED_UNCONSUMED_AWAITING_EXECUTE_NOW_CONFIRMATION",
+  "authorized_at_utc": "2026-07-11T03:01:03.805909+00:00",
+  "authorization_digest_sha256": "b14e750b940a642b4bea780586e9d68a4839e41f4875a76b90a51669eb993637"
+}

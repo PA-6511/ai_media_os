@@ -1,0 +1,28 @@
+{
+  "phase": "Phase 8-47",
+  "status": "PHASE8_47_APPROVAL_LABEL_CONSUMPTION_DRY_RUN_PASS_NO_EXECUTION",
+  "production_status": "NO_GO",
+  "execution": "DRY_RUN",
+  "execution_allowed": false,
+  "actual_go_decision_issued": false,
+  "wordpress_api_call_allowed": false,
+  "wordpress_write_executed": false,
+  "wordpress_draft_created": false,
+  "secret_values_output": false,
+  "decision": "VALIDATE_APPROVAL_LABEL_CONSUMPTION_DRY_RUN_ONLY",
+  "approval_label": "APPROVED_FOR_ONE_SHOT_DRAFT_CREATION_ONLY",
+  "approval_label_present": true,
+  "approval_label_consumed": false,
+  "errors": [],
+  "warnings": [],
+  "safety_violations": [],
+  "evidence_summary": [
+    {
+      "path": "exchange/logs/phase8_46_human_final_decision_record_result.json",
+      "exists": true,
+      "status": "PHASE8_46_HUMAN_FINAL_DECISION_RECORD_DEFINED_NO_EXECUTION"
+    }
+  ],
+  "allowed_next_step": "Proceed to Phase 8-48 one-shot execution final runbook freeze / NO_GO checkpoint",
+  "checked_at": "2026-06-14T00:36:29.608184+00:00"
+}

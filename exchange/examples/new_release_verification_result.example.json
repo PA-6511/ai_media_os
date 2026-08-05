@@ -1,0 +1,107 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-2",
+  "policy_id": "NEW_RELEASE_VERIFICATION_POLICY_V1",
+  "input_schema_id": "NEW_RELEASE_BATCH_INPUT_SCHEMA_V1",
+  "template_contract_id": "POST185_STANDARD_TEMPLATE_V1_FIXED",
+  "batch_id": "example-20260717",
+  "request_version": 1,
+  "example_mode": true,
+  "record_count": 1,
+  "classification_counts": {
+    "NEEDS_RELEASE_DATE_CONFIRMATION": 1
+  },
+  "ready_for_draft_count": 0,
+  "all_records_classified": true,
+  "items": [
+    {
+      "item_id": "example-20260717-001",
+      "batch_id": "example-20260717",
+      "title": "サンプル作品",
+      "volume_label": "第1巻",
+      "release_date": "2026-07-17",
+      "publisher": "サンプル出版社",
+      "authors": [
+        "著者A",
+        "著者B"
+      ],
+      "category": "comic",
+      "source_record_status": "STORE_PAGE_NOT_FOUND",
+      "verification_classification": "NEEDS_RELEASE_DATE_CONFIRMATION",
+      "classification_reasons": [
+        "publisher_official_not_checked"
+      ],
+      "mismatches": [],
+      "publisher_official": {
+        "status": "NOT_CHECKED",
+        "checked_at": null,
+        "url": null,
+        "title": null,
+        "volume_label": null,
+        "release_date": null
+      },
+      "stores": {
+        "amazon": {
+          "status": "NOT_CHECKED",
+          "checked_at": null,
+          "url": null,
+          "title": null,
+          "volume_label": null,
+          "release_date": null,
+          "price_jpy": null,
+          "image_url": null
+        },
+        "rakuten_kobo": {
+          "status": "NOT_CHECKED",
+          "checked_at": null,
+          "url": null,
+          "title": null,
+          "volume_label": null,
+          "release_date": null,
+          "price_jpy": null,
+          "image_url": null
+        },
+        "dmm": {
+          "status": "NOT_CHECKED",
+          "checked_at": null,
+          "url": null,
+          "title": null,
+          "volume_label": null,
+          "release_date": null,
+          "price_jpy": null,
+          "image_url": null
+        }
+      },
+      "resolved_store_links": {
+        "amazon": null,
+        "rakuten_kobo": null,
+        "dmm": null
+      },
+      "resolved_prices_jpy": {
+        "amazon": null,
+        "rakuten_kobo": null,
+        "dmm": null
+      },
+      "resolved_image": {
+        "source": "none",
+        "url": null
+      },
+      "cross_batch_duplicate_suspected": false,
+      "manual_exclusion": false,
+      "manual_exclusion_reason": null,
+      "notes": null,
+      "wordpress_status": "draft",
+      "wordpress_write_allowed": false
+    }
+  ],
+  "execution_boundary": {
+    "external_api_call_allowed": false,
+    "web_scraping_allowed": false,
+    "wordpress_write_allowed": false,
+    "wordpress_publish_allowed": false,
+    "x_post_allowed": false,
+    "automatic_draft_creation_allowed": false,
+    "production_status": "NO_GO",
+    "safety_state": "DRY_RUN_ONLY"
+  }
+}

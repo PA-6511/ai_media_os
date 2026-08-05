@@ -1,0 +1,64 @@
+{
+  "phase": "Phase 8-1",
+  "name": "explicit_human_approval_policy",
+  "policy_status": "APPROVAL_FILE_VALIDATION_ONLY",
+  "production_status": "NO_GO",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "human_approval_required": true,
+  "approval_file_is_execution_permission": false,
+  "approve_draft_create_only_currently_allowed": false,
+  "unlock_in_this_phase": false,
+  "wordpress_draft_creation": "NO_GO",
+  "wordpress_write_executed": false,
+  "wordpress_api_call_allowed": false,
+  "publish_allowed": false,
+  "required_evidence": [
+    "exchange/logs/phase7_14_pre_live_unlock_final_report.json"
+  ],
+  "required_phase7_14_status": "READY_FOR_PHASE8_HUMAN_APPROVAL_BUT_NO_GO",
+  "allowed_human_decisions": [
+    "APPROVE_DRAFT_CREATE_ONLY_EXPLICIT_FOR_PHASE8_PREFLIGHT",
+    "REQUEST_FIX",
+    "REJECT",
+    "ABORT"
+  ],
+  "forbidden_human_decisions": [
+    "APPROVE_PUBLISH",
+    "APPROVE_BULK_RUN",
+    "APPROVE_UPDATE",
+    "APPROVE_DELETE",
+    "APPROVE_EXPORT"
+  ],
+  "required_acknowledgements": [
+    "acknowledged_single_item_only",
+    "acknowledged_draft_only",
+    "acknowledged_no_publish",
+    "acknowledged_no_update",
+    "acknowledged_no_delete",
+    "acknowledged_no_bulk",
+    "acknowledged_freeze_on_mismatch",
+    "acknowledged_manual_review_after_creation"
+  ],
+  "approval_scope_required": {
+    "draft_create_only": true,
+    "publish": false,
+    "update": false,
+    "delete": false,
+    "bulk": false,
+    "external_export": false
+  },
+  "dangerous_operations": {
+    "auto_post": false,
+    "auto_update": false,
+    "auto_delete": false,
+    "auto_export": false,
+    "publish_allowed": false,
+    "wordpress_write_executed": false,
+    "wordpress_api_call_allowed": false,
+    "bulk_execution": false,
+    "external_write": false,
+    "vps_self_builder_execution": false
+  },
+  "allowed_next_step": "Phase 8-2 final live-preflight with explicit approval file"
+}

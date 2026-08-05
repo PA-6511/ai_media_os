@@ -1,0 +1,16 @@
+{
+  "_meta": {
+    "phase": 109,
+    "sub_phase": 8,
+    "status": "PASS_DESIGN_ONLY",
+    "reports_only": true,
+    "title": "Phase 109-8 最終復旧手順固定の最終証跡固定・完了宣言レポート設計"
+  },
+  "governance": {
+    "production_status": "NO_GO",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "execution_start": "NO_GO",
+    "changed_area": "reports only"
+  }
+}

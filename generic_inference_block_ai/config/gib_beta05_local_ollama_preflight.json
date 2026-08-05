@@ -1,0 +1,30 @@
+{
+  "schema_version": "gib.beta05.local_ollama_preflight.v0.1",
+  "beta_version": "beta0.5",
+  "status": "DRY_RUN_PREFLIGHT_ONLY",
+  "production_status": "NO_GO",
+  "runtime_target": "ollama",
+  "real_llm_call_allowed": false,
+  "execution_allowed": false,
+  "generate_call_allowed": false,
+  "chat_call_allowed": false,
+  "network_policy": {
+    "scope": "localhost_only",
+    "allowed_hosts": ["127.0.0.1", "localhost"],
+    "allowed_ports": [11434],
+    "forbidden_hosts": ["0.0.0.0", "example.com"]
+  },
+  "endpoint_candidates": [
+    "http://127.0.0.1:11434/api/tags",
+    "http://localhost:11434/api/tags"
+  ],
+  "model_allowlist": [
+    "gemma-4-qat",
+    "gemma-4-qat-e2b"
+  ],
+  "target_model": "gemma-4-qat-e2b",
+  "artifact_policy": {
+    "report_write_scope": ["generic_inference_block_ai/reports"],
+    "reports_only": true
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "_meta": {
+    "phase": "15-6",
+    "phase_name": "GO昇格不可時の差し戻し・NO-GO維持ルール設計",
+    "version": "1.0",
+    "created_date": "2026-05-13",
+    "status": "PASS_DESIGN_ONLY",
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only",
+    "description": "GO 候補を実測 GO に昇格できない場合の差し戻し条件と NO-GO 維持ルールを固定する。"
+  },
+  "references": [
+    "generic_block_ai/reports/phase15_3_go_candidate_to_measured_go_pre_promotion_final_acceptance_gate_design.json",
+    "generic_block_ai/reports/phase15_4_final_measurement_input_format_validation_rules_design.json",
+    "generic_block_ai/reports/phase15_5_final_measurement_input_evidence_lock_rules_design.json"
+  ],
+  "rejection_and_maintenance_rules": [
+    {
+      "rule_id": "RMR-01",
+      "condition": "pre_promotion_gate_passed == false",
+      "effect": "measured GO promotion rejected"
+    },
+    {
+      "rule_id": "RMR-02",
+      "condition": "all_measurement_evidence_locked == false",
+      "effect": "maintain NO_GO"
+    },
+    {
+      "rule_id": "RMR-03",
+      "condition": "integrated_input_valid == false or permission_input_valid == false",
+      "effect": "return for revision"
+    },
+    {
+      "rule_id": "RMR-04",
+      "condition": "candidate_confidence == LOW or effective_feasibility != PASS",
+      "effect": "maintain NO_GO"
+    },
+    {
+      "rule_id": "RMR-05",
+      "condition": "production_status != NO_GO or forbidden_mutation detected",
+      "effect": "abort and maintain NO_GO"
+    }
+  ],
+  "maintenance_template": {
+    "returned_for_revision": false,
+    "measured_go_rejected": true,
+    "no_go_maintained": true,
+    "reasons": [],
+    "overall_result": "PENDING"
+  },
+  "blocked_actions": [
+    "core_ai_real_send",
+    "external_api_call",
+    "wordpress_operation",
+    "cron_registration",
+    "auto_execute",
+    "auto_post",
+    "auto_update",
+    "auto_delete",
+    "auto_export",
+    "production_execution"
+  ],
+  "phase_decision": {
+    "phase15_6_status": "PASS_DESIGN_ONLY",
+    "app_implementation_status": "NO_GO",
+    "tests_implementation_status": "NO_GO",
+    "note": "GO昇格不可時の差し戻し・NO-GO維持ルール設計のみ。実装開始は含まない。"
+  }
+}

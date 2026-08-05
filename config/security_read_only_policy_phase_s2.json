@@ -1,0 +1,19 @@
+{
+  "phase_id": "PHASE_S2",
+  "phase_name": "security_read_only_policy",
+  "status": "DESIGN_ONLY",
+  "wordpress_mode": "READ_ONLY",
+  "wordpress_publish_allowed": false,
+  "wordpress_update_allowed": false,
+  "wordpress_delete_allowed": false,
+  "wordpress_write_executed": false,
+  "external_api_mode": "READ_ONLY",
+  "allow_external_api_write": false,
+  "allow_destructive_api_call": false,
+  "scheduler_mode": "SAFE_HOLD",
+  "allow_scheduler_execution": false,
+  "allow_auto_retry": false,
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "human_approval_required": true
+}

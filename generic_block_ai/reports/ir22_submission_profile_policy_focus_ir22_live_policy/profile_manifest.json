@@ -1,0 +1,45 @@
+{
+  "schema_version": "ir22_submission_profile_v1",
+  "phase": "IR22",
+  "generated_at": "2026-05-23T15:35:26.292644+00:00",
+  "source_task_id": "ir22_live_policy",
+  "profile_name": "policy_focus",
+  "profile_description": "Policy and role governance review profile.",
+  "required_patterns": [
+    "generic_block_ai/reports/implementation_restart_phase15_completion_report.json",
+    "generic_block_ai/reports/implementation_restart_phase17_completion_report.json",
+    "generic_block_ai/reports/implementation_restart_phase19_completion_report.json",
+    "generic_block_ai/reports/ir15_manual_event_role_guard_*.json",
+    "generic_block_ai/reports/ir17_role_policy_change_audit.log",
+    "generic_block_ai/reports/ir17_role_policy_versioning_report_*.json",
+    "generic_block_ai/reports/ir19_policy_drift_detector_report_*.json"
+  ],
+  "selected_artifacts": [
+    "generic_block_ai/reports/implementation_restart_phase15_completion_report.json",
+    "generic_block_ai/reports/implementation_restart_phase17_completion_report.json",
+    "generic_block_ai/reports/implementation_restart_phase19_completion_report.json",
+    "generic_block_ai/reports/ir15_manual_event_role_guard_ir15_abort_live_trial.json",
+    "generic_block_ai/reports/ir15_manual_event_role_guard_ir15_fail_live_trial.json",
+    "generic_block_ai/reports/ir15_manual_event_role_guard_ir15_pass_live_trial.json",
+    "generic_block_ai/reports/ir15_manual_event_role_guard_ir15_warn_live_trial.json",
+    "generic_block_ai/reports/ir17_role_policy_change_audit.log",
+    "generic_block_ai/reports/ir17_role_policy_versioning_report_ir17_live_trial.json",
+    "generic_block_ai/reports/ir17_role_policy_versioning_report_ir17_pre_ir19_alignment.json",
+    "generic_block_ai/reports/ir19_policy_drift_detector_report_ir19_live_trial.json"
+  ],
+  "missing_patterns": [],
+  "counts": {
+    "selected": 11,
+    "missing_patterns": 0
+  },
+  "validation_result": "PASS",
+  "validation_failed_checks": [],
+  "validation_warnings": [],
+  "safeguards": {
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "production_release": false
+  }
+}

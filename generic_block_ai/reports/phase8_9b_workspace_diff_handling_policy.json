@@ -1,0 +1,88 @@
+{
+  "_meta": {
+    "phase": "8-9B",
+    "phase_name": "workspace差分処理方針決定",
+    "version": "1.0",
+    "created_date": "2026-05-12",
+    "status": "PASS_DESIGN_ONLY",
+    "phase8_final_gate_design_status": "PASS_DESIGN_ONLY_WITH_SCOPE_CAVEAT",
+    "production_status": "NO_GO",
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "changed_area": "reports only",
+    "description": "Phase 8-9A の監査結果を受けて、workspace既存差分の扱いを定義する方針レポート。"
+  },
+  "inputs": {
+    "audit_report": "generic_block_ai/reports/phase8_9a_diff_scope_audit.json",
+    "phase8_7_to_8_9_reports": [
+      "generic_block_ai/reports/phase8_7_human_review_execution_record_template.json",
+      "generic_block_ai/reports/phase8_8_final_decision_execution_record_template.json",
+      "generic_block_ai/reports/phase8_9_phase9_transition_go_nogo_design.json"
+    ],
+    "workspace_findings": {
+      "app_tests_existing_diffs": 17,
+      "scope_note": "今回フェーズ由来と断定しない既存差分として監査済み"
+    }
+  },
+  "policy_decision": {
+    "reports_artifacts_phase8_7_to_8_9": {
+      "decision": "PASS_DESIGN_ONLY_FIXED",
+      "reason": "成果物3件は作成済みかつJSON妥当性OKで、固定解釈（Phase 8-9 GO ≠ app実装開始許可）を満たすため"
+    },
+    "workspace_overall": {
+      "decision": "WARN_CONTINUE",
+      "reason": "app/tests に既存差分が残っているため、全体基準の『app/tests 追加なし』をPASS断定しない"
+    },
+    "existing_app_tests_diffs_handling": {
+      "decision": "SEPARATE_TRACK",
+      "policy": "Phase 8-7〜8-9 判定対象から除外し、別枠の既存実装差分として管理する",
+      "safety_requirement": "危険要素の再確認が完了するまで、実装許可判定に利用しない"
+    }
+  },
+  "recheck_rules": {
+    "required_recheck_items": [
+      "core_ai_real_send が有効化されていない",
+      "external_api_call が有効化されていない",
+      "wordpress_operation が有効化されていない",
+      "cron_registration が有効化されていない",
+      "production_execution が有効化されていない",
+      "Phase 8-9 GO を app実装開始許可として扱う記述がない"
+    ],
+    "if_any_violation": "ABORT"
+  },
+  "fixed_interpretation": {
+    "phase8_9_go_meaning": "Phase 9 設計開始の検討可",
+    "phase8_9_go_not_meaning": "app 実装開始許可",
+    "app_implementation_permission": "Phase 9 側の別ゲートで判断",
+    "phase9_app_implementation_permission_default": "NO_GO"
+  },
+  "governance": {
+    "allowed_state": [
+      "OBSERVE",
+      "DRY_RUN",
+      "HUMAN_REVIEW_REQUIRED"
+    ],
+    "blocked": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ]
+  },
+  "output_status": {
+    "phase8_7_to_8_9_reports": "PASS_DESIGN_ONLY",
+    "workspace_status": "WARN",
+    "phase8_final_gate_design_status": "PASS_DESIGN_ONLY_WITH_SCOPE_CAVEAT",
+    "production_status": "NO_GO"
+  },
+  "next_step": {
+    "recommended": "既存 app/tests 差分17件の由来ラベル付け（前工程正当差分 / 要再確認 / 危険要素）",
+    "note": "削除・巻き戻しは実施しない"
+  }
+}

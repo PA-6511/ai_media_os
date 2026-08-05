@@ -1,0 +1,7 @@
+{
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "repo_url": "https://github.com/octocat/Hello-World.git",
+  "timeout_seconds": 5
+}

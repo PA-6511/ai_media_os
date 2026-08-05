@@ -1,0 +1,61 @@
+{
+  "phase": "67",
+  "report_type": "limited_dry_run_preparation_evidence_package_report",
+  "human_approval_required": true,
+  "readiness_status": "READY_FOR_PHASE68_PLANNING_ONLY",
+  "can_execute": false,
+  "execute_allowed": false,
+  "next_step": "prepare_phase68_limited_dry_run_preparation_evidence_review",
+  "policy_result": {
+    "policy_status": "PASS",
+    "reasons": []
+  },
+  "preparation_evidence_package": {
+    "phase": 67,
+    "mode": "DRY_RUN",
+    "human_approval_required": true,
+    "package_scope": "limited_dry_run_preparation_evidence_package_design_only",
+    "can_execute": false,
+    "execute_allowed": false,
+    "max_files_to_execute": 1,
+    "sandbox_scope_required": true,
+    "single_file_scope_required": true,
+    "status": "PREPARATION_EVIDENCE_PACKAGE_READY",
+    "next_step": "build_preparation_controls"
+  },
+  "preparation_controls": {
+    "controls_required": true,
+    "dry_run_required": true,
+    "human_approval_required": true,
+    "sandbox_scope_required": true,
+    "single_file_scope_required": true,
+    "execute_allowed": false,
+    "preparation_controls_does_not_execute": true,
+    "status": "PREPARATION_CONTROLS_READY"
+  },
+  "preparation_evidence_requirements": {
+    "evidence_required": true,
+    "missing_evidence_blocks_progress": true,
+    "required_evidence": [
+      "phase66_go_no_go_report_reference",
+      "preparation_scope_statement",
+      "target_files_manifest",
+      "sandbox_scope_confirmation",
+      "single_file_scope_confirmation",
+      "dry_run_mode_confirmation",
+      "non_execution_confirmation"
+    ],
+    "preparation_evidence_does_not_execute": true,
+    "status": "PREPARATION_EVIDENCE_REQUIREMENTS_READY"
+  },
+  "manual_preparation_gate": {
+    "gate_required": true,
+    "allowed_decisions": [
+      "ALLOW_PHASE68_PLANNING_ONLY",
+      "REJECT"
+    ],
+    "manual_preparation_gate_does_not_execute": true,
+    "status": "MANUAL_PREPARATION_GATE_READY"
+  },
+  "selected_decision": "ALLOW_PHASE68_PLANNING_ONLY"
+}

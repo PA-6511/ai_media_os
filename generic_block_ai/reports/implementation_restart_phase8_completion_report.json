@@ -1,0 +1,76 @@
+{
+  "phase": "Implementation Restart Phase 8",
+  "status": "COMPLETED",
+  "generated_at": "2026-05-23T00:00:00Z",
+  "test_result": {
+    "focused": "43 passed / 0 failed",
+    "full_regression": "122 passed / 0 failed",
+    "full_regression_command": "python3 -m pytest -q generic_block_ai/tests"
+  },
+  "tasks": {
+    "IR8-T1": {
+      "name": "affiliate_block input schema fixed",
+      "result": "completed",
+      "details": [
+        "runner practical input fields fixed: source/title/asin/url/campaign_type/risk_flags",
+        "generated schema file added: app/schemas.py",
+        "schema test added: tests/test_schemas.py"
+      ]
+    },
+    "IR8-T2": {
+      "name": "runner practical dry-run behavior",
+      "result": "completed",
+      "details": [
+        "records schema supported",
+        "legacy task_candidates compatibility maintained",
+        "accepted/rejected record handling added"
+      ]
+    },
+    "IR8-T3": {
+      "name": "affiliate candidate output schema",
+      "result": "completed",
+      "details": [
+        "article_candidate/review_required/affiliate_disclosure/blocked_reason/risk_flags emitted",
+        "schema validator module added: app/affiliate_practical_schema.py"
+      ]
+    },
+    "IR8-T4": {
+      "name": "generic -> affiliate -> generic -> core roundtrip dry-run",
+      "result": "completed",
+      "artifacts": [
+        "reports/ir8_roundtrip_dryrun_ir8_live_trial.json",
+        "reports/ir8_generated_affiliate_practical_runbook.json"
+      ]
+    },
+    "IR8-T5": {
+      "name": "IR8 completion report",
+      "result": "completed",
+      "artifact": "reports/implementation_restart_phase8_completion_report.json"
+    }
+  },
+  "changed_files": [
+    "app/block_template_builder.py",
+    "app/block_skeleton_validator.py",
+    "app/affiliate_practical_schema.py",
+    "app/affiliate_integration_trial.py",
+    "tests/test_block_template.py",
+    "tests/test_affiliate_integration_trial.py",
+    "tests/test_affiliate_practical_schema.py"
+  ],
+  "generated_artifacts": [
+    "reports/generated_skeleton_affiliate_block/_skeleton_summary.json",
+    "reports/ir8_roundtrip_dryrun_ir8_live_trial.json",
+    "reports/ir8_generated_affiliate_practical_runbook.json",
+    "reports/implementation_restart_phase8_completion_report.json"
+  ],
+  "safety_gates": {
+    "dry_run": "maintained",
+    "OBSERVE": "maintained",
+    "human_review_required": "maintained",
+    "external_write_executed": false,
+    "external_network_call": "none",
+    "github_push": "not_executed",
+    "wordpress_post": "not_executed",
+    "vps_release": "not_executed"
+  }
+}

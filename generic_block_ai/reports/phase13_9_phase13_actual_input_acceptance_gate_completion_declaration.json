@@ -1,0 +1,64 @@
+{
+  "_meta": {
+    "phase": "13-9",
+    "phase_name": "Phase 13 実入力受入ゲート完了宣言",
+    "version": "1.0",
+    "created_date": "2026-05-12",
+    "status": "PASS_DESIGN_ONLY",
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only",
+    "description": "Phase 13-1 から 13-8 までの実入力受入ゲート設計が完了したことを宣言する。"
+  },
+  "references": [
+    "generic_block_ai/reports/phase13_1_human_review_actual_input_acceptance_format_spec.json",
+    "generic_block_ai/reports/phase13_2_human_review_input_validation_checklist_fixed.json",
+    "generic_block_ai/reports/phase13_3_integrated_decision_pre_update_final_acceptance_gate_design.json",
+    "generic_block_ai/reports/phase13_4_human_review_actual_input_format_validation_rules_design.json",
+    "generic_block_ai/reports/phase13_5_human_review_actual_input_evidence_lock_rules_design.json",
+    "generic_block_ai/reports/phase13_6_human_review_input_return_for_revision_rules_design.json",
+    "generic_block_ai/reports/phase13_7_human_review_actual_input_post_acceptance_final_reflection_procedure_design.json",
+    "generic_block_ai/reports/phase13_8_integrated_decision_pre_update_acceptance_completion_measurement_report_design.json"
+  ],
+  "completion_scope": {
+    "included_phases": [
+      "13-1",
+      "13-2",
+      "13-3",
+      "13-4",
+      "13-5",
+      "13-6",
+      "13-7",
+      "13-8"
+    ],
+    "scope_summary": "実入力受入フォーマット固定、形式検証、証跡固定、差し戻し制御、受入完了判定までを reports-only で完了",
+    "excluded_scope": [
+      "app implementation",
+      "tests implementation",
+      "production execution"
+    ]
+  },
+  "gate_status": {
+    "phase13_input_acceptance_gate_status": "PASS_DESIGN_ONLY",
+    "integrated_decision": "NO_GO",
+    "receiver_validator_permission": "NOT_EFFECTIVE",
+    "app_implementation_status": "NO_GO",
+    "tests_implementation_status": "NO_GO",
+    "production_status": "NO_GO"
+  },
+  "declaration": {
+    "declaration_type": "ACTUAL_INPUT_ACCEPTANCE_GATE_COMPLETION",
+    "meaning": "Phase 13 の実入力受入ゲート設計は完了したが、app/tests 実装開始許可はまだ発行されていない",
+    "hard_stop": "この宣言は app/tests 実装開始許可を意味しない",
+    "next_gate": "integrated_decision 更新可否の別途最終判定"
+  },
+  "phase_decision": {
+    "phase13_9_status": "PASS_DESIGN_ONLY",
+    "app_implementation_status": "NO_GO",
+    "tests_implementation_status": "NO_GO",
+    "note": "Phase 13 は実入力受入ゲート設計まで完了。app/tests 実装は依然 NO_GO。"
+  }
+}

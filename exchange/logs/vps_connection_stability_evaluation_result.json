@@ -1,0 +1,18 @@
+{
+  "package_type": "phase7_3_vps_connection_stability_evaluation_result",
+  "phase": "Phase 7-3",
+  "status": "PASS",
+  "overall_status": "PASS_DRY_RUN_ONLY",
+  "sample_count": 5,
+  "tcp_22_pass_rate": 100.0,
+  "tcp_22_fail_count": 0,
+  "tcp_22_fail_rate": 0.0,
+  "ssh_auth_dry_run_fail_count": 0,
+  "ssh_banner_fail_count": 0,
+  "average_latency_ms": 128.0,
+  "average_packet_loss_percent": 0.0,
+  "production_status": "NO_GO",
+  "human_review_required": true,
+  "reasons": [],
+  "created_at": "2026-05-24T04:29:50.263410+00:00"
+}

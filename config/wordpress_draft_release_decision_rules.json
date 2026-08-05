@@ -1,0 +1,89 @@
+{
+  "phase": "Phase 6-3",
+  "rules_name": "wordpress_draft_release_final_decision_design",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "rules_status": "DESIGN_ONLY",
+  "production_status": "NO_GO",
+  "wordpress_draft_creation": "NO_GO",
+  "activation_target": {
+    "decision_token": "APPROVE_DRAFT_CREATE_ONLY",
+    "currently_allowed": false,
+    "note": "Phase 6-3時点では将来予約。実行解放しない。"
+  },
+  "prerequisites_for_activation": [
+    "phase5_overall_completion_status in [PASS_DRY_RUN_ONLY, PASS_DRY_RUN_ONLY_WITH_WARN]",
+    "phase6_1_design_validation_result.status == PASS",
+    "phase6_2_preflight_gate_validation_result.status == PASS",
+    "human_review_final_decision == APPROVE_DRAFT_CREATE_ONLY",
+    "post_count_limit == 1",
+    "post_status == draft",
+    "wordpress_write_executed == false"
+  ],
+  "warn_handling_rules": {
+    "phase5_warn_requires_explicit_human_override": true,
+    "phase5_warn_without_override_is_block": true,
+    "quality_warn_requires_human_review": true
+  },
+  "hard_stop_conditions": [
+    "affiliate_tag_unverified == true",
+    "content_url_missing == true",
+    "pr_label_missing == true",
+    "post_count_limit != 1",
+    "post_status != draft",
+    "wordpress_user_role_not_allowed == true",
+    "human_review_missing == true",
+    "human_review_decision_not_APPROVE_DRAFT_CREATE_ONLY == true",
+    "secrets_or_env_auto_edit_detected == true",
+    "wordpress_rest_execute_before_gate == true",
+    "publish_request_detected == true",
+    "update_request_detected == true",
+    "delete_request_detected == true",
+    "export_request_detected == true",
+    "vps_self_builder_execution_enabled == true"
+  ],
+  "wordpress_permission_requirements": {
+    "allowed_roles": ["editor", "administrator"],
+    "application_password_required": true,
+    "token_scope_limited": true,
+    "username_must_be_dedicated": true
+  },
+  "final_human_review_requirements": {
+    "required": true,
+    "decision_must_be": "APPROVE_DRAFT_CREATE_ONLY",
+    "decision_expiry_minutes": 30,
+    "reviewer_identity_required": true,
+    "review_timestamp_required": true
+  },
+  "post_execution_evidence_requirements": {
+    "required": false,
+    "note": "Phase 6-3は設計のみ。実行証跡は生成しない。",
+    "future_required_fields": [
+      "draft_post_id",
+      "request_id",
+      "reviewer_id",
+      "executed_at",
+      "wordpress_user",
+      "status_before_after"
+    ]
+  },
+  "retry_policy": {
+    "retry_on_failure": false,
+    "auto_retry_forbidden": true,
+    "manual_requeue_requires_new_review": true
+  },
+  "forbidden_actions": [
+    "wordpress_rest_post",
+    "wordpress_rest_put_patch",
+    "publish_post",
+    "update_existing_post",
+    "delete_post",
+    "bulk_posting",
+    "external_export",
+    "github_actions_trigger",
+    "slack_production_notification",
+    "cron_automation",
+    "env_secret_auto_edit",
+    "vps_self_builder_execution"
+  ]
+}

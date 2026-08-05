@@ -1,0 +1,52 @@
+{
+  "status": "PASS",
+  "generated_at": "2026-06-13T05:08:53.006973+00:00",
+  "checks": {
+    "draft_template": {
+      "status": "PASS",
+      "required_sections": [
+        "## 作品概要",
+        "## こんな人におすすめ",
+        "## 見どころ",
+        "## 読者評価ポイント",
+        "## 購入はこちら",
+        "## PR表記"
+      ],
+      "missing_sections": []
+    },
+    "seo": {
+      "status": "PASS",
+      "required_tokens": [
+        "## よくある質問",
+        "## 関連作品",
+        "## 関連記事",
+        "\"seo_version\": \"v1\"",
+        "\"generated_sections\": ["
+      ],
+      "missing_tokens": []
+    },
+    "reader_profile": {
+      "status": "PASS",
+      "required_tokens": [
+        "## この作品が刺さる読者",
+        "幅広い読者におすすめ",
+        "\"reader_profile_version\": \"v1\""
+      ],
+      "missing_tokens": []
+    },
+    "ranking_policy": {
+      "status": "PASS",
+      "policy_path": "/home/deploy/ai_media_os/config/ranking_policy.json",
+      "errors": [],
+      "warnings": [],
+      "checked_keys": [
+        "new_release_weight",
+        "sale_weight",
+        "author_weight",
+        "publisher_weight"
+      ],
+      "execution": "validation_only"
+    }
+  },
+  "production_status_unchanged": true
+}

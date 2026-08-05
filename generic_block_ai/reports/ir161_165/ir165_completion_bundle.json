@@ -1,0 +1,387 @@
+{
+  "schema_version": "ir165_phase_161_165_completion_bundle_v1",
+  "phase": "IR165",
+  "generated_at": "2026-05-26T12:32:10.774184+00:00",
+  "source_task_id": "ir161_165_batch",
+  "new_cycle_id": "IR71_PLUS_CYCLE_A",
+  "ir161_result": {
+    "schema_version": "ir161_post_terminal_integrity_verification_v1",
+    "phase": "IR161",
+    "generated_at": "2026-05-26T12:32:10.773365+00:00",
+    "source_task_id": "ir161_165_batch",
+    "validation_result": "PASS",
+    "validation_failed_checks": [],
+    "validation_warnings": [],
+    "post_terminal_integrity_verification": {
+      "verification_id": "ir161_verify_ir161_165_batch_20260526T123210Z",
+      "generated_at": "2026-05-26T12:32:10.773348+00:00",
+      "source_task_id": "ir161_165_batch",
+      "new_cycle_id": "IR71_PLUS_CYCLE_A",
+      "verification_entries": [
+        {
+          "index_item_id": "immutable_1",
+          "meta_item": "new_cycle_start",
+          "verification_status": "INTACT",
+          "integrity_ok": true
+        },
+        {
+          "index_item_id": "immutable_2",
+          "meta_item": "governance_preparation",
+          "verification_status": "INTACT",
+          "integrity_ok": true
+        },
+        {
+          "index_item_id": "immutable_3",
+          "meta_item": "prohibition_continuity",
+          "verification_status": "INTACT",
+          "integrity_ok": true
+        },
+        {
+          "index_item_id": "immutable_4",
+          "meta_item": "evidence_fixation",
+          "verification_status": "INTACT",
+          "integrity_ok": true
+        },
+        {
+          "index_item_id": "immutable_5",
+          "meta_item": "long_term_retention",
+          "verification_status": "INTACT",
+          "integrity_ok": true
+        },
+        {
+          "index_item_id": "immutable_6",
+          "meta_item": "terminal_seal",
+          "verification_status": "INTACT",
+          "integrity_ok": true
+        },
+        {
+          "index_item_id": "immutable_7",
+          "meta_item": "cycle_summary",
+          "verification_status": "INTACT",
+          "integrity_ok": true
+        }
+      ],
+      "entry_count": 7,
+      "all_integrity_ok": true,
+      "unlock_eligible": false,
+      "safety_gate_snapshot": {
+        "dry_run": "maintained",
+        "OBSERVE": "maintained",
+        "submission_execution_blocked": true,
+        "execution_policy_execute": false,
+        "external_write_executed": false,
+        "network_transmission_executed": false,
+        "production_release": false,
+        "GitHub_push": "未実行"
+      }
+    },
+    "report_hash": "71c00e37cf31a33bedf9f8c672a872e7d8e8e8a973b0ed2b4926ad45e33400ae",
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "ir162_result": {
+    "schema_version": "ir162_read_only_preservation_check_v1",
+    "phase": "IR162",
+    "generated_at": "2026-05-26T12:32:10.773650+00:00",
+    "source_task_id": "ir161_165_batch",
+    "validation_result": "PASS",
+    "validation_failed_checks": [],
+    "validation_warnings": [],
+    "read_only_preservation_check": {
+      "check_id": "ir162_check_ir161_165_batch_20260526T123210Z",
+      "generated_at": "2026-05-26T12:32:10.773645+00:00",
+      "source_task_id": "ir161_165_batch",
+      "new_cycle_id": "IR71_PLUS_CYCLE_A",
+      "preservation_entries": [
+        {
+          "index_item_id": "immutable_1",
+          "meta_item": "new_cycle_start",
+          "preservation_mode": "READ_ONLY",
+          "preserved": true
+        },
+        {
+          "index_item_id": "immutable_2",
+          "meta_item": "governance_preparation",
+          "preservation_mode": "READ_ONLY",
+          "preserved": true
+        },
+        {
+          "index_item_id": "immutable_3",
+          "meta_item": "prohibition_continuity",
+          "preservation_mode": "READ_ONLY",
+          "preserved": true
+        },
+        {
+          "index_item_id": "immutable_4",
+          "meta_item": "evidence_fixation",
+          "preservation_mode": "READ_ONLY",
+          "preserved": true
+        },
+        {
+          "index_item_id": "immutable_5",
+          "meta_item": "long_term_retention",
+          "preservation_mode": "READ_ONLY",
+          "preserved": true
+        },
+        {
+          "index_item_id": "immutable_6",
+          "meta_item": "terminal_seal",
+          "preservation_mode": "READ_ONLY",
+          "preserved": true
+        },
+        {
+          "index_item_id": "immutable_7",
+          "meta_item": "cycle_summary",
+          "preservation_mode": "READ_ONLY",
+          "preserved": true
+        }
+      ],
+      "entry_count": 7,
+      "all_preserved": true,
+      "unlock_eligible": false,
+      "safety_gate_snapshot": {
+        "dry_run": "maintained",
+        "OBSERVE": "maintained",
+        "submission_execution_blocked": true,
+        "execution_policy_execute": false,
+        "external_write_executed": false,
+        "network_transmission_executed": false,
+        "production_release": false,
+        "GitHub_push": "未実行"
+      }
+    },
+    "check_hash": "a22e64cbd50fb5bba27b64855f8b6fb5b344c299ecc6d954f587b3f35f306b31",
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "ir163_result": {
+    "schema_version": "ir163_immutable_reference_continuity_snapshot_v1",
+    "phase": "IR163",
+    "generated_at": "2026-05-26T12:32:10.773846+00:00",
+    "source_task_id": "ir161_165_batch",
+    "validation_result": "PASS",
+    "validation_failed_checks": [],
+    "validation_warnings": [],
+    "immutable_reference_continuity_snapshot": {
+      "snapshot_id": "ir163_snapshot_ir161_165_batch_20260526T123210Z",
+      "generated_at": "2026-05-26T12:32:10.773841+00:00",
+      "source_task_id": "ir161_165_batch",
+      "new_cycle_id": "IR71_PLUS_CYCLE_A",
+      "snapshot_entries": [
+        {
+          "snapshot_item_id": "snapshot_1",
+          "index_item_id": "immutable_1",
+          "meta_item": "new_cycle_start",
+          "continuity_status": "CONTINUOUS"
+        },
+        {
+          "snapshot_item_id": "snapshot_2",
+          "index_item_id": "immutable_2",
+          "meta_item": "governance_preparation",
+          "continuity_status": "CONTINUOUS"
+        },
+        {
+          "snapshot_item_id": "snapshot_3",
+          "index_item_id": "immutable_3",
+          "meta_item": "prohibition_continuity",
+          "continuity_status": "CONTINUOUS"
+        },
+        {
+          "snapshot_item_id": "snapshot_4",
+          "index_item_id": "immutable_4",
+          "meta_item": "evidence_fixation",
+          "continuity_status": "CONTINUOUS"
+        },
+        {
+          "snapshot_item_id": "snapshot_5",
+          "index_item_id": "immutable_5",
+          "meta_item": "long_term_retention",
+          "continuity_status": "CONTINUOUS"
+        },
+        {
+          "snapshot_item_id": "snapshot_6",
+          "index_item_id": "immutable_6",
+          "meta_item": "terminal_seal",
+          "continuity_status": "CONTINUOUS"
+        },
+        {
+          "snapshot_item_id": "snapshot_7",
+          "index_item_id": "immutable_7",
+          "meta_item": "cycle_summary",
+          "continuity_status": "CONTINUOUS"
+        }
+      ],
+      "entry_count": 7,
+      "continuity_confirmed": true,
+      "unlock_eligible": false,
+      "safety_gate_snapshot": {
+        "dry_run": "maintained",
+        "OBSERVE": "maintained",
+        "submission_execution_blocked": true,
+        "execution_policy_execute": false,
+        "external_write_executed": false,
+        "network_transmission_executed": false,
+        "production_release": false,
+        "GitHub_push": "未実行"
+      }
+    },
+    "snapshot_hash": "022959f4d7a28d564a756b7f6969d0eacd0d0c63e2d137ab40a9d610de702e9b",
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "ir164_result": {
+    "schema_version": "ir164_terminal_post_check_attestation_v1",
+    "phase": "IR164",
+    "generated_at": "2026-05-26T12:32:10.774032+00:00",
+    "source_task_id": "ir161_165_batch",
+    "terminal_post_check_attestation_decision": "PROHIBITION_CONTINUITY_FINALIZED_DRY_RUN_ONLY",
+    "gate_action": "Terminal post-check attestation confirmed.",
+    "validation_result": "PASS",
+    "validation_failed_checks": [],
+    "validation_warnings": [],
+    "terminal_post_check_attestation": {
+      "attestation_id": "ir164_attestation_ir161_165_batch_20260526T123210Z",
+      "generated_at": "2026-05-26T12:32:10.774029+00:00",
+      "source_task_id": "ir161_165_batch",
+      "decision": "PROHIBITION_CONTINUITY_FINALIZED_DRY_RUN_ONLY",
+      "unlock_prohibited": true,
+      "post_check_attested": true,
+      "safety_gate_snapshot": {
+        "dry_run": "maintained",
+        "OBSERVE": "maintained",
+        "submission_execution_blocked": true,
+        "execution_policy_execute": false,
+        "external_write_executed": false,
+        "network_transmission_executed": false,
+        "production_release": false,
+        "GitHub_push": "未実行"
+      }
+    },
+    "attestation_hash": "600d905146fa206e15f2cc62d8c965dd488fd2b8cf25acf20963c79885d974ab",
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "test_summary": {
+    "focused": {
+      "passed": 6,
+      "failed": 0
+    },
+    "adjacent": {
+      "passed": 12,
+      "failed": 0
+    },
+    "scoped": {
+      "passed": 494,
+      "failed": 0
+    }
+  },
+  "live_summary": {
+    "ir161": "PASS",
+    "ir162": "PASS",
+    "ir163": "PASS",
+    "ir164": "PASS",
+    "ir165": "PASS"
+  },
+  "safety_gate_summary": {
+    "dry_run": "maintained",
+    "OBSERVE": "maintained",
+    "submission_execution_blocked": true,
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "network_transmission_executed": false,
+    "production_release": false,
+    "GitHub_push": "未実行"
+  },
+  "completion_table": [
+    {
+      "phase": "IR161",
+      "content": "Post-Terminal Integrity Verification",
+      "focused": "PASS",
+      "adjacent": "PASS",
+      "scoped": "PASS",
+      "live": "PASS",
+      "judgement": "完了"
+    },
+    {
+      "phase": "IR162",
+      "content": "Read-Only Preservation Check",
+      "focused": "PASS",
+      "adjacent": "PASS",
+      "scoped": "PASS",
+      "live": "PASS",
+      "judgement": "完了"
+    },
+    {
+      "phase": "IR163",
+      "content": "Immutable Reference Continuity Snapshot",
+      "focused": "PASS",
+      "adjacent": "PASS",
+      "scoped": "PASS",
+      "live": "PASS",
+      "judgement": "完了"
+    },
+    {
+      "phase": "IR164",
+      "content": "Terminal Post-Check Attestation",
+      "focused": "PASS",
+      "adjacent": "PASS",
+      "scoped": "PASS",
+      "live": "PASS",
+      "judgement": "完了"
+    },
+    {
+      "phase": "IR165",
+      "content": "Phase 161-165 Completion Bundle",
+      "focused": "PASS",
+      "adjacent": "PASS",
+      "scoped": "PASS",
+      "live": "PASS",
+      "judgement": "完了"
+    }
+  ],
+  "final_decision": "PROHIBITION_CONTINUITY_FINALIZED_DRY_RUN_ONLY",
+  "prohibition_continuity_finalized": true,
+  "delta_closure_pending": true,
+  "artifacts": {
+    "ir161_post_terminal_integrity_verification": "generic_block_ai/reports/ir161_165/ir161_post_terminal_integrity_verification.json",
+    "ir162_read_only_preservation_check": "generic_block_ai/reports/ir161_165/ir162_read_only_preservation_check.json",
+    "ir163_immutable_reference_continuity_snapshot": "generic_block_ai/reports/ir161_165/ir163_immutable_reference_continuity_snapshot.json",
+    "ir164_terminal_post_check_attestation": "generic_block_ai/reports/ir161_165/ir164_terminal_post_check_attestation.json",
+    "ir165_completion_bundle": "generic_block_ai/reports/ir161_165/ir165_completion_bundle.json",
+    "ir161_165_live_status": "generic_block_ai/reports/ir161_165/ir161_165_live_status.md",
+    "ir161_165_completion_table": "generic_block_ai/reports/ir161_165/ir161_165_completion_table.md"
+  },
+  "external_write_executed": false
+}

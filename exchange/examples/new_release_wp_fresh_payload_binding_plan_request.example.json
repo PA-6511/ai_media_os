@@ -1,0 +1,59 @@
+{
+  "request_version": 1,
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-E",
+  "source_phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-D",
+  "source_result_path": "exchange/logs/ls_new_batch_4g_2e_recovery_d_result.json",
+  "source_result_digest_sha256": "8414f2abe0825eab2f6408327a2fc739297f35cdda3a0287de1301ba9bd90e20",
+  "mapping_artifact_path": "config/new_release_wp_production_category_mapping.json",
+  "mapping_file_sha256": "19c2598d65d9acd817778deae8c661bc4c6ea33cc2a4d2686d33ec671764c4c0",
+  "mapping_artifact_digest_sha256": "ff0bca22637eb271edde817d04d7a6288e6620edd3183beb9e7d5f3829019b3e",
+  "source_mapping_approval_path": "exchange/approvals/ls_new_batch_4g_2e_recovery_d_mapping_fixation_approval.json",
+  "source_mapping_approval_digest_sha256": "7e0deabf49bece6b85fb08c3a3f2e8137e6ab0cce0737f9e08db564b3939587c",
+  "plan_approval_path": "exchange/approvals/ls_new_batch_4g_2e_recovery_e_fresh_payload_binding_plan_approval.json",
+  "plan_approval_digest_sha256": "23c8003c21851905394acc080a09df068332478a871e184c1769bed9824c3c9f",
+  "legacy_inspection_evidence": [
+    {
+      "path": "exchange/logs/start_ls_new15_lite_draft_payload_final_confirm.json",
+      "file_sha256": "da041111bc88fe335b3e215f0f3b4ce587274f5af74cf7107f673e977c12f65e",
+      "independent_payload_path_found": false,
+      "payload_body_found": false,
+      "categories_payload_found": false,
+      "eligible_as_fresh_payload": false,
+      "modification_allowed": false
+    },
+    {
+      "path": "exchange/logs/start_ls_new6_wp_draft_payload_prep_result.json",
+      "file_sha256": "d7b1fcb62c24332db6398a245186367c9209b1663d734da44bda80f292b07981",
+      "independent_payload_path_found": false,
+      "payload_body_found": false,
+      "categories_payload_found": false,
+      "eligible_as_fresh_payload": false,
+      "modification_allowed": false
+    },
+    {
+      "path": "exchange/logs/start_ls_new4_purchase_navigation_payload_dry_run_result.json",
+      "file_sha256": "03fe539f23d374b86948309e3fd6066784eb70d60fe3a54c02f5003a7f0bef3f",
+      "independent_payload_path_found": false,
+      "payload_body_found": false,
+      "categories_payload_found": false,
+      "eligible_as_fresh_payload": false,
+      "modification_allowed": false
+    }
+  ],
+  "operation_mode": "APPROVED_FRESH_PAYLOAD_BINDING_PLAN_RECORDING_ONLY",
+  "plan_recording_requested": true,
+  "legacy_post185_exclusion_requested": true,
+  "fresh_payload_creation_requested": false,
+  "fresh_payload_read_requested": false,
+  "fresh_payload_copy_requested": false,
+  "payload_binding_requested": false,
+  "payload_modification_requested": false,
+  "production_category_id_payload_injection_requested": false,
+  "credential_file_read_requested": false,
+  "network_connection_requested": false,
+  "http_request_requested": false,
+  "wordpress_access_requested": false,
+  "wordpress_write_requested": false,
+  "wordpress_draft_creation_requested": false,
+  "execution_requested": false
+}

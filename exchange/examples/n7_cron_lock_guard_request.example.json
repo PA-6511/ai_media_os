@@ -1,0 +1,8 @@
+{
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "lock_path": "exchange/locks/n_series_monitor.lock",
+  "stale_threshold_seconds": 3600,
+  "simulate_duplicate": true
+}

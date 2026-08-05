@@ -1,0 +1,49 @@
+{
+  "phase": "AB-T10",
+  "status": "PASS_DESIGN_ONLY_NO_EXECUTION",
+  "purpose": "copilot_saving_baseline_fixed",
+  "execution_mode": "DESIGN_ONLY",
+  "production_status": "NO_GO",
+  "safety_state": "DRY_RUN_ONLY",
+  "baseline_targets": [
+    "AB-T2",
+    "AB-T3",
+    "AB-T4",
+    "AB-T5",
+    "AB-T6",
+    "AB-T7",
+    "AB-T8",
+    "AB-T9"
+  ],
+  "baseline_rules": {
+    "verify_all_previous_phases": true,
+    "freeze_baseline_design": true,
+    "freeze_pipeline_order": true,
+    "freeze_safety_constraints": true,
+    "allow_future_extension": true,
+    "allow_baseline_modification": false
+  },
+  "allowed_outputs": [
+    "baseline_summary",
+    "baseline_status_table",
+    "pipeline_summary",
+    "safety_summary",
+    "baseline_readiness"
+  ],
+  "forbidden_outputs": [
+    "copilot_send",
+    "llm_send",
+    "production_execution",
+    "wordpress_command",
+    "external_api_payload",
+    "credential_contents",
+    "secret_values",
+    "git_commit",
+    "git_push"
+  ],
+  "next_phase": {
+    "phase": "AB-T11",
+    "name": "Copilot Saving Extension Framework",
+    "execution_allowed": false
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "phase": "Implementation Restart Phase 13",
+  "status": "COMPLETED",
+  "generated_at": "2026-05-23T14:53:43.005563+00:00",
+  "schema_version": "ir13_manual_approval_v1",
+  "test_result": {
+    "focused_tests": {
+      "passed": 6,
+      "failed": 0
+    },
+    "full_regression": {
+      "passed": 144,
+      "failed": 0
+    }
+  },
+  "summary": {
+    "event_counts": {
+      "APPROVE": 2,
+      "REQUEST_FIX": 1,
+      "REJECT": 1
+    },
+    "validation_result_counts": {
+      "PASS": 3,
+      "FAIL": 1
+    },
+    "final_queue_state_counts": {
+      "APPROVED_DRY_RUN_PENDING_RELEASE": 1,
+      "NEEDS_FIX_REWORK": 1,
+      "REJECTED_BY_HUMAN": 1,
+      "ABORT_EVIDENCE_LOCKED": 1
+    },
+    "abort_unlock_prevented": true,
+    "execution_triggered": false
+  },
+  "artifacts": {
+    "manual_event_reports": [
+      "generic_block_ai/reports/ir13_manual_approval_event_ir13_pass_live_trial_approve.json",
+      "generic_block_ai/reports/ir13_manual_approval_event_ir13_warn_live_trial_request_fix.json",
+      "generic_block_ai/reports/ir13_manual_approval_event_ir13_fail_live_trial_reject.json",
+      "generic_block_ai/reports/ir13_manual_approval_event_ir13_abort_live_trial_approve.json"
+    ],
+    "audit_log": "generic_block_ai/reports/ir13_manual_approval_audit.log",
+    "completion_report": "reports/implementation_restart_phase13_completion_report.json"
+  },
+  "safeguards": {
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "external_write_executed": false,
+    "actual_auto_execute": false,
+    "production_release": false
+  }
+}

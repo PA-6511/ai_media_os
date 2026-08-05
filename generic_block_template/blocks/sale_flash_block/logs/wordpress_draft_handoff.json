@@ -1,0 +1,75 @@
+{
+  "status": "PASS",
+  "phase": "SFB-5",
+  "block_name": "sale_flash_block",
+  "generated_at": "2026-06-14T04:38:38.916875+00:00",
+  "production_status": "NO_GO",
+  "input_handoff_status": "PASS",
+  "input_handoff_item_count": 2,
+  "selected_candidate_count": 1,
+  "draft_payload_count": 1,
+  "skipped_candidate_count": 0,
+  "external_api_called": false,
+  "external_network_called": false,
+  "wordpress_write_executed": false,
+  "creators_api_called": false,
+  "amazon_scraping_called": false,
+  "publish_executed": false,
+  "update_executed": false,
+  "delete_executed": false,
+  "export_executed": false,
+  "human_approval_consumed": false,
+  "final_publish_decision_allowed": false,
+  "draft_candidates": [
+    {
+      "draft_handoff_id": "sfb5-draft-001",
+      "source_handoff_id": "sfb4-handoff-001",
+      "candidate_id": "sfb-cand-001",
+      "title": "Crimson Library",
+      "priority_score": 94,
+      "review_bucket": "ready_high_priority",
+      "wordpress_draft_candidate": {
+        "post_type": "post",
+        "post_status": "draft_candidate_only",
+        "post_title": "【SUMMER_FLASH】Crimson Library をチェック",
+        "post_slug_candidate": "crimson-library",
+        "post_excerpt": "Crimson Library は、セール候補として確認したい注目作品です。価格や販売状況はリンク先で確認してください。\n\nPRを含みます。リンク先の価格・販売状況は変更される場合があります。",
+        "post_body_candidate": {
+          "intro": "Crimson Library は、セール候補として確認したい注目作品です。価格や販売状況はリンク先で確認してください。",
+          "pr_disclosure": "PRを含みます。リンク先の価格・販売状況は変更される場合があります。",
+          "link_candidate": {
+            "link_type": "amazon_product_link_candidate",
+            "asin": "B0REAL00001",
+            "url": "https://www.amazon.co.jp/dp/B0REAL00001",
+            "final_human_confirmation_required": true
+          },
+          "recommended_reader": "短時間でセール候補をチェックしたい人におすすめです。"
+        },
+        "taxonomy_candidate": {
+          "category_candidates": [
+            "sale-flash",
+            "ebook-candidate"
+          ],
+          "tag_candidates": [
+            "Crimson Library"
+          ]
+        }
+      },
+      "sns_post_candidate": "PRを含みます。『Crimson Library』をセール候補としてチェック。価格・販売状況はリンク先で確認してください。",
+      "human_review_status": "NOT_REVIEWED",
+      "handoff_notes": "wordpress draft candidate generated in DRY_RUN only",
+      "production_status": "NO_GO",
+      "external_api_called": false,
+      "external_network_called": false,
+      "wordpress_write_executed": false,
+      "creators_api_called": false,
+      "amazon_scraping_called": false,
+      "publish_executed": false,
+      "update_executed": false,
+      "delete_executed": false,
+      "export_executed": false
+    }
+  ],
+  "skipped_candidates": [],
+  "next_recommended_phase": "SFB-6: WordPress DRY_RUN payload validation / final human gate"
+}

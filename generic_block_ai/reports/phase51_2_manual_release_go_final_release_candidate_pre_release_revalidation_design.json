@@ -1,0 +1,34 @@
+{
+  "_meta": {
+    "phase": "51-2",
+    "phase_name": "リリース直前再検証層",
+    "layer": "manual_release_go 再検証設計層 (manual_release_go revalidation design layer)",
+    "title": "manual_release_go 最終解除候補のリリース直前再検証設計",
+    "created": "2026-05-14",
+    "author": "governance-framework",
+    "status": "PASS_DESIGN_ONLY",
+    "reports_only": true
+  },
+  "scope": "Phase 51-1 で受領・整合確認された Phase 50 完了証跡をもとに，manual_release_go の最終解除候補についてリリース直前の再検証を設計層で定義する。内容：(1) manual_release_go の NOT_GRANTED 維持状態の再確認，(2) 証跡・監査記録の整合性検証，(3) production_status = 'NO_GO' の維持確認，(4) Phase 51-3 以降への進行条件の明示。",
+  "governance": {
+    "production_status": "NO_GO",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "report": {
+    "description": "Phase 51-2 では，Phase 51-1 で受領・整合確認された Phase 50 完了証跡をもとに，manual_release_go の最終解除候補についてリリース直前の再検証を設計層で定義する。(1) manual_release_go の NOT_GRANTED 維持状態の再確認，(2) 証跡・監査記録の整合性検証，(3) production_status = 'NO_GO' の維持確認，(4) Phase 51-3 以降への進行条件の明示。これらは全て reports-only で実装され，実処理開始許可は含まれない。",
+    "invariants": [
+      "NO_GO 維持：再検証時点で production_status = 'NO_GO' を維持",
+      "NOT_GRANTED 維持：manual_release_go の NOT_GRANTED 状態を再確認",
+      "証跡・監査記録整合性：証跡・監査記録の整合性を厳格に検証",
+      "reports only：全再検証設計は設計層の報告書形式で実施"
+    ],
+    "actions": [],
+    "notes": [
+      "Phase 51-2 は設計層のみで実装される（reports-only）",
+      "実処理開始許可は含まれない",
+      "manual_release_go の NOT_GRANTED 維持が前提"
+    ]
+  }
+}

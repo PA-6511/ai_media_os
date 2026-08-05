@@ -1,0 +1,50 @@
+{
+  "_meta": {
+    "phase": "4-1",
+    "purpose": "connection_policy_diff_plan",
+    "created_at": "2026-05-12",
+    "status": "PLAN_ONLY",
+    "note": "Phase 4 の限定接続試験に向けた設定差分案。app 実装変更・外部接続・自動実行は含まない。"
+  },
+  "baseline": {
+    "phase35_state": "PASS_DRY_RUN_ONLY",
+    "production_status": "NO_GO",
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false
+  },
+  "proposed_additions": {
+    "connection_test_mode": true,
+    "connection_scope": "decision_package_handoff_only",
+    "handoff_direction": "generic_block_ai_to_core_ai",
+    "handoff_type": "observation_and_decision_package_only"
+  },
+  "unchanged_constraints": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "external_api_call": false,
+    "wordpress_operation": false,
+    "cron_registration": false,
+    "auto_execute": false,
+    "auto_post": false,
+    "auto_update": false,
+    "auto_delete": false,
+    "auto_export": false,
+    "production_execution": false
+  },
+  "guard_compatibility": {
+    "existing_guard_requires_observe": true,
+    "new_operation_mode_values_introduced": false,
+    "conflict_risk": "low",
+    "reason": "operation_mode は OBSERVE のまま維持し、connection_test_mode を別キーで追加するため"
+  },
+  "acceptance_criteria": [
+    "operation_mode が OBSERVE のまま維持されること",
+    "connection_test_mode が true であること",
+    "connection_scope が decision_package_handoff_only であること",
+    "external_api_call / wordpress_operation / cron_registration が false のままであること",
+    "production_status が NO_GO のままであること"
+  ],
+  "result": "PASS_DRY_RUN_ONLY"
+}

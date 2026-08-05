@@ -1,0 +1,86 @@
+{
+  "phase_id": "32-2",
+  "phase_name": "Freeze Release GO Candidate and Execution Start GO Candidate Final Separation Audit Design",
+  "phase_japanese_name": "凍結解除GO候補と実行開始GO候補の最終分離監査設計",
+  "purpose": "Design final separation audit rules between freeze_release_go candidate and execution_start_go candidate.",
+  "layer": "execution_start_go_actual_measurement_layer",
+  "design_category": "reports_only",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "operation_transition_go_authorization": "NOT_GRANTED",
+    "production_reflection_go_authorization": "NOT_GRANTED",
+    "freeze_release_go_authorization": "NOT_GRANTED",
+    "execution_start_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "phase_32_2_scope": {
+    "scope_1_input_contract": {
+      "scope_id": "INPUT_CONTRACT",
+      "required_inputs": {
+        "phase32_1_evidence_receipt_status": "PASS_DESIGN_ONLY"
+      }
+    },
+    "scope_2_separation_audit_rules": {
+      "scope_id": "SEPARATION_AUDIT_RULES",
+      "rules": {
+        "rule_P32S1": "Treat freeze_release_go and execution_start_go as separate gates",
+        "rule_P32S2": "Require independent evidence sets for each gate",
+        "rule_P32S3": "Reject any attempt to reuse freeze_release approval as execution_start approval",
+        "rule_P32S4": "Maintain NO_GO until execution_start_go_authorization is explicitly granted in measurement",
+        "rule_P32S5": "If separation cannot be proven, force NO_GO and ABORT"
+      }
+    },
+    "scope_3_report_structure": {
+      "scope_id": "REPORT_STRUCTURE",
+      "sections": {
+        "section_1_header": {
+          "report_id": "PHASE32_2_GATE_SEPARATION_AUDIT_<UTC_TIMESTAMP>",
+          "report_type": "freeze_release_go_and_execution_start_go_candidate_final_separation_audit",
+          "generated_at_utc": "RFC3339",
+          "generated_by": "authority_identifier"
+        },
+        "section_2_audit_summary": {
+          "freeze_release_gate_status": "INDEPENDENT | REUSED",
+          "execution_start_gate_status": "INDEPENDENT | REUSED",
+          "gate_separation_verified": "YES | NO"
+        },
+        "section_3_audit_judgment": {
+          "audit_status": "PASS | FAIL",
+          "production_status": "NO_GO",
+          "operation_transition_go_authorization": "NOT_GRANTED",
+          "production_reflection_go_authorization": "NOT_GRANTED",
+          "freeze_release_go_authorization": "NOT_GRANTED",
+          "execution_start_go_authorization": "NOT_GRANTED"
+        }
+      }
+    }
+  },
+  "phase_32_2_governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "state_invariants": {
+      "app_implementation_status": "NO_GO",
+      "tests_implementation_status": "NO_GO",
+      "production_status": "NO_GO",
+      "operation_transition_go_authorization": "NOT_GRANTED",
+      "production_reflection_go_authorization": "NOT_GRANTED",
+      "freeze_release_go_authorization": "NOT_GRANTED",
+      "execution_start_go_authorization": "NOT_GRANTED",
+      "changed_area": "reports only"
+    }
+  }
+}

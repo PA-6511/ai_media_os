@@ -1,0 +1,16 @@
+{
+  "phase": "LS-NEW-11",
+  "document_type": "START_LS_NEW11_WP_CONNECTIVITY_PREFLIGHT_RESULT",
+  "status": "LSNEW11_WP_REST_CONNECTIVITY_READY_NO_WRITE",
+  "wordpress_rest_index_get_attempted": true,
+  "wordpress_rest_index_get_succeeded": true,
+  "wordpress_rest_index_status_class": "2xx",
+  "wordpress_rest_response_body_saved": false,
+  "wordpress_authenticated_get_executed": false,
+  "wordpress_write_executed": false,
+  "wordpress_draft_created": false,
+  "wordpress_publish_executed": false,
+  "wordpress_update_executed": false,
+  "wordpress_delete_executed": false,
+  "execution_allowed": false
+}

@@ -1,0 +1,8 @@
+{
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "log_target_dirs": ["exchange/logs"],
+  "warn_size_mb": 10,
+  "fail_size_mb": 100
+}

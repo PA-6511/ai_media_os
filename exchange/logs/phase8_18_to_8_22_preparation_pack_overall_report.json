@@ -1,0 +1,20 @@
+{
+  "phase_pack": "8-18_to_8-22",
+  "phase_pack_name": "First controlled draft creation preparation pack",
+  "final_status": "PHASE8_18_TO_8_22_PREPARATION_PACK_PASS_DESIGN_ONLY_NO_EXECUTION",
+  "production_status": "NO_GO",
+  "execution": "DRY_RUN",
+  "execution_allowed": false,
+  "wordpress_api_call_allowed": false,
+  "wordpress_write_executed": false,
+  "wordpress_draft_created": false,
+  "phase_reports_found": [
+    "8-18",
+    "8-19",
+    "8-20",
+    "8-21",
+    "8-22"
+  ],
+  "missing_phase_reports": [],
+  "generated_at": "2026-07-29T14:25:57.586857+00:00"
+}

@@ -1,0 +1,75 @@
+{
+  "_meta": {
+    "phase": "10-7",
+    "phase_name": "human review 記入後の更新手順設計",
+    "version": "1.0",
+    "created_date": "2026-05-12",
+    "status": "PASS_DESIGN_ONLY",
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only",
+    "description": "Phase 10-1 の human review 記録が実際に記入された後、関連レポートをどの順番で更新するかを固定する。"
+  },
+  "references": [
+    "generic_block_ai/reports/phase10_1_phase9_human_review_execution_record.json",
+    "generic_block_ai/reports/phase10_4_human_review_signature_required_fields_final_check.json",
+    "generic_block_ai/reports/phase10_5_integrated_decision_go_activation_conditions_detailed_design.json"
+  ],
+  "governance": {
+    "update_scope": "reports only",
+    "manual_update_only": true,
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ]
+  },
+  "update_sequence": [
+    {
+      "step_id": "UR-01",
+      "target": "phase10_1.review_record",
+      "action": "review_id, review_datetime, reviewer.name, reviewer.signature, review_comments を人手で記入する",
+      "required_result": "記入完了"
+    },
+    {
+      "step_id": "UR-02",
+      "target": "phase10_4.final_checklist",
+      "action": "required_review_fields の確認結果を反映する",
+      "required_result": "all_required_fields_present, signature_verified, safety_boundary_all_true, unresolved_items_empty を更新"
+    },
+    {
+      "step_id": "UR-03",
+      "target": "phase10_5.current_design_state",
+      "action": "GO 化可否の前提状態を再確認する",
+      "required_result": "go_transition_allowed_now の再評価準備が完了"
+    }
+  ],
+  "update_rules": [
+    "署名未完了の状態で step UR-02 以降を完了扱いにしない",
+    "human review 記録の更新は reviewer.role = human_reviewer を維持する",
+    "safety_boundary_verification の false を true に変更する場合は human reviewer の明示確認を必要とする",
+    "reports 以外のファイルは更新対象に含めない"
+  ],
+  "current_state": {
+    "update_procedure_ready": true,
+    "execution_started": false,
+    "app_implementation_status": "NO_GO",
+    "tests_implementation_status": "NO_GO"
+  },
+  "phase_decision": {
+    "phase10_7_status": "PASS_DESIGN_ONLY",
+    "app_implementation_status": "NO_GO",
+    "tests_implementation_status": "NO_GO",
+    "note": "human review 記入後の更新手順設計のみであり、実装着手は許可しない。"
+  }
+}

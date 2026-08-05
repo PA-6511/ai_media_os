@@ -1,0 +1,65 @@
+{
+  "fixture_id": "LS_NEW_BATCH_4G_2E_M2_FIX1_PARSER_RUNNER_EVIDENCE_CHAIN",
+  "purpose": "Verify the formal M2-FIX1 through M4-FIX1 runner SHA evidence chain without claiming availability or verification of the historical source body",
+  "historical_source_path": "scripts/execute_ls_new_batch_4g_2e_recovery_m2.py",
+  "historical_source_sha256": "adfe2cbb8478458e8940eb0d67de4aa8e223ba6923353a2f0f0dc4d35e37e35f",
+  "current_source_sha256": "f28ec2df1816e102673831ea9e8dfde0db2df7df668324925f6b7f1441e306aa",
+  "source_body_available": false,
+  "source_body_reproducible": false,
+  "assurance_level": "EVIDENCE_CHAIN_ONLY",
+  "unresolved_provenance_gap": true,
+  "synthetic_source_created": false,
+  "source_phase": "M2-FIX1",
+  "consumer_phase": "M4",
+  "superseded_by_phase": "M4-FIX1",
+  "provenance_evidence": [
+    {
+      "evidence_role": "M2_FIX1_RESULT",
+      "path": "exchange/logs/ls_new_batch_4g_2e_recovery_m2_fix1_result.json",
+      "sha256": "3f1069131bc662359fd015731637586f4c2327cbb8167c9604a718d0782c309f"
+    },
+    {
+      "evidence_role": "M2_FIX1_APPROVAL",
+      "path": "exchange/approvals/ls_new_batch_4g_2e_recovery_m2_fix1_parser_remediation_approval.json",
+      "sha256": "a756fa0728c57959223d6087cb0ad0c12c58b27f78333eced6b231ea6ac7ebaa"
+    },
+    {
+      "evidence_role": "M3_RESULT",
+      "path": "exchange/logs/ls_new_batch_4g_2e_recovery_m3_result.json",
+      "sha256": "246fe75ddbc71178c3d1b6819046472f8ba05ec5308a7814e025851b8e1ca5bf"
+    },
+    {
+      "evidence_role": "M3_AUTHORIZATION",
+      "path": "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.dmm_latest_alias_recheck_post_parser_fix_authorization.json",
+      "sha256": "39c77b363e39e2be287d009a3df3624d9dca7d510a93156309ee02d53110c541"
+    },
+    {
+      "evidence_role": "M4_EXECUTE_REQUEST",
+      "path": "exchange/examples/new_release_wp_fresh_dmm_post_parser_fix_recheck_execute_request.example.json",
+      "sha256": "534bebe861761f1166f96009423c69ab247245ea7392c38adedddac2503f257f"
+    },
+    {
+      "evidence_role": "M4_EXECUTE_APPROVAL",
+      "path": "exchange/approvals/ls_new_batch_4g_2e_recovery_m4_execute_now_approval.json",
+      "sha256": "db9934ae308700ad8dfd8c7c9e200e184c611dbbc1fa7537ef23cd5ba2db767a"
+    },
+    {
+      "evidence_role": "M4_RECHECK_RESULT",
+      "path": "exchange/rechecks/new_release/fresh/new-release-comic-20260703-001.dmm_latest_alias_recheck_post_parser_fix_result.json",
+      "sha256": "2d921454f02f4d670bfae53447abc520ff9ee5c47ce1f92b737bf578d93365a2"
+    },
+    {
+      "evidence_role": "M4_FIX1_RESULT",
+      "path": "exchange/logs/ls_new_batch_4g_2e_recovery_m4_fix1_result.json",
+      "sha256": "e45ff091abc12010d9d6f04985571a33ad7b88b0c0600aaa999f0f8893a6c511"
+    }
+  ],
+  "immutable": true,
+  "update_policy": {
+    "mode": "IMMUTABLE",
+    "historical_hash_change_allowed": false,
+    "synthetic_source_addition_allowed": false,
+    "source_body_claim_requires_authoritative_body": true
+  },
+  "created_at": "2026-07-23T14:42:14Z"
+}

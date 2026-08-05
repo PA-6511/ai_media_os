@@ -1,0 +1,50 @@
+{
+  "schema_version": "ir12_core_decision_queue_v1",
+  "phase": "IR12",
+  "generated_at": "2026-05-23T14:49:57.365808+00:00",
+  "source_task_id": "ir12_abort_live_trial",
+  "quality_gate_judgment": "ABORT",
+  "core_receive_rule": "BLOCK_AND_PRESERVE_AUDIT_EVIDENCE",
+  "queue_item": {
+    "queue_item_id": "queue_ir12_abort_live_trial_abort",
+    "source_task_id": "ir12_abort_live_trial",
+    "quality_gate_judgment": "ABORT",
+    "core_receive_rule": "BLOCK_AND_PRESERVE_AUDIT_EVIDENCE",
+    "queue_state": "ABORT_EVIDENCE_LOCKED",
+    "hold_reason": "abort_locked_policy_or_legal",
+    "requires_human_review": true,
+    "evidence_preservation_required": true,
+    "execution_allowed": false,
+    "created_at": "2026-05-23T14:49:57.365767+00:00",
+    "updated_at": "2026-05-23T14:49:57.365767+00:00"
+  },
+  "state_transitions": [
+    {
+      "from": "NEW",
+      "to": "RECEIVED",
+      "event": "receiver_report_ingested",
+      "at": "2026-05-23T14:49:57.365767+00:00"
+    },
+    {
+      "from": "RECEIVED",
+      "to": "ABORT_EVIDENCE_LOCKED",
+      "event": "judgment_abort_mapped",
+      "at": "2026-05-23T14:49:57.365767+00:00"
+    }
+  ],
+  "queue_validation_result": "PASS",
+  "queue_validation_failed_checks": [],
+  "queue_validation_warnings": [],
+  "execution_policy": {
+    "execute": false,
+    "reason": "ir12_queue_simulation_audit_only"
+  },
+  "audit_log_path": "generic_block_ai/reports/ir12_core_decision_queue_audit.log",
+  "safeguards": {
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "external_write_executed": false,
+    "actual_auto_execute": false,
+    "production_release": false
+  }
+}

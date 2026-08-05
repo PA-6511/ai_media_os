@@ -1,0 +1,21 @@
+{
+  "schema_version": "ir22_submission_profile_v1",
+  "phase": "IR22",
+  "generated_at": "2026-05-23T15:35:26.291048+00:00",
+  "source_task_id": "ir22_live_review",
+  "profile_name": "review_minimal",
+  "validation_result": "PASS",
+  "selected_artifact_count": 5,
+  "missing_pattern_count": 0,
+  "profile_dir": "generic_block_ai/reports/ir22_submission_profile_review_minimal_ir22_live_review",
+  "profile_manifest_path": "generic_block_ai/reports/ir22_submission_profile_review_minimal_ir22_live_review/profile_manifest.json",
+  "selected_sha256_manifest_path": "generic_block_ai/reports/ir22_submission_profile_review_minimal_ir22_live_review/selected_sha256_manifest.json",
+  "readme_path": "generic_block_ai/reports/ir22_submission_profile_review_minimal_ir22_live_review/README.md",
+  "safeguards": {
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "production_release": false
+  }
+}

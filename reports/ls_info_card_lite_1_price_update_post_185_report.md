@@ -1,0 +1,23 @@
+# LS-INFO-CARD-LITE-1 Info Card Update Report
+
+- Phase: LS-INFO-CARD-LITE-1
+- Status: LS_INFO_CARD_LITE_1_BLOCKED_ALREADY_UPDATED
+- Target post ID: 185
+- Update scope: replace volume line with price line only
+- Removed: 巻数：第15巻
+- Added: 価格：税込792円
+- Title update executed: false
+- Slug update executed: false
+- Store block update executed: false
+- Cover update executed: false
+- Content backup created: false
+- Backup path: exchange/backups/post_185_content_before_info_card_price_update_20260710_004501.html
+- Volume line removed: false
+- Price line inserted: false
+- WordPress post update executed: false
+- Credential env read executed: false
+- Credential value output: false
+- Secret output: false
+- Authorization output: false
+- Response body output: false
+- Ready for visual check: false

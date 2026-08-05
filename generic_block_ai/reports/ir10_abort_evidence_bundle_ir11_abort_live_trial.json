@@ -1,0 +1,25 @@
+{
+  "schema_version": "ir10_core_phase_decision_v1",
+  "phase": "IR10-T4",
+  "generated_at": "2026-05-23T14:43:44.223759+00:00",
+  "status": "ABORT_LOCKED",
+  "source_task_id": "ir11_abort_live_trial",
+  "reason": "quality_gate_abort_policy_or_legal",
+  "evidence_lock": {
+    "required": true,
+    "allow_delete": false,
+    "allow_overwrite": false
+  },
+  "audit_must_preserve": [
+    "roundtrip_output",
+    "quality_gate_items",
+    "core_phase_decision_package"
+  ],
+  "safeguards": {
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "external_write_executed": false,
+    "actual_auto_execute": false,
+    "production_release": false
+  }
+}

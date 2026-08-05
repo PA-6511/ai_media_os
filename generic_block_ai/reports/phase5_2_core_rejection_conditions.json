@@ -1,0 +1,46 @@
+{
+  "_meta": {
+    "phase": "5-2",
+    "purpose": "core_rejection_conditions_design",
+    "created_at": "2026-05-12",
+    "status": "DESIGN_ONLY",
+    "note": "Core側拒否条件設計。実際の拒否実装ではなく設計証跡のみ。"
+  },
+  "runtime_constraints": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO"
+  },
+  "rejection_conditions": {
+    "reject_if_operation_mode_not_observe": true,
+    "reject_if_execution_not_dry_run": true,
+    "reject_if_production_status_not_no_go": true,
+    "reject_if_execution_permission_not_none": true,
+    "reject_if_write_permission_not_none": true,
+    "reject_if_receiver_mode_not_observation_only": true,
+    "reject_if_external_api_call_requested": true,
+    "reject_if_wordpress_operation_requested": true,
+    "reject_if_cron_registration_requested": true,
+    "reject_if_auto_execute_requested": true,
+    "reject_if_production_execution_requested": true
+  },
+  "forbidden_transport": [
+    "http",
+    "https",
+    "webhook",
+    "queue_push"
+  ],
+  "blocked_capabilities": [
+    "core_ai_real_send",
+    "external_api_call",
+    "wordpress_operation",
+    "cron_registration",
+    "auto_execute",
+    "auto_post",
+    "auto_update",
+    "auto_delete",
+    "auto_export",
+    "production_execution"
+  ],
+  "result": "PASS_DRY_RUN_ONLY"
+}

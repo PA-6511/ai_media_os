@@ -1,0 +1,455 @@
+{
+  "phase_identifier": "16-2",
+  "phase_title": "実測入力データの完全性・署名・整合検証設計",
+  "phase_purpose": "Phase 16 実測入力データエントリ受領・検証層：Phase 16-1 で受領したデータの完全性（すべての必須フィールド存在）、署名・認証、データ間整合性を検証する設計",
+  "execution_context": "reports-only design phase; design of validation rules and procedures only, no actual validation execution yet",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only"
+  },
+  "governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "safety_rule": "All blocked_actions remain strictly prohibited. Data validation is design-only; no actual validation processing occurs until Phase 16-2 design is approved. No app/tests implementation permitted.",
+    "hard_stop_condition": "This phase is design-only. No actual data validation or modification is permitted."
+  },
+  "validation_design_overview": {
+    "validation_purpose": "Verify that Phase 15-1 and Phase 15-2 human review input data are complete, authentic, and consistent before proceeding to Phase 16-3 update feasibility assessment",
+    "validation_triggers": [
+      "Phase 16-1 receipt record created with Phase 15-1 data received",
+      "Phase 16-1 receipt record created with Phase 15-2 data received"
+    ],
+    "validation_input_sources": [
+      "Phase 16-1 receipt record (metadata)",
+      "Phase 15-1 data payload (stored by Phase 16-1)",
+      "Phase 15-2 data payload (stored by Phase 16-1)",
+      "Phase 15-1 and Phase 15-2 format specifications (for reference)"
+    ],
+    "validation_output": "Phase 16-2 validation report certifying data completeness, signature validity, and consistency—or rejection with reasons",
+    "downstream_consumer": "Phase 16-3 (pre-decision update feasibility assessment)"
+  },
+  "completeness_validation_design": {
+    "completeness_validation_purpose": "Confirm all required fields from Phase 15-1 and Phase 15-2 are present and non-empty",
+    "phase_15_1_required_fields": [
+      {
+        "field": "reviewer_id",
+        "type": "string",
+        "requirement": "Must be non-empty, valid reviewer identifier",
+        "validation_rule": "Check presence and length > 0; verify against reviewer registry if available"
+      },
+      {
+        "field": "reviewer_timestamp",
+        "type": "ISO8601 datetime string",
+        "requirement": "Must be valid ISO8601 timestamp",
+        "validation_rule": "Parse as datetime; verify timestamp is within reasonable bounds (not future, not before Phase 15 approval)"
+      },
+      {
+        "field": "integrated_decision_judgment",
+        "type": "enum",
+        "allowed_values": ["GO", "NO_GO"],
+        "requirement": "Must be exactly 'GO' or 'NO_GO'",
+        "validation_rule": "Check value is one of allowed enum values; case-sensitive"
+      },
+      {
+        "field": "supporting_evidence_references",
+        "type": "array of strings or objects",
+        "requirement": "Must reference evidence from Phase 14 or Phase 15 layers",
+        "validation_rule": "Non-empty array; each reference must be validly formatted"
+      },
+      {
+        "field": "confidence_assessment",
+        "type": "enum",
+        "allowed_values": ["HIGH", "MEDIUM", "LOW"],
+        "requirement": "Reviewer must express confidence level in decision",
+        "validation_rule": "Check value is one of allowed enum values"
+      },
+      {
+        "field": "reviewer_signature_or_authentication",
+        "type": "string",
+        "requirement": "Signature or token proving reviewer identity and commitment",
+        "validation_rule": "Verify signature matches reviewer_id; check signature algorithm and timestamp"
+      }
+    ],
+    "phase_15_2_required_fields": [
+      {
+        "field": "reviewer_id",
+        "type": "string",
+        "requirement": "Must be non-empty, valid reviewer identifier",
+        "validation_rule": "Check presence and length > 0; verify against reviewer registry"
+      },
+      {
+        "field": "reviewer_timestamp",
+        "type": "ISO8601 datetime string",
+        "requirement": "Must be valid ISO8601 timestamp",
+        "validation_rule": "Parse as datetime; verify timestamp is within reasonable bounds"
+      },
+      {
+        "field": "permission_judgment",
+        "type": "enum",
+        "allowed_values": ["EFFECTIVE", "NOT_EFFECTIVE"],
+        "requirement": "Must be exactly 'EFFECTIVE' or 'NOT_EFFECTIVE'",
+        "validation_rule": "Check value is one of allowed enum values; case-sensitive"
+      },
+      {
+        "field": "implementation_readiness_assessment",
+        "type": "object or string",
+        "requirement": "Description of implementation readiness evaluation",
+        "validation_rule": "Non-empty; must explain basis for permission judgment"
+      },
+      {
+        "field": "supporting_evidence_references",
+        "type": "array of strings or objects",
+        "requirement": "Must reference evidence from Phase 14 or Phase 15 layers",
+        "validation_rule": "Non-empty array; each reference must be validly formatted"
+      },
+      {
+        "field": "reviewer_signature_or_authentication",
+        "type": "string",
+        "requirement": "Signature or token proving reviewer identity and commitment",
+        "validation_rule": "Verify signature matches reviewer_id; check signature algorithm and timestamp"
+      }
+    ],
+    "completeness_check_procedure": {
+      "step_1_field_presence_check": {
+        "action": "For each required field, check that field exists in data payload",
+        "condition": "Field must be present (key exists in JSON or CSV row)",
+        "pass_criterion": "All required fields present",
+        "fail_action": "Record missing fields and mark validation as FAILED_INCOMPLETE"
+      },
+      "step_2_field_value_non_empty_check": {
+        "action": "For each present field, check that value is non-empty (not null, not empty string, not empty array)",
+        "condition": "Field value must have content",
+        "pass_criterion": "All required field values non-empty",
+        "fail_action": "Record empty fields and mark validation as FAILED_INCOMPLETE"
+      },
+      "step_3_field_type_and_format_check": {
+        "action": "For each field, verify value conforms to declared type (string, ISO8601, enum, array, object, etc.)",
+        "condition": "Value must match field type specification",
+        "pass_criterion": "All field values match declared types",
+        "fail_action": "Record type mismatches and mark validation as FAILED_FORMAT"
+      },
+      "completeness_validation_result": "COMPLETE or INCOMPLETE"
+    }
+  },
+  "signature_and_authentication_validation_design": {
+    "signature_validation_purpose": "Verify that reviewer identity and commitment are cryptographically proven by signature",
+    "signature_components_to_verify": [
+      {
+        "component": "reviewer_signature_or_authentication field value",
+        "verification_type": "Digital signature (RSA, ECDSA, etc.) OR authentication token (JWT, OAuth, etc.)",
+        "requirement": "Signature must cryptographically bind reviewer_id and timestamp to data payload"
+      },
+      {
+        "component": "Signature algorithm",
+        "verification_type": "Verify algorithm is approved (e.g., RSA-2048+, ECDSA-256+, SHA-256 or stronger)",
+        "requirement": "Weak algorithms (MD5, SHA-1, RSA-1024) must fail validation"
+      },
+      {
+        "component": "Reviewer certificate or key",
+        "verification_type": "Retrieve reviewer's public key or certificate from registry",
+        "requirement": "Key must be valid, not revoked, not expired"
+      }
+    ],
+    "authentication_method_options": {
+      "option_1_digital_signature": {
+        "method": "Cryptographic signature (e.g., reviewer signs data with private key)",
+        "verification_steps": [
+          "Extract signature from reviewer_signature_or_authentication field",
+          "Extract reviewer's public key from registry",
+          "Verify signature against data payload (all required fields) using public key",
+          "Verify signature timestamp matches or precedes data submission timestamp"
+        ],
+        "pass_criterion": "Signature verification succeeds"
+      },
+      "option_2_jwt_or_oauth_token": {
+        "method": "JWT or OAuth token issued by identity provider",
+        "verification_steps": [
+          "Decode token (without verification) to extract claims",
+          "Verify token signature using identity provider's public key",
+          "Check token expiration (exp claim)",
+          "Verify token claims include reviewer_id matching data payload",
+          "Verify token was issued recently (iat claim) before data submission"
+        ],
+        "pass_criterion": "Token verification succeeds and claims match"
+      },
+      "option_3_multi_factor_authentication_record": {
+        "method": "Evidence that reviewer authenticated via MFA (email confirmation, SMS, TOTP, etc.)",
+        "verification_steps": [
+          "Log into authentication service",
+          "Query MFA record for reviewer_id at timestamp",
+          "Verify MFA challenge was completed successfully",
+          "Verify MFA timestamp matches data submission window"
+        ],
+        "pass_criterion": "MFA record confirms authentication"
+      }
+    },
+    "signature_validation_procedure": {
+      "step_1_signature_field_presence": {
+        "action": "Check that reviewer_signature_or_authentication field exists and is non-empty",
+        "pass_criterion": "Field is present and non-empty",
+        "fail_action": "Mark validation as FAILED_NO_SIGNATURE"
+      },
+      "step_2_signature_algorithm_check": {
+        "action": "Decode or inspect signature to determine algorithm used",
+        "pass_criterion": "Algorithm is in approved list (RSA-2048+, ECDSA-256+, etc.)",
+        "fail_action": "Mark validation as FAILED_WEAK_ALGORITHM"
+      },
+      "step_3_reviewer_key_or_token_issuer_verification": {
+        "action": "Retrieve reviewer's public key/certificate or identity provider's key",
+        "pass_criterion": "Key is valid, not revoked, not expired",
+        "fail_action": "Mark validation as FAILED_KEY_INVALID"
+      },
+      "step_4_signature_or_token_verification": {
+        "action": "Cryptographically verify signature/token using appropriate method",
+        "pass_criterion": "Verification succeeds",
+        "fail_action": "Mark validation as FAILED_SIGNATURE_INVALID"
+      },
+      "step_5_timestamp_coherence": {
+        "action": "Verify signature/token timestamp is before data submission timestamp",
+        "pass_criterion": "Timestamp order is coherent",
+        "fail_action": "Mark validation as FAILED_TIMESTAMP_INCOHERENT"
+      },
+      "signature_validation_result": "AUTHENTICATED or NOT_AUTHENTICATED"
+    }
+  },
+  "consistency_validation_design": {
+    "consistency_validation_purpose": "Verify that Phase 15-1 and Phase 15-2 data are mutually consistent and do not contradict each other",
+    "consistency_checks": [
+      {
+        "check_name": "Reviewer Identity Consistency",
+        "check_description": "Both Phase 15-1 and Phase 15-2 should be from the same reviewer OR from coordinated reviewers",
+        "rule_option_1": "Same reviewer: reviewer_id must be identical in both data payloads",
+        "rule_option_2": "Different reviewers: both must be authorized; timestamps must be within acceptable time window (e.g., within 1 hour)",
+        "pass_criterion": "Reviewer identities are consistent per selected rule",
+        "fail_action": "Mark consistency as FAILED_REVIEWER_MISMATCH"
+      },
+      {
+        "check_name": "Timestamp Coherence",
+        "check_description": "Phase 15-2 timestamp should not significantly predate Phase 15-1 timestamp",
+        "rule": "Phase 15-2 timestamp should be >= Phase 15-1 timestamp (reviewer makes decision on integrated_decision first, then permission)",
+        "pass_criterion": "Phase 15-2 timestamp >= Phase 15-1 timestamp OR within acceptable skew window",
+        "fail_action": "Mark consistency as FAILED_TIMESTAMP_ORDER"
+      },
+      {
+        "check_name": "Decision Logic Coherence",
+        "check_description": "If integrated_decision = NO_GO, then receiver_validator_permission MUST be NOT_EFFECTIVE",
+        "rule": "IF Phase 15-1 integrated_decision = 'NO_GO' THEN Phase 15-2 permission_judgment MUST = 'NOT_EFFECTIVE'",
+        "pass_criterion": "Decision logic is coherent",
+        "fail_action": "Mark consistency as FAILED_DECISION_LOGIC"
+      },
+      {
+        "check_name": "Evidence Reference Consistency",
+        "check_description": "Supporting evidence referenced in both should not contradict each other",
+        "rule": "Both Phase 15-1 and Phase 15-2 supporting_evidence_references should refer to compatible evidence sets; cross-reference for contradictions",
+        "pass_criterion": "Evidence references are compatible",
+        "fail_action": "Mark consistency as FAILED_EVIDENCE_CONTRADICTION"
+      },
+      {
+        "check_name": "Confidence and Judgment Alignment",
+        "check_description": "Confidence level should match judgment certainty",
+        "rule": "If reviewer expresses HIGH confidence, judgment should be definitive (not ambiguous); LOW confidence may indicate need for re-review",
+        "pass_criterion": "Confidence assessment is reasonable given judgment",
+        "fail_action": "Mark consistency as WARN_CONFIDENCE_MISMATCH (not hard fail, but flag for Phase 16-3)"
+      }
+    ],
+    "consistency_check_procedure": {
+      "step_1_reviewer_identity_check": {
+        "action": "Compare reviewer_id from Phase 15-1 and Phase 15-2 payloads",
+        "pass_criterion": "Identities match or are authorized pair",
+        "fail_action": "Mark validation as FAILED_REVIEWER_MISMATCH"
+      },
+      "step_2_timestamp_order_check": {
+        "action": "Compare reviewer_timestamp from Phase 15-1 and Phase 15-2",
+        "pass_criterion": "Phase 15-2 timestamp >= Phase 15-1 timestamp",
+        "fail_action": "Mark validation as FAILED_TIMESTAMP_ORDER"
+      },
+      "step_3_decision_logic_coherence_check": {
+        "action": "IF Phase 15-1 integrated_decision = 'NO_GO' THEN verify Phase 15-2 permission_judgment = 'NOT_EFFECTIVE'",
+        "pass_criterion": "Decision logic is consistent",
+        "fail_action": "Mark validation as FAILED_DECISION_LOGIC"
+      },
+      "step_4_evidence_reference_compatibility_check": {
+        "action": "Review supporting_evidence_references in both payloads; check for contradictions",
+        "pass_criterion": "No contradictory evidence references detected",
+        "fail_action": "Mark validation as FAILED_EVIDENCE_CONTRADICTION"
+      },
+      "step_5_confidence_judgment_alignment_check": {
+        "action": "Review confidence_assessment in context of decision judgment",
+        "pass_criterion": "Confidence is reasonable given judgment",
+        "fail_action": "Mark validation as WARN_CONFIDENCE_MISMATCH (flag but not hard fail)"
+      },
+      "consistency_validation_result": "CONSISTENT or INCONSISTENT"
+    }
+  },
+  "validation_report_structure": {
+    "report_id": "ACTUAL_MEASUREMENT_INPUT_VALIDATION_REPORT_v1",
+    "report_elements": {
+      "validation_timestamp": {
+        "field_name": "validation_completed_at",
+        "type": "ISO8601 datetime",
+        "requirement": "When validation was performed"
+      },
+      "phase_16_1_receipt_record_reference": {
+        "field_name": "source_receipt_record_id",
+        "type": "string",
+        "requirement": "Reference to Phase 16-1 receipt record that triggered this validation"
+      },
+      "completeness_validation_result": {
+        "field_name": "completeness_status",
+        "type": "enum",
+        "allowed_values": ["COMPLETE", "INCOMPLETE"],
+        "description": "Overall completeness check result"
+      },
+      "completeness_validation_details": {
+        "field_name": "completeness_findings",
+        "type": "object",
+        "elements": {
+          "phase_15_1_field_check_results": "List of fields checked, present/absent status",
+          "phase_15_2_field_check_results": "List of fields checked, present/absent status",
+          "missing_fields_list": "If INCOMPLETE, which fields are missing",
+          "type_mismatch_fields_list": "If any fields have type mismatches"
+        }
+      },
+      "signature_validation_result": {
+        "field_name": "authentication_status",
+        "type": "enum",
+        "allowed_values": ["AUTHENTICATED", "NOT_AUTHENTICATED"],
+        "description": "Overall signature/authentication check result"
+      },
+      "signature_validation_details": {
+        "field_name": "authentication_findings",
+        "type": "object",
+        "elements": {
+          "phase_15_1_signature_status": "AUTHENTICATED / NOT_AUTHENTICATED / NO_SIGNATURE",
+          "phase_15_1_signature_algorithm": "Algorithm used (if authenticated)",
+          "phase_15_1_signature_verification_method": "Digital signature / JWT / MFA record / etc.",
+          "phase_15_2_signature_status": "AUTHENTICATED / NOT_AUTHENTICATED / NO_SIGNATURE",
+          "phase_15_2_signature_algorithm": "Algorithm used (if authenticated)",
+          "phase_15_2_signature_verification_method": "Digital signature / JWT / MFA record / etc.",
+          "any_signature_failures": "List of signature check failures with reasons"
+        }
+      },
+      "consistency_validation_result": {
+        "field_name": "consistency_status",
+        "type": "enum",
+        "allowed_values": ["CONSISTENT", "INCONSISTENT", "WARNING"],
+        "description": "Overall consistency check result (INCONSISTENT = hard fail; WARNING = review recommended)"
+      },
+      "consistency_validation_details": {
+        "field_name": "consistency_findings",
+        "type": "object",
+        "elements": {
+          "reviewer_identity_coherence": "Same reviewer / different authorized pair / MISMATCH",
+          "timestamp_order_coherence": "Correct order / INVERTED / INCOHERENT",
+          "decision_logic_coherence": "Consistent / CONTRADICTORY",
+          "evidence_reference_compatibility": "Compatible / CONTRADICTORY",
+          "confidence_judgment_alignment": "Aligned / WARNING_MISMATCH",
+          "any_consistency_failures": "List of consistency check failures with details"
+        }
+      },
+      "overall_validation_result": {
+        "field_name": "validation_final_status",
+        "type": "enum",
+        "allowed_values": [
+          "PASSED_VALIDATION",
+          "FAILED_INCOMPLETE_DATA",
+          "FAILED_AUTHENTICATION",
+          "FAILED_INCONSISTENCY",
+          "PASSED_WITH_WARNINGS"
+        ],
+        "logic": "PASSED_VALIDATION: all three check types (completeness, authentication, consistency) PASSED. FAILED: any category FAILED. PASSED_WITH_WARNINGS: all pass but consistency has warnings.",
+        "description": "Final validation outcome"
+      },
+      "recommended_action": {
+        "field_name": "next_step_recommendation",
+        "type": "enum",
+        "allowed_values": [
+          "PROCEED_TO_PHASE_16_3",
+          "REQUEST_DATA_RESUBMISSION",
+          "ESCALATE_TO_HUMAN_REVIEWER",
+          "HOLD_FOR_MANUAL_INSPECTION"
+        ],
+        "logic": "PROCEED if PASSED_VALIDATION. REQUEST_RESUBMISSION if FAILED_INCOMPLETE. ESCALATE or HOLD if FAILED_AUTHENTICATION or FAILED_INCONSISTENCY."
+      }
+    }
+  },
+  "validation_workflow": {
+    "trigger": "Phase 16-1 creates receipt record with data payloads",
+    "step_1_initiate_validation": {
+      "action": "Phase 16-2 validation system triggered by receipt completion",
+      "input": "Phase 16-1 receipt record ID and data payload references"
+    },
+    "step_2_completeness_validation": {
+      "action": "Execute completeness_check_procedure (all 5 steps)",
+      "output": "completeness_status and completeness_findings"
+    },
+    "step_3_signature_validation": {
+      "action": "Execute signature_validation_procedure (all 5 steps)",
+      "output": "authentication_status and authentication_findings"
+    },
+    "step_4_consistency_validation": {
+      "action": "Execute consistency_check_procedure (all 5 steps)",
+      "output": "consistency_status and consistency_findings"
+    },
+    "step_5_overall_determination": {
+      "action": "Synthesize results into validation_final_status and next_step_recommendation",
+      "output": "Phase 16-2 validation report"
+    },
+    "step_6_report_storage_and_notification": {
+      "action": "Store validation report in reports/; notify appropriate parties of outcome",
+      "output": "phase16_2_validation_report_TIMESTAMP.json"
+    }
+  },
+  "phase_dependencies": {
+    "depends_on": [
+      "Phase 16-1: Actual measurement input data entry receipt design and execution",
+      "Phase 15-1: integrated_decision input format specification (for validation rules)",
+      "Phase 15-2: receiver_validator_permission input format specification (for validation rules)"
+    ],
+    "feeds_into": [
+      "Phase 16-3: Pre-decision update feasibility assessment (receives validated data and report)"
+    ]
+  },
+  "design_review_checklist": [
+    "Completeness validation checks all required fields from Phase 15-1 and Phase 15-2",
+    "Field type and format validation is specified for each required field",
+    "Signature validation procedure supports multiple authentication methods (digital sig, JWT, MFA)",
+    "Signature algorithm verification includes weak algorithm rejection",
+    "Consistency checks verify reviewer identity, timestamps, decision logic, and evidence compatibility",
+    "Confidence-judgment alignment is checked as warning (not hard fail)",
+    "Overall validation result logic clearly defines pass/fail criteria",
+    "Validation report structure captures all check results and findings",
+    "Recommended actions flow logically from validation outcomes",
+    "All blocked actions remain in governance",
+    "production_status remains NO_GO (hardcoded)",
+    "Phase dependencies are accurate"
+  ],
+  "completion_gate": {
+    "gate_condition": "Validation design approved AND validation rules finalized AND validation procedure workflow reviewed",
+    "approval_required": "Human technical reviewer + Phase 16 design authority",
+    "prerequisite_for": "Phase 16-3 can begin once validation design is approved and Phase 16-1 receipt process starts producing validated data"
+  },
+  "status": {
+    "phase_status": "DESIGN_ONLY",
+    "actual_validation_execution_status": "NOT_YET_STARTED",
+    "integrated_decision_status": "NO_GO",
+    "receiver_validator_implementation_permission_status": "NOT_EFFECTIVE",
+    "app_implementation_status": "NO_GO",
+    "tests_implementation_status": "NO_GO",
+    "production_status": "NO_GO"
+  }
+}

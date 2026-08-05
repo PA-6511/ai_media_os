@@ -1,0 +1,112 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-0",
+  "policy_id": "NEW_RELEASE_WP_READ_ONLY_CATEGORY_LOOKUP_POLICY_V1",
+  "source_phase_id": "LS-NEW-BATCH-4F-C",
+  "template_contract_id": "POST185_STANDARD_TEMPLATE_V1_FIXED",
+  "operation_mode": "READ_ONLY_CATEGORY_LOOKUP_DESIGN_ONLY",
+  "credential_contract": {
+    "credential_file_path": "/etc/ai-media-os/wordpress-readonly-category.env",
+    "required_keys": [
+      "WORDPRESS_BASE_URL",
+      "WORDPRESS_READONLY_USERNAME",
+      "WORDPRESS_READONLY_APP_PASSWORD"
+    ],
+    "credential_values_output_allowed": false,
+    "credential_value_lengths_output_allowed": false,
+    "credential_value_hashes_output_allowed": false,
+    "credential_value_prefixes_output_allowed": false,
+    "credential_value_suffixes_output_allowed": false,
+    "raw_authorization_header_output_allowed": false
+  },
+  "http_contract": {
+    "allowed_method": "GET",
+    "allowed_rest_path": "/wp-json/wp/v2/categories",
+    "allowed_query_parameters": [
+      "slug",
+      "per_page",
+      "_fields"
+    ],
+    "fixed_per_page": 100,
+    "fixed_fields": "id,slug,name,count",
+    "request_body_allowed": false,
+    "redirect_follow_allowed": false,
+    "maximum_response_bytes": 1048576,
+    "timeout_seconds": 15,
+    "tls_verification_required": true,
+    "http_methods_forbidden": [
+      "POST",
+      "PUT",
+      "PATCH",
+      "DELETE"
+    ]
+  },
+  "matching_rules": {
+    "exact_slug_match_required": true,
+    "exact_name_match_required": true,
+    "single_result_required": true,
+    "positive_integer_category_id_required": true,
+    "missing_result_must_block": true,
+    "duplicate_result_must_block": true,
+    "name_mismatch_must_block": true,
+    "automatic_payload_injection_allowed": false,
+    "human_verification_required": true
+  },
+  "target_categories": [
+    {
+      "category_slug": "comic-new-release",
+      "category_name": "コミック新刊"
+    }
+  ],
+  "failure_states": {
+    "credential_preflight_not_passed": "BLOCKED_CREDENTIAL_PREFLIGHT_NOT_PASSED",
+    "invalid_base_url": "BLOCKED_INVALID_WORDPRESS_BASE_URL",
+    "non_https_base_url": "BLOCKED_NON_HTTPS_WORDPRESS_BASE_URL",
+    "dns_failure": "BLOCKED_WORDPRESS_DNS_FAILURE",
+    "tls_failure": "BLOCKED_WORDPRESS_TLS_FAILURE",
+    "timeout": "BLOCKED_WORDPRESS_READ_TIMEOUT",
+    "http_error": "BLOCKED_WORDPRESS_HTTP_ERROR",
+    "unexpected_redirect": "BLOCKED_WORDPRESS_REDIRECT",
+    "invalid_json": "BLOCKED_WORDPRESS_INVALID_JSON",
+    "oversized_response": "BLOCKED_WORDPRESS_RESPONSE_TOO_LARGE",
+    "missing_category": "BLOCKED_WORDPRESS_CATEGORY_NOT_FOUND",
+    "duplicate_category": "BLOCKED_WORDPRESS_CATEGORY_DUPLICATE",
+    "name_mismatch": "BLOCKED_WORDPRESS_CATEGORY_NAME_MISMATCH",
+    "invalid_category_id": "BLOCKED_WORDPRESS_CATEGORY_ID_INVALID"
+  },
+  "current_phase_access": {
+    "credential_file_metadata_read_allowed": false,
+    "credential_file_content_read_allowed": false,
+    "environment_variable_read_allowed": false,
+    "dns_resolution_allowed": false,
+    "tls_connection_allowed": false,
+    "http_request_allowed": false,
+    "wordpress_response_read_allowed": false
+  },
+  "execution_boundary": {
+    "credential_value_output_allowed": false,
+    "dns_resolution_allowed": false,
+    "network_connection_allowed": false,
+    "wordpress_api_call_allowed": false,
+    "wordpress_category_lookup_allowed": false,
+    "wordpress_post_read_allowed": false,
+    "wordpress_media_read_allowed": false,
+    "wordpress_database_read_allowed": false,
+    "wordpress_database_write_allowed": false,
+    "wordpress_write_allowed": false,
+    "wordpress_publish_allowed": false,
+    "x_api_call_allowed": false,
+    "x_post_allowed": false,
+    "external_api_call_allowed": false,
+    "execution_approval_issued": false,
+    "approval_token_generation_allowed": false,
+    "execution_allowed": false,
+    "production_status": "NO_GO",
+    "safety_state": "READ_ONLY_CATEGORY_LOOKUP_DESIGN_ONLY"
+  },
+  "next_phase": {
+    "phase_id": "LS-NEW-BATCH-4G-1",
+    "name": "Read-Only Category Lookup Implementation",
+    "execution_allowed": false
+  }
+}

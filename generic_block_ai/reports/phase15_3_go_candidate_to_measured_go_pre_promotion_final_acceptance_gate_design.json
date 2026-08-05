@@ -1,0 +1,64 @@
+{
+  "_meta": {
+    "phase": "15-3",
+    "phase_name": "GO候補を実測GOへ昇格する前の最終受入ゲート設計",
+    "version": "1.0",
+    "created_date": "2026-05-12",
+    "status": "PASS_DESIGN_ONLY",
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only",
+    "description": "GO 候補を実測 GO として確定する前に通過すべき最終受入ゲート条件を固定する。"
+  },
+  "references": [
+    "generic_block_ai/reports/phase15_1_integrated_decision_final_measurement_input_format_spec.json",
+    "generic_block_ai/reports/phase15_2_receiver_validator_permission_final_measurement_input_format_spec.json",
+    "generic_block_ai/reports/phase14_6_go_candidate_final_stop_conditions_design.json"
+  ],
+  "pre_promotion_acceptance_gate": {
+    "required_conditions": [
+      "phase15_1.input_template.input_ready == true",
+      "phase15_2.input_template.input_ready == true",
+      "final_integrated_decision_candidate == GO",
+      "receiver_validator_permission_candidate == EFFECTIVE",
+      "all_candidate_evidence_locked == true",
+      "stop_triggered == false",
+      "production_status == NO_GO"
+    ],
+    "explicit_no_go_conditions": [
+      "any forbidden_mutation detected",
+      "candidate_confidence == LOW",
+      "effective_feasibility != PASS",
+      "app_gate_candidate != GO or tests_gate_candidate != GO",
+      "auto_execute_allowed == true"
+    ],
+    "gate_default": "NO_GO"
+  },
+  "gate_result_template": {
+    "pre_promotion_gate_passed": false,
+    "measured_go_promotion_allowed": false,
+    "result": "PENDING",
+    "reason": "最終実測入力が未準備のため、GO 昇格前受入ゲートは未通過。"
+  },
+  "blocked_actions": [
+    "core_ai_real_send",
+    "external_api_call",
+    "wordpress_operation",
+    "cron_registration",
+    "auto_execute",
+    "auto_post",
+    "auto_update",
+    "auto_delete",
+    "auto_export",
+    "production_execution"
+  ],
+  "phase_decision": {
+    "phase15_3_status": "PASS_DESIGN_ONLY",
+    "app_implementation_status": "NO_GO",
+    "tests_implementation_status": "NO_GO",
+    "note": "GO昇格前の最終受入ゲート設計のみ。実測確定と実装開始はまだ許可しない。"
+  }
+}

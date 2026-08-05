@@ -1,0 +1,96 @@
+{
+  "phase": "LS-6Q",
+  "name": "Human WordPress Draft Review and Manual Publish Decision",
+  "status": "HUMAN_WORDPRESS_DRAFT_REVIEW_GATE",
+  "execution_mode": "HUMAN_REVIEW_AND_MANUAL_DECISION_ONLY",
+  "production_status": "NO_PUBLISH",
+  "purpose": "Create and validate human review evidence for the WordPress draft created by LS-6O-C-1 and verified by LS-6P. This phase must not publish, schedule, update, delete, or create any WordPress post.",
+  "required_previous_phase": {
+    "ls6p": {
+      "required_run_status": "LS6P_POST_EXECUTION_EVIDENCE_FREEZE_RESTORE_PASSED",
+      "required_validation_status": "LS6P_POST_EXECUTION_EVIDENCE_FREEZE_RESTORE_VALIDATED",
+      "wordpress_draft_verification_result": "exchange/runtime/start_ls6p_wordpress_draft_verification_result.json",
+      "runtime_freeze_restore_result": "exchange/runtime/start_ls6p_runtime_freeze_restore_result.json",
+      "rerun_prevention_final_lock": "exchange/locks/start_ls6p_rerun_prevention_final.lock.json",
+      "run_result": "exchange/logs/start_ls6p_post_execution_evidence_freeze_restore_result.json",
+      "validation_result": "exchange/logs/start_ls6p_post_execution_evidence_freeze_restore_validation_result.json"
+    }
+  },
+  "target_post": {
+    "post_id": 183,
+    "post_link": "https://hoshido.jp/?p=183",
+    "title": "2.5次元の誘惑",
+    "asin": "B07X2G67B4",
+    "expected_status": "draft",
+    "created_count": 1
+  },
+  "human_review_policy": {
+    "human_review_required": true,
+    "allowed_decisions": [
+      "APPROVED_FOR_MANUAL_PUBLISH_DECISION_ONLY",
+      "NEEDS_EDIT_BEFORE_PUBLISH",
+      "HOLD_AS_DRAFT",
+      "REJECT_AND_KEEP_DRAFT"
+    ],
+    "manual_publish_allowed_by_this_phase": false,
+    "manual_publish_execution_allowed_by_this_phase": false,
+    "wordpress_publish_allowed_by_this_phase": false,
+    "wordpress_update_allowed_by_this_phase": false,
+    "wordpress_schedule_allowed_by_this_phase": false,
+    "wordpress_delete_allowed_by_this_phase": false,
+    "wordpress_write_allowed_by_this_phase": false,
+    "credential_env_read_allowed_by_this_phase": false,
+    "credential_value_output_allowed": false,
+    "authorization_header_output_allowed": false
+  },
+  "review_checklist_requirements": {
+    "post_id_checked": true,
+    "title_checked": true,
+    "draft_status_checked": true,
+    "affiliate_link_checked": true,
+    "advertising_disclosure_checked": true,
+    "content_rendering_checked": true,
+    "no_publish_checked": true,
+    "no_schedule_checked": true,
+    "no_existing_post_update_checked": true,
+    "no_delete_checked": true,
+    "rerun_prevention_checked": true,
+    "manual_publish_requires_next_phase_checked": true
+  },
+  "must_remain_false_flags": {
+    "wordpress_api_call_executed": false,
+    "wordpress_write_executed": false,
+    "wordpress_draft_creation_executed": false,
+    "wordpress_existing_post_update_executed": false,
+    "wordpress_publish_executed": false,
+    "publish_executed": false,
+    "future_schedule_executed": false,
+    "delete_executed": false,
+    "post119_update_executed": false,
+    "credential_env_read_executed": false,
+    "credential_value_output": false,
+    "credential_value_persisted": false,
+    "credential_secret_output": false,
+    "secret_length_output": false,
+    "secret_hash_output": false,
+    "authorization_header_output": false,
+    "manual_publish_executed": false,
+    "manual_publish_allowed_by_this_phase": false,
+    "ls6oc1_rerun_executed": false
+  },
+  "outputs": {
+    "human_review_template": "exchange/human_review/start_ls6q_human_wordpress_draft_review.template.json",
+    "human_review_result": "exchange/human_review/start_ls6q_human_wordpress_draft_review_result.json",
+    "template_result": "exchange/logs/start_ls6q_human_wordpress_draft_review_template_result.json",
+    "ready_result": "exchange/logs/start_ls6q_human_wordpress_draft_review_ready_result.json",
+    "template_report": "reports/start_ls6q_human_wordpress_draft_review_template_report.md",
+    "ready_report": "reports/start_ls6q_human_wordpress_draft_review_ready_report.md"
+  },
+  "next_phase": {
+    "phase": "LS-6R",
+    "name": "Manual Publish Execution Gate or Edit Request Gate",
+    "execution_allowed_by_this_phase": false,
+    "requires_human_review_decision": true,
+    "manual_publish_execution_requires_separate_explicit_approval": true
+  }
+}

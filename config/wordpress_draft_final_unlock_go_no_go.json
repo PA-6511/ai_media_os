@@ -1,0 +1,86 @@
+{
+  "phase": "Phase 6-8",
+  "final_unlock_name": "wordpress_draft_final_unlock_go_no_go_design",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "final_unlock_status": "DESIGN_ONLY",
+  "production_status": "NO_GO",
+  "wordpress_draft_creation": "NO_GO",
+  "real_write_enabled": false,
+  "wordpress_write_executed": false,
+  "final_decision": "NO_GO_DESIGN_LOCK",
+  "decision_framework": {
+    "allowed_values": [
+      "GO_READY_FOR_MANUAL_APPROVAL_ONLY",
+      "CONDITIONAL_GO_REQUIREMENTS_PENDING",
+      "NO_GO_DESIGN_LOCK"
+    ],
+    "selected_value_in_phase6_8": "NO_GO_DESIGN_LOCK",
+    "decision_locked_in_this_phase": true
+  },
+  "readiness_requirements": [
+    "phase6_1_release_policy_validation_result.status == PASS",
+    "phase6_2_preflight_gate_validation_result.status == PASS",
+    "phase6_3_release_decision_rules_validation_result.status == PASS",
+    "phase6_4_controlled_unlock_plan_validation_result.status == PASS",
+    "phase6_5_execution_spec_validation_result.status == PASS",
+    "phase6_6_pre_execution_rehearsal_validation_result.status == PASS",
+    "phase6_7_unlock_readiness_decision_result.status == PASS",
+    "phase6_7_readiness_result == READINESS_DESIGN_PASS"
+  ],
+  "warn_clearance_requirements": {
+    "phase5_warn_reviewed": true,
+    "content_url_missing_warn_addressed_or_explicitly_overridden": true,
+    "affiliate_tag_warn_addressed_or_explicitly_overridden": true,
+    "explicit_human_override_record_required": true
+  },
+  "mandatory_no_go_locks": {
+    "real_write_must_remain_disabled": true,
+    "wordpress_rest_post_forbidden": true,
+    "wordpress_rest_put_patch_forbidden": true,
+    "publish_forbidden": true,
+    "update_existing_post_forbidden": true,
+    "delete_post_forbidden": true,
+    "external_export_forbidden": true,
+    "github_actions_trigger_forbidden": true,
+    "slack_production_notification_forbidden": true,
+    "vps_self_builder_execution_forbidden": true,
+    "env_secret_credential_auto_edit_forbidden": true
+  },
+  "final_go_no_go_logic": {
+    "all_readiness_requirements_pass_and_warns_handled": "GO_READY_FOR_MANUAL_APPROVAL_ONLY",
+    "readiness_pass_but_warn_or_evidence_pending": "CONDITIONAL_GO_REQUIREMENTS_PENDING",
+    "any_write_or_forbidden_action_detected": "NO_GO_DESIGN_LOCK",
+    "phase6_8_default": "NO_GO_DESIGN_LOCK"
+  },
+  "hard_no_go_conditions": [
+    "real_write_enabled == true",
+    "wordpress_write_executed == true",
+    "wordpress_rest_post_attempted == true",
+    "wordpress_rest_put_patch_attempted == true",
+    "publish_attempted == true",
+    "update_existing_post_attempted == true",
+    "delete_post_attempted == true",
+    "external_export_attempted == true",
+    "github_actions_trigger_attempted == true",
+    "slack_production_notification_attempted == true",
+    "vps_self_builder_execution_attempted == true",
+    "env_secret_credential_auto_edit_attempted == true",
+    "readiness_result_not_pass == true",
+    "phase_gate_missing_or_failed == true"
+  ],
+  "forbidden_actions": [
+    "wordpress_rest_post",
+    "wordpress_rest_put_patch",
+    "publish_post",
+    "update_existing_post",
+    "delete_post",
+    "bulk_posting",
+    "external_export",
+    "github_actions_trigger",
+    "slack_production_notification",
+    "cron_automation",
+    "env_secret_auto_edit",
+    "vps_self_builder_execution"
+  ]
+}

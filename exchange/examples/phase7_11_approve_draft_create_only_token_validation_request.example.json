@@ -1,0 +1,28 @@
+{
+  "phase": "Phase 7-11",
+  "source": "APPROVE_DRAFT_CREATE_ONLY_TOKEN_VALIDATION_DRY_RUN",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "target_item_count": 1,
+  "token_name": "APPROVE_DRAFT_CREATE_ONLY",
+  "token_validation_requested": true,
+  "token_activation_requested": false,
+  "token_execution_requested": false,
+  "human_approval_required": true,
+  "final_preflight_required": true,
+  "freeze_path_exists": true,
+  "safety_flags": {
+    "production_status": "NO_GO",
+    "wordpress_draft_creation": "NO_GO",
+    "wordpress_write_executed": false,
+    "wordpress_api_call_allowed": false,
+    "publish_allowed": false,
+    "auto_post": false,
+    "auto_update": false,
+    "auto_delete": false,
+    "auto_export": false,
+    "bulk_execution": false,
+    "external_write": false,
+    "vps_self_builder_execution": false
+  }
+}

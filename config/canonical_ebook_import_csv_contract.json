@@ -1,0 +1,59 @@
+{
+  "schema_id": "CANONICAL_EBOOK_IMPORT_CSV",
+  "schema_version": null,
+  "contract_state": "UNVERSIONED_EXISTING_CONTRACT",
+  "source_of_truth": {
+    "sample_path": "exchange/import_samples/ebook_import_sample.csv",
+    "import_service": "app.services.csv_import_service.CsvImportService",
+    "repository": "app.db.repositories.import_repository.ImportRepository"
+  },
+  "exact_header": [
+    "source_name",
+    "source_item_id",
+    "title",
+    "isbn",
+    "volume_label",
+    "author",
+    "publisher",
+    "release_date",
+    "item_type",
+    "store_name",
+    "store_item_id",
+    "item_url",
+    "affiliate_url",
+    "price",
+    "discount_rate",
+    "point_rate"
+  ],
+  "required_non_empty_fields": [
+    "source_name",
+    "source_item_id",
+    "title",
+    "isbn",
+    "volume_label",
+    "author",
+    "publisher",
+    "release_date",
+    "item_type",
+    "store_name",
+    "store_item_id",
+    "item_url",
+    "affiliate_url",
+    "price"
+  ],
+  "allowed_item_types": [
+    "tankobon",
+    "light_novel",
+    "general_book"
+  ],
+  "strict_import_mode": "PRODUCTION_CREATE_ONLY",
+  "candidate_count": 1,
+  "database_defaults": {
+    "is_excluded": false,
+    "workflow_status": "NEW",
+    "review_status": "NOT_REVIEWED",
+    "wordpress_status": "NOT_CREATED",
+    "x_status": "NOT_CREATED",
+    "publish_ready": false
+  }
+}

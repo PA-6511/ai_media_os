@@ -1,0 +1,17 @@
+{
+  "_meta": {
+    "phase": 101,
+    "sub_phase": 3,
+    "status": "PASS_DESIGN_ONLY",
+    "reports_only": true,
+    "layer": "final_release_candidate_reports_only_post_overall_checkpoint_layer",
+    "title": "actual_process_start_go final release candidate reports only post overall checkpoint design"
+  },
+  "governance": {
+    "production_status": "NO_GO",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "execution_start": "NO_GO",
+    "changed_area": "reports only"
+  }
+}

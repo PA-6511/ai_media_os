@@ -24,6 +24,16 @@ def parse_args() -> argparse.Namespace:
         default="[]",
         help="JSON array of requested actions",
     )
+    parser.add_argument(
+        "--source-task-id",
+        default="cli_run",
+        help="Source task id used when writing local human review artifacts",
+    )
+    parser.add_argument(
+        "--no-persist-human-review-artifacts",
+        action="store_true",
+        help="Disable local review/evidence JSON writes for human_review decisions",
+    )
     return parser.parse_args()
 
 
@@ -34,7 +44,11 @@ def main() -> int:
         raise ValueError("--actions-json must be a JSON array")
 
     runner = GenericBlockRunner(Path(args.manifest), Path(args.policy))
-    result = runner.run(requested_actions=requested_actions)
+    result = runner.run(
+        requested_actions=requested_actions,
+        source_task_id=args.source_task_id,
+        persist_human_review_artifacts=not args.no_persist_human_review_artifacts,
+    )
     print(json.dumps(result, ensure_ascii=False, indent=2))
     return 0
 

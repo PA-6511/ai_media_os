@@ -1,0 +1,50 @@
+{
+  "phase": "Phase 7-8",
+  "status": "SIMULATION_PASS_DRY_RUN_ONLY",
+  "production_status": "NO_GO",
+  "wordpress_draft_creation": "NO_GO",
+  "wordpress_write_executed": false,
+  "wordpress_api_call_allowed": false,
+  "publish_allowed": false,
+  "target_item_count": 1,
+  "simulation_only": true,
+  "readiness_status": "READY_BUT_LOCKED",
+  "simulated_wordpress_payload": {
+    "candidate_id": "phase7_1_sample_candidate_001",
+    "title": "サンプル漫画 1巻 セール紹介",
+    "content": "PR：本記事には広告が含まれます。サンプル漫画の魅力を紹介します。これはPhase 7-8のDRY_RUNシミュレーション用本文です。WordPress APIは呼びません。",
+    "status": "draft_candidate_simulation_only",
+    "category": "電子書籍",
+    "tags": [
+      "漫画",
+      "セール",
+      "電子書籍"
+    ],
+    "affiliate_links": [
+      {
+        "store": "amazon",
+        "url": "https://example.com/affiliate/sample"
+      }
+    ],
+    "cta": [
+      {
+        "label": "Amazonで見る",
+        "url": "https://example.com/affiliate/sample"
+      }
+    ]
+  },
+  "errors": [],
+  "warnings": [],
+  "safety_violations": [],
+  "allowed_next_step": "Phase 7-9 Phase 7 pre-unlock overall completion report",
+  "blocked_operations": [
+    "wordpress_rest_post",
+    "wordpress_rest_put",
+    "wordpress_rest_patch",
+    "wordpress_rest_delete",
+    "wordpress_publish",
+    "wordpress_update",
+    "wordpress_delete"
+  ],
+  "checked_at": "2026-05-27T13:41:55.308867+00:00"
+}

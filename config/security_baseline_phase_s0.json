@@ -1,0 +1,17 @@
+{
+  "phase_id": "PHASE_S0",
+  "phase_name": "security_baseline",
+  "status": "BASELINE_ONLY",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "human_approval_required": true,
+  "windows_update_required": true,
+  "browser_update_required": true,
+  "vscode_update_required": true,
+  "wordpress_update_required": true,
+  "plugin_update_required": true,
+  "defender_required": true,
+  "two_factor_required": true,
+  "secrets_inventory_required": true,
+  "backup_required": true
+}

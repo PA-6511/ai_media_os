@@ -1,0 +1,205 @@
+{
+  "phase": "SQL-B2-4B-5G-3B-1D-2D-1A",
+  "schema_version": 1,
+  "result": "PASS_UNPRIVILEGED_ROOT_HELPER_PLAN_BUILDER_POLICY_DESIGN_ONLY_NO_EXECUTION_NO_GO",
+  "design_source_commit": "924406209f8c11ee74c706d25357ed1b37cfded0",
+  "bindings": {
+    "release_id": "slack-worker-5441bd1-1590693d6ae7",
+    "root_helper_candidate_path": "/usr/local/libexec/ai-media-os/slack-worker-release-installer.py",
+    "final_release_path": "/opt/ai-media-os/slack-worker/releases/slack-worker-5441bd1-1590693d6ae7",
+    "install_lock_path": "/run/lock/ai-media-os-slack-worker-release-install.lock",
+    "staging_path_template": "/opt/ai-media-os/slack-worker/releases/.staging-slack-worker-5441bd1-1590693d6ae7-{transaction_id}",
+    "commit_point": "ATOMIC_RENAME_STAGING_TO_FINAL_RELEASE",
+    "ordered_stages": [
+      "ACQUIRE_EXCLUSIVE_INSTALL_LOCK",
+      "VALIDATE_SINGLE_USE_AUTHORIZATION",
+      "REVALIDATE_HOST_AND_INPUT_BINDINGS",
+      "CONSUME_AUTHORIZATION_NONCE",
+      "CREATE_ROOT_PATH_ANCESTRY",
+      "CREATE_PRIVATE_STAGING_DIRECTORY",
+      "COPY_SOURCE_AND_WHEELS_WITH_NOFOLLOW",
+      "VERIFY_STAGED_INPUT_HASHES",
+      "BUILD_STAGED_VENV_OFFLINE",
+      "VERIFY_STAGED_SOURCE_AND_RUNTIME",
+      "REMOVE_TRANSIENT_STAGED_WHEELHOUSE",
+      "APPLY_FINAL_ROOT_OWNERSHIP_AND_MODES",
+      "VERIFY_FINAL_STAGING_TREE",
+      "ATOMIC_RENAME_STAGING_TO_FINAL_RELEASE",
+      "VERIFY_PUBLISHED_RELEASE",
+      "RECORD_INSTALLED_UNACTIVATED_STATE",
+      "RELEASE_EXCLUSIVE_INSTALL_LOCK"
+    ],
+    "source_policies": {
+      "root_helper": {
+        "path": "config/slack_worker_root_helper_interface_policy.json",
+        "sha256": "587df47b5c8f5527677b6750fe862c50639116b887309c3d132d654a1fd6c879",
+        "phase": "SQL-B2-4B-5G-3B-1D-2B-2"
+      },
+      "rollback": {
+        "path": "config/slack_worker_root_install_rollback_policy.json",
+        "sha256": "e8e6806151bacb307e64586a97f7d460c6bac17281559b2b989f32483f49f74e",
+        "phase": "SQL-B2-4B-5G-3B-1D-2B-1"
+      },
+      "authorization": {
+        "path": "config/slack_worker_install_authorization_capsule_policy.json",
+        "sha256": "e738eea63b6ebeb0d26f1d4ce398534b40b9b61dbc5d90a89559bd7e194a34b8",
+        "phase": "SQL-B2-4B-5G-3B-1D-2B-3"
+      },
+      "durable_consumption": {
+        "path": "config/slack_worker_install_authorization_durable_consumption_policy.json",
+        "sha256": "c8b124dc4eb6da01f89a173ed011089ce9242ebe94683dc5c5f0b08cafbe3652",
+        "phase": "SQL-B2-4B-5G-3B-1D-2B-6"
+      },
+      "reconciliation": {
+        "path": "config/slack_worker_install_authorization_pending_reconciliation_policy.json",
+        "sha256": "d2ce34fc477dcc50f496e973fe0fd104e030e125b4b776dea00719ad19c27b8b",
+        "phase": "SQL-B2-4B-5G-3B-1D-2B-9"
+      },
+      "assembler": {
+        "path": "config/slack_worker_offline_runtime_assembler_policy.json",
+        "sha256": "b6568180d91df6d335a9f39dc319e2b9a848639ea779a4f5f4d3bfc50a64c7ef",
+        "phase": "SQL-B2-4B-5G-3B-1D-2C-3C"
+      }
+    }
+  },
+  "planner_runtime_contract": {
+    "implementation_type": "UNPRIVILEGED_PLAN_BUILDER",
+    "allowed_actions": [
+      "VALIDATE_CONTRACT",
+      "RENDER_INSTALL_PLAN"
+    ],
+    "root_execution_required": false,
+    "sudo_invocation_allowed": false,
+    "shell_execution_allowed": false,
+    "subprocess_allowed": false,
+    "network_access_allowed": false,
+    "database_access_allowed": false,
+    "secret_file_read_allowed": false,
+    "filesystem_write_allowed": false,
+    "filesystem_delete_allowed": false,
+    "filesystem_rename_allowed": false,
+    "filesystem_permission_change_allowed": false,
+    "symlink_creation_allowed": false,
+    "stdout_output_allowed": true,
+    "stderr_error_output_allowed": true,
+    "environment_secret_access_allowed": false
+  },
+  "plan_document_contract": {
+    "canonical_json_required": true,
+    "deterministic_output_required": true,
+    "timestamp_field_allowed": false,
+    "nonce_field_allowed": false,
+    "authorization_document_allowed": false,
+    "execution_trigger_allowed": false,
+    "exact_top_level_keys": [
+      "schema_version",
+      "plan_version",
+      "phase",
+      "release_id",
+      "operation",
+      "execution_allowed",
+      "authorization_capsule_required",
+      "authorization_capsule_issued",
+      "root_helper_candidate_path",
+      "final_release_path",
+      "install_lock_path",
+      "staging_path_template",
+      "commit_point",
+      "ordered_stages",
+      "input_bindings",
+      "constraints",
+      "non_authorization_guarantee",
+      "final_decision"
+    ],
+    "schema_version": 1,
+    "plan_version": 1,
+    "phase": "SQL-B2-4B-5G-3B-1D-2D-1A",
+    "operation": "INSTALL_RELEASE_ONLY",
+    "execution_allowed": false,
+    "authorization_capsule_required": true,
+    "authorization_capsule_issued": false,
+    "final_decision": "NO_GO"
+  },
+  "fixed_plan_values": {
+    "release_id": "slack-worker-5441bd1-1590693d6ae7",
+    "root_helper_candidate_path": "/usr/local/libexec/ai-media-os/slack-worker-release-installer.py",
+    "final_release_path": "/opt/ai-media-os/slack-worker/releases/slack-worker-5441bd1-1590693d6ae7",
+    "install_lock_path": "/run/lock/ai-media-os-slack-worker-release-install.lock",
+    "staging_path_template": "/opt/ai-media-os/slack-worker/releases/.staging-slack-worker-5441bd1-1590693d6ae7-{transaction_id}",
+    "commit_point": "ATOMIC_RENAME_STAGING_TO_FINAL_RELEASE",
+    "ordered_stages": [
+      "ACQUIRE_EXCLUSIVE_INSTALL_LOCK",
+      "VALIDATE_SINGLE_USE_AUTHORIZATION",
+      "REVALIDATE_HOST_AND_INPUT_BINDINGS",
+      "CONSUME_AUTHORIZATION_NONCE",
+      "CREATE_ROOT_PATH_ANCESTRY",
+      "CREATE_PRIVATE_STAGING_DIRECTORY",
+      "COPY_SOURCE_AND_WHEELS_WITH_NOFOLLOW",
+      "VERIFY_STAGED_INPUT_HASHES",
+      "BUILD_STAGED_VENV_OFFLINE",
+      "VERIFY_STAGED_SOURCE_AND_RUNTIME",
+      "REMOVE_TRANSIENT_STAGED_WHEELHOUSE",
+      "APPLY_FINAL_ROOT_OWNERSHIP_AND_MODES",
+      "VERIFY_FINAL_STAGING_TREE",
+      "ATOMIC_RENAME_STAGING_TO_FINAL_RELEASE",
+      "VERIFY_PUBLISHED_RELEASE",
+      "RECORD_INSTALLED_UNACTIVATED_STATE",
+      "RELEASE_EXCLUSIVE_INSTALL_LOCK"
+    ],
+    "constraints": {
+      "install_release_only": true,
+      "current_link_change_allowed": false,
+      "secret_migration_allowed": false,
+      "unit_change_allowed": false,
+      "daemon_reload_allowed": false,
+      "gate_creation_allowed": false,
+      "service_start_allowed": false,
+      "unit_enable_allowed": false,
+      "production_database_write_allowed": false
+    },
+    "non_authorization_guarantee": {
+      "contract_file_is_authorization": false,
+      "report_file_is_authorization": false,
+      "test_file_is_authorization": false,
+      "validator_file_is_authorization": false,
+      "repository_file_can_authorize_root_install": false,
+      "root_release_install_allowed": false,
+      "host_mutation_allowed": false,
+      "current_link_change_allowed": false,
+      "secret_migration_allowed": false,
+      "unit_change_allowed": false,
+      "daemon_reload_allowed": false,
+      "gate_creation_allowed": false,
+      "service_start_allowed": false,
+      "unit_enable_allowed": false,
+      "production_database_write_allowed": false
+    }
+  },
+  "deferred_implementation": {
+    "root_release_installer": true,
+    "authorization_capsule_issuer": true,
+    "durable_authorization_consumer": true,
+    "pending_reconciliation_executor": true,
+    "activation_executor": true
+  },
+  "governance": {
+    "plan_builder_policy_created": true,
+    "plan_builder_implemented": false,
+    "plan_rendered": false,
+    "root_helper_implemented": false,
+    "root_helper_installed": false,
+    "root_release_install_authorized": false,
+    "root_release_install_executed": false,
+    "authorization_capsule_issued": false,
+    "authorization_capsule_consumed": false,
+    "durable_consumption_record_created": false,
+    "host_change_executed": false,
+    "current_host_link_created": false,
+    "secret_migration_executed": false,
+    "systemd_operation_executed": false,
+    "service_start_executed": false,
+    "unit_enable_executed": false,
+    "production_status": "NO_GO",
+    "final_decision": "NO_GO"
+  }
+}

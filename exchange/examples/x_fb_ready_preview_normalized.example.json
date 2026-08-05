@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0.0",
+  "schema_id": "X_POST_WORDING_FEEDBACK_SCHEMA_V1",
+  "record_version": 1,
+  "feedback_id": "x-fb-example-20260717-example-20260717-001",
+  "supersedes_feedback_id": null,
+  "article_item_id": "example-20260717-001",
+  "wordpress_post_id": null,
+  "template_id": "X_NEW_RELEASE_V1",
+  "record_stage": "DRAFT_GENERATED",
+  "article_context": {
+    "title": "サンプル作品",
+    "volume_label": "第1巻",
+    "release_date": "2026-07-17",
+    "category": "comic"
+  },
+  "text_snapshots": {
+    "generated_text": "『サンプル作品 第1巻』は7月17日発売。\nAmazon Kindle・楽天Koboの価格と販売ページを記事でまとめています。",
+    "human_edited_text": null,
+    "actually_posted_text": null
+  },
+  "text_character_counts": {
+    "generated_text": 63,
+    "human_edited_text": null,
+    "actually_posted_text": null
+  },
+  "was_edited": false,
+  "edit_reason_labels": [],
+  "edit_reason_note": null,
+  "wording_labels": [
+    "TITLE_FIRST",
+    "INFORMATIONAL_TONE",
+    "ARTICLE_CTA",
+    "NO_EMOJI",
+    "NO_HASHTAG"
+  ],
+  "posting_adjustment_labels": [],
+  "posting_adjustment_note": null,
+  "human_rating": null,
+  "posted_at": null,
+  "x_post_id": null,
+  "metrics": {
+    "impressions": null,
+    "likes": null,
+    "reposts": null,
+    "replies": null,
+    "bookmarks": null,
+    "link_clicks": null
+  },
+  "metric_observed_at": null,
+  "review_status": "UNREVIEWED",
+  "derived_flags": {
+    "human_edit_detected": false,
+    "posting_adjustment_detected": false,
+    "metrics_available": false,
+    "ready_for_future_learning_dataset": false
+  },
+  "execution_boundary": {
+    "x_api_call_allowed": false,
+    "x_post_allowed": false,
+    "wordpress_write_allowed": false,
+    "external_api_call_allowed": false,
+    "automatic_rule_update_allowed": false,
+    "production_status": "NO_GO",
+    "safety_state": "DRY_RUN_ONLY"
+  },
+  "record_digest_sha256": "bfb6af7db391d430ced9302d925a474573198e6e754be09b9d9cf9ee8a824041"
+}

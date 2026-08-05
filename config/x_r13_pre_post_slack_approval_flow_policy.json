@@ -1,0 +1,90 @@
+{
+  "schema_version": "X_R13_PRE_POST_SLACK_APPROVAL_FLOW_POLICY_V1",
+  "phase": "X-R13-PRE-POST-SLACK-APPROVAL-FLOW-PREP",
+  "status": "PREP_ONLY_NO_DELIVERY_NO_POSTING",
+  "source_baseline": {
+    "x_r12_closeout_digest_sha256": "cfe0a6bb934d5ced22ce1d46c41c03b66bb7edc682aac4bf7c788ef216652574",
+    "x_r12_review_result_digest_sha256": "f841e1f7845c4bcb883b1710031b7266b3c3c01063471fb6873635a4fe7ce90b",
+    "evidence_index_sha256": "f9357785b1d7a8390d4da2845f1f219f263620223c2a1ee4d116bde5c1299d13"
+  },
+  "flow_order": [
+    "LOCAL_DRAFT_GENERATED",
+    "LOCAL_DRAFT_VALIDATED",
+    "SLACK_ONE_SHOT_DELIVERY_APPROVED",
+    "SLACK_MESSAGE_SENT",
+    "HUMAN_THREAD_REVIEW",
+    "MANUAL_REVIEW_RESULT_REGISTERED",
+    "PRE_POST_POSTING_AUTHORIZATION_ISSUED",
+    "HUMAN_MANUAL_X_POST",
+    "X_POST_URL_REGISTERED",
+    "METRICS_CAPTURE"
+  ],
+  "delivery": {
+    "transport": "SLACK_INCOMING_WEBHOOK",
+    "credential_env_key": "SLACK_X_DRAFT_REVIEW_WEBHOOK_URL",
+    "credential_read_allowed_in_prep": false,
+    "slack_api_call_allowed_in_prep": false,
+    "message_send_allowed_in_prep": false,
+    "one_shot_delivery_required": true,
+    "automatic_retry_allowed": false,
+    "interactive_buttons_enabled": false,
+    "thread_reply_review_enabled": true
+  },
+  "review": {
+    "human_approval_required": true,
+    "exact_tokens": [
+      "APPROVE",
+      "REVISE",
+      "REJECT"
+    ],
+    "approval_evidence_mode": "MANUAL_SCREENSHOT_AND_EXACT_TOKEN",
+    "reaction_only_approval_allowed": false,
+    "slack_api_read_required": false,
+    "pre_post_approval_required": true,
+    "retrospective_approval_is_normal_path": false
+  },
+  "approval_binding": {
+    "required_fields": [
+      "review_request_id",
+      "x_account_handle",
+      "draft_text_sha256",
+      "affiliate_url",
+      "store",
+      "link_route"
+    ],
+    "invalidate_on_text_change": true,
+    "invalidate_on_url_change": true,
+    "invalidate_on_account_change": true,
+    "invalidate_on_store_change": true,
+    "invalidate_on_link_route_change": true,
+    "posting_authorization_only_after_approve": true,
+    "approved_state": "APPROVED_BEFORE_POSTING",
+    "pre_post_approval": true,
+    "retroactive_content_review": false
+  },
+  "posting": {
+    "mode": "HUMAN_MANUAL",
+    "one_manual_x_post_authorized_after_approval": true,
+    "x_api_allowed": false,
+    "browser_automation_allowed": false,
+    "automatic_posting_allowed": false,
+    "additional_x_post_allowed": false,
+    "x_post_url_registration_required": true,
+    "metrics_capture_required": true
+  },
+  "storage": {
+    "canonical_draft_storage": "LOCAL_JSON",
+    "slack_is_canonical_storage": false,
+    "database_write_allowed_in_prep": false,
+    "workflow_write_allowed_in_prep": false,
+    "wordpress_write_allowed_in_prep": false
+  },
+  "failure_policy": {
+    "failure_action": "STOP",
+    "delivery_failure_requires_manual_reconciliation": true,
+    "approval_ambiguity_action": "STOP",
+    "draft_change_after_approval_action": "INVALIDATE_AND_REVIEW_AGAIN",
+    "automatic_retry_allowed": false
+  },
+  "production_status": "NO_GO"
+}

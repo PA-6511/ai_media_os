@@ -1,0 +1,82 @@
+{
+  "phase_id": "27-3",
+  "phase_name": "Production Reflection GO/NO-GO Actual Measurement Judgment Template Design",
+  "phase_japanese_name": "production_reflection_go / NO_GO 実測判定テンプレート設計",
+  "purpose": "Design actual measurement judgment template for production_reflection_go / NO_GO before any implementation or authorization.",
+  "layer": "production_reflection_go_actual_measurement_layer",
+  "design_category": "reports_only",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "operation_transition_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "phase_27_3_scope": {
+    "scope_1_input_contract": {
+      "scope_id": "INPUT_CONTRACT",
+      "required_inputs": {
+        "phase27_2_final_safety_status": "SAFETY_CONFIRMED | NO_GO"
+      }
+    },
+    "scope_2_judgment_template_rules": {
+      "scope_id": "JUDGMENT_TEMPLATE_RULES",
+      "rules": {
+        "rule_P27J1": "Collect all pre-measurement safety confirmations",
+        "rule_P27J2": "Define minimum GO conditions for production reflection",
+        "rule_P27J3": "Define NO_GO and ABORT triggers",
+        "rule_P27J4": "If all minimum conditions met and no triggers, production_reflection_status = GO candidate",
+        "rule_P27J5": "If any condition not met or triggers present, production_reflection_status = NO_GO"
+      }
+    },
+    "scope_3_report_structure": {
+      "scope_id": "REPORT_STRUCTURE",
+      "sections": {
+        "section_1_header": {
+          "report_id": "PHASE27_3_PRODUCTION_REFLECTION_GO_NO_GO_JUDGMENT_<UTC_TIMESTAMP>",
+          "report_type": "production_reflection_go_no_go_actual_measurement_judgment_template",
+          "generated_at_utc": "RFC3339",
+          "generated_by": "authority_identifier"
+        },
+        "section_2_pre_measurement_summary": {
+          "final_safety_status": "SAFETY_CONFIRMED | NO_GO",
+          "minimum_condition_met": "PASS | FAIL"
+        },
+        "section_3_judgment_result": {
+          "production_reflection_status": "GO_CANDIDATE | NO_GO",
+          "abort_triggered": "YES | NO"
+        },
+        "section_4_state_confirmation": {
+          "app_implementation_status": "NO_GO",
+          "tests_implementation_status": "NO_GO",
+          "production_status": "NO_GO",
+          "operation_transition_go_authorization": "NOT_GRANTED",
+          "changed_area": "reports only"
+        }
+      }
+    }
+  },
+  "phase_27_3_governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "state_invariants": {
+      "app_implementation_status": "NO_GO",
+      "tests_implementation_status": "NO_GO",
+      "production_status": "NO_GO",
+      "operation_transition_go_authorization": "NOT_GRANTED",
+      "changed_area": "reports only"
+    }
+  }
+}

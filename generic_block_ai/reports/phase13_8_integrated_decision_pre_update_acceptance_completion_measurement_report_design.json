@@ -1,0 +1,69 @@
+{
+  "_meta": {
+    "phase": "13-8",
+    "phase_name": "integrated_decision 更新前の受入完了判定レポート設計",
+    "version": "1.0",
+    "created_date": "2026-05-12",
+    "status": "PASS_DESIGN_ONLY",
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only",
+    "description": "Phase 13 受入フロー完了後、integrated_decision 更新前に受入完了状態を実測で判定するレポートを定義する。"
+  },
+  "references": [
+    "generic_block_ai/reports/phase13_3_integrated_decision_pre_update_final_acceptance_gate_design.json",
+    "generic_block_ai/reports/phase13_7_human_review_actual_input_post_acceptance_final_reflection_procedure_design.json",
+    "generic_block_ai/reports/phase12_8_integrated_decision_go_nogo_final_actual_measurement_report_design.json"
+  ],
+  "measurement_inputs": [
+    "format_validation_template",
+    "checklist_result_template",
+    "evidence_lock_template",
+    "return_template",
+    "gate_result_template",
+    "production_status"
+  ],
+  "acceptance_completion_criteria": {
+    "complete_requires": [
+      "format_valid == true",
+      "all_checks_passed == true",
+      "all_evidence_locked == true",
+      "returned_for_revision == false",
+      "final_acceptance_passed == true",
+      "production_status == NO_GO"
+    ],
+    "incomplete_requires": [
+      "any required input still pending",
+      "return for revision triggered",
+      "final_acceptance_passed == false",
+      "integrated_decision_update_allowed == false"
+    ]
+  },
+  "actual_measurement_template": {
+    "acceptance_completion_status": "INCOMPLETE",
+    "integrated_decision_pre_update_ready": false,
+    "decision_basis": [],
+    "reason": "受入フロー実測更新が未完了のため、現時点では受入完了判定を確定しない。"
+  },
+  "blocked_actions": [
+    "core_ai_real_send",
+    "external_api_call",
+    "wordpress_operation",
+    "cron_registration",
+    "auto_execute",
+    "auto_post",
+    "auto_update",
+    "auto_delete",
+    "auto_export",
+    "production_execution"
+  ],
+  "phase_decision": {
+    "phase13_8_status": "PASS_DESIGN_ONLY",
+    "app_implementation_status": "NO_GO",
+    "tests_implementation_status": "NO_GO",
+    "note": "受入完了判定レポートの設計のみ。現時点では integrated_decision 更新前段階。"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "phase": "Phase 8-15",
+  "name": "rerun_handoff_report_policy",
+  "policy_status": "HANDOFF_REPORT_ONLY",
+  "production_status": "NO_GO",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "human_approval_required": true,
+  "handoff_is_execution_permission": false,
+  "wordpress_api_call_allowed": false,
+  "wordpress_write_executed": false,
+  "publish_allowed": false,
+  "target_item_count": 1,
+  "required_evidence": [
+    "exchange/logs/phase8_11_credentials_manual_runbook_validation_result.json",
+    "exchange/logs/phase8_12_no_secret_leak_audit_result.json",
+    "exchange/logs/phase8_13_post_credential_readiness_recheck_result.json",
+    "exchange/logs/phase8_14_rerun_authorization_renewal_result.json"
+  ],
+  "ready_statuses": {
+    "phase8_11": "PASS_RUNBOOK_ONLY",
+    "phase8_12": "NO_SECRET_LEAK_AUDIT_PASS",
+    "phase8_13": "POST_CREDENTIALS_READY_NO_SECRET_OUTPUT",
+    "phase8_14": "RERUN_AUTHORIZATION_RENEWED_FOR_HANDOFF_ONLY"
+  },
+  "not_ready_statuses": [
+    "POST_CREDENTIALS_NOT_READY_NO_SECRET_OUTPUT",
+    "RERUN_AUTHORIZATION_NOT_READY_CREDENTIALS_MISSING"
+  ],
+  "dangerous_operations": {
+    "auto_post": false,
+    "auto_update": false,
+    "auto_delete": false,
+    "auto_export": false,
+    "publish_allowed": false,
+    "wordpress_api_call_allowed": false,
+    "wordpress_write_executed": false,
+    "bulk_execution": false,
+    "external_write": false,
+    "vps_self_builder_execution": false
+  },
+  "allowed_next_step_if_ready": "Manually rerun Phase 8-6 to Phase 8-10 commands, with explicit operator confirmation",
+  "allowed_next_step_if_not_ready": "Set credentials manually without exposing secrets, then rerun Phase 8-13"
+}

@@ -19,4 +19,29 @@ def test_safety_guard_blocks_forbidden_and_publish() -> None:
     assert len(decision.allowed_actions) == 1
     assert decision.allowed_actions[0]["type"] == "collect_data"
     assert len(decision.blocked_actions) == 2
+    assert decision.needs_review_actions == []
+    assert any(rc["reason"] == "forbidden_action" for rc in decision.reason_codes)
     assert any("forbidden action blocked" in warning for warning in decision.warnings)
+
+
+def test_safety_guard_classifies_unknown_action_as_needs_review() -> None:
+    manifest = BlockManifest.from_json_file(Path("generic_block_ai/block_manifest.json"))
+    policy = load_policy(Path("generic_block_ai/config/policy.json"))
+
+    requested_actions = [
+        {"type": "collect_data", "target": "source_a"},
+        {"type": "propose_deployment_plan", "target": "ops"},
+    ]
+
+    decision = evaluate_actions(manifest, requested_actions, policy)
+
+    assert len(decision.allowed_actions) == 1
+    assert decision.allowed_actions[0]["type"] == "collect_data"
+    assert len(decision.blocked_actions) == 0
+    assert len(decision.needs_review_actions) == 1
+    assert decision.needs_review_actions[0]["type"] == "propose_deployment_plan"
+    assert any(rc["classification"] == "allow" for rc in decision.reason_codes)
+    assert any(
+        rc["classification"] == "needs_review" and rc["reason"] == "unknown_action_type"
+        for rc in decision.reason_codes
+    )

@@ -1,0 +1,23 @@
+# LS-NEW-BATCH-4G-2E-RECOVERY-M14
+
+- Status: `PASS_WORDPRESS_DRAFT_POST_EXECUTION_EVIDENCE_VERIFIED_GET_ONLY_NO_WRITE`
+- Decision: `WORDPRESS_DRAFT_POST_EXECUTION_EVIDENCE_VERIFIED_READY_FOR_HUMAN_WORDPRESS_DRAFT_REVIEW`
+- Error code: `None`
+- WordPress post ID: `192`
+- Post ID verified: `true`
+- WordPress HTTP status: `200`
+- WordPress GET request count: `1`
+- WordPress non-GET request count: `0`
+- Draft status verified: `true`
+- Title exact match: `true`
+- Content exact match: `true`
+- Category ID 10 verified: `true`
+- M13 authorization consumed: `true`
+- M13 authorization reuse allowed: `false`
+- Automatic retry performed: `false`
+- Full WordPress response output: `false`
+- WordPress write performed: `false`
+- WordPress published: `false`
+- Production status: `NO_GO`
+- Ready for human WordPress draft review: `true`
+- Ready for WordPress publish: `false`

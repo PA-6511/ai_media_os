@@ -1,0 +1,35 @@
+{
+  "schema_version": "ir19_policy_drift_detector_v1",
+  "phase": "IR19",
+  "generated_at": "2026-05-23T15:23:29.191595+00:00",
+  "source_task_id": "ir19_live_trial",
+  "validation_result": "PASS",
+  "validation_failed_checks": [],
+  "validation_warnings": [],
+  "summary": {
+    "ir17_audit_entries": 2,
+    "ir15_reports_checked": 4,
+    "known_policy_hashes": 1,
+    "unrecorded_policy_use_count": 0,
+    "timeline_hash_mismatch_count": 0,
+    "audit_chain_break_count": 0
+  },
+  "unrecorded_policy_use": [],
+  "timeline_hash_mismatches": [],
+  "artifacts": {
+    "ir17_change_audit_log": "generic_block_ai/reports/ir17_role_policy_change_audit.log",
+    "ir15_reports": [
+      "generic_block_ai/reports/ir15_manual_event_role_guard_ir15_pass_live_trial.json",
+      "generic_block_ai/reports/ir15_manual_event_role_guard_ir15_warn_live_trial.json",
+      "generic_block_ai/reports/ir15_manual_event_role_guard_ir15_fail_live_trial.json",
+      "generic_block_ai/reports/ir15_manual_event_role_guard_ir15_abort_live_trial.json"
+    ]
+  },
+  "safeguards": {
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "production_release": false
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "phase": "LS-NEW-5-DECISION",
+  "document_type": "START_LS_NEW5_DECISION_INPUT",
+  "human_review_completed": true,
+  "human_approved": true,
+  "approval_label": "APPROVED_FOR_LS_NEW_6_WP_DRAFT_PAYLOAD_PREP_ONLY",
+  "reviewer_notes": "WP payload and X payload reviewed. Approved for LS-NEW-6 WP draft payload preparation only.",
+  "execution_allowed": false,
+  "ready_for_ls_new_6": false
+}

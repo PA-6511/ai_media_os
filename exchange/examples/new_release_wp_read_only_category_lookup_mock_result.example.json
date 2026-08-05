@@ -1,0 +1,93 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-1",
+  "policy_id": "NEW_RELEASE_WP_READ_ONLY_CATEGORY_LOOKUP_IMPLEMENTATION_POLICY_V1",
+  "implementation_package_id": "wp-read-only-category-lookup-mock-implementation",
+  "operation_mode": "LOCAL_WORDPRESS_API_MOCK_ONLY",
+  "mock_fixture_path": "exchange/fixtures/wordpress_api/categories.comic-new-release.valid.json",
+  "implementation_state": {
+    "lookup_module_created": true,
+    "get_only_transport_enforced": true,
+    "exact_match_logic_implemented": true,
+    "missing_result_block_implemented": true,
+    "duplicate_result_block_implemented": true,
+    "name_mismatch_block_implemented": true,
+    "invalid_id_block_implemented": true
+  },
+  "lookup_result": {
+    "transport": "LOCAL_JSON_MOCK",
+    "method": "GET",
+    "rest_path": "/wp-json/wp/v2/categories",
+    "mock_response_digest_sha256": "4a532ad277ff3ad3d2e5bcae9f32fe1089aa76ebdee6582193270b9c7e7259b5",
+    "mapping_count": 1,
+    "mappings": [
+      {
+        "category_slug": "comic-new-release",
+        "category_name": "コミック新刊",
+        "candidate_fixture_category_id": 980001,
+        "fixture_post_count": 0,
+        "match_state": "MATCHED_LOCAL_MOCK_ONLY",
+        "source_type": "LOCAL_WORDPRESS_API_MOCK",
+        "production_usable": false,
+        "payload_injection_allowed": false,
+        "human_verification_required": true,
+        "matched_mapping_digest_sha256": "9d8854a21ccab63ec358b44cf2c083b04489fac286b86830c16dec44b52cd917"
+      }
+    ],
+    "credential_file_read": false,
+    "credential_values_loaded": false,
+    "credential_values_output": false,
+    "dns_resolution_performed": false,
+    "network_connection_performed": false,
+    "tls_connection_performed": false,
+    "http_request_performed": false,
+    "wordpress_response_read": false,
+    "wordpress_write_performed": false,
+    "production_category_ids_present": false,
+    "fixture_category_ids_present": true,
+    "fixture_category_ids_applied_to_payload": false
+  },
+  "production_mapping_state": {
+    "production_category_ids_present": false,
+    "production_category_ids_usable": false,
+    "fixture_category_ids_present": true,
+    "fixture_category_ids_applied_to_payload": false,
+    "human_verification_completed": false
+  },
+  "preexecution_gate": {
+    "state": "BLOCKED_LOCAL_MOCK_ONLY",
+    "implementation_verified": true,
+    "actual_network_lookup_authorized": false,
+    "credential_loading_authorized": false,
+    "wordpress_read_authorized": false,
+    "wordpress_write_authorized": false,
+    "execution_approval_issued": false,
+    "approval_token": null,
+    "execution_allowed": false
+  },
+  "execution_boundary": {
+    "credential_file_read_allowed": false,
+    "credential_value_output_allowed": false,
+    "environment_variable_read_allowed": false,
+    "dns_resolution_allowed": false,
+    "network_connection_allowed": false,
+    "tls_connection_allowed": false,
+    "wordpress_api_call_allowed": false,
+    "wordpress_category_lookup_allowed": false,
+    "wordpress_write_allowed": false,
+    "wordpress_publish_allowed": false,
+    "external_api_call_allowed": false,
+    "execution_allowed": false,
+    "production_status": "NO_GO",
+    "safety_state": "LOCAL_MOCK_LOOKUP_IMPLEMENTATION_ONLY"
+  },
+  "verified_checks": [
+    "source_phase_identity",
+    "source_design_digest_verified",
+    "source_get_only_contract_verified",
+    "source_network_unaccessed",
+    "source_wordpress_unaccessed",
+    "source_execution_gate_closed"
+  ],
+  "implementation_package_digest_sha256": "2b15e065298a7a4f6ffaee52b0416272acd586424017e82c72a052e6c8d5d01b"
+}

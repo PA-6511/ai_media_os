@@ -1,0 +1,134 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-G",
+  "policy_id": "NEW_RELEASE_WP_FRESH_ARTICLE_INPUT_REGISTRATION_POLICY_V1",
+  "source_phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-F",
+  "template_contract_id": "POST185_STANDARD_TEMPLATE_V1_FIXED",
+  "input_contract_id": "FRESH_NEW_RELEASE_COMIC_DRAFT_INPUT_V1",
+  "operation_mode": "APPROVED_FRESH_ARTICLE_INPUT_REGISTRATION_ONLY",
+  "source_contract": {
+    "required_status": "PASS_FRESH_PAYLOAD_GENERATION_INPUT_CONTRACT_FIXED_NO_PAYLOAD_NO_NETWORK",
+    "required_decision": "INPUT_CONTRACT_READY_AWAITING_FRESH_ARTICLE_INPUT_REGISTRATION",
+    "required_article_input_registered": false,
+    "required_fresh_payload_created": false,
+    "required_payload_binding_complete": false,
+    "required_category_id_injected": false,
+    "required_wordpress_write": false,
+    "required_production_status": "NO_GO"
+  },
+  "approval_contract": {
+    "required_approval_label": "FRESH_ARTICLE_INPUT_REGISTRATION_APPROVED",
+    "approval_evidence_path": "exchange/approvals/ls_new_batch_4g_2e_recovery_g_article_input_registration_approval.json",
+    "human_explicit_approval_required": true,
+    "approved_work_title": "ダークギャザリング",
+    "approved_volume_label": "第20巻",
+    "article_input_registration_approved": true,
+    "article_human_review_approved": false,
+    "article_content_generation_approved": false,
+    "payload_generation_approved": false,
+    "category_injection_approved": false,
+    "wordpress_execution_approved": false,
+    "approval_reuse_for_different_article_allowed": false,
+    "input_change_requires_new_human_approval": true
+  },
+  "fixed_article_input": {
+    "content_item_id": "new-release-comic-20260703-001",
+    "work_title": "ダークギャザリング",
+    "volume_label": "第20巻",
+    "article_title": "ダークギャザリング 第20巻｜配信開始",
+    "release_date": "2026-07-03",
+    "author_name": "近藤憲一",
+    "publisher_name": "集英社",
+    "article_type": "COMIC_NEW_RELEASE_LATEST_VOLUME_DISTRIBUTION_START",
+    "wordpress_status": "draft",
+    "affiliate_disclosure_required": true,
+    "categories_initial_state": "ABSENT",
+    "legacy_post185_reference": false
+  },
+  "source_evidence_contract": {
+    "verification_observed_at": "2026-07-11T01:54:53+09:00",
+    "official_source_required": true,
+    "amazon_source_required": true,
+    "rakuten_kobo_source_required": true,
+    "dmm_books_source_required": true,
+    "fabricated_source_allowed": false,
+    "all_sources_must_match_work_and_volume": true
+  },
+  "store_link_contract": {
+    "link_role": "PRODUCT_VERIFICATION_SOURCE_NOT_FINAL_AFFILIATE_LINK",
+    "required_store_ids": [
+      "amazon",
+      "rakuten_kobo",
+      "dmm_books"
+    ],
+    "required_verification_state": "VERIFIED",
+    "final_affiliate_link_required_in_current_phase": false,
+    "dmm_latest_alias_recheck_required_before_payload_generation": true
+  },
+  "cover_contract": {
+    "preferred_source_store": "rakuten_kobo",
+    "image_url_required": true,
+    "source_page_url_required": true,
+    "verification_state_required": "VERIFIED",
+    "download_or_local_copy_allowed": false
+  },
+  "price_contract": {
+    "amount": 616,
+    "currency": "JPY",
+    "price_text": "616円（税込）",
+    "observed_at": "2026-07-11T01:54:53+09:00",
+    "minimum_independent_source_count": 2,
+    "verification_state_required": "VERIFIED",
+    "automatic_price_refresh_allowed": false
+  },
+  "registration_artifact": {
+    "path": "exchange/inputs/new_release/fresh/new-release-comic-20260703-001.input.json",
+    "document_role": "FRESH_NEW_RELEASE_ARTICLE_INPUT_REGISTRATION",
+    "existing_matching_artifact_may_be_verified": true,
+    "existing_mismatched_artifact_must_block": true,
+    "digest_required": true,
+    "human_review_complete": false
+  },
+  "current_phase_activity": {
+    "article_input_registered": true,
+    "article_human_review_complete": false,
+    "article_content_generated": false,
+    "fresh_payload_created": false,
+    "fresh_payload_read": false,
+    "fresh_payload_copied": false,
+    "payload_binding_complete": false,
+    "payload_modified": false,
+    "category_id_injected": false,
+    "credential_file_read": false,
+    "network_access": false,
+    "wordpress_access": false,
+    "wordpress_write": false
+  },
+  "execution_boundary": {
+    "article_input_registration_allowed": true,
+    "article_human_review_completion_allowed": false,
+    "article_content_generation_allowed": false,
+    "fresh_payload_creation_allowed": false,
+    "fresh_payload_read_allowed": false,
+    "fresh_payload_copy_allowed": false,
+    "payload_binding_allowed": false,
+    "payload_modification_allowed": false,
+    "production_category_id_payload_injection_allowed": false,
+    "credential_file_read_allowed": false,
+    "dns_resolution_allowed": false,
+    "network_connection_allowed": false,
+    "tls_connection_allowed": false,
+    "wordpress_api_call_allowed": false,
+    "wordpress_write_allowed": false,
+    "wordpress_draft_creation_allowed": false,
+    "wordpress_publish_allowed": false,
+    "execution_allowed": false,
+    "production_status": "NO_GO",
+    "safety_state": "FRESH_ARTICLE_INPUT_REGISTERED_AWAITING_HUMAN_REVIEW"
+  },
+  "next_phase": {
+    "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-H",
+    "name": "Fresh Article Input Human Review Gate",
+    "execution_allowed": false
+  }
+}

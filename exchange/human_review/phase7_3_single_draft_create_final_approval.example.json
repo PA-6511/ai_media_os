@@ -1,0 +1,38 @@
+{
+  "_instructions": "このファイルは人間がコピーして記入するサンプルです。記入後は exchange/human_review/phase7_3_single_draft_create_final_approval.json として保存してください。decision は下記4値のいずれか1つのみ使用してください。",
+  "_allowed_decisions": [
+    "APPROVE_SINGLE_DRAFT_CREATE_DRY_RUN_ONLY",
+    "REQUEST_FIX",
+    "REJECT",
+    "ABORT"
+  ],
+  "_forbidden_decision": "APPROVE_SINGLE_DRAFT_CREATE_LIVE",
+  "package_type": "phase7_3_single_draft_create_final_approval",
+  "phase": "Phase 7-3",
+  "reviewer": "（レビュー担当者名を記入）",
+  "reviewer_is_human": true,
+  "reviewed_payload_file": "exchange/outgoing/wordpress_draft_create_payload.dry_run.json",
+  "review_checklist": {
+    "title_confirmed": false,
+    "content_html_confirmed": false,
+    "status_is_draft": false,
+    "no_publish_no_future_no_pending": false,
+    "affiliate_tag_confirmed": false,
+    "content_url_confirmed": false,
+    "pr_notation_confirmed": false,
+    "category_confirmed": false,
+    "tag_confirmed": false,
+    "dry_run_true_confirmed": false,
+    "wordpress_post_must_not_be_called_confirmed": false
+  },
+  "decision": "APPROVE_SINGLE_DRAFT_CREATE_DRY_RUN_ONLY",
+  "reason": "（承認・却下・修正要求の理由を記入）",
+  "fix_requests": [],
+  "reviewed_at": "（ISO8601形式で記入 例: 2026-05-05T15:00:00+09:00）",
+  "approval_token": "APPROVE_MANUAL_UNLOCK_DRAFT_CREATE_ONLY",
+  "approval_token_expires_in_minutes": 30,
+  "wordpress_post_enabled": false,
+  "real_write_enabled": false,
+  "wordpress_write_executed": false,
+  "note": "APPROVE_SINGLE_DRAFT_CREATE_LIVE は使用禁止。dry-run payload の確認のみ。"
+}

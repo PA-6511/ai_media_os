@@ -1,0 +1,280 @@
+{
+  "_meta": {
+    "phase": "6-2",
+    "purpose": "receiver_validator_implementation_conditions",
+    "created_at": "2026-05-12",
+    "status": "DESIGN_ONLY",
+    "note": "Core側 receiver validator の実装条件を整理。実装対象ファイル候補は設計上の記載に留め、実装ファイル作成はしない。app/tests実装は行わない。"
+  },
+  "validator_implementation_scope": {
+    "validator_type": "receiver_validator",
+    "purpose": "Core側から受け取るデータの入力妥当性検証",
+    "permitted_validations": [
+      "observation",
+      "decision_package_reference",
+      "dry_run_validation_only",
+      "schema_conformance_check"
+    ],
+    "blocked_validations": [
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "design_only": true,
+    "implementation_not_yet_performed": true
+  },
+  "input_specification": {
+    "source": "Core AI side",
+    "input_type": "decision_package_handoff_payload",
+    "input_fields": {
+      "proposal": {
+        "type": "object",
+        "required": true,
+        "description": "observation情報とdecision packageの参照"
+      },
+      "decision_metadata": {
+        "type": "object",
+        "required": true,
+        "description": "決定判定情報（ただしBlockAI側では実行不可）"
+      },
+      "dry_run_mode": {
+        "type": "boolean",
+        "required": true,
+        "description": "dry_run実行の明示的指定"
+      },
+      "permission_level": {
+        "type": "string",
+        "required": true,
+        "enum": ["observation", "decision_package_reference_only"],
+        "description": "BlockAI側が許可される権限（実行権は与えない）"
+      },
+      "external_call_blocked": {
+        "type": "boolean",
+        "required": true,
+        "default": true,
+        "description": "外部API呼び出しはブロック"
+      },
+      "wordpress_blocked": {
+        "type": "boolean",
+        "required": true,
+        "default": true,
+        "description": "WordPress操作はブロック"
+      },
+      "auto_execution_blocked": {
+        "type": "boolean",
+        "required": true,
+        "default": true,
+        "description": "自動実行はブロック"
+      }
+    }
+  },
+  "output_specification": {
+    "output_type": "validation_result",
+    "valid_outcomes": [
+      "PASS_SCHEMA_CONFORMANCE",
+      "PASS_PERMISSION_CHECK",
+      "PASS_DRY_RUN_VALIDATION"
+    ],
+    "output_fields": {
+      "validation_status": {
+        "type": "string",
+        "values": ["PASS", "WARN", "REJECT"],
+        "description": "検証結果"
+      },
+      "conformance_errors": {
+        "type": "array",
+        "description": "スキーマ非適合エラー"
+      },
+      "permission_violations": {
+        "type": "array",
+        "description": "権限違反検出"
+      },
+      "warnings": {
+        "type": "array",
+        "description": "警告（実行許可前に人間確認必須）"
+      },
+      "dry_run_validation_result": {
+        "type": "object",
+        "description": "dry_run検証結果"
+      }
+    }
+  },
+  "rejection_conditions": {
+    "reject_if_schema_invalid": {
+      "condition": "入力JSONがスキーマに準拠しない",
+      "action": "REJECT",
+      "status": "REQUIRED"
+    },
+    "reject_if_external_api_call_enabled": {
+      "condition": "external_call_blocked=false",
+      "action": "REJECT",
+      "status": "REQUIRED"
+    },
+    "reject_if_wordpress_enabled": {
+      "condition": "wordpress_blocked=false",
+      "action": "REJECT",
+      "status": "REQUIRED"
+    },
+    "reject_if_auto_execution_enabled": {
+      "condition": "auto_execution_blocked=false",
+      "action": "REJECT",
+      "status": "REQUIRED"
+    },
+    "reject_if_permission_exceeds_observation": {
+      "condition": "permission_level != 'observation' AND != 'decision_package_reference_only'",
+      "action": "REJECT",
+      "status": "REQUIRED"
+    },
+    "reject_if_dry_run_false": {
+      "condition": "dry_run_mode=false",
+      "action": "REJECT",
+      "status": "REQUIRED"
+    },
+    "reject_if_auto_post_enabled": {
+      "condition": "auto_post flag detected",
+      "action": "REJECT",
+      "status": "REQUIRED"
+    },
+    "reject_if_auto_update_enabled": {
+      "condition": "auto_update flag detected",
+      "action": "REJECT",
+      "status": "REQUIRED"
+    },
+    "reject_if_auto_delete_enabled": {
+      "condition": "auto_delete flag detected",
+      "action": "REJECT",
+      "status": "REQUIRED"
+    },
+    "reject_if_auto_export_enabled": {
+      "condition": "auto_export flag detected",
+      "action": "REJECT",
+      "status": "REQUIRED"
+    },
+    "reject_if_production_execution": {
+      "condition": "production_execution flag detected",
+      "action": "REJECT",
+      "status": "REQUIRED"
+    }
+  },
+  "warning_conditions": {
+    "warn_if_unusual_observation_type": {
+      "condition": "observation typeが通常と異なる",
+      "action": "WARN",
+      "requires_human_review": true,
+      "status": "OPTIONAL"
+    },
+    "warn_if_large_decision_package": {
+      "condition": "decision packageサイズが閾値超過",
+      "action": "WARN",
+      "requires_human_review": true,
+      "status": "OPTIONAL"
+    },
+    "warn_if_nested_observation": {
+      "condition": "observationが深くネストされている",
+      "action": "WARN",
+      "requires_human_review": true,
+      "status": "OPTIONAL"
+    }
+  },
+  "pass_conditions": {
+    "pass_if_all_checks_succeed": {
+      "conditions": [
+        "schema conformance PASS",
+        "external_call_blocked=true",
+        "wordpress_blocked=true",
+        "auto_execution_blocked=true",
+        "dry_run_mode=true",
+        "permission_level in ['observation', 'decision_package_reference_only']",
+        "all auto_* flags disabled",
+        "no production_execution flag"
+      ],
+      "status": "PASS"
+    }
+  },
+  "human_review_gate": {
+    "requires_human_review_if": [
+      "ANY warning detected",
+      "schema conformance WARN",
+      "permission boundaries unclear",
+      "dry_run status ambiguous"
+    ],
+    "human_review_actions": [
+      "1. Examine warning details",
+      "2. Verify observation content safety",
+      "3. Confirm decision_package reference correctness",
+      "4. Approve or reject based on manual assessment",
+      "5. Log review decision"
+    ],
+    "human_review_is_mandatory": true,
+    "auto_approval_blocked": true
+  },
+  "implementation_file_candidates": {
+    "note": "以下は設計上の候補であり、実装ファイルはまだ作成しない",
+    "candidate_files": [
+      "app/core_receiver_validator.py (DESIGN_ONLY, NOT_IMPLEMENTED)",
+      "app/receiver_validation_rules.py (DESIGN_ONLY, NOT_IMPLEMENTED)",
+      "app/rejection_enforcer.py (DESIGN_ONLY, NOT_IMPLEMENTED)",
+      "app/human_review_gate.py (DESIGN_ONLY, NOT_IMPLEMENTED)"
+    ],
+    "test_candidates": [
+      "tests/test_core_receiver_validator.py (DESIGN_ONLY, NOT_IMPLEMENTED)",
+      "tests/test_receiver_validation_rules.py (DESIGN_ONLY, NOT_IMPLEMENTED)",
+      "tests/test_rejection_enforcer.py (DESIGN_ONLY, NOT_IMPLEMENTED)",
+      "tests/test_human_review_gate.py (DESIGN_ONLY, NOT_IMPLEMENTED)"
+    ]
+  },
+  "safety_audit": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "external_connection_allowed": false,
+    "wordpress_operation_allowed": false,
+    "cron_registration_allowed": false,
+    "auto_post_allowed": false,
+    "auto_update_allowed": false,
+    "auto_delete_allowed": false,
+    "auto_export_allowed": false,
+    "production_execution_allowed": false,
+    "dry_run_validation_only": true,
+    "observation_only": true,
+    "decision_package_reference_only": true
+  },
+  "judgment": {
+    "phase6_2_implementation_conditions_status": "PASS",
+    "design_completeness": "COMPLETE",
+    "input_spec_clear": true,
+    "output_spec_clear": true,
+    "rejection_conditions_clear": true,
+    "warning_conditions_clear": true,
+    "pass_conditions_clear": true,
+    "human_review_gate_clear": true,
+    "implementation_permitted": false,
+    "app_implementation_added": false,
+    "tests_implementation_added": false,
+    "production_status": "NO_GO",
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "allowed_state": ["OBSERVE", "DRY_RUN", "HUMAN_REVIEW_REQUIRED"],
+    "blocked": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "next_phase": "phase6_3_implementation_go_no_go_gate_design"
+  }
+}

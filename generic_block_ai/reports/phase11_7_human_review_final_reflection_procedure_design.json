@@ -1,0 +1,73 @@
+{
+  "_meta": {
+    "phase": "11-7",
+    "phase_name": "human review 実記入反映の最終手順設計",
+    "version": "1.0",
+    "created_date": "2026-05-12",
+    "status": "PASS_DESIGN_ONLY",
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only",
+    "description": "human review 実記入内容を関連レポートへ最終反映する順序と停止点を固定する。"
+  },
+  "references": [
+    "generic_block_ai/reports/phase11_1_human_review_completed_record_validation.json",
+    "generic_block_ai/reports/phase11_4_human_review_post_entry_defect_detection_rules_design.json",
+    "generic_block_ai/reports/phase11_5_integrated_decision_go_double_check_rules_design.json"
+  ],
+  "reflection_sequence": [
+    {
+      "step_id": "FR-01",
+      "target": "phase10_1 review record",
+      "action": "実記入済みの review 情報を確認し、欠落があれば反映を停止する"
+    },
+    {
+      "step_id": "FR-02",
+      "target": "phase11_1 actual_validation_result",
+      "action": "実記入版の検証結果を更新する"
+    },
+    {
+      "step_id": "FR-03",
+      "target": "phase11_4 detection_outcome_template",
+      "action": "不備検出結果を反映する"
+    },
+    {
+      "step_id": "FR-04",
+      "target": "phase11_2 and phase11_5",
+      "action": "更新可否と二重確認準備状態を再評価する"
+    }
+  ],
+  "hard_stops": [
+    "signature missing",
+    "reviewer_role invalid",
+    "blocking defects found",
+    "production_status changed from NO_GO"
+  ],
+  "current_state": {
+    "reflection_ready": true,
+    "reflection_executed": false,
+    "app_implementation_status": "NO_GO",
+    "tests_implementation_status": "NO_GO"
+  },
+  "blocked_actions": [
+    "core_ai_real_send",
+    "external_api_call",
+    "wordpress_operation",
+    "cron_registration",
+    "auto_execute",
+    "auto_post",
+    "auto_update",
+    "auto_delete",
+    "auto_export",
+    "production_execution"
+  ],
+  "phase_decision": {
+    "phase11_7_status": "PASS_DESIGN_ONLY",
+    "app_implementation_status": "NO_GO",
+    "tests_implementation_status": "NO_GO",
+    "note": "最終反映手順の設計のみ。実装開始許可は含まない。"
+  }
+}

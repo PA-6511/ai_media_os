@@ -1,0 +1,60 @@
+{
+  "_meta": {
+    "phase": "13-3",
+    "phase_name": "integrated_decision 更新前の最終受入ゲート設計",
+    "version": "1.0",
+    "created_date": "2026-05-12",
+    "status": "PASS_DESIGN_ONLY",
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only",
+    "description": "human review 実入力の受入後、integrated_decision を更新する前に通過すべき最終受入ゲートを設計する。"
+  },
+  "references": [
+    "generic_block_ai/reports/phase12_2_integrated_decision_go_update_final_decision.json",
+    "generic_block_ai/reports/phase13_1_human_review_actual_input_acceptance_format_spec.json",
+    "generic_block_ai/reports/phase13_2_human_review_input_validation_checklist_fixed.json"
+  ],
+  "final_acceptance_gate": {
+    "required_conditions": [
+      "acceptance_template.input_accepted == true",
+      "checklist_result_template.all_checks_passed == true",
+      "production_status == NO_GO",
+      "blocked_actions remain prohibited"
+    ],
+    "explicit_no_go_conditions": [
+      "format_locked == false",
+      "failed_checks is non-empty",
+      "forbidden_mutations detected",
+      "receiver validator permission is still NOT_EFFECTIVE"
+    ],
+    "gate_default": "NO_GO"
+  },
+  "gate_result_template": {
+    "final_acceptance_passed": false,
+    "integrated_decision_update_allowed": false,
+    "result": "PENDING",
+    "reason": "実入力受入と検証完了前のため、最終受入ゲートは未通過。"
+  },
+  "blocked_actions": [
+    "core_ai_real_send",
+    "external_api_call",
+    "wordpress_operation",
+    "cron_registration",
+    "auto_execute",
+    "auto_post",
+    "auto_update",
+    "auto_delete",
+    "auto_export",
+    "production_execution"
+  ],
+  "phase_decision": {
+    "phase13_3_status": "PASS_DESIGN_ONLY",
+    "app_implementation_status": "NO_GO",
+    "tests_implementation_status": "NO_GO",
+    "note": "最終受入ゲートの設計のみ。integrated_decision 更新も実装開始もまだ許可しない。"
+  }
+}

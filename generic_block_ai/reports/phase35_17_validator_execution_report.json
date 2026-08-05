@@ -1,0 +1,35 @@
+{
+  "_meta": {
+    "phase": "3.5-17",
+    "purpose": "validator_execution_report",
+    "generated_at": "2026-05-11T15:13:08.074494+00:00",
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "auto_execute_allowed": false,
+    "requires_human_approval": true
+  },
+  "overall_result": "PASS",
+  "validations": [
+    {
+      "target": "proposal",
+      "file": "reports/phase35_proposal_package_template.json",
+      "result": "PASS",
+      "failed_checks": [],
+      "warnings": []
+    },
+    {
+      "target": "review_queue",
+      "file": "reports/phase35_review_queue_template.json",
+      "result": "PASS",
+      "failed_checks": [],
+      "warnings": []
+    },
+    {
+      "target": "evidence_index",
+      "file": "evidence/phase35_evidence_index_template.json",
+      "result": "PASS",
+      "failed_checks": [],
+      "warnings": []
+    }
+  ]
+}

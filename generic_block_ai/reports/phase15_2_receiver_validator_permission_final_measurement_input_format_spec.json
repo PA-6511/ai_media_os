@@ -1,0 +1,67 @@
+{
+  "_meta": {
+    "phase": "15-2",
+    "phase_name": "receiver validator 実装許可の最終実測入力フォーマット固定",
+    "version": "1.0",
+    "created_date": "2026-05-12",
+    "status": "PASS_DESIGN_ONLY",
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only",
+    "description": "receiver validator 実装許可の最終実測確定前に、入力フォーマットと必須証跡を固定する。"
+  },
+  "references": [
+    "generic_block_ai/reports/phase14_8_receiver_validator_permission_candidate_final_effective_feasibility_report_design.json",
+    "generic_block_ai/reports/phase12_3_receiver_validator_permission_effective_or_no_go_maintenance_declaration.json",
+    "generic_block_ai/reports/phase14_6_go_candidate_final_stop_conditions_design.json"
+  ],
+  "accepted_input_format": {
+    "required_fields": [
+      "receiver_validator_permission_candidate",
+      "effective_feasibility",
+      "feasibility_basis",
+      "all_candidate_evidence_locked",
+      "stop_template",
+      "production_status"
+    ],
+    "constraints": {
+      "receiver_validator_permission_candidate": "EFFECTIVE or NOT_EFFECTIVE",
+      "effective_feasibility": "PASS or FAIL or PENDING",
+      "feasibility_basis": "non-empty array when candidate is EFFECTIVE",
+      "all_candidate_evidence_locked": "true for EFFECTIVE candidate",
+      "production_status": "NO_GO"
+    },
+    "forbidden_mutations": [
+      "operation_mode change",
+      "execution change",
+      "auto_execute_allowed change",
+      "blocked_actions removal"
+    ]
+  },
+  "input_template": {
+    "format_locked": true,
+    "input_ready": false,
+    "reason": "最終実測入力の実データ未反映のため未準備。"
+  },
+  "blocked_actions": [
+    "core_ai_real_send",
+    "external_api_call",
+    "wordpress_operation",
+    "cron_registration",
+    "auto_execute",
+    "auto_post",
+    "auto_update",
+    "auto_delete",
+    "auto_export",
+    "production_execution"
+  ],
+  "phase_decision": {
+    "phase15_2_status": "PASS_DESIGN_ONLY",
+    "app_implementation_status": "NO_GO",
+    "tests_implementation_status": "NO_GO",
+    "note": "receiver validator 実装許可の最終実測入力フォーマット設計のみ。実装開始は含まない。"
+  }
+}

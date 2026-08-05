@@ -1,0 +1,41 @@
+{
+  "schema_version": "ir26_submission_release_candidate_marker_v1",
+  "phase": "IR26",
+  "snapshot_created_at": "2026-05-23T15:51:48.424004+00:00",
+  "source_task_id": "ir26_live_trial",
+  "ir25": {
+    "decision": "ALLOW",
+    "decision_reasons": [
+      "no_diff_detected"
+    ],
+    "summary": {
+      "decision": "ALLOW",
+      "reason_count": 1,
+      "failed_check_count": 0,
+      "warning_count": 0,
+      "bundle_added_count": 0,
+      "bundle_removed_count": 0,
+      "bundle_sha_changed_count": 0,
+      "profile_added_count": 0,
+      "profile_removed_count": 0,
+      "profile_selected_added_count": 0,
+      "profile_selected_removed_count": 0,
+      "profile_sha_changed_count": 0
+    },
+    "policy": {
+      "allowed_addition_patterns": [
+        "generic_block_ai/reports/ir19_policy_drift_detector_report_*.json"
+      ]
+    },
+    "artifacts": {
+      "ir24_diff_report": "generic_block_ai/reports/ir24_submission_version_diff_audit_report_ir24_live_trial.json"
+    }
+  },
+  "safeguards": {
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "production_release": false
+  }
+}

@@ -1,0 +1,302 @@
+{
+  "schema_version": "ir65_phase_61_65_completion_bundle_v1",
+  "phase": "IR65",
+  "generated_at": "2026-05-24T12:59:13.133464+00:00",
+  "source_task_id": "ir61_65_live_trial",
+  "ir61_result": {
+    "schema_version": "ir61_post_archive_confirmation_logger_v1",
+    "phase": "IR61",
+    "generated_at": "2026-05-24T12:59:13.132272+00:00",
+    "source_task_id": "ir61_65_live_trial",
+    "validation_result": "PASS",
+    "validation_failed_checks": [],
+    "validation_warnings": [],
+    "confirmation_entry": {
+      "confirmation_id": "confirm_ir61_65_live_trial_20260524T125913Z",
+      "confirmed_at": "2026-05-24T12:59:13.132163+00:00",
+      "source_phase": "IR60",
+      "source_task_id": "ir61_65_live_trial",
+      "final_decision_confirmed": "READY_FOR_DRY_RUN_HANDOFF_ONLY",
+      "completion_table_snapshot": [
+        {
+          "phase": "IR56",
+          "content": "Post-Bundle Audit Trail Recorder",
+          "focused": "PASS",
+          "adjacent": "PASS",
+          "scoped": "PASS",
+          "live": "PASS",
+          "judgement": "完了"
+        },
+        {
+          "phase": "IR57",
+          "content": "Dry-Run Finalization Verifier",
+          "focused": "PASS",
+          "adjacent": "PASS",
+          "scoped": "PASS",
+          "live": "PASS",
+          "judgement": "完了"
+        },
+        {
+          "phase": "IR58",
+          "content": "Pre-Release Archive Builder",
+          "focused": "PASS",
+          "adjacent": "PASS",
+          "scoped": "PASS",
+          "live": "PASS",
+          "judgement": "完了"
+        },
+        {
+          "phase": "IR59",
+          "content": "Archive Integrity Gate",
+          "focused": "PASS",
+          "adjacent": "PASS",
+          "scoped": "PASS",
+          "live": "PASS",
+          "judgement": "完了"
+        },
+        {
+          "phase": "IR60",
+          "content": "Phase 56-60 Completion Bundle",
+          "focused": "PASS",
+          "adjacent": "PASS",
+          "scoped": "PASS",
+          "live": "PASS",
+          "judgement": "完了"
+        }
+      ],
+      "live_summary_snapshot": {
+        "ir56": "PASS",
+        "ir57": "PASS",
+        "ir58": "PASS",
+        "ir59": "PASS",
+        "ir60": "PASS"
+      },
+      "safety_gate_snapshot": {
+        "dry_run": "maintained",
+        "OBSERVE": "maintained",
+        "submission_execution_blocked": true,
+        "execution_policy_execute": false,
+        "external_write_executed": false,
+        "network_transmission_executed": false,
+        "production_release": false,
+        "GitHub_push": "未実行"
+      },
+      "retention_policy": "dry_run_artifacts_only",
+      "long_term_retention_blocked_until_live": true
+    },
+    "confirmation_hash": "04f69d13aa6d5d281d19d5474a59777a1aafc03aa5483c61204f2f41b0fa9034",
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "ir62_result": {
+    "schema_version": "ir62_dry_run_cycle_re_verification_auditor_v1",
+    "phase": "IR62",
+    "generated_at": "2026-05-24T12:59:13.133054+00:00",
+    "source_task_id": "ir61_65_live_trial",
+    "validation_result": "PASS",
+    "validation_failed_checks": [],
+    "validation_warnings": [],
+    "re_verification_result": "CYCLE_VERIFIED",
+    "ir60_phases_found": [
+      "IR56",
+      "IR57",
+      "IR58",
+      "IR59",
+      "IR60"
+    ],
+    "ir60_phases_missing": [],
+    "incomplete_phases": [],
+    "ir60_final_decision": "READY_FOR_DRY_RUN_HANDOFF_ONLY",
+    "hash_re_verification": {
+      "provided_hash": "04f69d13aa6d5d281d19d5474a59777a1aafc03aa5483c61204f2f41b0fa9034",
+      "recalculated_hash": "04f69d13aa6d5d281d19d5474a59777a1aafc03aa5483c61204f2f41b0fa9034",
+      "hash_match": true
+    },
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "ir63_result": {
+    "schema_version": "ir63_final_handoff_package_assembler_v1",
+    "phase": "IR63",
+    "generated_at": "2026-05-24T12:59:13.133223+00:00",
+    "source_task_id": "ir61_65_live_trial",
+    "validation_result": "PASS",
+    "validation_failed_checks": [],
+    "validation_warnings": [],
+    "handoff_package": {
+      "handoff_package_id": "handoff_ir61_65_live_trial_20260524T125913Z",
+      "source_task_id": "ir61_65_live_trial",
+      "assembled_at": "2026-05-24T12:59:13.133195+00:00",
+      "covered_phases": [
+        "IR51",
+        "IR52",
+        "IR53",
+        "IR54",
+        "IR55",
+        "IR56",
+        "IR57",
+        "IR58",
+        "IR59",
+        "IR60"
+      ],
+      "ir60_completion_bundle_ref": "generic_block_ai/reports/ir56_60/ir60_completion_bundle.json",
+      "ir61_confirmation_ref": "confirm_ir61_65_live_trial_20260524T125913Z",
+      "ir62_re_verification_result": "CYCLE_VERIFIED",
+      "safety_gate_snapshot": {
+        "dry_run": "maintained",
+        "OBSERVE": "maintained",
+        "submission_execution_blocked": true,
+        "execution_policy_execute": false,
+        "external_write_executed": false,
+        "network_transmission_executed": false,
+        "production_release": false,
+        "GitHub_push": "未実行"
+      },
+      "assembly_execution_blocked": true,
+      "external_distribution_blocked": true,
+      "retention_scope": "dry_run_only"
+    },
+    "handoff_package_hash": "ac937ddd5ac78cc50824d1373311e457365e1c1b9fa61e403dfa2f25f31532da",
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "ir64_result": {
+    "schema_version": "ir64_handoff_package_release_gate_v1",
+    "phase": "IR64",
+    "generated_at": "2026-05-24T12:59:13.133341+00:00",
+    "source_task_id": "ir61_65_live_trial",
+    "handoff_release_gate_decision": "READY_FOR_DRY_RUN_HANDOFF_ONLY",
+    "gate_action": "Handoff package integrity confirmed. Ready for dry-run handoff only.",
+    "validation_result": "PASS",
+    "validation_failed_checks": [],
+    "hash_verification": {
+      "provided_handoff_hash": "ac937ddd5ac78cc50824d1373311e457365e1c1b9fa61e403dfa2f25f31532da",
+      "recalculated_handoff_hash": "ac937ddd5ac78cc50824d1373311e457365e1c1b9fa61e403dfa2f25f31532da",
+      "hash_match": true
+    },
+    "tamper_detection_summary": "NO_TAMPER",
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "test_summary": {
+    "focused": {
+      "passed": 6,
+      "failed": 0
+    },
+    "adjacent": {
+      "passed": 12,
+      "failed": 0
+    },
+    "scoped": {
+      "passed": 374,
+      "failed": 0
+    }
+  },
+  "live_summary": {
+    "ir61": "PASS",
+    "ir62": "PASS",
+    "ir63": "PASS",
+    "ir64": "PASS",
+    "ir65": "PASS"
+  },
+  "safety_gate_summary": {
+    "dry_run": "maintained",
+    "OBSERVE": "maintained",
+    "submission_execution_blocked": true,
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "network_transmission_executed": false,
+    "production_release": false,
+    "GitHub_push": "未実行"
+  },
+  "completion_table": [
+    {
+      "phase": "IR61",
+      "content": "Post-Archive Confirmation Logger",
+      "focused": "PASS",
+      "adjacent": "PASS",
+      "scoped": "PASS",
+      "live": "PASS",
+      "judgement": "完了"
+    },
+    {
+      "phase": "IR62",
+      "content": "Dry-Run Cycle Re-Verification Auditor",
+      "focused": "PASS",
+      "adjacent": "PASS",
+      "scoped": "PASS",
+      "live": "PASS",
+      "judgement": "完了"
+    },
+    {
+      "phase": "IR63",
+      "content": "Final Handoff Package Assembler",
+      "focused": "PASS",
+      "adjacent": "PASS",
+      "scoped": "PASS",
+      "live": "PASS",
+      "judgement": "完了"
+    },
+    {
+      "phase": "IR64",
+      "content": "Handoff Package Release Gate",
+      "focused": "PASS",
+      "adjacent": "PASS",
+      "scoped": "PASS",
+      "live": "PASS",
+      "judgement": "完了"
+    },
+    {
+      "phase": "IR65",
+      "content": "Phase 61-65 Completion Bundle",
+      "focused": "PASS",
+      "adjacent": "PASS",
+      "scoped": "PASS",
+      "live": "PASS",
+      "judgement": "完了"
+    }
+  ],
+  "final_decision": "READY_FOR_DRY_RUN_HANDOFF_ONLY",
+  "artifacts": {
+    "ir61_post_archive_confirmation_log": "generic_block_ai/reports/ir61_65/ir61_post_archive_confirmation_log.json",
+    "ir62_dry_run_cycle_re_verification_report": "generic_block_ai/reports/ir61_65/ir62_dry_run_cycle_re_verification_report.json",
+    "ir63_final_handoff_package": "generic_block_ai/reports/ir61_65/ir63_final_handoff_package.json",
+    "ir64_handoff_release_gate_report": "generic_block_ai/reports/ir61_65/ir64_handoff_release_gate_report.json",
+    "ir65_completion_bundle": "generic_block_ai/reports/ir61_65/ir65_completion_bundle.json",
+    "ir61_65_live_status": "generic_block_ai/reports/ir61_65/ir61_65_live_status.md",
+    "ir61_65_completion_table": "generic_block_ai/reports/ir61_65/ir61_65_completion_table.md"
+  },
+  "external_write_executed": false
+}

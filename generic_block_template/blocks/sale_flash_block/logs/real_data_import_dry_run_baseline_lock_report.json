@@ -1,0 +1,36 @@
+{
+  "status": "PASS",
+  "phase": "SFB-11C",
+  "generated_at": "2026-06-14T04:42:57.882673+00:00",
+  "block_name": "sale_flash_block",
+  "baseline_name": "sale_flash_block_real_data_import_dry_run_locked",
+  "baseline_locked": true,
+  "production_status": "NO_GO",
+  "mode": "DRY_RUN",
+  "checks": {
+    "required_reports_present": true,
+    "missing_reports": [],
+    "phase_statuses": {
+      "sfb11_real_data_import": "PASS",
+      "sfb11b_real_data_evidence": "PASS",
+      "sfb10b_pre_production_baseline_lock": "PASS"
+    },
+    "import_status_ok": true,
+    "evidence_status_ok": true,
+    "sfb10b_baseline_locked": true,
+    "no_go_maintained": true,
+    "fixture_changed": true,
+    "fixture_changed_ok": true,
+    "wordpress_write_executed": false
+  },
+  "summary": {
+    "validated_range": "SFB-11 to SFB-11B with SFB-1 to SFB-10B evidence chain",
+    "stop_point": "real-data DRY_RUN locked, production write boundary remains closed",
+    "next_recommended_phase": "HOLD"
+  },
+  "source_reports": {
+    "sfb11_real_data_import": "/home/deploy/ai_media_os/generic_block_template/blocks/sale_flash_block/logs/real_sale_csv_import_report.json",
+    "sfb11b_real_data_evidence": "/home/deploy/ai_media_os/generic_block_template/blocks/sale_flash_block/logs/real_data_import_dry_run_evidence.json",
+    "sfb10b_pre_production_baseline_lock": "/home/deploy/ai_media_os/generic_block_template/blocks/sale_flash_block/logs/sale_flash_block_v1_pre_production_baseline_lock_report.json"
+  }
+}

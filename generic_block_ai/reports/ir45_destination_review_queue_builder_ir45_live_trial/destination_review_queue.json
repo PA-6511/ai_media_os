@@ -1,0 +1,134 @@
+{
+  "schema_version": "ir45_destination_review_queue_builder_v1",
+  "phase": "IR45",
+  "generated_at": "2026-05-24T03:17:44.880837+00:00",
+  "source_task_id": "ir45_live_trial",
+  "release_candidate_id": "rc_20260523T155148Z_ir26_live_trial_b940393b490b",
+  "final_submission_decision": "READY_FOR_SUBMISSION_SUMMARY",
+  "overall_approval_decision": "APPROVE_DRY_RUN",
+  "overall_submission_gate_decision": "READY_FOR_REVIEW",
+  "overall_queue_action": "Build review queue entries and hand off to destination reviewers.",
+  "validation_result": "PASS",
+  "validation_failed_checks": [],
+  "validation_warnings": [],
+  "summary": {
+    "destination_count": 3,
+    "queued_for_review_count": 3,
+    "hold_for_human_review_count": 0,
+    "rejected_no_queue_count": 0,
+    "aborted_no_queue_count": 0,
+    "review_item_count": 6
+  },
+  "destination_review_queue": [
+    {
+      "destination": "compliance_archive",
+      "submission_gate_decision": "READY_FOR_REVIEW",
+      "review_queue_status": "QUEUED_FOR_REVIEW",
+      "review_items": [
+        {
+          "item_id": "compliance_archive-R1",
+          "title": "Verify hash manifest and summary link consistency",
+          "owner_role": "destination_reviewer",
+          "required": true
+        },
+        {
+          "item_id": "compliance_archive-R2",
+          "title": "Confirm evidence digest and bundle hash correspondence",
+          "owner_role": "integrity_reviewer",
+          "required": true
+        }
+      ],
+      "owner_checklist": [
+        "Confirm hash manifest path is reachable.",
+        "Confirm review summary reflects gate decision.",
+        "Confirm evidence digest and bundle hash references are attached."
+      ],
+      "evidence_reference_links": {
+        "hash_manifest": "generic_block_ai/reports/ir42_destination_human_event_chain_evidence_bundle_compliance_archive_ir42_live_trial/destination_human_event_chain_hash_manifest.json",
+        "review_summary": "generic_block_ai/reports/ir42_destination_human_event_chain_evidence_bundle_compliance_archive_ir42_live_trial/destination_human_event_chain_review_summary.md",
+        "gate_report": "generic_block_ai/reports/ir44_destination_evidence_bundle_submission_gate_report_ir44_live_trial.json"
+      },
+      "gate_reasons": [
+        "bundle verification checks passed"
+      ]
+    },
+    {
+      "destination": "internal_review_board",
+      "submission_gate_decision": "READY_FOR_REVIEW",
+      "review_queue_status": "QUEUED_FOR_REVIEW",
+      "review_items": [
+        {
+          "item_id": "internal_review_board-R1",
+          "title": "Verify hash manifest and summary link consistency",
+          "owner_role": "destination_reviewer",
+          "required": true
+        },
+        {
+          "item_id": "internal_review_board-R2",
+          "title": "Confirm evidence digest and bundle hash correspondence",
+          "owner_role": "integrity_reviewer",
+          "required": true
+        }
+      ],
+      "owner_checklist": [
+        "Confirm hash manifest path is reachable.",
+        "Confirm review summary reflects gate decision.",
+        "Confirm evidence digest and bundle hash references are attached."
+      ],
+      "evidence_reference_links": {
+        "hash_manifest": "generic_block_ai/reports/ir42_destination_human_event_chain_evidence_bundle_internal_review_board_ir42_live_trial/destination_human_event_chain_hash_manifest.json",
+        "review_summary": "generic_block_ai/reports/ir42_destination_human_event_chain_evidence_bundle_internal_review_board_ir42_live_trial/destination_human_event_chain_review_summary.md",
+        "gate_report": "generic_block_ai/reports/ir44_destination_evidence_bundle_submission_gate_report_ir44_live_trial.json"
+      },
+      "gate_reasons": [
+        "bundle verification checks passed"
+      ]
+    },
+    {
+      "destination": "regulatory_audit",
+      "submission_gate_decision": "READY_FOR_REVIEW",
+      "review_queue_status": "QUEUED_FOR_REVIEW",
+      "review_items": [
+        {
+          "item_id": "regulatory_audit-R1",
+          "title": "Verify hash manifest and summary link consistency",
+          "owner_role": "destination_reviewer",
+          "required": true
+        },
+        {
+          "item_id": "regulatory_audit-R2",
+          "title": "Confirm evidence digest and bundle hash correspondence",
+          "owner_role": "integrity_reviewer",
+          "required": true
+        }
+      ],
+      "owner_checklist": [
+        "Confirm hash manifest path is reachable.",
+        "Confirm review summary reflects gate decision.",
+        "Confirm evidence digest and bundle hash references are attached."
+      ],
+      "evidence_reference_links": {
+        "hash_manifest": "generic_block_ai/reports/ir42_destination_human_event_chain_evidence_bundle_regulatory_audit_ir42_live_trial/destination_human_event_chain_hash_manifest.json",
+        "review_summary": "generic_block_ai/reports/ir42_destination_human_event_chain_evidence_bundle_regulatory_audit_ir42_live_trial/destination_human_event_chain_review_summary.md",
+        "gate_report": "generic_block_ai/reports/ir44_destination_evidence_bundle_submission_gate_report_ir44_live_trial.json"
+      },
+      "gate_reasons": [
+        "bundle verification checks passed"
+      ]
+    }
+  ],
+  "artifacts": {
+    "queue_root": "generic_block_ai/reports/ir45_destination_review_queue_builder_ir45_live_trial",
+    "destination_review_queue": "generic_block_ai/reports/ir45_destination_review_queue_builder_ir45_live_trial/destination_review_queue.json",
+    "destination_review_queue_summary": "generic_block_ai/reports/ir45_destination_review_queue_builder_ir45_live_trial/destination_review_queue_summary.md",
+    "completion_report": "reports/implementation_restart_phase45_completion_report.json"
+  },
+  "safeguards": {
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "network_transmission_executed": false,
+    "production_release": false
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "_meta": {
+    "phase": "4-7",
+    "purpose": "core_handoff_dry_run_receiver_template",
+    "created_at": "2026-05-12",
+    "status": "TEMPLATE_ONLY",
+    "note": "Core AI 側が decision package handoff を dry-run 受信する想定の受け口雛形。実受信・実送信・外部接続は行わない。"
+  },
+  "receiver_contract": {
+    "component": "core_ai",
+    "receiver_mode": "dry_run_receive_only",
+    "operation_mode": "OBSERVE",
+    "connection_test_mode": true,
+    "connection_scope": "decision_package_handoff_only",
+    "execution": "dry_run",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "external_api_call": false,
+    "transport": "none"
+  },
+  "accepted_input": {
+    "artifact_type": "decision_package",
+    "source_component": "generic_block_ai",
+    "required_fields": [
+      "handoff_id",
+      "created_at",
+      "decision_package_ref",
+      "blocked_actions",
+      "required_review_state",
+      "expected_core_ai_behavior"
+    ],
+    "max_actionable_permissions": "none"
+  },
+  "receiver_behavior": {
+    "allowed_actions": [
+      "parse_input",
+      "validate_schema",
+      "return_assessment_stub"
+    ],
+    "blocked_actions": [
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "response_mode": "observation_only"
+  },
+  "result": "PASS_DRY_RUN_ONLY"
+}

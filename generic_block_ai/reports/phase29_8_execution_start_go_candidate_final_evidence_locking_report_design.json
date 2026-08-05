@@ -1,0 +1,89 @@
+{
+  "phase_id": "29-8",
+  "phase_name": "Execution Start GO Candidate Final Evidence Locking Report Design",
+  "phase_japanese_name": "execution_start_go候補の最終証跡固定レポート設計",
+  "purpose": "Design final evidence-locking report for execution_start_go candidate before any runtime execution authorization.",
+  "layer": "execution_start_go_actual_measurement_judgment_layer",
+  "design_category": "reports_only",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "operation_transition_go_authorization": "NOT_GRANTED",
+    "production_reflection_go_authorization": "NOT_GRANTED",
+    "execution_start_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "phase_29_8_scope": {
+    "scope_1_input_contract": {
+      "scope_id": "INPUT_CONTRACT",
+      "required_inputs": {
+        "phase29_7_integrated_judgment_status": "GO_CANDIDATE | NO_GO"
+      }
+    },
+    "scope_2_final_locking_rules": {
+      "scope_id": "FINAL_LOCKING_RULES",
+      "rules": {
+        "rule_PFL1": "If integrated_judgment = GO_CANDIDATE, canonicalize full execution-start candidate payload",
+        "rule_PFL2": "Compute SHA-256 hash of execution-start candidate evidence",
+        "rule_PFL3": "Sign hash with authority signature and timestamp",
+        "rule_PFL4": "Append signed record to immutable audit trail",
+        "rule_PFL5": "Perform roundtrip hash/signature verification",
+        "rule_PFL6": "If verification fails, revert to NO_GO and lock_status = LOCK_FAILED",
+        "rule_PFL7": "If integrated_judgment = NO_GO, lock as NO_GO and do not require GO-specific locking"
+      }
+    },
+    "scope_3_report_structure": {
+      "scope_id": "REPORT_STRUCTURE",
+      "sections": {
+        "section_1_header": {
+          "report_id": "PHASE29_8_FINAL_EVIDENCE_LOCK_<UTC_TIMESTAMP>",
+          "report_type": "execution_start_go_candidate_final_evidence_locking",
+          "generated_at_utc": "RFC3339",
+          "generated_by": "authority_identifier"
+        },
+        "section_2_judgment_input": {
+          "integrated_judgment": "GO_CANDIDATE | NO_GO",
+          "phase29_7_integrated_judgment": "GO_CANDIDATE | NO_GO"
+        },
+        "section_3_locking_process": {
+          "canonicalization_status": "PASS | FAIL",
+          "hash_computation_status": "PASS | FAIL",
+          "signature_status": "VALID | INVALID",
+          "audit_append_status": "PASS | FAIL",
+          "verification_status": "PASS | FAIL"
+        },
+        "section_4_final_lock_determination": {
+          "lock_status": "LOCK_CONFIRMED | LOCK_FAILED",
+          "final_execution_start_status": "GO | NO_GO",
+          "final_execution_start_go_authorization": "GRANTED | NOT_GRANTED"
+        }
+      }
+    }
+  },
+  "phase_29_8_governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "state_invariants": {
+      "app_implementation_status": "NO_GO",
+      "tests_implementation_status": "NO_GO",
+      "production_status": "NO_GO",
+      "operation_transition_go_authorization": "NOT_GRANTED",
+      "production_reflection_go_authorization": "NOT_GRANTED",
+      "execution_start_go_authorization": "NOT_GRANTED",
+      "changed_area": "reports only"
+    }
+  }
+}

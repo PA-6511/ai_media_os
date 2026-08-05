@@ -1,0 +1,84 @@
+# Phase 3.5-6 Decision Package Template
+
+## decision_id
+
+GENERIC_BLOCK_AI_PHASE35_DECISION_PACKAGE_TEMPLATE
+
+## block_id
+
+generic_block_ai
+
+## phase
+
+Phase 3.5-6
+
+## current_status
+
+TEMPLATE_ONLY
+
+## Safety Summary
+
+| Item | Value |
+|---|---|
+| operation_mode | OBSERVE |
+| observe_only | true |
+| execution | dry_run |
+| requires_human_approval | true |
+| auto_execute_allowed | false |
+| dangerous_operations | blocked |
+| production_status | NO_GO |
+
+## required_human_review
+
+true
+
+## recommended_action
+
+Use this package only for human-reviewed dry-run proposal decisions.
+
+## blocked_actions
+
+- external_api_call
+- wordpress_operation
+- cron_registration
+- auto_post
+- auto_update
+- auto_delete
+- auto_export
+- production_execution
+- delete_operation
+
+## maintain_candidates
+
+- block_manifest.json
+- config/policy.json
+- app/safety_guard.py
+- app/block_runner.py
+
+## review_candidates
+
+- notify_slack capability declaration
+- collect_data capability declaration
+- future external-output design
+
+## isolate_candidates
+
+None.
+
+## evidence_links
+
+- generic_block_ai/reports/phase35_existing_audit_report.json
+- generic_block_ai/reports/phase35_pass_report.json
+
+## final_judgment
+
+Allowed values:
+
+- APPROVE_DRY_RUN_ONLY
+- REQUEST_FIX
+- REJECT
+- ABORT
+
+Default:
+
+REQUEST_FIX

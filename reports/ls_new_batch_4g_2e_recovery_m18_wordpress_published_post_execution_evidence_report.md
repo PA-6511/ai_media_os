@@ -1,0 +1,25 @@
+# LS-NEW-BATCH-4G-2E-RECOVERY-M18
+
+- Status: `PASS_WORDPRESS_PUBLISHED_POST_EXECUTION_EVIDENCE_VERIFIED_GET_ONLY_NO_WRITE`
+- Decision: `WORDPRESS_POST_192_PUBLISHED_STATE_VERIFIED_READY_FOR_POST_PUBLICATION_HUMAN_REVIEW`
+- Error code: `None`
+- WordPress post ID: `192`
+- Post ID verified: `true`
+- WordPress post status: `publish`
+- Published status verified: `true`
+- Title exact match: `true`
+- Content exact match: `true`
+- Category ID 10 verified: `true`
+- WordPress HTTP status: `200`
+- WordPress GET request count: `1`
+- WordPress non-GET request count: `0`
+- Automatic retry performed: `false`
+- M17 authorization consumed: `true`
+- Authorization consumed in M18: `false`
+- Authorization reused in M18: `false`
+- WordPress write performed: `false`
+- WordPress update performed: `false`
+- WordPress republish performed: `false`
+- WordPress delete performed: `false`
+- Production status: `NO_GO`
+- Ready for post-publication human review: `true`

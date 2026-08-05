@@ -1,0 +1,82 @@
+{
+  "phase_id": "28-3",
+  "phase_name": "Production Reflection GO and Execution Start GO Boundary Separation Design",
+  "phase_japanese_name": "本番反映GOと実行開始GOの境界分離設計",
+  "purpose": "Design explicit gate separation between production_reflection GO and execution_start GO to prevent implicit execution authorization.",
+  "layer": "pre_production_reflection_final_sealing_layer",
+  "design_category": "reports_only",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "operation_transition_go_authorization": "NOT_GRANTED",
+    "production_reflection_go_authorization": "NOT_GRANTED",
+    "execution_start_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "phase_28_3_scope": {
+    "scope_1_input_contract": {
+      "scope_id": "INPUT_CONTRACT",
+      "required_inputs": {
+        "phase28_2_final_sealing_status": "PASS_DESIGN_ONLY"
+      }
+    },
+    "scope_2_boundary_separation_rules": {
+      "scope_id": "BOUNDARY_SEPARATION_RULES",
+      "rules": {
+        "rule_P28B1": "production_reflection_go_authorization and execution_start_go_authorization are separate gates",
+        "rule_P28B2": "Even if production_reflection_go_authorization is granted in future measurement, execution_start_go_authorization remains NOT_GRANTED until dedicated gate pass",
+        "rule_P28B3": "No execution start action can be inferred from reflection GO candidate or reflection GO",
+        "rule_P28B4": "Any boundary confusion, implicit promotion, or unauthorized start triggers forced NO_GO and ABORT_ESCALATION"
+      }
+    },
+    "scope_3_report_structure": {
+      "scope_id": "REPORT_STRUCTURE",
+      "sections": {
+        "section_1_header": {
+          "report_id": "PHASE28_3_REFLECTION_GO_AND_EXECUTION_START_GO_BOUNDARY_<UTC_TIMESTAMP>",
+          "report_type": "production_reflection_go_and_execution_start_go_boundary_separation",
+          "generated_at_utc": "RFC3339",
+          "generated_by": "authority_identifier"
+        },
+        "section_2_gate_separation_summary": {
+          "production_reflection_go_authorization": "GRANTED | NOT_GRANTED",
+          "execution_start_go_authorization": "GRANTED | NOT_GRANTED",
+          "gate_dependency_violation": "DETECTED | NOT_DETECTED"
+        },
+        "section_3_boundary_judgment": {
+          "boundary_separation_status": "PASS | FAIL",
+          "production_status": "NO_GO",
+          "operation_transition_go_authorization": "NOT_GRANTED",
+          "production_reflection_go_authorization": "NOT_GRANTED",
+          "execution_start_go_authorization": "NOT_GRANTED"
+        }
+      }
+    }
+  },
+  "phase_28_3_governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "state_invariants": {
+      "app_implementation_status": "NO_GO",
+      "tests_implementation_status": "NO_GO",
+      "production_status": "NO_GO",
+      "operation_transition_go_authorization": "NOT_GRANTED",
+      "production_reflection_go_authorization": "NOT_GRANTED",
+      "execution_start_go_authorization": "NOT_GRANTED",
+      "changed_area": "reports only"
+    }
+  }
+}

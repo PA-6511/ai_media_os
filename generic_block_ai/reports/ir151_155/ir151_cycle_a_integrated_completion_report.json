@@ -1,0 +1,69 @@
+{
+  "schema_version": "ir151_cycle_a_integrated_completion_report_v1",
+  "phase": "IR151",
+  "generated_at": "2026-05-26T12:21:00.739093+00:00",
+  "source_task_id": "ir151_155_batch",
+  "validation_result": "PASS",
+  "validation_failed_checks": [],
+  "validation_warnings": [],
+  "cycle_a_integrated_completion_report": {
+    "report_id": "ir151_integrated_ir151_155_batch_20260526T122100Z",
+    "generated_at": "2026-05-26T12:21:00.739072+00:00",
+    "source_task_id": "ir151_155_batch",
+    "new_cycle_id": "IR71_PLUS_CYCLE_A",
+    "integrated_items": [
+      {
+        "name": "new_cycle_start",
+        "status": "COMPLETED"
+      },
+      {
+        "name": "governance_preparation",
+        "status": "COMPLETED"
+      },
+      {
+        "name": "prohibition_continuity",
+        "status": "COMPLETED"
+      },
+      {
+        "name": "evidence_fixation",
+        "status": "COMPLETED"
+      },
+      {
+        "name": "long_term_retention",
+        "status": "COMPLETED"
+      },
+      {
+        "name": "terminal_seal",
+        "status": "COMPLETED"
+      },
+      {
+        "name": "cycle_summary",
+        "status": "COMPLETED"
+      }
+    ],
+    "item_count": 7,
+    "all_completed": true,
+    "unlock_eligible": false,
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "report_hash": "473af37446b00ee3aa7f1cbd71f106cc472623089dc99f016b45bcccf6680c28",
+  "safety_gate_snapshot": {
+    "dry_run": "maintained",
+    "OBSERVE": "maintained",
+    "submission_execution_blocked": true,
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "network_transmission_executed": false,
+    "production_release": false,
+    "GitHub_push": "未実行"
+  }
+}

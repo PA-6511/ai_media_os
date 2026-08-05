@@ -1,0 +1,35 @@
+{
+  "schema_version": "ir62_dry_run_cycle_re_verification_auditor_v1",
+  "phase": "IR62",
+  "generated_at": "2026-05-24T12:59:13.133054+00:00",
+  "source_task_id": "ir61_65_live_trial",
+  "validation_result": "PASS",
+  "validation_failed_checks": [],
+  "validation_warnings": [],
+  "re_verification_result": "CYCLE_VERIFIED",
+  "ir60_phases_found": [
+    "IR56",
+    "IR57",
+    "IR58",
+    "IR59",
+    "IR60"
+  ],
+  "ir60_phases_missing": [],
+  "incomplete_phases": [],
+  "ir60_final_decision": "READY_FOR_DRY_RUN_HANDOFF_ONLY",
+  "hash_re_verification": {
+    "provided_hash": "04f69d13aa6d5d281d19d5474a59777a1aafc03aa5483c61204f2f41b0fa9034",
+    "recalculated_hash": "04f69d13aa6d5d281d19d5474a59777a1aafc03aa5483c61204f2f41b0fa9034",
+    "hash_match": true
+  },
+  "safety_gate_snapshot": {
+    "dry_run": "maintained",
+    "OBSERVE": "maintained",
+    "submission_execution_blocked": true,
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "network_transmission_executed": false,
+    "production_release": false,
+    "GitHub_push": "未実行"
+  }
+}

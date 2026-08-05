@@ -1,0 +1,88 @@
+{
+  "fixture_id": "LS_NEW_BATCH_4G_2E_PHASE_J_PRE_CONTENT_GENERATION",
+  "phase": "J",
+  "purpose": "Verify Phase J authorization recording before Phase K generation",
+  "source_item_id": "new-release-comic-20260703-001",
+  "state_boundary": "PHASE_J_AUTHORIZATION_RECORDED_BEFORE_CONTENT_GENERATION",
+  "required_present": [
+    {
+      "path": "config/new_release_wp_fresh_article_offline_content_generation_approval_policy.json",
+      "sha256": "8696c6a71f84467dfe48fa0f7a8bb1d398aa763f534c8ddac84bf417749c03b9",
+      "source_phase": "J",
+      "provenance": "FORMAL_EXISTING_PHASE_ARTIFACT"
+    },
+    {
+      "path": "exchange/approvals/ls_new_batch_4g_2e_recovery_j_offline_content_generation_approval.json",
+      "sha256": "7706d1f4ce456a0b178018e44c19a8538beb5e71f4af40f8777e57dbcf219afe",
+      "source_phase": "J",
+      "provenance": "FORMAL_EXISTING_PHASE_ARTIFACT"
+    },
+    {
+      "path": "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.offline_content_generation_authorization.json",
+      "sha256": "32950bab69f70b0433b446c2e18c5dad9f6cfa7c4b188e432869a0bde8f58afb",
+      "source_phase": "J",
+      "provenance": "FORMAL_EXISTING_PHASE_ARTIFACT"
+    },
+    {
+      "path": "exchange/examples/new_release_wp_fresh_article_offline_content_generation_approval_request.example.json",
+      "sha256": "b143f1403e7c06f4a172f607b63510f4400fd1dd522dbb490e335add8b01afc9",
+      "source_phase": "J",
+      "provenance": "FORMAL_EXISTING_PHASE_ARTIFACT"
+    },
+    {
+      "path": "exchange/logs/ls_new_batch_4g_2e_recovery_i_result.json",
+      "sha256": "ea04557f8f8a11dd2429487ad19cbbedb03869635a057125279284663c816cfb",
+      "source_phase": "J",
+      "provenance": "FORMAL_EXISTING_PHASE_ARTIFACT"
+    },
+    {
+      "path": "exchange/logs/ls_new_batch_4g_2e_recovery_j_result.json",
+      "sha256": "0a36e8f68d4b500cae69fc42d057c1df0f2d0d87e2a22c5dc8977f72556d25e0",
+      "source_phase": "J",
+      "provenance": "FORMAL_EXISTING_PHASE_ARTIFACT"
+    }
+  ],
+  "required_absent": [
+    {
+      "relative_path": "exchange/content/new_release/fresh/new-release-comic-20260703-001.article.json",
+      "artifact_role": "PHASE_K_ARTICLE_OUTPUT",
+      "absence_required_by_phase": true,
+      "first_phase_allowed_to_create": "K"
+    },
+    {
+      "relative_path": "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.offline_content_generation_consumption.json",
+      "artifact_role": "PHASE_K_GENERATION_CONSUMPTION",
+      "absence_required_by_phase": true,
+      "first_phase_allowed_to_create": "K"
+    }
+  ],
+  "present_artifact_sha256": {
+    "config/new_release_wp_fresh_article_offline_content_generation_approval_policy.json": "8696c6a71f84467dfe48fa0f7a8bb1d398aa763f534c8ddac84bf417749c03b9",
+    "exchange/approvals/ls_new_batch_4g_2e_recovery_j_offline_content_generation_approval.json": "7706d1f4ce456a0b178018e44c19a8538beb5e71f4af40f8777e57dbcf219afe",
+    "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.offline_content_generation_authorization.json": "32950bab69f70b0433b446c2e18c5dad9f6cfa7c4b188e432869a0bde8f58afb",
+    "exchange/examples/new_release_wp_fresh_article_offline_content_generation_approval_request.example.json": "b143f1403e7c06f4a172f607b63510f4400fd1dd522dbb490e335add8b01afc9",
+    "exchange/logs/ls_new_batch_4g_2e_recovery_i_result.json": "ea04557f8f8a11dd2429487ad19cbbedb03869635a057125279284663c816cfb",
+    "exchange/logs/ls_new_batch_4g_2e_recovery_j_result.json": "0a36e8f68d4b500cae69fc42d057c1df0f2d0d87e2a22c5dc8977f72556d25e0"
+  },
+  "absence_reason": "Phase J records authorization only; Phase K is the first permitted writer",
+  "later_writer_phase": "K",
+  "provenance_type": "MINIMAL_SNAPSHOT_FROM_FORMAL_PHASE_ARTIFACTS",
+  "provenance_evidence": [
+    "config/new_release_wp_fresh_article_offline_content_generation_approval_policy.json",
+    "exchange/approvals/ls_new_batch_4g_2e_recovery_j_offline_content_generation_approval.json",
+    "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.offline_content_generation_authorization.json",
+    "exchange/examples/new_release_wp_fresh_article_offline_content_generation_approval_request.example.json",
+    "exchange/logs/ls_new_batch_4g_2e_recovery_i_result.json",
+    "exchange/logs/ls_new_batch_4g_2e_recovery_j_result.json"
+  ],
+  "immutable": true,
+  "terminal_namespace": false,
+  "created_at": "2026-07-23T14:07:54Z",
+  "update_policy": {
+    "formal_phase_contract_change_required": true,
+    "human_approval_required": true,
+    "old_and_new_sha_record_required": true,
+    "absence_boundary_reevaluation_required": true,
+    "later_terminal_writer_is_not_an_update_reason": true
+  }
+}

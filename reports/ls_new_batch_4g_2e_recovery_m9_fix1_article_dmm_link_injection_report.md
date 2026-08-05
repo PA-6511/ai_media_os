@@ -1,0 +1,22 @@
+# LS-NEW-BATCH-4G-2E-RECOVERY-M9-FIX1
+
+- Status: `PASS_DMM_ARTICLE_LINK_INJECTED_HTML_ENTITY_VALIDATOR_FIXED_NEW_AUTHORIZATION_CONSUMED_NO_NETWORK_NO_WORDPRESS`
+- Historical diagnosis: `HTML_ENTITY_ESCAPING_FALSE_NEGATIVE`
+- Old M9 authorization remains consumed: `true`
+- New authorization consumed: `true`
+- New authorization reuse allowed: `false`
+- Automatic retry allowed: `false`
+- Automatic reissue allowed: `false`
+- HTML postimage reparsed: `true`
+- href HTML entity decoded: `true`
+- Decoded href exact match: `true`
+- Article preimage SHA: `849a37519c6af70d2212ec01d5cddef5793bfa811e97ca9f248ce099a0350bf4`
+- Article postimage SHA: `de2739c8ae1aa4a50973b983964b05844086a2187b9ef337383ad6fa7123697d`
+- DMM active anchor count: `1`
+- Full final URL output: `false`
+- Affiliate identifier output: `false`
+- Network accessed: `false`
+- Payload created: `false`
+- WordPress accessed: `false`
+- Production status: `NO_GO`
+- Ready for post-injection review: `true`

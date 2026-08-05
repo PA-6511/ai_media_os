@@ -1,0 +1,61 @@
+{
+  "schema_version": "ir13_manual_approval_v1",
+  "phase": "IR13",
+  "generated_at": "2026-05-23T14:53:43.003814+00:00",
+  "source_task_id": "ir13_warn_live_trial",
+  "manual_event": "REQUEST_FIX",
+  "actor": "human_reviewer_warn",
+  "comment": "warn flow requires fix",
+  "queue_item": {
+    "queue_item_id": "queue_ir12_warn_live_trial_warn",
+    "source_task_id": "ir12_warn_live_trial",
+    "quality_gate_judgment": "WARN",
+    "core_receive_rule": "HUMAN_REVIEW_REQUIRED",
+    "queue_state": "NEEDS_FIX_REWORK",
+    "hold_reason": "warn_requires_human_review",
+    "requires_human_review": true,
+    "evidence_preservation_required": false,
+    "execution_allowed": false,
+    "created_at": "2026-05-23T14:49:57.364473+00:00",
+    "updated_at": "2026-05-23T14:53:43.003751+00:00",
+    "last_manual_event": "REQUEST_FIX",
+    "last_manual_actor": "human_reviewer_warn"
+  },
+  "state_transitions": [
+    {
+      "from": "NEW",
+      "to": "RECEIVED",
+      "event": "receiver_report_ingested",
+      "at": "2026-05-23T14:49:57.364473+00:00"
+    },
+    {
+      "from": "RECEIVED",
+      "to": "WAITING_HUMAN_REVIEW",
+      "event": "judgment_warn_mapped",
+      "at": "2026-05-23T14:49:57.364473+00:00"
+    },
+    {
+      "from": "WAITING_HUMAN_REVIEW",
+      "to": "NEEDS_FIX_REWORK",
+      "event": "manual_request_fix",
+      "actor": "human_reviewer_warn",
+      "comment": "warn flow requires fix",
+      "at": "2026-05-23T14:53:43.003759+00:00"
+    }
+  ],
+  "event_validation_result": "PASS",
+  "event_validation_failed_checks": [],
+  "event_validation_warnings": [],
+  "execution_policy": {
+    "execute": false,
+    "reason": "ir13_manual_event_simulation_audit_only"
+  },
+  "audit_log_path": "generic_block_ai/reports/ir13_manual_approval_audit.log",
+  "safeguards": {
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "external_write_executed": false,
+    "actual_auto_execute": false,
+    "production_release": false
+  }
+}

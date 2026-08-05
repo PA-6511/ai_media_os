@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "X-FB-1",
+  "policy_id": "X_FB_MANUAL_OPERATION_POLICY_V1",
+  "feedback_schema_id": "X_POST_WORDING_FEEDBACK_SCHEMA_V1",
+  "allowed_actions": [
+    "INITIALIZE",
+    "REVIEW",
+    "POST",
+    "METRICS"
+  ],
+  "allowed_transitions": {
+    "INITIALIZE": [
+      null,
+      "DRAFT_GENERATED"
+    ],
+    "REVIEW": [
+      "DRAFT_GENERATED",
+      "HUMAN_REVIEWED"
+    ],
+    "POST": [
+      "HUMAN_REVIEWED",
+      "POSTED"
+    ],
+    "METRICS": [
+      "POSTED",
+      "METRICS_RECORDED"
+    ]
+  },
+  "storage": {
+    "current_record_pattern": "exchange/input/x_post_feedback/{feedback_id}/current.json",
+    "archive_record_pattern": "exchange/archive/x_post_feedback/{feedback_id}/v{record_version:03d}.json",
+    "operation_result_pattern": "exchange/logs/x_fb_1_{feedback_id}_v{record_version:03d}_result.json",
+    "atomic_write_required": true,
+    "previous_version_archive_required": true,
+    "silent_overwrite_allowed": false
+  },
+  "operation_rules": {
+    "initialize_requires_unique_feedback_id": true,
+    "review_computes_was_edited": true,
+    "post_requires_human_review": true,
+    "metrics_require_posted_record": true,
+    "unknown_metrics_remain_null": true,
+    "single_case_rule_promotion_forbidden": true
+  },
+  "execution_boundary": {
+    "local_json_read_allowed": true,
+    "local_json_write_allowed": true,
+    "x_api_call_allowed": false,
+    "x_post_allowed": false,
+    "wordpress_write_allowed": false,
+    "external_api_call_allowed": false,
+    "automatic_rule_update_allowed": false,
+    "algorithm_research_handoff_allowed": false,
+    "production_status": "NO_GO",
+    "safety_state": "MANUAL_RECORDING_ONLY"
+  },
+  "next_phase": {
+    "phase_id": "LS-NEW-BATCH-2",
+    "execution_allowed": false
+  }
+}

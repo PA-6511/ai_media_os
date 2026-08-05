@@ -1,0 +1,37 @@
+{
+  "phase": "N-3",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "human_approval_required": true,
+  "wordpress_write_executed": false,
+  "wordpress_post_created": false,
+  "external_state_change": false,
+  "executor_action_allowed": false,
+  "network_observation_only": true,
+  "communication_test_only": true,
+  "slack_message_sent": false,
+  "checked_at": "2026-05-31T13:19:48.355459+00:00",
+  "status": "PASS",
+  "webhook_url_host": "hooks.slack.com",
+  "path_reachable": true,
+  "latency_ms": 352.4,
+  "dns_ok": true,
+  "tls_ok": true,
+  "http_status": 404,
+  "checks": {
+    "dns": {
+      "ok": true,
+      "reason": null
+    },
+    "tls": {
+      "ok": true,
+      "latency_ms": 27.16,
+      "reason": null
+    },
+    "path": {
+      "ok": true,
+      "reason": "HTTP Error 404: Not Found"
+    }
+  }
+}

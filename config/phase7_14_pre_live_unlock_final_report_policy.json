@@ -1,0 +1,65 @@
+{
+  "phase": "Phase 7-14",
+  "name": "pre_live_unlock_final_report_policy",
+  "policy_status": "REPORT_ONLY",
+  "production_status": "NO_GO",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "human_approval_required": true,
+  "final_report_is_execution_permission": false,
+  "approve_draft_create_only_currently_allowed": false,
+  "unlock_in_this_phase": false,
+  "wordpress_draft_creation": "NO_GO",
+  "wordpress_write_executed": false,
+  "wordpress_api_call_allowed": false,
+  "publish_allowed": false,
+  "required_evidence": [
+    "exchange/logs/phase7_10_human_unlock_decision_result.json",
+    "exchange/logs/phase7_11_approve_draft_create_only_token_validation_result.json",
+    "exchange/logs/phase7_12_one_item_draft_execution_plan_result.json",
+    "exchange/logs/phase7_13_operator_runbook_validation_result.json"
+  ],
+  "acceptable_statuses": [
+    "PASS_REVIEW_ONLY_NO_GO",
+    "TOKEN_READY_BUT_LOCKED",
+    "EXECUTION_PLAN_READY_BUT_NO_GO",
+    "PASS_RUNBOOK_ONLY"
+  ],
+  "warn_statuses": [
+    "WARN"
+  ],
+  "reject_statuses": [
+    "FAIL",
+    "ABORT",
+    "TOKEN_NOT_READY",
+    "NOT_READY"
+  ],
+  "dangerous_operations": {
+    "auto_post": false,
+    "auto_update": false,
+    "auto_delete": false,
+    "auto_export": false,
+    "publish_allowed": false,
+    "wordpress_write_executed": false,
+    "wordpress_api_call_allowed": false,
+    "bulk_execution": false,
+    "external_write": false,
+    "vps_self_builder_execution": false
+  },
+  "final_decision_rules": {
+    "all_required_evidence_acceptable": "READY_FOR_PHASE8_HUMAN_APPROVAL_BUT_NO_GO",
+    "warn_without_abort": "READY_FOR_PHASE8_HUMAN_APPROVAL_WITH_WARN_BUT_NO_GO",
+    "missing_evidence": "NOT_READY",
+    "any_reject_status": "NOT_READY",
+    "any_dangerous_flag_true": "ABORT"
+  },
+  "allowed_next_step": "Phase 8-1 explicit human approval file for one-item controlled WordPress draft creation",
+  "blocked_next_steps": [
+    "auto_publish",
+    "bulk_posting",
+    "wordpress_update",
+    "wordpress_delete",
+    "external_export",
+    "vps_self_builder_execution"
+  ]
+}

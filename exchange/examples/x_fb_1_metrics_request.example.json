@@ -1,0 +1,14 @@
+{
+  "action": "METRICS",
+  "feedback_id": "x-fb-example-20260717-101",
+  "metrics": {
+    "impressions": 120,
+    "likes": 3,
+    "reposts": 1,
+    "replies": 0,
+    "bookmarks": null,
+    "link_clicks": null
+  },
+  "metric_observed_at": "2026-07-18T12:00:00+09:00",
+  "review_status": "METRICS_PARTIAL"
+}

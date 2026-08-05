@@ -1,0 +1,108 @@
+{
+  "schema_version": "gib.alpha.tasks.v0.1",
+  "tasks": {
+    "phase_log_summary": {
+      "description": "Summarize a phase execution log for human review.",
+      "risk_level": "low",
+      "execution_effect": "none",
+      "input_contract": [
+        "phase_name",
+        "status",
+        "log_excerpt"
+      ],
+      "output_contract": [
+        "summary",
+        "remaining_blockers",
+        "human_review_notes"
+      ]
+    },
+    "validator_result_explain": {
+      "description": "Explain a validator result in plain language.",
+      "risk_level": "low",
+      "execution_effect": "none",
+      "input_contract": [
+        "validator_name",
+        "result",
+        "issues"
+      ],
+      "output_contract": [
+        "summary",
+        "risk_notes",
+        "next_checkpoints"
+      ]
+    },
+    "product_summary": {
+      "description": "Generate a dry-run product summary from metadata.",
+      "risk_level": "medium",
+      "execution_effect": "none",
+      "input_contract": [
+        "title",
+        "publisher",
+        "genre"
+      ],
+      "output_contract": [
+        "summary",
+        "selling_points",
+        "caution_notes"
+      ]
+    },
+    "social_post_draft": {
+      "description": "Draft a social post candidate for human review.",
+      "risk_level": "medium",
+      "execution_effect": "none",
+      "input_contract": [
+        "topic",
+        "source_summary",
+        "target_audience"
+      ],
+      "output_contract": [
+        "draft_candidates",
+        "risk_notes",
+        "human_review_notes"
+      ]
+    },
+    "article_outline": {
+      "description": "Generate an article outline for human review.",
+      "risk_level": "medium",
+      "execution_effect": "none",
+      "input_contract": [
+        "topic",
+        "target_reader",
+        "key_points"
+      ],
+      "output_contract": [
+        "outline",
+        "title_candidates",
+        "human_review_notes"
+      ]
+    },
+    "compliance_classify": {
+      "description": "Classify content for compliance review.",
+      "risk_level": "high",
+      "execution_effect": "none",
+      "input_contract": [
+        "content_excerpt",
+        "context"
+      ],
+      "output_contract": [
+        "classification_label",
+        "risk_notes",
+        "requires_human_review"
+      ]
+    },
+    "security_log_explain": {
+      "description": "Explain a security log excerpt for human review.",
+      "risk_level": "high",
+      "execution_effect": "none",
+      "input_contract": [
+        "log_excerpt",
+        "detector_result"
+      ],
+      "output_contract": [
+        "summary",
+        "risk_notes",
+        "recommended_human_checks"
+      ]
+    }
+  }
+}

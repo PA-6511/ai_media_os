@@ -1,0 +1,88 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M18",
+  "policy_id": "WORDPRESS_PUBLISHED_POST_EXECUTION_EVIDENCE_VERIFICATION_POLICY_V1",
+  "operation_mode": "AUTHENTICATED_SINGLE_GET_PUBLISHED_POST_VERIFICATION",
+  "content_item_id": "new-release-comic-20260703-001",
+  "wordpress_post_id": 192,
+  "connection_contract": {
+    "required_scheme": "https",
+    "required_host": "hoshido.jp",
+    "required_method": "GET",
+    "required_rest_path": "/wp-json/wp/v2/posts/192",
+    "required_context": "edit",
+    "maximum_get_request_count": 1,
+    "maximum_non_get_request_count": 0,
+    "explicit_port_allowed": false,
+    "userinfo_allowed": false,
+    "fragment_allowed": false,
+    "proxy_use_allowed": false,
+    "redirect_allowed": false,
+    "automatic_retry_allowed": false
+  },
+  "expected_post_contract": {
+    "post_id": 192,
+    "required_status": "publish",
+    "expected_title": "ダークギャザリング 第20巻｜配信開始",
+    "expected_category_id": 10,
+    "expected_categories": [
+      10
+    ],
+    "title_raw_required": true,
+    "content_raw_required": true,
+    "title_exact_match_required": true,
+    "content_exact_match_required": true
+  },
+  "m17_evidence_contract": {
+    "execution_attempt_id": "f5f1d087-83b6-40bb-9d21-05e437d99625",
+    "m17_result_digest_sha256": "e405bd6b44b45c8246388b0ea2fa55ac501e728563cf97d9b82be6c5dad2e93e",
+    "m17_consumption_digest_sha256": "9fa836ec2fe8c49b160101351e5a913b0c606af857131b5a0550b81fb04f443e",
+    "m17_pre_network_result_digest_sha256": "f2650043127b69ef5d6cc1b539a7f2fe523f2d53d53ea0cfdd37b0b81a6b8944",
+    "m16_authorization_file_sha256": "0b8eb340f4551497e99d91dc64ab5d47c149efb098d50ebf6cf981d416624e58",
+    "m16_authorization_digest_sha256": "3af20632d3fabe77f04e795318406ecd0ad9bd7b6d2eb60646e82f108556cc9e",
+    "m16_result_digest_sha256": "9eda577486ceaf77be2baf0346cf7152ff3e5113bd091625715e487224c3150a"
+  },
+  "source_evidence_contract": {
+    "m15_result_digest_sha256": "03d777e3e34c4d68c4b55027db87f7b20cee59f947640f3d68b125d6c79f5b06",
+    "m15_human_review_digest_sha256": "be8aafa191df793ecbe2695b662378fef078ce42ae4169a93651a9d2b6141d4c",
+    "payload_file_sha256": "30a70be4110e863a85e2896f69f5b3e51d814a6fd82d5489f899d8a244166d8f",
+    "payload_digest_sha256": "2ab27b59305dbae98f997ca3a460400298152f173ef605b534df922c187411c6",
+    "article_file_sha256": "de2739c8ae1aa4a50973b983964b05844086a2187b9ef337383ad6fa7123697d"
+  },
+  "prohibited_operations": {
+    "post": true,
+    "put": true,
+    "patch": true,
+    "delete": true,
+    "wordpress_write": true,
+    "wordpress_update": true,
+    "wordpress_republish": true,
+    "wordpress_delete": true,
+    "post_recreation": true,
+    "category_operation": true,
+    "media_operation": true,
+    "authorization_reuse": true,
+    "authorization_reissue": true,
+    "automatic_retry": true,
+    "automatic_reissue": true,
+    "m17_rerun": true,
+    "x_post": true
+  },
+  "secret_handling": {
+    "credential_values_output_allowed": false,
+    "username_output_allowed": false,
+    "application_password_output_allowed": false,
+    "authorization_header_output_allowed": false,
+    "credential_file_content_output_allowed": false,
+    "full_wordpress_response_output_allowed": false,
+    "full_post_content_output_allowed": false,
+    "full_payload_output_allowed": false,
+    "full_affiliate_url_output_allowed": false,
+    "dmm_identifier_output_allowed": false
+  },
+  "next_gate": {
+    "ready_for_post_publication_human_review_after_success": true,
+    "ready_for_wordpress_publish": false
+  },
+  "production_status": "NO_GO"
+}

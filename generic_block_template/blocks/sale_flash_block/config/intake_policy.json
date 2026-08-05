@@ -1,0 +1,29 @@
+{
+  "block_name": "sale_flash_block",
+  "mode": "DRY_RUN",
+  "production_status": "NO_GO",
+  "external_api_allowed": false,
+  "external_network_allowed": false,
+  "wordpress_write_allowed": false,
+  "creators_api_allowed": false,
+  "amazon_scraping_allowed": false,
+  "max_items_per_run": 50,
+  "require_human_review": true,
+  "allowed_input_sources": [
+    "manual_csv",
+    "openbd_candidate",
+    "rakuten_books_candidate",
+    "publisher_news_candidate",
+    "creators_api_placeholder"
+  ],
+  "disabled_sources": [
+    "creators_api",
+    "amazon_scraping"
+  ],
+  "output_policy": {
+    "generate_review_queue": true,
+    "generate_article_payload": false,
+    "generate_wordpress_payload": false,
+    "publish_allowed": false
+  }
+}

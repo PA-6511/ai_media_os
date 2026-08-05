@@ -1,0 +1,54 @@
+{
+  "phase": "Phase 8-9",
+  "name": "first_one_item_wordpress_draft_create_rerun_policy",
+  "policy_status": "CONTROLLED_ONE_ITEM_RERUN_EXECUTION",
+  "production_status": "LIMITED_DRAFT_CREATE_ONLY",
+  "mode": "CONTROLLED_EXECUTION",
+  "execution": "LIVE_DRAFT_CREATE_ONLY",
+  "human_approval_required": true,
+  "wordpress_draft_creation": "ALLOW_ONE_DRAFT_ONLY",
+  "wordpress_api_call_allowed": true,
+  "wordpress_write_executed_default": false,
+  "publish_allowed": false,
+  "update_allowed": false,
+  "delete_allowed": false,
+  "bulk_execution": false,
+  "auto_post": false,
+  "auto_update": false,
+  "auto_delete": false,
+  "auto_export": false,
+  "target_item_count": 1,
+  "required_evidence": [
+    "exchange/logs/phase8_8_final_credentialed_live_preflight_result.json"
+  ],
+  "required_phase8_8_status": "CREDENTIAL_PREFLIGHT_PASS_READY_FOR_PHASE8_9",
+  "required_env": [
+    "WORDPRESS_BASE_URL",
+    "WORDPRESS_USERNAME",
+    "WORDPRESS_APP_PASSWORD"
+  ],
+  "wordpress_request": {
+    "method": "POST",
+    "endpoint": "/wp-json/wp/v2/posts",
+    "status": "draft",
+    "max_posts": 1
+  },
+  "retry_policy": {
+    "retry_allowed": false,
+    "max_retries": 0
+  },
+  "post_create_validation": {
+    "require_post_id": true,
+    "require_status_draft": true,
+    "reject_status_publish": true,
+    "require_link_or_guid": true
+  },
+  "secret_output_policy": {
+    "print_values": false,
+    "write_values_to_logs": false,
+    "print_lengths": false,
+    "print_prefix_suffix": false,
+    "hash_values": false
+  },
+  "allowed_next_step": "Phase 8-10 post-rerun verification and controlled draft flow closure report"
+}

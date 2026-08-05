@@ -1,0 +1,64 @@
+{
+  "phase": "Phase 7-10",
+  "name": "human_unlock_decision_policy",
+  "policy_status": "DESIGN_ONLY",
+  "production_status": "NO_GO",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "human_approval_required": true,
+  "human_decision_is_execution_permission": false,
+  "approve_draft_create_only_currently_allowed": false,
+  "approve_draft_create_only_activation_allowed_in_this_phase": false,
+  "unlock_in_this_phase": false,
+  "wordpress_draft_creation": "NO_GO",
+  "wordpress_write_executed": false,
+  "wordpress_api_call_allowed": false,
+  "publish_allowed": false,
+  "required_evidence": [
+    "exchange/logs/phase7_9_pre_unlock_overall_report.json"
+  ],
+  "required_phase7_9_status": "PRE_UNLOCK_READY_BUT_NO_GO",
+  "allowed_decisions_in_phase7_10": [
+    "ACKNOWLEDGE_UNLOCK_REVIEW_ONLY",
+    "REQUEST_FIX",
+    "REJECT",
+    "ABORT"
+  ],
+  "forbidden_decisions_in_phase7_10": [
+    "APPROVE_DRAFT_CREATE_ONLY",
+    "APPROVE_PUBLISH",
+    "APPROVE_BULK_RUN",
+    "APPROVE_UPDATE",
+    "APPROVE_DELETE"
+  ],
+  "required_acknowledgements": [
+    "acknowledged_no_go",
+    "acknowledged_no_publish",
+    "acknowledged_no_update",
+    "acknowledged_no_delete",
+    "acknowledged_single_item_only",
+    "acknowledged_wordpress_write_not_allowed_in_phase7_10",
+    "acknowledged_freeze_on_mismatch"
+  ],
+  "dangerous_operations": {
+    "auto_post": false,
+    "auto_update": false,
+    "auto_delete": false,
+    "auto_export": false,
+    "publish_allowed": false,
+    "wordpress_write_executed": false,
+    "wordpress_api_call_allowed": false,
+    "bulk_execution": false,
+    "external_write": false,
+    "vps_self_builder_execution": false
+  },
+  "decision_rules": {
+    "acknowledge_review_only": "PASS_REVIEW_ONLY_NO_GO",
+    "request_fix": "WARN",
+    "reject": "FAIL",
+    "abort": "ABORT",
+    "forbidden_approval_token": "ABORT",
+    "safety_violation": "ABORT"
+  },
+  "allowed_next_step": "Phase 7-11 APPROVE_DRAFT_CREATE_ONLY unlock token final validation, still locked"
+}

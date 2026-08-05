@@ -1,0 +1,84 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M21",
+  "policy_id": "WORDPRESS_COMPLIANT_LAYOUT_REVISION_HUMAN_APPROVAL_POLICY_V1",
+  "operation_mode": "LOCAL_COMPLIANT_LAYOUT_REVISION_ADOPTION_RECORDING_ONLY",
+  "content_item_id": "new-release-comic-20260703-001",
+  "wordpress_post_id": 192,
+  "required_approval_label": "WORDPRESS_COMPLIANT_LAYOUT_REVISION_APPROVED",
+  "adopted_layout_contract": {
+    "desktop": {
+      "left_column": [
+        "cover_image"
+      ],
+      "right_column_order": [
+        "pr_disclosure",
+        "amazon_button",
+        "rakuten_kobo_button",
+        "dmm_button",
+        "responsive_work_details"
+      ],
+      "store_buttons_vertical": true,
+      "work_details_format": "RESPONSIVE_DESCRIPTION_LIST"
+    },
+    "mobile_order": [
+      "cover_image",
+      "responsive_work_details",
+      "pr_disclosure",
+      "amazon_button",
+      "rakuten_kobo_button",
+      "dmm_button"
+    ],
+    "pr_text": "PR：このページにはアフィリエイト広告が含まれます。",
+    "pr_position": "IMMEDIATELY_BEFORE_FIRST_AFFILIATE_BUTTON",
+    "pr_hidden_or_collapsed": false,
+    "minimum_pr_font_size_px": 14
+  },
+  "comment_contract": {
+    "wordpress_post_id": 192,
+    "target_comment_status": "closed",
+    "comment_form_visible": false,
+    "comment_list_visible": false,
+    "comment_heading_visible": false,
+    "future_template_scope": "EBOOK_AFFILIATE_ARTICLES",
+    "future_template_update_requires_separate_approval": true
+  },
+  "source_evidence_contract": {
+    "m19_human_review_digest_sha256": "ee9cc3be321c2c592afc0c784c002d9506a598cf9a2072e3c1e205d662417db1",
+    "m19_result_digest_sha256": "e02748eead2f2d578fbb86c5e53140f526d0d8ac6fa4ec95774c266ffeaa9aaa",
+    "m20_compliance_assessment_digest_sha256": "957874620811effbae144f86a5b4b7a06e5fa12001aaee0608307db71654dc01",
+    "m20_design_digest_sha256": "e49bbaf98e529986f0c04956b909029f2055e2eb0f9e19e100a002e265caf495",
+    "m20_update_draft_payload_digest_sha256": "489ca68a4b9e923df7c87035a7d474364403d719bdd52fd484091cf9d6d654d8",
+    "m20_result_digest_sha256": "564f734dd840a5be3653eeffd4ecf81613cada7b74b125645e53428637ccb301"
+  },
+  "execution_boundary": {
+    "network_connection_allowed": false,
+    "dns_resolution_allowed": false,
+    "http_request_allowed": false,
+    "wordpress_access_allowed": false,
+    "wordpress_get_allowed": false,
+    "wordpress_write_allowed": false,
+    "wordpress_update_allowed": false,
+    "wordpress_republish_allowed": false,
+    "wordpress_delete_allowed": false,
+    "rendered_update_payload_generation_allowed": false,
+    "wordpress_request_body_generation_allowed": false,
+    "authorization_issue_allowed": false,
+    "authorization_consumption_allowed": false,
+    "authorization_reuse_allowed": false,
+    "automatic_retry_allowed": false,
+    "automatic_reissue_allowed": false,
+    "m17_rerun_allowed": false,
+    "m18_rerun_allowed": false,
+    "m19_rerun_allowed": false,
+    "m20_rerun_allowed": false,
+    "x_post_allowed": false
+  },
+  "next_gate": {
+    "ready_for_rendered_update_payload_generation_gate": true,
+    "ready_for_wordpress_update_authorization_gate": false,
+    "ready_for_wordpress_update": false,
+    "ready_for_wordpress_publish": false
+  },
+  "production_status": "NO_GO"
+}

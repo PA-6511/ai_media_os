@@ -1,0 +1,90 @@
+{
+  "phase_id": "26-5",
+  "phase_name": "Production Reflection Boundary Violation and NO_GO Maintenance Rules Design",
+  "phase_japanese_name": "本番反映境界違反時の差し戻し・NO_GO維持ルール設計",
+  "purpose": "Design return and NO_GO maintenance rules for any production reflection boundary violation before implementation.",
+  "layer": "production_status_go_candidate_final_audit_reinforcement_layer",
+  "design_category": "reports_only",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "operation_transition_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "phase_26_5_scope": {
+    "scope_1_violation_categories": {
+      "scope_id": "VIOLATION_CATEGORIES",
+      "categories": {
+        "PB1": "Unauthorized production reflection detected",
+        "PB2": "Evidence lock or signature invalid",
+        "PB3": "Audit trail tampering detected",
+        "PB4": "Unclassified critical safety risk"
+      }
+    },
+    "scope_2_return_and_maintenance_rules": {
+      "scope_id": "RETURN_AND_MAINTENANCE_RULES",
+      "rules": {
+        "rule_PBM1": "Any PB1-PB4 triggers production_status = NO_GO",
+        "rule_PBM2": "Force production_status = NO_GO while unresolved_violations_count > 0",
+        "rule_PBM3": "Route remediation to Phase 26-3 or Phase 26-4 based on violation category",
+        "rule_PBM4": "Maintain app_implementation_status and tests_implementation_status as NO_GO until clean re-audit",
+        "rule_PBM5": "Escalate to HALT_REVIEW_REQUIRED after repeated violation threshold"
+      }
+    },
+    "scope_3_report_structure": {
+      "scope_id": "REPORT_STRUCTURE",
+      "sections": {
+        "section_1_header": {
+          "report_id": "PHASE26_5_PRODUCTION_REFLECTION_BOUNDARY_VIOLATION_<UTC_TIMESTAMP>",
+          "report_type": "production_reflection_boundary_violation_and_no_go_maintenance",
+          "generated_at_utc": "RFC3339",
+          "generated_by": "authority_identifier"
+        },
+        "section_2_violation_summary": {
+          "triggered_categories": [
+            "PB1",
+            "PB2",
+            "PB3",
+            "PB4"
+          ],
+          "unresolved_violations_count": "integer"
+        },
+        "section_3_maintenance_state": {
+          "app_implementation_status": "NO_GO",
+          "tests_implementation_status": "NO_GO",
+          "production_status": "NO_GO",
+          "operation_transition_go_authorization": "NOT_GRANTED",
+          "changed_area": "reports only"
+        },
+        "section_4_next_actions": {
+          "remediation_route": "Phase 26-3 / 26-4",
+          "re_audit_required": true
+        }
+      }
+    }
+  },
+  "phase_26_5_governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "state_invariants": {
+      "app_implementation_status": "NO_GO",
+      "tests_implementation_status": "NO_GO",
+      "production_status": "NO_GO",
+      "operation_transition_go_authorization": "NOT_GRANTED",
+      "changed_area": "reports only"
+    }
+  }
+}

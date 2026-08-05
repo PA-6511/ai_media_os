@@ -1,0 +1,6 @@
+source,title,author,isbn,asin,campaign,sale_status,confidence,note
+manual_csv,Blue Harbor Chronicle,Kei Tanaka,9781111111111,B0TEST0001,SUMMER_FLASH,candidate,0.91,fixture row with asin
+publisher_news_candidate,Glass Orbit Stories,Mina Kudo,9782222222222,,PUBLISHER_PUSH,candidate,0.78,missing asin for search candidate
+rakuten_books_candidate,Neon Wind Archive,Ryo Sato,9783333333333,B0TEST0002,STORE_CAMPAIGN,candidate,0.83,fixture row with asin
+manual_csv,,Aoi Shimizu,9784444444444,,EDITOR_PICK,candidate,0.66,missing title should require review
+publisher_news_candidate,Silent Harbor,,9785555555555,,NEWS_DIGEST,candidate,unknown,missing author and invalid confidence

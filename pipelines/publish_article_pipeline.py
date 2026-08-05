@@ -67,6 +67,14 @@ def _has_pr_label(content_html: str) -> bool:
     return "PR" in text or "プロモーション" in text
 
 
+def _append_pr_block(content_html: str) -> str:
+    pr_block = "<p><strong>PR</strong> 本記事にはプロモーションが含まれます。</p>"
+    base = (content_html or "").strip()
+    if not base:
+        return pr_block
+    return base + "\n" + pr_block
+
+
 def _has_price_notice(content_html: str) -> bool:
     text = _strip_html(content_html)
     return "価格" in text and any(token in text for token in ("キャンペーン", "変動", "掲載時点"))
@@ -165,7 +173,7 @@ def enforce_wp_prepublish_quality(article: dict[str, Any], row: dict[str, Any] |
         content_html = content_html + "\n" + _build_sale_info_block(normalized, row=row)
 
     if not _has_pr_label(content_html):
-        content_html = '<p><strong>PR</strong> 本記事にはプロモーションが含まれます。</p>\n' + content_html
+        content_html = _append_pr_block(content_html)
 
     if not _has_price_notice(content_html):
         content_html = (

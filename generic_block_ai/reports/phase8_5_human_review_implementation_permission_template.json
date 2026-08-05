@@ -1,0 +1,265 @@
+{
+  "_meta": {
+    "phase": "8-5",
+    "phase_name": "human review 実装許可判定テンプレート",
+    "version": "1.0",
+    "status": "DESIGN_ONLY",
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "created_date": "2026-05-12",
+    "scope": "Phase 8-4 gate evaluation 結果に基づき、human reviewer が『app/tests 実装許可』を最終判定するためのテンプレート",
+    "description": "Phase 8-4 で自動 scoring された gate evaluation result を、human reviewer が review し、『GO / CONDITIONAL_GO / NO_GO / ABORT』を最終決定するためのテンプレート。自動承認は禁止、人間の署名必須。"
+  },
+  "phase_8_5_overview": {
+    "section_name": "Phase 8-5 の位置付け",
+    "purpose": "Phase 8-4 gate evaluation 自動スコアリング → Phase 8-5 human review 最終判定 → Phase 8-6 最終判定レポート",
+    "critical_requirement": "自動承認禁止。必ず人間の signature が必須。"
+  },
+  "review_scope_and_input": {
+    "section_name": "Review 対象とする input",
+    "input_1": {
+      "input_name": "Phase 8-4 gate evaluation result",
+      "location": "reports/phase8_4_gate_evaluation_execution_design.json (実施後の結果)",
+      "content": [
+        "G8301 ~ G8309 の scoring 詳細",
+        "Total score (out of 136)",
+        "Gate decision (GO/CONDITIONAL_GO/NO_GO/ABORT)"
+      ]
+    },
+    "input_2": {
+      "input_name": "Phase 8-2 receiver validator 実装差分設計",
+      "location": "reports/phase8_2_receiver_validator_implementation_difference_design.json",
+      "content": "MID-A ~ E の 5 領域実装差分"
+    },
+    "input_3": {
+      "input_name": "Phase 8-3 gate 設計",
+      "location": "reports/phase8_3_app_tests_implementation_gate_design.json",
+      "content": "9 sections × 136 point 評価システム"
+    }
+  },
+  "human_review_decision_types": {
+    "section_name": "Human reviewer の判定タイプ",
+    "decision_type_1": {
+      "decision_code": "APPROVE_IMPLEMENTATION",
+      "decision_name": "実装許可（GO）",
+      "meaning": "Phase 8-4 gate evaluation で GO (130+ points) が決定され、human review でも approval。app/tests 実装開始を正式に許可する。",
+      "preconditions": [
+        "Phase 8-4 gate decision = GO",
+        "gate evaluation 点数 >= 130",
+        "safety boundary (OBSERVE/dry_run/NO_GO/banned actions) が maintain されていることを reviewer が確認"
+      ],
+      "next_phase": "Phase 8-6 final implementation permission decision report"
+    },
+    "decision_type_2": {
+      "decision_code": "APPROVE_CONDITIONAL_GO",
+      "decision_name": "条件付き実装許可（CONDITIONAL_GO）",
+      "meaning": "Phase 8-4 gate decision が CONDITIONAL_GO (100-129 points) の場合、human reviewer が『昇格条件』を明記し、その条件クリア後に実装開始を許可する。",
+      "preconditions": [
+        "Phase 8-4 gate decision = CONDITIONAL_GO",
+        "100 <= gate evaluation 点数 < 130",
+        "reviewer が『GO に昇格するための具体的な条件』を明記することが必須"
+      ],
+      "next_phase": "条件改善 → Phase 8-4 re-evaluation → Phase 8-5 再review"
+    },
+    "decision_type_3": {
+      "decision_code": "REQUEST_DESIGN_REVISION",
+      "decision_name": "設計改定要求（NO_GO）",
+      "meaning": "Phase 8-4 gate decision が NO_GO (< 100 points) の場合、Phase 8-2 設計の改定が必要。human reviewer が『改定すべき section』を明記する。",
+      "preconditions": [
+        "Phase 8-4 gate decision = NO_GO",
+        "gate evaluation 点数 < 100",
+        "reviewer が『NO_GO の理由と改定箇所』を詳細に記載することが必須"
+      ],
+      "next_phase": "Phase 8-2 設計改定 → Phase 8-4 re-evaluation → Phase 8-5 再review"
+    },
+    "decision_type_4": {
+      "decision_code": "ABORT_PHASE_8",
+      "decision_name": "Phase 8 進行停止（ABORT）",
+      "meaning": "Phase 8-4 gate decision が ABORT (critical missing sections) の場合、または reviewer が重大な安全違反を検出した場合、Phase 8 進行を即座に停止する。",
+      "preconditions": [
+        "Phase 8-4 gate decision = ABORT",
+        "any critical section score = 0",
+        "または human reviewer が safety boundary violation を検出"
+      ],
+      "next_phase": "安全確認ミーティング → Phase 8-1 から再開"
+    }
+  },
+  "human_reviewer_checklist": {
+    "section_name": "Human reviewer の確認チェックリスト",
+    "checklist_item_1": {
+      "item_id": "HRC-01",
+      "item": "Phase 8-4 gate evaluation が正しく実施されたか",
+      "verification_points": [
+        "9 sections (G8301 ~ G8309) の評価が skip されていないか",
+        "scoring が objective かつ transparent か",
+        "decision threshold (GO: 130+ / CONDITIONAL_GO: 100-129 / NO_GO: <100 / ABORT: critical missing) に基づいて decision が決定されているか"
+      ]
+    },
+    "checklist_item_2": {
+      "item_id": "HRC-02",
+      "item": "Phase 8-2 実装差分設計が安全性を満たしているか",
+      "verification_points": [
+        "MID-A: 5 個 hardcoding constants が『CRITICAL』『change_allowed=false』『override_permission_level=NEVER』と明記されているか",
+        "MID-B: 10 個禁止アクション enforcement が『例外なし』『永続』で記述されているか",
+        "MID-C ~ E: input/output/error/logging が sufficiently detailed か"
+      ]
+    },
+    "checklist_item_3": {
+      "item_id": "HRC-03",
+      "item": "Phase 8-1 / 8-3 の安全境界が Phase 8-2 で maintain されているか",
+      "verification_points": [
+        "operation_mode = OBSERVE が MID-A で hardcoding されているか",
+        "execution = dry_run が MID-A で hardcoding されているか",
+        "production_status = NO_GO が継続されているか",
+        "10 個禁止アクション (BA-01 ~ BA-10) が MID-B で完全にブロックされているか"
+      ]
+    },
+    "checklist_item_4": {
+      "item_id": "HRC-04",
+      "item": "Test plan (86 tests) が十分か",
+      "verification_points": [
+        "7 categories の test が全て計画されているか",
+        "hardcoding constants の verification test が included か",
+        "blocked actions enforcement の test が included か",
+        "test coverage goal 95%+ が achievable か"
+      ]
+    },
+    "checklist_item_5": {
+      "item_id": "HRC-05",
+      "item": "Phase 7-5 gate 要件との整合性が保たれているか",
+      "verification_points": [
+        "Phase 8-2 が Phase 7-5 の 8 sections (hardcoding / blocked_actions / validation / output / error_handling / logging / test_coverage / documentation) 全て coverage しているか",
+        "Phase 7-5 で定義された 66 point 評価が Phase 8-3 gate design に反映されているか"
+      ]
+    }
+  },
+  "human_review_template_fields": {
+    "section_name": "Human review 記録フィールド",
+    "field_1": {
+      "field_name": "review_id",
+      "field_type": "str",
+      "description": "レビューの一意識別子。例：PR-20260512-8-5-001",
+      "required": true
+    },
+    "field_2": {
+      "field_name": "reviewed_artifacts",
+      "field_type": "list of str",
+      "description": "Review対象とした成果物リスト",
+      "example": [
+        "phase8_2_receiver_validator_implementation_difference_design.json",
+        "phase8_3_app_tests_implementation_gate_design.json",
+        "phase8_4_gate_evaluation_result (scoring details)"
+      ],
+      "required": true
+    },
+    "field_3": {
+      "field_name": "review_date",
+      "field_type": "ISO 8601 date",
+      "required": true
+    },
+    "field_4": {
+      "field_name": "reviewer_name",
+      "field_type": "str",
+      "description": "Human reviewer の名前",
+      "required": true
+    },
+    "field_5": {
+      "field_name": "reviewer_signature",
+      "field_type": "str",
+      "description": "Review の署名（手書きまたはデジタル署名）",
+      "requirement": "必ず present。auto-approval は絶対禁止。",
+      "required": true
+    },
+    "field_6": {
+      "field_name": "gate_evaluation_assessment",
+      "field_type": "dict",
+      "description": "Phase 8-4 gate evaluation に対する review assessment",
+      "sub_fields": {
+        "total_score": "Phase 8-4 で計算された total score",
+        "decision_from_gate": "GO / CONDITIONAL_GO / NO_GO / ABORT",
+        "reviewer_agreement": "human reviewer が gate decision に同意するか (true/false)",
+        "reviewer_comments_on_scoring": "scoring の妥当性に対するコメント"
+      }
+    },
+    "field_7": {
+      "field_name": "safety_boundary_verification",
+      "field_type": "dict",
+      "description": "安全性境界の再確認",
+      "sub_fields": {
+        "operation_mode_check": "OBSERVE が maintain されているか (true/false)",
+        "execution_check": "dry_run が maintain されているか (true/false)",
+        "production_status_check": "NO_GO が maintain されているか (true/false)",
+        "banned_actions_check": "10 個禁止アクション全て blocked か (true/false)"
+      }
+    },
+    "field_8": {
+      "field_name": "final_decision",
+      "field_type": "str (enum)",
+      "allowed_values": [
+        "APPROVE_IMPLEMENTATION (GO)",
+        "APPROVE_CONDITIONAL_GO (条件付き)",
+        "REQUEST_DESIGN_REVISION (NO_GO)",
+        "ABORT_PHASE_8 (ABORT)"
+      ],
+      "required": true
+    },
+    "field_9": {
+      "field_name": "decision_rationale",
+      "field_type": "str",
+      "description": "Final decision を決定した理由。詳細に記載すること。",
+      "min_length": 200,
+      "required": true
+    },
+    "field_10": {
+      "field_name": "conditions_if_conditional_go",
+      "field_type": "list of str",
+      "description": "Final decision が APPROVE_CONDITIONAL_GO の場合、『GO に昇格するための具体条件』を列挙",
+      "example": [
+        "『Phase 8-2 の G8307 test_plan を 25/25 に改定し、re-evaluation で 130+ points を達成する』",
+        "『Phase 8-2 の MID-B blocked_actions enforcement を concrete code 例で再記述する』"
+      ],
+      "required_if": "final_decision = 'APPROVE_CONDITIONAL_GO'"
+    },
+    "field_11": {
+      "field_name": "revision_items_if_no_go",
+      "field_type": "list of str",
+      "description": "Final decision が REQUEST_DESIGN_REVISION の場合、『Phase 8-2 設計の改定すべき section』を列挙",
+      "example": [
+        "『Phase 8-2 MID-A hardcoding verification code が不足。assert code を追加』",
+        "『Phase 8-2 MID-B BA-05 auto_execute enforcement の具体例が不足』"
+      ],
+      "required_if": "final_decision = 'REQUEST_DESIGN_REVISION'"
+    },
+    "field_12": {
+      "field_name": "critical_issue_if_abort",
+      "field_type": "str",
+      "description": "Final decision が ABORT_PHASE_8 の場合、『重大な問題の詳細』を記載",
+      "required_if": "final_decision = 'ABORT_PHASE_8'"
+    }
+  },
+  "human_review_mandatory_requirements": {
+    "section_name": "Human review の絶対要件",
+    "requirement_1": "自動承認禁止。『APPROVE_IMPLEMENTATION』『APPROVE_CONDITIONAL_GO』『REQUEST_DESIGN_REVISION』『ABORT_PHASE_8』のどれを選ぶにしても、必ず human reviewer の署名が必須。",
+    "requirement_2": "Signature is non-delegable。reviewer 自身が review を実施し、署名する。proxy signature / 自動署名は禁止。",
+    "requirement_3": "Decision rationale は詳細に。『良い』『悪い』のみでなく、『なぜそう判定したか』を具体的に記載すること。",
+    "requirement_4": "Conditional GO / NO_GO / ABORT の場合、『改善方法』『改定箇所』『再度 review が必要な section』を具体的に明記すること。"
+  },
+  "phase_8_5_completion_criteria": {
+    "section_name": "Phase 8-5 完了判定基準",
+    "criterion_1": "Human review decision types が 4 種類明確に定義されている → SATISFIED",
+    "criterion_2": "Human reviewer checklist が 5 items で具体的に記述されている → SATISFIED",
+    "criterion_3": "Human review template fields が 12 fields で定義されている → SATISFIED",
+    "criterion_4": "Template fields に required / optional の指定が明確 → SATISFIED",
+    "criterion_5": "Mandatory requirements で『auto-approval 禁止』『human signature 必須』『decision rationale 詳細記載』が明記されている → SATISFIED",
+    "phase_8_5_completion_status": "PASS_DESIGN_ONLY"
+  },
+  "phase_8_5_to_phase_8_6_transition": {
+    "section_name": "Phase 8-6 への遷移",
+    "phase_8_5_output": "Human review implementation permission decision (記録済み template)",
+    "phase_8_6_input": "Phase 8-5 human review decision",
+    "phase_8_6_purpose": "Phase 8-1 ~ 8-5 の結果をまとめた『最終実装許可判定レポート』を作成。『app/tests 実装許可: GO / NO_GO / CONDITIONAL_GO / ABORT』を最終決定する。"
+  }
+}

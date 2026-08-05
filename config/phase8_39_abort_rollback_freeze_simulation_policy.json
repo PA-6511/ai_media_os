@@ -1,0 +1,30 @@
+{
+  "phase": "8-39",
+  "phase_name": "Abort / Rollback / Freeze Simulation",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "human_approval_required": true,
+  "execution_allowed": false,
+  "wordpress_api_call_allowed": false,
+  "wordpress_write_executed": false,
+  "rollback_execute_forbidden": true,
+  "freeze_execute_forbidden": true,
+  "slack_send_forbidden": true,
+  "systemctl_forbidden": true,
+  "simulation_scenarios": [
+    "credential_missing",
+    "wordpress_auth_failed",
+    "wordpress_timeout",
+    "wordpress_5xx",
+    "duplicate_item_detected",
+    "missing_affiliate_disclosure",
+    "pr_label_missing",
+    "cta_policy_failed",
+    "one_shot_lock_exists",
+    "unexpected_api_write_attempt",
+    "secret_output_detected",
+    "post_creation_uncertain",
+    "evidence_generation_failed"
+  ]
+}

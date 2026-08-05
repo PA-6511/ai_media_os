@@ -1,0 +1,107 @@
+{
+  "date": "2026-06-14",
+  "source_report": "reports/draft_check_20260614.json",
+  "total_checks": 20,
+  "pr_warn_count": 6,
+  "classification_counts": {
+    "existing_draft_backfill": 6
+  },
+  "rows": [
+    {
+      "date": "2026-06-14",
+      "draft_check_date": "2026-06-14",
+      "post_id": 101,
+      "title": "呪術廻戦は何巻まで出てる？最新巻・関連情報まとめ",
+      "pr_warn_reason": "PR/広告表記が見つかりません",
+      "wp_content_has_pr": "no",
+      "local_source_found": "yes",
+      "local_source_has_pr": "no",
+      "generation_route": "with_links",
+      "source_age": "修正前生成",
+      "classification": "existing_draft_backfill",
+      "next_action": "Backfill検討",
+      "notes": "publish_ts=2026-05-01T23:14:23+09:00; sources=manga_0001_volume_guide_article_output.json|manga_0001_volume_guide_article_output_with_journey.json|manga_0001_volume_guide_article_output_with_links.json|manga_0001_volume_guide_article_plan.json; first_seen_draft_check=2026-05-19"
+    },
+    {
+      "date": "2026-06-14",
+      "draft_check_date": "2026-06-14",
+      "post_id": 96,
+      "title": "無職転生全巻まとめ買いガイド",
+      "pr_warn_reason": "PR/広告表記が見つかりません",
+      "wp_content_has_pr": "no",
+      "local_source_found": "yes",
+      "local_source_has_pr": "no",
+      "generation_route": "with_links",
+      "source_age": "修正前生成",
+      "classification": "existing_draft_backfill",
+      "next_action": "Backfill検討",
+      "notes": "publish_ts=not_found; sources=lightnovel_0001_summary_article_output_with_journey.json|lightnovel_0001_summary_article_output.json|lightnovel_0001_summary_article_plan.json|lightnovel_0001_summary_article_output_with_links.json; first_seen_draft_check=2026-05-19"
+    },
+    {
+      "date": "2026-06-14",
+      "draft_check_date": "2026-06-14",
+      "post_id": 95,
+      "title": "葬送のフリーレン全巻まとめ買いガイド",
+      "pr_warn_reason": "PR/広告表記が見つかりません",
+      "wp_content_has_pr": "no",
+      "local_source_found": "yes",
+      "local_source_has_pr": "no",
+      "generation_route": "with_links",
+      "source_age": "修正前生成",
+      "classification": "existing_draft_backfill",
+      "next_action": "Backfill検討",
+      "notes": "publish_ts=not_found; sources=manga_0002_summary_article_output_with_journey.json|manga_0002_summary_article_output_with_links.json|manga_0002_summary_article_plan.json|manga_0002_summary_article_output.json; first_seen_draft_check=2026-05-19"
+    },
+    {
+      "date": "2026-06-14",
+      "draft_check_date": "2026-06-14",
+      "post_id": 94,
+      "title": "呪術廻戦全巻まとめ買いガイド",
+      "pr_warn_reason": "PR/広告表記が見つかりません",
+      "wp_content_has_pr": "no",
+      "local_source_found": "yes",
+      "local_source_has_pr": "no",
+      "generation_route": "with_links",
+      "source_age": "修正前生成",
+      "classification": "existing_draft_backfill",
+      "next_action": "Backfill検討",
+      "notes": "publish_ts=not_found; sources=manga_0001_summary_article_output_with_links.json|manga_0001_summary_article_output_with_journey.json|manga_0001_summary_article_plan.json|manga_0001_summary_article_output.json; first_seen_draft_check=2026-05-19"
+    },
+    {
+      "date": "2026-06-14",
+      "draft_check_date": "2026-06-14",
+      "post_id": 93,
+      "title": "無職転生は何巻まで出てる？最新巻・関連情報まとめ",
+      "pr_warn_reason": "PR/広告表記が見つかりません",
+      "wp_content_has_pr": "no",
+      "local_source_found": "yes",
+      "local_source_has_pr": "no",
+      "generation_route": "with_links",
+      "source_age": "修正前生成",
+      "classification": "existing_draft_backfill",
+      "next_action": "Backfill検討",
+      "notes": "publish_ts=not_found; sources=lightnovel_0001_volume_guide_article_plan.json|lightnovel_0001_volume_guide_article_output_with_links.json|lightnovel_0001_volume_guide_article_output_with_journey.json|lightnovel_0001_volume_guide_article_output.json; first_seen_draft_check=2026-05-19"
+    },
+    {
+      "date": "2026-06-14",
+      "draft_check_date": "2026-06-14",
+      "post_id": 92,
+      "title": "葬送のフリーレンは何巻まで出てる？最新巻・関連情報まとめ",
+      "pr_warn_reason": "PR/広告表記が見つかりません",
+      "wp_content_has_pr": "no",
+      "local_source_found": "yes",
+      "local_source_has_pr": "no",
+      "generation_route": "with_links",
+      "source_age": "修正前生成",
+      "classification": "existing_draft_backfill",
+      "next_action": "Backfill検討",
+      "notes": "publish_ts=not_found; sources=manga_0002_volume_guide_article_plan.json|manga_0002_volume_guide_article_output_with_journey.json|manga_0002_volume_guide_article_output.json|manga_0002_volume_guide_article_output_with_links.json; first_seen_draft_check=2026-05-19"
+    }
+  ],
+  "notes": [
+    "このファイルは再分類のみ。Backfill/checker/生成ロジックの修正は未実施。",
+    "wp_content_has_pr は draft_check の pr_notice= WARN を根拠に no としている。",
+    "source_age は run_ai_post_queue.log の初回post_id出現時刻で推定。",
+    "source_age確定は最古 draft_check 出現日で推定（first_seen_draft_check）。"
+  ]
+}

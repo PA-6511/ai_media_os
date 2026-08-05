@@ -1,0 +1,20 @@
+{
+  "package_type": "human_decision_result",
+  "source": "read_human_review_decision",
+  "target": "core_consensus_ai",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "human_approval_required": true,
+  "decision": "APPROVE_DRY_RUN_ONLY",
+  "status": "PASS",
+  "reason": "approved for DRY_RUN evidence only",
+  "next_step": "record_dry_run_evidence",
+  "auto_post": false,
+  "auto_update": false,
+  "auto_delete": false,
+  "auto_export": false,
+  "wordpress_write_executed": false,
+  "slack_notification_executed": false,
+  "github_actions_triggered": false,
+  "created_at": "2026-05-05T05:02:13.677345+00:00"
+}

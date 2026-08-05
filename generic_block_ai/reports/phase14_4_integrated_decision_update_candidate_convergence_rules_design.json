@@ -1,0 +1,71 @@
+{
+  "_meta": {
+    "phase": "14-4",
+    "phase_name": "integrated_decision 更新候補の収束ルール設計",
+    "version": "1.0",
+    "created_date": "2026-05-12",
+    "status": "PASS_DESIGN_ONLY",
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only",
+    "description": "GO/NO-GO 更新候補が複数観点で分岐した場合に、最終候補を一意に収束させるルールを固定する。"
+  },
+  "references": [
+    "generic_block_ai/reports/phase14_1_human_review_accepted_evidence_final_verification.json",
+    "generic_block_ai/reports/phase14_2_integrated_decision_go_nogo_update_candidate_generation.json",
+    "generic_block_ai/reports/phase13_8_integrated_decision_pre_update_acceptance_completion_measurement_report_design.json"
+  ],
+  "convergence_rules": [
+    {
+      "rule_id": "CVR-01",
+      "condition": "verification_passed == false",
+      "converged_candidate": "NO_GO",
+      "priority": 1
+    },
+    {
+      "rule_id": "CVR-02",
+      "condition": "acceptance_completion_status != COMPLETE",
+      "converged_candidate": "NO_GO",
+      "priority": 2
+    },
+    {
+      "rule_id": "CVR-03",
+      "condition": "app_gate_candidate == GO and tests_gate_candidate == GO and production_status == NO_GO",
+      "converged_candidate": "GO",
+      "priority": 3
+    },
+    {
+      "rule_id": "CVR-04",
+      "condition": "any conflict or missing evidence remains",
+      "converged_candidate": "NO_GO",
+      "priority": 4
+    }
+  ],
+  "convergence_template": {
+    "converged_integrated_decision_candidate": "NO_GO",
+    "convergence_complete": false,
+    "applied_rules": [],
+    "reason": "実測値が未確定のため、現時点では NO_GO に収束。"
+  },
+  "blocked_actions": [
+    "core_ai_real_send",
+    "external_api_call",
+    "wordpress_operation",
+    "cron_registration",
+    "auto_execute",
+    "auto_post",
+    "auto_update",
+    "auto_delete",
+    "auto_export",
+    "production_execution"
+  ],
+  "phase_decision": {
+    "phase14_4_status": "PASS_DESIGN_ONLY",
+    "app_implementation_status": "NO_GO",
+    "tests_implementation_status": "NO_GO",
+    "note": "候補収束ルールの設計のみ。現時点では NO_GO 収束を維持。"
+  }
+}

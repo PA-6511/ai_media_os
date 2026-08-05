@@ -1,0 +1,69 @@
+{
+  "phase": "Phase 8-22",
+  "phase_name": "Category/Tag Only Limited Fix Plan Design Only for post_id 115",
+  "status": "PHASE8_22_CATEGORY_TAG_ONLY_FIX_PLAN_CREATED_DESIGN_ONLY_NO_EXECUTION",
+  "decision": "DESIGN_ONLY_PLAN_CREATED",
+  "target_post_id": 115,
+  "production_status": "NO_GO",
+  "category_tag_only_fix_plan_created": true,
+  "update_scope": "category_tags_only",
+  "plan_constraints": {
+    "title_update_allowed": false,
+    "body_update_allowed": false,
+    "category_update_allowed": true,
+    "tag_update_allowed": true,
+    "publish_allowed": false,
+    "delete_allowed": false,
+    "single_post_only": true,
+    "multiple_post_operation_allowed": false
+  },
+  "target_post_status_required": "draft",
+  "expected_category_fix": {
+    "remove_uncategorized_if_present": true,
+    "set_intended_categories": true,
+    "category_ids_required_for_execution": true
+  },
+  "expected_tag_fix": {
+    "set_intended_tags": true,
+    "tag_ids_or_confirmed_names_required_for_execution": true,
+    "screen_confirmation_required": true
+  },
+  "human_approval_required_before_update": true,
+  "human_update_go_present": false,
+  "wordpress_api_call_attempted": false,
+  "wordpress_write_executed": false,
+  "wordpress_draft_updated": false,
+  "publish_executed": false,
+  "update_executed": false,
+  "delete_executed": false,
+  "bulk_operation_executed": false,
+  "export_executed": false,
+  "rollback_executed": false,
+  "freeze_executed": false,
+  "secret_values_output": false,
+  "secret_values_written": false,
+  "errors": [],
+  "warnings": [],
+  "safety_violations": [],
+  "evidence_summary": [
+    {
+      "path": "exchange/logs/phase8_19_limited_update_post_115_execution_result.json",
+      "exists": true,
+      "status": "PHASE8_19_LIMITED_DRAFT_UPDATE_EXECUTED_PENDING_HUMAN_REVIEW"
+    },
+    {
+      "path": "exchange/logs/phase8_20_limited_update_post_115_closure_report.json",
+      "exists": true,
+      "status": "PHASE8_20_LIMITED_DRAFT_UPDATE_VERIFIED_PENDING_HUMAN_REVIEW"
+    },
+    {
+      "path": "exchange/logs/phase8_21_manual_inspection_after_limited_update_post_115_result.json",
+      "exists": true,
+      "status": "PHASE8_21_MANUAL_INSPECTION_REQUEST_FIX",
+      "action": "request_fix"
+    }
+  ],
+  "next_step": "phase8_23_category_tag_only_preflight_no_execution",
+  "reviewed_at_utc": "2026-06-09T13:40:50+00:00",
+  "checked_at": "2026-06-09T13:40:51.520115+00:00"
+}

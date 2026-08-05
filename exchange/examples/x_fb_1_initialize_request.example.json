@@ -1,0 +1,21 @@
+{
+  "action": "INITIALIZE",
+  "feedback_id": "x-fb-example-20260717-101",
+  "article_item_id": "example-20260717-101",
+  "wordpress_post_id": null,
+  "template_id": "X_NEW_RELEASE_V1",
+  "article_context": {
+    "title": "サンプル作品",
+    "volume_label": "第1巻",
+    "release_date": "2026-07-17",
+    "category": "comic"
+  },
+  "generated_text": "『サンプル作品 第1巻』が7月17日に発売です。電子書籍ストアをチェックしてください。",
+  "wording_labels": [
+    "TITLE_FIRST",
+    "INFORMATIONAL_TONE",
+    "STORE_DIRECT_CTA",
+    "NO_EMOJI",
+    "NO_HASHTAG"
+  ]
+}

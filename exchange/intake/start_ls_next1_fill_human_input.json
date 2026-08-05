@@ -1,0 +1,29 @@
+{
+  "document_type": "START_LS_NEXT1_FILL_HUMAN_INPUT_RECORD",
+  "schema_version": "1.0.0",
+  "phase": "LS-NEXT-1-FILL",
+  "status": "LSNEXT1_FILL_WAITING_FOR_HUMAN_INPUT",
+  "content_item_id": "",
+  "target_post_id": null,
+  "target_post_link": "",
+  "payload_title": "",
+  "payload_asin": "",
+  "public_url": "",
+  "public_rest_url": "",
+  "expected_pre_publish_status": "draft",
+  "target_publish_status": "publish",
+  "human_filled": false,
+  "human_confirmed": false,
+  "execution_allowed": false,
+  "ready_for_ls_next_2": false,
+  "missing_required_human_fields": [
+    "content_item_id",
+    "target_post_id",
+    "target_post_link",
+    "payload_title",
+    "payload_asin",
+    "public_url",
+    "public_rest_url"
+  ],
+  "errors": []
+}

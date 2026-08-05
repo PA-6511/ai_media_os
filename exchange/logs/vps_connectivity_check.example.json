@@ -1,0 +1,18 @@
+{
+  "check_id": "vps-connectivity-check-001",
+  "target_host_alias": "your-vps-alias",
+  "timestamp_utc": "2026-05-24T00:00:00Z",
+  "tcp_22_result": "PASS",
+  "ssh_banner_result": "PASS",
+  "ssh_auth_dry_run_result": "PASS",
+  "latency_ms": 120,
+  "packet_loss_percent": 0,
+  "reason": "Manual connection check sample record. No remote write and no command execution.",
+  "production_status": "NO_GO",
+  "remote_write_executed": false,
+  "remote_command_executed": false,
+  "secrets_exposed": false,
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "human_review_required": true
+}

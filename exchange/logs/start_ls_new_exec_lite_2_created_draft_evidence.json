@@ -1,0 +1,57 @@
+{
+  "phase": "LS-NEW-EXEC-LITE-2",
+  "document_type": "START_LS_NEW_EXEC_LITE_2_CREATED_DRAFT_EVIDENCE",
+  "status": "LSNEW_EXEC_LITE_2_CREATED_DRAFT_EVIDENCE_FIXED",
+  "execution_mode": "EVIDENCE_FREEZE_ONLY_NO_WP_CALL",
+  "production_status": "DRAFT_CREATED_MANUAL_REVIEW_REQUIRED",
+
+  "previous_phase": "LS-NEW-EXEC-LITE-1",
+  "previous_status": "LSNEW_EXEC_LITE_1_WORDPRESS_DRAFT_CREATED_ONE_SHOT",
+
+  "content_item_id": "new-comic-001",
+  "title": "月曜日のたわわ",
+  "volume": "第15巻",
+  "author": "比村奇石",
+  "publisher": "講談社",
+  "release_date": "2026-07-06",
+  "asin": "B0H6DQLPPB",
+  "isbn": "978-4065442296",
+
+  "created_post_id": 185,
+  "created_post_link": "https://hoshido.jp/?p=185",
+  "created_post_status": "draft",
+
+  "target_post_id": 185,
+  "target_post_id_allocated": true,
+  "one_shot_execution_count_target": 1,
+  "one_shot_execution_actual_count": 1,
+  "one_shot_execution_consumed": true,
+
+  "wordpress_api_call_executed_in_this_step": false,
+  "wordpress_write_executed_in_this_step": false,
+  "wordpress_draft_created_in_this_step": false,
+  "wordpress_publish_executed": false,
+  "wordpress_update_executed": false,
+  "wordpress_delete_executed": false,
+
+  "credential_env_read_executed": false,
+  "credential_value_output": false,
+  "credential_secret_output": false,
+  "authorization_header_output": false,
+  "basic_auth_output": false,
+  "base64_auth_output": false,
+  "response_body_output": false,
+  "user_identity_output": false,
+
+  "post119_update_executed": false,
+  "post183_update_executed": false,
+  "rerun_allowed": false,
+  "draft_create_rerun_allowed": false,
+  "publish_rerun_allowed": false,
+
+  "manual_wordpress_review_required": true,
+  "ready_for_manual_wordpress_review": true,
+  "ready_for_publish": false,
+  "recommended_next_action": "MANUAL_WORDPRESS_DRAFT_REVIEW_POST_185",
+  "errors": []
+}

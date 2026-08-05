@@ -1,0 +1,48 @@
+{
+  "_meta": {
+    "schema_version": "runbook_v1",
+    "phase": "IR8-T4",
+    "generated_at": "2026-05-23T14:22:01.887789+00:00",
+    "status": "READY"
+  },
+  "objective": "practical affiliate records roundtrip dry-run",
+  "steps": [
+    {
+      "step": 1,
+      "name": "freeze generated affiliate package",
+      "action": "freeze_generated_affiliate_block_package(base_path)",
+      "pass_condition": "status == OK"
+    },
+    {
+      "step": 2,
+      "name": "validate input records schema",
+      "action": "validate_affiliate_input_records(records)",
+      "pass_condition": "result in {PASS, WARN}"
+    },
+    {
+      "step": 3,
+      "name": "run roundtrip dry-run",
+      "action": "run_generic_affiliate_generic_core_roundtrip_dryrun(...) ",
+      "pass_condition": "roundtrip_result._meta.status == OK"
+    },
+    {
+      "step": 4,
+      "name": "full regression",
+      "action": "python3 -m pytest -q generic_block_ai/tests",
+      "pass_condition": "all tests pass"
+    }
+  ],
+  "abort_conditions": [
+    "input_validation.result == FAIL",
+    "candidate_validation.result == FAIL",
+    "any core_ai_handshake.validation_result == FAIL",
+    "external_write_executed == true"
+  ],
+  "safeguards": {
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "external_write_executed": false,
+    "actual_auto_execute": false,
+    "production_release": false
+  }
+}

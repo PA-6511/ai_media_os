@@ -1,0 +1,103 @@
+{
+  "phase_id": "35-7",
+  "phase_name": "Final Safety Stop and Manual Release Boundary Integrated Final Judgment Report Design",
+  "phase_japanese_name": "最終安全停止・手動解除境界の統合最終判定レポート設計",
+  "purpose": "Design integrated final judgment report for final safety-stop and manual-release boundary before any authorization grant.",
+  "layer": "pre_actual_process_start_final_safety_stop_and_manual_release_boundary_layer",
+  "design_category": "reports_only",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "operation_transition_go_authorization": "NOT_GRANTED",
+    "production_reflection_go_authorization": "NOT_GRANTED",
+    "freeze_release_go_authorization": "NOT_GRANTED",
+    "execution_start_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "phase_35_7_scope": {
+    "scope_1_input_contract": {
+      "scope_id": "INPUT_CONTRACT",
+      "required_inputs": {
+        "phase35_1_to_35_6_all_status": "PASS_DESIGN_ONLY"
+      }
+    },
+    "scope_2_synthesis_rules": {
+      "scope_id": "SYNTHESIS_RULES",
+      "rules": {
+        "rule_P35I1": "Synthesize all Phase 35-1 through Phase 35-6 judgments and results",
+        "rule_P35I2": "Verify evidence consistency across all sub-phases",
+        "rule_P35I3": "Confirm final safety-stop and manual-release boundary status",
+        "rule_P35I4": "Verify all NO_GO/NOT_GRANTED invariants maintained",
+        "rule_P35I5": "Create comprehensive final judgment with audit trail"
+      }
+    },
+    "scope_3_report_structure": {
+      "scope_id": "REPORT_STRUCTURE",
+      "sections": {
+        "section_1_header": {
+          "report_id": "PHASE35_7_FINAL_BOUNDARY_INTEGRATED_FINAL_JUDGMENT_<UTC_TIMESTAMP>",
+          "report_type": "final_safety_stop_and_manual_release_boundary_integrated_final_judgment",
+          "generated_at_utc": "RFC3339",
+          "generated_by": "authority_identifier"
+        },
+        "section_2_synthesis_summary": {
+          "phase35_1_status": "PASS_DESIGN_ONLY",
+          "phase35_2_status": "PASS_DESIGN_ONLY",
+          "phase35_3_status": "PASS_DESIGN_ONLY",
+          "phase35_4_status": "PASS_DESIGN_ONLY",
+          "phase35_5_status": "PASS_DESIGN_ONLY",
+          "phase35_6_status": "PASS_DESIGN_ONLY",
+          "evidence_consistency": "CONSISTENT | INCONSISTENT"
+        },
+        "section_3_boundary_status": {
+          "final_safety_stop_status": "ACTIVE | BREACHED",
+          "manual_release_boundary_status": "PASS | FAIL",
+          "abort_conditions_triggered": "YES | NO"
+        },
+        "section_4_invariant_confirmation": {
+          "production_status": "NO_GO",
+          "operation_transition_go_authorization": "NOT_GRANTED",
+          "production_reflection_go_authorization": "NOT_GRANTED",
+          "freeze_release_go_authorization": "NOT_GRANTED",
+          "execution_start_go_authorization": "NOT_GRANTED",
+          "actual_process_start_go_authorization": "NOT_GRANTED",
+          "manual_release_go_authorization": "NOT_GRANTED"
+        },
+        "section_5_final_judgment": {
+          "phase35_integrated_judgment": "PASS_DESIGN_ONLY"
+        }
+      }
+    }
+  },
+  "phase_35_7_governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "state_invariants": {
+      "app_implementation_status": "NO_GO",
+      "tests_implementation_status": "NO_GO",
+      "production_status": "NO_GO",
+      "operation_transition_go_authorization": "NOT_GRANTED",
+      "production_reflection_go_authorization": "NOT_GRANTED",
+      "freeze_release_go_authorization": "NOT_GRANTED",
+      "execution_start_go_authorization": "NOT_GRANTED",
+      "actual_process_start_go_authorization": "NOT_GRANTED",
+      "manual_release_go_authorization": "NOT_GRANTED",
+      "changed_area": "reports only"
+    }
+  }
+}

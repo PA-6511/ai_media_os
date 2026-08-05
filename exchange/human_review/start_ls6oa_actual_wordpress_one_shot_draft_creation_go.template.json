@@ -1,0 +1,54 @@
+{
+  "phase": "LS-6O-A",
+  "go_type": "HUMAN_ACTUAL_WORDPRESS_ONE_SHOT_DRAFT_CREATION_GO",
+  "go_status": "TEMPLATE_NOT_ACTUAL_GO",
+  "go_label": "NOT_GO_YET",
+  "issued_by": "HUMAN_REQUIRED",
+  "issued_at": "HUMAN_REQUIRED",
+  "target_payload": {
+    "title_expected": "2.5次元の誘惑",
+    "asin_expected": "B07X2G67B4",
+    "post_status_expected": "draft",
+    "max_items": 1,
+    "payload_preview": "exchange/logs/start_ls6c_real_draft_payload_preview.json"
+  },
+  "go_checklist": {
+    "ls6n_lock_and_final_preflight_pass_checked": "HUMAN_REQUIRED",
+    "one_shot_actual_execution_lock_active_checked": "HUMAN_REQUIRED",
+    "one_shot_actual_execution_lock_not_consumed_checked": "HUMAN_REQUIRED",
+    "runtime_freeze_active_checked": "HUMAN_REQUIRED",
+    "credential_presence_validated_checked": "HUMAN_REQUIRED",
+    "target_payload_title_checked": "HUMAN_REQUIRED",
+    "target_payload_asin_checked": "HUMAN_REQUIRED",
+    "post_status_draft_checked": "HUMAN_REQUIRED",
+    "max_items_one_checked": "HUMAN_REQUIRED",
+    "no_publish_checked": "HUMAN_REQUIRED",
+    "no_existing_post_update_checked": "HUMAN_REQUIRED",
+    "no_post119_update_checked": "HUMAN_REQUIRED",
+    "no_schedule_checked": "HUMAN_REQUIRED",
+    "no_delete_checked": "HUMAN_REQUIRED",
+    "single_execution_only_checked": "HUMAN_REQUIRED",
+    "next_phase_still_no_write_checked": "HUMAN_REQUIRED"
+  },
+  "decision": {
+    "human_actual_wordpress_one_shot_draft_creation_go_granted": false,
+    "actual_wordpress_go_consumed": false,
+    "wordpress_write_allowed_by_this_phase": false,
+    "wordpress_draft_creation_allowed_by_this_phase": false,
+    "actual_execution_allowed_by_this_phase": false,
+    "credential_env_read_allowed_by_this_phase": false,
+    "one_shot_actual_execution_lock_consumed_by_this_phase": false,
+    "requires_next_phase_runner_final_preflight": true
+  },
+  "current_phase_execution": {
+    "credential_env_read_executed": false,
+    "wordpress_api_call_executed": false,
+    "wordpress_write_executed": false,
+    "wordpress_draft_creation_executed": false,
+    "runtime_freeze_restored": false,
+    "one_shot_actual_execution_lock_consumed": false,
+    "runner_executed": false,
+    "actual_execution_executed": false
+  },
+  "note": "Copy this template to start_ls6oa_actual_wordpress_one_shot_draft_creation_go.json only after explicit human GO. This template itself is not the actual GO."
+}

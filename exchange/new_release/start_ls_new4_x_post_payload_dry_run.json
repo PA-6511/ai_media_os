@@ -1,0 +1,27 @@
+{
+  "phase": "LS-NEW-4",
+  "document_type": "START_LS_NEW4_X_POST_PAYLOAD_DRY_RUN",
+  "generated": true,
+  "x_post_executed": false,
+  "x_api_call_executed": false,
+  "template_source": "LS-NEW-3 simple X preview",
+  "post_text": "配信開始です\n#PR #Amazonmanga #Kindle #比村奇石\n『月曜日のたわわ』第15巻\n\nURL",
+  "character_count": 56,
+  "under_280": true,
+  "contains_pr": true,
+  "contains_title": true,
+  "contains_author_hashtag": true,
+  "contains_url_placeholder": true,
+  "content_policy": {
+    "synopsis_included": false,
+    "price_comparison_required": false,
+    "point_reward_rate_required": false,
+    "store_comparison_required": false,
+    "long_work_explanation_included": false
+  },
+  "safety": {
+    "x_post_executed": false,
+    "x_api_call_executed": false,
+    "execution_allowed": false
+  }
+}

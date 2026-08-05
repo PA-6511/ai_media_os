@@ -1,0 +1,97 @@
+{
+  "phase": "SQL-B2-4B-5G-3B-1C-0",
+  "result": "PASS_COMMIT_BOUND_PREINSTALL_AUDIT_HOST_READY_NO_GO",
+  "recorded_at": "2026-07-14T15:43:48.336926+00:00",
+  "git": {
+    "branch": "feature/sql-b2-4b-slack-production-readiness",
+    "audit_source_commit": "f7c287a1d66faf848c83f9c75fbbd284b8206465",
+    "audit_source_commit_short": "f7c287a",
+    "implementation_commit_short": "1069243"
+  },
+  "commit_bound_artifacts": {
+    "config/slack_trusted_autostart_verifier_policy.json": {
+      "sha256": "cca96f56aa88c0e85b566e57dd015ccb8c388ff8a37e1cab4b1eaa5e4e286e47",
+      "commit_bound": true,
+      "evidence_bound": true,
+      "mode": "0664"
+    },
+    "systemd/slack-autostart-verifier.py": {
+      "sha256": "439903b8b7b3710ea23e1963bac34a7d019da3364b63ab70f780db66f71f020a",
+      "commit_bound": true,
+      "evidence_bound": true,
+      "mode": "0755"
+    },
+    "tests/test_slack_trusted_autostart_verifier.py": {
+      "sha256": "b510122e5846f5df7e7d17809b6152ff928061099bd910bfc5f9d290a4041784",
+      "commit_bound": true,
+      "evidence_bound": true,
+      "mode": "0664"
+    }
+  },
+  "trusted_paths": {
+    "trusted_ancestors": "PASS",
+    "install_parent": "/usr/local/libexec",
+    "install_parent_exists": false,
+    "dedicated_gate_directory": "/etc/ai-media-os-autostart",
+    "dedicated_gate_directory_exists": false,
+    "ready_for_root_managed_creation": true
+  },
+  "existing_secret_boundary": {
+    "path": "/etc/ai-media-os",
+    "owner": "deploy",
+    "group": "deploy",
+    "mode": "0700",
+    "must_remain_unchanged": true
+  },
+  "unit_switch_state": {
+    "repository_unit_sha256": "ea27ffcff758a32020102f35a4df025aba8358501a6798d33f0ba069162005fc",
+    "installed_unit_sha256": "ea27ffcff758a32020102f35a4df025aba8358501a6798d33f0ba069162005fc",
+    "repository_and_installed_match": true,
+    "trusted_verifier_switched": false,
+    "switch_pending": true
+  },
+  "host_install_state": {
+    "dedicated_gate_directory_created": false,
+    "autostart_gate_present": false,
+    "trusted_verifier_install_directory_created": false,
+    "trusted_verifier_installed": false
+  },
+  "systemd_state": {
+    "fragment_path": "/etc/systemd/system/ai-media-os-slack-approval-readiness.service",
+    "need_daemon_reload": "no",
+    "active_state": "inactive",
+    "sub_state": "dead",
+    "unit_file_state": "disabled",
+    "main_pid": 0,
+    "enabled": false,
+    "running": false
+  },
+  "database_safety": {
+    "production_sha256": "a4c5c6b3c9f016cd745cdb9c531c807fe5bc4a3ac28f9422609dfa96cd7b37d8",
+    "production_database_unchanged": true,
+    "readiness_quick_check": "ok",
+    "readiness_approval_count": 0
+  },
+  "decision": {
+    "commit_bound_source": true,
+    "trusted_path_ancestors": "PASS",
+    "dedicated_gate_parent_ready_for_creation": true,
+    "trusted_verifier_parent_ready_for_creation": true,
+    "trusted_verifier_installed": false,
+    "unit_trusted_verifier_switched": false,
+    "unit_enabled": false,
+    "service_running": false,
+    "installation_allowed": "HOLD",
+    "autostart_approval": "NOT_APPROVED",
+    "final_decision": "NO_GO"
+  },
+  "governance": {
+    "production_status": "NO_GO",
+    "safety_state": "PREINSTALL_AUDIT_COMPLETE_HOST_INSTALL_NOT_EXECUTED",
+    "gate_creation_allowed": false,
+    "trusted_verifier_install_allowed": false,
+    "unit_switch_allowed": false,
+    "service_start_allowed": false,
+    "unit_enable_allowed": false
+  }
+}

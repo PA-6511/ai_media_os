@@ -1,0 +1,72 @@
+{
+  "_meta": {
+    "phase": "14-6",
+    "phase_name": "GO候補が出た場合の最終停止条件設計",
+    "version": "1.0",
+    "created_date": "2026-05-12",
+    "status": "PASS_DESIGN_ONLY",
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only",
+    "description": "GO 候補が生成された場合でも、発効直前で停止すべき最終条件を固定する。"
+  },
+  "references": [
+    "generic_block_ai/reports/phase14_4_integrated_decision_update_candidate_convergence_rules_design.json",
+    "generic_block_ai/reports/phase14_5_receiver_validator_permission_candidate_evidence_lock_rules_design.json",
+    "generic_block_ai/reports/phase12_6_receiver_validator_permission_immediate_stop_conditions_design.json"
+  ],
+  "final_stop_conditions": [
+    {
+      "condition_id": "GSC-01",
+      "condition": "all_candidate_evidence_locked == false",
+      "effect": "force NO_GO"
+    },
+    {
+      "condition_id": "GSC-02",
+      "condition": "production_status != NO_GO",
+      "effect": "abort immediately"
+    },
+    {
+      "condition_id": "GSC-03",
+      "condition": "any blocked action becomes permitted",
+      "effect": "abort immediately"
+    },
+    {
+      "condition_id": "GSC-04",
+      "condition": "app_gate_candidate != GO or tests_gate_candidate != GO",
+      "effect": "force NO_GO"
+    },
+    {
+      "condition_id": "GSC-05",
+      "condition": "receiver validator scope exceeds approved minimal scope",
+      "effect": "abort immediately"
+    }
+  ],
+  "stop_template": {
+    "stop_triggered": true,
+    "go_candidate_blocked": true,
+    "triggered_conditions": [],
+    "overall_result": "PENDING"
+  },
+  "blocked_actions": [
+    "core_ai_real_send",
+    "external_api_call",
+    "wordpress_operation",
+    "cron_registration",
+    "auto_execute",
+    "auto_post",
+    "auto_update",
+    "auto_delete",
+    "auto_export",
+    "production_execution"
+  ],
+  "phase_decision": {
+    "phase14_6_status": "PASS_DESIGN_ONLY",
+    "app_implementation_status": "NO_GO",
+    "tests_implementation_status": "NO_GO",
+    "note": "GO候補時の最終停止条件設計のみ。実装開始は依然として NO_GO。"
+  }
+}

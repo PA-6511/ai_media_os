@@ -1,0 +1,22 @@
+{
+  "_meta": {
+    "phase": 245,
+    "purpose": "manual_validation",
+    "generated_at": "2026-05-20T15:05:17Z",
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "auto_execute_allowed": false,
+    "requires_human_approval": true
+  },
+  "overall_result": "PASS",
+  "validation_result": "ALL_CHECKS_PASSED",
+  "validated_files": 6,
+  "validations": [
+    { "target": "phase245_1_phase244_completion_evidence_receipt_and_consistency_confirmation.json", "result": "PASS", "failed_checks": [], "warnings": [] },
+    { "target": "phase245_2_post_lock_final_maintenance_completion_state_final_confirmation_completion_final_confirmation_post_completion_completion_confirmation_completion_confirmation_completion_confirmation_completion_confirmation_completion_completion_confirmation_completion_confirmation_completion_confirmation_completion_design.json", "result": "PASS", "failed_checks": [], "warnings": [] },
+    { "target": "phase245_3_actual_process_start_no_go_continuation.json", "result": "PASS", "failed_checks": [], "warnings": [] },
+    { "target": "phase245_4_post_lock_final_maintenance_completion_state_final_confirmation_completion_final_confirmation_post_completion_completion_confirmation_completion_confirmation_completion_confirmation_completion_confirmation_completion_completion_confirmation_completion_confirmation_completion_confirmation_completion_no_go_reinforcement.json", "result": "PASS", "failed_checks": [], "warnings": [] },
+    { "target": "phase245_5_post_lock_final_maintenance_completion_state_final_confirmation_completion_final_confirmation_post_completion_completion_confirmation_completion_confirmation_completion_confirmation_completion_confirmation_completion_completion_confirmation_completion_confirmation_completion_confirmation_completion_not_granted_reinforcement.json", "result": "PASS", "failed_checks": [], "warnings": [] },
+    { "target": "phase245_6_actual_process_start_no_go_reinforcement.json", "result": "PASS", "failed_checks": [], "warnings": [] }
+  ]
+}

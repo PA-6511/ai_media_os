@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-0",
+  "contract_id": "POST185_STANDARD_TEMPLATE_V1_FIXED",
+  "template_id": "POST185_STANDARD_TEMPLATE_V1",
+  "source_post": {
+    "post_id": 185,
+    "title": "月曜日のたわわ 第15巻",
+    "status": "published",
+    "standardization_completed": true
+  },
+  "fixed_scope": {
+    "article_type": "electronic_book_new_release",
+    "primary_category": "comic",
+    "mobile_first": true,
+    "wordpress_theme": "cocoon_child"
+  },
+  "required_components": {
+    "rakuten_cover_image": true,
+    "price_card": true,
+    "pr_disclosure": true,
+    "release_date": true,
+    "store_buttons": true,
+    "store_button_order": [
+      "amazon",
+      "rakuten_kobo",
+      "dmm"
+    ],
+    "uncategorized_hidden": true
+  },
+  "content_policy": {
+    "description_mode": "minimal",
+    "unnecessary_long_commentary_allowed": false,
+    "unsupported_factual_claims_allowed": false,
+    "unknown_price_representation": null,
+    "missing_store_link_must_not_use_dummy_url": true
+  },
+  "change_control": {
+    "template_fixed": true,
+    "silent_structure_change_allowed": false,
+    "css_global_change_allowed": false,
+    "human_review_required_for_template_revision": true,
+    "revision_requires_new_template_version": true
+  },
+  "execution_boundary": {
+    "design_only": true,
+    "dry_run_only": true,
+    "wordpress_write_allowed": false,
+    "wordpress_publish_allowed": false,
+    "x_post_allowed": false,
+    "external_api_call_allowed": false
+  },
+  "next_phase": {
+    "phase_id": "LS-NEW-BATCH-1",
+    "name": "New Release Batch Input Schema",
+    "execution_allowed": false
+  }
+}

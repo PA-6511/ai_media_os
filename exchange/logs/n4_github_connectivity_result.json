@@ -1,0 +1,42 @@
+{
+  "phase": "N-4",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "human_approval_required": true,
+  "wordpress_write_executed": false,
+  "wordpress_post_created": false,
+  "external_state_change": false,
+  "executor_action_allowed": false,
+  "network_observation_only": true,
+  "communication_test_only": true,
+  "github_push_executed": false,
+  "github_merge_executed": false,
+  "checked_at": "2026-05-31T13:19:48.812007+00:00",
+  "status": "PASS",
+  "repo_url": "https://github.com/octocat/Hello-World.git",
+  "github_reachable": true,
+  "ssh_auth_detected": false,
+  "response_time_ms": 42.38,
+  "dns_ok": true,
+  "ls_remote_ok": true,
+  "clone_dry_run_checked": true,
+  "checks": {
+    "dns": {
+      "ok": true,
+      "reason": null
+    },
+    "https": {
+      "ok": true,
+      "reason": null
+    },
+    "ssh_auth": {
+      "ok": false,
+      "note": "git@github.com: permission denied (publickey)."
+    },
+    "ls_remote": {
+      "ok": true,
+      "reason": null
+    }
+  }
+}

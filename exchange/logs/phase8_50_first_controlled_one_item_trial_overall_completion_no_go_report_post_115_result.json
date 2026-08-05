@@ -1,0 +1,107 @@
+{
+  "phase": "Phase 8-50",
+  "phase_name": "First Controlled One-Item Trial Overall Completion / NO-GO Maintained Report",
+  "status": "PHASE8_50_FIRST_CONTROLLED_ONE_ITEM_TRIAL_OVERALL_COMPLETION_NO_GO_MAINTAINED",
+  "target_post_id": 115,
+  "post_status": "draft",
+  "post_link": "https://hoshido.jp/?p=115",
+  "production_status": "NO_PUBLISH_PAUSE",
+  "overall_summary": {
+    "draft_created_success": true,
+    "draft_creation_verified": true,
+    "body_update_success": true,
+    "category_update_success": true,
+    "trial_success_fixed": true,
+    "publish_not_executed": true,
+    "decision_now": "NO_GO_KEEP_PAUSE"
+  },
+  "final_state": {
+    "post_id": 115,
+    "post_status": "draft",
+    "category_ids": [
+      13
+    ],
+    "tags_status": "not_required_for_current_controlled_path",
+    "publish_executed": false,
+    "delete_executed": false
+  },
+  "major_open_blockers": [
+    "business_facts_not_finalized",
+    "content_accuracy_not_finalized",
+    "legal_review_not_finalized",
+    "explicit_human_publish_go_not_provided"
+  ],
+  "conditional_non_blockers": [
+    "tags_policy_deferred_no_execution"
+  ],
+  "required_human_review_items_next": [
+    "business_facts_review_completion",
+    "content_accuracy_and_link_review_completion",
+    "legal_pr_affiliate_review_completion",
+    "explicit_human_publish_go_or_keep_no_go_confirmation"
+  ],
+  "publish_allowed": false,
+  "publish_executed": false,
+  "wordpress_api_call_attempted": false,
+  "wordpress_write_executed": false,
+  "wordpress_draft_updated": false,
+  "secret_values_output": false,
+  "secret_values_written": false,
+  "errors": [],
+  "warnings": [
+    "RequestsDependencyWarning was observed in prior requests-based phases; treat as dependency hygiene task and not as blocker for current NO_GO report."
+  ],
+  "safety_violations": [],
+  "evidence_summary": [
+    {
+      "key": "phase8_9",
+      "path": "exchange/logs/phase8_9_first_one_item_wordpress_draft_create_rerun_result.json",
+      "exists": true,
+      "status": "RERUN_DRAFT_CREATED_PENDING_HUMAN_REVIEW"
+    },
+    {
+      "key": "phase8_10",
+      "path": "exchange/logs/phase8_10_post_rerun_closure_report.json",
+      "exists": true,
+      "status": "RERUN_DRAFT_VERIFIED_PENDING_HUMAN_REVIEW"
+    },
+    {
+      "key": "phase8_20",
+      "path": "exchange/logs/phase8_20_limited_update_post_115_closure_report.json",
+      "exists": true,
+      "status": "PHASE8_20_LIMITED_DRAFT_UPDATE_VERIFIED_PENDING_HUMAN_REVIEW"
+    },
+    {
+      "key": "phase8_25",
+      "path": "exchange/logs/phase8_25_category_only_update_post_115_closure_report.json",
+      "exists": true,
+      "status": "PHASE8_25_CATEGORY_ONLY_UPDATE_VERIFIED_PENDING_HUMAN_REVIEW"
+    },
+    {
+      "key": "phase8_27",
+      "path": "exchange/logs/phase8_27_first_one_item_draft_body_category_success_fixed_post_115_report.json",
+      "exists": true,
+      "status": "PHASE8_27_FIRST_ONE_ITEM_DRAFT_BODY_CATEGORY_SUCCESS_FIXED_NO_PUBLISH"
+    },
+    {
+      "key": "phase8_40",
+      "path": "exchange/logs/phase8_40_publish_readiness_overall_no_go_report_post_115_result.json",
+      "exists": true,
+      "status": "PHASE8_40_PUBLISH_READINESS_OVERALL_NO_GO_FIXED"
+    },
+    {
+      "key": "phase8_46",
+      "path": "exchange/logs/phase8_46_publish_readiness_re_evaluation_after_human_review_post_115_result.json",
+      "exists": true,
+      "status": "PHASE8_46_PUBLISH_READINESS_RE_EVALUATION_AFTER_HUMAN_REVIEW_NO_GO"
+    },
+    {
+      "key": "phase8_49",
+      "path": "exchange/logs/phase8_49_publish_readiness_re_evaluation_after_revalidation_post_115_result.json",
+      "exists": true,
+      "status": "PHASE8_49_PUBLISH_READINESS_RE_EVALUATION_NO_GO_MAINTAINED"
+    }
+  ],
+  "next_step": "fill_human_review_items_then_revalidate_and_re_evaluate_before_any_publish_discussion",
+  "checked_at": "2026-06-09T14:10:31.807417+00:00"
+}

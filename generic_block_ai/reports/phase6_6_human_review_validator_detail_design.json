@@ -1,0 +1,459 @@
+{
+  "_meta": {
+    "phase": "6-6",
+    "purpose": "human_review_validator_detail_design",
+    "created_at": "2026-05-12",
+    "status": "DESIGN_ONLY",
+    "note": "Core側 human_review validator の詳細設計。human review 条件、承認前禁止操作、承認後継続禁止操作を明文化。実装候補は設計情報に留める。"
+  },
+  "validator_scope": {
+    "validator_type": "human_review_validator",
+    "purpose": "Core側から受け取る payload に対し、human review が必須であり、どの条件下で どの操作を承認/拒否するかを検証",
+    "design_basis": [
+      "reports/phase6_2_receiver_validator_implementation_conditions.json",
+      "reports/phase5_3_core_human_review_conditions.json"
+    ],
+    "review_scope": [
+      "human review 必須条件の判定",
+      "承認前に禁止する操作の列挙",
+      "承認後も継続禁止する操作の列挙",
+      "自動承認禁止の強制"
+    ]
+  },
+  "human_review_mandatory_conditions": {
+    "title": "human review が必須となる条件",
+    "conditions": [
+      {
+        "id": "any_warning_present",
+        "condition": "receiver validator または rejection validator で ANY warning が検出された",
+        "severity": "MANDATORY",
+        "review_requirement": "MUST_REVIEW",
+        "reason": "warning は人間判断必須",
+        "exception": "なし"
+      },
+      {
+        "id": "decision_logic_unusual",
+        "condition": "decision logic が通常と異なる（pre-validation で WARN カテゴリ）",
+        "severity": "MANDATORY",
+        "review_requirement": "MUST_REVIEW",
+        "reason": "異常判定ロジックは人間確認必須",
+        "exception": "なし"
+      },
+      {
+        "id": "observation_boundary_ambiguous",
+        "condition": "observation/decision_package boundary が不明確",
+        "severity": "MANDATORY",
+        "review_requirement": "MUST_REVIEW",
+        "reason": "スコープ境界は人間確認必須",
+        "exception": "なし"
+      },
+      {
+        "id": "permission_boundary_unclear",
+        "condition": "permission boundary が明確でない、または解釈に複数の可能性",
+        "severity": "MANDATORY",
+        "review_requirement": "MUST_REVIEW",
+        "reason": "権限模式は人間判断が必須",
+        "exception": "なし"
+      },
+      {
+        "id": "safety_flag_justification_incomplete",
+        "condition": "safety_flag が true だが、その根拠が不足",
+        "severity": "MANDATORY",
+        "review_requirement": "MUST_REVIEW",
+        "reason": "安全性根拠は人間確認必須",
+        "exception": "なし"
+      },
+      {
+        "id": "audit_trail_incomplete",
+        "condition": "audit trail / traceability information が不足",
+        "severity": "MANDATORY",
+        "review_requirement": "MUST_REVIEW",
+        "reason": "追跡可能性確認は人間判断必須",
+        "exception": "なし"
+      }
+    ]
+  },
+  "approval_pre_conditions": {
+    "title": "human review BEFORE approval 時に禁止する操作",
+    "operations": [
+      {
+        "operation": "external_api_call",
+        "pre_approval_status": "BLOCKED",
+        "reason": "承認前の外部接続は禁止"
+      },
+      {
+        "operation": "wordpress_operation",
+        "pre_approval_status": "BLOCKED",
+        "reason": "承認前の WordPress 操作は禁止"
+      },
+      {
+        "operation": "cron_registration",
+        "pre_approval_status": "BLOCKED",
+        "reason": "承認前の cron 登録は禁止"
+      },
+      {
+        "operation": "auto_execute",
+        "pre_approval_status": "BLOCKED",
+        "reason": "承認前の自動実行は禁止"
+      },
+      {
+        "operation": "auto_post",
+        "pre_approval_status": "BLOCKED",
+        "reason": "承認前の自動投稿は禁止"
+      },
+      {
+        "operation": "auto_update",
+        "pre_approval_status": "BLOCKED",
+        "reason": "承認前の自動更新は禁止"
+      },
+      {
+        "operation": "auto_delete",
+        "pre_approval_status": "BLOCKED",
+        "reason": "承認前の自動削除は禁止"
+      },
+      {
+        "operation": "auto_export",
+        "pre_approval_status": "BLOCKED",
+        "reason": "承認前の自動 export は禁止"
+      },
+      {
+        "operation": "production_execution",
+        "pre_approval_status": "BLOCKED",
+        "reason": "承認前の本番実行は禁止"
+      },
+      {
+        "operation": "core_ai_real_send",
+        "pre_approval_status": "BLOCKED",
+        "reason": "承認前の Core AI 実送信は禁止"
+      }
+    ]
+  },
+  "approval_post_conditions": {
+    "title": "human review AFTER approval 後も継続禁止する操作",
+    "note": "承認後も「DRY_RUN」「OBSERVE」は変わらない。以下の操作は APPROVE_DRY_RUN_ONLY 後も禁止継続。",
+    "operations": [
+      {
+        "operation": "external_api_call",
+        "post_approval_status": "BLOCKED",
+        "reason": "承認後も外部接続は禁止（dry_run only）"
+      },
+      {
+        "operation": "wordpress_operation",
+        "post_approval_status": "BLOCKED",
+        "reason": "承認後も WordPress 操作は禁止（dry_run only）"
+      },
+      {
+        "operation": "cron_registration",
+        "post_approval_status": "BLOCKED",
+        "reason": "承認後も cron 登録は禁止（dry_run only）"
+      },
+      {
+        "operation": "auto_execute",
+        "post_approval_status": "BLOCKED",
+        "reason": "承認後も自動実行は禁止（dry_run only）"
+      },
+      {
+        "operation": "auto_post",
+        "post_approval_status": "BLOCKED",
+        "reason": "承認後も自動投稿は禁止（dry_run only）"
+      },
+      {
+        "operation": "auto_update",
+        "post_approval_status": "BLOCKED",
+        "reason": "承認後も自動更新は禁止（dry_run only）"
+      },
+      {
+        "operation": "auto_delete",
+        "post_approval_status": "BLOCKED",
+        "reason": "承認後も自動削除は禁止（dry_run only）"
+      },
+      {
+        "operation": "auto_export",
+        "post_approval_status": "BLOCKED",
+        "reason": "承認後も自動 export は禁止（dry_run only）"
+      },
+      {
+        "operation": "production_execution",
+        "post_approval_status": "BLOCKED",
+        "reason": "承認後も本番実行は禁止（dry_run only）"
+      },
+      {
+        "operation": "core_ai_real_send",
+        "post_approval_status": "BLOCKED",
+        "reason": "承認後も Core AI 実送信は禁止（dry_run only）"
+      }
+    ]
+  },
+  "review_decision_types": {
+    "title": "human reviewer が下す判定の種類",
+    "decision_types": [
+      {
+        "decision": "APPROVE_DRY_RUN_ONLY",
+        "meaning": "dry_run の範囲で実行を承認。本番実行、外部接続、WordPress、cron、auto_* は禁止継続。",
+        "action": "PASS（次のステップへ）",
+        "conditions": [
+          "warning が許容範囲",
+          "permission boundary が明確",
+          "audit trail が完全",
+          "safety boundary が確認できた"
+        ],
+        "post_approval_status": [
+          "dry_run mode 継続",
+          "operation_mode=OBSERVE 継続",
+          "外部接続/WordPress/cron/auto_*/production は全て禁止継続"
+        ]
+      },
+      {
+        "decision": "REQUEST_FIX",
+        "meaning": "payload / decision logic の修正を要求。修正後に再審査。",
+        "action": "REVIEW_GATE_HOLD（修正待機）",
+        "conditions": [
+          "minor issues detected",
+          "修正可能な問題",
+          "本質的な安全問題ではない"
+        ],
+        "next_step": "修正 → 再投入 → human review 再実施"
+      },
+      {
+        "decision": "REJECT",
+        "meaning": "payload / decision logic は根本的に問題がある。再開発が必要。",
+        "action": "GATE_FAIL（ゲート失敗）",
+        "conditions": [
+          "permission boundary 不正",
+          "safety flag 無視",
+          "prohibited operation 混入"
+        ],
+        "next_step": "Core AI 側で再設計 → 再投入"
+      },
+      {
+        "decision": "ABORT",
+        "meaning": "重大な安全違反 / セキュリティ脅威。即座に停止。",
+        "action": "IMMEDIATE_ABORT（即時停止）",
+        "conditions": [
+          "production_execution が有効化",
+          "external_api_call が強行実行",
+          "wordpress_operation が強行実行",
+          "権限モデル bypass の兆候"
+        ],
+        "next_step": "事件報告 → インシデント対応"
+      }
+    ]
+  },
+  "auto_approval_prohibition": {
+    "title": "自動承認の完全禁止",
+    "rule": "human_review_validator は自動承認（auto_approval）を一切許可しない。",
+    "enforcement": {
+      "auto_approval_flag": "MUST_BE_FALSE",
+      "auto_approval_allowed": false,
+      "enforcement_mechanism": "human reviewer の明示的な署名・タイムスタンプ必須"
+    },
+    "penalty_for_auto_approval": {
+      "severity": "ABORT",
+      "action": "自動承認を検出した場合、即座に ABORT。policy 違反として記録。"
+    }
+  },
+  "review_information_required": {
+    "title": "human reviewer が判定する際に必要な情報",
+    "required_info": [
+      {
+        "info_type": "observation_content",
+        "required": true,
+        "description": "Core AI が提示した observation の内容"
+      },
+      {
+        "info_type": "decision_logic",
+        "required": true,
+        "description": "decision logic（reference のみ、実行内容ではない）"
+      },
+      {
+        "info_type": "receiver_validator_result",
+        "required": true,
+        "description": "receiver validator の検証結果（PASS/WARN/REJECT）"
+      },
+      {
+        "info_type": "rejection_validator_result",
+        "required": true,
+        "description": "rejection validator の検証結果（PASS/WARN）"
+      },
+      {
+        "info_type": "warning_details",
+        "required": true,
+        "description": "出た warning の詳細（あれば）"
+      },
+      {
+        "info_type": "audit_trail",
+        "required": true,
+        "description": "payload の履歴・由来（traceability）"
+      },
+      {
+        "info_type": "permission_context",
+        "required": true,
+        "description": "permission boundary の文脈説明"
+      },
+      {
+        "info_type": "safety_justification",
+        "required": true,
+        "description": "safety flag が true である根拠"
+      }
+    ]
+  },
+  "review_checklist": {
+    "title": "human reviewer が確認すべきチェックリスト",
+    "checklist": [
+      {
+        "item": "observation が dry_run validation のみか",
+        "requirement": "MUST_VERIFY"
+      },
+      {
+        "item": "decision_package reference が外部実行を意図していないか",
+        "requirement": "MUST_VERIFY"
+      },
+      {
+        "item": "permission_boundary が none / internal_dry_run_reference に限定されているか",
+        "requirement": "MUST_VERIFY"
+      },
+      {
+        "item": "全 safety flag が true か",
+        "requirement": "MUST_VERIFY"
+      },
+      {
+        "item": "banned action （external_api_call / wordpress / cron / auto_* / production） が混入していないか",
+        "requirement": "MUST_VERIFY"
+      },
+      {
+        "item": "audit trail が complete か",
+        "requirement": "MUST_VERIFY"
+      },
+      {
+        "item": "receiver / rejection validator の結果が信頼できるか",
+        "requirement": "MUST_VERIFY"
+      },
+      {
+        "item": "出た warning が許容範囲か、または深掘り必要か",
+        "requirement": "ASSESS"
+      },
+      {
+        "item": "operation_mode=OBSERVE、execution=dry_run が維持されているか",
+        "requirement": "MUST_VERIFY"
+      },
+      {
+        "item": "本番実行の可能性がないか",
+        "requirement": "MUST_VERIFY"
+      }
+    ]
+  },
+  "review_decision_output": {
+    "title": "human review 判定の出力形式",
+    "output_fields": {
+      "decision": {
+        "type": "string",
+        "enum": [
+          "APPROVE_DRY_RUN_ONLY",
+          "REQUEST_FIX",
+          "REJECT",
+          "ABORT"
+        ],
+        "required": true
+      },
+      "reviewer_id": {
+        "type": "string",
+        "required": true,
+        "description": "reviewer の一意識別子"
+      },
+      "review_timestamp": {
+        "type": "string",
+        "format": "ISO8601",
+        "required": true,
+        "description": "review 実施時刻"
+      },
+      "review_comment": {
+        "type": "string",
+        "required": true,
+        "description": "判定理由（人間が読める説明）"
+      },
+      "checklist_results": {
+        "type": "object",
+        "required": true,
+        "description": "各チェックリスト項目の確認結果"
+      },
+      "warning_assessment": {
+        "type": "object",
+        "description": "warning が出ていれば、その許容性判定"
+      },
+      "next_action": {
+        "type": "string",
+        "required": true,
+        "description": "次のアクション（PROCEED / HOLD / STOP）"
+      },
+      "reviewer_signature": {
+        "type": "string",
+        "required": true,
+        "description": "reviewer の署名（改ざん防止）"
+      }
+    }
+  },
+  "implementation_candidates": {
+    "note": "以下は設計上の候補。実装ファイルはまだ作成しない。",
+    "candidate_structure": {
+      "main_validator": "app/core_human_review_validator.py (DESIGN_ONLY)",
+      "review_gatekeeper": "app/human_review_gatekeeper.py (DESIGN_ONLY)",
+      "decision_logger": "app/human_review_decision_logger.py (DESIGN_ONLY)",
+      "auto_approval_blocker": "app/human_review_auto_approval_blocker.py (DESIGN_ONLY)"
+    },
+    "test_candidates": {
+      "test_mandatory_conditions": "tests/test_core_human_review_mandatory_conditions.py (DESIGN_ONLY)",
+      "test_decision_types": "tests/test_core_human_review_decision_types.py (DESIGN_ONLY)",
+      "test_auto_approval_block": "tests/test_core_human_review_auto_approval_block.py (DESIGN_ONLY)"
+    }
+  },
+  "safety_audit": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "auto_approval_allowed": false,
+    "external_connection_allowed": false,
+    "wordpress_operation_allowed": false,
+    "cron_registration_allowed": false,
+    "app_implementation_added": false,
+    "tests_implementation_added": false,
+    "validator_implementation_blocked": true
+  },
+  "judgment": {
+    "phase6_6_detail_design_status": "PASS",
+    "design_completeness": "COMPLETE",
+    "mandatory_review_conditions_clear": true,
+    "pre_approval_prohibitions_clear": true,
+    "post_approval_prohibitions_clear": true,
+    "decision_types_defined": true,
+    "auto_approval_prohibition_explicit": true,
+    "review_information_requirements_clear": true,
+    "review_checklist_complete": true,
+    "decision_output_format_defined": true,
+    "implementation_candidates_noted": true,
+    "implementation_not_performed": true,
+    "production_status": "NO_GO",
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "allowed_state": [
+      "OBSERVE",
+      "DRY_RUN",
+      "HUMAN_REVIEW_REQUIRED"
+    ],
+    "blocked": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "phase6_detail_design_complete": true,
+    "next_phase": "human review of phase6_4/6_5/6_6 OR phase7"
+  }
+}

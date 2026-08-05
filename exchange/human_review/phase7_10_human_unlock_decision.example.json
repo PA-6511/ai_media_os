@@ -1,0 +1,25 @@
+{
+  "review_id": "phase7_10_human_unlock_review_001",
+  "phase": "Phase 7-10",
+  "operator": "human",
+  "decision": "ACKNOWLEDGE_UNLOCK_REVIEW_ONLY",
+  "target_item_count": 1,
+  "candidate_id": "phase7_1_sample_candidate_001",
+  "acknowledged_no_go": true,
+  "acknowledged_no_publish": true,
+  "acknowledged_no_update": true,
+  "acknowledged_no_delete": true,
+  "acknowledged_single_item_only": true,
+  "acknowledged_wordpress_write_not_allowed_in_phase7_10": true,
+  "acknowledged_freeze_on_mismatch": true,
+  "requested_token": "NONE",
+  "approval_scope": {
+    "draft_create_only": false,
+    "publish": false,
+    "update": false,
+    "delete": false,
+    "bulk": false,
+    "external_export": false
+  },
+  "note": "Unlock review acknowledgement only. This is not permission to create a WordPress draft."
+}

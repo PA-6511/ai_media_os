@@ -1,0 +1,99 @@
+{
+  "phase_id": "38-5",
+  "phase_name": "Actual Process Start GO Rejection and NO_GO Maintenance Rules Design",
+  "phase_japanese_name": "actual_process_start_go不可時の差し戻し・NO_GO維持ルール設計",
+  "purpose": "Design rules for rejection of actual_process_start_go and maintenance of NO_GO state, ensuring no implicit authorization is granted.",
+  "layer": "actual_process_start_go_final_approval_layer",
+  "design_category": "reports_only",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "operation_transition_go_authorization": "NOT_GRANTED",
+    "production_reflection_go_authorization": "NOT_GRANTED",
+    "freeze_release_go_authorization": "NOT_GRANTED",
+    "execution_start_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "phase_38_5_scope": {
+    "scope_1_input_contract": {
+      "scope_id": "INPUT_CONTRACT",
+      "required_inputs": {
+        "phase38_4_evidence_locking_status": "PASS | FAIL",
+        "final_approval_result": "NO_GO | GO"
+      }
+    },
+    "scope_2_rejection_and_maintenance_rules": {
+      "scope_id": "REJECTION_AND_MAINTENANCE_RULES",
+      "rules": {
+        "rule_P38R1": "If final approval is NO_GO, maintain all NOT_GRANTED authorizations",
+        "rule_P38R2": "Explicitly reject any attempt to grant actual_process_start_go_authorization",
+        "rule_P38R3": "Document all rejection reasons and evidence",
+        "rule_P38R4": "If any rule fails, halt progression and maintain NO_GO"
+      }
+    },
+    "scope_3_report_structure": {
+      "scope_id": "REPORT_STRUCTURE",
+      "sections": {
+        "section_1_header": {
+          "report_id": "PHASE38_5_ACTUAL_PROCESS_START_GO_REJECTION_AND_NO_GO_MAINTENANCE_<UTC_TIMESTAMP>",
+          "report_type": "actual_process_start_go_rejection_and_no_go_maintenance_rules",
+          "generated_at_utc": "RFC3339",
+          "generated_by": "authority_identifier"
+        },
+        "section_2_rejection_summary": {
+          "rejection_reason": "TEXT",
+          "no_go_maintenance_status": "PASS | FAIL"
+        },
+        "section_3_maintenance_judgment": {
+          "actual_process_start_go_authorization": "NOT_GRANTED",
+          "manual_release_go_authorization": "NOT_GRANTED"
+        },
+        "section_4_state_confirmation": {
+          "app_implementation_status": "NO_GO",
+          "tests_implementation_status": "NO_GO",
+          "production_status": "NO_GO",
+          "operation_transition_go_authorization": "NOT_GRANTED",
+          "production_reflection_go_authorization": "NOT_GRANTED",
+          "freeze_release_go_authorization": "NOT_GRANTED",
+          "execution_start_go_authorization": "NOT_GRANTED",
+          "actual_process_start_go_authorization": "NOT_GRANTED",
+          "manual_release_go_authorization": "NOT_GRANTED",
+          "changed_area": "reports only"
+        }
+      }
+    }
+  },
+  "phase_38_5_governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution",
+      "manual_release_execution",
+      "actual_process_start_execution"
+    ],
+    "state_invariants": {
+      "app_implementation_status": "NO_GO",
+      "tests_implementation_status": "NO_GO",
+      "production_status": "NO_GO",
+      "operation_transition_go_authorization": "NOT_GRANTED",
+      "production_reflection_go_authorization": "NOT_GRANTED",
+      "freeze_release_go_authorization": "NOT_GRANTED",
+      "execution_start_go_authorization": "NOT_GRANTED",
+      "actual_process_start_go_authorization": "NOT_GRANTED",
+      "manual_release_go_authorization": "NOT_GRANTED",
+      "changed_area": "reports only"
+    }
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "phase": "SQL-B2-4B-5G-3B-1C-2C-0",
+  "result": "PASS_BOUNDED_HOST_UNIT_SWITCH_AUTHORIZATION_HOST_UNCHANGED_NO_GO",
+  "recorded_at": "2026-07-14T16:05:02.350712+00:00",
+  "git": {
+    "branch": "feature/sql-b2-4b-slack-production-readiness",
+    "authorization_commit": "569ab79e143d0484f1e9e3c31cc2d342b4326f01",
+    "authorization_commit_short": "569ab79",
+    "repository_unit_implementation_commit": "032be56",
+    "repository_unit_evidence_commit": "48b6716"
+  },
+  "implementation": {
+    "files": {
+      "config/slack_trusted_autostart_verifier_policy.json": {
+        "sha256": "dd2f882742dfea5b13d29a612fcf9a6c0d27182bcb89f5c2f867ceb069d6758b",
+        "mode": "0664"
+      },
+      "tests/test_slack_readiness_autostart_systemd_integration.py": {
+        "sha256": "6bbccb2dd2a4d14948328e36de45e8ed2ec46eb58869e8d4a6c2e1d3b033337b",
+        "mode": "0664"
+      }
+    },
+    "authorization_issued": true,
+    "authorization_consumed": false,
+    "single_controlled_execution": true,
+    "expected_repository_unit_sha256": "1d71fead2e78cc490042c22a3529aaea6295e0f6fd463daa24273e8215bbcccd",
+    "expected_prechange_installed_unit_sha256": "ea27ffcff758a32020102f35a4df025aba8358501a6798d33f0ba069162005fc",
+    "expected_installed_verifier_sha256": "439903b8b7b3710ea23e1963bac34a7d019da3364b63ab70f780db66f71f020a",
+    "atomic_install_required": true,
+    "rollback_required": true,
+    "systemd_analyze_verify_required": true,
+    "daemon_reload_required_after_install": true
+  },
+  "tests": {
+    "integration_tests_passed": 11,
+    "targeted_tests_passed": 75,
+    "regression_tests_passed": 209
+  },
+  "host_prechange_state": {
+    "repository_unit_sha256": "1d71fead2e78cc490042c22a3529aaea6295e0f6fd463daa24273e8215bbcccd",
+    "installed_unit_sha256": "ea27ffcff758a32020102f35a4df025aba8358501a6798d33f0ba069162005fc",
+    "repository_unit_trusted_switched": true,
+    "installed_unit_trusted_switched": false,
+    "installed_verifier_sha256": "439903b8b7b3710ea23e1963bac34a7d019da3364b63ab70f780db66f71f020a",
+    "installed_verifier_root_managed": true,
+    "autostart_gate_present": false,
+    "daemon_reload_executed": false
+  },
+  "database_safety": {
+    "production_sha256": "a4c5c6b3c9f016cd745cdb9c531c807fe5bc4a3ac28f9422609dfa96cd7b37d8",
+    "production_database_unchanged": true,
+    "readiness_quick_check": "ok",
+    "readiness_approval_count": 0
+  },
+  "systemd_state": {
+    "fragment_path": "/etc/systemd/system/ai-media-os-slack-approval-readiness.service",
+    "need_daemon_reload": "no",
+    "active_state": "inactive",
+    "sub_state": "dead",
+    "unit_file_state": "disabled",
+    "main_pid": 0,
+    "enabled": false,
+    "running": false
+  },
+  "decision": {
+    "bounded_host_switch_authorized": true,
+    "authorization_consumed": false,
+    "host_unit_switched": false,
+    "daemon_reload_executed": false,
+    "systemd_block_test_allowed": false,
+    "autostart_gate": "ABSENT",
+    "unit_enabled": false,
+    "service_running": false,
+    "autostart_approval": "NOT_APPROVED",
+    "final_decision": "NO_GO"
+  },
+  "governance": {
+    "production_status": "NO_GO",
+    "safety_state": "BOUNDED_HOST_SWITCH_AUTHORIZED_NOT_YET_EXECUTED",
+    "host_unit_switch_allowed": true,
+    "single_execution_only": true,
+    "gate_creation_allowed": false,
+    "systemd_block_test_allowed": false,
+    "service_start_allowed": false,
+    "unit_enable_allowed": false,
+    "production_database_write_allowed": false
+  }
+}

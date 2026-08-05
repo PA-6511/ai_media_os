@@ -1,0 +1,460 @@
+{
+  "_meta": {
+    "phase": "8-2",
+    "phase_name": "receiver validator 実装差分最小設計",
+    "version": "1.0",
+    "status": "DESIGN_ONLY",
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "created_date": "2026-05-12",
+    "scope": "Phase 7-5 gate で明記された要件を app/ 実装に落とし込むための『最小限の実装差分』設計",
+    "description": "Phase 7-5 gate で定義された 66 point 評価システムの要件（HW-01〜05 hardcoding / BA-01〜10 blocked actions / validation / logging / etc）を、『最小限かつ十分な app/ 実装差分』として具体化する設計。app/tests 実装ではなく、design のみ。"
+  },
+  "phase_8_2_overview": {
+    "section_name": "Phase 8-2 の位置付け",
+    "purpose": "Phase 7-5 gate の要件と Phase 8-1 の安全性再確認を踏まえ、『receiver validator app/ 実装で、最小限かつ必須な差分』をリスト化する設計段階",
+    "scope": "設計のみ（design specification）。app/ / tests/ 実装は Phase 8-3 後の別ゲート。",
+    "outcome": "Phase 8-3 app/tests 実装ゲート設計の input となる『差分リスト』完成"
+  },
+  "minimal_implementation_difference_structure": {
+    "section_name": "最小実装差分の構造（全 5 領域）",
+    "difference_area_1": {
+      "area_id": "MID-A",
+      "area_name": "Hardcoding Constants（硬化された定数）",
+      "description": "app/ receiver_validator.py モジュール最上位に必須の 5 個グローバル定数",
+      "required_items": [
+        {
+          "item": "OPERATION_MODE",
+          "value": "'OBSERVE'",
+          "type": "str",
+          "hardcoding_level": "CRITICAL",
+          "change_allowed": false,
+          "reference": "Phase 7-5 HW-01"
+        },
+        {
+          "item": "EXECUTION",
+          "value": "'dry_run'",
+          "type": "str",
+          "hardcoding_level": "CRITICAL",
+          "change_allowed": false,
+          "reference": "Phase 7-5 HW-02"
+        },
+        {
+          "item": "PRODUCTION_STATUS",
+          "value": "'NO_GO'",
+          "type": "str",
+          "hardcoding_level": "CRITICAL",
+          "change_allowed": false,
+          "reference": "Phase 7-5 HW-03"
+        },
+        {
+          "item": "REQUIRES_HUMAN_APPROVAL",
+          "value": "True",
+          "type": "bool",
+          "hardcoding_level": "CRITICAL",
+          "change_allowed": false,
+          "reference": "Phase 7-5 HW-04"
+        },
+        {
+          "item": "AUTO_EXECUTE_ALLOWED",
+          "value": "False",
+          "type": "bool",
+          "hardcoding_level": "CRITICAL",
+          "change_allowed": false,
+          "reference": "Phase 7-5 HW-05"
+        }
+      ],
+      "code_example": "# app/receiver_validator.py top-level\nOPERATION_MODE = 'OBSERVE'\nEXECUTION = 'dry_run'\nPRODUCTION_STATUS = 'NO_GO'\nREQUIRES_HUMAN_APPROVAL = True\nAUTO_EXECUTE_ALLOWED = False\n\n# 検証コード\nassert OPERATION_MODE == 'OBSERVE', 'operation_mode must be OBSERVE'\nassert EXECUTION == 'dry_run', 'execution must be dry_run'\nassert PRODUCTION_STATUS == 'NO_GO', 'production_status must be NO_GO'\nassert REQUIRES_HUMAN_APPROVAL == True, 'requires_human_approval must be True'\nassert AUTO_EXECUTE_ALLOWED == False, 'auto_execute_allowed must be False'",
+      "verification_method": "grep + value assertion on app/ receiver_validator.py",
+      "essential_complexity": "MINIMAL"
+    },
+    "difference_area_2": {
+      "area_id": "MID-B",
+      "area_name": "Blocked Actions Enforcement（禁止アクション防止）",
+      "description": "app/ 実装で、10 個禁止アクション（BA-01〜BA-10）が実行されないことを保証するメカニズム",
+      "implementation_pattern": "各禁止アクションの『入り口』に check を入れる",
+      "examples": [
+        {
+          "blocked_action": "core_ai_real_send (BA-01)",
+          "enforcement_point": "Core AI 呼び出し直前",
+          "check_code": "if EXECUTION != 'dry_run' or OPERATION_MODE != 'OBSERVE':\n    raise SafetyViolationError('core_ai_real_send blocked in OBSERVE mode')",
+          "fallback_behavior": "exception raise → ABORT decision output"
+        },
+        {
+          "blocked_action": "external_api_call (BA-02)",
+          "enforcement_point": "requests.post / requests.get 呼び出し直前",
+          "check_code": "if EXECUTION == 'dry_run':\n    # dry-run で外部 API 呼び出しスキップ\n    return MockResponse(...)\nelif OPERATION_MODE != 'OBSERVE':\n    raise SafetyViolationError('external_api_call blocked in production')",
+          "fallback_behavior": "dry-run: mock response / production-like: exception raise"
+        },
+        {
+          "blocked_action": "wordpress_operation (BA-03)",
+          "enforcement_point": "WordPress API 呼び出し直前",
+          "check_code": "if PRODUCTION_STATUS == 'NO_GO':\n    # WordPress 操作ブロック\n    raise SafetyViolationError('wordpress_operation blocked in NO_GO status')",
+          "fallback_behavior": "exception raise → ABORT decision output"
+        },
+        {
+          "blocked_action": "cron_registration (BA-04)",
+          "enforcement_point": "cron job 登録関数呼び出し直前",
+          "check_code": "def register_cron_job(...):\n    raise NotImplementedError('cron_registration is permanently blocked')",
+          "fallback_behavior": "exception raise at function definition"
+        },
+        {
+          "blocked_action": "auto_execute (BA-05)",
+          "enforcement_point": "decision を実行する際",
+          "check_code": "if not REQUIRES_HUMAN_APPROVAL:\n    raise SafetyViolationError('auto_execute blocked: human approval required')",
+          "fallback_behavior": "exception raise → ABORT decision output"
+        },
+        {
+          "blocked_action": "auto_post / auto_update / auto_delete / auto_export (BA-06〜09)",
+          "enforcement_point": "各操作の実行関数",
+          "check_code": "# Each function checks:\nif EXECUTION != 'dry_run':\n    raise SafetyViolationError(f'{operation}_operation blocked in non-dry-run mode')",
+          "fallback_behavior": "exception raise → ABORT decision output"
+        },
+        {
+          "blocked_action": "production_execution (BA-10)",
+          "enforcement_point": "実行環境判定",
+          "check_code": "if PRODUCTION_STATUS != 'NO_GO':\n    raise SafetyViolationError('production_execution blocked: NO_GO status')",
+          "fallback_behavior": "exception raise → ABORT decision output"
+        }
+      ],
+      "total_enforcement_checks": 10,
+      "enforcement_coverage": "100% (BA-01 ~ BA-10)",
+      "essential_complexity": "MEDIUM"
+    },
+    "difference_area_3": {
+      "area_id": "MID-C",
+      "area_name": "Input Validation Logic（入力検証）",
+      "description": "receiver validator が受け取る decision_package / observation の検証ロジック",
+      "validation_scope": [
+        {
+          "validation_id": "IV-01",
+          "input_type": "decision_package",
+          "checks": [
+            "presence: decision_package is not None",
+            "type: isinstance(decision_package, (dict, list))",
+            "schema: phase5_1_receiver_schema に準拠",
+            "signature: reviewer_signature is valid",
+            "timestamp: within 24h from now"
+          ],
+          "essential_complexity": "MEDIUM"
+        },
+        {
+          "validation_id": "IV-02",
+          "input_type": "observation",
+          "checks": [
+            "OPERATION_MODE check: observation.operation_mode == 'OBSERVE'",
+            "EXECUTION check: observation.execution == 'dry_run'",
+            "PRODUCTION_STATUS check: observation.production_status == 'NO_GO'",
+            "REQUIRES_HUMAN_APPROVAL check: observation.requires_human_approval == True",
+            "AUTO_EXECUTE_ALLOWED check: observation.auto_execute_allowed == False"
+          ],
+          "essential_complexity": "LOW"
+        },
+        {
+          "validation_id": "IV-03",
+          "input_type": "phase_6_conditions",
+          "checks": [
+            "go_conditions: list of 16 condition IDs",
+            "no_go_conditions: list of 16 condition IDs",
+            "abort_conditions: list of 13 condition IDs",
+            "all conditions: boolean evaluable"
+          ],
+          "essential_complexity": "MEDIUM"
+        }
+      ]
+    },
+    "difference_area_4": {
+      "area_id": "MID-D",
+      "area_name": "Output Specification（出力仕様）",
+      "description": "receiver validator が出力する decision_result の構造と検証",
+      "output_schema": {
+        "decision_type": {
+          "type": "str",
+          "enum": ["APPROVE_DESIGN_ONLY", "REQUEST_FIX", "REJECT", "ABORT"],
+          "required": true,
+          "validation": "exactly one value, no multi-selection"
+        },
+        "decision_reasoning": {
+          "type": "str",
+          "required": true,
+          "constraints": "non-empty, max 2000 chars"
+        },
+        "decision_timestamp": {
+          "type": "ISO 8601 datetime str",
+          "required": true,
+          "validation": "UTC, non-manual-edit"
+        },
+        "matched_conditions": {
+          "type": "list of str (condition IDs)",
+          "required": true,
+          "validation": "match decision_type"
+        },
+        "safety_flags": {
+          "type": "dict with 5 flags",
+          "required": true,
+          "fields": {
+            "operation_mode": "OBSERVE",
+            "execution": "dry_run",
+            "production_status": "NO_GO",
+            "requires_human_approval": true,
+            "auto_execute_allowed": false
+          },
+          "validation": "all 5 flags must be present and match hardcoded values"
+        }
+      },
+      "essential_complexity": "LOW"
+    },
+    "difference_area_5": {
+      "area_id": "MID-E",
+      "area_name": "Logging & Error Handling（ログ・エラー処理）",
+      "description": "receiver validator の動作を記録し、エラーハンドリングする仕組み",
+      "logging_requirements": [
+        {
+          "log_event": "validator_init",
+          "log_fields": ["timestamp", "operation_mode", "execution", "production_status"],
+          "log_level": "INFO"
+        },
+        {
+          "log_event": "input_validation_started",
+          "log_fields": ["timestamp", "input_type", "schema_check_status"],
+          "log_level": "DEBUG"
+        },
+        {
+          "log_event": "safety_check_performed",
+          "log_fields": ["timestamp", "check_id (HW-01 ~ HW-05, BA-01 ~ BA-10)", "check_result"],
+          "log_level": "DEBUG"
+        },
+        {
+          "log_event": "decision_reached",
+          "log_fields": ["timestamp", "decision_type", "matched_conditions_count"],
+          "log_level": "INFO"
+        },
+        {
+          "log_event": "error_detected",
+          "log_fields": ["timestamp", "error_type", "error_message", "remediation"],
+          "log_level": "ERROR"
+        },
+        {
+          "log_event": "safety_violation_detected",
+          "log_fields": ["timestamp", "violation_type", "attempted_action"],
+          "log_level": "CRITICAL"
+        }
+      ],
+      "log_destination": "receiver_validator_audit.log",
+      "error_handling_pattern": {
+        "validation_error": "try-catch → log → REJECT decision",
+        "safety_boundary_violation": "exception raise → log CRITICAL → ABORT decision",
+        "timestamp_invalid": "warning log → REJECT decision"
+      },
+      "essential_complexity": "MEDIUM"
+    }
+  },
+  "implementation_minimal_files": {
+    "section_name": "app/ 実装に必要な最小ファイル（設計段階）",
+    "minimal_file_list": [
+      {
+        "file_path": "app/receiver_validator.py",
+        "purpose": "receiver validator メインロジック",
+        "estimated_loc": "300-400 lines",
+        "required_sections": [
+          "Module-level constants (HW-01〜05)",
+          "Assertion checks on module load",
+          "ReceiverValidator class definition",
+          "Input validation methods",
+          "Decision logic methods",
+          "Output generation methods",
+          "Error handling and logging"
+        ]
+      },
+      {
+        "file_path": "config/receiver_validator_config.py",
+        "purpose": "receiver validator 設定",
+        "estimated_loc": "50-100 lines",
+        "required_sections": [
+          "LOG_LEVEL definition",
+          "LOG_DESTINATION definition",
+          "PHASE6_CONDITIONS reference (GO/NO-GO/ABORT from phase6_3)",
+          "RECEIVER_SCHEMA reference (from phase5_1)"
+        ]
+      },
+      {
+        "file_path": "app/receiver_validator_runner.py",
+        "purpose": "receiver validator 実行ハーネス",
+        "estimated_loc": "100-150 lines",
+        "required_sections": [
+          "CLI entry point",
+          "Input loading (decision_package from file/stdin)",
+          "ReceiverValidator instantiation and execution",
+          "Output serialization and write to file",
+          "Error handling at runner level"
+        ]
+      }
+    ],
+    "no_new_files_needed": [
+      "No external library imports beyond Phase 6 validator patterns",
+      "No new dependencies required"
+    ]
+  },
+  "implementation_minimal_test_plan": {
+    "section_name": "tests/ 実装に必要な最小テスト計画（設計段階）",
+    "test_suite_scope": [
+      {
+        "test_category": "unit tests - hardcoding verification",
+        "test_count": 5,
+        "examples": [
+          "test_operation_mode_is_observe",
+          "test_execution_is_dry_run",
+          "test_production_status_is_no_go",
+          "test_requires_human_approval_is_true",
+          "test_auto_execute_allowed_is_false"
+        ]
+      },
+      {
+        "test_category": "unit tests - blocked actions",
+        "test_count": 10,
+        "examples": [
+          "test_ba_01_core_ai_real_send_blocked",
+          "test_ba_02_external_api_call_blocked",
+          "...",
+          "test_ba_10_production_execution_blocked"
+        ]
+      },
+      {
+        "test_category": "unit tests - input validation",
+        "test_count": 8,
+        "examples": [
+          "test_decision_package_none_raises_error",
+          "test_decision_package_invalid_schema_raises_error",
+          "test_observation_wrong_operation_mode_raises_error",
+          "..."
+        ]
+      },
+      {
+        "test_category": "unit tests - output validation",
+        "test_count": 5,
+        "examples": [
+          "test_output_decision_type_enum",
+          "test_output_reasoning_non_empty",
+          "test_output_timestamp_iso8601",
+          "test_output_safety_flags_present",
+          "test_output_matched_conditions_valid"
+        ]
+      },
+      {
+        "test_category": "integration tests - phase 6 conditions",
+        "test_count": 45,
+        "scope": "16 GO + 16 NO-GO + 13 ABORT conditions evaluation"
+      },
+      {
+        "test_category": "integration tests - error handling",
+        "test_count": 7,
+        "examples": [
+          "test_error_handling_input_validation",
+          "test_error_handling_safety_boundary_violation",
+          "test_error_handling_timestamp_invalid",
+          "test_error_handling_signature_invalid",
+          "test_error_handling_permission_denied",
+          "test_error_handling_output_serialization",
+          "test_error_handling_unknown_error"
+        ]
+      },
+      {
+        "test_category": "logging tests",
+        "test_count": 6,
+        "examples": [
+          "test_log_validator_init",
+          "test_log_input_validation",
+          "test_log_decision_reached",
+          "test_log_error_detected",
+          "test_log_safety_violation",
+          "test_log_format_compliance"
+        ]
+      }
+    ],
+    "total_test_count": 86,
+    "test_coverage_goal": "95%+ code coverage"
+  },
+  "implementation_readiness_assessment": {
+    "section_name": "app/ 実装の準備状況評価",
+    "readiness_criteria": [
+      {
+        "criterion": "MID-A: 5 個 hardcoding constants が明確に定義されている",
+        "status": "SATISFIED",
+        "evidence": "本設計ファイル MID-A section"
+      },
+      {
+        "criterion": "MID-B: 10 個禁止アクション enforcement が各々明確に定義されている",
+        "status": "SATISFIED",
+        "evidence": "本設計ファイル MID-B section の 10 examples"
+      },
+      {
+        "criterion": "MID-C: input validation logic が 3 categories × 各 3-5 checks で定義されている",
+        "status": "SATISFIED",
+        "evidence": "本設計ファイル MID-C section"
+      },
+      {
+        "criterion": "MID-D: output schema が JSON serializable で Phase 5-1 準拠",
+        "status": "SATISFIED",
+        "evidence": "本設計ファイル MID-D section"
+      },
+      {
+        "criterion": "MID-E: logging & error handling が 6 events × 各 error category で定義されている",
+        "status": "SATISFIED",
+        "evidence": "本設計ファイル MID-E section"
+      },
+      {
+        "criterion": "Minimal files list が 3 ファイルで定義されている",
+        "status": "SATISFIED",
+        "evidence": "本設計ファイル implementation_minimal_files section"
+      },
+      {
+        "criterion": "test plan が 86 tests で定義されている",
+        "status": "SATISFIED",
+        "evidence": "本設計ファイル implementation_minimal_test_plan section"
+      }
+    ],
+    "overall_readiness": "READY_FOR_PHASE_8_3_GATE"
+  },
+  "phase_8_2_completion_criteria": {
+    "section_name": "Phase 8-2 完了判定基準",
+    "criterion_1": {
+      "criterion": "MID-A〜E の 5 領域が全て具体的に設計されている",
+      "status": "SATISFIED"
+    },
+    "criterion_2": {
+      "criterion": "app/ 実装ファイルが 3 ファイル（receiver_validator.py / config / runner）で定義されている",
+      "status": "SATISFIED"
+    },
+    "criterion_3": {
+      "criterion": "tests/ test suite が 86 tests で計画されている",
+      "status": "SATISFIED"
+    },
+    "criterion_4": {
+      "criterion": "hardcoding constants（HW-01〜05）が『変更不可』『永続』『検証必須』と明記されている",
+      "status": "SATISFIED"
+    },
+    "criterion_5": {
+      "criterion": "blocked actions（BA-01〜10）が『完全ブロック』『例外なし』『enforcement point 明記』と記述されている",
+      "status": "SATISFIED"
+    },
+    "criterion_6": {
+      "criterion": "本設計が reports 配下の JSON のみで、app/ / tests/ 実装なし",
+      "status": "SATISFIED"
+    },
+    "phase_8_2_completion_status": "PASS_DESIGN_ONLY"
+  },
+  "phase_8_3_gate_input_specification": {
+    "section_name": "Phase 8-3 への入力仕様",
+    "phase_8_3_will_receive": [
+      "本 Phase 8-2 設計ファイル",
+      "MID-A〜E の 5 領域に対する『実装仕様適合性チェック』の実施"
+    ],
+    "phase_8_3_will_output": [
+      "app/tests 実装ゲート最終判定設計",
+      "『app/ 実装許可: GO / NO_GO / CONDITIONAL_GO / ABORT』の条件リスト"
+    ]
+  }
+}

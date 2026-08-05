@@ -1,0 +1,38 @@
+{
+  "phase": "LS-STORE-LINK-LITE-3",
+  "status": "LS_STORE_LINK_LITE_3_ARTICLE_UPDATE_FINAL_STOP_READY_NO_WP_UPDATE",
+  "execution_mode": "FINAL_STOP_BEFORE_ARTICLE_UPDATE_NO_WP_CALL",
+  "production_status": "READY_FOR_ONE_SHOT_ARTICLE_UPDATE_BUT_NOT_EXECUTED",
+
+  "previous_phase": "LS-STORE-LINK-LITE-2",
+  "previous_status": "LS_STORE_LINK_LITE_2_ARTICLE_UPDATE_PREP_READY_NO_WP_UPDATE",
+
+  "target_post_id": 185,
+  "target_post_status": "publish",
+  "update_scope": "ONE_SHOT_UPDATE_POST_185_STORE_BLOCK_ONLY",
+  "update_content": [
+    "insert Rakuten image affiliate cover",
+    "insert Amazon button",
+    "insert Rakuten Kobo button",
+    "insert DMM Books button"
+  ],
+
+  "requires_pre_read_before_update": true,
+  "requires_backup_before_update": true,
+  "requires_one_shot_update_only": true,
+
+  "article_update_allowed_in_this_step": false,
+  "wordpress_api_call_executed": false,
+  "wordpress_post_update_executed": false,
+  "credential_env_read_executed": false,
+
+  "post119_update_executed": false,
+  "post183_update_executed": false,
+  "draft_create_rerun_allowed": false,
+  "publish_rerun_allowed": false,
+  "article_update_rerun_allowed": false,
+
+  "ready_for_one_shot_article_update": true,
+  "recommended_next_action": "BEGIN_LS_STORE_LINK_LITE_4_ONE_SHOT_ARTICLE_UPDATE_POST_185",
+  "errors": []
+}

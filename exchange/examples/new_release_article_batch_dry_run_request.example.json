@@ -1,0 +1,13 @@
+{
+  "request_version": 1,
+  "phase_id": "LS-NEW-BATCH-3",
+  "batch_id": "example-20260717",
+  "generation_mode": "PREVIEW_ONLY",
+  "generation_options": {
+    "include_article_html": true,
+    "include_price_cards": true,
+    "include_store_buttons": true,
+    "include_x_candidate": true,
+    "include_x_feedback_initialize_request": true
+  }
+}

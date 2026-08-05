@@ -1,0 +1,50 @@
+{
+  "phase": "Implementation Restart Phase 15",
+  "status": "COMPLETED",
+  "generated_at": "2026-05-23T15:03:40.260885+00:00",
+  "schema_version": "ir15_manual_event_role_guard_v1",
+  "test_result": {
+    "focused_tests": {
+      "passed": 6,
+      "failed": 0
+    },
+    "full_regression": {
+      "passed": 156,
+      "failed": 0
+    }
+  },
+  "summary": {
+    "role_guard_result_counts": {
+      "PASS": 3,
+      "FAIL": 1
+    },
+    "manual_event_counts": {
+      "APPROVE": 2,
+      "REQUEST_FIX": 1,
+      "REJECT": 1
+    },
+    "actor_role_counts": {
+      "approver": 1,
+      "reviewer": 2,
+      "admin": 1
+    },
+    "abort_override_blocked": true,
+    "execution_triggered": false
+  },
+  "artifacts": {
+    "role_guard_reports": [
+      "generic_block_ai/reports/ir15_manual_event_role_guard_ir15_pass_live_trial.json",
+      "generic_block_ai/reports/ir15_manual_event_role_guard_ir15_warn_live_trial.json",
+      "generic_block_ai/reports/ir15_manual_event_role_guard_ir15_fail_live_trial.json",
+      "generic_block_ai/reports/ir15_manual_event_role_guard_ir15_abort_live_trial.json"
+    ],
+    "completion_report": "reports/implementation_restart_phase15_completion_report.json"
+  },
+  "safeguards": {
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "production_release": false
+  }
+}

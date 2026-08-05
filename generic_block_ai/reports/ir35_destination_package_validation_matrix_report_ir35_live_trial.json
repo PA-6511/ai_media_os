@@ -1,0 +1,109 @@
+{
+  "schema_version": "ir35_destination_package_validation_matrix_v1",
+  "phase": "IR35",
+  "generated_at": "2026-05-23T16:57:30.679717+00:00",
+  "source_task_id": "ir35_live_trial",
+  "release_candidate_id": "rc_20260523T155148Z_ir26_live_trial_b940393b490b",
+  "final_submission_decision": "READY_FOR_SUBMISSION_SUMMARY",
+  "validation_result": "PASS",
+  "validation_failed_checks": [],
+  "validation_warnings": [],
+  "summary": {
+    "destination_count": 3,
+    "failed_check_count": 0,
+    "warning_count": 0,
+    "required_resubmission_patterns_present": true,
+    "external_submission_executed": false
+  },
+  "matrix": {
+    "global_checks": {
+      "recomposition_executed": true,
+      "external_submission_blocked": true,
+      "network_transmission_blocked": true,
+      "resubmission_rules_loaded": true,
+      "required_resubmission_patterns_present": true
+    },
+    "destinations": [
+      {
+        "destination": "regulatory_audit",
+        "manifest_path": "generic_block_ai/reports/ir34_destination_submission_packages_ir34_live_trial/regulatory_audit/destination_package_manifest.json",
+        "validation_result": "PASS",
+        "matrix_checks": {
+          "required_templates_complete": true,
+          "optional_templates_consistent": true,
+          "forbidden_templates_absent": true,
+          "signature_fields_valid": true,
+          "attachment_integrity_valid": true,
+          "resubmission_patterns_valid": true
+        },
+        "counts": {
+          "required_expected": 3,
+          "required_actual": 3,
+          "optional_expected": 1,
+          "optional_actual": 1,
+          "attachment_entries": 3
+        },
+        "failed_checks": [],
+        "warnings": []
+      },
+      {
+        "destination": "internal_review_board",
+        "manifest_path": "generic_block_ai/reports/ir34_destination_submission_packages_ir34_live_trial/internal_review_board/destination_package_manifest.json",
+        "validation_result": "PASS",
+        "matrix_checks": {
+          "required_templates_complete": true,
+          "optional_templates_consistent": true,
+          "forbidden_templates_absent": true,
+          "signature_fields_valid": true,
+          "attachment_integrity_valid": true,
+          "resubmission_patterns_valid": true
+        },
+        "counts": {
+          "required_expected": 2,
+          "required_actual": 2,
+          "optional_expected": 2,
+          "optional_actual": 2,
+          "attachment_entries": 3
+        },
+        "failed_checks": [],
+        "warnings": []
+      },
+      {
+        "destination": "compliance_archive",
+        "manifest_path": "generic_block_ai/reports/ir34_destination_submission_packages_ir34_live_trial/compliance_archive/destination_package_manifest.json",
+        "validation_result": "PASS",
+        "matrix_checks": {
+          "required_templates_complete": true,
+          "optional_templates_consistent": true,
+          "forbidden_templates_absent": true,
+          "signature_fields_valid": true,
+          "attachment_integrity_valid": true,
+          "resubmission_patterns_valid": true
+        },
+        "counts": {
+          "required_expected": 4,
+          "required_actual": 4,
+          "optional_expected": 0,
+          "optional_actual": 0,
+          "attachment_entries": 3
+        },
+        "failed_checks": [],
+        "warnings": []
+      }
+    ]
+  },
+  "artifacts": {
+    "matrix_root": "generic_block_ai/reports/ir35_destination_package_validation_matrix_ir35_live_trial",
+    "destination_validation_matrix": "generic_block_ai/reports/ir35_destination_package_validation_matrix_ir35_live_trial/destination_validation_matrix.json",
+    "destination_validation_summary": "generic_block_ai/reports/ir35_destination_package_validation_matrix_ir35_live_trial/destination_validation_summary.md",
+    "completion_report": "reports/implementation_restart_phase35_completion_report.json"
+  },
+  "safeguards": {
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "production_release": false,
+    "network_transmission_executed": false
+  }
+}

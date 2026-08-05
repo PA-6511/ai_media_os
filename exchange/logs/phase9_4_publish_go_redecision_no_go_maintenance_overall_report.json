@@ -1,0 +1,142 @@
+{
+  "package_type": "phase9_4_publish_go_redecision_no_go_maintenance_overall_report",
+  "phase": "Phase 9-4",
+  "title": "Phase 9-4 Publish GO Redecision and NO_GO Maintenance Overall Report",
+  "status": "PASS",
+  "phase9_4_overall_status": "PASS",
+  "aggregation_scope": "phase9_1_through_phase9_3",
+  "source_reports": {
+    "phase9_1": "exchange/logs/phase9_1_publish_go_redecision_manual_publish_runbook_generation_result.json",
+    "phase9_2": "exchange/logs/phase9_2_publish_go_redecision_input_gate_result.json",
+    "phase9_3": "exchange/logs/phase9_3_keep_no_go_input_gate_completion_report.json"
+  },
+  "route_readiness": {
+    "publish_go_redecision_route_ready": true,
+    "manual_publish_runbook_ready": true,
+    "input_gate_ready": true,
+    "keep_no_go_confirmation_ready": true
+  },
+  "current_decision": "KEEP_NO_GO",
+  "phase9_2_decision": "KEEP_NO_GO",
+  "wordpress_draft_id": 110,
+  "target_draft_status": "draft",
+  "publish_candidate_unlocked_for_operator": false,
+  "wordpress_publish_execution": "NO_GO",
+  "wordpress_write_executed": false,
+  "production_status": "NO_GO",
+  "prohibited_actions_snapshot": {
+    "wordpress_publish": "NO_GO",
+    "wordpress_update": "NO_GO",
+    "wordpress_delete": "NO_GO",
+    "wordpress_export": "NO_GO",
+    "github_actions_trigger": "NO_GO",
+    "slack_production_notification": "NO_GO",
+    "vps_self_builder_execute": "NO_GO"
+  },
+  "forbidden_true_flags_checked": [
+    "publish_allowed",
+    "update_allowed",
+    "delete_allowed",
+    "export_allowed",
+    "wordpress_post_enabled",
+    "real_write_enabled",
+    "wordpress_write_executed",
+    "auto_post",
+    "auto_update",
+    "auto_delete",
+    "auto_export",
+    "github_actions_triggered",
+    "slack_notification_executed",
+    "vps_self_builder_executed",
+    "env_or_secrets_modified"
+  ],
+  "validation_checks": [
+    {
+      "check": "phase9_1_status=PASS",
+      "passed": true,
+      "actual": "PASS"
+    },
+    {
+      "check": "phase9_2_status=PASS",
+      "passed": true,
+      "actual": "PASS"
+    },
+    {
+      "check": "phase9_3_status=PASS",
+      "passed": true,
+      "actual": "PASS"
+    },
+    {
+      "check": "phase9_2_decision=KEEP_NO_GO",
+      "passed": true,
+      "actual": "KEEP_NO_GO"
+    },
+    {
+      "check": "phase9_3_phase9_2_decision=KEEP_NO_GO",
+      "passed": true,
+      "actual": "KEEP_NO_GO"
+    },
+    {
+      "check": "publish_candidate_unlocked_for_operator=false",
+      "passed": true,
+      "actual": {
+        "phase9_2": false,
+        "phase9_3": false
+      }
+    },
+    {
+      "check": "wordpress_publish_execution=NO_GO",
+      "passed": true,
+      "actual": {
+        "phase9_1": "NO_GO",
+        "phase9_2": "NO_GO",
+        "phase9_3": "NO_GO"
+      }
+    },
+    {
+      "check": "wordpress_write_executed=false",
+      "passed": true,
+      "actual": {
+        "phase9_1": false,
+        "phase9_2": false,
+        "phase9_3": false
+      }
+    },
+    {
+      "check": "target_draft_id=110",
+      "passed": true,
+      "actual": {
+        "phase9_1": 110,
+        "phase9_2": 110,
+        "phase9_3": 110
+      }
+    },
+    {
+      "check": "target_draft_status=draft",
+      "passed": true,
+      "actual": {
+        "phase9_1": "draft",
+        "phase9_2": "draft",
+        "phase9_3": "draft"
+      }
+    },
+    {
+      "check": "production_status=NO_GO",
+      "passed": true,
+      "actual": {
+        "phase9_1": "NO_GO",
+        "phase9_2": "NO_GO",
+        "phase9_3": "NO_GO"
+      }
+    }
+  ],
+  "validation_passed": true,
+  "summary": {
+    "route_prepared_but_not_executed": true,
+    "keep_no_go_maintained": true,
+    "publish_candidate_locked": true,
+    "publish_not_executed": true
+  },
+  "next_step": "maintain_no_go_or_manual_publish_go_redecision",
+  "created_at": "2026-05-09T16:50:48.975190+00:00"
+}

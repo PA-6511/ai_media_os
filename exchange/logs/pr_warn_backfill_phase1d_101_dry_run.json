@@ -1,0 +1,53 @@
+{
+  "phase": "PR_WARN_BACKFILL_PHASE1D",
+  "mode": "DRY_RUN",
+  "status": "PASS_DRY_RUN_ONLY",
+  "target_post_id": 101,
+  "title": "呪術廻戦は何巻まで出てる？最新巻・関連情報まとめ",
+  "approval_file": "exchange/human_review/pr_warn_backfill_phase1_101_human_approval.approved.json",
+  "approved": true,
+  "wordpress_write_allowed": true,
+  "max_live_updates": 1,
+  "phase0_source": "/home/deploy/ai_media_os/reports/pr_warn_backfill_phase0_dry_run_20260614.json",
+  "dry_run_source": "/home/deploy/ai_media_os/exchange/logs/pr_warn_backfill_phase1_101_dry_run.json",
+  "proposed_insert_position": "after_h1",
+  "proposed_notice_text": "<p class=\"pr-notice\">※本記事にはアフィリエイト広告（PR）が含まれます。</p>",
+  "proposed_changed_fields": [
+    "content"
+  ],
+  "forbidden_changed_fields": [
+    "title",
+    "url",
+    "cta",
+    "featured_image",
+    "status",
+    "category",
+    "tag"
+  ],
+  "wordpress_write_executed": false,
+  "live_mode_supported": false,
+  "payload_preview": {
+    "post_id": 101,
+    "operation": "content_patch_preview_only",
+    "status": "draft",
+    "patch": {
+      "insert_position": "after_h1",
+      "notice_html": "<p class=\"pr-notice\">※本記事にはアフィリエイト広告（PR）が含まれます。</p>"
+    }
+  },
+  "rollback_required_before_live": true,
+  "post_live_verification_required": true,
+  "safety_flags": {
+    "single_post_only": true,
+    "bulk_backfill_forbidden": true,
+    "publish_forbidden": true,
+    "update_forbidden_in_phase1d": true,
+    "title_change_forbidden": true,
+    "url_change_forbidden": true,
+    "cta_change_forbidden": true,
+    "featured_image_change_forbidden": true,
+    "status_change_forbidden": true,
+    "category_tag_change_forbidden": true
+  },
+  "created_at": "2026-06-19T23:57:32.105088+00:00"
+}

@@ -1,0 +1,60 @@
+{
+  "_meta": {
+    "phase": "9-1",
+    "phase_name": "Phase 9 設計開始条件確認",
+    "version": "1.0",
+    "created_date": "2026-05-12",
+    "status": "PASS_DESIGN_ONLY",
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only",
+    "description": "Phase 8-10 完了宣言を受け、Phase 9 の設計開始可否を事前条件で確認する。"
+  },
+  "inputs": {
+    "phase8_completion": "generic_block_ai/reports/phase8_10_phase8_completion_declaration.json",
+    "phase8_scope_audit": "generic_block_ai/reports/phase8_9a_diff_scope_audit.json",
+    "phase8_policy": "generic_block_ai/reports/phase8_9b_workspace_diff_handling_policy.json"
+  },
+  "preconditions": [
+    {
+      "id": "P9-1-01",
+      "condition": "Phase 8 completion status が PASS_DESIGN_ONLY_WITH_SCOPE_CAVEAT である",
+      "result": "SATISFIED"
+    },
+    {
+      "id": "P9-1-02",
+      "condition": "Phase 8 reports status が PASS_DESIGN_ONLY である",
+      "result": "SATISFIED"
+    },
+    {
+      "id": "P9-1-03",
+      "condition": "workspace overall status が WARN 維持である",
+      "result": "SATISFIED"
+    },
+    {
+      "id": "P9-1-04",
+      "condition": "production_status が NO_GO である",
+      "result": "SATISFIED"
+    },
+    {
+      "id": "P9-1-05",
+      "condition": "Phase 9 設計開始と app 実装開始ゲートが分離されている",
+      "result": "SATISFIED"
+    }
+  ],
+  "decision": {
+    "phase9_design_start_consideration": "GO_DESIGN_ONLY",
+    "phase9_app_implementation_permission": "NO_GO",
+    "rationale": "Phase 8 の設計証跡は成立しているが、workspace全体WARNと既存差分分離管理のため、Phase 9 は設計のみ進行する。"
+  },
+  "fixed_rules": {
+    "phase9_start_scope": "reports only",
+    "app_changes": "forbidden",
+    "tests_changes": "forbidden",
+    "external_connection": "forbidden",
+    "production_execution": "forbidden"
+  }
+}

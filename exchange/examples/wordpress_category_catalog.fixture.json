@@ -1,0 +1,16 @@
+{
+  "fixture_version": 1,
+  "phase_id": "LS-NEW-BATCH-4D",
+  "source_type": "LOCAL_FIXTURE",
+  "site_identity": "LOCAL_TEST_SITE_ONLY",
+  "fetched_at": "2026-07-10T22:00:00+09:00",
+  "production_usable": false,
+  "categories": [
+    {
+      "wordpress_category_id": 990001,
+      "category_slug": "comic-new-release",
+      "category_name": "コミック新刊",
+      "post_count": 0
+    }
+  ]
+}

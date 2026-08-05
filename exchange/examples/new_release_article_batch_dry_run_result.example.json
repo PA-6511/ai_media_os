@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-3",
+  "policy_id": "NEW_RELEASE_ARTICLE_BATCH_DRY_RUN_POLICY_V1",
+  "template_contract_id": "POST185_STANDARD_TEMPLATE_V1_FIXED",
+  "batch_id": "example-20260717",
+  "generation_mode": "PREVIEW_ONLY",
+  "source_record_count": 1,
+  "generated_item_count": 0,
+  "skipped_item_count": 1,
+  "generated_items": [],
+  "skipped_items": [
+    {
+      "item_id": "example-20260717-001",
+      "classification": "NEEDS_RELEASE_DATE_CONFIRMATION",
+      "reason": "NOT_READY_FOR_DRAFT"
+    }
+  ],
+  "execution_boundary": {
+    "external_api_call_allowed": false,
+    "web_scraping_allowed": false,
+    "wordpress_write_allowed": false,
+    "wordpress_publish_allowed": false,
+    "x_api_call_allowed": false,
+    "x_post_allowed": false,
+    "automatic_rule_update_allowed": false,
+    "production_status": "NO_GO",
+    "safety_state": "DRY_RUN_ONLY"
+  }
+}

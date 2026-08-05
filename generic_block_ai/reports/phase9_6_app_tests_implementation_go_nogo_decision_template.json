@@ -1,0 +1,85 @@
+{
+  "_meta": {
+    "phase": "9-6",
+    "phase_name": "app/tests 実装GO/NO-GO判定テンプレート",
+    "version": "1.0",
+    "created_date": "2026-05-12",
+    "status": "PASS_DESIGN_ONLY",
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only",
+    "description": "app実装許可とtests実装許可を個別判定し、最終GO/NO-GOを統合するためのテンプレート。"
+  },
+  "references": [
+    "generic_block_ai/reports/phase9_4_receiver_validator_app_implementation_permission_final_design.json",
+    "generic_block_ai/reports/phase9_5_tests_implementation_permission_final_design.json"
+  ],
+  "template_fields": {
+    "decision_id": "P9-DEC-YYYYMMDD-XXX",
+    "review_datetime": "YYYY-MM-DDTHH:MM:SS+09:00",
+    "reviewer": {
+      "name": "",
+      "role": "human_reviewer",
+      "signature": ""
+    },
+    "app_implementation_gate": {
+      "decision": "NO_GO",
+      "allowed_values": [
+        "GO",
+        "NO_GO",
+        "PENDING",
+        "ABORT"
+      ],
+      "rationale": ""
+    },
+    "tests_implementation_gate": {
+      "decision": "NO_GO",
+      "allowed_values": [
+        "GO",
+        "NO_GO",
+        "PENDING",
+        "ABORT"
+      ],
+      "rationale": ""
+    },
+    "final_decision": {
+      "decision": "NO_GO",
+      "allowed_values": [
+        "GO",
+        "NO_GO",
+        "PENDING",
+        "ABORT"
+      ],
+      "rule": "app/tests の両ゲートが GO の場合にのみ final GO を許可"
+    },
+    "safety_flags": {
+      "operation_mode": "OBSERVE",
+      "execution": "dry_run",
+      "production_status": "NO_GO",
+      "requires_human_approval": true,
+      "auto_execute_allowed": false
+    },
+    "blocked_conditions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ]
+  },
+  "phase_decision": {
+    "phase9_4_to_9_6_design_status": "PASS_DESIGN_ONLY",
+    "app_implementation_status": "NO_GO",
+    "tests_implementation_status": "NO_GO",
+    "production_status": "NO_GO",
+    "note": "本テンプレートは判定手順の設計であり、実装許可の確定判定そのものではない。"
+  }
+}

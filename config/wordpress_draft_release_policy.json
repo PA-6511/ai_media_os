@@ -1,0 +1,58 @@
+{
+  "phase": "Phase 6-1",
+  "policy_name": "wordpress_real_draft_limited_release_design",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "policy_status": "DESIGN_ONLY",
+  "production_status": "NO_GO",
+  "wordpress_draft_creation": "NO_GO",
+  "release_constraints": {
+    "single_item_only": true,
+    "draft_only": true,
+    "non_public_only": true,
+    "requires_human_approval": true,
+    "requires_quality_validation": true,
+    "requires_affiliate_url_check": true,
+    "requires_pr_label_check": true,
+    "max_items_per_run": 1
+  },
+  "pre_abort_conditions": [
+    "execution!=DRY_RUN",
+    "human_approval_required!=true",
+    "quality_validation_status in [FAIL, ABORT]",
+    "affiliate_url_missing=true",
+    "pr_label_missing=true",
+    "wordpress_write_executed=true",
+    "auto_post=true",
+    "auto_update=true",
+    "auto_delete=true",
+    "auto_export=true",
+    "request_count>1",
+    "vps_self_builder_execution_enabled=true"
+  ],
+  "write_preflight_required_checks": [
+    "draft_candidate_review_result.status == PASS",
+    "draft_candidate_review_result.decision == APPROVE_DRY_RUN_ONLY",
+    "draft_candidate_quality_validation.status in [PASS, WARN]",
+    "all_production_flags_false",
+    "wordpress_post_status == draft",
+    "wordpress_visibility == private_or_non_public"
+  ],
+  "post_write_evidence_spec": {
+    "required": false,
+    "note": "Phase 6-1 is design-only; no write evidence will be generated"
+  },
+  "forbidden_during_phase6_1": [
+    "wordpress_rest_post",
+    "wordpress_rest_put_patch",
+    "publish_post",
+    "update_existing_post",
+    "delete_post",
+    "bulk_posting",
+    "cron_automation",
+    "github_actions_trigger",
+    "slack_production_notification",
+    "vps_self_builder_execution",
+    "env_secret_auto_edit"
+  ]
+}

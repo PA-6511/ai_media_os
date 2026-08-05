@@ -1,0 +1,77 @@
+{
+  "_meta": {
+    "phase": "10-8",
+    "phase_name": "integrated_decision GO更新手順設計",
+    "version": "1.0",
+    "created_date": "2026-05-12",
+    "status": "PASS_DESIGN_ONLY",
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only",
+    "description": "Phase 10-2 の integrated_decision を GO に更新するための手順と更新順を固定する。"
+  },
+  "references": [
+    "generic_block_ai/reports/phase10_2_app_tests_implementation_go_nogo_actual_decision.json",
+    "generic_block_ai/reports/phase10_5_integrated_decision_go_activation_conditions_detailed_design.json",
+    "generic_block_ai/reports/phase10_7_human_review_post_entry_update_procedure_design.json"
+  ],
+  "governance": {
+    "default_integrated_decision": "NO_GO",
+    "go_update_requires_human_reviewer": true,
+    "production_status_must_remain": "NO_GO",
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ]
+  },
+  "go_update_sequence": [
+    {
+      "step_id": "IG-01",
+      "target": "phase10_5.activation_conditions",
+      "action": "GOC-01 から GOC-05 までの全条件が満たされていることを確認する"
+    },
+    {
+      "step_id": "IG-02",
+      "target": "phase10_2.current_decision.app_implementation_gate",
+      "action": "human reviewer により GO 可否を更新する"
+    },
+    {
+      "step_id": "IG-03",
+      "target": "phase10_2.current_decision.tests_implementation_gate",
+      "action": "human reviewer により GO 可否を更新する"
+    },
+    {
+      "step_id": "IG-04",
+      "target": "phase10_2.current_decision.integrated_decision",
+      "action": "app/tests 両 gate 更新後に最後に変更する"
+    }
+  ],
+  "recheck_requirements": [
+    "phase10_1.review_record.reviewer.signature が空でない",
+    "phase10_4.final_checklist.current_result が PASS 相当である",
+    "phase10_6.preflight_result_template.activation_allowed を別フェーズで true にできる見込みがある",
+    "production_status が NO_GO のままである"
+  ],
+  "current_state": {
+    "go_update_allowed_now": false,
+    "integrated_decision": "NO_GO",
+    "reason": "human review 記入後の再確認と preflight 完了前のため、現時点では GO 更新しない。"
+  },
+  "phase_decision": {
+    "phase10_8_status": "PASS_DESIGN_ONLY",
+    "app_implementation_status": "NO_GO",
+    "tests_implementation_status": "NO_GO",
+    "note": "GO 更新手順の設計のみ。実際の integrated_decision 更新は別の human review 完了後に限定する。"
+  }
+}

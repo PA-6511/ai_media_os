@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M13-PRE-NETWORK",
+  "approval_id": "wordpress-writer-authenticated-network-preflight-approval-v1",
+  "approval_label": "WORDPRESS_WRITER_AUTHENTICATED_NETWORK_PREFLIGHT_APPROVED",
+  "approved_by": "HUMAN_OPERATOR",
+  "human_explicit_approval": true,
+  "approved_at_utc": "2026-07-11T10:12:04.192989+00:00",
+  "approved_scope": {
+    "authenticated_get_only": true,
+    "maximum_get_request_count": 3,
+    "required_host": "hoshido.jp",
+    "required_scheme": "https",
+    "authenticated_user_check": true,
+    "edit_posts_check": true,
+    "category_id_10_check": true,
+    "duplicate_draft_check": true
+  },
+  "m13_pre_writer_result_digest_sha256": "aee2c18d623fc54142312b8c06ee18a6553f251dcc5023db5b1ca82b4566ea69",
+  "m12_authorization_file_sha256": "7c9662a7a13502e165862e452427899228794bce6904a0215c45a5b54ba1142b",
+  "m12_authorization_digest_sha256": "d3ede61a71d75cbbc00a594f0a8d319aed0e598bd9c061609a52bed7e96d07c3",
+  "payload_file_sha256": "30a70be4110e863a85e2896f69f5b3e51d814a6fd82d5489f899d8a244166d8f",
+  "payload_digest_sha256": "2ab27b59305dbae98f997ca3a460400298152f173ef605b534df922c187411c6",
+  "credential_values_output_allowed": false,
+  "full_wordpress_response_output_allowed": false,
+  "m12_authorization_consumption_allowed": false,
+  "wordpress_write_allowed": false,
+  "wordpress_draft_creation_allowed": false,
+  "production_status": "NO_GO",
+  "source_bindings": {
+    "article": {
+      "path": "exchange/content/new_release/fresh/new-release-comic-20260703-001.article.json",
+      "file_sha256": "de2739c8ae1aa4a50973b983964b05844086a2187b9ef337383ad6fa7123697d"
+    },
+    "payload": {
+      "path": "exchange/payloads/new_release/fresh/new-release-comic-20260703-001.wordpress_draft_payload.json",
+      "file_sha256": "30a70be4110e863a85e2896f69f5b3e51d814a6fd82d5489f899d8a244166d8f"
+    },
+    "m11_fix2_review": {
+      "path": "exchange/reviews/new_release/fresh/new-release-comic-20260703-001.wordpress_draft_payload_human_review.json",
+      "file_sha256": "b789556be39fdfb506b2a0149430716128e50d49a7f403b8b2e536e5ea9b0c70"
+    },
+    "m11_fix2_result": {
+      "path": "exchange/logs/ls_new_batch_4g_2e_recovery_m11_fix2_result.json",
+      "file_sha256": "82a54aa24e22d19ed8c8b9904375d73bb69809d9fd603c836bfab82ee9846c0b"
+    },
+    "m12_authorization": {
+      "path": "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.wordpress_draft_creation_authorization.json",
+      "file_sha256": "7c9662a7a13502e165862e452427899228794bce6904a0215c45a5b54ba1142b"
+    },
+    "m12_result": {
+      "path": "exchange/logs/ls_new_batch_4g_2e_recovery_m12_result.json",
+      "file_sha256": "494e453f8fd20f25d2591492d7ba8632d28fe9a29cb156fcdf74621c6e9ac56c"
+    },
+    "m13_pre_writer_result": {
+      "path": "exchange/logs/ls_new_batch_4g_2e_recovery_m13_pre_writer_result.json",
+      "file_sha256": "7425bb093ed9d20420ce300b411e8bac93f1b2a5aefecd53932f148c360820b8"
+    }
+  },
+  "approval_evidence_digest_sha256": "e2d56451b439a02d6344a94acfcb9c9efd1835d7cc101fbf7eb479eb6ce541d9"
+}

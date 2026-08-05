@@ -1,0 +1,16 @@
+{
+  "phase": "LS-NEW-13",
+  "document_type": "START_LS_NEW13_DRAFT_CREATION_PAYLOAD_MAP",
+  "status": "LSNEW13_DRAFT_CREATION_PAYLOAD_MAP_READY_NO_EXECUTION",
+  "payload_source": "exchange/new_release/start_ls_new6_wp_draft_payload_prep.json",
+  "execution_input_map_source": "exchange/new_release/start_ls_new10_execution_input_map.json",
+  "draft_creation_hold_boundary_source": "exchange/new_release/start_ls_new12_draft_creation_hold_boundary.json",
+  "post_status_target": "draft",
+  "target_post_id": null,
+  "target_post_id_allocated": false,
+  "payload_title_confirmed": true,
+  "payload_body_present": true,
+  "payload_status_draft_confirmed": true,
+  "payload_source_not_modified": true,
+  "execution_allowed": false
+}

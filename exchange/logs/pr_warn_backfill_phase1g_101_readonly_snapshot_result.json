@@ -1,0 +1,25 @@
+{
+  "phase": "PR_WARN_BACKFILL_PHASE1G_READONLY_SNAPSHOT",
+  "mode": "READ_ONLY_GET",
+  "status": "PASS_READONLY_SNAPSHOT",
+  "target_post_id": 101,
+  "fetched_post_id": 101,
+  "wordpress_read_executed": true,
+  "wordpress_write_executed": false,
+  "update_count": 0,
+  "snapshot_output": "exchange/logs/pr_warn_backfill_phase1g_101_pre_live_snapshot.json",
+  "result_output": "exchange/logs/pr_warn_backfill_phase1g_101_readonly_snapshot_result.json",
+  "title": "呪術廻戦は何巻まで出てる？最新巻・関連情報まとめ",
+  "status_from_wp": "draft",
+  "link_present": true,
+  "modified": "2026-05-01T14:14:24",
+  "content_length": 1177,
+  "content_hash": "fed3e62ba7fd5baad3da128e89afb7d03841bab53c49189ff671be143f8f5adb",
+  "title_hash": "e6a4224bbd59d02deee5418f429a02b6f18e04c6146c1e8bd376b5d342835545",
+  "notes": [
+    "No WordPress write executed.",
+    "No POST/PUT/PATCH/DELETE executed.",
+    "Snapshot content saved to file only (not printed)."
+  ],
+  "created_at": "2026-06-20T01:39:25.403666+00:00"
+}

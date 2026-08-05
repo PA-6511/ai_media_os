@@ -1,0 +1,168 @@
+{
+  "phase_id": "20-5",
+  "phase_name": "App/Tests Implementation Start GO Rejection and NO-GO Maintenance Rules Design",
+  "phase_japanese_name": "app/tests 実装開始GO不可時の差し戻し・NO-GO維持ルール設計",
+  "purpose": "Design return, rejection, and NO-GO maintenance rules when app/tests implementation-start GO conditions are not fully met",
+  "layer": "pre_measurement_final_gate_layer",
+  "design_category": "reports_only",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only"
+  },
+  "phase_20_5_scope": {
+    "scope_1_rejection_categories": {
+      "scope_id": "REJECTION_CATEGORIES",
+      "description": "Classify rejection causes for implementation-start GO",
+      "categories": {
+        "rc1_gate_conditions_not_met": {
+          "category_id": "RC1",
+          "trigger_examples": [
+            "integrated_decision=NO_GO",
+            "receiver_validator_permission=NOT_EFFECTIVE",
+            "dual_gate=LOCKED",
+            "safety_gate!=CLEARED",
+            "human final approval missing"
+          ],
+          "severity": "HIGH",
+          "primary_action": "RETURN_WITH_NO_GO_MAINTAINED"
+        },
+        "rc2_evidence_integrity_failed": {
+          "category_id": "RC2",
+          "trigger_examples": [
+            "Phase 20-4 lock verification failed",
+            "hash/signature mismatch",
+            "audit trail entry missing"
+          ],
+          "severity": "CRITICAL",
+          "primary_action": "HALT_AND_NO_GO_MAINTAINED"
+        },
+        "rc3_template_or_record_incomplete": {
+          "category_id": "RC3",
+          "trigger_examples": [
+            "Phase 20-3 required fields missing",
+            "Phase 19-7/19-8 reference IDs absent",
+            "unsupported enum in final determination fields"
+          ],
+          "severity": "MEDIUM",
+          "primary_action": "RETURN_FOR_CORRECTION"
+        }
+      }
+    },
+    "scope_2_return_and_rejection_procedure": {
+      "scope_id": "RETURN_REJECTION_PROCEDURE",
+      "description": "Procedure when GO cannot be issued",
+      "steps": {
+        "step_1_detect": {
+          "step_id": "DETECT",
+          "action": "Collect failed conditions and classify as RC1/RC2/RC3"
+        },
+        "step_2_issue_notice": {
+          "step_id": "ISSUE_NOTICE",
+          "action": "Issue formal rejection notice",
+          "notice_fields": {
+            "notice_id": "IMPL_REJECT_<UTC_TIMESTAMP>",
+            "judgment_id": "IMPL_GONO_...",
+            "failed_conditions": "list",
+            "category": "RC1 | RC2 | RC3",
+            "required_remediation": "specific actions",
+            "status_after_notice": "NO_GO_MAINTAINED"
+          }
+        },
+        "step_3_route": {
+          "step_id": "ROUTE",
+          "action": "Route remediation by category",
+          "routing": {
+            "RC1": "Re-run measurement path and gate evaluation as needed",
+            "RC2": "Immediate HALT, security investigation, evidence restoration",
+            "RC3": "Correct template/record deficiencies and resubmit"
+          }
+        },
+        "step_4_revalidate": {
+          "step_id": "REVALIDATE",
+          "action": "After remediation, rerun Phase 20-3 evaluation; GO only if all 5 gates are MET"
+        }
+      }
+    },
+    "scope_3_no_go_maintenance_invariants": {
+      "scope_id": "NO_GO_MAINTENANCE_INVARIANTS",
+      "description": "Rules enforcing NO-GO maintenance until all minimum conditions are truly met",
+      "invariant_rules": {
+        "ng1": {
+          "rule_id": "NG1",
+          "rule": "If any gate condition is NOT_MET, app_implementation_status must remain NO_GO"
+        },
+        "ng2": {
+          "rule_id": "NG2",
+          "rule": "If any gate condition is NOT_MET, tests_implementation_status must remain NO_GO"
+        },
+        "ng3": {
+          "rule_id": "NG3",
+          "rule": "If RC2 evidence integrity failure occurs, freeze all progression until HALT is cleared"
+        },
+        "ng4": {
+          "rule_id": "NG4",
+          "rule": "NO-GO maintenance state change requires authority signature and audit log append"
+        }
+      }
+    },
+    "scope_4_decision_table": {
+      "scope_id": "DECISION_TABLE",
+      "description": "Decision table for GO rejection and NO-GO maintenance",
+      "rows": [
+        {
+          "condition": "All 5 gates MET",
+          "outcome": "GO_ELIGIBLE",
+          "status": "Requires final authority signature"
+        },
+        {
+          "condition": "Any 1+ gate NOT_MET",
+          "outcome": "REJECT_GO",
+          "status": "NO_GO_MAINTAINED"
+        },
+        {
+          "condition": "RC2 integrity failure",
+          "outcome": "HALT",
+          "status": "NO_GO_MAINTAINED"
+        },
+        {
+          "condition": "Template incomplete (RC3)",
+          "outcome": "RETURN",
+          "status": "NO_GO_MAINTAINED"
+        }
+      ]
+    }
+  },
+  "phase_20_5_governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "state_invariants": {
+      "integrated_decision": "NO_GO",
+      "receiver_validator_permission": "NOT_EFFECTIVE",
+      "app_implementation_status": "NO_GO",
+      "tests_implementation_status": "NO_GO"
+    },
+    "phase_20_5_completion_criteria": [
+      "3 rejection categories defined",
+      "4-step return/rejection procedure defined",
+      "4 NO-GO maintenance invariant rules defined",
+      "Decision table defined",
+      "All JSON validation passed",
+      "No changes to app/ or tests/ directories",
+      "All state invariants maintained"
+    ]
+  }
+}

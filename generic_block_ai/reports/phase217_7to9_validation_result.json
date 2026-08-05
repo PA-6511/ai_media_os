@@ -1,0 +1,34 @@
+{
+  "_meta": {
+    "phase": 217,
+    "purpose": "manual_validation",
+    "generated_at": "2026-05-19T23:55:00+00:00",
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "auto_execute_allowed": false,
+    "requires_human_approval": true
+  },
+  "overall_result": "PASS",
+  "validation_result": "ALL_PASS",
+  "validated_files": 3,
+  "validations": [
+    {
+      "target": "phase217_7_post_lock_final_completion_state_completion_final_judgement.json",
+      "result": "PASS",
+      "failed_checks": [],
+      "warnings": []
+    },
+    {
+      "target": "phase217_8_post_lock_final_completion_state_completion_final_report.json",
+      "result": "PASS",
+      "failed_checks": [],
+      "warnings": []
+    },
+    {
+      "target": "phase217_9_post_lock_final_completion_state_completion_layer_completion.json",
+      "result": "PASS",
+      "failed_checks": [],
+      "warnings": []
+    }
+  ]
+}

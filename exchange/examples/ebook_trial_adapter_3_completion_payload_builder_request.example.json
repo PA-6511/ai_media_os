@@ -1,0 +1,33 @@
+{
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "design_only": true,
+  "execution_allowed": false,
+  "wordpress_api_call_allowed": false,
+  "wordpress_write_allowed": false,
+  "wordpress_write_executed": false,
+  "wordpress_draft_created": false,
+  "publish_allowed": false,
+  "rollback_executed": false,
+  "freeze_executed": false,
+  "secret_values_output": false,
+  "proposals": [
+    {
+      "source": "ebook_affiliate_block",
+      "action": "generate_article",
+      "title": "人気ファンタジー漫画ランキング",
+      "target": "人気ファンタジー漫画ランキング",
+      "priority": 0.68,
+      "reason": "人気ジャンル",
+      "metadata": {
+        "genre": "ファンタジー",
+        "work_title": "辺境ギルド運営録",
+        "opportunity_type": "popular_genre"
+      }
+    }
+  ],
+  "defaults_override": {
+    "pr_label": "PR"
+  }
+}

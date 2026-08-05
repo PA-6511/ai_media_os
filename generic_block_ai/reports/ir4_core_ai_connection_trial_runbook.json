@@ -1,0 +1,88 @@
+{
+  "_meta": {
+    "purpose": "core_ai_connection_trial_runbook",
+    "schema_version": "runbook_v1",
+    "phase": "IR4-T4",
+    "generated_at": "2026-05-23T00:00:00Z",
+    "owner": "generic_block_ai",
+    "external_write_executed": false,
+    "production_release": false
+  },
+  "preconditions": {
+    "required_phase_status": "IR3 COMPLETE",
+    "required_test_result": "79+ passed / 0 failed",
+    "required_invariants": {
+      "mode": "dry_run",
+      "operation_mode": "OBSERVE",
+      "actual_auto_approve": false,
+      "actual_auto_execute": false,
+      "external_write_executed": false,
+      "production_release": false,
+      "requires_human_signoff": true
+    }
+  },
+  "trial_steps": [
+    {
+      "step": 1,
+      "name": "block_runner 実行",
+      "description": "GenericBlockRunner.run() を呼び出し、IR3 までの全レイヤーを通過させる。",
+      "command": "python3 -m pytest -q generic_block_ai/tests/test_block_runner.py",
+      "expected_outcome": "all passed",
+      "abort_if": "any FAIL"
+    },
+    {
+      "step": 2,
+      "name": "handshake package 生成確認",
+      "description": "persist_human_review_artifacts=True で run() を呼び出し、reports/core_ai_handshake_*.json が生成されることを確認する。",
+      "command": "python3 -m pytest -q generic_block_ai/tests/test_core_ai_handshake.py",
+      "expected_outcome": "all passed",
+      "abort_if": "any FAIL"
+    },
+    {
+      "step": 3,
+      "name": "connection dry-run validation",
+      "description": "生成された handshake package を validate_connection_dryrun() に渡し、PASS を確認する。",
+      "command": "python3 -m pytest -q generic_block_ai/tests/test_core_ai_handshake.py::test_connection_validator_passes_valid_package",
+      "expected_outcome": "PASS",
+      "abort_if": "FAIL or WARN"
+    },
+    {
+      "step": 4,
+      "name": "result payload 構造確認",
+      "description": "result['core_ai_handshake'] に connection_status / validation_result / path / external_write_executed が含まれることを確認する。",
+      "check_fields": [
+        "core_ai_handshake.connection_status",
+        "core_ai_handshake.validation_result",
+        "core_ai_handshake.path",
+        "core_ai_handshake.external_write_executed"
+      ],
+      "expected_outcome": "all fields present, external_write_executed=false",
+      "abort_if": "any field missing or external_write_executed=true"
+    },
+    {
+      "step": 5,
+      "name": "safety invariant final check",
+      "description": "全テストを実行し、既存の IR1-IR3 テストが崩れていないことを確認する。",
+      "command": "python3 -m pytest -q generic_block_ai/tests",
+      "expected_outcome": "86+ passed / 0 failed",
+      "abort_if": "any FAIL"
+    }
+  ],
+  "abort_conditions": [
+    "connection_status == HANDSHAKE_BLOCKED かつ blockon_status に status が合致しない",
+    "validation_result == FAIL",
+    "external_write_executed == true が検出された場合",
+    "actual_auto_execute == true が検出された場合",
+    "production_release == true が検出された場合"
+  ],
+  "rollback_procedure": [
+    "block_runner の core_ai_handshake 付与コードをリバート",
+    "core_ai_handshake_package.py / connection_dryrun_validator.py を削除",
+    "pytest -q generic_block_ai/tests で 79 passed を再確認"
+  ],
+  "sign_off": {
+    "approved_by": null,
+    "approved_at": null,
+    "notes": "human approval required before any actual core_ai connection"
+  }
+}

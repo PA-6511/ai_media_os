@@ -1,0 +1,353 @@
+{
+  "schema_version": "ir110_phase_106_110_completion_bundle_v1",
+  "phase": "IR110",
+  "generated_at": "2026-05-24T15:23:29.782064+00:00",
+  "source_task_id": "ir106_110_live_trial",
+  "new_cycle_id": "IR71_PLUS_CYCLE_A",
+  "ir106_result": {
+    "schema_version": "ir106_consolidated_evidence_review_gate_v1",
+    "phase": "IR106",
+    "generated_at": "2026-05-24T15:23:29.780212+00:00",
+    "source_task_id": "ir106_110_live_trial",
+    "validation_result": "PASS",
+    "validation_failed_checks": [],
+    "validation_warnings": [],
+    "consolidated_evidence_review_gate": {
+      "gate_id": "ir106_review_ir106_110_live_trial_20260524T152329Z",
+      "generated_at": "2026-05-24T15:23:29.780190+00:00",
+      "source_task_id": "ir106_110_live_trial",
+      "new_cycle_id": "IR71_PLUS_CYCLE_A",
+      "review_entries": [
+        {
+          "queue_item_id": "queue_1",
+          "item": "go_decision_document",
+          "review_status": "REVIEW_PENDING",
+          "reviewed": false
+        },
+        {
+          "queue_item_id": "queue_2",
+          "item": "release_approver_signature",
+          "review_status": "REVIEW_PENDING",
+          "reviewed": false
+        },
+        {
+          "queue_item_id": "queue_3",
+          "item": "safety_redeclaration_record",
+          "review_status": "REVIEW_PENDING",
+          "reviewed": false
+        },
+        {
+          "queue_item_id": "queue_4",
+          "item": "full_test_matrix_record",
+          "review_status": "REVIEW_PENDING",
+          "reviewed": false
+        },
+        {
+          "queue_item_id": "queue_5",
+          "item": "execution_authorization_record",
+          "review_status": "REVIEW_PENDING",
+          "reviewed": false
+        }
+      ],
+      "review_entry_count": 5,
+      "all_reviewed": false,
+      "unlock_eligible": false,
+      "safety_gate_snapshot": {
+        "dry_run": "maintained",
+        "OBSERVE": "maintained",
+        "submission_execution_blocked": true,
+        "execution_policy_execute": false,
+        "external_write_executed": false,
+        "network_transmission_executed": false,
+        "production_release": false,
+        "GitHub_push": "未実行"
+      }
+    },
+    "gate_hash": "d11eba5f800571b8b35cf6f5cbaa63677ff813b88173f4f08d288c0bb12c0071",
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "ir107_result": {
+    "schema_version": "ir107_delta_closure_readiness_recheck_v1",
+    "phase": "IR107",
+    "generated_at": "2026-05-24T15:23:29.780818+00:00",
+    "source_task_id": "ir106_110_live_trial",
+    "validation_result": "PASS",
+    "validation_failed_checks": [],
+    "validation_warnings": [],
+    "delta_closure_readiness_recheck": {
+      "recheck_id": "ir107_recheck_ir106_110_live_trial_20260524T152329Z",
+      "generated_at": "2026-05-24T15:23:29.780809+00:00",
+      "source_task_id": "ir106_110_live_trial",
+      "new_cycle_id": "IR71_PLUS_CYCLE_A",
+      "readiness_entries": [
+        {
+          "queue_item_id": "queue_1",
+          "item": "go_decision_document",
+          "readiness_status": "NOT_READY",
+          "readiness_confirmed": false
+        },
+        {
+          "queue_item_id": "queue_2",
+          "item": "release_approver_signature",
+          "readiness_status": "NOT_READY",
+          "readiness_confirmed": false
+        },
+        {
+          "queue_item_id": "queue_3",
+          "item": "safety_redeclaration_record",
+          "readiness_status": "NOT_READY",
+          "readiness_confirmed": false
+        },
+        {
+          "queue_item_id": "queue_4",
+          "item": "full_test_matrix_record",
+          "readiness_status": "NOT_READY",
+          "readiness_confirmed": false
+        },
+        {
+          "queue_item_id": "queue_5",
+          "item": "execution_authorization_record",
+          "readiness_status": "NOT_READY",
+          "readiness_confirmed": false
+        }
+      ],
+      "total_entries": 5,
+      "ready_count": 0,
+      "not_ready_count": 5,
+      "all_ready": false,
+      "unlock_eligible": false,
+      "safety_gate_snapshot": {
+        "dry_run": "maintained",
+        "OBSERVE": "maintained",
+        "submission_execution_blocked": true,
+        "execution_policy_execute": false,
+        "external_write_executed": false,
+        "network_transmission_executed": false,
+        "production_release": false,
+        "GitHub_push": "未実行"
+      }
+    },
+    "recheck_hash": "41dd5b46474d131de0642cbab010c648f35a45e54fc658750401b7d35f00f9b0",
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "ir108_result": {
+    "schema_version": "ir108_third_re_review_queue_planner_v1",
+    "phase": "IR108",
+    "generated_at": "2026-05-24T15:23:29.781550+00:00",
+    "source_task_id": "ir106_110_live_trial",
+    "validation_result": "PASS",
+    "validation_failed_checks": [],
+    "validation_warnings": [],
+    "third_re_review_queue_plan": {
+      "planner_id": "ir108_planner_ir106_110_live_trial_20260524T152329Z",
+      "generated_at": "2026-05-24T15:23:29.781542+00:00",
+      "source_task_id": "ir106_110_live_trial",
+      "new_cycle_id": "IR71_PLUS_CYCLE_A",
+      "queue_entries": [
+        {
+          "queue_item_id": "queue_1",
+          "item": "go_decision_document",
+          "third_re_review_status": "QUEUED",
+          "planned": true
+        },
+        {
+          "queue_item_id": "queue_2",
+          "item": "release_approver_signature",
+          "third_re_review_status": "QUEUED",
+          "planned": true
+        },
+        {
+          "queue_item_id": "queue_3",
+          "item": "safety_redeclaration_record",
+          "third_re_review_status": "QUEUED",
+          "planned": true
+        },
+        {
+          "queue_item_id": "queue_4",
+          "item": "full_test_matrix_record",
+          "third_re_review_status": "QUEUED",
+          "planned": true
+        },
+        {
+          "queue_item_id": "queue_5",
+          "item": "execution_authorization_record",
+          "third_re_review_status": "QUEUED",
+          "planned": true
+        }
+      ],
+      "queue_size": 5,
+      "all_items_queued": true,
+      "unlock_eligible": false,
+      "safety_gate_snapshot": {
+        "dry_run": "maintained",
+        "OBSERVE": "maintained",
+        "submission_execution_blocked": true,
+        "execution_policy_execute": false,
+        "external_write_executed": false,
+        "network_transmission_executed": false,
+        "production_release": false,
+        "GitHub_push": "未実行"
+      }
+    },
+    "planner_hash": "331b77a7372feda24ac4090a932cc40c637e3bd9f45c04721caf2829b6f78fc4",
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "ir109_result": {
+    "schema_version": "ir109_prohibition_continuity_finalizer_v1",
+    "phase": "IR109",
+    "generated_at": "2026-05-24T15:23:29.781811+00:00",
+    "source_task_id": "ir106_110_live_trial",
+    "prohibition_continuity_finalization_decision": "PROHIBITION_CONTINUITY_FINALIZED_DRY_RUN_ONLY",
+    "gate_action": "Prohibition continuity finalized. Dry-run-only remains enforced.",
+    "validation_result": "PASS",
+    "validation_failed_checks": [],
+    "validation_warnings": [],
+    "finalizer_record": {
+      "finalizer_id": "ir109_finalizer_ir106_110_live_trial_20260524T152329Z",
+      "generated_at": "2026-05-24T15:23:29.781805+00:00",
+      "source_task_id": "ir106_110_live_trial",
+      "decision": "PROHIBITION_CONTINUITY_FINALIZED_DRY_RUN_ONLY",
+      "unlock_prohibited": true,
+      "continuity_finalized": true,
+      "safety_gate_snapshot": {
+        "dry_run": "maintained",
+        "OBSERVE": "maintained",
+        "submission_execution_blocked": true,
+        "execution_policy_execute": false,
+        "external_write_executed": false,
+        "network_transmission_executed": false,
+        "production_release": false,
+        "GitHub_push": "未実行"
+      }
+    },
+    "finalizer_hash": "5dd8b408af0e12a3202b750a2535660211e221ec6bc40cd1d16eb2c56973cb27",
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "test_summary": {
+    "focused": {
+      "passed": 6,
+      "failed": 0
+    },
+    "adjacent": {
+      "passed": 60,
+      "failed": 0
+    },
+    "scoped": {
+      "passed": 428,
+      "failed": 0
+    }
+  },
+  "live_summary": {
+    "ir106": "PASS",
+    "ir107": "PASS",
+    "ir108": "PASS",
+    "ir109": "PASS",
+    "ir110": "PASS"
+  },
+  "safety_gate_summary": {
+    "dry_run": "maintained",
+    "OBSERVE": "maintained",
+    "submission_execution_blocked": true,
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "network_transmission_executed": false,
+    "production_release": false,
+    "GitHub_push": "未実行"
+  },
+  "completion_table": [
+    {
+      "phase": "IR106",
+      "content": "Consolidated Evidence Review Gate",
+      "focused": "PASS",
+      "adjacent": "PASS",
+      "scoped": "PASS",
+      "live": "PASS",
+      "judgement": "完了"
+    },
+    {
+      "phase": "IR107",
+      "content": "Delta Closure Readiness Recheck",
+      "focused": "PASS",
+      "adjacent": "PASS",
+      "scoped": "PASS",
+      "live": "PASS",
+      "judgement": "完了"
+    },
+    {
+      "phase": "IR108",
+      "content": "Third Re-Review Queue Planner",
+      "focused": "PASS",
+      "adjacent": "PASS",
+      "scoped": "PASS",
+      "live": "PASS",
+      "judgement": "完了"
+    },
+    {
+      "phase": "IR109",
+      "content": "Prohibition Continuity Finalizer",
+      "focused": "PASS",
+      "adjacent": "PASS",
+      "scoped": "PASS",
+      "live": "PASS",
+      "judgement": "完了"
+    },
+    {
+      "phase": "IR110",
+      "content": "Phase 106-110 Completion Bundle",
+      "focused": "PASS",
+      "adjacent": "PASS",
+      "scoped": "PASS",
+      "live": "PASS",
+      "judgement": "完了"
+    }
+  ],
+  "final_decision": "PROHIBITION_CONTINUITY_FINALIZED_DRY_RUN_ONLY",
+  "prohibition_continuity_finalized": true,
+  "delta_closure_pending": true,
+  "artifacts": {
+    "ir106_consolidated_evidence_review_gate": "generic_block_ai/reports/ir106_110/ir106_consolidated_evidence_review_gate.json",
+    "ir107_delta_closure_readiness_recheck": "generic_block_ai/reports/ir106_110/ir107_delta_closure_readiness_recheck.json",
+    "ir108_third_re_review_queue_planner": "generic_block_ai/reports/ir106_110/ir108_third_re_review_queue_planner.json",
+    "ir109_prohibition_continuity_finalizer_report": "generic_block_ai/reports/ir106_110/ir109_prohibition_continuity_finalizer_report.json",
+    "ir110_completion_bundle": "generic_block_ai/reports/ir106_110/ir110_completion_bundle.json",
+    "ir106_110_live_status": "generic_block_ai/reports/ir106_110/ir106_110_live_status.md",
+    "ir106_110_completion_table": "generic_block_ai/reports/ir106_110/ir106_110_completion_table.md"
+  },
+  "external_write_executed": false
+}

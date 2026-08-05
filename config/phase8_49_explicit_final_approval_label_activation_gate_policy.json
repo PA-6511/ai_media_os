@@ -1,0 +1,55 @@
+{
+  "phase": "Phase 8-49",
+  "name": "explicit_final_approval_label_activation_gate_policy",
+  "policy_status": "FINAL_APPROVAL_LABEL_ACTIVATION_GATE_ONLY",
+  "production_status": "NO_GO",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "human_approval_required": true,
+  "label_activation_gate_is_execution_permission": false,
+  "execution_allowed": false,
+  "actual_go_decision_issued": false,
+  "commands_executed_in_this_phase": false,
+  "phase8_6_to_8_10_executed": false,
+  "wordpress_api_call_allowed": false,
+  "wordpress_write_executed": false,
+  "wordpress_draft_created": false,
+  "publish_allowed": false,
+  "secret_values_output": false,
+  "target_item_count": 1,
+  "required_approval_label": "APPROVED_FOR_ONE_SHOT_DRAFT_CREATION_ONLY",
+  "required_evidence": [
+    "exchange/logs/phase8_45_explicit_final_execution_approval_request_human_decision_gate_result.json",
+    "exchange/logs/phase8_47_approval_label_consumption_dry_run_result.json",
+    "exchange/logs/phase8_48_one_shot_execution_final_runbook_freeze_result.json"
+  ],
+  "required_statuses": {
+    "exchange/logs/phase8_45_explicit_final_execution_approval_request_human_decision_gate_result.json": [
+      "PHASE8_45_FINAL_EXECUTION_APPROVAL_REQUEST_PREPARED_NO_EXECUTION"
+    ],
+    "exchange/logs/phase8_47_approval_label_consumption_dry_run_result.json": [
+      "PHASE8_47_APPROVAL_LABEL_CONSUMPTION_DRY_RUN_PASS_NO_EXECUTION"
+    ],
+    "exchange/logs/phase8_48_one_shot_execution_final_runbook_freeze_result.json": [
+      "PHASE8_48_ONE_SHOT_EXECUTION_FINAL_RUNBOOK_FREEZE_PASS_NO_EXECUTION"
+    ]
+  },
+  "required_review_acknowledgements": [
+    "acknowledged_label_activation_gate_only",
+    "acknowledged_no_wordpress_api_call",
+    "acknowledged_no_wordpress_write",
+    "acknowledged_no_draft_creation",
+    "acknowledged_execution_allowed_false",
+    "acknowledged_actual_go_decision_issued_false",
+    "acknowledged_secret_values_output_false",
+    "acknowledged_approval_label_not_consumed_in_phase8_49"
+  ],
+  "allowed_decisions": [
+    "FINAL_LABEL_ACTIVATION_GATE_REVIEW_ONLY",
+    "REQUEST_FIX",
+    "REJECT",
+    "ABORT"
+  ],
+  "allowed_next_step_if_ready": "Proceed to Phase 8-50 one-shot draft creation execution only after separate explicit final human execution approval",
+  "allowed_next_step_if_fix_required": "Keep NO_GO and fix label activation gate mismatches before execution consideration"
+}

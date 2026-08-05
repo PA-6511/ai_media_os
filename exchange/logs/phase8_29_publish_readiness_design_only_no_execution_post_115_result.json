@@ -1,0 +1,73 @@
+{
+  "phase": "Phase 8-29",
+  "phase_name": "Publish Readiness Design Only / No Execution for post_id 115",
+  "status": "PHASE8_29_PUBLISH_READINESS_DESIGN_ONLY_NO_EXECUTION_READY",
+  "target_post_id": 115,
+  "post_status": "draft",
+  "post_link": "https://hoshido.jp/?p=115",
+  "production_status": "NO_PUBLISH_PAUSE",
+  "readiness_snapshot": {
+    "draft_created": true,
+    "body_updated": true,
+    "category_updated_to_sale_info": true,
+    "pr_disclosure_present": true,
+    "affiliate_disclosure_present": true,
+    "tags_set": false
+  },
+  "publish_blockers": [
+    "tags_not_set_for_post_115",
+    "final_business_fact_check_not_completed",
+    "final_content_legal_review_not_completed",
+    "explicit_human_publish_go_not_provided"
+  ],
+  "publish_readiness_design_only": true,
+  "publish_execution_included": false,
+  "publish_allowed": false,
+  "publish_executed": false,
+  "delete_allowed": false,
+  "delete_executed": false,
+  "wordpress_api_call_attempted": false,
+  "wordpress_write_executed": false,
+  "wordpress_draft_updated": false,
+  "secret_values_output": false,
+  "secret_values_written": false,
+  "errors": [],
+  "warnings": [
+    "tags are intentionally unset and treated as publish blocker in this design-only gate"
+  ],
+  "safety_violations": [],
+  "evidence_summary": [
+    {
+      "key": "phase8_24",
+      "path": "exchange/logs/phase8_24_category_only_update_post_115_execution_result.json",
+      "exists": true,
+      "status": "PHASE8_24_CATEGORY_ONLY_UPDATE_EXECUTED_PENDING_HUMAN_REVIEW"
+    },
+    {
+      "key": "phase8_25",
+      "path": "exchange/logs/phase8_25_category_only_update_post_115_closure_report.json",
+      "exists": true,
+      "status": "PHASE8_25_CATEGORY_ONLY_UPDATE_VERIFIED_PENDING_HUMAN_REVIEW"
+    },
+    {
+      "key": "phase8_26",
+      "path": "exchange/logs/phase8_26_manual_inspection_after_category_only_update_post_115_result.json",
+      "exists": true,
+      "status": "PHASE8_26_MANUAL_INSPECTION_APPROVED_AFTER_CATEGORY_ONLY_UPDATE"
+    },
+    {
+      "key": "phase8_27",
+      "path": "exchange/logs/phase8_27_first_one_item_draft_body_category_success_fixed_post_115_report.json",
+      "exists": true,
+      "status": "PHASE8_27_FIRST_ONE_ITEM_DRAFT_BODY_CATEGORY_SUCCESS_FIXED_NO_PUBLISH"
+    },
+    {
+      "key": "phase8_28",
+      "path": "exchange/logs/phase8_28_no_publish_pause_and_next_route_design_post_115_result.json",
+      "exists": true,
+      "status": "PHASE8_28_NO_PUBLISH_PAUSE_AND_NEXT_ROUTE_DESIGN_FIXED"
+    }
+  ],
+  "next_step": "phase8_30_pre_publish_business_content_review_checklist_design_only_no_execution",
+  "checked_at": "2026-06-09T13:55:18.318790+00:00"
+}

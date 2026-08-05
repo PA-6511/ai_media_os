@@ -1,0 +1,65 @@
+{
+  "schema_version": "ir82_approval_evidence_recorder_v1",
+  "phase": "IR82",
+  "generated_at": "2026-05-24T14:32:03.874699+00:00",
+  "source_task_id": "ir81_85_live_trial",
+  "validation_result": "PASS",
+  "validation_failed_checks": [],
+  "validation_warnings": [],
+  "approval_evidence_record": {
+    "recorder_id": "ir82_evidence_ir81_85_live_trial_20260524T143203Z",
+    "generated_at": "2026-05-24T14:32:03.874694+00:00",
+    "source_task_id": "ir81_85_live_trial",
+    "new_cycle_id": "IR71_PLUS_CYCLE_A",
+    "evidence_entries": [
+      {
+        "evidence_type": "go_decision_document",
+        "present": false,
+        "reference": "PENDING"
+      },
+      {
+        "evidence_type": "release_approver_signature",
+        "present": false,
+        "reference": "PENDING"
+      },
+      {
+        "evidence_type": "safety_redeclaration_record",
+        "present": false,
+        "reference": "PENDING"
+      },
+      {
+        "evidence_type": "full_test_matrix_record",
+        "present": false,
+        "reference": "PENDING"
+      },
+      {
+        "evidence_type": "execution_authorization_record",
+        "present": false,
+        "reference": "PENDING"
+      }
+    ],
+    "all_required_evidence_present": false,
+    "recording_mode": "placeholder_registry",
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "record_hash": "a5198d7bca28a196aa99b0a1168850420c81e830cf5aebc9accadf12c0baddce",
+  "safety_gate_snapshot": {
+    "dry_run": "maintained",
+    "OBSERVE": "maintained",
+    "submission_execution_blocked": true,
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "network_transmission_executed": false,
+    "production_release": false,
+    "GitHub_push": "未実行"
+  }
+}

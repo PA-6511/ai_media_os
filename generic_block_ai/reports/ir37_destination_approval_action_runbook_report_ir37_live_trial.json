@@ -1,0 +1,84 @@
+{
+  "schema_version": "ir37_destination_approval_action_runbook_v1",
+  "phase": "IR37",
+  "generated_at": "2026-05-24T02:24:43.312469+00:00",
+  "source_task_id": "ir37_live_trial",
+  "release_candidate_id": "rc_20260523T155148Z_ir26_live_trial_b940393b490b",
+  "final_submission_decision": "READY_FOR_SUBMISSION_SUMMARY",
+  "overall_approval_decision": "APPROVE_DRY_RUN",
+  "overall_action": "Proceed as dry-run only; keep external submission blocked.",
+  "validation_result": "PASS",
+  "validation_failed_checks": [],
+  "validation_warnings": [],
+  "summary": {
+    "destination_count": 3,
+    "approve_dry_run_count": 3,
+    "human_review_required_count": 0,
+    "reject_count": 0,
+    "abort_count": 0
+  },
+  "destination_actions": [
+    {
+      "destination": "regulatory_audit",
+      "approval_decision": "APPROVE_DRY_RUN",
+      "source_reasons": [],
+      "source_warnings": [],
+      "requires_human_review": false,
+      "requires_resubmission": false,
+      "resubmission_patterns": [],
+      "actions": [
+        "Keep operation mode in dry_run and OBSERVE.",
+        "Prepare destination package checklist for human signoff.",
+        "Do not execute any external submission or network transmission."
+      ],
+      "escalation": "none",
+      "manifest_path": "generic_block_ai/reports/ir34_destination_submission_packages_ir34_live_trial/regulatory_audit/destination_package_manifest.json"
+    },
+    {
+      "destination": "internal_review_board",
+      "approval_decision": "APPROVE_DRY_RUN",
+      "source_reasons": [],
+      "source_warnings": [],
+      "requires_human_review": false,
+      "requires_resubmission": false,
+      "resubmission_patterns": [],
+      "actions": [
+        "Keep operation mode in dry_run and OBSERVE.",
+        "Prepare destination package checklist for human signoff.",
+        "Do not execute any external submission or network transmission."
+      ],
+      "escalation": "none",
+      "manifest_path": "generic_block_ai/reports/ir34_destination_submission_packages_ir34_live_trial/internal_review_board/destination_package_manifest.json"
+    },
+    {
+      "destination": "compliance_archive",
+      "approval_decision": "APPROVE_DRY_RUN",
+      "source_reasons": [],
+      "source_warnings": [],
+      "requires_human_review": false,
+      "requires_resubmission": false,
+      "resubmission_patterns": [],
+      "actions": [
+        "Keep operation mode in dry_run and OBSERVE.",
+        "Prepare destination package checklist for human signoff.",
+        "Do not execute any external submission or network transmission."
+      ],
+      "escalation": "none",
+      "manifest_path": "generic_block_ai/reports/ir34_destination_submission_packages_ir34_live_trial/compliance_archive/destination_package_manifest.json"
+    }
+  ],
+  "artifacts": {
+    "runbook_root": "generic_block_ai/reports/ir37_destination_approval_action_runbook_ir37_live_trial",
+    "destination_action_runbook": "generic_block_ai/reports/ir37_destination_approval_action_runbook_ir37_live_trial/destination_action_runbook.json",
+    "destination_action_summary": "generic_block_ai/reports/ir37_destination_approval_action_runbook_ir37_live_trial/destination_action_summary.md",
+    "completion_report": "reports/implementation_restart_phase37_completion_report.json"
+  },
+  "safeguards": {
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "network_transmission_executed": false,
+    "production_release": false
+  }
+}

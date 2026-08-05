@@ -1,0 +1,211 @@
+{
+  "phase_identifier": "15-7",
+  "phase_title": "integrated_decision 最終実測GO/NO-GO判定レポート設計",
+  "phase_purpose": "Phase 15 最終実測確定判定層：integrated_decision を最終実測データから GO/NO-GO 判定するレポート構造を設計する",
+  "execution_context": "reports-only design phase; no actual measurement data entry or confirmation yet",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only"
+  },
+  "governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "safety_rule": "All blocked_actions remain strictly prohibited. No app/tests implementation permitted until integrated_decision=GO and receiver_validator_implementation_permission=EFFECTIVE are both confirmed via actual human review data.",
+    "hard_stop_condition": "integrated_decision must remain NO_GO in all template fields until actual measurement confirms otherwise"
+  },
+  "report_structure": {
+    "report_id": "INTEGRATED_DECISION_FINAL_ACTUAL_MEASUREMENT_REPORT_v1",
+    "report_type": "Final Actual Measurement Decision Report",
+    "report_timing": "Upon completion of Phase 14 (all final decision layers) and Phase 15-1 through 15-6 (all input reinforcement)",
+    "decision_subject": "integrated_decision final actual measurement GO/NO-GO determination",
+    "report_elements": {
+      "measurement_timestamp": {
+        "field_name": "measurement_completed_at",
+        "type": "ISO8601 datetime",
+        "requirement": "Timestamp of final actual measurement decision",
+        "source": "Actual human review completion time"
+      },
+      "evidence_lock_status": {
+        "field_name": "all_evidence_locked",
+        "type": "boolean",
+        "requirement": "All evidence from Phase 14-8 (final effective feasibility assessment) must be confirmed as locked",
+        "default_template_value": false,
+        "confirmation_rule": "Must be true before GO determination possible"
+      },
+      "stop_conditions_triggered": {
+        "field_name": "any_immediate_stop_triggered",
+        "type": "boolean",
+        "requirement": "Phase 12-6 (immediate stop conditions) must not have any triggered stop",
+        "default_template_value": false,
+        "confirmation_rule": "Must be false before GO determination possible"
+      },
+      "integrated_decision_final_measurement_criteria": {
+        "field_name": "go_determination_criteria_met",
+        "type": "object",
+        "criteria_list": [
+          {
+            "criterion": "1_all_evidence_locked",
+            "description": "All evidence indices must be locked",
+            "requirement": "evidence_lock_status.all_evidence_locked == true",
+            "confirmation_source": "Phase 15-5 evidence lock rules validation"
+          },
+          {
+            "criterion": "2_no_stops_triggered",
+            "description": "No immediate stop conditions from Phase 12-6 can be active",
+            "requirement": "stop_conditions_triggered.any_immediate_stop_triggered == false",
+            "confirmation_source": "Phase 12-6 immediate stop conditions monitoring"
+          },
+          {
+            "criterion": "3_receiver_validator_permission_ready",
+            "description": "receiver_validator_implementation_permission must be ready for effective evaluation",
+            "requirement": "receiver_validator_permission_final_measurement_report.ready_for_effectiveness == true",
+            "confirmation_source": "Phase 15-8 receiver validator final measurement report"
+          },
+          {
+            "criterion": "4_production_status_confirmation",
+            "description": "production_status must remain NO_GO during all measurement phases",
+            "requirement": "production_status == 'NO_GO'",
+            "confirmation_source": "Hardcoded safety constant across all phases"
+          },
+          {
+            "criterion": "5_no_defect_escalation",
+            "description": "No Phase 11-4 (defect escalation detection) issues remain unresolved",
+            "requirement": "defect_escalation_issues == empty or all_resolved",
+            "confirmation_source": "Phase 11-4 defect escalation rules"
+          }
+        ]
+      },
+      "integrated_decision_actual_measurement_result": {
+        "field_name": "integrated_decision_final_actual_status",
+        "type": "enum",
+        "allowed_values": [
+          "GO",
+          "NO_GO"
+        ],
+        "default_template_value": "NO_GO",
+        "template_rule": "In design phase, all template instances must show NO_GO. Actual GO determination waits for confirmed human review data entry.",
+        "go_determination_rule": "GO only when ALL 5 criteria above are met AND measurement timestamp recorded AND human review has entered concrete data into Phase 15-1 (integrated_decision input) and Phase 15-2 (receiver validator input)",
+        "no_go_maintenance_rule": "NO_GO is default. Maintain NO_GO if any criterion fails or if Phase 14-6 (GO stop conditions) triggered"
+      },
+      "confidence_assessment": {
+        "field_name": "measurement_confidence_level",
+        "type": "enum",
+        "allowed_values": [
+          "HIGH",
+          "MEDIUM",
+          "LOW",
+          "UNCONFIRMED"
+        ],
+        "default_template_value": "UNCONFIRMED",
+        "template_rule": "In design phase, all instances show UNCONFIRMED. Actual levels depend on completeness of human review data."
+      },
+      "recommendation_for_next_phase": {
+        "field_name": "phase16_readiness_recommendation",
+        "type": "enum",
+        "allowed_values": [
+          "PROCEED_TO_PHASE16_ACTUAL_GO_IMPLEMENTATION",
+          "RETURN_TO_PHASE14_FOR_REVIEW",
+          "HALT_AND_REASSESS"
+        ],
+        "default_template_value": "HALT_AND_REASSESS",
+        "template_rule": "In design phase, default to HALT. Actual recommendation depends on integrated_decision_final_actual_status and receiver_validator_permission outcome"
+      }
+    }
+  },
+  "measurement_data_sources": {
+    "primary_sources": [
+      "Phase 15-1 integrated_decision final actual measurement input (human review entry)",
+      "Phase 15-2 receiver_validator_implementation_permission final actual measurement input (human review entry)",
+      "Phase 14 final decision layer evidence and feasibility assessments",
+      "Phase 12-6 immediate stop conditions monitoring logs"
+    ],
+    "secondary_sources": [
+      "Phase 11-4 defect escalation detection records",
+      "Phase 13 input acceptance validation results",
+      "All preceding phase decision records"
+    ]
+  },
+  "measurement_decision_workflow": {
+    "step_1_evidence_lock_verification": {
+      "action": "Verify Phase 15-5 evidence lock completion",
+      "condition": "All evidence indices must be confirmed locked",
+      "proceed_to": "step_2",
+      "halt_condition": "If any evidence remains unlocked, HALT and return to Phase 15-5"
+    },
+    "step_2_stop_conditions_check": {
+      "action": "Check Phase 12-6 for active stop conditions",
+      "condition": "No immediate stops can be active",
+      "proceed_to": "step_3",
+      "halt_condition": "If stops are active, HALT and return to Phase 12-6"
+    },
+    "step_3_criteria_validation": {
+      "action": "Validate all 5 GO determination criteria",
+      "condition": "All criteria must evaluate TRUE",
+      "proceed_to": "step_4",
+      "halt_condition": "If any criterion is FALSE, set integrated_decision_final_actual_status = NO_GO and HALT"
+    },
+    "step_4_human_review_data_confirmation": {
+      "action": "Confirm Phase 15-1 and 15-2 human review data entry is complete",
+      "condition": "Both input formats must have concrete, non-template data",
+      "proceed_to": "step_5",
+      "halt_condition": "If data is missing or still template-only, HALT and request human review input"
+    },
+    "step_5_final_decision_determination": {
+      "action": "Determine integrated_decision_final_actual_status",
+      "logic": "IF all criteria TRUE AND no stops AND evidence locked AND human data complete THEN integrated_decision = GO; ELSE integrated_decision = NO_GO",
+      "record_result": "timestamp, status, confidence_level, recommendation"
+    }
+  },
+  "phase_dependencies": {
+    "depends_on": [
+      "Phase 15-1: integrated_decision final actual measurement input format",
+      "Phase 15-2: receiver_validator_implementation_permission final actual measurement input format",
+      "Phase 15-5: evidence lock rules confirmation",
+      "Phase 14: all final decision layers",
+      "Phase 12-6: immediate stop conditions monitoring"
+    ],
+    "feeds_into": [
+      "Phase 15-8: receiver validator permission final measurement (decision result as input)",
+      "Phase 15-9: Phase 15 completion declaration (decision result as component)"
+    ]
+  },
+  "design_review_checklist": [
+    "Report structure captures all 5 GO determination criteria",
+    "Evidence lock verification is mandatory before decision",
+    "Stop conditions check prevents false GO determination",
+    "Human review data entry is required (not auto-determined)",
+    "Default template value is NO_GO (safety-first default)",
+    "Measurement workflow is sequential and has clear halt points",
+    "All blocked actions remain in governance",
+    "production_status remains NO_GO (hardcoded)",
+    "Phase dependencies are accurate and complete"
+  ],
+  "completion_gate": {
+    "gate_condition": "Design structure approved AND design review checklist all confirmed",
+    "approval_required": "Human technical reviewer (NOT automated)",
+    "prerequisite_for": "Phase 15-8 (receiver validator final measurement report design) can proceed in parallel; Phase 15-9 (completion declaration) waits for both 15-7 and 15-8 approval"
+  },
+  "status": {
+    "phase_status": "DESIGN_ONLY",
+    "actual_measurement_status": "NOT_YET_STARTED",
+    "integrated_decision_status": "NO_GO",
+    "receiver_validator_implementation_permission_status": "NOT_EFFECTIVE",
+    "app_implementation_status": "NO_GO",
+    "tests_implementation_status": "NO_GO",
+    "production_status": "NO_GO"
+  }
+}

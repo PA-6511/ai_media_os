@@ -1,0 +1,49 @@
+{
+  "schema_version": "ir52_release_packet_builder_v1",
+  "phase": "IR52",
+  "generated_at": "2026-05-24T04:53:39.261424+00:00",
+  "source_task_id": "ir51_55_live_trial",
+  "release_packet_id": "rp_ir51_55_live_trial_20260524T045339Z",
+  "source_ir50_report": "ir50_live_trial",
+  "source_ir51_report": "ir51_55_live_trial",
+  "target_destinations": [
+    "compliance_archive",
+    "internal_review_board",
+    "regulatory_audit"
+  ],
+  "reference_record_paths": [
+    "generic_block_ai/reports/ir48_destination_human_review_result_intake_ir48_live_trial/compliance_archive_human_review_result.json",
+    "generic_block_ai/reports/ir48_destination_human_review_result_intake_ir48_live_trial/internal_review_board_human_review_result.json",
+    "generic_block_ai/reports/ir48_destination_human_review_result_intake_ir48_live_trial/regulatory_audit_human_review_result.json"
+  ],
+  "packet_manifest": {
+    "phase": "IR52",
+    "source_task_id": "ir51_55_live_trial",
+    "source_ir50_report": "ir50_live_trial",
+    "source_ir51_report": "ir51_55_live_trial",
+    "target_destinations": [
+      "compliance_archive",
+      "internal_review_board",
+      "regulatory_audit"
+    ],
+    "reference_record_paths": [
+      "generic_block_ai/reports/ir48_destination_human_review_result_intake_ir48_live_trial/compliance_archive_human_review_result.json",
+      "generic_block_ai/reports/ir48_destination_human_review_result_intake_ir48_live_trial/internal_review_board_human_review_result.json",
+      "generic_block_ai/reports/ir48_destination_human_review_result_intake_ir48_live_trial/regulatory_audit_human_review_result.json"
+    ]
+  },
+  "safety_gate_snapshot": {
+    "dry_run": "maintained",
+    "OBSERVE": "maintained",
+    "submission_execution_blocked": true,
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "network_transmission_executed": false,
+    "production_release": false,
+    "GitHub_push": "未実行"
+  },
+  "packet_hash": "e45e797d57c93a59cda4e5713f6285b64d0c1549394b7bce75cb37e4623bfe56",
+  "validation_result": "PASS",
+  "validation_failed_checks": [],
+  "validation_warnings": []
+}

@@ -1,0 +1,48 @@
+{
+  "schema_version": "ir16_audit_replay_v1",
+  "phase": "IR16",
+  "generated_at": "2026-05-23T15:07:37.031106+00:00",
+  "source_task_id": "ir16_live_trial",
+  "validation_result": "PASS",
+  "validation_failed_checks": [],
+  "validation_warnings": [],
+  "summary": {
+    "queue_log_entries": 4,
+    "manual_log_entries": 4,
+    "replay_steps": 4,
+    "tracked_queue_items": 4,
+    "ir13_reports_checked": 4,
+    "ir15_reports_checked": 4,
+    "state_mismatch_count": 0
+  },
+  "replayed_final_states": {
+    "queue_ir12_pass_live_trial_pass": "APPROVED_DRY_RUN_PENDING_RELEASE",
+    "queue_ir12_warn_live_trial_warn": "NEEDS_FIX_REWORK",
+    "queue_ir12_fail_live_trial_fail": "REJECTED_BY_HUMAN",
+    "queue_ir12_abort_live_trial_abort": "ABORT_EVIDENCE_LOCKED"
+  },
+  "state_mismatches": [],
+  "artifacts": {
+    "ir12_audit_log": "generic_block_ai/reports/ir12_core_decision_queue_audit.log",
+    "ir13_audit_log": "generic_block_ai/reports/ir13_manual_approval_audit.log",
+    "ir13_reports": [
+      "generic_block_ai/reports/ir13_manual_approval_event_ir13_abort_live_trial_approve.json",
+      "generic_block_ai/reports/ir13_manual_approval_event_ir13_fail_live_trial_reject.json",
+      "generic_block_ai/reports/ir13_manual_approval_event_ir13_pass_live_trial_approve.json",
+      "generic_block_ai/reports/ir13_manual_approval_event_ir13_warn_live_trial_request_fix.json"
+    ],
+    "ir15_reports": [
+      "generic_block_ai/reports/ir15_manual_event_role_guard_ir15_abort_live_trial.json",
+      "generic_block_ai/reports/ir15_manual_event_role_guard_ir15_fail_live_trial.json",
+      "generic_block_ai/reports/ir15_manual_event_role_guard_ir15_pass_live_trial.json",
+      "generic_block_ai/reports/ir15_manual_event_role_guard_ir15_warn_live_trial.json"
+    ]
+  },
+  "safeguards": {
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "production_release": false
+  }
+}

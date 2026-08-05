@@ -1,0 +1,41 @@
+{
+  "phase": "8-40B",
+  "phase_name": "Adapter Route Final HOLD Baseline Lock",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "hold_state": "HOLD",
+  "required_reports": {
+    "adapter1": "exchange/logs/ebook_trial_adapter_1_readiness_result.json",
+    "adapter2": "exchange/logs/ebook_trial_adapter_2_missing_field_completion_design_result.json",
+    "adapter3": "exchange/logs/ebook_trial_adapter_3_completion_payload_builder_result.json",
+    "adapter4": "exchange/logs/ebook_trial_adapter_4_completion_payload_validation_result.json",
+    "adapter5": "exchange/logs/ebook_trial_adapter_5_phase8_38_request_mapping_result.json",
+    "adapter6": "exchange/logs/ebook_trial_adapter_6_baseline_lock_result.json",
+    "phase8_38a": "exchange/logs/phase8_38a_adapter5_to_phase8_38_preflight_reconnection_baseline_lock_result.json",
+    "phase8_39a": "exchange/logs/phase8_39a_adapter_route_abort_rollback_freeze_simulation_check_result.json",
+    "phase8_40a": "exchange/logs/phase8_40a_adapter_route_overall_no_go_reaggregation_result.json"
+  },
+  "required_statuses": {
+    "adapter1": "EBOOK_TRIAL_ADAPTER_1_GAP_FOUND_BLOCKED_NO_EXECUTION",
+    "adapter2": "EBOOK_TRIAL_ADAPTER_2_MISSING_FIELD_COMPLETION_DESIGN_PASS_DRY_RUN",
+    "adapter3": "EBOOK_TRIAL_ADAPTER_3_COMPLETION_PAYLOAD_BUILT_DRY_RUN_NO_EXECUTION",
+    "adapter4": "EBOOK_TRIAL_ADAPTER_4_PREFLIGHT_CONTRACT_PASS_DRY_RUN_NO_EXECUTION",
+    "adapter5": "EBOOK_TRIAL_ADAPTER_5_PHASE8_38_REQUEST_MAPPING_PASS_DRY_RUN_NO_EXECUTION",
+    "adapter6": "EBOOK_TRIAL_ADAPTER_6_BASELINE_LOCK_PASS_HOLD_NO_EXECUTION",
+    "phase8_38a": "PHASE8_38A_ADAPTER5_TO_PHASE8_38_RECONNECTION_BASELINE_LOCK_PASS_HOLD_NO_EXECUTION",
+    "phase8_39a": "PHASE8_39A_ADAPTER_ROUTE_ROLLBACK_FREEZE_SIMULATION_PASS_HOLD_NO_EXECUTION",
+    "phase8_40a": "PHASE8_40A_ADAPTER_ROUTE_OVERALL_NO_GO_FIXED"
+  },
+  "required_false_flags": [
+    "execution_allowed",
+    "wordpress_api_call_allowed",
+    "wordpress_write_allowed",
+    "wordpress_write_executed",
+    "wordpress_draft_created",
+    "publish_allowed",
+    "rollback_executed",
+    "freeze_executed",
+    "secret_values_output"
+  ]
+}

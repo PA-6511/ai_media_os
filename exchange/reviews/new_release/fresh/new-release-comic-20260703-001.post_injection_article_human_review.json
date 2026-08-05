@@ -1,0 +1,120 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M10",
+  "document_role": "POST_INJECTION_ARTICLE_HUMAN_REVIEW_EVIDENCE",
+  "review_id": "POST_INJECTION_ARTICLE_HUMAN_REVIEW_V1",
+  "content_item_id": "new-release-comic-20260703-001",
+  "approval_label": "DMM_POST_INJECTION_ARTICLE_HUMAN_REVIEW_AND_FRESH_PAYLOAD_AUTHORIZATION_GATE_APPROVED",
+  "reviewed_by": "HUMAN_OPERATOR",
+  "human_explicit_approval": true,
+  "review_verdict": "APPROVED_NO_CHANGE_REQUIRED",
+  "article_binding": {
+    "path": "exchange/content/new_release/fresh/new-release-comic-20260703-001.article.json",
+    "postimage_sha256": "de2739c8ae1aa4a50973b983964b05844086a2187b9ef337383ad6fa7123697d",
+    "preimage_sha256": "849a37519c6af70d2212ec01d5cddef5793bfa811e97ca9f248ce099a0350bf4",
+    "inverse_reconstructed_preimage_sha256": "849a37519c6af70d2212ec01d5cddef5793bfa811e97ca9f248ce099a0350bf4"
+  },
+  "validation_results": {
+    "dmm_active_anchor_count_one": true,
+    "dmm_anchor_class_tokens_exact": true,
+    "dmm_anchor_text_verified": true,
+    "dmm_anchor_target_blank_verified": true,
+    "dmm_anchor_rel_tokens_verified": true,
+    "dmm_disabled_class_absent": true,
+    "dmm_aria_disabled_absent": true,
+    "decoded_href_exact_secret_link_match": true,
+    "dmm_link_scheme_https_verified": true,
+    "dmm_link_host_al_dmm_com_verified": true,
+    "destination_exact_binding_verified": true,
+    "registered_identifier_exact_binding_verified": true,
+    "store_navigation_matches_html": true,
+    "article_preimage_inverse_reconstruction_verified": true,
+    "amazon_slot_unchanged": true,
+    "rakuten_kobo_slot_unchanged": true,
+    "pr_disclosure_unchanged": true,
+    "non_dmm_structure_unchanged": true,
+    "m9_fix1_result_verified": true,
+    "m9_fix1_consumption_verified": true,
+    "old_m9_failure_evidence_preserved": true,
+    "m8_review_verified": true,
+    "m7_secret_link_verified": true,
+    "m7_consumption_verified": true,
+    "m6_authorization_verified": true,
+    "m5_review_verified": true,
+    "cred1_commitment_revalidated": true
+  },
+  "secret_link_binding": {
+    "path": "exchange/links/new_release/fresh/new-release-comic-20260703-001.dmm_final_affiliate_link_generation_result.json",
+    "file_sha256": "c5a70d9804a4e2dfd91049ee20bdda5379abf3e1fe3c25b0fb8cbd5fa587faa0",
+    "artifact_digest_sha256": "4807e0a6d8a8416a936bafa978ba4f90d43ae7d304322bbd6a6ababcb2cd2db6",
+    "full_final_url_present": false,
+    "affiliate_identifier_present": false
+  },
+  "source_bindings": {
+    "article": {
+      "path": "exchange/content/new_release/fresh/new-release-comic-20260703-001.article.json",
+      "file_sha256": "de2739c8ae1aa4a50973b983964b05844086a2187b9ef337383ad6fa7123697d"
+    },
+    "secret_link": {
+      "path": "exchange/links/new_release/fresh/new-release-comic-20260703-001.dmm_final_affiliate_link_generation_result.json",
+      "file_sha256": "c5a70d9804a4e2dfd91049ee20bdda5379abf3e1fe3c25b0fb8cbd5fa587faa0"
+    },
+    "m9_fix1_authorization": {
+      "path": "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.article_dmm_link_injection_fix1_authorization.json",
+      "file_sha256": "737993fcf83236e610247bb5bc31c9d1966896a95b3ce602ff5d648aeb213df6"
+    },
+    "m9_fix1_consumption": {
+      "path": "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.article_dmm_link_injection_fix1_consumption.json",
+      "file_sha256": "a5954bb426612296b997e26388c74f7996ac210d364b4ceca72694b81d302342"
+    },
+    "m9_fix1_result": {
+      "path": "exchange/logs/ls_new_batch_4g_2e_recovery_m9_fix1_result.json",
+      "file_sha256": "d98695971f1ffb73c34958e2418a6c18155f6f8a31420c6ab2e3662114a383ab"
+    },
+    "old_m9_authorization": {
+      "path": "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.article_dmm_link_injection_authorization.json",
+      "file_sha256": "8cec2c0c566b7e992fd3f822403d1c43f2558239aecf702de93190abb2ef83fd"
+    },
+    "old_m9_consumption": {
+      "path": "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.article_dmm_link_injection_consumption.json",
+      "file_sha256": "7b34ad6e195d7cbe5bd061bc3edb9e001a8e2d914d956e22605dd901e67c655c"
+    },
+    "old_m9_result": {
+      "path": "exchange/logs/ls_new_batch_4g_2e_recovery_m9_result.json",
+      "file_sha256": "4bfc26c714795030ad3c86aa5e3be0e5cd86c7622fface6cca77919053775526"
+    },
+    "m8_review": {
+      "path": "exchange/reviews/new_release/fresh/new-release-comic-20260703-001.dmm_final_affiliate_link_human_review.json",
+      "file_sha256": "027149939fb9b347ecf6f8aaf63f521f1c62706be10220fe637cf32974b58dda"
+    },
+    "m7_consumption": {
+      "path": "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.dmm_final_affiliate_link_generation_consumption.json",
+      "file_sha256": "f88bf184167925026350602de97790930ce8efb31eff1eefa289ba98a7f54f63"
+    },
+    "m6_authorization": {
+      "path": "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.dmm_final_affiliate_link_generation_authorization.json",
+      "file_sha256": "8e751212054d5722863984bec7faad5c0c851f28fdbebe18d5b441f34e36b4d9"
+    },
+    "m5_review": {
+      "path": "exchange/reviews/new_release/fresh/new-release-comic-20260703-001.dmm_historical_m4_evidence_human_review.json",
+      "file_sha256": "29411ef1792b95f5d807d6eef3c2298484b53e116ccfc5a7cdc19b0eb90d2ccd"
+    },
+    "cred1_result": {
+      "path": "exchange/logs/ls_new_batch_4g_2e_recovery_m6_cred1_result.json",
+      "file_sha256": "238420061e545a7f3123ac9ebbde27c11e8e42a38538c69c3c5494e1dd3ac908"
+    },
+    "category_mapping": {
+      "path": "config/new_release_wp_production_category_mapping.json",
+      "file_sha256": "19c2598d65d9acd817778deae8c661bc4c6ea33cc2a4d2686d33ec671764c4c0"
+    }
+  },
+  "full_final_affiliate_url_output": false,
+  "affiliate_identifier_output": false,
+  "article_modified": false,
+  "payload_created": false,
+  "network_connection_performed": false,
+  "wordpress_access_performed": false,
+  "production_status": "NO_GO",
+  "reviewed_at_utc": "2026-07-11T07:56:07.433930+00:00",
+  "human_review_evidence_digest_sha256": "48b567388d071a89f82a63504c60fd5767ddd328db23c7a9df73f16b848ebbae"
+}

@@ -1,0 +1,24 @@
+{
+  "package_type": "decision_package",
+  "source": "local_self_builder",
+  "target": "ebook_affiliate_block",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "human_approval_required": true,
+  "requested_action": "propose_article_template_update",
+  "risk_level": "LOW",
+  "auto_post": false,
+  "auto_update": false,
+  "auto_delete": false,
+  "auto_export": false,
+  "summary": "CTAボタン文言とランキングカード表示の改善提案サンプル",
+  "inputs": {
+    "patch_proposal": "exchange/incoming/patch_proposal.example.json",
+    "test_report": "exchange/incoming/test_report.example.json"
+  },
+  "decision": {
+    "status": "WARN",
+    "reason": "DRY_RUN接続試験用。link_check が WARN のため human_review 必須。",
+    "next_step": "send_to_human_review"
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "phase": "Phase 6-2",
+  "gate_name": "wordpress_draft_preflight_gate_design",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "gate_status": "DESIGN_ONLY",
+  "production_status": "NO_GO",
+  "wordpress_draft_creation": "NO_GO",
+  "required_inputs": {
+    "phase5_overall_report": "exchange/logs/phase5_overall_completion_report.json",
+    "phase6_1_design_validation": "exchange/logs/phase6_1_design_validation_result.json",
+    "draft_candidate_quality_validation": "exchange/logs/wordpress_draft_candidate_validation_result.json",
+    "draft_candidate_review_result": "exchange/logs/wordpress_draft_candidate_review_result.json"
+  },
+  "preflight_rules": {
+    "allowed_phase5_completion_status": [
+      "PASS_DRY_RUN_ONLY",
+      "PASS_DRY_RUN_ONLY_WITH_WARN"
+    ],
+    "require_phase6_1_policy_status": "DESIGN_ONLY",
+    "require_phase6_1_production_status": "NO_GO",
+    "allowed_quality_status": [
+      "PASS",
+      "WARN"
+    ],
+    "allow_warn_only_when_human_review_required": true,
+    "post_count_limit": 1,
+    "post_status": "draft",
+    "publish_forbidden": true,
+    "update_forbidden": true,
+    "delete_forbidden": true,
+    "export_forbidden": true,
+    "env_secret_auto_edit_forbidden": true,
+    "wordpress_rest_execute_must_be_false": true,
+    "github_actions_trigger_must_be_false": true,
+    "slack_production_notification_must_be_false": true,
+    "vps_self_builder_execution_must_be_false": true
+  },
+  "decision_extension": {
+    "current_allowed": [
+      "APPROVE_DRY_RUN_ONLY"
+    ],
+    "reserved_future": {
+      "token": "APPROVE_DRAFT_CREATE_ONLY",
+      "allowed": false,
+      "note": "Phase 6-2 時点では将来予約のみ。実運用で有効化しない。"
+    }
+  },
+  "forbidden_actions": [
+    "wordpress_rest_post",
+    "wordpress_rest_put_patch",
+    "publish_post",
+    "update_existing_post",
+    "delete_post",
+    "bulk_posting",
+    "external_export",
+    "github_actions_trigger",
+    "slack_production_notification",
+    "cron_automation",
+    "env_secret_auto_edit",
+    "vps_self_builder_execution"
+  ]
+}

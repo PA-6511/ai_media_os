@@ -1,0 +1,76 @@
+{
+  "schema_version": "ir152_meta_evidence_lock_v1",
+  "phase": "IR152",
+  "generated_at": "2026-05-26T12:21:00.739385+00:00",
+  "source_task_id": "ir151_155_batch",
+  "validation_result": "PASS",
+  "validation_failed_checks": [],
+  "validation_warnings": [],
+  "meta_evidence_lock": {
+    "lock_id": "ir152_lock_ir151_155_batch_20260526T122100Z",
+    "generated_at": "2026-05-26T12:21:00.739380+00:00",
+    "source_task_id": "ir151_155_batch",
+    "new_cycle_id": "IR71_PLUS_CYCLE_A",
+    "lock_entries": [
+      {
+        "meta_item": "new_cycle_start",
+        "lock_status": "LOCKED",
+        "mutable": false
+      },
+      {
+        "meta_item": "governance_preparation",
+        "lock_status": "LOCKED",
+        "mutable": false
+      },
+      {
+        "meta_item": "prohibition_continuity",
+        "lock_status": "LOCKED",
+        "mutable": false
+      },
+      {
+        "meta_item": "evidence_fixation",
+        "lock_status": "LOCKED",
+        "mutable": false
+      },
+      {
+        "meta_item": "long_term_retention",
+        "lock_status": "LOCKED",
+        "mutable": false
+      },
+      {
+        "meta_item": "terminal_seal",
+        "lock_status": "LOCKED",
+        "mutable": false
+      },
+      {
+        "meta_item": "cycle_summary",
+        "lock_status": "LOCKED",
+        "mutable": false
+      }
+    ],
+    "lock_count": 7,
+    "all_meta_locked": true,
+    "unlock_eligible": false,
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "lock_hash": "5469530ba79722ee271b31b09cb4efe5af84703d5a3a1d979ea9ea857e7b3f69",
+  "safety_gate_snapshot": {
+    "dry_run": "maintained",
+    "OBSERVE": "maintained",
+    "submission_execution_blocked": true,
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "network_transmission_executed": false,
+    "production_release": false,
+    "GitHub_push": "未実行"
+  }
+}

@@ -1,0 +1,25 @@
+# LS-NEW-PUBLISH-LITE-1 One-shot Publish Report
+
+- Phase: LS-NEW-PUBLISH-LITE-1
+- Status: LSNEW_PUBLISH_LITE_1_POST_185_PUBLISHED_ONE_SHOT
+- Publish target post ID: 185
+- Target status: draft -> publish
+- WordPress pre-read attempted: true
+- WordPress pre-read succeeded: true
+- WordPress publish call attempted: true
+- WordPress publish call succeeded: true
+- WordPress write executed: true
+- WordPress publish executed: true
+- Published post ID: 185
+- Published post link: https://hoshido.jp/2026/07/09/%e6%9c%88%e6%9b%9c%e6%97%a5%e3%81%ae%e3%81%9f%e3%82%8f%e3%82%8f-%e7%ac%ac15%e5%b7%bb%ef%bd%9ckindle%e7%89%88-%e9%85%8d%e4%bf%a1%e9%96%8b%e5%a7%8b/
+- Published post status: publish
+- Credential env read executed: true
+- Credential value output: false
+- Secret output: false
+- Authorization output: false
+- Response body output: false
+- User identity output: false
+- One-shot publish actual count: 1
+- One-shot publish consumed: true
+- Ready for public URL review: true
+- Next action: PUBLIC_URL_REVIEW_POST_185

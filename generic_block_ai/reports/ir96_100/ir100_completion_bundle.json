@@ -1,0 +1,317 @@
+{
+  "schema_version": "ir100_phase_96_100_completion_bundle_v1",
+  "phase": "IR100",
+  "generated_at": "2026-05-24T14:52:09.112519+00:00",
+  "source_task_id": "ir96_100_live_trial",
+  "new_cycle_id": "IR71_PLUS_CYCLE_A",
+  "ir96_result": {
+    "schema_version": "ir96_re_review_queue_execution_tracker_v1",
+    "phase": "IR96",
+    "generated_at": "2026-05-24T14:52:09.111737+00:00",
+    "source_task_id": "ir96_100_live_trial",
+    "validation_result": "PASS",
+    "validation_failed_checks": [],
+    "validation_warnings": [],
+    "re_review_execution_tracker": {
+      "tracker_id": "ir96_tracker_ir96_100_live_trial_20260524T145209Z",
+      "generated_at": "2026-05-24T14:52:09.111718+00:00",
+      "source_task_id": "ir96_100_live_trial",
+      "new_cycle_id": "IR71_PLUS_CYCLE_A",
+      "tracked_entries": [
+        {
+          "queue_item_id": "queue_1",
+          "item": "go_decision_document",
+          "execution_status": "TRACKED_PENDING_REVIEW",
+          "dry_run_executed": false
+        },
+        {
+          "queue_item_id": "queue_2",
+          "item": "release_approver_signature",
+          "execution_status": "TRACKED_PENDING_REVIEW",
+          "dry_run_executed": false
+        },
+        {
+          "queue_item_id": "queue_3",
+          "item": "safety_redeclaration_record",
+          "execution_status": "TRACKED_PENDING_REVIEW",
+          "dry_run_executed": false
+        },
+        {
+          "queue_item_id": "queue_4",
+          "item": "full_test_matrix_record",
+          "execution_status": "TRACKED_PENDING_REVIEW",
+          "dry_run_executed": false
+        },
+        {
+          "queue_item_id": "queue_5",
+          "item": "execution_authorization_record",
+          "execution_status": "TRACKED_PENDING_REVIEW",
+          "dry_run_executed": false
+        }
+      ],
+      "tracked_count": 5,
+      "execution_mode": "dry_run_tracking_only",
+      "safety_gate_snapshot": {
+        "dry_run": "maintained",
+        "OBSERVE": "maintained",
+        "submission_execution_blocked": true,
+        "execution_policy_execute": false,
+        "external_write_executed": false,
+        "network_transmission_executed": false,
+        "production_release": false,
+        "GitHub_push": "未実行"
+      }
+    },
+    "tracker_hash": "6280dd7645094568cba83798637e70d26b59e3b8f15e25fe13ee74cc055853e4",
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "ir97_result": {
+    "schema_version": "ir97_remediation_evidence_intake_verifier_v1",
+    "phase": "IR97",
+    "generated_at": "2026-05-24T14:52:09.112067+00:00",
+    "source_task_id": "ir96_100_live_trial",
+    "validation_result": "PASS",
+    "validation_failed_checks": [],
+    "validation_warnings": [],
+    "evidence_intake_verification": {
+      "verifier_id": "ir97_intake_ir96_100_live_trial_20260524T145209Z",
+      "generated_at": "2026-05-24T14:52:09.112062+00:00",
+      "source_task_id": "ir96_100_live_trial",
+      "new_cycle_id": "IR71_PLUS_CYCLE_A",
+      "intake_entries": [
+        {
+          "queue_item_id": "queue_1",
+          "item": "go_decision_document",
+          "evidence_intake_status": "NOT_RECEIVED",
+          "verified": false
+        },
+        {
+          "queue_item_id": "queue_2",
+          "item": "release_approver_signature",
+          "evidence_intake_status": "NOT_RECEIVED",
+          "verified": false
+        },
+        {
+          "queue_item_id": "queue_3",
+          "item": "safety_redeclaration_record",
+          "evidence_intake_status": "NOT_RECEIVED",
+          "verified": false
+        },
+        {
+          "queue_item_id": "queue_4",
+          "item": "full_test_matrix_record",
+          "evidence_intake_status": "NOT_RECEIVED",
+          "verified": false
+        },
+        {
+          "queue_item_id": "queue_5",
+          "item": "execution_authorization_record",
+          "evidence_intake_status": "NOT_RECEIVED",
+          "verified": false
+        }
+      ],
+      "all_required_evidence_received": false,
+      "unlock_eligible": false,
+      "safety_gate_snapshot": {
+        "dry_run": "maintained",
+        "OBSERVE": "maintained",
+        "submission_execution_blocked": true,
+        "execution_policy_execute": false,
+        "external_write_executed": false,
+        "network_transmission_executed": false,
+        "production_release": false,
+        "GitHub_push": "未実行"
+      }
+    },
+    "verifier_hash": "239b3e41b2d80aafbb359bfb7b7a3ff2f17accfc87b5860ad311968c3f6669cd",
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "ir98_result": {
+    "schema_version": "ir98_pre_unlock_delta_audit_v1",
+    "phase": "IR98",
+    "generated_at": "2026-05-24T14:52:09.112251+00:00",
+    "source_task_id": "ir96_100_live_trial",
+    "validation_result": "PASS",
+    "validation_failed_checks": [],
+    "validation_warnings": [],
+    "pre_unlock_delta_audit": {
+      "audit_id": "ir98_audit_ir96_100_live_trial_20260524T145209Z",
+      "generated_at": "2026-05-24T14:52:09.112247+00:00",
+      "source_task_id": "ir96_100_live_trial",
+      "new_cycle_id": "IR71_PLUS_CYCLE_A",
+      "unresolved_delta_count": 5,
+      "pre_unlock_delta_status": "DELTA_REMAINS",
+      "unlock_recommended": false,
+      "safety_gate_snapshot": {
+        "dry_run": "maintained",
+        "OBSERVE": "maintained",
+        "submission_execution_blocked": true,
+        "execution_policy_execute": false,
+        "external_write_executed": false,
+        "network_transmission_executed": false,
+        "production_release": false,
+        "GitHub_push": "未実行"
+      }
+    },
+    "audit_hash": "e90ffebacc109385100164fcf9d18dbf0b2d3abcde6f723b2ce6a16360f14855",
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "ir99_result": {
+    "schema_version": "ir99_unlock_prohibition_reconfirmation_gate_v1",
+    "phase": "IR99",
+    "generated_at": "2026-05-24T14:52:09.112372+00:00",
+    "source_task_id": "ir96_100_live_trial",
+    "unlock_prohibition_reconfirmation_decision": "UNLOCK_PROHIBITION_RECONFIRMED_DRY_RUN_ONLY",
+    "gate_action": "Unlock prohibition reconfirmed. Dry-run-only remains enforced.",
+    "validation_result": "PASS",
+    "validation_failed_checks": [],
+    "validation_warnings": [],
+    "gate_record": {
+      "gate_id": "ir99_gate_ir96_100_live_trial_20260524T145209Z",
+      "generated_at": "2026-05-24T14:52:09.112368+00:00",
+      "source_task_id": "ir96_100_live_trial",
+      "decision": "UNLOCK_PROHIBITION_RECONFIRMED_DRY_RUN_ONLY",
+      "unlock_prohibited": true,
+      "reconfirmed": true,
+      "safety_gate_snapshot": {
+        "dry_run": "maintained",
+        "OBSERVE": "maintained",
+        "submission_execution_blocked": true,
+        "execution_policy_execute": false,
+        "external_write_executed": false,
+        "network_transmission_executed": false,
+        "production_release": false,
+        "GitHub_push": "未実行"
+      }
+    },
+    "gate_hash": "279904fdd21343cfc56b79f595bced58b3134498681a5685fb39b8041be19805",
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "test_summary": {
+    "focused": {
+      "passed": 6,
+      "failed": 0
+    },
+    "adjacent": {
+      "passed": 54,
+      "failed": 0
+    },
+    "scoped": {
+      "passed": 416,
+      "failed": 0
+    }
+  },
+  "live_summary": {
+    "ir96": "PASS",
+    "ir97": "PASS",
+    "ir98": "PASS",
+    "ir99": "PASS",
+    "ir100": "PASS"
+  },
+  "safety_gate_summary": {
+    "dry_run": "maintained",
+    "OBSERVE": "maintained",
+    "submission_execution_blocked": true,
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "network_transmission_executed": false,
+    "production_release": false,
+    "GitHub_push": "未実行"
+  },
+  "completion_table": [
+    {
+      "phase": "IR96",
+      "content": "Re-Review Queue Execution Tracker",
+      "focused": "PASS",
+      "adjacent": "PASS",
+      "scoped": "PASS",
+      "live": "PASS",
+      "judgement": "完了"
+    },
+    {
+      "phase": "IR97",
+      "content": "Remediation Evidence Intake Verifier",
+      "focused": "PASS",
+      "adjacent": "PASS",
+      "scoped": "PASS",
+      "live": "PASS",
+      "judgement": "完了"
+    },
+    {
+      "phase": "IR98",
+      "content": "Pre-Unlock Delta Audit",
+      "focused": "PASS",
+      "adjacent": "PASS",
+      "scoped": "PASS",
+      "live": "PASS",
+      "judgement": "完了"
+    },
+    {
+      "phase": "IR99",
+      "content": "Unlock Prohibition Reconfirmation Gate",
+      "focused": "PASS",
+      "adjacent": "PASS",
+      "scoped": "PASS",
+      "live": "PASS",
+      "judgement": "完了"
+    },
+    {
+      "phase": "IR100",
+      "content": "Phase 96-100 Completion Bundle",
+      "focused": "PASS",
+      "adjacent": "PASS",
+      "scoped": "PASS",
+      "live": "PASS",
+      "judgement": "完了"
+    }
+  ],
+  "final_decision": "UNLOCK_PROHIBITION_RECONFIRMED_DRY_RUN_ONLY",
+  "unlock_prohibition_reconfirmed": true,
+  "pre_unlock_delta_still_remains": true,
+  "artifacts": {
+    "ir96_re_review_queue_execution_tracker": "generic_block_ai/reports/ir96_100/ir96_re_review_queue_execution_tracker.json",
+    "ir97_remediation_evidence_intake_verification": "generic_block_ai/reports/ir96_100/ir97_remediation_evidence_intake_verification.json",
+    "ir98_pre_unlock_delta_audit": "generic_block_ai/reports/ir96_100/ir98_pre_unlock_delta_audit.json",
+    "ir99_unlock_prohibition_reconfirmation_gate_report": "generic_block_ai/reports/ir96_100/ir99_unlock_prohibition_reconfirmation_gate_report.json",
+    "ir100_completion_bundle": "generic_block_ai/reports/ir96_100/ir100_completion_bundle.json",
+    "ir96_100_live_status": "generic_block_ai/reports/ir96_100/ir96_100_live_status.md",
+    "ir96_100_completion_table": "generic_block_ai/reports/ir96_100/ir96_100_completion_table.md"
+  },
+  "external_write_executed": false
+}

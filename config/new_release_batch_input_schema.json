@@ -1,0 +1,116 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-1",
+  "schema_id": "NEW_RELEASE_BATCH_INPUT_SCHEMA_V1",
+  "template_contract_id": "POST185_STANDARD_TEMPLATE_V1_FIXED",
+  "encoding": "utf-8-sig",
+  "delimiter": ",",
+  "multi_value_separator": "|",
+  "header_order": [
+    "batch_id",
+    "item_id",
+    "title",
+    "volume_label",
+    "release_date",
+    "publisher",
+    "authors",
+    "category",
+    "source_discovery",
+    "publisher_confirmation_url",
+    "amazon_url",
+    "rakuten_kobo_url",
+    "dmm_url",
+    "amazon_price_jpy",
+    "rakuten_kobo_price_jpy",
+    "dmm_price_jpy",
+    "image_source",
+    "image_url",
+    "description_mode",
+    "x_post_required",
+    "wordpress_status"
+  ],
+  "required_fields": [
+    "batch_id",
+    "item_id",
+    "title",
+    "volume_label",
+    "release_date",
+    "publisher",
+    "authors",
+    "category",
+    "source_discovery",
+    "image_source",
+    "description_mode",
+    "x_post_required",
+    "wordpress_status"
+  ],
+  "nullable_fields": [
+    "publisher_confirmation_url",
+    "amazon_url",
+    "rakuten_kobo_url",
+    "dmm_url",
+    "amazon_price_jpy",
+    "rakuten_kobo_price_jpy",
+    "dmm_price_jpy",
+    "image_url"
+  ],
+  "allowed_values": {
+    "category": [
+      "comic",
+      "light_novel",
+      "general_book"
+    ],
+    "image_source": [
+      "rakuten",
+      "amazon",
+      "publisher",
+      "none"
+    ],
+    "description_mode": [
+      "minimal"
+    ],
+    "x_post_required": [
+      "true",
+      "false"
+    ],
+    "wordpress_status": [
+      "draft"
+    ]
+  },
+  "normalization": {
+    "trim_whitespace": true,
+    "unicode_normalization": "NFKC",
+    "blank_to_null": true,
+    "price_format": "non_negative_integer_without_commas",
+    "release_date_format": "YYYY-MM-DD",
+    "url_scheme": "https_only",
+    "unknown_price_must_be_null": true,
+    "dummy_url_forbidden": true
+  },
+  "duplicate_control": {
+    "item_id_unique": true,
+    "composite_unique_fields": [
+      "title",
+      "volume_label",
+      "release_date"
+    ],
+    "idempotency_key_required": true
+  },
+  "execution_boundary": {
+    "design_only": true,
+    "dry_run_only": true,
+    "csv_read_allowed": true,
+    "normalized_json_write_allowed": true,
+    "wordpress_write_allowed": false,
+    "wordpress_publish_allowed": false,
+    "x_post_allowed": false,
+    "external_api_call_allowed": false,
+    "production_status": "NO_GO",
+    "safety_state": "DRY_RUN_ONLY"
+  },
+  "next_phases": {
+    "ls_new_batch_2_ready": true,
+    "x_fb_0_ready": true,
+    "execution_allowed": false
+  }
+}

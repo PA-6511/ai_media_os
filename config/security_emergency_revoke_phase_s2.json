@@ -1,0 +1,31 @@
+{
+  "phase_id": "PHASE_S2",
+  "phase_name": "security_emergency_revoke",
+  "status": "DESIGN_ONLY",
+  "revoke_plan_status": "DESIGN_ONLY",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "human_approval_required": true,
+  "revoke_targets": {
+    "openai_api_key": "plan_only",
+    "wordpress_app_password": "plan_only",
+    "slack_webhook": "plan_only",
+    "github_actions_secret": "plan_only"
+  },
+  "revoke_actions": {
+    "auto_revoke_execute": false,
+    "auto_secret_rotation_execute": false,
+    "external_api_call_execute": false
+  },
+  "incident_trigger": [
+    "token_leak_detected",
+    "unauthorized_write_attempt",
+    "suspicious_scheduler_loop",
+    "unknown_unlock_token_detected"
+  ],
+  "required_manual_steps": [
+    "manual_approval_record",
+    "revoke_checklist",
+    "post_revoke_evidence"
+  ]
+}

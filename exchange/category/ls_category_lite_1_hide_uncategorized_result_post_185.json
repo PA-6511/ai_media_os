@@ -1,0 +1,26 @@
+{
+  "phase": "LS-CATEGORY-LITE-1",
+  "status": "LS_CATEGORY_LITE_1_UNCATEGORIZED_DISPLAY_HIDDEN_CSS_ONLY",
+  "target_post_id": 185,
+  "execution_mode": "CSS_ONLY_CATEGORY_DISPLAY_HIDE",
+  "target_style_css": "/var/www/wordpress/wp-content/themes/cocoon-child-manga/style.css",
+  "backup_path": "/var/www/wordpress/wp-content/themes/cocoon-child-manga/style.css.backup_ls_category_lite_1_20260710_005637",
+
+  "visible_uncategorized_hide_requested": true,
+  "category_taxonomy_update_executed": false,
+  "wordpress_api_call_executed": false,
+  "wordpress_post_update_executed": false,
+  "credential_env_read_executed": false,
+
+  "title_update_executed": false,
+  "content_update_executed": false,
+  "store_block_update_executed": false,
+  "info_card_update_executed": false,
+
+  "child_theme_modified": true,
+  "parent_theme_modified": false,
+
+  "ready_for_visual_check": true,
+  "recommended_next_action": "BROWSER_HARD_RELOAD_AND_CONFIRM_UNCATEGORIZED_HIDDEN",
+  "errors": []
+}

@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M2-FIX1",
+  "approval_id": "dmm-recheck-parser-null-safe-remediation-approval-v1",
+  "approval_label": "DMM_RECHECK_PARSER_FAILURE_REMEDIATION_APPROVED",
+  "approved_by": "HUMAN_OPERATOR",
+  "human_explicit_approval": true,
+  "approved_at_utc": "2026-07-11T03:20:19.953378+00:00",
+  "approved_issue": {
+    "exception_type": "AttributeError",
+    "exception_message": "'NoneType' object has no attribute 'lower'",
+    "affected_component": "MinimalPageParser.handle_starttag"
+  },
+  "approved_change": {
+    "meta_missing_property_and_name_fallback": "EMPTY_STRING",
+    "parser_patch_allowed": true,
+    "regression_tests_allowed": true,
+    "historical_evidence_modification_allowed": false,
+    "same_authorization_retry_allowed": false,
+    "new_authorization_creation_allowed": false,
+    "network_access_allowed": false,
+    "dmm_recheck_allowed": false,
+    "affiliate_link_generation_allowed": false,
+    "article_modification_allowed": false,
+    "payload_generation_allowed": false,
+    "wordpress_access_allowed": false
+  },
+  "historical_source_bindings": {
+    "schema_version": "1.0.0",
+    "historical_failure": {
+      "exception_type": "AttributeError",
+      "exception_message": "'NoneType' object has no attribute 'lower'",
+      "response_body_sha256": "23e47df44282982a6b92d07d5137d1d897c070e9e611c18779bcab720378ee53",
+      "final_http_status": 200,
+      "attempt_id": "47d3cd84-3160-4ef4-b796-15504d2b1680"
+    },
+    "bindings": {
+      "m2_result": {
+        "path": "exchange/logs/ls_new_batch_4g_2e_recovery_m2_result.json",
+        "file_sha256": "9781d843184ead76b313a099b86cba30081725679c5889938fab1c930aa5cdec"
+      },
+      "m2_recheck_result": {
+        "path": "exchange/rechecks/new_release/fresh/new-release-comic-20260703-001.dmm_latest_alias_recheck_result.json",
+        "file_sha256": "0a7f09cdcb048468e21520d3531a257677dcc100087f45842288b692db2648dc"
+      },
+      "m2_consumption": {
+        "path": "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.dmm_latest_alias_recheck_consumption.json",
+        "file_sha256": "fa4d1d2fbc5a4a57b79e1e563d1d7ce12aaab98e12eb822dfc6cf08a20778fd6"
+      },
+      "m2_execute_approval": {
+        "path": "exchange/approvals/ls_new_batch_4g_2e_recovery_m2_execute_now_approval.json",
+        "file_sha256": "ef6aba899c5296fab9b593359dfd8a1e8a86be4e2ea1a3296cff6807a62c53da"
+      },
+      "m1_authorization": {
+        "path": "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.dmm_latest_alias_recheck_authorization.json",
+        "file_sha256": "f628bf4d8b1451dfd9beec4ff04ce0c3101086da9ef7806d89af0ab26bd93701"
+      },
+      "article": {
+        "path": "exchange/content/new_release/fresh/new-release-comic-20260703-001.article.json",
+        "file_sha256": "849a37519c6af70d2212ec01d5cddef5793bfa811e97ca9f248ce099a0350bf4"
+      },
+      "m0_plan": {
+        "path": "exchange/plans/new_release/fresh/new-release-comic-20260703-001.store_link_finalization_plan.json",
+        "file_sha256": "3004d586cab8b98f39101d7d85164d0bdeea68882da66ecde9b6b37f9a16fb7a"
+      },
+      "runner": {
+        "path": "scripts/execute_ls_new_batch_4g_2e_recovery_m2.py",
+        "file_sha256": "4efbf78d8177681aada951094d6c1de38ed5cf31b0a879d4ed43905a1f838c40"
+      }
+    },
+    "artifact_digests": {
+      "recheck_result_digest_sha256": "9cac027d2018114f1d1a765600f774a5b5e604e1382828237b704ac995eb215a",
+      "consumption_evidence_digest_sha256": "af67506a51cdabc013ea070ba0624bebc855b8a96c3317b352136b62cbe189ec",
+      "execute_approval_digest_sha256": "510efd5130e24a64c3dc13869d79522ac84b4249a1699afd82512b1f995b039a",
+      "source_authorization_digest_sha256": "b14e750b940a642b4bea780586e9d68a4839e41f4875a76b90a51669eb993637"
+    }
+  },
+  "execution_allowed": false,
+  "production_status": "NO_GO",
+  "approval_evidence_digest_sha256": "848cfd41efdb32897eee6bc4ae09ce6f1b90ba43c92e168d1cfb649eccac872d"
+}

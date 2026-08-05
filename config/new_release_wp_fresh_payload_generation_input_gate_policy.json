@@ -1,0 +1,163 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-F",
+  "policy_id": "NEW_RELEASE_WP_FRESH_PAYLOAD_GENERATION_INPUT_GATE_POLICY_V1",
+  "source_phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-E",
+  "template_contract_id": "POST185_STANDARD_TEMPLATE_V1_FIXED",
+  "operation_mode": "APPROVED_FRESH_PAYLOAD_GENERATION_INPUT_CONTRACT_FIXATION_ONLY",
+  "source_contract": {
+    "required_status": "PASS_FRESH_PAYLOAD_BINDING_PLAN_FIXED_NO_PAYLOAD_NO_NETWORK",
+    "required_decision": "LEGACY_POST185_EXCLUDED_FRESH_PAYLOAD_COPY_BINDING_PLAN_RECORDED",
+    "required_plan_id": "FRESH_NEW_RELEASE_PAYLOAD_OFFLINE_CATEGORY_BINDING_PLAN_V1",
+    "required_production_category_id": 10,
+    "required_production_category_name": "最新巻",
+    "required_legacy_post185_exclusion": true,
+    "required_fresh_payload_exists": false,
+    "required_payload_binding_complete": false,
+    "required_category_id_injected": false,
+    "required_wordpress_write": false
+  },
+  "approval_contract": {
+    "required_approval_label": "FRESH_PAYLOAD_GENERATION_INPUT_GATE_APPROVED",
+    "approval_evidence_path": "exchange/approvals/ls_new_batch_4g_2e_recovery_f_input_gate_approval.json",
+    "human_explicit_approval_required": true,
+    "input_contract_fixation_approved": true,
+    "legacy_post185_reference_approved": false,
+    "article_input_registration_approved": false,
+    "payload_generation_approved": false,
+    "category_injection_approved": false,
+    "wordpress_execution_approved": false,
+    "contract_change_requires_new_human_approval": true
+  },
+  "input_contract": {
+    "contract_id": "FRESH_NEW_RELEASE_COMIC_DRAFT_INPUT_V1",
+    "article_scope_id": "COMIC_NEW_RELEASE_LATEST_VOLUME_DISTRIBUTION_START",
+    "article_scope_label": "コミック新刊・新巻配信開始記事",
+    "required_top_level_fields": [
+      "content_item_id",
+      "work_title",
+      "volume_label",
+      "article_title",
+      "release_date",
+      "author_name",
+      "publisher_name",
+      "article_type",
+      "wordpress_status",
+      "content_source",
+      "store_links",
+      "cover",
+      "price",
+      "affiliate_disclosure_required",
+      "categories_initial_state",
+      "legacy_post185_reference"
+    ],
+    "content_item_id_pattern": "^new-release-comic-[0-9]{8}-[0-9]{3}$",
+    "fixed_article_type": "COMIC_NEW_RELEASE_LATEST_VOLUME_DISTRIBUTION_START",
+    "fixed_wordpress_status": "draft",
+    "release_date_format": "YYYY-MM-DD",
+    "article_title_rules": {
+      "required_suffix": "｜配信開始",
+      "forbidden_fragments": [
+        "Kindle版"
+      ],
+      "multistore_title_required": true
+    },
+    "content_source_contract": {
+      "source_type_required": true,
+      "source_reference_required": true,
+      "human_verified_required": true,
+      "copy_paste_explanation_allowed": false,
+      "fabricated_information_allowed": false
+    },
+    "store_link_contract": {
+      "required_store_ids": [
+        "amazon",
+        "rakuten_kobo",
+        "dmm_books"
+      ],
+      "url_required_for_each_store": true,
+      "required_verification_state": "VERIFIED",
+      "fabricated_url_allowed": false
+    },
+    "cover_contract": {
+      "image_url_required": true,
+      "source_required": true,
+      "required_verification_state": "VERIFIED"
+    },
+    "price_contract": {
+      "price_text_required": true,
+      "currency": "JPY",
+      "observed_at_required": true,
+      "required_verification_state": "VERIFIED"
+    },
+    "affiliate_disclosure_required": true,
+    "categories_initial_states_allowed": [
+      "ABSENT",
+      "EMPTY_LIST"
+    ],
+    "categories_value_before_binding_allowed": false,
+    "legacy_post185_reference_required": false,
+    "legacy_wordpress_post_id_185_reference_allowed": false,
+    "human_review_required_before_payload_generation": true
+  },
+  "generation_target_contract": {
+    "source_root": "exchange/payloads/new_release/fresh",
+    "file_name_pattern": "^new-release-comic-[0-9]{8}-[0-9]{3}\\.json$",
+    "exclusive_create_required": true,
+    "existing_file_overwrite_allowed": false,
+    "source_payload_must_remain_immutable_after_creation": true,
+    "categories_field_must_be_absent_or_empty": true,
+    "production_category_id_10_injection_allowed_during_generation": false
+  },
+  "input_contract_artifact": {
+    "path": "config/new_release_wp_fresh_payload_generation_input_contract.json",
+    "existing_matching_artifact_may_be_verified": true,
+    "existing_mismatched_artifact_must_block": true,
+    "digest_required": true
+  },
+  "input_template_artifact": {
+    "path": "exchange/examples/new_release_wp_fresh_payload_generation_input.template.json",
+    "document_role": "NON_EXECUTABLE_INCOMPLETE_INPUT_TEMPLATE",
+    "input_complete": false,
+    "payload_generation_allowed": false,
+    "digest_required": true
+  },
+  "current_phase_activity": {
+    "fresh_article_input_registered": false,
+    "fresh_payload_created": false,
+    "fresh_payload_read": false,
+    "fresh_payload_copied": false,
+    "payload_binding_complete": false,
+    "payload_modified": false,
+    "category_id_injected": false,
+    "credential_file_read": false,
+    "network_access": false,
+    "wordpress_access": false,
+    "wordpress_write": false
+  },
+  "execution_boundary": {
+    "article_input_registration_allowed": false,
+    "fresh_payload_creation_allowed": false,
+    "fresh_payload_read_allowed": false,
+    "fresh_payload_copy_allowed": false,
+    "payload_binding_allowed": false,
+    "payload_modification_allowed": false,
+    "production_category_id_payload_injection_allowed": false,
+    "credential_file_read_allowed": false,
+    "dns_resolution_allowed": false,
+    "network_connection_allowed": false,
+    "tls_connection_allowed": false,
+    "wordpress_api_call_allowed": false,
+    "wordpress_write_allowed": false,
+    "wordpress_draft_creation_allowed": false,
+    "wordpress_publish_allowed": false,
+    "execution_allowed": false,
+    "production_status": "NO_GO",
+    "safety_state": "FRESH_PAYLOAD_INPUT_CONTRACT_FIXED_NO_ARTICLE_INPUT"
+  },
+  "next_phase": {
+    "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-G",
+    "name": "Fresh New-Release Article Input Registration Gate",
+    "execution_allowed": false
+  }
+}

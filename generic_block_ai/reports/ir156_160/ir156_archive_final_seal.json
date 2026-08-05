@@ -1,0 +1,83 @@
+{
+  "schema_version": "ir156_archive_final_seal_v1",
+  "phase": "IR156",
+  "generated_at": "2026-05-26T12:26:11.127016+00:00",
+  "source_task_id": "ir156_160_batch",
+  "validation_result": "PASS",
+  "validation_failed_checks": [],
+  "validation_warnings": [],
+  "archive_final_seal": {
+    "seal_id": "ir156_seal_ir156_160_batch_20260526T122611Z",
+    "generated_at": "2026-05-26T12:26:11.126992+00:00",
+    "source_task_id": "ir156_160_batch",
+    "new_cycle_id": "IR71_PLUS_CYCLE_A",
+    "seal_entries": [
+      {
+        "meta_item": "new_cycle_start",
+        "digest_id": "a771f5219b7a5dde01379bb0bb5821d49c0b3a5d0cee49c1b5f1c789d9d962f7",
+        "archive_seal_status": "SEALED",
+        "mutable": false
+      },
+      {
+        "meta_item": "governance_preparation",
+        "digest_id": "c7adf044db059c2b72d813aa4b1cba66f04ec8a84b0b9dcce92ea0e6a89cb86a",
+        "archive_seal_status": "SEALED",
+        "mutable": false
+      },
+      {
+        "meta_item": "prohibition_continuity",
+        "digest_id": "3d89e6b23aaafbc3e77af6d7863ad852b75afa7a67aae362fa587cc19142e034",
+        "archive_seal_status": "SEALED",
+        "mutable": false
+      },
+      {
+        "meta_item": "evidence_fixation",
+        "digest_id": "cfcf38c6e00572265cf4e420498f8b5a0b9d1c4096d38807017cebf77f55a184",
+        "archive_seal_status": "SEALED",
+        "mutable": false
+      },
+      {
+        "meta_item": "long_term_retention",
+        "digest_id": "c6dbcd196956dc6acef0d60bb2c4cd3f8ba56b83f692fa40746df0cd2ab52931",
+        "archive_seal_status": "SEALED",
+        "mutable": false
+      },
+      {
+        "meta_item": "terminal_seal",
+        "digest_id": "c862e2430548196a3fb0f9367b9d63af83f0c69c6ce2d97d21b121bb2d5b4b04",
+        "archive_seal_status": "SEALED",
+        "mutable": false
+      },
+      {
+        "meta_item": "cycle_summary",
+        "digest_id": "b5d7976df3c1ff5ec9e3de1687684e02988181a702032a29bc7b9cf0b4cea7ce",
+        "archive_seal_status": "SEALED",
+        "mutable": false
+      }
+    ],
+    "seal_count": 7,
+    "all_archive_sealed": true,
+    "unlock_eligible": false,
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "seal_hash": "2d3f1fea64e72b3775c36a37ed957d1706acad4cafee587dd8e86332038a54e7",
+  "safety_gate_snapshot": {
+    "dry_run": "maintained",
+    "OBSERVE": "maintained",
+    "submission_execution_blocked": true,
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "network_transmission_executed": false,
+    "production_release": false,
+    "GitHub_push": "未実行"
+  }
+}

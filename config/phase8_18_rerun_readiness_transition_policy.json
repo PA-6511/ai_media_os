@@ -1,0 +1,40 @@
+{
+  "phase": "Phase 8-18",
+  "name": "rerun_readiness_transition_policy",
+  "policy_status": "TRANSITION_REPORT_ONLY",
+  "production_status": "NO_GO",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "human_approval_required": true,
+  "transition_is_execution_permission": false,
+  "wordpress_api_call_allowed": false,
+  "wordpress_write_executed": false,
+  "publish_allowed": false,
+  "target_item_count": 1,
+  "required_evidence": [
+    "exchange/logs/phase8_16_credential_operator_confirmation_result.json",
+    "exchange/logs/phase8_17_env_credential_presence_smoke_check_result.json"
+  ],
+  "ready_statuses": {
+    "phase8_16": "CREDENTIAL_OPERATOR_CONFIRMED_PROVISIONED_NO_SECRET_OUTPUT",
+    "phase8_17": "ENV_CREDENTIALS_PRESENT_NO_SECRET_OUTPUT"
+  },
+  "not_ready_statuses": [
+    "CREDENTIAL_OPERATOR_CONFIRMED_NOT_READY_NO_SECRET_OUTPUT",
+    "ENV_CREDENTIALS_MISSING_NO_SECRET_OUTPUT"
+  ],
+  "dangerous_operations": {
+    "auto_post": false,
+    "auto_update": false,
+    "auto_delete": false,
+    "auto_export": false,
+    "publish_allowed": false,
+    "wordpress_api_call_allowed": false,
+    "wordpress_write_executed": false,
+    "bulk_execution": false,
+    "external_write": false,
+    "vps_self_builder_execution": false
+  },
+  "allowed_next_step_if_ready": "Phase 8-19 controlled rerun command plan for Phase 8-6 to Phase 8-10",
+  "allowed_next_step_if_not_ready": "Keep NO_GO, provision credentials manually, then rerun Phase 8-16"
+}

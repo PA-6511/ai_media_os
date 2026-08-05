@@ -1,0 +1,69 @@
+{
+  "phase": "Phase 8-21",
+  "phase_name": "Manual Inspection After Limited Update for post_id 115",
+  "status": "PHASE8_21_MANUAL_INSPECTION_REQUEST_FIX",
+  "decision": "REQUEST_FIX",
+  "target_post_id": 115,
+  "production_status": "LIMITED_DRAFT_UPDATE_ONLY",
+  "manual_inspection": {
+    "draft_exists": true,
+    "status_is_draft": true,
+    "title_ok": true,
+    "body_ok": true,
+    "placeholder_url_removed": true,
+    "affiliate_disclosure_ok": true,
+    "pr_label_ok": true,
+    "link_policy_ok": true,
+    "category_tag_ok": false,
+    "no_publish_confirmed": true
+  },
+  "action": "request_fix",
+  "reason": "category/tag configuration is not fixed in UI (category remains uncategorized and tags are not clearly confirmed)",
+  "inspection_summary": {
+    "ok_points": [
+      "post_id 115 exists",
+      "status remains draft",
+      "title is expected",
+      "body updated to v2",
+      "preflight wording removed",
+      "placeholder URL not visible",
+      "PR disclosure visible",
+      "not published"
+    ],
+    "fix_points": [
+      "category remains uncategorized in post list view",
+      "tag settings are not clearly confirmed from screen"
+    ]
+  },
+  "wordpress_api_call_attempted": false,
+  "wordpress_write_executed": false,
+  "wordpress_draft_updated": false,
+  "publish_executed": false,
+  "update_executed": false,
+  "delete_executed": false,
+  "bulk_operation_executed": false,
+  "export_executed": false,
+  "rollback_executed": false,
+  "freeze_executed": false,
+  "human_review_required": true,
+  "secret_values_output": false,
+  "secret_values_written": false,
+  "errors": [],
+  "warnings": [],
+  "safety_violations": [],
+  "evidence_summary": [
+    {
+      "path": "exchange/logs/phase8_19_limited_update_post_115_execution_result.json",
+      "exists": true,
+      "status": "PHASE8_19_LIMITED_DRAFT_UPDATE_EXECUTED_PENDING_HUMAN_REVIEW"
+    },
+    {
+      "path": "exchange/logs/phase8_20_limited_update_post_115_closure_report.json",
+      "exists": true,
+      "status": "PHASE8_20_LIMITED_DRAFT_UPDATE_VERIFIED_PENDING_HUMAN_REVIEW"
+    }
+  ],
+  "next_step": "design_category_tag_only_limited_fix_no_execution",
+  "reviewed_at_utc": "2026-06-09T13:39:18+00:00",
+  "checked_at": "2026-06-09T13:39:19.386706+00:00"
+}

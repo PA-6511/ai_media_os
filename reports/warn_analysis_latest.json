@@ -1,0 +1,208 @@
+{
+  "files": [
+    "reports/draft_check_20260531.json",
+    "reports/draft_check_20260601.json",
+    "reports/draft_check_20260602.json",
+    "reports/draft_check_20260603.json",
+    "reports/draft_check_20260604.json",
+    "reports/draft_check_20260605.json",
+    "reports/draft_check_20260606.json",
+    "reports/draft_check_20260607.json"
+  ],
+  "days": 8,
+  "total_drafts": 160,
+  "final_summary": {
+    "PASS_WITH_WARNS": 160
+  },
+  "warn_rate": {
+    "pr_notice": 38.1,
+    "urls": 55.0,
+    "cta": 11.9,
+    "featured_image": 100.0,
+    "content_quality": 6.9
+  },
+  "fail_rate": {
+    "content_quality": 0.0,
+    "urls": 0.0,
+    "cta": 0.0,
+    "pr_notice": 0.0,
+    "featured_image": 0.0
+  },
+  "top_warn_reasons": {
+    "pr_notice": [
+      {
+        "reason": "PR/広告表記が見つかりません",
+        "count": 61
+      }
+    ],
+    "urls": [
+      {
+        "reason": "URL が見つかりません",
+        "count": 88
+      }
+    ],
+    "cta": [
+      {
+        "reason": "CTA（ボタン/リンク）が見つかりません",
+        "count": 19
+      }
+    ],
+    "featured_image": [
+      {
+        "reason": "アイキャッチが未設定です",
+        "count": 160
+      }
+    ],
+    "content_quality": [
+      {
+        "reason": "見出し（h2/h3）が見つかりません",
+        "count": 11
+      },
+      {
+        "reason": "本文が短い（97文字、推奨100以上）",
+        "count": 3
+      }
+    ]
+  },
+  "per_day": [
+    {
+      "date": "20260531",
+      "file": "reports/draft_check_20260531.json",
+      "total_drafts": 20,
+      "final": {
+        "PASS_WITH_WARNS": 20
+      },
+      "warn_rate": {
+        "pr_notice": 40.0,
+        "urls": 55.0,
+        "cta": 10.0,
+        "featured_image": 100.0,
+        "content_quality": 5.0
+      }
+    },
+    {
+      "date": "20260601",
+      "file": "reports/draft_check_20260601.json",
+      "total_drafts": 20,
+      "final": {
+        "PASS_WITH_WARNS": 20
+      },
+      "warn_rate": {
+        "pr_notice": 40.0,
+        "urls": 55.0,
+        "cta": 10.0,
+        "featured_image": 100.0,
+        "content_quality": 5.0
+      }
+    },
+    {
+      "date": "20260602",
+      "file": "reports/draft_check_20260602.json",
+      "total_drafts": 20,
+      "final": {
+        "PASS_WITH_WARNS": 20
+      },
+      "warn_rate": {
+        "pr_notice": 40.0,
+        "urls": 55.0,
+        "cta": 10.0,
+        "featured_image": 100.0,
+        "content_quality": 5.0
+      }
+    },
+    {
+      "date": "20260603",
+      "file": "reports/draft_check_20260603.json",
+      "total_drafts": 20,
+      "final": {
+        "PASS_WITH_WARNS": 20
+      },
+      "warn_rate": {
+        "pr_notice": 40.0,
+        "urls": 55.0,
+        "cta": 10.0,
+        "featured_image": 100.0,
+        "content_quality": 5.0
+      }
+    },
+    {
+      "date": "20260604",
+      "file": "reports/draft_check_20260604.json",
+      "total_drafts": 20,
+      "final": {
+        "PASS_WITH_WARNS": 20
+      },
+      "warn_rate": {
+        "pr_notice": 40.0,
+        "urls": 55.0,
+        "cta": 10.0,
+        "featured_image": 100.0,
+        "content_quality": 5.0
+      }
+    },
+    {
+      "date": "20260605",
+      "file": "reports/draft_check_20260605.json",
+      "total_drafts": 20,
+      "final": {
+        "PASS_WITH_WARNS": 20
+      },
+      "warn_rate": {
+        "pr_notice": 35.0,
+        "urls": 55.0,
+        "cta": 15.0,
+        "featured_image": 100.0,
+        "content_quality": 10.0
+      }
+    },
+    {
+      "date": "20260606",
+      "file": "reports/draft_check_20260606.json",
+      "total_drafts": 20,
+      "final": {
+        "PASS_WITH_WARNS": 20
+      },
+      "warn_rate": {
+        "pr_notice": 35.0,
+        "urls": 55.0,
+        "cta": 15.0,
+        "featured_image": 100.0,
+        "content_quality": 10.0
+      }
+    },
+    {
+      "date": "20260607",
+      "file": "reports/draft_check_20260607.json",
+      "total_drafts": 20,
+      "final": {
+        "PASS_WITH_WARNS": 20
+      },
+      "warn_rate": {
+        "pr_notice": 35.0,
+        "urls": 55.0,
+        "cta": 15.0,
+        "featured_image": 100.0,
+        "content_quality": 10.0
+      }
+    }
+  ],
+  "policy_recommendation": {
+    "block_publish_if_fail": true,
+    "block_publish_if_warn": [
+      "pr_notice",
+      "urls",
+      "cta"
+    ],
+    "allow_with_manual_fix": [
+      "featured_image",
+      "content_quality"
+    ],
+    "priority_order": [
+      "pr_notice",
+      "urls",
+      "cta",
+      "featured_image",
+      "content_quality"
+    ]
+  }
+}

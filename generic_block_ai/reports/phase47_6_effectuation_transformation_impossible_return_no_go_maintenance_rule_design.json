@@ -1,0 +1,35 @@
+{
+  "_meta": {
+    "phase": "47-6",
+    "phase_name": "最終実測GO入力・発効最終変換確認層",
+    "layer": "補強層 (reinforcement layer)",
+    "title": "発効変換不可時の差し戻し・NO_GO維持ルール設計",
+    "created": "2026-05-14",
+    "author": "governance-framework",
+    "status": "PASS_DESIGN_ONLY",
+    "reports_only": true
+  },
+  "scope": "Phase 47-2 / 47-3 で実施された manual_release_go_authorization / actual_process_start_go_authorization への発効変換確認において、発効変換が不可と判定された場合、以下のルールを設計する：(1) 即座な NO_GO 再宣言ルール（該当承認候補の NOT_GRANTED 再宣言）、(2) 発効不可の詳細理由の差し戻し・報告ルール、(3) Phase 46 / 47-1～47-3 プロセスへの遡及確認ルール、(4) 差し戻し後の改善・再試行プロセスの設計ルール、(5) NO_GO 状態の恒久的維持ルール（発効変換不可が最終判定されるまで NO_GO は解除されない）。",
+  "governance": {
+    "production_status": "NO_GO",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "report": {
+    "description": "Phase 47-6 では、Phase 47-2 / 47-3 で発効変換不可が判定された場合（または両承認候補のいずれか一方が不可と判定された場合），以下のプロセスを 設計層で定義する。(1) 即座な NOT_GRANTED 再宣言ルール：発効変換不可判定時，該当する承認候補（manual_release_go_authorization / actual_process_start_go_authorization）を即座に 'NOT_GRANTED' に再宣言する。(2) 差し戻しルール：発効変換不可の理由を詳細に分類したレポートを生成し，差し戻し資料とする。(3) 遡及確認ルール：発効変換不可の理由によっては Phase 46 / Phase 47-1～47-3 プロセスの再確認が必要となる。(4) 改善・再試行ルール：差し戻し後，最終実測GO入力値の修正・改善を行い，再度 Phase 47-2 / 47-3 で変換確認を実施できることを設計する。(5) NO_GO 恒久維持ルール：発効変換不可と最終判定されるまで，production_status = 'NO_GO' は解除されない。両承認候補のいずれかが NOT_GRANTED のままの場合，production_status は NO_GO のまま。これらのルールは全て 設計層（reports only）で実装される。",
+    "invariants": [
+      "NO_GO 強制：発効変換不可判定時は即座に該当承認候補を 'NOT_GRANTED' に再宣言",
+      "NO_GO 恒久維持：いずれかの承認候補が NOT_GRANTED である限り production_status = 'NO_GO'",
+      "reports only：ルール全体は報告書形式で実装される"
+    ],
+    "actions": [],
+    "notes": [
+      "Phase 47-6 は 設計層のみで実装される",
+      "発効変換不可（manual_release_go） → manual_release_go_authorization NOT_GRANTED / production_status NO_GO",
+      "発効変換不可（actual_process_start_go） → actual_process_start_go_authorization NOT_GRANTED / production_status NO_GO",
+      "両承認候補が NOT_GRANTED の場合 → production_status NO_GO（厳格状態）",
+      "実処理開始は NO_GO のまま（変換確定まで）"
+    ]
+  }
+}

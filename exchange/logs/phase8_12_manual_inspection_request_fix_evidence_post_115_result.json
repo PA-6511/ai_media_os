@@ -1,0 +1,50 @@
+{
+  "phase": "Phase 8-12",
+  "status": "PHASE8_12_MANUAL_INSPECTION_EVIDENCE_SAVED_REQUEST_FIX",
+  "reason": "manual inspection evidence saved and request_fix decision fixed without any WordPress mutation",
+  "production_status": "NO_GO",
+  "mode": "MANUAL_INSPECTION_EVIDENCE_FIXATION",
+  "execution": "REPORT_ONLY",
+  "target_post_id": 115,
+  "draft_created": true,
+  "technical_result": "success",
+  "manual_review_result": "request_fix",
+  "quality_gate": "failed",
+  "request_fix_reason": "body is sample/preflight text, not production-ready article",
+  "state_fixation": {
+    "publish_allowed": false,
+    "update_allowed": false,
+    "delete_allowed": false,
+    "auto_post": false,
+    "bulk_operation_allowed": false,
+    "timer_enable_allowed": false,
+    "systemd_enable_start_allowed": false
+  },
+  "wordpress_api_call_attempted": false,
+  "wordpress_write_executed": false,
+  "evidence_summary": [
+    {
+      "path": "exchange/logs/phase8_9_first_one_item_wordpress_draft_create_rerun_result.json",
+      "exists": true,
+      "status": "RERUN_DRAFT_CREATED_PENDING_HUMAN_REVIEW"
+    },
+    {
+      "path": "exchange/logs/phase8_10_post_rerun_closure_report.json",
+      "exists": true,
+      "status": "RERUN_DRAFT_VERIFIED_PENDING_HUMAN_REVIEW"
+    },
+    {
+      "path": "exchange/logs/phase8_11_manual_draft_review_post_115_result.json",
+      "exists": true,
+      "status": "PHASE8_11_REQUEST_FIX"
+    }
+  ],
+  "next_step": "create corrected draft candidate or improve draft content generator (still NO_GO)",
+  "errors": [],
+  "warnings": [
+    "RequestsDependencyWarning observed in environment; schedule dependency alignment task"
+  ],
+  "policy_violations": [],
+  "safety_violations": [],
+  "checked_at": "2026-06-09T13:21:18.361032+00:00"
+}

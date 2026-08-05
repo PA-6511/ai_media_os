@@ -1,0 +1,24 @@
+{
+  "schema_version": "ir34_destination_submission_package_dryrun_v1",
+  "phase": "IR34",
+  "generated_at": "2026-05-23T16:48:54.071596+00:00",
+  "source_task_id": "ir34_live_trial",
+  "release_candidate_id": "rc_20260523T155148Z_ir26_live_trial_b940393b490b",
+  "final_submission_decision": "READY_FOR_SUBMISSION_SUMMARY",
+  "simulation": {
+    "resubmission_rule_file": "generic_block_ai/reports/ir33_submission_package_recomposition_rules_ir33_live_trial/resubmission_recomposition_rules.json",
+    "rollback_template_file": "generic_block_ai/reports/ir33_submission_package_recomposition_rules_ir33_live_trial/rollback_response_template.md",
+    "destination_package_count": 3,
+    "recomposition_executed": true,
+    "external_submission_executed": false,
+    "network_transmission_executed": false
+  },
+  "safeguards": {
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "production_release": false,
+    "network_transmission_executed": false
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "phase_id": "PHASE_S4",
+  "phase_name": "isolation_reconnect_conditions",
+  "phase_status": "DESIGN_ONLY",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "human_approval_required": true,
+  "reconnect_design_only": true,
+  "auto_reconnect_allowed": false,
+  "reconnect_executed": false,
+  "required_conditions_for_future_reconnect": [
+    "human_approval_record_exists",
+    "latest_cross_phase_audit_passed",
+    "no_abort_detected",
+    "no_secret_leak_detected",
+    "wordpress_write_executed_false",
+    "external_api_call_executed_false",
+    "state_change_executed_false",
+    "block_ai_risk_class_reviewed",
+    "communication_matrix_reviewed",
+    "capability_boundary_reviewed"
+  ],
+  "blocked_reconnect_conditions": [
+    "unknown_block_ai",
+    "restricted_ai_to_production_core",
+    "missing_human_approval",
+    "latest_audit_missing",
+    "latest_audit_failed",
+    "secret_leak_suspected",
+    "wordpress_write_executed_true",
+    "external_api_call_executed_true",
+    "state_change_executed_true"
+  ]
+}

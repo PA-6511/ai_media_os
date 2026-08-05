@@ -1,0 +1,106 @@
+{
+  "contract_id": "X_R11_LOCAL_WORDPRESS_DRAFT_TEMPLATE_V1",
+  "contract_version": 1,
+  "contract_source": "LOCAL_REPOSITORY",
+  "purpose": "コミック新刊1件のWordPress下書き生成",
+  "template_path": "templates/wordpress/x_r11_new_release_draft_v1.html",
+  "wordpress_post_type": "posts",
+  "wordpress_post_status": "draft",
+  "wordpress_category": {
+    "id": 43,
+    "name": "コミック新刊",
+    "slug": "comic-new-release"
+  },
+  "source_wordpress_template_post_id": null,
+  "invalidated_wordpress_template_post_id": 185,
+  "invalidated_template_policy": {
+    "restoration_allowed": false,
+    "update_allowed": false,
+    "reuse_allowed": false,
+    "reason": "TRASHED_ARTICLE_DOES_NOT_MATCH_FIXED_TEMPLATE_CONTRACT"
+  },
+  "required_markers": [
+    "ebook-new-release-article",
+    "ebook-pr-disclosure",
+    "ebook-cover-image",
+    "price-cards",
+    "store-buttons"
+  ],
+  "required_placeholders": [
+    "title",
+    "volume_label",
+    "release_date_display",
+    "publisher_name",
+    "author_name",
+    "cover_image_url",
+    "cover_image_alt",
+    "rakuten_affiliate_url"
+  ],
+  "wordpress_payload_requirements": {
+    "title_required": true,
+    "slug_required": true,
+    "status_must_equal": "draft",
+    "category_ids_must_equal": [
+      43
+    ],
+    "maximum_post_create_count": 1
+  },
+  "post_title_format": "{{title}} {{volume_label}}｜配信開始",
+  "post_slug_policy": "SOURCE_ITEM_ID_NORMALIZED_ASCII",
+  "pr_disclosure_policy": {
+    "required": true,
+    "fixed_text": "※本記事にはアフィリエイトリンクが含まれます。"
+  },
+  "price_display_policy": {
+    "mode": "NO_FIXED_PRICE",
+    "fixed_notice": "最新価格・ポイント還元・キャンペーンは販売ページでご確認ください。",
+    "live_price_required": false
+  },
+  "affiliate_link_policy": {
+    "allowed_hosts": [
+      "hb.afl.rakuten.co.jp",
+      "a.r10.to"
+    ],
+    "https_required": true,
+    "product_identity_verification_required": true,
+    "required_rel_tokens": [
+      "sponsored",
+      "nofollow",
+      "noopener",
+      "noreferrer"
+    ],
+    "target_blank_required": true
+  },
+  "cover_image_policy": {
+    "https_required": true,
+    "human_or_source_verification_required": true,
+    "hotlink_policy_review_required": true,
+    "missing_image_blocks_render": true
+  },
+  "forbidden_html": {
+    "script": true,
+    "iframe": true,
+    "form": true,
+    "input": true,
+    "button": true,
+    "object": true,
+    "embed": true,
+    "inline_event_handler": true,
+    "inline_style": true,
+    "hardcoded_external_url": true
+  },
+  "description_policy": {
+    "mode": "MINIMAL_METADATA_ONLY",
+    "copied_product_description_allowed": false,
+    "generated_story_summary_required": false
+  },
+  "execution_policy": {
+    "render_dry_run_allowed_after_all_inputs_verified": true,
+    "wordpress_api_call_allowed": false,
+    "wordpress_write_allowed": false,
+    "database_write_allowed": false,
+    "workflow_write_allowed": false,
+    "x_write_allowed": false,
+    "production_status": "NO_GO"
+  }
+}

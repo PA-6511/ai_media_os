@@ -1,0 +1,38 @@
+{
+  "_meta": {
+    "phase": "44-8",
+    "phase_name": "最終実行不可境界・手動最終確認層",
+    "layer": "最終判定層 (final judgment layer)",
+    "title": "手動最終確認候補の最終証跡固定レポート設計",
+    "created": "2026-05-14",
+    "author": "governance-framework",
+    "status": "PASS_DESIGN_ONLY",
+    "reports_only": true
+  },
+  "scope": "Phase 44-1～44-7 で実施した全ての手動最終確認プロセス（Phase 43 完了証跡、実行不可境界確認、入力フォーマット、検証ルール、NO_GO 維持ルール、統合最終判定）に基づいて、以下の手動確認候補について最終証跡固定レポートを設計する：(1) manual_release_go_authorization 候補についての確認・検証・判定の全記録、(2) actual_process_start_go_authorization 候補についての確認・検証・判定の全記録。これらの証跡は以後改ざん不可のレポート形式で固定される。",
+  "governance": {
+    "production_status": "NO_GO",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "report": {
+    "description": "Phase 44-8 では、Phase 44-1～44-7 で実施した手動最終確認プロセスの結果に基づいて、2つの承認候補（manual_release_go_authorization / actual_process_start_go_authorization）について 最終証跡固定レポートを 設計層で定義する。(1) manual_release_go_authorization 最終証跡固定レポート：Phase 43-8 で実施した manual_release_go_authorization の分離監査から Phase 44-7 の統合最終判定までの全プロセスを記録し、最終的に manual_release_go_authorization が GRANTED / NOT_GRANTED のいずれであるかを固定する。記録対象：要求内容、受領状況、検証内容、検証結果、整合性、権限確認、最終判定。(2) actual_process_start_go_authorization 最終証跡固定レポート：Phase 43-8 で実施した actual_process_start_go_authorization の分離監査から Phase 44-7 の統合最終判定までの全プロセスを記録し、最終的に actual_process_start_go_authorization が GRANTED / NOT_GRANTED のいずれであるかを固定する。記録対象：要求内容、受領状況、検証内容、検証結果、整合性、権限確認、最終判定。(3) 証跡固定の恒久性：これらの証跡は Phase 44-8 でレポート形式で固定された後、Phase 45 以降でも改ざん不可（immutable）となる。全ての証跡は 設計層（reports only）で実装され、実処理開始許可を含まない。",
+    "invariants": [
+      "NO_GO 維持：証跡固定プロセス全体を通じて production_status = 'NO_GO' は維持される",
+      "NOT_GRANTED 維持：証跡固定プロセス全体を通じて manual_release_go_authorization / actual_process_start_go_authorization は 'NOT_GRANTED' のまま（2つ共に）",
+      "reports only：証跡固定レポート全体は報告書形式で実装され、実処理への権限付与を含まない",
+      "改ざん防止：固定された証跡は以後 Phase でも変更されない（immutable）",
+      "分離記録：2つの承認候補は完全に分離されて記録される（混在なし）"
+    ],
+    "actions": [],
+    "notes": [
+      "Phase 44-8 は 設計層のみで実装される（実処理開始許可ではない）",
+      "手動最終確認候補の最終証跡固定レポートは reports only であり、生産環境コード変更を含まない",
+      "Phase 44-9 の完了宣言に向けた証跡確定層である",
+      "GRANTED / NOT_GRANTED の判定は Phase 44-8 の段階では確定されず、実測を待つ（両方 NOT_GRANTED のまま）",
+      "証跡の恒久性は Phase 44 以降も保証される",
+      "実処理開始は NO_GO のまま"
+    ]
+  }
+}

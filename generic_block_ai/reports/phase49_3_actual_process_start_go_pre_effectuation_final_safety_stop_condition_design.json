@@ -1,0 +1,35 @@
+{
+  "_meta": {
+    "phase": "49-3",
+    "phase_name": "発効直前・最終安全停止・キャンセル境界層",
+    "layer": "受領/確認層 (receipt and confirmation layer)",
+    "title": "actual_process_start_go 発効直前の最終安全停止条件設計",
+    "created": "2026-05-14",
+    "author": "governance-framework",
+    "status": "PASS_DESIGN_ONLY",
+    "reports_only": true
+  },
+  "scope": "Phase 49-1 で受領・整合確認された Phase 48 完了証跡に基づいて、actual_process_start_go_authorization 発効直前における最終安全停止・キャンセル条件を設計層で定義する。確認対象：(1) actual_process_start_go_authorization の最終状態（GRANTED / NOT_GRANTED）を前提に、発効直前での安全停止条件（緊急停止、キャンセル、再確認要求など、manual_release_go より厳格）を設計、(2) 安全停止時の検証ポイント（権限要件、証跡整合性、最終安全弁チェック、外部要因トリガー、複数署名・二重チェックなど）、(3) 安全停止・キャンセル時の証跡固定ルール、(4) 安全停止・キャンセル時のNO_GO維持ルール（manual_release_go より厳格）。",
+  "governance": {
+    "production_status": "NO_GO",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "report": {
+    "description": "Phase 49-3 では、actual_process_start_go_authorization 発効直前における最終安全停止・キャンセル条件を 設計層で定義する。manual_release_go よりも厳格な基準で設計する。(1) 最終安全停止条件設計（厳格版）：Phase 48-8 で固定された actual_process_start_go_authorization の最終状態（GRANTED / NOT_GRANTED）を前提に、発効直前での緊急停止・キャンセル・再確認要求などの安全停止条件を設計する。manual_release_go よりも厳格な条件・トリガーを設ける。(2) 安全停止検証ポイント設計（追加要件含む）：権限要件、証跡整合性、最終安全弁チェック、外部要因トリガー（外部監査、システム異常、人的要因など）、複数署名・二重チェックなどを設計する。(3) 安全停止・キャンセル証跡固定ルール設計：安全停止・キャンセルが発動した場合、その理由・トリガー・判定者・時刻などを改ざん不可の形式で証跡固定するルールを設計する。(4) NO_GO維持ルール設計（厳格版）：安全停止・キャンセルが発動した場合、即座に actual_process_start_go_authorization = 'NOT_GRANTED' / production_status = 'NO_GO' を再宣言し、差し戻し資料を生成する。manual_release_go よりも厳格なNO_GO維持ルールを設計する。これらのプロセスは全て 設計層（reports only）で実装され、実処理開始許可を含まない。",
+    "invariants": [
+      "NO_GO 維持：安全停止・キャンセルプロセスを通じて production_status = 'NO_GO' は維持される",
+      "NOT_GRANTED 維持（安全停止時）：安全停止・キャンセル発動時 actual_process_start_go_authorization = 'NOT_GRANTED' を再宣言",
+      "厳格性維持：manual_release_go よりも厳格な安全停止・NO_GO維持ルールを適用",
+      "reports only：安全停止・キャンセルプロセス全体は報告書形式で実装され、実処理への権限付与を含まない"
+    ],
+    "actions": [],
+    "notes": [
+      "Phase 49-3 は 設計層のみで実装される",
+      "actual_process_start_go 発効直前の安全停止は manual_release_go より厳格な条件で判定",
+      "安全停止・キャンセル発動時は即座に差し戻し・NO_GO維持（manual_release_go より厳格）",
+      "実処理開始は NO_GO のまま（安全停止解除まで）"
+    ]
+  }
+}

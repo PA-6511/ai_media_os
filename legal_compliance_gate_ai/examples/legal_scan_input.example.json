@@ -1,0 +1,27 @@
+{
+  "task_id": "example_ebook_affiliate_draft_001",
+  "source_block_id": "ebook_affiliate_ai",
+  "operation_type": "wordpress_draft_candidate",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "human_approval_required": true,
+  "auto_post": false,
+  "auto_update": false,
+  "auto_delete": false,
+  "auto_export": false,
+  "content_summary": "電子書籍アフィリエイト記事の下書き候補を生成する",
+  "signals": [
+    "affiliate_link",
+    "product_recommendation",
+    "monetized_article",
+    "wordpress_draft"
+  ],
+  "external_services": [
+    "amazon_pa_api",
+    "wordpress"
+  ],
+  "contains_personal_data": false,
+  "contains_secret_like_text": false,
+  "disclosure_checked": false,
+  "policy_sources": []
+}

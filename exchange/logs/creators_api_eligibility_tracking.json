@@ -1,0 +1,18 @@
+{
+  "phase": "CREATORS_API_ELIGIBILITY_TRACKING",
+  "checked_at": "2026-06-15T14:00:00+00:00",
+  "status": "EXTERNAL_TRACKING_REQUIRED",
+  "status_candidates": [
+    "EXTERNAL_TRACKING_REQUIRED",
+    "WAITING",
+    "ELIGIBLE",
+    "BLOCKED"
+  ],
+  "evidence_in_repository": false,
+  "external_tracking_source": "manual_operator_update_required",
+  "production_api_allowed": false,
+  "wordpress_write_allowed": false,
+  "publish_allowed": false,
+  "approval_token_consumed": false,
+  "next_action": "KEEP_HOLD_AND_MONITOR"
+}

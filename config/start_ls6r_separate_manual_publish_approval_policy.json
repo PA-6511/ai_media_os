@@ -1,0 +1,88 @@
+{
+  "phase": "LS-6R",
+  "name": "Separate Manual Publish Approval / No Publish Execution",
+  "status": "SEPARATE_MANUAL_PUBLISH_APPROVAL_GATE",
+  "execution_mode": "SEPARATE_APPROVAL_GATE_ONLY",
+  "production_status": "NO_PUBLISH",
+  "purpose": "Record a separate explicit human approval gate for proceeding toward manual publish execution of WordPress draft post_id=183. This phase must not publish, schedule, update, delete, create, or call the WordPress API.",
+  "required_previous_phase": {
+    "ls6q": {
+      "required_ready_status": "LS6Q_HUMAN_WORDPRESS_DRAFT_REVIEW_AND_MANUAL_PUBLISH_DECISION_READY_NO_PUBLISH",
+      "required_human_decision": "APPROVED_FOR_MANUAL_PUBLISH_DECISION_ONLY",
+      "ready_result": "exchange/logs/start_ls6q_human_wordpress_draft_review_ready_result.json",
+      "human_review_result": "exchange/human_review/start_ls6q_human_wordpress_draft_review_result.json"
+    },
+    "ls6p": {
+      "required_validation_status": "LS6P_POST_EXECUTION_EVIDENCE_FREEZE_RESTORE_VALIDATED",
+      "wordpress_draft_verification_result": "exchange/runtime/start_ls6p_wordpress_draft_verification_result.json",
+      "runtime_freeze_restore_result": "exchange/runtime/start_ls6p_runtime_freeze_restore_result.json",
+      "rerun_prevention_final_lock": "exchange/locks/start_ls6p_rerun_prevention_final.lock.json",
+      "validation_result": "exchange/logs/start_ls6p_post_execution_evidence_freeze_restore_validation_result.json"
+    }
+  },
+  "target_post": {
+    "post_id": 183,
+    "post_link": "https://hoshido.jp/?p=183",
+    "title": "2.5次元の誘惑",
+    "asin": "B07X2G67B4",
+    "expected_current_status": "draft",
+    "created_count": 1
+  },
+  "approval_policy": {
+    "separate_manual_publish_approval_required": true,
+    "approval_label": "APPROVED_FOR_SEPARATE_MANUAL_PUBLISH_APPROVAL_GATE_ONLY",
+    "allowed_approval_labels": [
+      "APPROVED_FOR_SEPARATE_MANUAL_PUBLISH_APPROVAL_GATE_ONLY"
+    ],
+    "approval_label_consumed": false,
+    "manual_publish_execution_allowed_by_this_phase": false,
+    "manual_publish_allowed_by_this_phase": false,
+    "wordpress_publish_allowed_by_this_phase": false,
+    "wordpress_schedule_allowed_by_this_phase": false,
+    "wordpress_update_allowed_by_this_phase": false,
+    "wordpress_delete_allowed_by_this_phase": false,
+    "wordpress_write_allowed_by_this_phase": false,
+    "wordpress_api_call_allowed_by_this_phase": false,
+    "credential_env_read_allowed_by_this_phase": false
+  },
+  "must_remain_false_flags": {
+    "wordpress_api_call_executed": false,
+    "wordpress_write_executed": false,
+    "wordpress_draft_creation_executed": false,
+    "wordpress_existing_post_update_executed": false,
+    "wordpress_publish_executed": false,
+    "publish_executed": false,
+    "future_schedule_executed": false,
+    "delete_executed": false,
+    "post119_update_executed": false,
+    "credential_env_read_executed": false,
+    "credential_value_output": false,
+    "credential_value_persisted": false,
+    "credential_secret_output": false,
+    "secret_length_output": false,
+    "secret_hash_output": false,
+    "authorization_header_output": false,
+    "manual_publish_allowed_by_this_phase": false,
+    "manual_publish_executed": false,
+    "manual_publish_execution_allowed_by_this_phase": false,
+    "approval_label_consumed": false,
+    "ls6oc1_rerun_executed": false,
+    "rerun_allowed": false
+  },
+  "outputs": {
+    "approval_template": "exchange/human_review/start_ls6r_separate_manual_publish_approval.template.json",
+    "approval_result": "exchange/human_review/start_ls6r_separate_manual_publish_approval.json",
+    "template_result": "exchange/logs/start_ls6r_separate_manual_publish_approval_template_result.json",
+    "ready_result": "exchange/logs/start_ls6r_separate_manual_publish_approval_ready_result.json",
+    "template_report": "reports/start_ls6r_separate_manual_publish_approval_template_report.md",
+    "ready_report": "reports/start_ls6r_separate_manual_publish_approval_ready_report.md"
+  },
+  "next_phase": {
+    "phase": "LS-6S",
+    "name": "Manual Publish Final Preflight / No Publish Execution",
+    "execution_allowed_by_this_phase": false,
+    "manual_publish_execution_allowed_by_this_phase": false,
+    "requires_final_publish_preflight": true,
+    "requires_separate_execute_now_confirmation": true
+  }
+}

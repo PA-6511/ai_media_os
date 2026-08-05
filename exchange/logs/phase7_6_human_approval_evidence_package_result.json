@@ -1,0 +1,32 @@
+{
+  "phase": "Phase 7-6",
+  "name": "human_approval_evidence_package_policy",
+  "status": "PASS_DESIGN_ONLY",
+  "production_status": "NO_GO",
+  "wordpress_draft_creation": "NO_GO",
+  "wordpress_write_executed": false,
+  "publish_allowed": false,
+  "approve_draft_create_only_currently_allowed": false,
+  "unlock_in_this_phase": false,
+  "approval_is_execution_permission": false,
+  "human_review_summary": {
+    "review_id": "phase7_6_human_approval_package_sample_001",
+    "operator": "human",
+    "decision": "ACKNOWLEDGE_PRE_UNLOCK_REVIEW_ONLY",
+    "target_item_count": 1,
+    "candidate_id": "phase7_1_sample_candidate_001"
+  },
+  "approval_scope": {
+    "draft_create_only": false,
+    "publish": false,
+    "update": false,
+    "delete": false,
+    "bulk": false,
+    "external_export": false
+  },
+  "errors": [],
+  "warnings": [],
+  "safety_violations": [],
+  "allowed_next_step": "Phase 7-7 APPROVE_DRAFT_CREATE_ONLY activation readiness gate design only",
+  "checked_at": "2026-05-27T13:41:34.789347+00:00"
+}

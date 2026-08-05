@@ -1,0 +1,91 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-3",
+  "policy_id": "NEW_RELEASE_ARTICLE_BATCH_DRY_RUN_POLICY_V1",
+  "template_contract_id": "POST185_STANDARD_TEMPLATE_V1_FIXED",
+  "batch_id": "example-20260717",
+  "generation_mode": "PREVIEW_ONLY",
+  "source_record_count": 1,
+  "generated_item_count": 1,
+  "skipped_item_count": 0,
+  "generated_items": [
+    {
+      "item_id": "example-20260717-001",
+      "source_classification": "READY_FOR_DRAFT",
+      "article_payload": {
+        "post_title": "『サンプル作品 第1巻』電子書籍版の発売日・価格情報",
+        "post_name": "example-20260717-001",
+        "post_status": "draft",
+        "category_slug": "comic-new-release",
+        "category_name": "コミック新刊",
+        "uncategorized_assigned": false,
+        "template_id": "POST185_STANDARD_TEMPLATE_V1",
+        "description_mode": "minimal",
+        "post_excerpt": "『サンプル作品 第1巻』の発売日と電子書籍ストア情報をまとめています。",
+        "content_html": "<div class=\"ebook-new-release-article\" data-template-id=\"POST185_STANDARD_TEMPLATE_V1\">\n  <p class=\"ebook-pr-disclosure\">※本記事にはアフィリエイト広告を含みます。</p>\n  <div class=\"ebook-release-layout\">\n    <figure class=\"ebook-cover-image\">\n      <img src=\"https://thumbnail.image.rakuten.co.jp/test-cover.jpg\" alt=\"サンプル作品 第1巻の書影\" loading=\"lazy\">\n    </figure>\n    <section class=\"ebook-release-summary\">\n      <h2>サンプル作品 第1巻</h2>\n      <ul>\n        <li>発売日：7月17日</li>\n        <li>著者：著者A／著者B</li>\n        <li>出版社：サンプル出版社</li>\n        <li>分類：コミック新刊</li>\n      </ul>\n    </section>\n  </div>\n  <section class=\"ebook-store-section\">\n    <h2>電子書籍ストアの価格・販売ページ</h2>\n    <div class=\"ebook-price-card-grid\">\n<div class=\"ebook-price-card\" data-store=\"amazon\">\n  <p class=\"ebook-store-name\">Amazon Kindle</p>\n  <p class=\"ebook-store-price\">770円</p>\n  <a class=\"ebook-store-button\" href=\"https://www.amazon.co.jp/dp/BATCHTEST001\" target=\"_blank\" rel=\"nofollow sponsored noopener\">Amazon Kindleで確認</a>\n</div>\n<div class=\"ebook-price-card\" data-store=\"rakuten_kobo\">\n  <p class=\"ebook-store-name\">楽天Kobo</p>\n  <p class=\"ebook-store-price\">770円</p>\n  <a class=\"ebook-store-button\" href=\"https://books.rakuten.co.jp/rk/batch-test-001/\" target=\"_blank\" rel=\"nofollow sponsored noopener\">楽天Koboで確認</a>\n</div>\n    </div>\n  </section>\n</div>\n",
+        "metadata": {
+          "item_id": "example-20260717-001",
+          "batch_id": "example-20260717",
+          "release_date": "2026-07-17",
+          "image_source": "rakuten_kobo",
+          "store_button_order": [
+            "amazon",
+            "rakuten_kobo"
+          ]
+        }
+      },
+      "x_candidate": {
+        "template_id": "X_NEW_RELEASE_V1",
+        "candidate_text_without_url": "『サンプル作品 第1巻』は7月17日発売。\nAmazon Kindle・楽天Koboの価格と販売ページを記事でまとめています。",
+        "character_count_without_url": 63,
+        "reserved_url_characters": 23,
+        "requires_manual_review": true,
+        "requires_article_url_append": true,
+        "automatic_post_allowed": false,
+        "wording_labels": [
+          "TITLE_FIRST",
+          "INFORMATIONAL_TONE",
+          "ARTICLE_CTA",
+          "NO_EMOJI",
+          "NO_HASHTAG"
+        ]
+      },
+      "x_feedback_initialize_request": {
+        "action": "INITIALIZE",
+        "feedback_id": "x-fb-example-20260717-example-20260717-001",
+        "article_item_id": "example-20260717-001",
+        "wordpress_post_id": null,
+        "template_id": "X_NEW_RELEASE_V1",
+        "article_context": {
+          "title": "サンプル作品",
+          "volume_label": "第1巻",
+          "release_date": "2026-07-17",
+          "category": "comic"
+        },
+        "generated_text": "『サンプル作品 第1巻』は7月17日発売。\nAmazon Kindle・楽天Koboの価格と販売ページを記事でまとめています。",
+        "wording_labels": [
+          "TITLE_FIRST",
+          "INFORMATIONAL_TONE",
+          "ARTICLE_CTA",
+          "NO_EMOJI",
+          "NO_HASHTAG"
+        ]
+      },
+      "preview_digest_sha256": "6fad65d92af395ace314a68ef70dad4139cdc2d0eaf87172138e6359a02350d1",
+      "wordpress_write_allowed": false,
+      "x_post_allowed": false
+    }
+  ],
+  "skipped_items": [],
+  "execution_boundary": {
+    "external_api_call_allowed": false,
+    "web_scraping_allowed": false,
+    "wordpress_write_allowed": false,
+    "wordpress_publish_allowed": false,
+    "x_api_call_allowed": false,
+    "x_post_allowed": false,
+    "automatic_rule_update_allowed": false,
+    "production_status": "NO_GO",
+    "safety_state": "DRY_RUN_ONLY"
+  }
+}

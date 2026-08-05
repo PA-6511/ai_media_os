@@ -1,0 +1,50 @@
+{
+  "_meta": {
+    "template_version": "1.0",
+    "phase": "3.5-10",
+    "purpose": "evidence_index_template",
+    "created_at": "2026-05-11",
+    "status": "TEMPLATE_ONLY",
+    "note": "このファイルは雛形です。実際のexport・外部転送・自動収集は一切行いません。evidence/ フォルダ内の成果物を手動で索引化するための構造定義です。"
+  },
+  "index_metadata": {
+    "index_id": "__FILL_IN__",
+    "block_id": "generic_block",
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "created_at": "__FILL_IN__",
+    "last_updated": "__FILL_IN__",
+    "auto_export_allowed": false,
+    "requires_human_approval": true
+  },
+  "entries": [
+    {
+      "evidence_id": "__FILL_IN__",
+      "phase": "__FILL_IN__",
+      "filename": "__FILL_IN__",
+      "path": "evidence/__FILL_IN__",
+      "type": "report | test_result | audit_log | decision_record",
+      "created_at": "__FILL_IN__",
+      "checksum_sha256": "__FILL_IN__",
+      "related_proposal_id": null,
+      "status": "draft | reviewed | archived",
+      "notes": "__FILL_IN__"
+    }
+  ],
+  "export_policy": {
+    "auto_export": false,
+    "allowed_destinations": [],
+    "forbidden_actions": [
+      "auto_upload_to_external",
+      "overwrite_existing_evidence",
+      "delete_evidence",
+      "export_without_approval"
+    ]
+  },
+  "summary": {
+    "total_entries": 0,
+    "draft": 0,
+    "reviewed": 0,
+    "archived": 0
+  }
+}

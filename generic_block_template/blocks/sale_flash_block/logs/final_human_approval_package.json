@@ -1,0 +1,51 @@
+{
+  "status": "PASS",
+  "phase": "SFB-7",
+  "generated_at": "2026-06-14T04:38:38.921397+00:00",
+  "block_name": "sale_flash_block",
+  "mode": "DRY_RUN",
+  "production_status": "NO_GO",
+  "missing_inputs": [],
+  "baseline_locked": true,
+  "final_human_gate_status": "READY_FOR_FINAL_HUMAN_GATE",
+  "required_final_human_gate_status": "READY_FOR_FINAL_HUMAN_GATE",
+  "final_human_gate_ready": true,
+  "human_approval_consumed": false,
+  "human_approval_unconsumed": true,
+  "wordpress_dry_run_execution_gate": "READY_FOR_DRY_RUN_ONLY",
+  "production_write_blocked": true,
+  "external_api_called": false,
+  "external_network_called": false,
+  "wordpress_write_executed": false,
+  "publish_executed": false,
+  "update_executed": false,
+  "delete_executed": false,
+  "export_executed": false,
+  "approval_template": {
+    "title": "Sale Flash Block Final Approval (DRY_RUN)",
+    "required_statement": "I reviewed SFB-1..SFB-7 package and approve DRY_RUN execution only.",
+    "forbidden_statement": "Any production WordPress write/publish/update/delete/export is forbidden.",
+    "operator_field": "approved_by",
+    "datetime_field": "approved_at_utc",
+    "ticket_field": "approval_ticket"
+  },
+  "approval_form": {
+    "approved_by": "",
+    "approved_at_utc": "",
+    "approval_ticket": "",
+    "approval_comment": "",
+    "approved": false
+  },
+  "handoff_summary": {
+    "draft_payload_count": 1,
+    "validated_item_count": 1,
+    "valid_item_count": 1,
+    "needs_fix_item_count": 0
+  },
+  "decision": {
+    "allow_wordpress_dry_run_execution": true,
+    "allow_production_wordpress_write": false,
+    "reason": "NO_GO is enforced; production write is blocked by policy"
+  },
+  "next_recommended_phase": "SFB-8: Optional WordPress DRY_RUN execution evidence (still NO_GO)"
+}

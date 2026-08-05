@@ -1,0 +1,196 @@
+{
+  "package_type": "phase7_5c_single_draft_create_live_result",
+  "phase": "Phase 7-5C",
+  "mode": "MANUAL_ONE_TIME_EXECUTION",
+  "auto_post": false,
+  "auto_update": false,
+  "auto_delete": false,
+  "auto_export": false,
+  "publish_allowed": false,
+  "update_allowed": false,
+  "delete_allowed": false,
+  "export_allowed": false,
+  "live_execution_attempted": true,
+  "wordpress_post_enabled": true,
+  "real_write_enabled": true,
+  "endpoint": "https://hoshido.jp/wp-json/wp/v2/posts",
+  "post_payload": {
+    "title": "【DRY_RUN候補】Phase 5-1 real-data schema normal sample",
+    "content": "<p>これは WordPress 下書き候補です。まだ投稿は実行されません。</p><p>概要: Phase 5-1 real-data schema normal sample</p><p>リスクレベル: LOW</p><ul><li>本番投稿: 未実行</li><li>本番更新: 未実行</li><li>外部Export: 未実行</li></ul>",
+    "status": "draft"
+  },
+  "response_status_code": 201,
+  "response_excerpt": {
+    "id": 110,
+    "date": "2026-05-05T15:41:49",
+    "date_gmt": "2026-05-05T06:41:49",
+    "guid": {
+      "rendered": "https://hoshido.jp/?p=110",
+      "raw": "https://hoshido.jp/?p=110"
+    },
+    "modified": "2026-05-05T15:41:49",
+    "modified_gmt": "2026-05-05T06:41:49",
+    "password": "",
+    "slug": "",
+    "status": "draft",
+    "type": "post",
+    "link": "https://hoshido.jp/?p=110",
+    "title": {
+      "raw": "【DRY_RUN候補】Phase 5-1 real-data schema normal sample",
+      "rendered": "【DRY_RUN候補】Phase 5-1 real-data schema normal sample"
+    },
+    "content": {
+      "raw": "<p>これは WordPress 下書き候補です。まだ投稿は実行されません。</p><p>概要: Phase 5-1 real-data schema normal sample</p><p>リスクレベル: LOW</p><ul><li>本番投稿: 未実行</li><li>本番更新: 未実行</li><li>外部Export: 未実行</li></ul>",
+      "rendered": "<p>これは WordPress 下書き候補です。まだ投稿は実行されません。</p>\n<p>概要: Phase 5-1 real-data schema normal sample</p>\n<p>リスクレベル: LOW</p>\n<ul>\n<li>本番投稿: 未実行</li>\n<li>本番更新: 未実行</li>\n<li>外部Export: 未実行</li>\n</ul>\n",
+      "protected": false,
+      "block_version": 0
+    },
+    "excerpt": {
+      "raw": "",
+      "rendered": "<p>これは WordPress 下書き候補です。まだ投稿は実行されません。 概要: Phase 5-1 real-data schema normal sample リスクレベル: LOW 本番投稿: 未実行 本番更新: 未 [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": {
+      "footnotes": ""
+    },
+    "categories": [
+      1
+    ],
+    "tags": [],
+    "permalink_template": "https://hoshido.jp/2026/05/05/%postname%/",
+    "generated_slug": "【dry_run候補】phase-5-1-real-data-schema-normal-sample",
+    "class_list": {
+      "0": "post-110",
+      "2": "post",
+      "3": "type-post",
+      "4": "status-draft",
+      "5": "format-standard",
+      "6": "hentry",
+      "7": "category-uncategorized-post"
+    },
+    "_links": {
+      "self": [
+        {
+          "href": "https://hoshido.jp/wp-json/wp/v2/posts/110",
+          "targetHints": {
+            "allow": [
+              "GET",
+              "POST",
+              "PUT",
+              "PATCH",
+              "DELETE"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://hoshido.jp/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://hoshido.jp/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://hoshido.jp/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://hoshido.jp/wp-json/wp/v2/comments?post=110"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://hoshido.jp/wp-json/wp/v2/posts/110/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://hoshido.jp/wp-json/wp/v2/media?parent=110"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://hoshido.jp/wp-json/wp/v2/categories?post=110"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://hoshido.jp/wp-json/wp/v2/tags?post=110"
+        }
+      ],
+      "wp:action-publish": [
+        {
+          "href": "https://hoshido.jp/wp-json/wp/v2/posts/110"
+        }
+      ],
+      "wp:action-unfiltered-html": [
+        {
+          "href": "https://hoshido.jp/wp-json/wp/v2/posts/110"
+        }
+      ],
+      "wp:action-sticky": [
+        {
+          "href": "https://hoshido.jp/wp-json/wp/v2/posts/110"
+        }
+      ],
+      "wp:action-assign-author": [
+        {
+          "href": "https://hoshido.jp/wp-json/wp/v2/posts/110"
+        }
+      ],
+      "wp:action-create-categories": [
+        {
+          "href": "https://hoshido.jp/wp-json/wp/v2/posts/110"
+        }
+      ],
+      "wp:action-assign-categories": [
+        {
+          "href": "https://hoshido.jp/wp-json/wp/v2/posts/110"
+        }
+      ],
+      "wp:action-create-tags": [
+        {
+          "href": "https://hoshido.jp/wp-json/wp/v2/posts/110"
+        }
+      ],
+      "wp:action-assign-tags": [
+        {
+          "href": "https://hoshido.jp/wp-json/wp/v2/posts/110"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  "relocked_after_execution": true,
+  "created_at": "2026-05-05T06:41:49.457835+00:00",
+  "status": "PASS",
+  "reason": "single draft create live execution succeeded",
+  "wordpress_write_executed": true,
+  "created_post_id": 110,
+  "created_post_status": "draft",
+  "next_step": "manual_verify_and_relock_confirmed",
+  "wordpress_draft_id": 110
+}

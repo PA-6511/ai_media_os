@@ -1,0 +1,32 @@
+{
+  "schema_version": "ir31_submission_audit_narrative_v1",
+  "phase": "IR31",
+  "generated_at": "2026-05-23T16:13:50.296881+00:00",
+  "source_task_id": "ir31_live_trial",
+  "release_candidate_id": "rc_20260523T155148Z_ir26_live_trial_b940393b490b",
+  "final_submission_decision": "READY_FOR_SUBMISSION_SUMMARY",
+  "validation_result": "PASS",
+  "validation_failed_checks": [],
+  "validation_warnings": [],
+  "summary": {
+    "reason_count": 1,
+    "failed_check_count": 0,
+    "warning_count": 0,
+    "send_allowed_invariant_ok": true
+  },
+  "artifacts": {
+    "narrative_dir": "generic_block_ai/reports/ir31_submission_audit_narrative_ir31_live_trial",
+    "submission_audit_narrative": "generic_block_ai/reports/ir31_submission_audit_narrative_ir31_live_trial/submission_audit_narrative.md",
+    "submission_audit_index": "generic_block_ai/reports/ir31_submission_audit_narrative_ir31_live_trial/submission_audit_index.json",
+    "reviewer_summary": "generic_block_ai/reports/ir31_submission_audit_narrative_ir31_live_trial/reviewer_summary.json",
+    "completion_report": "reports/implementation_restart_phase31_completion_report.json"
+  },
+  "safeguards": {
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "production_release": false,
+    "network_transmission_executed": false
+  }
+}

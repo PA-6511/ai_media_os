@@ -1,0 +1,24 @@
+# LS-NEW-BATCH-4G-2E-RECOVERY-M13-PRE-WRITER
+
+- Status: `PASS_WORDPRESS_WRITER_CREDENTIAL_NONSECRET_PREFLIGHT_NO_NETWORK_NO_WORDPRESS_NO_AUTH_CONSUMPTION`
+- Writer credential exists: `true`
+- Regular file: `true`
+- Symlink: `false`
+- Mode: `0600`
+- Owner: `deploy`
+- Required key count exactly one: `true`
+- Required values nonempty: `true`
+- Credential values output: `false`
+- Credential file hash computed: `false`
+- Credential file modified: `false`
+- Environment export performed: `false`
+- Read-only credential accessed: `false`
+- Read-only credential used for writer: `false`
+- M12 authorization consumed: `false`
+- Network accessed: `false`
+- DNS resolved: `false`
+- HTTP requested: `false`
+- WordPress accessed: `false`
+- WordPress draft created: `false`
+- Production status: `NO_GO`
+- Ready for writer network preflight gate: `true`

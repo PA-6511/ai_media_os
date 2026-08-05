@@ -1,0 +1,25 @@
+{
+  "_meta": {
+    "phase": 230,
+    "purpose": "manual_validation",
+    "generated_at": "2026-05-20T05:29:00+00:00",
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "auto_execute_allowed": false,
+    "requires_human_approval": true
+  },
+  "overall_result": "PASS",
+  "validation_result": "ALL_CHECKS_PASSED",
+  "validated_files": 9,
+  "validations": [
+    { "target": "phase230_1_phase229_completion_evidence_receipt_and_consistency_confirmation.json", "result": "PASS", "failed_checks": [], "warnings": [] },
+    { "target": "phase230_2_post_lock_final_maintenance_completion_state_final_confirmation_completion_final_confirmation_post_completion_completion_confirmation_design.json", "result": "PASS", "failed_checks": [], "warnings": [] },
+    { "target": "phase230_3_actual_process_start_no_go_continuation.json", "result": "PASS", "failed_checks": [], "warnings": [] },
+    { "target": "phase230_4_post_lock_final_maintenance_completion_state_final_confirmation_completion_final_confirmation_post_completion_completion_confirmation_no_go_reinforcement.json", "result": "PASS", "failed_checks": [], "warnings": [] },
+    { "target": "phase230_5_post_lock_final_maintenance_completion_state_final_confirmation_completion_final_confirmation_post_completion_completion_confirmation_not_granted_reinforcement.json", "result": "PASS", "failed_checks": [], "warnings": [] },
+    { "target": "phase230_6_actual_process_start_no_go_reinforcement.json", "result": "PASS", "failed_checks": [], "warnings": [] },
+    { "target": "phase230_7_post_lock_final_maintenance_completion_state_final_confirmation_completion_final_confirmation_post_completion_completion_confirmation_final_judgement.json", "result": "PASS", "failed_checks": [], "warnings": [] },
+    { "target": "phase230_8_post_lock_final_maintenance_completion_state_final_confirmation_completion_final_confirmation_post_completion_completion_confirmation_final_report.json", "result": "PASS", "failed_checks": [], "warnings": [] },
+    { "target": "phase230_9_post_lock_final_maintenance_completion_state_final_confirmation_completion_final_confirmation_post_completion_completion_confirmation_layer_completion.json", "result": "PASS", "failed_checks": [], "warnings": [] }
+  ]
+}

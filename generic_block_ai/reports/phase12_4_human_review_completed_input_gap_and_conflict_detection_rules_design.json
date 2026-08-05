@@ -1,0 +1,77 @@
+{
+  "_meta": {
+    "phase": "12-4",
+    "phase_name": "human review 実記入版の不足・矛盾検出ルール設計",
+    "version": "1.0",
+    "created_date": "2026-05-12",
+    "status": "PASS_DESIGN_ONLY",
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only",
+    "description": "human review 実記入版の受領時に、不足項目と既存判定との矛盾を検出するためのルールを固定する。"
+  },
+  "references": [
+    "generic_block_ai/reports/phase12_1_human_review_completed_input_receipt_and_consistency_check.json",
+    "generic_block_ai/reports/phase11_4_human_review_post_entry_defect_detection_rules_design.json",
+    "generic_block_ai/reports/phase10_4_human_review_signature_required_fields_final_check.json"
+  ],
+  "gap_and_conflict_rules": [
+    {
+      "rule_id": "GCR-01",
+      "condition": "required receipt fields のいずれかが未記入",
+      "classification": "GAP",
+      "effect": "receipt_result cannot become PASS"
+    },
+    {
+      "rule_id": "GCR-02",
+      "condition": "reviewer.role が human_reviewer 以外",
+      "classification": "CONFLICT",
+      "effect": "consistency_confirmed = false"
+    },
+    {
+      "rule_id": "GCR-03",
+      "condition": "safety_boundary_verification の任意項目が false",
+      "classification": "CONFLICT",
+      "effect": "GO update forbidden"
+    },
+    {
+      "rule_id": "GCR-04",
+      "condition": "unresolved_items が空でない",
+      "classification": "GAP",
+      "effect": "receipt remains pending"
+    },
+    {
+      "rule_id": "GCR-05",
+      "condition": "Phase 11 測定結果と実記入内容の理由説明が矛盾する",
+      "classification": "CONFLICT",
+      "effect": "manual recheck required"
+    }
+  ],
+  "detection_template": {
+    "gaps_found": false,
+    "conflicts_found": false,
+    "detected_items": [],
+    "overall_result": "PENDING"
+  },
+  "blocked_actions": [
+    "core_ai_real_send",
+    "external_api_call",
+    "wordpress_operation",
+    "cron_registration",
+    "auto_execute",
+    "auto_post",
+    "auto_update",
+    "auto_delete",
+    "auto_export",
+    "production_execution"
+  ],
+  "phase_decision": {
+    "phase12_4_status": "PASS_DESIGN_ONLY",
+    "app_implementation_status": "NO_GO",
+    "tests_implementation_status": "NO_GO",
+    "note": "不足・矛盾検出ルールの設計のみ。実装や GO 更新は含まない。"
+  }
+}

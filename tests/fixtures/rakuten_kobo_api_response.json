@@ -1,0 +1,20 @@
+{
+  "count": 1,
+  "page": 1,
+  "Items": [
+    {
+      "Item": {
+        "title": "検証作品 2",
+        "author": "原作：佐藤  太郎／作画：山田花子／原作：佐藤  太郎",
+        "publisherName": "A&amp;B   出版",
+        "label": "A&amp;Bコミックス",
+        "isbn": "9781234567897",
+        "itemNumber": "2000012345678",
+        "salesDate": "2026年08月19日",
+        "itemPrice": 750,
+        "itemUrl": "https://books.rakuten.co.jp/rk/fixture-item/",
+        "mediumImageUrl": "https://thumbnail.image.rakuten.co.jp/fixture.jpg"
+      }
+    }
+  ]
+}

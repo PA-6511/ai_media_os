@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M5",
+  "policy_id": "DMM_HISTORICAL_M4_EVIDENCE_HUMAN_REVIEW_POLICY_V1",
+  "source_phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M4-FIX1",
+  "operation_mode": "APPROVED_OFFLINE_HISTORICAL_EVIDENCE_HUMAN_REVIEW_ONLY",
+  "content_item_id": "new-release-comic-20260703-001",
+  "review_subject": {
+    "expected_work_title": "ダークギャザリング",
+    "expected_volume_label": "第20巻",
+    "expected_volume_number": 20,
+    "expected_author": "近藤憲一",
+    "expected_publisher": "集英社",
+    "expected_series_id": "861056",
+    "expected_canonical_product_url": "https://book.dmm.com/product/861056/b950yshes32617/",
+    "historical_page_title": "ダークギャザリング 20(最新刊) - 近藤憲一 - 少年マンガ - DMMブックス"
+  },
+  "review_outcome_contract": {
+    "approved_outcome": "APPROVED_HISTORICAL_EVIDENCE_AS_DMM_PRODUCT_MATCH",
+    "approved_product_url_role": "VERIFIED_DMM_PRODUCT_URL_CANDIDATE_ONLY",
+    "ready_for_next_gate": "FINAL_AFFILIATE_LINK_GENERATION_AUTHORIZATION_GATE",
+    "canonical_product_url_is_final_affiliate_url": false,
+    "article_dmm_slot_activation_allowed": false,
+    "historical_m4_result_reclassification_allowed": false
+  },
+  "historical_preservation": {
+    "m4_result_modification_allowed": false,
+    "m4_recheck_modification_allowed": false,
+    "m4_consumption_modification_allowed": false,
+    "m4_execute_approval_modification_allowed": false,
+    "m3_authorization_modification_allowed": false,
+    "m4_fix1_result_modification_allowed": false,
+    "m2_historical_evidence_modification_allowed": false,
+    "m4_response_body_sha256_modification_allowed": false,
+    "historical_result_reclassification_allowed": false
+  },
+  "execution_boundary": {
+    "human_review_evidence_creation_allowed": true,
+    "review_result_creation_allowed": true,
+    "historical_result_reclassification_allowed": false,
+    "new_authorization_creation_allowed": false,
+    "existing_authorization_reuse_allowed": false,
+    "network_connection_allowed": false,
+    "dns_resolution_allowed": false,
+    "http_request_allowed": false,
+    "dmm_recheck_allowed": false,
+    "final_affiliate_link_generation_allowed": false,
+    "final_affiliate_link_validation_allowed": false,
+    "article_modification_allowed": false,
+    "article_url_injection_allowed": false,
+    "fresh_payload_creation_allowed": false,
+    "payload_binding_allowed": false,
+    "production_category_id_payload_injection_allowed": false,
+    "wordpress_access_allowed": false,
+    "wordpress_write_allowed": false,
+    "wordpress_publish_allowed": false,
+    "execution_allowed": false,
+    "production_status": "NO_GO",
+    "safety_state": "HISTORICAL_EVIDENCE_HUMAN_REVIEW_ONLY"
+  },
+  "next_phase": {
+    "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M6",
+    "name": "DMM Final Affiliate Link Generation Authorization Gate",
+    "execution_allowed": false,
+    "human_approval_required": true
+  }
+}

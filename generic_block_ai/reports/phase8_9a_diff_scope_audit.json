@@ -1,0 +1,138 @@
+{
+  "_meta": {
+    "phase": "8-9A",
+    "phase_name": "差分スコープ監査",
+    "version": "1.0",
+    "created_date": "2026-05-12",
+    "status": "WARN",
+    "phase8_final_gate_design_status": "PASS_DESIGN_ONLY_WITH_SCOPE_CAVEAT",
+    "production_status": "NO_GO",
+    "changed_area": "reports追加はOK / app-tests既存差分あり",
+    "description": "Phase 8-7〜8-9 由来の reports 3ファイルと、workspace 既存の app/tests 差分を切り分ける監査レポート。"
+  },
+  "scope_targets": {
+    "phase8_7_to_8_9_reports": [
+      "generic_block_ai/reports/phase8_7_human_review_execution_record_template.json",
+      "generic_block_ai/reports/phase8_8_final_decision_execution_record_template.json",
+      "generic_block_ai/reports/phase8_9_phase9_transition_go_nogo_design.json"
+    ],
+    "workspace_observation_paths": [
+      "generic_block_ai/reports",
+      "generic_block_ai/app",
+      "generic_block_ai/tests"
+    ]
+  },
+  "verification": {
+    "json_validity": {
+      "phase8_7": "OK",
+      "phase8_8": "OK",
+      "phase8_9": "OK"
+    },
+    "phase8_9_go_interpretation": "GO = Phase 9設計開始検討のみ",
+    "phase8_9_not_equal": "app実装開始許可ではない",
+    "core_real_send": "NONE",
+    "external_connection": "NONE"
+  },
+  "git_scope_audit": {
+    "summary": {
+      "total_entries_under_reports_app_tests": 82,
+      "phase8_7_to_8_9_target_entries": 3,
+      "app_tests_entries": 17,
+      "other_reports_entries": 62
+    },
+    "phase8_7_to_8_9_target_entries": [
+      {
+        "status": "UNTRACKED",
+        "path": "generic_block_ai/reports/phase8_7_human_review_execution_record_template.json"
+      },
+      {
+        "status": "UNTRACKED",
+        "path": "generic_block_ai/reports/phase8_8_final_decision_execution_record_template.json"
+      },
+      {
+        "status": "UNTRACKED",
+        "path": "generic_block_ai/reports/phase8_9_phase9_transition_go_nogo_design.json"
+      }
+    ],
+    "app_tests_existing_diffs": [
+      {
+        "status": "MODIFIED",
+        "path": "generic_block_ai/app/block_contract.py"
+      },
+      {
+        "status": "MODIFIED",
+        "path": "generic_block_ai/app/block_runner.py"
+      },
+      {
+        "status": "MODIFIED",
+        "path": "generic_block_ai/app/safety_guard.py"
+      },
+      {
+        "status": "MODIFIED",
+        "path": "generic_block_ai/tests/test_manifest.py"
+      },
+      {
+        "status": "UNTRACKED",
+        "path": "generic_block_ai/app/connection_test_result_validator.py"
+      },
+      {
+        "status": "UNTRACKED",
+        "path": "generic_block_ai/app/evidence_index_validator.py"
+      },
+      {
+        "status": "UNTRACKED",
+        "path": "generic_block_ai/app/handoff_payload_validator.py"
+      },
+      {
+        "status": "UNTRACKED",
+        "path": "generic_block_ai/app/phase4_validator_runner.py"
+      },
+      {
+        "status": "UNTRACKED",
+        "path": "generic_block_ai/app/proposal_validator.py"
+      },
+      {
+        "status": "UNTRACKED",
+        "path": "generic_block_ai/app/review_queue_validator.py"
+      },
+      {
+        "status": "UNTRACKED",
+        "path": "generic_block_ai/app/validator_runner.py"
+      },
+      {
+        "status": "UNTRACKED",
+        "path": "generic_block_ai/tests/conftest.py"
+      },
+      {
+        "status": "UNTRACKED",
+        "path": "generic_block_ai/tests/test_dry_run_enforcement.py"
+      },
+      {
+        "status": "UNTRACKED",
+        "path": "generic_block_ai/tests/test_guard_policy_alignment.py"
+      },
+      {
+        "status": "UNTRACKED",
+        "path": "generic_block_ai/tests/test_observe_mode.py"
+      },
+      {
+        "status": "UNTRACKED",
+        "path": "generic_block_ai/tests/test_phase4_validators.py"
+      },
+      {
+        "status": "UNTRACKED",
+        "path": "generic_block_ai/tests/test_validators.py"
+      }
+    ]
+  },
+  "decision": {
+    "phase8_7_to_8_9_reports_only": "PASS_DESIGN_ONLY",
+    "workspace_overall": "WARN",
+    "reason": "app/tests に既存差分が多数あるため、リポジトリ全体基準では『app/tests追加なし』をPASS断定できない。"
+  },
+  "next_action": {
+    "recommended_phase": "8-9A",
+    "action": "差分由来ラベル付け（今回由来 / 前工程由来 / 危険要素）を継続し、削除・巻き戻しは実施しない。",
+    "safety_note": "Phase 8-9 GO は app実装開始許可を意味しない。"
+  }
+}

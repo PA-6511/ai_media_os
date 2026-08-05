@@ -1,0 +1,20 @@
+{
+  "schema_version": "gib.beta08.manual_approval_gate.v0.1",
+  "beta_version": "beta0.8",
+  "status": "DRY_RUN_MANUAL_APPROVAL_GATE_ONLY",
+  "production_status": "NO_GO",
+  "runtime_target": "ollama",
+  "manual_approval_required": true,
+  "approval_granted": false,
+  "first_real_call_approval_text": "I APPROVE FIRST REAL LOCAL LLM CALL FOR GIB BETA1 UNDER CHANGE CONTROL.",
+  "real_llm_call_allowed": false,
+  "execution_allowed": false,
+  "generate_call_allowed": false,
+  "chat_call_allowed": false,
+  "auto_connect_on_ready": false,
+  "simulate_approval_true": true,
+  "artifact_policy": {
+    "report_write_scope": ["generic_inference_block_ai/reports"],
+    "reports_only": true
+  }
+}

@@ -1,0 +1,192 @@
+{
+  "schema_version": "slack_worker_release_rebinding_control_plane_policy_v1",
+  "phase": "DB-SAFE-TST-5A",
+  "policy_status": "DESIGN_ONLY_NOT_APPROVED",
+  "current_manifest": {
+    "path": "config/slack_worker_release_source_manifest.json",
+    "sha256": "ea201edeba978e1d0b3cf6219cc16efac8641567216885c5a245c66e99fc9c2d",
+    "formal_write_allowed": false
+  },
+  "runtime_entrypoints": [
+    "scripts/run_slack_approval_readiness.py",
+    "scripts/run_slack_approval_socket.py"
+  ],
+  "runtime_entrypoint_evidence": [
+    {
+      "path": "config/slack_worker_release_source_manifest.json",
+      "field": "$.entrypoint",
+      "value": "src/scripts/run_slack_approval_readiness.py"
+    },
+    {
+      "path": "config/slack_worker_release_bundle_policy.json",
+      "field": "$.runtime_contract.entrypoint",
+      "value": "/opt/ai-media-os/slack-worker/current/src/scripts/run_slack_approval_readiness.py"
+    },
+    {
+      "path": "systemd/ai-media-os-slack-approval-readiness.service",
+      "field": "ExecStartPre/ExecStart",
+      "value": "/home/deploy/ai_media_os/scripts/run_slack_approval_readiness.py"
+    },
+    {
+      "path": "scripts/run_slack_approval_readiness.py",
+      "field": "lazy runtime import",
+      "value": "scripts/run_slack_approval_socket.py"
+    }
+  ],
+  "direct_policy_binders": [
+    {
+      "path": "config/slack_worker_install_authorization_capsule_policy.json",
+      "binding_kind": "EXACT_MANIFEST_FILE_SHA256"
+    },
+    {
+      "path": "config/slack_worker_install_authorization_capsule_reference_validator_policy.json",
+      "binding_kind": "EXACT_MANIFEST_FILE_SHA256"
+    },
+    {
+      "path": "config/slack_worker_offline_runtime_assembler_policy.json",
+      "binding_kind": "EXACT_MANIFEST_FILE_SHA256"
+    },
+    {
+      "path": "config/slack_worker_real_release_bundle_sandbox_adapter_policy.json",
+      "binding_kind": "EXACT_MANIFEST_FILE_SHA256"
+    },
+    {
+      "path": "config/slack_worker_root_helper_interface_policy.json",
+      "binding_kind": "EXACT_MANIFEST_FILE_SHA256"
+    },
+    {
+      "path": "config/slack_worker_root_install_rollback_policy.json",
+      "binding_kind": "EXACT_MANIFEST_FILE_SHA256"
+    },
+    {
+      "path": "config/slack_worker_root_installer_sandbox_core_policy.json",
+      "binding_kind": "EXACT_MANIFEST_FILE_SHA256"
+    },
+    {
+      "path": "config/slack_worker_runtime_import_smoke_component_policy.json",
+      "binding_kind": "EXACT_MANIFEST_FILE_SHA256"
+    },
+    {
+      "path": "config/slack_worker_release_bundle_policy.json",
+      "binding_kind": "DERIVED_RELEASE_ID"
+    }
+  ],
+  "immutable_direct_evidence": [
+    "exchange/logs/sql_b2_4b_5g_3b_1d_2a_release_bundle_dry_run_result.json",
+    "exchange/logs/sql_b2_4b_5g_3b_1d_2b_0_host_preinstall_discovery_result.json"
+  ],
+  "review_units": [
+    {
+      "unit": "UNIT_DB_SAFETY",
+      "change_category": "DB_SAFETY_REFACTOR",
+      "sources": [
+        "app/db/access_guard.py",
+        "app/db/config.py",
+        "app/db/session.py"
+      ],
+      "purpose": "Centralize the production database path, reject production SQLite access in tests, and defer engine creation until guarded runtime use.",
+      "security_impact": "FAIL_CLOSED_DATABASE_TARGET_VALIDATION_STRENGTHENED",
+      "permission_impact": "NO_PERMISSION_EXPANSION",
+      "runtime_impact": "ENGINE_CREATION_BECOMES_LAZY_PRODUCTION_WAL_RETAINED",
+      "network_impact": "NO_NETWORK_BOUNDARY_CHANGE",
+      "test_evidence": [
+        "tests/database/test_production_database_access_guard.py",
+        "tests/test_slack_worker_runtime_import_smoke.py"
+      ],
+      "rollback_consideration": "Rollback must restore config and session together; access_guard must not remain as an unresolved import.",
+      "review_required": true,
+      "approval_status": "NOT_APPROVED"
+    },
+    {
+      "unit": "UNIT_WORKFLOW_STATE",
+      "change_category": "WORDPRESS_STATE_RECONCILIATION_CHANGE",
+      "sources": [
+        "app/db/repositories/workflow_state_repository.py"
+      ],
+      "purpose": "Record WordPress draft identifiers and state transitions without using a disallowed workflow-history field.",
+      "security_impact": "DATABASE_MUTATION_SURFACE_CHANGED_REVIEW_REQUIRED",
+      "permission_impact": "NO_PERMISSION_EXPANSION",
+      "runtime_impact": "SLACK_APPROVAL_SERVICE_IMPORTS_THIS_REPOSITORY_TRANSITIVELY",
+      "network_impact": "NO_NETWORK_BOUNDARY_CHANGE",
+      "test_evidence": [
+        "tests/test_x_r13_wordpress_state_reconciliation.py",
+        "tests/test_x_r13_wordpress_post_id_history_constraint.py"
+      ],
+      "rollback_consideration": "Rollback requires confirming callers do not depend on the new WordPress reconciliation methods.",
+      "review_required": true,
+      "approval_status": "NOT_APPROVED"
+    },
+    {
+      "unit": "UNIT_SLACK_RUNTIME",
+      "change_category": "SLACK_RUNTIME_LIFECYCLE_CHANGE",
+      "sources": [
+        "scripts/run_slack_approval_socket.py"
+      ],
+      "purpose": "Delay Slack Bolt loading, permit factory injection, and close the Socket Mode handler idempotently on process termination.",
+      "security_impact": "SECRET_AND_NETWORK_BOUNDARIES_UNCHANGED_REVIEW_REQUIRED",
+      "permission_impact": "NO_PERMISSION_EXPANSION",
+      "runtime_impact": "IMPORT_AND_SHUTDOWN_LIFECYCLE_CHANGED",
+      "network_impact": "NO_NEW_NETWORK_OPERATION_CANDIDATE_GENERATOR_IS_OFFLINE",
+      "test_evidence": [
+        "tests/test_run_slack_approval_socket.py",
+        "tests/test_slack_worker_runtime_import_smoke.py"
+      ],
+      "rollback_consideration": "Rollback must restore eager imports and the prior signal lifecycle as one unit.",
+      "review_required": true,
+      "approval_status": "NOT_APPROVED"
+    }
+  ],
+  "review_schema_candidate": {
+    "name": "SLACK_WORKER_RELEASE_REBINDING_REVIEW",
+    "status": "SCHEMA_CANDIDATE_NOT_ACTIVE",
+    "existing_schema_reused": false,
+    "required_bindings": [
+      "current_manifest_sha256",
+      "candidate_manifest_sha256",
+      "dependency_closure_sha256",
+      "review_unit_sha256",
+      "source_sha256",
+      "downstream_rebinding_plan_sha256",
+      "validator_contract_sha256"
+    ],
+    "required_controls": {
+      "deployment_allowed": false,
+      "runtime_execution_allowed": false,
+      "human_decision_required": true,
+      "expiration_required": true,
+      "single_use_required": true,
+      "superseded_source_handling_required": true
+    }
+  },
+  "candidate_contract": {
+    "release_status": "CANDIDATE_NOT_APPROVED",
+    "deployment_allowed": false,
+    "runtime_execution_allowed": false,
+    "output_root": "/tmp",
+    "overwrite_allowed": false,
+    "production_manifest_write_allowed": false,
+    "unresolved_dynamic_dependency_allowed": false
+  },
+  "validator_hardening_design": [
+    "OPEN_MANIFEST_WITH_O_NOFOLLOW_AND_O_CLOEXEC",
+    "FSTAT_MANIFEST_REGULAR_FILE_AND_NLINK_ONE",
+    "REJECT_ABSOLUTE_SOURCE_PATH",
+    "REJECT_PARENT_TRAVERSAL",
+    "VERIFY_RESOLVED_SOURCE_WITHIN_REPOSITORY_ROOT",
+    "OPEN_SOURCE_WITH_O_NOFOLLOW_AND_O_CLOEXEC",
+    "FSTAT_SOURCE_REGULAR_FILE_AND_NLINK_ONE",
+    "HASH_SOURCE_FROM_THE_SINGLE_OPEN_DESCRIPTOR",
+    "COMPARE_PRE_AND_POST_FSTAT_IDENTITY_SIZE_AND_MTIME",
+    "REJECT_OUTPUT_SYMLINK_AND_SYMLINK_ANCESTRY"
+  ],
+  "governance": {
+    "production_review_created": false,
+    "production_manifest_modified": false,
+    "production_downstream_artifacts_modified": false,
+    "deployment_performed": false,
+    "runtime_executed": false,
+    "slack_network_allowed": false,
+    "credential_content_read_allowed": false,
+    "production_database_access_allowed": false
+  }
+}

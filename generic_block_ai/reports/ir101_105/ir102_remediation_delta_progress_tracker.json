@@ -1,0 +1,83 @@
+{
+  "schema_version": "ir102_remediation_delta_progress_tracker_v1",
+  "phase": "IR102",
+  "generated_at": "2026-05-24T15:10:46.901266+00:00",
+  "source_task_id": "ir101_105_live_trial",
+  "validation_result": "PASS",
+  "validation_failed_checks": [],
+  "validation_warnings": [],
+  "remediation_delta_progress": {
+    "tracker_id": "ir102_delta_ir101_105_live_trial_20260524T151046Z",
+    "generated_at": "2026-05-24T15:10:46.901260+00:00",
+    "source_task_id": "ir101_105_live_trial",
+    "new_cycle_id": "IR71_PLUS_CYCLE_A",
+    "delta_items": [
+      {
+        "item_id": "queue_1",
+        "item": "go_decision_document",
+        "prior_consolidation_status": "PENDING_CONSOLIDATION",
+        "delta_progress_status": "DELTA_OPEN",
+        "progress_percentage": 0,
+        "closure_eligible": false
+      },
+      {
+        "item_id": "queue_2",
+        "item": "release_approver_signature",
+        "prior_consolidation_status": "PENDING_CONSOLIDATION",
+        "delta_progress_status": "DELTA_OPEN",
+        "progress_percentage": 0,
+        "closure_eligible": false
+      },
+      {
+        "item_id": "queue_3",
+        "item": "safety_redeclaration_record",
+        "prior_consolidation_status": "PENDING_CONSOLIDATION",
+        "delta_progress_status": "DELTA_OPEN",
+        "progress_percentage": 0,
+        "closure_eligible": false
+      },
+      {
+        "item_id": "queue_4",
+        "item": "full_test_matrix_record",
+        "prior_consolidation_status": "PENDING_CONSOLIDATION",
+        "delta_progress_status": "DELTA_OPEN",
+        "progress_percentage": 0,
+        "closure_eligible": false
+      },
+      {
+        "item_id": "queue_5",
+        "item": "execution_authorization_record",
+        "prior_consolidation_status": "PENDING_CONSOLIDATION",
+        "delta_progress_status": "DELTA_OPEN",
+        "progress_percentage": 0,
+        "closure_eligible": false
+      }
+    ],
+    "total_delta_count": 5,
+    "open_delta_count": 5,
+    "closed_delta_count": 0,
+    "all_deltas_closed": false,
+    "unlock_eligible": false,
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "tracker_hash": "f65d6882a35fb3067b5bb6b8cb22314bd09bed5bd4d54d9c6b22cbb39d46511a",
+  "safety_gate_snapshot": {
+    "dry_run": "maintained",
+    "OBSERVE": "maintained",
+    "submission_execution_blocked": true,
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "network_transmission_executed": false,
+    "production_release": false,
+    "GitHub_push": "未実行"
+  }
+}

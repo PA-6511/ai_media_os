@@ -1,0 +1,66 @@
+{
+  "phase": "LS-6E",
+  "approval_type": "HUMAN_APPROVAL_REAL_PAYLOAD_ONE_SHOT_DRAFT_CREATION",
+  "approval_status": "TEMPLATE_NOT_ACTUAL_APPROVAL",
+  "approval_label": "NOT_APPROVED_YET",
+  "approved_by": "HUMAN_REQUIRED",
+  "approved_at": "HUMAN_REQUIRED",
+  "target_payload": {
+    "payload_preview": "exchange/logs/start_ls6c_real_draft_payload_preview.json",
+    "payload_result": "exchange/logs/start_ls6c_real_draft_payload_rebuild_dry_run_result.json",
+    "human_review_result": "exchange/logs/start_ls6d_real_payload_human_review_gate_passed_result.json",
+    "title_expected": "2.5次元の誘惑",
+    "asin_expected": "B07X2G67B4",
+    "post_status_expected": "draft",
+    "max_items": 1
+  },
+  "approval_scope": {
+    "scope_description": "Approve only preparation for one future WordPress draft creation using the reviewed LS-6C real payload.",
+    "create_new_draft_only": true,
+    "max_items": 1,
+    "target_payload_only": true,
+    "update_existing_post_allowed": false,
+    "post119_update_allowed": false,
+    "publish_allowed": false,
+    "future_schedule_allowed": false,
+    "delete_allowed": false,
+    "amazon_api_call_allowed": false,
+    "x_post_allowed": false,
+    "credential_secret_output_allowed": false
+  },
+  "approval_checklist": {
+    "ls6c_payload_ready_checked": "HUMAN_REQUIRED",
+    "ls6d_human_review_pass_checked": "HUMAN_REQUIRED",
+    "target_title_checked": "HUMAN_REQUIRED",
+    "target_asin_checked": "HUMAN_REQUIRED",
+    "target_purchase_url_checked": "HUMAN_REQUIRED",
+    "post_status_draft_checked": "HUMAN_REQUIRED",
+    "max_items_one_checked": "HUMAN_REQUIRED",
+    "no_existing_post_update_checked": "HUMAN_REQUIRED",
+    "post119_not_target_checked": "HUMAN_REQUIRED",
+    "publish_not_allowed_checked": "HUMAN_REQUIRED",
+    "wordpress_write_not_allowed_in_this_phase_checked": "HUMAN_REQUIRED",
+    "approval_label_not_consumed_in_this_phase_checked": "HUMAN_REQUIRED"
+  },
+  "decision": {
+    "human_approval_granted": false,
+    "approval_label_consumed": false,
+    "wordpress_write_allowed_by_this_phase": false,
+    "wordpress_draft_creation_allowed_by_this_phase": false,
+    "manual_publish_allowed": false,
+    "requires_runner_preflight": true
+  },
+  "current_phase_execution": {
+    "wordpress_api_call_executed": false,
+    "wordpress_write_executed": false,
+    "wordpress_draft_creation_executed": false,
+    "wordpress_existing_post_update_executed": false,
+    "post119_update_executed": false,
+    "publish_executed": false,
+    "future_schedule_executed": false,
+    "delete_executed": false,
+    "approval_token_consumed": false,
+    "approval_label_consumed": false
+  },
+  "note": "Copy this template to start_ls6e_real_payload_one_shot_draft_creation_approval.json only after explicit human approval. This template itself is not actual approval."
+}

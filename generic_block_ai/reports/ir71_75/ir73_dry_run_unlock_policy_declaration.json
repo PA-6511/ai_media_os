@@ -1,0 +1,45 @@
+{
+  "schema_version": "ir73_dry_run_unlock_policy_declaration_v1",
+  "phase": "IR73",
+  "generated_at": "2026-05-24T14:14:46.089740+00:00",
+  "source_task_id": "ir71_75_live_trial",
+  "validation_result": "PASS",
+  "validation_failed_checks": [],
+  "validation_warnings": [],
+  "policy_declaration": {
+    "declaration_id": "ir73_policy_ir71_75_live_trial_20260524T141446Z",
+    "generated_at": "2026-05-24T14:14:46.089736+00:00",
+    "source_task_id": "ir71_75_live_trial",
+    "new_cycle_id": "IR71_PLUS_CYCLE_A",
+    "unlock_policy": {
+      "requires_explicit_design_approval": true,
+      "requires_named_approver": true,
+      "requires_safety_gate_redeclaration": true,
+      "requires_test_matrix_reexecution": true,
+      "requires_no_go_lock_reference": true
+    },
+    "policy_scope": "design_and_governance_only",
+    "execution_unlock_blocked_by_default": true,
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "policy_hash": "5b241e0cc6295b026fc468a3692103bbb1fed0a9b56df223f2489b873e943a02",
+  "safety_gate_snapshot": {
+    "dry_run": "maintained",
+    "OBSERVE": "maintained",
+    "submission_execution_blocked": true,
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "network_transmission_executed": false,
+    "production_release": false,
+    "GitHub_push": "未実行"
+  }
+}

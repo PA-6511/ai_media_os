@@ -1,0 +1,139 @@
+{
+  "phase_id": "20-8",
+  "phase_name": "App/Tests Implementation Start Authorization Candidate Final Evidence Lock Report Design",
+  "phase_japanese_name": "app/tests 実装開始許可候補の最終証跡固定レポート設計",
+  "purpose": "Design the final evidence lock report for implementation-start authorization candidates, ensuring immutable, signed, and append-only custody of the final judgment package before any GO can be accepted",
+  "layer": "pre_measurement_final_gate_layer",
+  "design_category": "reports_only",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only"
+  },
+  "phase_20_8_scope": {
+    "scope_1_authorization_candidate_package": {
+      "scope_id": "AUTH_CANDIDATE_PACKAGE",
+      "description": "Define package that must be locked",
+      "package_items": [
+        {
+          "item_id": "P1",
+          "item": "Phase 20-7 final judgment report",
+          "required": true
+        },
+        {
+          "item_id": "P2",
+          "item": "Referenced Phase 19-7 and Phase 19-8 report IDs",
+          "required": true
+        },
+        {
+          "item_id": "P3",
+          "item": "Phase 20-2 safety gate report",
+          "required": true
+        },
+        {
+          "item_id": "P4",
+          "item": "Human final approval signature payload",
+          "required": true
+        }
+      ]
+    },
+    "scope_2_final_evidence_locking": {
+      "scope_id": "FINAL_LOCKING",
+      "description": "Final locking process for authorization candidate package",
+      "steps": {
+        "step_L1": {
+          "step_id": "CANONICAL_PACKAGE",
+          "action": "Canonicalize full package JSON"
+        },
+        "step_L2": {
+          "step_id": "PACKAGE_HASH",
+          "action": "Compute SHA-256+ package hash",
+          "output": "authorization_candidate_hash"
+        },
+        "step_L3": {
+          "step_id": "AUTH_LOCK_SIGNATURE",
+          "action": "Sign hash with authority private key",
+          "signature_requirements": [
+            "RSA-2048 or ECDSA-256",
+            "Base64 encoding",
+            "signer_authority_id recorded",
+            "validity window recorded"
+          ]
+        },
+        "step_L4": {
+          "step_id": "APPEND_LOCK_RECORD",
+          "action": "Append lock record to immutable audit trail",
+          "audit_store": "generic_block_ai/reports/audit_trail_impl_start_authorization_candidates.json"
+        },
+        "step_L5": {
+          "step_id": "ROUNDTRIP_VERIFY",
+          "action": "Recompute and verify hash/signature after append"
+        }
+      }
+    },
+    "scope_3_lock_report_structure": {
+      "scope_id": "LOCK_REPORT_STRUCTURE",
+      "description": "Report structure for final evidence lock",
+      "sections": {
+        "section_1_header": {
+          "report_id": "IMPLAUTH_LOCK_<UTC_TIMESTAMP>",
+          "report_type": "implementation_start_authorization_candidate_lock",
+          "generated_at_utc": "RFC3339",
+          "generated_by": "authority_identifier"
+        },
+        "section_2_package_manifest": {
+          "package_items": ["P1", "P2", "P3", "P4"],
+          "manifest_complete": true
+        },
+        "section_3_integrity_results": {
+          "authorization_candidate_hash": "hex",
+          "signature_verification": "PASS | FAIL",
+          "audit_append_status": "PASS | FAIL",
+          "tamper_check_status": "PASS | FAIL"
+        },
+        "section_4_lock_determination": {
+          "lock_status": "LOCK_CONFIRMED | LOCK_FAILED",
+          "if_confirmed": "Candidate package is immutable and ready for Phase 20-9 completion declaration",
+          "if_failed": "Route to Phase 20-5/20-6 remediation"
+        }
+      }
+    },
+    "scope_4_no_go_default_rule": {
+      "scope_id": "NO_GO_DEFAULT_RULE",
+      "description": "Default interpretation while actual gates remain unmet",
+      "rule": "Even with LOCK_CONFIRMED, implementation start remains NO_GO unless Phase 20-7 determination is IMPLEMENTATION_START_GO with all 5 minimum conditions truly MET"
+    }
+  },
+  "phase_20_8_governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "state_invariants": {
+      "integrated_decision": "NO_GO",
+      "receiver_validator_permission": "NOT_EFFECTIVE",
+      "app_implementation_status": "NO_GO",
+      "tests_implementation_status": "NO_GO"
+    },
+    "phase_20_8_completion_criteria": [
+      "Authorization candidate package manifest defined",
+      "Final evidence locking steps L1-L5 defined",
+      "4-section lock report structure defined",
+      "NO_GO default interpretation rule defined",
+      "All JSON validation passed",
+      "No changes to app/ or tests/ directories",
+      "All state invariants maintained"
+    ]
+  }
+}

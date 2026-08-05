@@ -1,0 +1,36 @@
+{
+  "schema_version": "gib.beta05.validation_report.v0.1",
+  "block_id": "GIB",
+  "beta_version": "beta0.5",
+  "final_status": "PASS_DRY_RUN_BETA05_LOCAL_OLLAMA_PREFLIGHT_NO_GENERATE_CALL",
+  "status": "DRY_RUN_PREFLIGHT_ONLY",
+  "production_status": "NO_GO",
+  "real_llm_call_allowed": false,
+  "execution_allowed": false,
+  "generate_call_allowed": false,
+  "chat_call_allowed": false,
+  "ollama_binary_found": false,
+  "ollama_binary_path": null,
+  "all_endpoints_valid": true,
+  "model_allowed": true,
+  "forbidden_host_rejected": true,
+  "generate_api_called": false,
+  "chat_api_called": false,
+  "ready_for_connecting_stage": false,
+  "endpoint_checks": [
+    {
+      "endpoint": "http://127.0.0.1:11434/api/tags",
+      "host_allowed": true,
+      "port_allowed": true,
+      "valid_scheme": true,
+      "valid": true
+    },
+    {
+      "endpoint": "http://localhost:11434/api/tags",
+      "host_allowed": true,
+      "port_allowed": true,
+      "valid_scheme": true,
+      "valid": true
+    }
+  ]
+}

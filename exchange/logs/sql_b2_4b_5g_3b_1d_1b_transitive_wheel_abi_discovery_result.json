@@ -1,0 +1,956 @@
+{
+  "phase": "SQL-B2-4B-5G-3B-1D-1B",
+  "result": "PASS_TRANSITIVE_DEPENDENCY_WHEEL_HASH_ABI_OFFLINE_INSTALL_VALIDATED_NO_PERSISTENT_HOST_CHANGE_NO_GO",
+  "recorded_at": "2026-07-15T13:00:34.511299+00:00",
+  "git": {
+    "branch": "feature/sql-b2-4b-slack-production-readiness",
+    "source_commit": "a69ff2e325ce49e90720ea1fbf715acd92717580",
+    "source_commit_short": "a69ff2e"
+  },
+  "source_artifacts": {
+    "inventory_sha256": "41544ff38215ceb2002b39da4c26a7f9b8cd1a4e7f10e1cb266951a5d28076e8",
+    "discovery_log_sha256": "f60a5013a6825e404a3681b2e4c3b407337891b7a168894b08c50c4c7c202283",
+    "installed_closure_sha256": "8b290c12bfe3e6b181f9ae44d340ea1b9b2d0e652ded626471f2aa5e39a0eef1",
+    "temporary_hash_lock_sha256": "404f695387cb0fa1939275647c73ed0f62ee81c358645a1fbbe69acedd805bc0",
+    "locked_pip_log_sha256": "b04c1f49d6eb691c4e88a88743db51140aad5913ccae8d20ef1f0f652e2fc356",
+    "smoke_install_log_sha256": "49b197bd35f84dfe4be405db52468ea813eebe9484f0d97f94740760fe9e8484",
+    "smoke_import_log_sha256": "9773ad08b00735a35a4115bf6b2c1d101a10ce737c77fae443df18a289d20d44",
+    "smoke_check_log_sha256": "9261363b733079a641c2e4cc9bc46ffa1d8336945a87f807b6cf68847dbc9b09"
+  },
+  "transitive_closure": {
+    "distribution_count": 5,
+    "dependency_edge_count": 3,
+    "distributions": {
+      "sqlalchemy": {
+        "metadata_name": "SQLAlchemy",
+        "version": "2.0.51",
+        "direct_url": {
+          "present": false,
+          "scheme": null,
+          "editable": false
+        },
+        "applicable_requirements": [
+          {
+            "raw": "greenlet>=1; platform_machine == \"aarch64\" or (platform_machine == \"ppc64le\" or (platform_machine == \"x86_64\" or (platform_machine == \"amd64\" or (platform_machine == \"AMD64\" or (platform_machine == \"win32\" or platform_machine == \"WIN32\")))))",
+            "name": "greenlet",
+            "canonical_name": "greenlet",
+            "specifier": ">=1",
+            "marker": "platform_machine == \"aarch64\" or (platform_machine == \"ppc64le\" or (platform_machine == \"x86_64\" or (platform_machine == \"amd64\" or (platform_machine == \"AMD64\" or (platform_machine == \"win32\" or platform_machine == \"WIN32\")))))",
+            "applies": true,
+            "installed_version": "3.5.3"
+          },
+          {
+            "raw": "typing-extensions>=4.6.0",
+            "name": "typing-extensions",
+            "canonical_name": "typing-extensions",
+            "specifier": ">=4.6.0",
+            "marker": null,
+            "applies": true,
+            "installed_version": "4.16.0"
+          }
+        ],
+        "skipped_requirements": [
+          {
+            "raw": "importlib-metadata; python_version < \"3.8\"",
+            "name": "importlib-metadata",
+            "canonical_name": "importlib-metadata",
+            "specifier": "",
+            "marker": "python_version < \"3.8\"",
+            "applies": false
+          },
+          {
+            "raw": "greenlet>=1; extra == \"asyncio\"",
+            "name": "greenlet",
+            "canonical_name": "greenlet",
+            "specifier": ">=1",
+            "marker": "extra == \"asyncio\"",
+            "applies": false
+          },
+          {
+            "raw": "mypy>=0.910; extra == \"mypy\"",
+            "name": "mypy",
+            "canonical_name": "mypy",
+            "specifier": ">=0.910",
+            "marker": "extra == \"mypy\"",
+            "applies": false
+          },
+          {
+            "raw": "pyodbc; extra == \"mssql\"",
+            "name": "pyodbc",
+            "canonical_name": "pyodbc",
+            "specifier": "",
+            "marker": "extra == \"mssql\"",
+            "applies": false
+          },
+          {
+            "raw": "pymssql; extra == \"mssql-pymssql\"",
+            "name": "pymssql",
+            "canonical_name": "pymssql",
+            "specifier": "",
+            "marker": "extra == \"mssql-pymssql\"",
+            "applies": false
+          },
+          {
+            "raw": "pyodbc; extra == \"mssql-pyodbc\"",
+            "name": "pyodbc",
+            "canonical_name": "pyodbc",
+            "specifier": "",
+            "marker": "extra == \"mssql-pyodbc\"",
+            "applies": false
+          },
+          {
+            "raw": "mysqlclient>=1.4.0; extra == \"mysql\"",
+            "name": "mysqlclient",
+            "canonical_name": "mysqlclient",
+            "specifier": ">=1.4.0",
+            "marker": "extra == \"mysql\"",
+            "applies": false
+          },
+          {
+            "raw": "mysql-connector-python; extra == \"mysql-connector\"",
+            "name": "mysql-connector-python",
+            "canonical_name": "mysql-connector-python",
+            "specifier": "",
+            "marker": "extra == \"mysql-connector\"",
+            "applies": false
+          },
+          {
+            "raw": "mariadb!=1.1.10,!=1.1.2,!=1.1.5,>=1.0.1; extra == \"mariadb-connector\"",
+            "name": "mariadb",
+            "canonical_name": "mariadb",
+            "specifier": "!=1.1.10,!=1.1.2,!=1.1.5,>=1.0.1",
+            "marker": "extra == \"mariadb-connector\"",
+            "applies": false
+          },
+          {
+            "raw": "cx_oracle>=8; extra == \"oracle\"",
+            "name": "cx_oracle",
+            "canonical_name": "cx-oracle",
+            "specifier": ">=8",
+            "marker": "extra == \"oracle\"",
+            "applies": false
+          },
+          {
+            "raw": "oracledb>=1.0.1; extra == \"oracle-oracledb\"",
+            "name": "oracledb",
+            "canonical_name": "oracledb",
+            "specifier": ">=1.0.1",
+            "marker": "extra == \"oracle-oracledb\"",
+            "applies": false
+          },
+          {
+            "raw": "psycopg2>=2.7; extra == \"postgresql\"",
+            "name": "psycopg2",
+            "canonical_name": "psycopg2",
+            "specifier": ">=2.7",
+            "marker": "extra == \"postgresql\"",
+            "applies": false
+          },
+          {
+            "raw": "pg8000>=1.29.1; extra == \"postgresql-pg8000\"",
+            "name": "pg8000",
+            "canonical_name": "pg8000",
+            "specifier": ">=1.29.1",
+            "marker": "extra == \"postgresql-pg8000\"",
+            "applies": false
+          },
+          {
+            "raw": "greenlet>=1; extra == \"postgresql-asyncpg\"",
+            "name": "greenlet",
+            "canonical_name": "greenlet",
+            "specifier": ">=1",
+            "marker": "extra == \"postgresql-asyncpg\"",
+            "applies": false
+          },
+          {
+            "raw": "asyncpg; extra == \"postgresql-asyncpg\"",
+            "name": "asyncpg",
+            "canonical_name": "asyncpg",
+            "specifier": "",
+            "marker": "extra == \"postgresql-asyncpg\"",
+            "applies": false
+          },
+          {
+            "raw": "psycopg2-binary; extra == \"postgresql-psycopg2binary\"",
+            "name": "psycopg2-binary",
+            "canonical_name": "psycopg2-binary",
+            "specifier": "",
+            "marker": "extra == \"postgresql-psycopg2binary\"",
+            "applies": false
+          },
+          {
+            "raw": "psycopg2cffi; extra == \"postgresql-psycopg2cffi\"",
+            "name": "psycopg2cffi",
+            "canonical_name": "psycopg2cffi",
+            "specifier": "",
+            "marker": "extra == \"postgresql-psycopg2cffi\"",
+            "applies": false
+          },
+          {
+            "raw": "psycopg>=3.0.7; extra == \"postgresql-psycopg\"",
+            "name": "psycopg",
+            "canonical_name": "psycopg",
+            "specifier": ">=3.0.7",
+            "marker": "extra == \"postgresql-psycopg\"",
+            "applies": false
+          },
+          {
+            "raw": "psycopg[binary]>=3.0.7; extra == \"postgresql-psycopgbinary\"",
+            "name": "psycopg",
+            "canonical_name": "psycopg",
+            "specifier": ">=3.0.7",
+            "marker": "extra == \"postgresql-psycopgbinary\"",
+            "applies": false
+          },
+          {
+            "raw": "pymysql; extra == \"pymysql\"",
+            "name": "pymysql",
+            "canonical_name": "pymysql",
+            "specifier": "",
+            "marker": "extra == \"pymysql\"",
+            "applies": false
+          },
+          {
+            "raw": "greenlet>=1; extra == \"aiomysql\"",
+            "name": "greenlet",
+            "canonical_name": "greenlet",
+            "specifier": ">=1",
+            "marker": "extra == \"aiomysql\"",
+            "applies": false
+          },
+          {
+            "raw": "aiomysql>=0.2.0; extra == \"aiomysql\"",
+            "name": "aiomysql",
+            "canonical_name": "aiomysql",
+            "specifier": ">=0.2.0",
+            "marker": "extra == \"aiomysql\"",
+            "applies": false
+          },
+          {
+            "raw": "greenlet>=1; extra == \"aioodbc\"",
+            "name": "greenlet",
+            "canonical_name": "greenlet",
+            "specifier": ">=1",
+            "marker": "extra == \"aioodbc\"",
+            "applies": false
+          },
+          {
+            "raw": "aioodbc; extra == \"aioodbc\"",
+            "name": "aioodbc",
+            "canonical_name": "aioodbc",
+            "specifier": "",
+            "marker": "extra == \"aioodbc\"",
+            "applies": false
+          },
+          {
+            "raw": "greenlet>=1; extra == \"asyncmy\"",
+            "name": "greenlet",
+            "canonical_name": "greenlet",
+            "specifier": ">=1",
+            "marker": "extra == \"asyncmy\"",
+            "applies": false
+          },
+          {
+            "raw": "asyncmy!=0.2.4,!=0.2.6,>=0.2.3; extra == \"asyncmy\"",
+            "name": "asyncmy",
+            "canonical_name": "asyncmy",
+            "specifier": "!=0.2.4,!=0.2.6,>=0.2.3",
+            "marker": "extra == \"asyncmy\"",
+            "applies": false
+          },
+          {
+            "raw": "greenlet>=1; extra == \"aiosqlite\"",
+            "name": "greenlet",
+            "canonical_name": "greenlet",
+            "specifier": ">=1",
+            "marker": "extra == \"aiosqlite\"",
+            "applies": false
+          },
+          {
+            "raw": "aiosqlite; extra == \"aiosqlite\"",
+            "name": "aiosqlite",
+            "canonical_name": "aiosqlite",
+            "specifier": "",
+            "marker": "extra == \"aiosqlite\"",
+            "applies": false
+          },
+          {
+            "raw": "typing_extensions!=3.10.0.1; extra == \"aiosqlite\"",
+            "name": "typing_extensions",
+            "canonical_name": "typing-extensions",
+            "specifier": "!=3.10.0.1",
+            "marker": "extra == \"aiosqlite\"",
+            "applies": false
+          },
+          {
+            "raw": "sqlcipher3_binary; extra == \"sqlcipher\"",
+            "name": "sqlcipher3_binary",
+            "canonical_name": "sqlcipher3-binary",
+            "specifier": "",
+            "marker": "extra == \"sqlcipher\"",
+            "applies": false
+          }
+        ]
+      },
+      "slack-bolt": {
+        "metadata_name": "slack_bolt",
+        "version": "1.29.0",
+        "direct_url": {
+          "present": false,
+          "scheme": null,
+          "editable": false
+        },
+        "applicable_requirements": [
+          {
+            "raw": "slack_sdk<4,>=3.38.0",
+            "name": "slack_sdk",
+            "canonical_name": "slack-sdk",
+            "specifier": "<4,>=3.38.0",
+            "marker": null,
+            "applies": true,
+            "installed_version": "3.43.0"
+          }
+        ],
+        "skipped_requirements": []
+      },
+      "greenlet": {
+        "metadata_name": "greenlet",
+        "version": "3.5.3",
+        "direct_url": {
+          "present": false,
+          "scheme": null,
+          "editable": false
+        },
+        "applicable_requirements": [],
+        "skipped_requirements": [
+          {
+            "raw": "Sphinx; extra == \"docs\"",
+            "name": "Sphinx",
+            "canonical_name": "sphinx",
+            "specifier": "",
+            "marker": "extra == \"docs\"",
+            "applies": false
+          },
+          {
+            "raw": "furo; extra == \"docs\"",
+            "name": "furo",
+            "canonical_name": "furo",
+            "specifier": "",
+            "marker": "extra == \"docs\"",
+            "applies": false
+          },
+          {
+            "raw": "objgraph; extra == \"test\"",
+            "name": "objgraph",
+            "canonical_name": "objgraph",
+            "specifier": "",
+            "marker": "extra == \"test\"",
+            "applies": false
+          },
+          {
+            "raw": "psutil; extra == \"test\"",
+            "name": "psutil",
+            "canonical_name": "psutil",
+            "specifier": "",
+            "marker": "extra == \"test\"",
+            "applies": false
+          },
+          {
+            "raw": "setuptools; extra == \"test\"",
+            "name": "setuptools",
+            "canonical_name": "setuptools",
+            "specifier": "",
+            "marker": "extra == \"test\"",
+            "applies": false
+          }
+        ]
+      },
+      "typing-extensions": {
+        "metadata_name": "typing_extensions",
+        "version": "4.16.0",
+        "direct_url": {
+          "present": false,
+          "scheme": null,
+          "editable": false
+        },
+        "applicable_requirements": [],
+        "skipped_requirements": []
+      },
+      "slack-sdk": {
+        "metadata_name": "slack_sdk",
+        "version": "3.43.0",
+        "direct_url": {
+          "present": false,
+          "scheme": null,
+          "editable": false
+        },
+        "applicable_requirements": [],
+        "skipped_requirements": [
+          {
+            "raw": "aiodns>1.0; extra == \"optional\"",
+            "name": "aiodns",
+            "canonical_name": "aiodns",
+            "specifier": ">1.0",
+            "marker": "extra == \"optional\"",
+            "applies": false
+          },
+          {
+            "raw": "aiohttp<3.9,>=3.7.3; python_version == \"3.7\" and extra == \"optional\"",
+            "name": "aiohttp",
+            "canonical_name": "aiohttp",
+            "specifier": "<3.9,>=3.7.3",
+            "marker": "python_version == \"3.7\" and extra == \"optional\"",
+            "applies": false
+          },
+          {
+            "raw": "aiohttp<3.11,>=3.7.3; python_version == \"3.8\" and extra == \"optional\"",
+            "name": "aiohttp",
+            "canonical_name": "aiohttp",
+            "specifier": "<3.11,>=3.7.3",
+            "marker": "python_version == \"3.8\" and extra == \"optional\"",
+            "applies": false
+          },
+          {
+            "raw": "aiohttp<4,>=3.13.5; python_version >= \"3.9\" and extra == \"optional\"",
+            "name": "aiohttp",
+            "canonical_name": "aiohttp",
+            "specifier": "<4,>=3.13.5",
+            "marker": "python_version >= \"3.9\" and extra == \"optional\"",
+            "applies": false
+          },
+          {
+            "raw": "boto3<=2; extra == \"optional\"",
+            "name": "boto3",
+            "canonical_name": "boto3",
+            "specifier": "<=2",
+            "marker": "extra == \"optional\"",
+            "applies": false
+          },
+          {
+            "raw": "SQLAlchemy<3,>=2.0.49; extra == \"optional\"",
+            "name": "SQLAlchemy",
+            "canonical_name": "sqlalchemy",
+            "specifier": "<3,>=2.0.49",
+            "marker": "extra == \"optional\"",
+            "applies": false
+          },
+          {
+            "raw": "websockets<16,>=9.1; extra == \"optional\"",
+            "name": "websockets",
+            "canonical_name": "websockets",
+            "specifier": "<16,>=9.1",
+            "marker": "extra == \"optional\"",
+            "applies": false
+          },
+          {
+            "raw": "websocket-client<2,>=1; extra == \"optional\"",
+            "name": "websocket-client",
+            "canonical_name": "websocket-client",
+            "specifier": "<2,>=1",
+            "marker": "extra == \"optional\"",
+            "applies": false
+          }
+        ]
+      }
+    }
+  },
+  "wheel_lock": {
+    "wheel_count": 5,
+    "wheelhouse_total_bytes": 4455972,
+    "wheels": {
+      "greenlet": {
+        "metadata_name": "greenlet",
+        "version": "3.5.3",
+        "filename": "greenlet-3.5.3-cp310-cp310-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl",
+        "sha256": "9bcd2d72ccd70a1ec68ba6ef93e7fbb4420ef9997dabc7010d893bd4015e0bec",
+        "size": 615675,
+        "root_is_purelib": false,
+        "tags": [
+          "cp310-cp310-manylinux_2_24_x86_64",
+          "cp310-cp310-manylinux_2_28_x86_64"
+        ],
+        "compatible_tags": [
+          "cp310-cp310-manylinux_2_24_x86_64",
+          "cp310-cp310-manylinux_2_28_x86_64"
+        ],
+        "native_members": [
+          "greenlet/_greenlet.cpython-310-x86_64-linux-gnu.so",
+          "greenlet/tests/_test_extension.cpython-310-x86_64-linux-gnu.so",
+          "greenlet/tests/_test_extension_cpp.cpython-310-x86_64-linux-gnu.so"
+        ],
+        "applicable_requirements": [],
+        "extract_directory": "/tmp/sql_b2_4b_5g_3b_1d_1b_locked_wheel_extract/greenlet"
+      },
+      "slack-bolt": {
+        "metadata_name": "slack_bolt",
+        "version": "1.29.0",
+        "filename": "slack_bolt-1.29.0-py2.py3-none-any.whl",
+        "sha256": "1835b66b778158f3af0da77603aa18d7dfd82fd9b9a985e25c752f95050ab826",
+        "size": 235345,
+        "root_is_purelib": true,
+        "tags": [
+          "py2-none-any",
+          "py3-none-any"
+        ],
+        "compatible_tags": [
+          "py3-none-any"
+        ],
+        "native_members": [],
+        "applicable_requirements": [
+          {
+            "from": "slack-bolt",
+            "to": "slack-sdk",
+            "requirement": "slack_sdk<4,>=3.38.0",
+            "resolved_version": "3.43.0"
+          }
+        ],
+        "extract_directory": "/tmp/sql_b2_4b_5g_3b_1d_1b_locked_wheel_extract/slack-bolt"
+      },
+      "slack-sdk": {
+        "metadata_name": "slack_sdk",
+        "version": "3.43.0",
+        "filename": "slack_sdk-3.43.0-py2.py3-none-any.whl",
+        "sha256": "4b6557c65577fc172f685af218b811f9f3b4909e24cddd839ada09565f10c585",
+        "size": 315866,
+        "root_is_purelib": true,
+        "tags": [
+          "py2-none-any",
+          "py3-none-any"
+        ],
+        "compatible_tags": [
+          "py3-none-any"
+        ],
+        "native_members": [],
+        "applicable_requirements": [],
+        "extract_directory": "/tmp/sql_b2_4b_5g_3b_1d_1b_locked_wheel_extract/slack-sdk"
+      },
+      "sqlalchemy": {
+        "metadata_name": "SQLAlchemy",
+        "version": "2.0.51",
+        "filename": "sqlalchemy-2.0.51-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+        "sha256": "2e54ff2dd657f2e3e0fbf2b097db1182f7bfea263eca4353f00065bae2a67c3d",
+        "size": 3243515,
+        "root_is_purelib": false,
+        "tags": [
+          "cp310-cp310-manylinux2014_x86_64",
+          "cp310-cp310-manylinux_2_17_x86_64",
+          "cp310-cp310-manylinux_2_28_x86_64"
+        ],
+        "compatible_tags": [
+          "cp310-cp310-manylinux2014_x86_64",
+          "cp310-cp310-manylinux_2_17_x86_64",
+          "cp310-cp310-manylinux_2_28_x86_64"
+        ],
+        "native_members": [
+          "sqlalchemy/cyextension/collections.cpython-310-x86_64-linux-gnu.so",
+          "sqlalchemy/cyextension/immutabledict.cpython-310-x86_64-linux-gnu.so",
+          "sqlalchemy/cyextension/processors.cpython-310-x86_64-linux-gnu.so",
+          "sqlalchemy/cyextension/resultproxy.cpython-310-x86_64-linux-gnu.so",
+          "sqlalchemy/cyextension/util.cpython-310-x86_64-linux-gnu.so"
+        ],
+        "applicable_requirements": [
+          {
+            "from": "sqlalchemy",
+            "to": "greenlet",
+            "requirement": "greenlet>=1; platform_machine == \"aarch64\" or (platform_machine == \"ppc64le\" or (platform_machine == \"x86_64\" or (platform_machine == \"amd64\" or (platform_machine == \"AMD64\" or (platform_machine == \"win32\" or platform_machine == \"WIN32\")))))",
+            "resolved_version": "3.5.3"
+          },
+          {
+            "from": "sqlalchemy",
+            "to": "typing-extensions",
+            "requirement": "typing-extensions>=4.6.0",
+            "resolved_version": "4.16.0"
+          }
+        ],
+        "extract_directory": "/tmp/sql_b2_4b_5g_3b_1d_1b_locked_wheel_extract/sqlalchemy"
+      },
+      "typing-extensions": {
+        "metadata_name": "typing_extensions",
+        "version": "4.16.0",
+        "filename": "typing_extensions-4.16.0-py3-none-any.whl",
+        "sha256": "481caa481374e813c1b176ada14e97f1f67a4539ce9cfeb3f350d78d6370c2e8",
+        "size": 45571,
+        "root_is_purelib": true,
+        "tags": [
+          "py3-none-any"
+        ],
+        "compatible_tags": [
+          "py3-none-any"
+        ],
+        "native_members": [],
+        "applicable_requirements": [],
+        "extract_directory": "/tmp/sql_b2_4b_5g_3b_1d_1b_locked_wheel_extract/typing-extensions"
+      }
+    },
+    "repository_hash_lock_path": "config/slack_worker_release_requirements_hash_locked.txt",
+    "repository_hash_lock_sha256": "404f695387cb0fa1939275647c73ed0f62ee81c358645a1fbbe69acedd805bc0",
+    "all_wheels_match_installed_versions": true,
+    "all_wheels_compatible_with_host": true,
+    "zip_crc_validation_passed": true,
+    "hash_lock_complete": true
+  },
+  "offline_rebuild_validation": {
+    "hash_locked_install_passed": true,
+    "runtime_import_passed": true,
+    "pip_check_passed": true,
+    "network_used_during_install": false,
+    "version_source": "importlib.metadata"
+  },
+  "native_abi": {
+    "native_extension_count": 8,
+    "native_distributions": [
+      "greenlet",
+      "sqlalchemy"
+    ],
+    "host_machine": "x86_64",
+    "host_libc": "glibc",
+    "host_glibc_version": "2.35",
+    "architecture_validation_passed": true,
+    "shared_library_resolution_passed": true,
+    "glibc_compatibility_passed": true,
+    "ldd_executed": false,
+    "files": [
+      {
+        "distribution": "greenlet",
+        "wheel_filename": "greenlet-3.5.3-cp310-cp310-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl",
+        "member": "greenlet/_greenlet.cpython-310-x86_64-linux-gnu.so",
+        "sha256": "6cbb26e7345307a7941e1677980b271ddfe26b665cead04e633d3e0f1056032a",
+        "file_description": "ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, BuildID[sha1]=2a861b82651a15b231d69df637c961f8c60faeed, with debug_info, not stripped",
+        "elf_class": "ELF64",
+        "elf_machine": "Advanced Micro Devices X86-64",
+        "needed_libraries": [
+          "ld-linux-x86-64.so.2",
+          "libc.so.6",
+          "libgcc_s.so.1",
+          "libm.so.6",
+          "libpthread.so.0",
+          "libstdc++.so.6"
+        ],
+        "library_resolution": {
+          "ld-linux-x86-64.so.2": {
+            "internal_to_wheelhouse": false,
+            "available_on_host": true,
+            "resolved": true
+          },
+          "libc.so.6": {
+            "internal_to_wheelhouse": false,
+            "available_on_host": true,
+            "resolved": true
+          },
+          "libgcc_s.so.1": {
+            "internal_to_wheelhouse": false,
+            "available_on_host": true,
+            "resolved": true
+          },
+          "libm.so.6": {
+            "internal_to_wheelhouse": false,
+            "available_on_host": true,
+            "resolved": true
+          },
+          "libpthread.so.0": {
+            "internal_to_wheelhouse": false,
+            "available_on_host": true,
+            "resolved": true
+          },
+          "libstdc++.so.6": {
+            "internal_to_wheelhouse": false,
+            "available_on_host": true,
+            "resolved": true
+          }
+        },
+        "glibc_versions": [
+          "2.2.5",
+          "2.3",
+          "2.14"
+        ],
+        "maximum_glibc_required": "2.14",
+        "host_glibc_version": "2.35",
+        "host_glibc_compatible": true
+      },
+      {
+        "distribution": "greenlet",
+        "wheel_filename": "greenlet-3.5.3-cp310-cp310-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl",
+        "member": "greenlet/tests/_test_extension.cpython-310-x86_64-linux-gnu.so",
+        "sha256": "fba6719a896f478691d8eb03ef244eb7138dff0d4fdcf3ef217486f7e8ab82ff",
+        "file_description": "ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, BuildID[sha1]=c4c5983b52b10cf3f946a0246447c08fb2fc18f9, not stripped",
+        "elf_class": "ELF64",
+        "elf_machine": "Advanced Micro Devices X86-64",
+        "needed_libraries": [
+          "libc.so.6",
+          "libpthread.so.0"
+        ],
+        "library_resolution": {
+          "libc.so.6": {
+            "internal_to_wheelhouse": false,
+            "available_on_host": true,
+            "resolved": true
+          },
+          "libpthread.so.0": {
+            "internal_to_wheelhouse": false,
+            "available_on_host": true,
+            "resolved": true
+          }
+        },
+        "glibc_versions": [
+          "2.2.5"
+        ],
+        "maximum_glibc_required": "2.2.5",
+        "host_glibc_version": "2.35",
+        "host_glibc_compatible": true
+      },
+      {
+        "distribution": "greenlet",
+        "wheel_filename": "greenlet-3.5.3-cp310-cp310-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl",
+        "member": "greenlet/tests/_test_extension_cpp.cpython-310-x86_64-linux-gnu.so",
+        "sha256": "6dcb3bb9b0bb47b8c9e1086d9beef29a287189e1214ad0627309d1c654367975",
+        "file_description": "ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, BuildID[sha1]=2b87acbc4ea10f90170e989dca56f340648b7f03, with debug_info, not stripped",
+        "elf_class": "ELF64",
+        "elf_machine": "Advanced Micro Devices X86-64",
+        "needed_libraries": [
+          "libc.so.6",
+          "libgcc_s.so.1",
+          "libm.so.6",
+          "libpthread.so.0",
+          "libstdc++.so.6"
+        ],
+        "library_resolution": {
+          "libc.so.6": {
+            "internal_to_wheelhouse": false,
+            "available_on_host": true,
+            "resolved": true
+          },
+          "libgcc_s.so.1": {
+            "internal_to_wheelhouse": false,
+            "available_on_host": true,
+            "resolved": true
+          },
+          "libm.so.6": {
+            "internal_to_wheelhouse": false,
+            "available_on_host": true,
+            "resolved": true
+          },
+          "libpthread.so.0": {
+            "internal_to_wheelhouse": false,
+            "available_on_host": true,
+            "resolved": true
+          },
+          "libstdc++.so.6": {
+            "internal_to_wheelhouse": false,
+            "available_on_host": true,
+            "resolved": true
+          }
+        },
+        "glibc_versions": [
+          "2.2.5"
+        ],
+        "maximum_glibc_required": "2.2.5",
+        "host_glibc_version": "2.35",
+        "host_glibc_compatible": true
+      },
+      {
+        "distribution": "sqlalchemy",
+        "wheel_filename": "sqlalchemy-2.0.51-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+        "member": "sqlalchemy/cyextension/collections.cpython-310-x86_64-linux-gnu.so",
+        "sha256": "86913a7aae0aec9bb9032854e74f3d2cefe7402c032a5c7c4a8dfa4eaff293e3",
+        "file_description": "ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, BuildID[sha1]=fc62e6d7be668da3b75d01a0750fcdbaafe78649, with debug_info, not stripped",
+        "elf_class": "ELF64",
+        "elf_machine": "Advanced Micro Devices X86-64",
+        "needed_libraries": [
+          "libc.so.6",
+          "libpthread.so.0"
+        ],
+        "library_resolution": {
+          "libc.so.6": {
+            "internal_to_wheelhouse": false,
+            "available_on_host": true,
+            "resolved": true
+          },
+          "libpthread.so.0": {
+            "internal_to_wheelhouse": false,
+            "available_on_host": true,
+            "resolved": true
+          }
+        },
+        "glibc_versions": [
+          "2.2.5",
+          "2.14"
+        ],
+        "maximum_glibc_required": "2.14",
+        "host_glibc_version": "2.35",
+        "host_glibc_compatible": true
+      },
+      {
+        "distribution": "sqlalchemy",
+        "wheel_filename": "sqlalchemy-2.0.51-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+        "member": "sqlalchemy/cyextension/immutabledict.cpython-310-x86_64-linux-gnu.so",
+        "sha256": "b0af2c9eda28e4058c93e9a8fa4864346a2682085e060cc799cc91229e888aa1",
+        "file_description": "ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, BuildID[sha1]=42ac59428466186a1528a2ca74af50ee7d50a4e8, with debug_info, not stripped",
+        "elf_class": "ELF64",
+        "elf_machine": "Advanced Micro Devices X86-64",
+        "needed_libraries": [
+          "libc.so.6",
+          "libpthread.so.0"
+        ],
+        "library_resolution": {
+          "libc.so.6": {
+            "internal_to_wheelhouse": false,
+            "available_on_host": true,
+            "resolved": true
+          },
+          "libpthread.so.0": {
+            "internal_to_wheelhouse": false,
+            "available_on_host": true,
+            "resolved": true
+          }
+        },
+        "glibc_versions": [
+          "2.2.5",
+          "2.14"
+        ],
+        "maximum_glibc_required": "2.14",
+        "host_glibc_version": "2.35",
+        "host_glibc_compatible": true
+      },
+      {
+        "distribution": "sqlalchemy",
+        "wheel_filename": "sqlalchemy-2.0.51-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+        "member": "sqlalchemy/cyextension/processors.cpython-310-x86_64-linux-gnu.so",
+        "sha256": "f3cac83b67616b2df287ca40acdbc227d28f7bd662f737346fd1fac6f575039e",
+        "file_description": "ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, BuildID[sha1]=ec107e583e0347e232fd47d3f4ec974e3e95bd8c, with debug_info, not stripped",
+        "elf_class": "ELF64",
+        "elf_machine": "Advanced Micro Devices X86-64",
+        "needed_libraries": [
+          "libc.so.6",
+          "libpthread.so.0"
+        ],
+        "library_resolution": {
+          "libc.so.6": {
+            "internal_to_wheelhouse": false,
+            "available_on_host": true,
+            "resolved": true
+          },
+          "libpthread.so.0": {
+            "internal_to_wheelhouse": false,
+            "available_on_host": true,
+            "resolved": true
+          }
+        },
+        "glibc_versions": [
+          "2.2.5"
+        ],
+        "maximum_glibc_required": "2.2.5",
+        "host_glibc_version": "2.35",
+        "host_glibc_compatible": true
+      },
+      {
+        "distribution": "sqlalchemy",
+        "wheel_filename": "sqlalchemy-2.0.51-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+        "member": "sqlalchemy/cyextension/resultproxy.cpython-310-x86_64-linux-gnu.so",
+        "sha256": "9e058718c73fd2db1fc340c6ae208cd2681cdd713ca07fc0363c299d11f3fdec",
+        "file_description": "ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, BuildID[sha1]=b890a5a385da316137cffc9fc334c6fbb5a98e03, with debug_info, not stripped",
+        "elf_class": "ELF64",
+        "elf_machine": "Advanced Micro Devices X86-64",
+        "needed_libraries": [
+          "libc.so.6",
+          "libpthread.so.0"
+        ],
+        "library_resolution": {
+          "libc.so.6": {
+            "internal_to_wheelhouse": false,
+            "available_on_host": true,
+            "resolved": true
+          },
+          "libpthread.so.0": {
+            "internal_to_wheelhouse": false,
+            "available_on_host": true,
+            "resolved": true
+          }
+        },
+        "glibc_versions": [
+          "2.2.5"
+        ],
+        "maximum_glibc_required": "2.2.5",
+        "host_glibc_version": "2.35",
+        "host_glibc_compatible": true
+      },
+      {
+        "distribution": "sqlalchemy",
+        "wheel_filename": "sqlalchemy-2.0.51-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+        "member": "sqlalchemy/cyextension/util.cpython-310-x86_64-linux-gnu.so",
+        "sha256": "d77a8aa2920bc053e395869f7789c97e83403907c8bb7961150b4ac0c0a72ace",
+        "file_description": "ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, BuildID[sha1]=09d57cab66e825a1f58181b47d8a73fcc1e4649a, with debug_info, not stripped",
+        "elf_class": "ELF64",
+        "elf_machine": "Advanced Micro Devices X86-64",
+        "needed_libraries": [
+          "libc.so.6",
+          "libpthread.so.0"
+        ],
+        "library_resolution": {
+          "libc.so.6": {
+            "internal_to_wheelhouse": false,
+            "available_on_host": true,
+            "resolved": true
+          },
+          "libpthread.so.0": {
+            "internal_to_wheelhouse": false,
+            "available_on_host": true,
+            "resolved": true
+          }
+        },
+        "glibc_versions": [
+          "2.2.5",
+          "2.14"
+        ],
+        "maximum_glibc_required": "2.14",
+        "host_glibc_version": "2.35",
+        "host_glibc_compatible": true
+      }
+    ]
+  },
+  "secret_safety": {
+    "slack_env_content_read": false,
+    "slack_env_content_hashed": false,
+    "slack_env_content_output": false
+  },
+  "database_safety": {
+    "production_sha256": "a4c5c6b3c9f016cd745cdb9c531c807fe5bc4a3ac28f9422609dfa96cd7b37d8",
+    "production_database_unchanged": true,
+    "readiness_quick_check": "ok",
+    "readiness_approval_count": 0
+  },
+  "systemd_state": {
+    "need_daemon_reload": "no",
+    "active_state": "inactive",
+    "sub_state": "dead",
+    "unit_file_state": "disabled",
+    "main_pid": "0"
+  },
+  "decision": {
+    "transitive_distribution_closure_completed": true,
+    "wheel_hash_lock_completed": true,
+    "wheel_compatibility_validation_completed": true,
+    "native_abi_review_completed": true,
+    "native_shared_library_review_completed": true,
+    "offline_hash_locked_install_completed": true,
+    "root_managed_release_bundle_install_executed": false,
+    "secret_boundary_migration_executed": false,
+    "persistent_host_change_allowed": "HOLD",
+    "unit_change_allowed": "HOLD",
+    "gate_creation_allowed": "HOLD",
+    "service_start_allowed": false,
+    "unit_enable_allowed": false,
+    "autostart_approval": "NOT_APPROVED",
+    "final_decision": "NO_GO"
+  },
+  "governance": {
+    "production_status": "NO_GO",
+    "safety_state": "TRANSITIVE_DEPENDENCY_WHEEL_ABI_AND_OFFLINE_REBUILD_VALIDATED_ROOT_RELEASE_INSTALL_PENDING",
+    "repository_hash_lock_recorded": true,
+    "persistent_host_change_allowed": false,
+    "production_database_write_allowed": false,
+    "unit_change_allowed": false,
+    "gate_creation_allowed": false,
+    "service_start_allowed": false,
+    "unit_enable_allowed": false
+  }
+}

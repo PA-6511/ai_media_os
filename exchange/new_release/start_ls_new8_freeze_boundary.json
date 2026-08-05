@@ -1,0 +1,15 @@
+{
+  "phase": "LS-NEW-8",
+  "document_type": "START_LS_NEW8_FREEZE_BOUNDARY",
+  "status": "LSNEW8_FREEZE_BOUNDARY_READY_NO_EXECUTION",
+  "freeze_required_before_later_execution": true,
+  "freeze_scope": [
+    "LS-NEW-6 WP draft payload prep",
+    "LS-NEW-7 runner prep manifest",
+    "LS-NEW-7 safety contract",
+    "LS-NEW-8 final preflight manifest"
+  ],
+  "frozen_in_current_phase": false,
+  "freeze_execution_allowed": false,
+  "execution_allowed": false
+}

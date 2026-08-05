@@ -1,0 +1,185 @@
+{
+  "phase_id": "20-6",
+  "phase_name": "App/Tests Implementation Start Pre-Launch Final ABORT Conditions Design",
+  "phase_japanese_name": "app/tests 実装開始直前の最終ABORT条件設計",
+  "purpose": "Design final ABORT conditions that must be checked immediately before implementation-start execution, preventing accidental or unsafe transition from design-only state to code implementation",
+  "layer": "pre_measurement_final_gate_layer",
+  "design_category": "reports_only",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only"
+  },
+  "phase_20_6_scope": {
+    "scope_1_abort_categories": {
+      "scope_id": "ABORT_CATEGORIES",
+      "description": "Categorize ABORT triggers",
+      "categories": {
+        "ab1_gate_breakdown": {
+          "category_id": "AB1",
+          "trigger": "Any of the 5 minimum GO conditions becomes false at final pre-launch check",
+          "example": "dual_gate regressed to LOCKED after earlier evaluation",
+          "outcome": "ABORT"
+        },
+        "ab2_evidence_or_signature_invalid": {
+          "category_id": "AB2",
+          "trigger": "Phase 20-4 lock verification fail or final authority signature invalid/expired/revoked",
+          "outcome": "ABORT"
+        },
+        "ab3_state_invariant_violation": {
+          "category_id": "AB3",
+          "trigger": "Unexpected state drift or unauthorized status change detected",
+          "example": "app_implementation_status changed without valid judgment",
+          "outcome": "ABORT + HALT"
+        },
+        "ab4_unresolved_rejection_or_halt": {
+          "category_id": "AB4",
+          "trigger": "Any open rejection/HALT from Phase 20-5",
+          "outcome": "ABORT"
+        },
+        "ab5_environment_or_scope_mismatch": {
+          "category_id": "AB5",
+          "trigger": "Implementation target scope differs from authorized scope or environment changed critically",
+          "outcome": "ABORT"
+        }
+      }
+    },
+    "scope_2_pre_launch_abort_checklist": {
+      "scope_id": "PRE_LAUNCH_ABORT_CHECKLIST",
+      "description": "Immediate pre-launch checklist run right before any implementation task creation",
+      "checklist": {
+        "check_1": {
+          "check_id": "PL1",
+          "question": "integrated_decision == GO ?",
+          "required": true,
+          "fail_action": "ABORT"
+        },
+        "check_2": {
+          "check_id": "PL2",
+          "question": "receiver_validator_permission == EFFECTIVE ?",
+          "required": true,
+          "fail_action": "ABORT"
+        },
+        "check_3": {
+          "check_id": "PL3",
+          "question": "dual_gate == UNLOCKED ?",
+          "required": true,
+          "fail_action": "ABORT"
+        },
+        "check_4": {
+          "check_id": "PL4",
+          "question": "safety_gate == CLEARED ?",
+          "required": true,
+          "fail_action": "ABORT"
+        },
+        "check_5": {
+          "check_id": "PL5",
+          "question": "human final approval signature valid and active ?",
+          "required": true,
+          "fail_action": "ABORT"
+        },
+        "check_6": {
+          "check_id": "PL6",
+          "question": "Phase 20-4 evidence lock checks TD1-TD4 all pass ?",
+          "required": true,
+          "fail_action": "ABORT"
+        },
+        "check_7": {
+          "check_id": "PL7",
+          "question": "No open RC/NO-GO/HALT items from Phase 20-5 ?",
+          "required": true,
+          "fail_action": "ABORT"
+        },
+        "check_8": {
+          "check_id": "PL8",
+          "question": "Authorized implementation scope matches requested scope ?",
+          "required": true,
+          "fail_action": "ABORT"
+        }
+      }
+    },
+    "scope_3_abort_response_procedure": {
+      "scope_id": "ABORT_RESPONSE_PROCEDURE",
+      "description": "Procedure after ABORT is triggered",
+      "steps": {
+        "step_1_stop": {
+          "step_id": "ABORT_STOP",
+          "action": "Stop all implementation-start operations immediately"
+        },
+        "step_2_record": {
+          "step_id": "ABORT_RECORD",
+          "action": "Generate ABORT incident record",
+          "record_fields": {
+            "abort_id": "IMPL_ABORT_<UTC_TIMESTAMP>",
+            "trigger_category": "AB1 | AB2 | AB3 | AB4 | AB5",
+            "failed_checks": "list of PL check IDs",
+            "detected_at_utc": "RFC3339",
+            "detected_by": "authority identifier"
+          }
+        },
+        "step_3_notify": {
+          "step_id": "ABORT_NOTIFY",
+          "action": "Notify responsible authority and security reviewer"
+        },
+        "step_4_route": {
+          "step_id": "ABORT_ROUTE",
+          "action": "Route to remediation",
+          "routes": {
+            "AB1": "Re-evaluate Phase 20-3 with latest measurement state",
+            "AB2": "Restore evidence/signature validity then rerun Phase 20-4 checks",
+            "AB3": "HALT + investigation, then re-authorization",
+            "AB4": "Resolve open Phase 20-5 items",
+            "AB5": "Re-authorize correct scope and rerun pre-launch checks"
+          }
+        },
+        "step_5_resume_condition": {
+          "step_id": "ABORT_RESUME_CONDITION",
+          "action": "Resume consideration only after all PL1-PL8 checks are PASS in a fresh run"
+        }
+      }
+    },
+    "scope_4_precedence_and_final_rule": {
+      "scope_id": "PRECEDENCE_AND_FINAL_RULE",
+      "description": "Final precedence rules",
+      "precedence": [
+        "AB3 (state invariant violation) has highest priority and implies HALT",
+        "AB2 (evidence/signature invalid) overrides any tentative GO",
+        "Any single failed PL check forces ABORT",
+        "Only full PL1-PL8 PASS allows transition to implementation-start execution"
+      ],
+      "final_rule": "In current design-only state, pre-launch outcome remains ABORT/NO_GO by default until actual measurements and approvals satisfy all conditions"
+    }
+  },
+  "phase_20_6_governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "state_invariants": {
+      "integrated_decision": "NO_GO",
+      "receiver_validator_permission": "NOT_EFFECTIVE",
+      "app_implementation_status": "NO_GO",
+      "tests_implementation_status": "NO_GO"
+    },
+    "phase_20_6_completion_criteria": [
+      "5 ABORT categories defined",
+      "8-item pre-launch ABORT checklist defined",
+      "5-step ABORT response procedure defined",
+      "Precedence and final rule defined",
+      "All JSON validation passed",
+      "No changes to app/ or tests/ directories",
+      "All state invariants maintained"
+    ]
+  }
+}

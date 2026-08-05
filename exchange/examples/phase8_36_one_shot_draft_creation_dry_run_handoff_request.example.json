@@ -1,0 +1,7 @@
+{
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "credential_status_override": null,
+  "phase8_35_status_override": null
+}

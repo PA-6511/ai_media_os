@@ -1,0 +1,32 @@
+{
+  "phase": "LS-6K",
+  "document_type": "ONE_SHOT_ACTUAL_EXECUTION_LOCK_PLAN",
+  "status": "ONE_SHOT_ACTUAL_EXECUTION_LOCK_PLAN_DEFINED_NO_CONSUMPTION",
+  "one_shot_actual_execution_lock_required": true,
+  "one_shot_actual_execution_lock_created_by_this_phase": false,
+  "one_shot_actual_execution_lock_consumed_by_this_phase": false,
+  "rerun_allowed": false,
+  "target_payload": {
+    "title": "2.5次元の誘惑",
+    "asin": "B07X2G67B4",
+    "post_status": "draft",
+    "max_items": 1
+  },
+  "future_lock_rules": {
+    "create_lock_immediately_before_actual_execution": true,
+    "consume_lock_once_only": true,
+    "block_second_execution": true,
+    "block_if_existing_execution_evidence_exists": true,
+    "block_if_target_payload_mismatch": true,
+    "block_if_publish_requested": true,
+    "block_if_existing_post_update_requested": true,
+    "record_new_post_id_after_success": true
+  },
+  "current_phase_execution": {
+    "one_shot_actual_execution_lock_created": false,
+    "one_shot_actual_execution_lock_consumed": false,
+    "runner_executed": false,
+    "actual_execution_executed": false,
+    "ls6b_rerun_executed": false
+  }
+}

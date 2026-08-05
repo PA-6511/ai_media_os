@@ -1,0 +1,111 @@
+{
+  "schema_version": "ir42_destination_human_event_chain_evidence_bundle_v1",
+  "phase": "IR42",
+  "generated_at": "2026-05-24T02:48:34.676727+00:00",
+  "source_task_id": "ir42_live_trial",
+  "release_candidate_id": "rc_20260523T155148Z_ir26_live_trial_b940393b490b",
+  "final_submission_decision": "READY_FOR_SUBMISSION_SUMMARY",
+  "overall_approval_decision": "APPROVE_DRY_RUN",
+  "overall_bundle_action": "Destination evidence bundles verified across IR39, IR40, and IR41 with hash manifest and review summary fixed.",
+  "validation_result": "PASS",
+  "validation_failed_checks": [],
+  "validation_warnings": [],
+  "summary": {
+    "destination_count": 3,
+    "bundle_pass_count": 3,
+    "bundle_fail_count": 0,
+    "hash_manifest_count": 3,
+    "review_summary_count": 3
+  },
+  "destination_human_event_chain_evidence_bundle": [
+    {
+      "destination": "compliance_archive",
+      "review_status": "PASS",
+      "selected_event": "APPROVE",
+      "lock_state": "EVIDENCE_LOCKED_APPROVED",
+      "actor_id": "HUMAN_APPROVER_REQUIRED",
+      "bundle_hash": "d989516e21c22fce56a5e3e7e555aab4749bf8fd2fa4147832578b2ab91cea81",
+      "evidence_digest": "465a42bd8d3f472c978577c2039fa9522fd1f3da5dd05a5380783144648d6569",
+      "source_refs": {
+        "ir39": "generic_block_ai/reports/ir39_human_approval_event_simulator_for_destinations_report_ir39_live_trial.json",
+        "ir40": "generic_block_ai/reports/ir40_human_event_audit_replay_for_destinations_report_ir40_live_trial.json",
+        "ir41": "generic_block_ai/reports/ir41_destination_human_event_chain_integrity_report_ir41_live_trial.json"
+      },
+      "integrity_checks": {
+        "sequence_ok": true,
+        "event_ok": true,
+        "state_ok": true,
+        "actor_ok": true,
+        "hash_ok": true,
+        "evidence_lock_ok": true
+      },
+      "failed_reasons": [],
+      "hash_manifest_path": "generic_block_ai/reports/ir42_destination_human_event_chain_evidence_bundle_compliance_archive_ir42_live_trial/destination_human_event_chain_hash_manifest.json",
+      "review_summary_path": "generic_block_ai/reports/ir42_destination_human_event_chain_evidence_bundle_compliance_archive_ir42_live_trial/destination_human_event_chain_review_summary.md"
+    },
+    {
+      "destination": "internal_review_board",
+      "review_status": "PASS",
+      "selected_event": "APPROVE",
+      "lock_state": "EVIDENCE_LOCKED_APPROVED",
+      "actor_id": "HUMAN_APPROVER_REQUIRED",
+      "bundle_hash": "9c7deda214cd93265c62751de7a11fce2f2764e0cd0fdcfb72a67711b48fb633",
+      "evidence_digest": "7ea7a6d2ff2cb130a6c9a178bce7a13db811a07ad8d7f57999a7aac687acc87e",
+      "source_refs": {
+        "ir39": "generic_block_ai/reports/ir39_human_approval_event_simulator_for_destinations_report_ir39_live_trial.json",
+        "ir40": "generic_block_ai/reports/ir40_human_event_audit_replay_for_destinations_report_ir40_live_trial.json",
+        "ir41": "generic_block_ai/reports/ir41_destination_human_event_chain_integrity_report_ir41_live_trial.json"
+      },
+      "integrity_checks": {
+        "sequence_ok": true,
+        "event_ok": true,
+        "state_ok": true,
+        "actor_ok": true,
+        "hash_ok": true,
+        "evidence_lock_ok": true
+      },
+      "failed_reasons": [],
+      "hash_manifest_path": "generic_block_ai/reports/ir42_destination_human_event_chain_evidence_bundle_internal_review_board_ir42_live_trial/destination_human_event_chain_hash_manifest.json",
+      "review_summary_path": "generic_block_ai/reports/ir42_destination_human_event_chain_evidence_bundle_internal_review_board_ir42_live_trial/destination_human_event_chain_review_summary.md"
+    },
+    {
+      "destination": "regulatory_audit",
+      "review_status": "PASS",
+      "selected_event": "APPROVE",
+      "lock_state": "EVIDENCE_LOCKED_APPROVED",
+      "actor_id": "HUMAN_APPROVER_REQUIRED",
+      "bundle_hash": "54fbf3189cb9b6a2600965cfb69204e916509fb3510bc85c18606e917272ee2b",
+      "evidence_digest": "b6089d8777711b38146e953f44af2d4c5317696faf0621a8e7730bb443765526",
+      "source_refs": {
+        "ir39": "generic_block_ai/reports/ir39_human_approval_event_simulator_for_destinations_report_ir39_live_trial.json",
+        "ir40": "generic_block_ai/reports/ir40_human_event_audit_replay_for_destinations_report_ir40_live_trial.json",
+        "ir41": "generic_block_ai/reports/ir41_destination_human_event_chain_integrity_report_ir41_live_trial.json"
+      },
+      "integrity_checks": {
+        "sequence_ok": true,
+        "event_ok": true,
+        "state_ok": true,
+        "actor_ok": true,
+        "hash_ok": true,
+        "evidence_lock_ok": true
+      },
+      "failed_reasons": [],
+      "hash_manifest_path": "generic_block_ai/reports/ir42_destination_human_event_chain_evidence_bundle_regulatory_audit_ir42_live_trial/destination_human_event_chain_hash_manifest.json",
+      "review_summary_path": "generic_block_ai/reports/ir42_destination_human_event_chain_evidence_bundle_regulatory_audit_ir42_live_trial/destination_human_event_chain_review_summary.md"
+    }
+  ],
+  "artifacts": {
+    "bundle_root": "generic_block_ai/reports/ir42_destination_human_event_chain_evidence_bundle_ir42_live_trial",
+    "destination_human_event_chain_evidence_bundle_report": "generic_block_ai/reports/ir42_destination_human_event_chain_evidence_bundle_ir42_live_trial/destination_human_event_chain_evidence_bundle_report.json",
+    "destination_human_event_chain_evidence_bundle_summary": "generic_block_ai/reports/ir42_destination_human_event_chain_evidence_bundle_ir42_live_trial/destination_human_event_chain_evidence_bundle_summary.md",
+    "completion_report": "reports/implementation_restart_phase42_completion_report.json"
+  },
+  "safeguards": {
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "network_transmission_executed": false,
+    "production_release": false
+  }
+}

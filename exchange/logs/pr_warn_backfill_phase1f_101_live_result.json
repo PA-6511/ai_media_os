@@ -1,0 +1,35 @@
+{
+  "phase": "PR_WARN_BACKFILL_PHASE1F",
+  "status": "ABORT_LIVE_ROUTE_NOT_AVAILABLE",
+  "target_post_id": 101,
+  "title": "呪術廻戦は何巻まで出てる？最新巻・関連情報まとめ",
+  "approved": true,
+  "wordpress_write_allowed": true,
+  "max_live_updates": 1,
+  "live_route_available": false,
+  "abort_reason": "Phase1D runner is DRY_RUN_ONLY and returns ABORT_LIVE_NOT_SUPPORTED_IN_PHASE1D for LIVE mode.",
+  "wordpress_write_executed": false,
+  "updated_post_id": null,
+  "update_count": 0,
+  "changed_fields": [],
+  "forbidden_changed_fields": [
+    "title",
+    "url",
+    "cta",
+    "featured_image",
+    "status",
+    "category",
+    "tag",
+    "publish"
+  ],
+  "response_status_code": null,
+  "rollback_snapshot": null,
+  "pre_live_snapshot_saved": false,
+  "post_live_verification_required": true,
+  "post_live_verification_executed": false,
+  "notes": [
+    "No WordPress API call executed.",
+    "No LIVE update executed.",
+    "Stop after abort as required."
+  ]
+}

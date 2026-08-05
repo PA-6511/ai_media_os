@@ -1,0 +1,15 @@
+{
+  "package_type": "wordpress_draft_candidate_review",
+  "source": "human_operator",
+  "target": "core_consensus_ai",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "human_approval_required": true,
+  "decision": "APPROVE_DRY_RUN_ONLY",
+  "reason": "WordPress下書き候補の内容を確認。DRY_RUN範囲のみ承認。",
+  "wordpress_write_executed": false,
+  "auto_post": false,
+  "auto_update": false,
+  "auto_delete": false,
+  "auto_export": false
+}

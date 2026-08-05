@@ -1,0 +1,79 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M8-FIX1",
+  "document_role": "DMM_FINAL_AFFILIATE_LINK_HUMAN_REVIEW_EVIDENCE",
+  "review_id": "DMM_FINAL_AFFILIATE_LINK_HUMAN_REVIEW_V1",
+  "content_item_id": "new-release-comic-20260703-001",
+  "approval_label": "DMM_ARTICLE_RESERVED_SLOT_HTML_VALIDATOR_FIX_APPROVED",
+  "reviewed_by": "HUMAN_OPERATOR",
+  "human_explicit_approval": true,
+  "review_verdict": "APPROVED_NO_CHANGE_REQUIRED",
+  "validator_fix": {
+    "previous_false_negative": "ARTICLE_DMM_RESERVED_SLOT_LABEL_MISSING",
+    "fixed_validation_mode": "HTML_STRUCTURE_BASED",
+    "matching_slot_count": 1,
+    "required_tag_verified": true,
+    "required_class_tokens_verified": true,
+    "aria_disabled_verified": true,
+    "normalized_text_verified": true,
+    "href_absent_verified": true,
+    "descendant_anchor_absent_verified": true
+  },
+  "secret_link_validation": {
+    "file_sha256": "c5a70d9804a4e2dfd91049ee20bdda5379abf3e1fe3c25b0fb8cbd5fa587faa0",
+    "artifact_digest_sha256": "4807e0a6d8a8416a936bafa978ba4f90d43ae7d304322bbd6a6ababcb2cd2db6",
+    "final_url_fingerprint_sha256": "f01572020caf88cd0a017e0e739bc492394fa275eeac0e346328adba0fd99141",
+    "file_mode": "0600",
+    "scheme_https_verified": true,
+    "host_al_dmm_com_verified": true,
+    "destination_exact_binding_verified": true,
+    "registered_identifier_exact_binding_verified": true,
+    "full_final_url_present": false,
+    "affiliate_identifier_present": false
+  },
+  "article_preimage": {
+    "path": "exchange/content/new_release/fresh/new-release-comic-20260703-001.article.json",
+    "file_sha256": "849a37519c6af70d2212ec01d5cddef5793bfa811e97ca9f248ce099a0350bf4",
+    "article_modified": false
+  },
+  "source_bindings": {
+    "article": {
+      "path": "exchange/content/new_release/fresh/new-release-comic-20260703-001.article.json",
+      "file_sha256": "849a37519c6af70d2212ec01d5cddef5793bfa811e97ca9f248ce099a0350bf4"
+    },
+    "m7_link": {
+      "path": "exchange/links/new_release/fresh/new-release-comic-20260703-001.dmm_final_affiliate_link_generation_result.json",
+      "file_sha256": "c5a70d9804a4e2dfd91049ee20bdda5379abf3e1fe3c25b0fb8cbd5fa587faa0"
+    },
+    "m7_consumption": {
+      "path": "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.dmm_final_affiliate_link_generation_consumption.json",
+      "file_sha256": "f88bf184167925026350602de97790930ce8efb31eff1eefa289ba98a7f54f63"
+    },
+    "m7_result": {
+      "path": "exchange/logs/ls_new_batch_4g_2e_recovery_m7_result.json",
+      "file_sha256": "a88522a1a7331f3127069a275f4b1e76ef42eb7af744fca44d47e8e1ca38dd90"
+    },
+    "m6_authorization": {
+      "path": "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.dmm_final_affiliate_link_generation_authorization.json",
+      "file_sha256": "8e751212054d5722863984bec7faad5c0c851f28fdbebe18d5b441f34e36b4d9"
+    },
+    "m5_review": {
+      "path": "exchange/reviews/new_release/fresh/new-release-comic-20260703-001.dmm_historical_m4_evidence_human_review.json",
+      "file_sha256": "29411ef1792b95f5d807d6eef3c2298484b53e116ccfc5a7cdc19b0eb90d2ccd"
+    },
+    "cred1_result": {
+      "path": "exchange/logs/ls_new_batch_4g_2e_recovery_m6_cred1_result.json",
+      "file_sha256": "238420061e545a7f3123ac9ebbde27c11e8e42a38538c69c3c5494e1dd3ac908"
+    }
+  },
+  "full_final_url_output": false,
+  "affiliate_identifier_output": false,
+  "network_connection_performed": false,
+  "article_modified": false,
+  "article_url_injection_performed": false,
+  "article_dmm_slot_activated": false,
+  "wordpress_access_performed": false,
+  "production_status": "NO_GO",
+  "reviewed_at_utc": "2026-07-11T06:38:30.172456+00:00",
+  "human_review_evidence_digest_sha256": "764fa0e5b3eea9cd09369995c78b6b0598c66aca17f66f80e3391d4654d932a4"
+}

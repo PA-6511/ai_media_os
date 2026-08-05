@@ -1,0 +1,55 @@
+{
+  "status": "PASS",
+  "phase": "SFB-8",
+  "generated_at": "2026-06-14T04:38:38.922162+00:00",
+  "block_name": "sale_flash_block",
+  "mode": "DRY_RUN",
+  "production_status": "NO_GO",
+  "missing_inputs": [],
+  "wordpress_dry_run_execution_gate": "READY_FOR_DRY_RUN_ONLY",
+  "required_execution_gate": "READY_FOR_DRY_RUN_ONLY",
+  "gate_ready": true,
+  "simulated_execution_count": 1,
+  "simulated_execution_events": [
+    {
+      "event_id": "sfb8-sim-001",
+      "event_type": "wordpress_dry_run_simulation",
+      "draft_handoff_id": "sfb5-draft-001",
+      "candidate_id": "sfb-cand-001",
+      "title": "Crimson Library",
+      "simulated_endpoint": "/wp-json/wp/v2/posts",
+      "simulated_method": "POST",
+      "simulated_request": {
+        "post_type": "post",
+        "post_status": "draft",
+        "title": "【SUMMER_FLASH】Crimson Library をチェック",
+        "slug": "crimson-library",
+        "excerpt": "Crimson Library は、セール候補として確認したい注目作品です。価格や販売状況はリンク先で確認してください。\n\nPRを含みます。リンク先の価格・販売状況は変更される場合があります。",
+        "link_candidate_url": "https://www.amazon.co.jp/dp/B0REAL00001"
+      },
+      "simulated_result": {
+        "http_status": 202,
+        "accepted": true,
+        "message": "simulated only; no outbound request"
+      },
+      "network_called": false,
+      "wordpress_write_executed": false
+    }
+  ],
+  "external_api_called": false,
+  "external_network_called": false,
+  "wordpress_write_executed": false,
+  "publish_executed": false,
+  "update_executed": false,
+  "delete_executed": false,
+  "export_executed": false,
+  "human_approval_consumed": false,
+  "production_write_blocked": true,
+  "execution_summary": {
+    "candidate_count": 1,
+    "simulated_success_count": 1,
+    "simulated_failure_count": 0,
+    "note": "simulation only; no outbound request or WordPress write"
+  },
+  "next_recommended_phase": "SFB-9: Human sign-off archive (still NO_GO)"
+}

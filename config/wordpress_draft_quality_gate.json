@@ -1,0 +1,75 @@
+{
+  "phase": "Phase 6-6",
+  "name": "wordpress_draft_quality_gate",
+  "gate_status": "DESIGN_ONLY",
+  "production_status": "NO_GO",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "human_approval_required": true,
+  "wordpress_write_executed": false,
+  "required_fields": [
+    "title",
+    "body",
+    "product_name",
+    "affiliate_links",
+    "cta",
+    "category",
+    "tags",
+    "pr_notice"
+  ],
+  "body_rules": {
+    "min_chars": 300,
+    "max_chars_warning": 8000,
+    "must_include_product_name": true
+  },
+  "pr_notice_rules": {
+    "required": true,
+    "accepted_phrases": [
+      "PR",
+      "広告",
+      "アフィリエイト広告を利用しています",
+      "本記事には広告が含まれます"
+    ]
+  },
+  "cta_rules": {
+    "required": true,
+    "min_cta_count": 1,
+    "require_url": true
+  },
+  "affiliate_link_rules": {
+    "required": true,
+    "min_link_count": 1,
+    "allowed_schemes": [
+      "https"
+    ],
+    "reject_schemes": [
+      "http",
+      "javascript",
+      "data",
+      "file"
+    ]
+  },
+  "html_safety_rules": {
+    "reject_tags": [
+      "script",
+      "iframe",
+      "object",
+      "embed"
+    ],
+    "reject_inline_event_handlers": true
+  },
+  "expression_rules": {
+    "reject_exaggerated_claims": [
+      "絶対に稼げる",
+      "必ず儲かる",
+      "100%保証",
+      "公式より安いと断定",
+      "違法無料"
+    ]
+  },
+  "decision_rules": {
+    "pass_when_all_required_ok": true,
+    "warn_when_minor_optional_missing": true,
+    "abort_when_safety_violation": true
+  }
+}

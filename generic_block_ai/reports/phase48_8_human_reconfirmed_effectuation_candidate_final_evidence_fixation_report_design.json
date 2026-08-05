@@ -1,0 +1,36 @@
+{
+  "_meta": {
+    "phase": "48-8",
+    "phase_name": "最終実測GO発効・実処理開始境界確認層",
+    "layer": "最終判定層 (final judgment layer)",
+    "title": "人間再確認済み発効候補の最終証跡固定レポート設計",
+    "created": "2026-05-14",
+    "author": "governance-framework",
+    "status": "PASS_DESIGN_ONLY",
+    "reports_only": true
+  },
+  "scope": "Phase 48-7 で実施された統合最終判定に基づいて，manual_release_go_authorization / actual_process_start_go_authorization の人間再確認済み最終状態（GRANTED / NOT_GRANTED）を改ざん不可の形式で固定する最終証跡固定レポートを設計する。固定内容：(1) 各承認候補の最終判定結果（GRANTED / NOT_GRANTED）と根拠，(2) GRANTED の場合はその有効開始時刻と署名者，(3) NOT_GRANTED の場合はその理由と遡及対象フェーズ，(4) 統合判定結果（完全 GO / 部分 GO / NO_GO）との対応関係，(5) Phase 49 以降での承認候補の有効状態宣言。",
+  "governance": {
+    "production_status": "NO_GO",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "report": {
+    "description": "Phase 48-8 では，Phase 48-7 で統合判定された両承認候補の人間再確認済み最終状態を改ざん不可のレポート形式で固定する最終証跡固定ルールを 設計層で定義する。(1) manual_release_go_authorization 最終状態固定：Phase 48-4 の判定結果に基づいて，manual_release_go_authorization の最終状態（'GRANTED' / 'NOT_GRANTED'）を改ざん不可の形式で固定する。GRANTED の場合は有効開始時刻・署名者・権限要件を記録する。NOT_GRANTED の場合は不可理由を詳細記録する。(2) actual_process_start_go_authorization 最終状態固定：Phase 48-5 の判定結果に基づいて，actual_process_start_go_authorization の最終状態（'GRANTED' / 'NOT_GRANTED'）を改ざん不可の形式で固定する。GRANTED の場合は有効開始時刻・複数署名者・厳格な権限要件を記録する。NOT_GRANTED の場合は不可理由を詳細記録する。(3) 統合判定との対応：Phase 48-7 で判定された統合結果（完全 GO / 部分 GO / NO_GO）と，両承認候補の最終状態との対応を明示的に記録する。(4) Phase 49 以降での有効宣言：最終証跡の固定後，各承認候補の有効状態（実処理で参照可能な状態）を Phase 49 で宣言することを明記する。これらのルールは全て 設計層（reports only）で実装される。",
+    "invariants": [
+      "NO_GO 維持（NOT_GRANTED時）：いずれかの承認候補が NOT_GRANTED の場合 production_status = 'NO_GO' は維持",
+      "部分 GO 状態維持（片方 GRANTED）：manual_release_go が GRANTED で actual_process_start_go が NOT_GRANTED の場合，部分 GO 状態が宣言される（ただし実処理開始ではない）",
+      "改ざん不可：証跡固定レポートは改ざん不可のメタデータ保護（タイムスタンプ・署名など）を施す",
+      "reports only：最終証跡固定ルール全体は報告書形式で実装される"
+    ],
+    "actions": [],
+    "notes": [
+      "Phase 48-8 は 設計層のみで実装される",
+      "最終証跡固定は Phase 49 での有効宣言の前提条件",
+      "GRANTED 状態の署名者・権限要件を明確に記録",
+      "NOT_GRANTED 理由を詳細分類記録（Phase 47-8 への遡及も含む）",
+      "実処理開始は Phase 49 以降（実処理開始ではなく有効宣言）"
+    ]
+  }
+}

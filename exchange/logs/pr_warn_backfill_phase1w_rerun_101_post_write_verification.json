@@ -1,0 +1,19 @@
+{
+  "phase": "PR_WARN_BACKFILL_PHASE1W_RERUN_POST_WRITE_VERIFICATION",
+  "status": "PASS_POST_WRITE_VERIFICATION",
+  "target_post_id": 101,
+  "post_fetched_post_id": 101,
+  "post_status": "draft",
+  "post_modified": "2026-06-21T01:12:02",
+  "post_content_hash": "d4d5d9867334300c5ee7fedb22970cffd1805228f1cd242b5aa28b9b833f6a52",
+  "expected_after_content_hash": "d4d5d9867334300c5ee7fedb22970cffd1805228f1cd242b5aa28b9b833f6a52",
+  "post_write_checks": {
+    "post_fetched_post_id_ok": true,
+    "post_status_draft_ok": true,
+    "post_content_hash_matches_expected": true
+  },
+  "snapshot_body_displayed": false,
+  "payload_body_displayed": false,
+  "secrets_displayed": false,
+  "created_at": "2026-06-21T01:12:02.302489+00:00"
+}

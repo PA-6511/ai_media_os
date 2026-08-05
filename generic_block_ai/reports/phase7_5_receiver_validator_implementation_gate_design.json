@@ -1,0 +1,568 @@
+{
+  "_meta": {
+    "phase": "7-5",
+    "phase_name": "receiver validator 実装直前 gate 設計",
+    "version": "1.0",
+    "status": "DESIGN_ONLY",
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "created_date": "2026-05-12",
+    "scope": "receiver validator 実装許可を判断するための gate 設計（実装前仕様検証）",
+    "description": "Phase 7-3 preflight チェックリストをクリアした receiver validator 実装仕様について、実装許可（GO/CONDITIONAL_GO/NO_GO/ABORT）を決定するための最終ゲート。app/ 実装を開始する直前に、実装設計がすべての安全条件を満たしているか最終検証。"
+  },
+  "gate_overview": {
+    "gate_purpose": "Phase 7-3 preflight を通過した receiver validator 実装仕様について、最終的に app/ 実装を許可するかどうかを判定",
+    "gate_location": "Phase 7-3 preflight 完了 → Phase 7-5 gate 検証 → app/ 実装許可判定",
+    "decision_types": [
+      "GO: 実装許可。app/ 実装を開始できる。",
+      "CONDITIONAL_GO: 条件付き許可。指定条件をクリアしたら GO に昇格。",
+      "NO_GO: 実装不許可。仕様の改定が必要。",
+      "ABORT: 重大エラー。Phase 7 進行を停止。即座に安全確認が必要。"
+    ],
+    "gate_strictness": "strict",
+    "human_approval_required": true,
+    "auto_approval_allowed": false
+  },
+  "implementation_spec_hardcoding_verification": {
+    "section_name": "実装仕様の hardcoding 必須項目検証",
+    "description": "receiver validator app/ コードに以下の 5 項目が hardcoded されているか確認",
+    "hardcoding_requirements": [
+      {
+        "id": "HW-01",
+        "requirement": "operation_mode = 'OBSERVE'",
+        "location": "receiver_validator.py モジュール最上位のグローバル定数",
+        "verification_method": "コード検査：grep 'operation_mode' + 値確認",
+        "criticality": "CRITICAL",
+        "bypass_allowed": false
+      },
+      {
+        "id": "HW-02",
+        "requirement": "execution = 'dry_run'",
+        "location": "receiver_validator.py モジュール最上位のグローバル定数",
+        "verification_method": "コード検査：grep 'execution' + 値確認",
+        "criticality": "CRITICAL",
+        "bypass_allowed": false
+      },
+      {
+        "id": "HW-03",
+        "requirement": "production_status = 'NO_GO'",
+        "location": "receiver_validator.py モジュール最上位のグローバル定数",
+        "verification_method": "コード検査：grep 'production_status' + 値確認",
+        "criticality": "CRITICAL",
+        "bypass_allowed": false
+      },
+      {
+        "id": "HW-04",
+        "requirement": "requires_human_approval = true",
+        "location": "receiver_validator.py + receiver_validator_config",
+        "verification_method": "コード検査：requires_human_approval = True 確認",
+        "criticality": "CRITICAL",
+        "bypass_allowed": false
+      },
+      {
+        "id": "HW-05",
+        "requirement": "auto_execute_allowed = false",
+        "location": "receiver_validator.py + receiver_validator_config",
+        "verification_method": "コード検査：auto_execute_allowed = False 確認",
+        "criticality": "CRITICAL",
+        "bypass_allowed": false
+      }
+    ],
+    "gate_condition": "HW-01 ～ HW-05 の 5 項目すべてが hardcoding されている場合 GO。1 つでも不足→ NO_GO"
+  },
+  "blocked_actions_enforcement_verification": {
+    "section_name": "10 個禁止アクションのブロック検証",
+    "description": "receiver validator 実装で、以下の 10 アクションがすべてブロック・防止されているか確認",
+    "blocked_actions": [
+      {
+        "action_id": "BA-01",
+        "action_name": "core_ai_real_send",
+        "description": "Core AI への実送信（dry_run でない）",
+        "enforcement_method": "実送信呼び出し前に『execution == dry_run』チェック。違反時に exception raise",
+        "verification": "コード検査 + 静的解析で receiver_validator 内から Core AI 実送信 API 呼び出しなし"
+      },
+      {
+        "action_id": "BA-02",
+        "action_name": "external_api_call",
+        "description": "外部 API への実呼び出し（テスト・乾いた実行以外）",
+        "enforcement_method": "HTTP/REST 呼び出し前に『execution == dry_run』チェック",
+        "verification": "コード検査で requests.post/get など外部呼び出し API の使用禁止"
+      },
+      {
+        "action_id": "BA-03",
+        "action_name": "wordpress_operation",
+        "description": "WordPress DB/API への直接操作（query/post など）",
+        "enforcement_method": "WordPress 操作の入り口で『execution == dry_run』チェック",
+        "verification": "コード検査で WordPress 関連 library/API 呼び出しなし"
+      },
+      {
+        "action_id": "BA-04",
+        "action_name": "cron_registration",
+        "description": "cron job 登録",
+        "enforcement_method": "cron 登録試行時に『execution == dry_run』チェック + exception raise",
+        "verification": "コード検査で cron/schedule library 使用禁止"
+      },
+      {
+        "action_id": "BA-05",
+        "action_name": "auto_execute",
+        "description": "自動実行（human approval なしでの実行）",
+        "enforcement_method": "実行前に『requires_human_approval == true』チェック。違反時に pending queue へ",
+        "verification": "ワークフローで human 署名なし実行パス検出なし"
+      },
+      {
+        "action_id": "BA-06",
+        "action_name": "auto_post",
+        "description": "自動投稿（WordPress への自動 post）",
+        "enforcement_method": "post 実行前に dry_run mode チェック + human approval 確認",
+        "verification": "コード検査で WordPress auto post 機能なし"
+      },
+      {
+        "action_id": "BA-07",
+        "action_name": "auto_update",
+        "description": "自動更新（DB/WordPress 자동 update）",
+        "enforcement_method": "update 試行時に dry_run mode チェック + human approval 確認",
+        "verification": "コード検査で auto update 機能なし"
+      },
+      {
+        "action_id": "BA-08",
+        "action_name": "auto_delete",
+        "description": "自動削除（DB/file の自動削除）",
+        "enforcement_method": "delete 試行時に dry_run mode チェック + human approval 確認",
+        "verification": "コード検査で auto delete 機能なし"
+      },
+      {
+        "action_id": "BA-09",
+        "action_name": "auto_export",
+        "description": "自動エクスポート（Sheets/CSV への自動 export）",
+        "enforcement_method": "export 試行時に dry_run mode チェック + human approval 確認",
+        "verification": "コード検査で自動 export 機能なし"
+      },
+      {
+        "action_id": "BA-10",
+        "action_name": "production_execution",
+        "description": "本番環境実行",
+        "enforcement_method": "実行前に『production_status == NO_GO』チェック。違反時に exception raise",
+        "verification": "環境変数/config で production_status != GO の場合は実行禁止"
+      }
+    ],
+    "gate_condition": "10 個すべてが『完全にブロック』と確認できる場合 GO。1 つでも『部分的』『実装予定』『試験的許可』→ NO_GO / CONDITIONAL_GO"
+  },
+  "input_validation_completeness_verification": {
+    "section_name": "入力検証の完全性検証",
+    "description": "receiver validator が受け取る入力（observation/decision_package）について、検証ロジックが完全に実装されているか確認",
+    "input_sources": [
+      {
+        "input_id": "IV-01",
+        "input_type": "decision_package (Phase 4-2 handoff payload)",
+        "required_checks": [
+          "presence check: decision_package は必須（None/null 禁止）",
+          "type check: dict/JSON object か",
+          "schema check: Phase 5-1 receiver schema に準拠か",
+          "permission check: receiver_validation_permission が有効か",
+          "timestamp check: decision_package.timestamp は recent か（24h 以内）",
+          "signature check: reviewer_signature は valid か"
+        ],
+        "incompleteness_action": "不足チェックがある場合→ NO_GO / validation_error を log して REJECT"
+      },
+      {
+        "input_id": "IV-02",
+        "input_type": "observation (internal state)",
+        "required_checks": [
+          "observation.operation_mode == 'OBSERVE' か",
+          "observation.execution == 'dry_run' か",
+          "observation.production_status == 'NO_GO' か",
+          "observation.requires_human_approval == true か",
+          "observation.auto_execute_allowed == false か"
+        ],
+        "incompleteness_action": "チェック不足→ NO_GO"
+      },
+      {
+        "input_id": "IV-03",
+        "input_type": "phase6_conditions (gate conditions from Phase 6-3)",
+        "required_checks": [
+          "phase6_conditions.go_conditions: 16 conditions present",
+          "phase6_conditions.no_go_conditions: 16 conditions present",
+          "phase6_conditions.abort_conditions: 13 conditions present",
+          "phase6_conditions validation: すべて boolean evaluation possible"
+        ],
+        "incompleteness_action": "条件不足→ NO_GO"
+      }
+    ],
+    "gate_condition": "入力検証ロジックが 100% 実装されている場合 GO。80% 以上 99%→ CONDITIONAL_GO（テスト required）。79% 以下→ NO_GO"
+  },
+  "output_validation_completeness_verification": {
+    "section_name": "出力検証の完全性検証",
+    "description": "receiver validator が出力する結果（decision_result）について、妥当性検証が完全に実装されているか確認",
+    "output_specification": [
+      {
+        "output_id": "OV-01",
+        "output_field": "decision_type",
+        "allowed_values": ["APPROVE_DESIGN_ONLY", "REQUEST_FIX", "REJECT", "ABORT"],
+        "validation_required": "4 values のうち 1 つのみ出力。複数同時出力禁止。",
+        "schema_compliance": "Phase 5-1 receiver schema 準拠"
+      },
+      {
+        "output_id": "OV-02",
+        "output_field": "decision_reasoning",
+        "allowed_values": "string (JSON-serializable text)",
+        "validation_required": "reason が必ず present。empty string 禁止。max length 2000 chars",
+        "schema_compliance": "Phase 5-1 receiver schema 準拠"
+      },
+      {
+        "output_id": "OV-03",
+        "output_field": "decision_timestamp",
+        "allowed_values": "ISO 8601 datetime string",
+        "validation_required": "UTC timestamp。手動編集されていない。server time と sync",
+        "schema_compliance": "Phase 5-1 receiver schema 準拠"
+      },
+      {
+        "output_id": "OV-04",
+        "output_field": "matched_conditions",
+        "allowed_values": "list of condition IDs (e.g., ['GO-01', 'GO-02', ...])",
+        "validation_required": "decision_type に一致する条件のみ。cross-check で矛盾検出",
+        "schema_compliance": "Phase 5-1 receiver schema 準拠"
+      },
+      {
+        "output_id": "OV-05",
+        "output_field": "safety_flags",
+        "allowed_values": "dict with OBSERVE/dry_run/NO_GO/requires_human_approval flags",
+        "validation_required": "5 flags すべて present。値は hardcoded と一致",
+        "schema_compliance": "Phase 5-1 receiver schema 準拠"
+      }
+    ],
+    "gate_condition": "output がすべて schema に準拠し、validation logic が 100% 実装されている場合 GO。95% 以上→ CONDITIONAL_GO。94% 以下→ NO_GO"
+  },
+  "error_handling_comprehensiveness_verification": {
+    "section_name": "エラーハンドリング網羅性検証",
+    "description": "receiver validator が想定される全エラーケースに対応しているか確認",
+    "error_categories": [
+      {
+        "error_id": "EH-01",
+        "error_type": "input validation error",
+        "examples": ["missing decision_package", "invalid schema", "corrupted JSON"],
+        "required_handling": "try-catch で捕捉。validation_error を log。REJECT decision 出力。",
+        "verification": "エラー処理コード present か"
+      },
+      {
+        "error_id": "EH-02",
+        "error_type": "safety boundary violation detected",
+        "examples": ["operation_mode != OBSERVE", "execution != dry_run", "core_ai_real_send attempted"],
+        "required_handling": "exception raise。ABORT decision 出力。安全アラート log。",
+        "verification": "safety check 失敗時の処理フロー present か"
+      },
+      {
+        "error_id": "EH-03",
+        "error_type": "phase 6 condition inconsistency",
+        "examples": ["GO conditions と NO_GO conditions が同時 match", "condition ID 重複"],
+        "required_handling": "warning log。REJECT decision 出力。human review 要求。",
+        "verification": "inconsistency detection logic present か"
+      },
+      {
+        "error_id": "EH-04",
+        "error_type": "timestamp validation failure",
+        "examples": ["stale decision_package (> 24h old)", "future timestamp"],
+        "required_handling": "warning log。REJECT decision 出力。timestamp invalid フラグ set。",
+        "verification": "timestamp check logic present か"
+      },
+      {
+        "error_id": "EH-05",
+        "error_type": "signature verification failure",
+        "examples": ["invalid reviewer_signature", "signature mismatch"],
+        "required_handling": "exception raise。ABORT decision 出力。security alert log。",
+        "verification": "signature check logic present か"
+      },
+      {
+        "error_id": "EH-06",
+        "error_type": "permission check failure",
+        "examples": ["receiver_validation_permission not granted", "scope mismatch"],
+        "required_handling": "exception raise。REJECT decision 出力。permission_denied フラグ set。",
+        "verification": "permission check logic present か"
+      },
+      {
+        "error_id": "EH-07",
+        "error_type": "output serialization error",
+        "examples": ["decision_result が JSON serializable でない", "circular reference"],
+        "required_handling": "exception catch。fallback output 生成。serialization_error log。",
+        "verification": "serialization error handling present か"
+      }
+    ],
+    "gate_condition": "7 categories すべてに対して適切なエラーハンドリングが実装されている場合 GO。5-6 categories→ CONDITIONAL_GO。4 categories 以下→ NO_GO"
+  },
+  "logging_and_traceability_verification": {
+    "section_name": "ログと追跡可能性検証",
+    "description": "receiver validator の動作がすべてログに記録され、監査可能か確認",
+    "logging_requirements": [
+      {
+        "log_id": "LOG-01",
+        "event": "validator initialization",
+        "required_info": "timestamp, operation_mode, execution, production_status, safety_flags",
+        "log_level": "INFO",
+        "criticality": "HIGH"
+      },
+      {
+        "log_id": "LOG-02",
+        "event": "decision_package received",
+        "required_info": "timestamp, package_id, reviewer_id, signature_validity",
+        "log_level": "INFO",
+        "criticality": "HIGH"
+      },
+      {
+        "log_id": "LOG-03",
+        "event": "input validation started",
+        "required_info": "timestamp, input_type, schema_check_status",
+        "log_level": "DEBUG",
+        "criticality": "MEDIUM"
+      },
+      {
+        "log_id": "LOG-04",
+        "event": "condition matching",
+        "required_info": "timestamp, matched_condition_id, condition_status (GO/NO-GO/ABORT)",
+        "log_level": "DEBUG",
+        "criticality": "MEDIUM"
+      },
+      {
+        "log_id": "LOG-05",
+        "event": "decision reached",
+        "required_info": "timestamp, decision_type, matched_conditions_count, safety_flags",
+        "log_level": "INFO",
+        "criticality": "HIGH"
+      },
+      {
+        "log_id": "LOG-06",
+        "event": "error detected",
+        "required_info": "timestamp, error_type, error_message, stack_trace, remediation",
+        "log_level": "ERROR",
+        "criticality": "CRITICAL"
+      },
+      {
+        "log_id": "LOG-07",
+        "event": "safety boundary violation detected",
+        "required_info": "timestamp, violation_type, attempted_action, ABORT action triggered",
+        "log_level": "CRITICAL",
+        "criticality": "CRITICAL"
+      }
+    ],
+    "log_output_destination": "files/receiver_validator_audit.log",
+    "log_retention": "permanent",
+    "log_accessibility": "human_auditor_readable",
+    "gate_condition": "7 つの event すべてについてログ出力が実装されている場合 GO。5-6 events→ CONDITIONAL_GO。4 events 以下→ NO_GO"
+  },
+  "test_coverage_plan_verification": {
+    "section_name": "テスト計画適切性検証",
+    "description": "receiver validator に対する test suite が適切に計画されているか確認（実装ではなく計画段階）",
+    "test_categories_required": [
+      {
+        "test_id": "TEST-01",
+        "test_category": "unit tests - happy path",
+        "expected_test_count": 8,
+        "coverage": "decision_type 4 values × input variations 2 = 8",
+        "plan_present": "must have"
+      },
+      {
+        "test_id": "TEST-02",
+        "test_category": "unit tests - error cases",
+        "expected_test_count": 7,
+        "coverage": "EH-01 ~ EH-07 error categories",
+        "plan_present": "must have"
+      },
+      {
+        "test_id": "TEST-03",
+        "test_category": "integration tests - Phase 6 conditions",
+        "expected_test_count": 45,
+        "coverage": "16 GO + 16 NO-GO + 13 ABORT conditions",
+        "plan_present": "must have"
+      },
+      {
+        "test_id": "TEST-04",
+        "test_category": "safety boundary tests",
+        "expected_test_count": 15,
+        "coverage": "HW-01 ~ HW-05 hardcoding + BA-01 ~ BA-10 blocked actions",
+        "plan_present": "must have"
+      },
+      {
+        "test_id": "TEST-05",
+        "test_category": "schema compliance tests",
+        "expected_test_count": 5,
+        "coverage": "OV-01 ~ OV-05 output fields",
+        "plan_present": "must have"
+      },
+      {
+        "test_id": "TEST-06",
+        "test_category": "timestamp & signature tests",
+        "expected_test_count": 4,
+        "coverage": "recent timestamp / future timestamp / stale / invalid signature",
+        "plan_present": "must have"
+      },
+      {
+        "test_id": "TEST-07",
+        "test_category": "permission & scope tests",
+        "expected_test_count": 3,
+        "coverage": "permission granted / denied / scope mismatch",
+        "plan_present": "must have"
+      }
+    ],
+    "total_planned_tests": 87,
+    "gate_condition": "全 7 test categories の計画が present で、合計 80+ test cases が計画されている場合 GO。60-79 tests→ CONDITIONAL_GO（追加テスト required）。59 tests 以下→ NO_GO"
+  },
+  "documentation_completeness_verification": {
+    "section_name": "ドキュメント完全性検証",
+    "description": "receiver validator の実装に関するドキュメントが完全か確認",
+    "documentation_requirements": [
+      {
+        "doc_id": "DOC-01",
+        "doc_type": "Implementation Design Spec",
+        "expected_contents": "module overview, input/output schema, decision logic, error handling, safety boundaries",
+        "required": true
+      },
+      {
+        "doc_id": "DOC-02",
+        "doc_type": "API Reference",
+        "expected_contents": "function signatures, parameters, return values, exceptions, examples",
+        "required": true
+      },
+      {
+        "doc_id": "DOC-03",
+        "doc_type": "Configuration Guide",
+        "expected_contents": "hardcoded safety constants, environment variables (if any), initialization",
+        "required": true
+      },
+      {
+        "doc_id": "DOC-04",
+        "doc_type": "Safety Boundary Document",
+        "expected_contents": "HW-01 ~ HW-05 hardcoding, BA-01 ~ BA-10 blocked actions, OBSERVE/dry_run/NO_GO maintenance",
+        "required": true
+      },
+      {
+        "doc_id": "DOC-05",
+        "doc_type": "Test Plan",
+        "expected_contents": "TEST-01 ~ TEST-07 categories, expected test cases, coverage goals, pass criteria",
+        "required": true
+      },
+      {
+        "doc_id": "DOC-06",
+        "doc_type": "Troubleshooting Guide",
+        "expected_contents": "common errors, how to interpret logs, escalation procedures",
+        "required": true
+      },
+      {
+        "doc_id": "DOC-07",
+        "doc_type": "Audit Log Format Specification",
+        "expected_contents": "LOG-01 ~ LOG-07 log entries, field definitions, timestamp format, retention policy",
+        "required": true
+      }
+    ],
+    "gate_condition": "7 つのドキュメント全てが present かつ content が complete な場合 GO。5-6 docs→ CONDITIONAL_GO。4 docs 以下→ NO_GO"
+  },
+  "gate_decision_criteria": {
+    "section_name": "Gate 最終判定基準",
+    "description": "Phase 7-5 gate の最終判定を決定するための統合判定基準",
+    "scoring_table": [
+      {
+        "dimension": "hardcoding_verification",
+        "max_score": 5,
+        "score_for_go": 5,
+        "score_for_conditional_go": 4,
+        "score_for_no_go": 0
+      },
+      {
+        "dimension": "blocked_actions_enforcement",
+        "max_score": 10,
+        "score_for_go": 10,
+        "score_for_conditional_go": 8,
+        "score_for_no_go": 0
+      },
+      {
+        "dimension": "input_validation",
+        "max_score": 10,
+        "score_for_go": 10,
+        "score_for_conditional_go": 8,
+        "score_for_no_go": 0
+      },
+      {
+        "dimension": "output_validation",
+        "max_score": 10,
+        "score_for_go": 10,
+        "score_for_conditional_go": 8,
+        "score_for_no_go": 0
+      },
+      {
+        "dimension": "error_handling",
+        "max_score": 7,
+        "score_for_go": 7,
+        "score_for_conditional_go": 5,
+        "score_for_no_go": 0
+      },
+      {
+        "dimension": "logging_traceability",
+        "max_score": 7,
+        "score_for_go": 7,
+        "score_for_conditional_go": 5,
+        "score_for_no_go": 0
+      },
+      {
+        "dimension": "test_coverage_plan",
+        "max_score": 10,
+        "score_for_go": 10,
+        "score_for_conditional_go": 8,
+        "score_for_no_go": 0
+      },
+      {
+        "dimension": "documentation",
+        "max_score": 7,
+        "score_for_go": 7,
+        "score_for_conditional_go": 5,
+        "score_for_no_go": 0
+      }
+    ],
+    "total_possible_score": 66,
+    "go_threshold": 60,
+    "conditional_go_threshold": 45,
+    "no_go_below": 45,
+    "abort_trigger": "any dimension scores 0 or safety boundary violation detected",
+    "final_decision_rule": "総スコア 60+ → GO / 45-59 → CONDITIONAL_GO / 44以下 → NO_GO / safety violation → ABORT"
+  },
+  "post_gate_approval_actions": {
+    "if_decision_is_go": [
+      "Phase 7-5 gate は GO で決定",
+      "Phase 7-6 (最終実装許可判定レポート) へ進むことを正式に許可",
+      "app/ receiver_validator.py 実装開始許可",
+      "test/ receiver_validator test suite 実装開始許可",
+      "operation_mode=OBSERVE / execution=dry_run / production_status=NO_GO 継続維持",
+      "10個禁止アクション継続ブロック"
+    ],
+    "if_decision_is_conditional_go": [
+      "Phase 7-5 gate は CONDITIONAL_GO で決定",
+      "指定条件をクリアしたら GO に昇格可能",
+      "指定条件クリアまで app/ 実装待機",
+      "app/ 実装前に条件クリア確認を mandatory とする"
+    ],
+    "if_decision_is_no_go": [
+      "Phase 7-5 gate は NO_GO で決定",
+      "receiver validator 実装仕様の改定が必要",
+      "改定後に Phase 7-5 gate を再検証",
+      "app/ 実装は待機"
+    ],
+    "if_decision_is_abort": [
+      "Phase 7-5 gate は ABORT で決定",
+      "安全境界違反またはクリティカルエラーが検出された",
+      "Phase 7 進行を即座に停止",
+      "安全監査ミーティングを開催し、問題を解決してから再開"
+    ]
+  },
+  "phase_7_5_to_phase_7_6_transition": {
+    "gate_6_entry_precondition": "Phase 7-5 gate decision が GO または CONDITIONAL_GO で complete",
+    "gate_6_purpose": "Phase 7-1 ~ 7-3, 7-5 の結果をまとめた最終実装許可判定レポート",
+    "gate_6_scope": "報告書レベル（app/ 実装なし）",
+    "gate_6_required_content": [
+      "Phase 7-1 human review approval record reference",
+      "Phase 7-2 implementation scope limitation summary",
+      "Phase 7-3 preflight checklist completion status",
+      "Phase 7-4 human review decision recorded",
+      "Phase 7-5 gate decision (GO/CONDITIONAL_GO/NO_GO/ABORT)",
+      "Phase 7-6 final implementation permission decision"
+    ]
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "status": "PASS_WITH_BLOCKED_ROWS",
+  "ready_count": 1384,
+  "blocked_count": 30,
+  "warning_count": 1384,
+  "batch_ids": [
+    "RK_202608_20260730_235157"
+  ],
+  "manifest_path": "/home/deploy/ai_media_os/exchange/inputs/new_release/batches/RK_202608_20260730_235157/manifest.json",
+  "blocked_path": "/home/deploy/ai_media_os/exchange/reviews/new_release/batches/RK_202608_20260730_235157.multistore_blocked.json",
+  "result_log_path": "/home/deploy/ai_media_os/exchange/logs/RK_202608_20260730_235157.multistore_import_result.json",
+  "safety": {
+    "wordpress_write_performed": false,
+    "wordpress_publish_performed": false,
+    "external_network_performed": false,
+    "input_status_fixed_to_draft": true
+  }
+}

@@ -1,0 +1,26 @@
+# LS-NEW-BATCH-4G-2E-RECOVERY-M28-POST-UPDATE-VERIFY
+
+- Status: `PASS_WORDPRESS_TAWAWA_REFERENCE_LAYOUT_UPDATE_POST_UPDATE_GET_VERIFICATION_FINAL_STATE_MATCHED_NO_WRITE`
+- Decision: `FINAL_WORDPRESS_STATE_MATCHED_ONE_SHOT_UPDATE_COMPLETE_AUTHORIZATION_CONSUMED_NO_RETRY`
+- WordPress post ID: `192`
+- Final state verified: `true`
+- GET request count: `1`
+- Non-GET request count: `0`
+- Automatic retry count: `0`
+- Redirect followed: `false`
+- HTTP response received: `true`
+- HTTP status: `200`
+- Final post ID matches: `true`
+- Final status is publish: `true`
+- Final title matches: `true`
+- Final categories match: `true`
+- Final comment status is closed: `true`
+- Final content matches M24: `true`
+- Authorization consumed: `true`
+- Confirmation consumed: `true`
+- Second POST performed: `false`
+- WordPress write performed in M28: `false`
+- Backlist carousel included: `false`
+- Production status: `NO_GO`
+- Ready for local finalization: `true`
+- Ready for retry: `false`

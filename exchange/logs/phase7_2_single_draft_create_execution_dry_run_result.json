@@ -1,0 +1,62 @@
+{
+  "package_type": "phase7_2_single_draft_create_execution_dry_run_result",
+  "phase": "Phase 7-2",
+  "status": "PASS",
+  "reason": "dry-run completed. WordPress POST was not executed.",
+  "dry_run_completed": true,
+  "wordpress_post_enabled": false,
+  "real_write_enabled": false,
+  "production_status": "NO_GO",
+  "wordpress_draft_creation": "NO_GO",
+  "wordpress_write_executed": false,
+  "auto_post": false,
+  "auto_update": false,
+  "auto_delete": false,
+  "auto_export": false,
+  "execution_steps": [
+    {
+      "step": 1,
+      "action": "Phase 7-1 checklist result 確認",
+      "result": "PASS"
+    },
+    {
+      "step": 2,
+      "action": "draft candidate 読み込み",
+      "result": "PASS"
+    },
+    {
+      "step": 3,
+      "action": "payload 組み立て（title / content / categories / tags）",
+      "result": "PASS"
+    },
+    {
+      "step": 4,
+      "action": "WordPress REST API POST ─ 実行禁止を確認",
+      "result": "SKIPPED_DRY_RUN_ONLY"
+    },
+    {
+      "step": 5,
+      "action": "payload ファイルを exchange/outgoing へ保存",
+      "result": "PASS"
+    },
+    {
+      "step": 6,
+      "action": "dry-run 証跡を exchange/logs へ保存",
+      "result": "PASS"
+    }
+  ],
+  "payload_title": "【DRY_RUN候補】Phase 5-1 real-data schema normal sample",
+  "payload_status_field": "draft",
+  "payload_categories_hint": [
+    "電子書籍",
+    "セール"
+  ],
+  "payload_tags_hint": [
+    "Kindle",
+    "漫画",
+    "セール"
+  ],
+  "payload_output": "/home/deploy/ai_media_os/exchange/outgoing/wordpress_draft_create_payload.dry_run.json",
+  "next_step": "phase7_3_single_draft_create_human_final_approval",
+  "created_at": "2026-06-13T05:08:41.488425+00:00"
+}

@@ -1,0 +1,28 @@
+{
+  "review_id": "phase8_7_rerun_approval_review_001",
+  "phase": "Phase 8-7",
+  "operator": "human",
+  "decision": "ACKNOWLEDGE_RERUN_REVIEW_ONLY",
+  "target_item_count": 1,
+  "candidate_id": "phase7_1_sample_candidate_001",
+  "approval_token": "APPROVE_DRAFT_CREATE_ONLY",
+  "acknowledged_previous_not_executed": true,
+  "acknowledged_single_item_only": true,
+  "acknowledged_draft_only": true,
+  "acknowledged_no_publish": true,
+  "acknowledged_no_update": true,
+  "acknowledged_no_delete": true,
+  "acknowledged_no_bulk": true,
+  "acknowledged_no_auto_cleanup": true,
+  "acknowledged_manual_review_after_creation": true,
+  "approval_scope": {
+    "rerun_preflight_only": true,
+    "draft_create_only": false,
+    "publish": false,
+    "update": false,
+    "delete": false,
+    "bulk": false,
+    "external_export": false
+  },
+  "note": "Rerun review only after missing credentials. This is not direct execution permission."
+}

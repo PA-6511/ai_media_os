@@ -1,0 +1,89 @@
+{
+  "_meta": {
+    "phase": "8-7",
+    "phase_name": "human review 実施記録テンプレート",
+    "version": "1.0",
+    "status": "PASS_DESIGN_ONLY",
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "created_date": "2026-05-12",
+    "changed_area": "reports only",
+    "description": "Phase 8-5 の判定テンプレートを実施記録に落とし込むためのフォーマット。実装許可の最終確定は行わない。"
+  },
+  "references": [
+    "generic_block_ai/reports/phase8_1_no_go_boundary_reconfirmation_design.json",
+    "generic_block_ai/reports/phase8_2_receiver_validator_implementation_difference_design.json",
+    "generic_block_ai/reports/phase8_3_app_tests_implementation_gate_design.json",
+    "generic_block_ai/reports/phase8_4_gate_evaluation_execution_design.json",
+    "generic_block_ai/reports/phase8_5_human_review_implementation_permission_template.json",
+    "generic_block_ai/reports/phase8_6_phase8_final_implementation_permission_report.json"
+  ],
+  "fixed_boundary": {
+    "app_implementation_permission": "NO_GO",
+    "tests_implementation_permission": "NO_GO",
+    "core_ai_real_send": false,
+    "external_api_call": false,
+    "wordpress_operation": false,
+    "cron_registration": false,
+    "export_execution": false,
+    "production_execution": false
+  },
+  "template_fields": {
+    "record_id": "PR-YYYYMMDD-8-7-XXX",
+    "review_datetime": "YYYY-MM-DDTHH:MM:SS+09:00",
+    "review_executor": {
+      "name": "",
+      "role": "human_reviewer",
+      "signature": ""
+    },
+    "input_artifacts": [
+      "phase8_4_gate_evaluation_execution_design.json",
+      "phase8_5_human_review_implementation_permission_template.json"
+    ],
+    "evidence_summary": [
+      {
+        "id": "EV-001",
+        "fact": "",
+        "source": "",
+        "checked_by": "",
+        "checked_at": ""
+      }
+    ],
+    "unresolved_items": [
+      {
+        "id": "UR-001",
+        "item": "",
+        "risk": "",
+        "hold_reason": "",
+        "required_action": ""
+      }
+    ],
+    "safety_boundary_verification": {
+      "operation_mode_is_observe": true,
+      "execution_is_dry_run": true,
+      "production_status_is_no_go": true,
+      "requires_human_approval_is_true": true,
+      "auto_execute_allowed_is_false": true
+    },
+    "interim_decision": "PENDING",
+    "interim_decision_allowed_values": [
+      "NO_GO",
+      "PENDING",
+      "REQUEST_FIX",
+      "ABORT"
+    ],
+    "explicitly_disallowed_decision": "APPROVE_IMPLEMENTATION",
+    "review_comments": ""
+  },
+  "phase_8_7_completion_criteria": {
+    "criterion_1": "実施記録として必要な証跡項目（確認者・確認日時・根拠・未解決項目）が定義されている",
+    "criterion_2": "interim_decision が NO_GO/PENDING/REQUEST_FIX/ABORT に限定されている",
+    "criterion_3": "APPROVE_IMPLEMENTATION がこの段階で禁止されている",
+    "criterion_4": "operation_mode=OBSERVE, execution=dry_run, production_status=NO_GO を維持",
+    "criterion_5": "changed_area=reports only を維持",
+    "phase_8_7_status": "PASS"
+  }
+}

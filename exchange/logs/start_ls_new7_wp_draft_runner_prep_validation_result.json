@@ -1,0 +1,14 @@
+{
+  "phase": "LS-NEW-7",
+  "document_type": "START_LS_NEW7_WP_DRAFT_RUNNER_PREP_VALIDATION_RESULT",
+  "validation_status": "LSNEW7_WP_DRAFT_RUNNER_PREP_VALIDATED_NO_EXECUTION",
+  "run_status": "LSNEW7_WP_DRAFT_RUNNER_PREP_READY_NO_EXECUTION",
+  "production_status": "NO_EXECUTION_WP_DRAFT_RUNNER_PREP_ONLY",
+  "recommended_next_action": "BEGIN_LS_NEW_8_WP_DRAFT_RUNNER_FINAL_PREFLIGHT_NO_EXECUTION",
+  "recommended_next_phase_options": [
+    "LS-NEW-8",
+    "LS-MON-2"
+  ],
+  "errors": [],
+  "generated_at": "2026-07-05T02:39:07.057362+00:00"
+}

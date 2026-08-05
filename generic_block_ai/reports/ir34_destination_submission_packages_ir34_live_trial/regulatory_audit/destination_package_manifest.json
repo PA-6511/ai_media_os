@@ -1,0 +1,44 @@
+{
+  "schema_version": "ir34_destination_submission_package_dryrun_v1",
+  "phase": "IR34",
+  "generated_at": "2026-05-23T16:48:54.071091+00:00",
+  "source_task_id": "ir34_live_trial",
+  "release_candidate_id": "rc_20260523T155148Z_ir26_live_trial_b940393b490b",
+  "destination": "regulatory_audit",
+  "required_templates": [
+    {
+      "template": "submission_cover",
+      "path": "generic_block_ai/reports/ir32_submission_audit_template_pack_ir32_live_trial/submission_cover.md"
+    },
+    {
+      "template": "attachment_list",
+      "path": "generic_block_ai/reports/ir32_submission_audit_template_pack_ir32_live_trial/attachment_list.json"
+    },
+    {
+      "template": "confirmation_signature_sheet",
+      "path": "generic_block_ai/reports/ir32_submission_audit_template_pack_ir32_live_trial/confirmation_signature_sheet.md"
+    }
+  ],
+  "optional_templates": [
+    {
+      "template": "review_template",
+      "path": "generic_block_ai/reports/ir32_submission_audit_template_pack_ir32_live_trial/review_template.md"
+    }
+  ],
+  "missing_required_templates": [],
+  "missing_optional_templates": [],
+  "submission_mode": "dry_run_only",
+  "send_guard": {
+    "send_allowed": false,
+    "send_executed": false,
+    "network_transmission_executed": false
+  },
+  "safeguards": {
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "production_release": false,
+    "network_transmission_executed": false
+  }
+}

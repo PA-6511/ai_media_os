@@ -1,0 +1,76 @@
+{
+  "schema_version": "ir187_reference_consistency_terminal_registry_v1",
+  "phase": "IR187",
+  "generated_at": "2026-05-26T13:10:38.856034+00:00",
+  "source_task_id": "ir186_190_batch",
+  "validation_result": "PASS",
+  "validation_failed_checks": [],
+  "validation_warnings": [],
+  "reference_consistency_terminal_registry": {
+    "registry_id": "ir187_registry_ir186_190_batch_20260526T131038Z",
+    "generated_at": "2026-05-26T13:10:38.856027+00:00",
+    "source_task_id": "ir186_190_batch",
+    "new_cycle_id": "IR71_PLUS_CYCLE_A",
+    "registry_entries": [
+      {
+        "evidence_item_id": "evidence_1",
+        "source_phase": "IR181",
+        "source_content": "Timeline Retention Audit Snapshot",
+        "terminal_consistency_status": "TERMINAL_CONSISTENT_REFERENCE_ONLY",
+        "change_detected": false
+      },
+      {
+        "evidence_item_id": "evidence_2",
+        "source_phase": "IR182",
+        "source_content": "Post-Terminal Reference Consistency Registry",
+        "terminal_consistency_status": "TERMINAL_CONSISTENT_REFERENCE_ONLY",
+        "change_detected": false
+      },
+      {
+        "evidence_item_id": "evidence_3",
+        "source_phase": "IR183",
+        "source_content": "Consistency Digest Refix",
+        "terminal_consistency_status": "TERMINAL_CONSISTENT_REFERENCE_ONLY",
+        "change_detected": false
+      },
+      {
+        "evidence_item_id": "evidence_4",
+        "source_phase": "IR184",
+        "source_content": "Dry-Run Retention Consistency Attestation",
+        "terminal_consistency_status": "TERMINAL_CONSISTENT_REFERENCE_ONLY",
+        "change_detected": false
+      },
+      {
+        "evidence_item_id": "evidence_5",
+        "source_phase": "IR185",
+        "source_content": "Phase 181-185 Completion Bundle",
+        "terminal_consistency_status": "TERMINAL_CONSISTENT_REFERENCE_ONLY",
+        "change_detected": false
+      }
+    ],
+    "entry_count": 5,
+    "all_terminal_consistent_reference_only": true,
+    "unlock_eligible": false,
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "registry_hash": "534b07a3fd73fd622a876e19798388f72a7852b927bab461a08dc8315b7bb1a2",
+  "safety_gate_snapshot": {
+    "dry_run": "maintained",
+    "OBSERVE": "maintained",
+    "submission_execution_blocked": true,
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "network_transmission_executed": false,
+    "production_release": false,
+    "GitHub_push": "未実行"
+  }
+}

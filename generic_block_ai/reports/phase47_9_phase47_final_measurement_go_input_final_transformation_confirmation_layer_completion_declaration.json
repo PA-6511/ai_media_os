@@ -1,0 +1,36 @@
+{
+  "_meta": {
+    "phase": "47-9",
+    "phase_name": "最終実測GO入力・発効最終変換確認層",
+    "layer": "最終判定層 (final judgment layer)",
+    "title": "Phase 47 最終実測GO入力・発効最終変換確認層 完了宣言",
+    "created": "2026-05-14",
+    "author": "governance-framework",
+    "status": "PASS_DESIGN_ONLY",
+    "reports_only": true
+  },
+  "scope": "Phase 47-1～47-8 で実施された最終実測GO入力から manual_release_go_authorization / actual_process_start_go_authorization への発効最終変換確認プロセスの全体が完了したことを設計層で宣言する。宣言内容：(1) Phase 47-1～47-8 全プロセス（受領/確認層→補強層→最終判定層）の実施完了、(2) 両承認候補の発効可能性が確認された（または不可が確認された）こと、(3) production_status = 'NO_GO' / 該当承認候補 = 'NOT_GRANTED' / 実処理開始許可なし の状態が確実に維持されていること、(4) Phase 48 への進行可能性の設計層判定。",
+  "governance": {
+    "production_status": "NO_GO",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "report": {
+    "description": "Phase 47-9 では，Phase 47-1～47-8 の全体的な最終実測GO入力・発効最終変換確認層の完了を設計層で宣言する。この宣言は実処理開始許可ではなく，設計層での プロセス完了宣言である。(1) Phase 47-1～47-8 全プロセス完了宣言：受領/確認層（47-1～47-3）で Phase 46 完了証跡を受領・整合確認し，補強層（47-4～47-6）で manual_release_go / actual_process_start_go の発効変換確認結果を証跡固定・NO_GO維持し，最終判定層（47-7～47-8）で統合最終判定・最終証跡固定を行ったことを宣言する。(2) 発効可能性確認宣言：Phase 47-2 / 47-3 で实施した発効変換確認の結果に基づいて，manual_release_go_authorization と actual_process_start_go_authorization が実測で 'GRANTED' に到達する技術的・組織的な可能性があるか（またはないか）が確認されたことを宣言する。(3) ガバナンス状態維持宣言：Phase 47 全体を通じて production_status = 'NO_GO' / manual_release_go_authorization = 'NOT_GRANTED' / actual_process_start_go_authorization = 'NOT_GRANTED' / changed_area = 'reports only' の状態が厳格に維持されたことを宣言する。(4) Phase 48 進行可能性判定：上記 (1)～(3) が確認できた場合，Phase 48（最終実測GO発効・実処理開始境界確認層）への進行が可能であるか を設計層で判定する。Phase 48 では，Phase 47 で確認された発効可能性に基づいて，実処理開始直前の最終確認を行う準備ができたことを明記する。これらの宣言と判定は全て 設計層（reports only）で実装され，実処理開始許可を含まない。",
+    "invariants": [
+      "NO_GO 維持：Phase 47-9 での完了宣言を通じて production_status = 'NO_GO' は維持される（または部分 GO への遷移が明記される場合も，実処理開始は許可されない）",
+      "NOT_GRANTED 維持（該当時）：発効変換確定しなかった承認候補は 'NOT_GRANTED' のまま維持される",
+      "reports only：完了宣言は報告書形式で実装され，実処理開始許可を含まない",
+      "次フェーズへの前提条件：Phase 48 への進行は Phase 47-9 の完了宣言を前提とする"
+    ],
+    "actions": [],
+    "notes": [
+      "Phase 47-9 は 設計層のみで実装される。実処理開始許可ではない。",
+      "「完了宣言」とは，設計工程としての Phase 47 が終了したこと。実処理開始ではない。",
+      "Phase 48 は「最終実測GO発効・実処理開始境界確認層」であり，Phase 47 の判定結果に基づいて最終確認を行う。",
+      "実処理開始は Phase 48 以降の実測値 GO 入力および Phase 48 最終判定後に限定される。",
+      "Phase 47-9 完了 = 設計工程完了であり，実処理開始許可ではない"
+    ]
+  }
+}

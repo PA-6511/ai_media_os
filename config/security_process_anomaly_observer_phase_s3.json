@@ -1,0 +1,43 @@
+{
+  "phase_id": "PHASE_S3",
+  "detector_name": "process_anomaly_observer",
+  "status": "DESIGN_ONLY",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "human_approval_required": true,
+  "detector_only": true,
+  "recommendation_only": true,
+  "executor_action_allowed": false,
+  "process_observation_mode": "DRY_RUN_EVENT_ONLY",
+  "process_kill_allowed": false,
+  "process_kill_executed": false,
+  "systemctl_allowed": false,
+  "systemctl_executed": false,
+  "cron_stop_allowed": false,
+  "cron_stop_executed": false,
+  "sample_intent": "normal",
+  "observe_intents": [
+    "unexpected_python_worker",
+    "duplicated_runner",
+    "unknown_long_running_process",
+    "unexpected_shell_command",
+    "unexpected_network_tool_intent"
+  ],
+  "recommendations": {
+    "allow_freeze_recommendation": true,
+    "allow_human_review_recommendation": true,
+    "allow_operator_inspection_recommendation": true
+  },
+  "actions": {
+    "process_kill_execute": false,
+    "systemctl_execute": false,
+    "cron_stop_execute": false,
+    "auto_freeze_execute": false
+  },
+  "state_change_executed": false,
+  "freeze_executed": false,
+  "revoke_executed": false,
+  "isolation_executed": false,
+  "wordpress_write_executed": false,
+  "external_api_call_executed": false
+}

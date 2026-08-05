@@ -1,0 +1,17 @@
+{
+  "_meta": {
+    "phase": 86,
+    "sub_phase": 7,
+    "status": "PASS_DESIGN_ONLY",
+    "reports_only": true,
+    "layer": "integration_and_final",
+    "title": "Phase 85 完了証跡の整合性統合設計"
+  },
+  "governance": {
+    "production_status": "NO_GO",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "execution_start": "NO_GO",
+    "changed_area": "reports only"
+  }
+}

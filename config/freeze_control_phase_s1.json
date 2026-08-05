@@ -1,0 +1,18 @@
+{
+  "freeze_enabled": true,
+  "freeze_state": "NO_GO_LOCKED",
+  "allow_external_api": false,
+  "allow_wordpress_write": false,
+  "allow_scheduler": false,
+  "allow_auto_retry": false,
+  "allow_block_ai_execution": false,
+  "allow_self_builder_execution": false,
+  "wordpress_publish_allowed": false,
+  "wordpress_update_allowed": false,
+  "wordpress_delete_allowed": false,
+  "slack_live_notification_allowed": false,
+  "human_approval_required": true,
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO"
+}

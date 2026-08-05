@@ -1,0 +1,39 @@
+{
+  "phase_id": "X-FB-1",
+  "status": "PASS_MANUAL_OPERATION_BASELINE_NO_LIVE_POST",
+  "decision": "VERSIONED_MANUAL_FEEDBACK_ROUTINE_READY",
+  "policy_id": "X_FB_MANUAL_OPERATION_POLICY_V1",
+  "feedback_schema_id": "X_POST_WORDING_FEEDBACK_SCHEMA_V1",
+  "verified_actions": [
+    "INITIALIZE",
+    "REVIEW",
+    "POST",
+    "METRICS"
+  ],
+  "verified_stage_sequence": [
+    "DRAFT_GENERATED",
+    "HUMAN_REVIEWED",
+    "POSTED",
+    "METRICS_RECORDED"
+  ],
+  "verified_version_sequence": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "archive_required": true,
+  "atomic_write_required": true,
+  "silent_overwrite_allowed": false,
+  "x_api_call_allowed": false,
+  "x_post_allowed": false,
+  "wordpress_write_allowed": false,
+  "external_api_call_allowed": false,
+  "automatic_rule_update_allowed": false,
+  "algorithm_research_handoff_allowed": false,
+  "production_status": "NO_GO",
+  "safety_state": "MANUAL_RECORDING_ONLY",
+  "ready_for_real_manual_feedback_records": true,
+  "ready_for_ls_new_batch_2": true,
+  "next_phase_execution_allowed": false
+}

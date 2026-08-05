@@ -1,0 +1,22 @@
+{
+  "phase": "PR_WARN_BACKFILL_PHASE1W_RERUN_PRE_WRITE_GET_CHECK",
+  "status": "PASS_PRE_WRITE_GET_MATCH",
+  "target_post_id": 101,
+  "fetched_post_id": 101,
+  "status_from_wp": "draft",
+  "modified": "2026-05-01T14:14:24",
+  "content_hash": "fed3e62ba7fd5baad3da128e89afb7d03841bab53c49189ff671be143f8f5adb",
+  "pre_write_checks": {
+    "pre_fetched_post_id_ok": true,
+    "pre_status_draft_ok": true,
+    "pre_modified_matches_rerun6": true,
+    "pre_content_hash_matches_rerun6": true,
+    "pre_content_hash_matches_rollback": true,
+    "payload_content_only_ok": true,
+    "true_approval_consumed_false": true
+  },
+  "snapshot_body_displayed": false,
+  "payload_body_displayed": false,
+  "secrets_displayed": false,
+  "created_at": "2026-06-21T01:12:01.856357+00:00"
+}

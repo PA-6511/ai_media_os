@@ -1,0 +1,70 @@
+{
+  "sample_set_id": "vps-stability-sample-set-001",
+  "target_host_alias": "your-vps-alias",
+  "production_status": "NO_GO",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "human_review_required": true,
+  "samples": [
+    {
+      "sample_id": "s1",
+      "timestamp_utc": "2026-05-24T00:00:00Z",
+      "tcp_22_result": "PASS",
+      "ssh_banner_result": "PASS",
+      "ssh_auth_dry_run_result": "PASS",
+      "latency_ms": 110,
+      "packet_loss_percent": 0,
+      "remote_write_executed": false,
+      "remote_command_executed": false,
+      "secrets_exposed": false
+    },
+    {
+      "sample_id": "s2",
+      "timestamp_utc": "2026-05-24T00:05:00Z",
+      "tcp_22_result": "PASS",
+      "ssh_banner_result": "PASS",
+      "ssh_auth_dry_run_result": "PASS",
+      "latency_ms": 140,
+      "packet_loss_percent": 0,
+      "remote_write_executed": false,
+      "remote_command_executed": false,
+      "secrets_exposed": false
+    },
+    {
+      "sample_id": "s3",
+      "timestamp_utc": "2026-05-24T00:10:00Z",
+      "tcp_22_result": "PASS",
+      "ssh_banner_result": "PASS",
+      "ssh_auth_dry_run_result": "PASS",
+      "latency_ms": 130,
+      "packet_loss_percent": 0,
+      "remote_write_executed": false,
+      "remote_command_executed": false,
+      "secrets_exposed": false
+    },
+    {
+      "sample_id": "s4",
+      "timestamp_utc": "2026-05-24T00:15:00Z",
+      "tcp_22_result": "PASS",
+      "ssh_banner_result": "PASS",
+      "ssh_auth_dry_run_result": "PASS",
+      "latency_ms": 125,
+      "packet_loss_percent": 0,
+      "remote_write_executed": false,
+      "remote_command_executed": false,
+      "secrets_exposed": false
+    },
+    {
+      "sample_id": "s5",
+      "timestamp_utc": "2026-05-24T00:20:00Z",
+      "tcp_22_result": "PASS",
+      "ssh_banner_result": "PASS",
+      "ssh_auth_dry_run_result": "PASS",
+      "latency_ms": 135,
+      "packet_loss_percent": 0,
+      "remote_write_executed": false,
+      "remote_command_executed": false,
+      "secrets_exposed": false
+    }
+  ]
+}

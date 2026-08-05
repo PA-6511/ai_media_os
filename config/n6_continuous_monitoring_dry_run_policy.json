@@ -1,0 +1,27 @@
+{
+  "phase": "N-6",
+  "name": "n6_continuous_monitoring_dry_run_policy",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "human_approval_required": true,
+  "wordpress_write_executed": false,
+  "wordpress_post_created": false,
+  "external_state_change": false,
+  "executor_action_allowed": false,
+  "network_observation_only": true,
+  "communication_test_only": true,
+  "actual_long_run_forbidden": true,
+  "simulated_duration_hours": 24,
+  "check_interval_minutes": 60,
+  "expected_check_count": 24,
+  "acceptable_fail_rate_percent": 5,
+  "check_targets": [
+    "dns",
+    "tcp",
+    "https",
+    "wordpress_api_head",
+    "slack_path_head",
+    "github_https"
+  ]
+}

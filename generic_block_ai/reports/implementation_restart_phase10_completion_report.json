@@ -1,0 +1,32 @@
+{
+  "phase": "Implementation Restart Phase 10",
+  "status": "COMPLETED",
+  "generated_at": "2026-05-23T14:36:51.922762+00:00",
+  "schema_version": "ir10_core_phase_decision_v1",
+  "test_result": {
+    "focused_tests": {
+      "passed": 23,
+      "failed": 0
+    },
+    "full_regression": {
+      "passed": 126,
+      "failed": 0
+    }
+  },
+  "quality_gate_judgment": "WARN",
+  "core_receive_rule": "HUMAN_REVIEW_REQUIRED",
+  "validation_result": "PASS",
+  "artifacts": {
+    "ir10_phase_decision_package": "generic_block_ai/reports/ir10_core_phase_decision_package_ir10_warn_live_trial.json",
+    "human_review_package": "generic_block_ai/reports/ir10_human_review_package_ir10_warn_live_trial.json",
+    "abort_evidence_bundle": null,
+    "completion_report": "reports/implementation_restart_phase10_completion_report.json"
+  },
+  "safeguards": {
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "external_write_executed": false,
+    "actual_auto_execute": false,
+    "production_release": false
+  }
+}

@@ -1,0 +1,560 @@
+#!/usr/bin/env bash
+set -Eeuo pipefail
+umask 027
+
+REPO_ROOT="/home/deploy/ai_media_os"
+PYTHON_BIN="${REPO_ROOT}/.venv/bin/python"
+BASE_REL="exchange/review_evidence/slack_worker_release_rebinding/slack-worker-CANDIDATE-NOT-APPROVED-01ba8809f133/tst-5d-w2b-i2e-baseline-absorption-rereview-20260725T141632"
+SOURCE_REL="${BASE_REL}/i2f3e-j-root-deployment-execution-packet-r1-r1-negative-test-static-validator-correction-preparation-20260726T064109Z-532623"
+SOURCE_ROOT="${REPO_ROOT}/${SOURCE_REL}"
+RUN_ID="$(date -u +%Y%m%dT%H%M%SZ)-$$"
+NEW_REL="${BASE_REL}/i2f3e-j-root-deployment-execution-packet-r1-r2-negative-test-call-selector-correction-preparation-${RUN_ID}"
+NEW_ROOT="${REPO_ROOT}/${NEW_REL}"
+
+if [[ "$(id -u)" -eq 0 ]]; then
+  echo "ROOT_EXECUTION_FORBIDDEN=true" >&2
+  exit 1
+fi
+if [[ "$#" -ne 0 ]]; then
+  echo "ARBITRARY_ARGUMENT_ALLOWED=false" >&2
+  exit 1
+fi
+
+test -x "$PYTHON_BIN"
+test -d "$SOURCE_ROOT"
+cd "$REPO_ROOT"
+
+printf '\n===== FAILED PARTIAL R1-R1 FIXED IDENTITY REVIEW =====\n'
+sha256sum -c <<SHAS
+ebfd846f414323ecd991be665881eed64bb0e49ba76b1c7f16b17545cf640ed7  ${SOURCE_ROOT}/packet-snapshot/candidate-artifacts/candidate-manifest.json
+0d712c6e12dc0b98213ca1995e4f22d1e9088ab5ffc31a97a497d60ba769fa53  ${SOURCE_ROOT}/packet-snapshot/candidate-artifacts/root_deployment_execution_once_r1.py
+efdabbe83c61a2618128f5518a726f007062bba0e91959a01eed1f380d4b2d74  ${SOURCE_ROOT}/packet-snapshot/candidate-artifacts/validate_root_deployment_execution_packet_r1.py
+4c2ef7c7b8db362645600bb374fe0283e9b9b1149f1c1d48982847bf9a480c2f  ${SOURCE_ROOT}/packet-snapshot/candidate-artifacts/test_root_deployment_execution_packet_r1_negative.py
+SHAS
+
+mkdir "$NEW_ROOT"
+
+PYTHONDONTWRITEBYTECODE=1 "$PYTHON_BIN" -B - \
+  "$REPO_ROOT" "$SOURCE_ROOT" "$NEW_ROOT" "$NEW_REL" <<'PY'
+from __future__ import annotations
+
+import base64
+import hashlib
+import json
+import os
+import shutil
+import stat
+import subprocess
+import sys
+import tempfile
+from pathlib import Path
+
+repo_root = Path(sys.argv[1]).resolve(strict=True)
+source_root = Path(sys.argv[2]).resolve(strict=True)
+new_root = Path(sys.argv[3]).resolve(strict=True)
+new_relative = sys.argv[4]
+
+packet_root = new_root / "packet-snapshot"
+candidate_root = packet_root / "candidate-artifacts"
+source_snapshot = packet_root / "source-r1-r1-partial-evidence-snapshot"
+validation_target = packet_root / "r1-r1-validator-target"
+log_root = packet_root / "validation-logs"
+PHASE = "TST-5D-W2B-I2F-3E-J-ROOT-DEPLOYMENT-EXECUTION-PACKET-R1-R2"
+
+corrected_negative = base64.b64decode("IyEvdXNyL2Jpbi9lbnYgcHl0aG9uMwpmcm9tIF9fZnV0dXJlX18gaW1wb3J0IGFubm90YXRpb25zCgppbXBvcnQgYXN0CmltcG9ydCBoYXNobGliCmltcG9ydCBpbXBvcnRsaWIudXRpbAppbXBvcnQganNvbgppbXBvcnQgc2h1dGlsCmltcG9ydCB0ZW1wZmlsZQppbXBvcnQgdW5pdHRlc3QKZnJvbSBwYXRobGliIGltcG9ydCBQYXRoCgpIRVJFID0gUGF0aChfX2ZpbGVfXykucmVzb2x2ZSgpLnBhcmVudApFVklERU5DRV9ST09UID0gSEVSRS5wYXJlbnQucGFyZW50ClZBTElEQVRPUiA9IEhFUkUgLyAidmFsaWRhdGVfcm9vdF9kZXBsb3ltZW50X2V4ZWN1dGlvbl9wYWNrZXRfcjEucHkiClNQRUMgPSBpbXBvcnRsaWIudXRpbC5zcGVjX2Zyb21fZmlsZV9sb2NhdGlvbigicjFyMV92YWxpZGF0b3IiLCBWQUxJREFUT1IpCmFzc2VydCBTUEVDIGlzIG5vdCBOb25lIGFuZCBTUEVDLmxvYWRlciBpcyBub3QgTm9uZQpNT0RVTEUgPSBpbXBvcnRsaWIudXRpbC5tb2R1bGVfZnJvbV9zcGVjKFNQRUMpClNQRUMubG9hZGVyLmV4ZWNfbW9kdWxlKE1PRFVMRSkKCgpkZWYgc2hhMjU2KHBhdGg6IFBhdGgpIC0+IHN0cjoKICAgIHJldHVybiBoYXNobGliLnNoYTI1NihwYXRoLnJlYWRfYnl0ZXMoKSkuaGV4ZGlnZXN0KCkKCgpjbGFzcyBSMVIxTmVnYXRpdmVUZXN0cyh1bml0dGVzdC5UZXN0Q2FzZSk6CiAgICBkZWYgc2V0VXAoc2VsZikgLT4gTm9uZToKICAgICAgICBzZWxmLnRlbXAgPSB0ZW1wZmlsZS5UZW1wb3JhcnlEaXJlY3RvcnkocHJlZml4PSIzZS1qLXIxLXIxLW5lZ2F0aXZlLSIpCiAgICAgICAgc2VsZi5yb290ID0gUGF0aChzZWxmLnRlbXAubmFtZSkgLyAiZXZpZGVuY2UiCiAgICAgICAgc2h1dGlsLmNvcHl0cmVlKEVWSURFTkNFX1JPT1QsIHNlbGYucm9vdCkKCiAgICBkZWYgdGVhckRvd24oc2VsZikgLT4gTm9uZToKICAgICAgICBzZWxmLnRlbXAuY2xlYW51cCgpCgogICAgZGVmIHZhbGlkYXRlKHNlbGYpIC0+IE5vbmU6CiAgICAgICAgTU9EVUxFLnZhbGlkYXRlKHNlbGYucm9vdCkKCiAgICBkZWYgbG9hZF9qc29uKHNlbGYsIHJlbGF0aXZlOiBzdHIpOgogICAgICAgIHBhdGggPSBzZWxmLnJvb3QgLyByZWxhdGl2ZQogICAgICAgIHJldHVybiBwYXRoLCBqc29uLmxvYWRzKHBhdGgucmVhZF90ZXh0KGVuY29kaW5nPSJ1dGYtOCIpKQoKICAgIGRlZiB3cml0ZV9qc29uKHNlbGYsIHBhdGg6IFBhdGgsIHZhbHVlKSAtPiBOb25lOgogICAgICAgIHBhdGgud3JpdGVfdGV4dChqc29uLmR1bXBzKHZhbHVlLCBzb3J0X2tleXM9VHJ1ZSwgaW5kZW50PTIpICsgIlxuIiwgZW5jb2Rpbmc9InV0Zi04IikKCiAgICBkZWYgbXV0YXRlX2pzb24oc2VsZiwgcmVsYXRpdmU6IHN0ciwgbXV0YXRlKSAtPiBOb25lOgogICAgICAgIHBhdGgsIHZhbHVlID0gc2VsZi5sb2FkX2pzb24ocmVsYXRpdmUpCiAgICAgICAgbXV0YXRlKHZhbHVlKQogICAgICAgIHNlbGYud3JpdGVfanNvbihwYXRoLCB2YWx1ZSkKICAgICAgICBzZWxmLnJlZnJlc2hfbWFuaWZlc3RzKCkKCiAgICBkZWYgd3JhcHBlcl9wYXRoKHNlbGYpIC0+IFBhdGg6CiAgICAgICAgcmV0dXJuIHNlbGYucm9vdCAvICJwYWNrZXQtc25hcHNob3QvY2FuZGlkYXRlLWFydGlmYWN0cy9yb290X2RlcGxveW1lbnRfZXhlY3V0aW9uX29uY2VfcjEucHkiCgogICAgZGVmIG11dGF0ZV93cmFwcGVyKHNlbGYsIG9sZDogc3RyLCBuZXc6IHN0ciwgKiwgY291bnQ6IGludCA9IDEpIC0+IE5vbmU6CiAgICAgICAgcGF0aCA9IHNlbGYud3JhcHBlcl9wYXRoKCkKICAgICAgICB0ZXh0ID0gcGF0aC5yZWFkX3RleHQoZW5jb2Rpbmc9InV0Zi04IikKICAgICAgICBzZWxmLmFzc2VydEdyZWF0ZXJFcXVhbCh0ZXh0LmNvdW50KG9sZCksIGNvdW50KQogICAgICAgIHBhdGgud3JpdGVfdGV4dCh0ZXh0LnJlcGxhY2Uob2xkLCBuZXcsIGNvdW50KSwgZW5jb2Rpbmc9InV0Zi04IikKICAgICAgICBzZWxmLnJlZnJlc2hfbWFuaWZlc3RzKCkKCiAgICBkZWYgbXV0YXRlX3ByZWZsaWdodF9jYWxsKAogICAgICAgIHNlbGYsCiAgICAgICAgZnVuY3Rpb25fbmFtZTogc3RyLAogICAgICAgIHJlcGxhY2VtZW50X3NvdXJjZTogc3RyLAogICAgICAgICosCiAgICAgICAgZXhwZWN0ZWRfYXJnX25hbWVzOiB0dXBsZVtzdHIsIC4uLl0sCiAgICApIC0+IE5vbmU6CiAgICAgICAgcGF0aCA9IHNlbGYud3JhcHBlcl9wYXRoKCkKICAgICAgICB0ZXh0ID0gcGF0aC5yZWFkX3RleHQoZW5jb2Rpbmc9InV0Zi04IikKICAgICAgICB0cmVlID0gYXN0LnBhcnNlKHRleHQpCiAgICAgICAgcHJlZmxpZ2h0X25vZGVzID0gWwogICAgICAgICAgICBub2RlCiAgICAgICAgICAgIGZvciBub2RlIGluIHRyZWUuYm9keQogICAgICAgICAgICBpZiBpc2luc3RhbmNlKG5vZGUsIGFzdC5GdW5jdGlvbkRlZikgYW5kIG5vZGUubmFtZSA9PSAicHJlZmxpZ2h0IgogICAgICAgIF0KICAgICAgICBzZWxmLmFzc2VydEVxdWFsKGxlbihwcmVmbGlnaHRfbm9kZXMpLCAxKQogICAgICAgIGNhbGxfc3RhdGVtZW50czogbGlzdFthc3QuRXhwcl0gPSBbXQogICAgICAgIGZvciBub2RlIGluIGFzdC53YWxrKHByZWZsaWdodF9ub2Rlc1swXSk6CiAgICAgICAgICAgIGlmIG5vdCBpc2luc3RhbmNlKG5vZGUsIGFzdC5FeHByKToKICAgICAgICAgICAgICAgIGNvbnRpbnVlCiAgICAgICAgICAgIHZhbHVlID0gbm9kZS52YWx1ZQogICAgICAgICAgICBpZiBub3QgaXNpbnN0YW5jZSh2YWx1ZSwgYXN0LkNhbGwpOgogICAgICAgICAgICAgICAgY29udGludWUKICAgICAgICAgICAgaWYgbm90IGlzaW5zdGFuY2UodmFsdWUuZnVuYywgYXN0Lk5hbWUpOgogICAgICAgICAgICAgICAgY29udGludWUKICAgICAgICAgICAgaWYgdmFsdWUuZnVuYy5pZCA9PSBmdW5jdGlvbl9uYW1lOgogICAgICAgICAgICAgICAgY2FsbF9zdGF0ZW1lbnRzLmFwcGVuZChub2RlKQogICAgICAgIHNlbGYuYXNzZXJ0RXF1YWwobGVuKGNhbGxfc3RhdGVtZW50cyksIDEpCiAgICAgICAgc3RhdGVtZW50ID0gY2FsbF9zdGF0ZW1lbnRzWzBdCiAgICAgICAgY2FsbCA9IHN0YXRlbWVudC52YWx1ZQogICAgICAgIGFzc2VydCBpc2luc3RhbmNlKGNhbGwsIGFzdC5DYWxsKQogICAgICAgIGFjdHVhbF9hcmdfbmFtZXMgPSB0dXBsZSgKICAgICAgICAgICAgYXJndW1lbnQuaWQgaWYgaXNpbnN0YW5jZShhcmd1bWVudCwgYXN0Lk5hbWUpIGVsc2UgIjxOT05fTkFNRT4iCiAgICAgICAgICAgIGZvciBhcmd1bWVudCBpbiBjYWxsLmFyZ3MKICAgICAgICApCiAgICAgICAgc2VsZi5hc3NlcnRFcXVhbChhY3R1YWxfYXJnX25hbWVzLCBleHBlY3RlZF9hcmdfbmFtZXMpCiAgICAgICAgc2VsZi5hc3NlcnRFcXVhbChjYWxsLmtleXdvcmRzLCBbXSkKICAgICAgICBzZWxmLmFzc2VydElzTm90Tm9uZShzdGF0ZW1lbnQuZW5kX2xpbmVubykKICAgICAgICBzZWxmLmFzc2VydElzTm90Tm9uZShzdGF0ZW1lbnQuZW5kX2NvbF9vZmZzZXQpCiAgICAgICAgbGluZXMgPSB0ZXh0LnNwbGl0bGluZXMoa2VlcGVuZHM9VHJ1ZSkKCiAgICAgICAgZGVmIG9mZnNldChsaW5lbm86IGludCwgY29sdW1uOiBpbnQpIC0+IGludDoKICAgICAgICAgICAgcmV0dXJuIHN1bShsZW4obGluZSkgZm9yIGxpbmUgaW4gbGluZXNbOiBsaW5lbm8gLSAxXSkgKyBjb2x1bW4KCiAgICAgICAgc3RhcnQgPSBvZmZzZXQoc3RhdGVtZW50LmxpbmVubywgc3RhdGVtZW50LmNvbF9vZmZzZXQpCiAgICAgICAgZW5kID0gb2Zmc2V0KHN0YXRlbWVudC5lbmRfbGluZW5vLCBzdGF0ZW1lbnQuZW5kX2NvbF9vZmZzZXQpCiAgICAgICAgcmVwbGFjZW1lbnQgPSAoIiAiICogc3RhdGVtZW50LmNvbF9vZmZzZXQpICsgcmVwbGFjZW1lbnRfc291cmNlCiAgICAgICAgbXV0YXRlZCA9IHRleHRbOnN0YXJ0XSArIHJlcGxhY2VtZW50ICsgdGV4dFtlbmQ6XQogICAgICAgIGNvbXBpbGUobXV0YXRlZCwgc3RyKHBhdGgpLCAiZXhlYyIpCiAgICAgICAgcGF0aC53cml0ZV90ZXh0KG11dGF0ZWQsIGVuY29kaW5nPSJ1dGYtOCIpCiAgICAgICAgc2VsZi5yZWZyZXNoX21hbmlmZXN0cygpCgogICAgZGVmIHJlZnJlc2hfbWFuaWZlc3RzKHNlbGYpIC0+IE5vbmU6CiAgICAgICAgY2FuZGlkYXRlID0gc2VsZi5yb290IC8gInBhY2tldC1zbmFwc2hvdC9jYW5kaWRhdGUtYXJ0aWZhY3RzIgogICAgICAgIGNhbmRpZGF0ZV9tYW5pZmVzdF9wYXRoID0gY2FuZGlkYXRlIC8gImNhbmRpZGF0ZS1tYW5pZmVzdC5qc29uIgogICAgICAgIGNhbmRpZGF0ZV9tYW5pZmVzdCA9IGpzb24ubG9hZHMoY2FuZGlkYXRlX21hbmlmZXN0X3BhdGgucmVhZF90ZXh0KGVuY29kaW5nPSJ1dGYtOCIpKQogICAgICAgIGNhbmRpZGF0ZV9tYW5pZmVzdFsiZmlsZXMiXSA9IFtdCiAgICAgICAgZm9yIHBhdGggaW4gc29ydGVkKGNhbmRpZGF0ZS5pdGVyZGlyKCkpOgogICAgICAgICAgICBpZiBwYXRoLmlzX2ZpbGUoKSBhbmQgcGF0aC5uYW1lICE9ICJjYW5kaWRhdGUtbWFuaWZlc3QuanNvbiI6CiAgICAgICAgICAgICAgICBjYW5kaWRhdGVfbWFuaWZlc3RbImZpbGVzIl0uYXBwZW5kKHsibmFtZSI6IHBhdGgubmFtZSwgInNoYTI1NiI6IHNoYTI1NihwYXRoKSwgInNpemVfYnl0ZXMiOiBwYXRoLnN0YXQoKS5zdF9zaXplfSkKICAgICAgICBzZWxmLndyaXRlX2pzb24oY2FuZGlkYXRlX21hbmlmZXN0X3BhdGgsIGNhbmRpZGF0ZV9tYW5pZmVzdCkKCiAgICAgICAgcGFja2V0ID0gc2VsZi5yb290IC8gInBhY2tldC1zbmFwc2hvdCIKICAgICAgICBwYWNrZXRfbWFuaWZlc3RfcGF0aCA9IHBhY2tldCAvICJwYWNrZXQtbWFuaWZlc3QuanNvbiIKICAgICAgICBwYWNrZXRfbWFuaWZlc3QgPSBqc29uLmxvYWRzKHBhY2tldF9tYW5pZmVzdF9wYXRoLnJlYWRfdGV4dChlbmNvZGluZz0idXRmLTgiKSkKICAgICAgICBwYWNrZXRfbWFuaWZlc3RbInBhY2tldF9maWxlcyJdID0gW10KICAgICAgICBmb3IgcGF0aCBpbiBzb3J0ZWQocGFja2V0LnJnbG9iKCIqIikpOgogICAgICAgICAgICBpZiBwYXRoLmlzX2ZpbGUoKToKICAgICAgICAgICAgICAgIHJlbGF0aXZlID0gcGF0aC5yZWxhdGl2ZV90byhwYWNrZXQpLmFzX3Bvc2l4KCkKICAgICAgICAgICAgICAgIGlmIHJlbGF0aXZlICE9ICJwYWNrZXQtbWFuaWZlc3QuanNvbiI6CiAgICAgICAgICAgICAgICAgICAgcGFja2V0X21hbmlmZXN0WyJwYWNrZXRfZmlsZXMiXS5hcHBlbmQoeyJuYW1lIjogcmVsYXRpdmUsICJzaGEyNTYiOiBzaGEyNTYocGF0aCksICJzaXplX2J5dGVzIjogcGF0aC5zdGF0KCkuc3Rfc2l6ZX0pCiAgICAgICAgcGFja2V0X21hbmlmZXN0WyJwYWNrZXRfZmlsZV9jb3VudF9leGNsdWRpbmdfbWFuaWZlc3QiXSA9IGxlbihwYWNrZXRfbWFuaWZlc3RbInBhY2tldF9maWxlcyJdKQogICAgICAgIHNlbGYud3JpdGVfanNvbihwYWNrZXRfbWFuaWZlc3RfcGF0aCwgcGFja2V0X21hbmlmZXN0KQoKICAgICAgICBldmlkZW5jZV9tYW5pZmVzdCA9IHNlbGYucm9vdCAvICJldmlkZW5jZS1tYW5pZmVzdC50eHQiCiAgICAgICAgbGluZXMgPSBbXQogICAgICAgIGZvciBwYXRoIGluIHNvcnRlZChzZWxmLnJvb3Qucmdsb2IoIioiKSk6CiAgICAgICAgICAgIGlmIHBhdGguaXNfZmlsZSgpOgogICAgICAgICAgICAgICAgcmVsYXRpdmUgPSBwYXRoLnJlbGF0aXZlX3RvKHNlbGYucm9vdCkuYXNfcG9zaXgoKQogICAgICAgICAgICAgICAgaWYgcmVsYXRpdmUgIT0gImV2aWRlbmNlLW1hbmlmZXN0LnR4dCI6CiAgICAgICAgICAgICAgICAgICAgbGluZXMuYXBwZW5kKGYie3NoYTI1NihwYXRoKX0gIHtyZWxhdGl2ZX0iKQogICAgICAgIGV2aWRlbmNlX21hbmlmZXN0LndyaXRlX3RleHQoIlxuIi5qb2luKGxpbmVzKSArICJcbiIsIGVuY29kaW5nPSJ1dGYtOCIpCgogICAgZGVmIGFzc2VydF9yZWplY3RlZChzZWxmKSAtPiBOb25lOgogICAgICAgIHdpdGggc2VsZi5hc3NlcnRSYWlzZXMoQXNzZXJ0aW9uRXJyb3IpOgogICAgICAgICAgICBzZWxmLnZhbGlkYXRlKCkKCiAgICBkZWYgdGVzdF8wMV92YWxpZF9wYWNrZXRfcGFzc2VzKHNlbGYpIC0+IE5vbmU6CiAgICAgICAgc2VsZi52YWxpZGF0ZSgpCgogICAgZGVmIHRlc3RfMDJfZXh0cmFfY2FuZGlkYXRlX2ZpbGVfcmVqZWN0ZWQoc2VsZikgLT4gTm9uZToKICAgICAgICAoc2VsZi5yb290IC8gInBhY2tldC1zbmFwc2hvdC9jYW5kaWRhdGUtYXJ0aWZhY3RzL2V4dHJhLnB5YyIpLndyaXRlX2J5dGVzKGIieCIpCiAgICAgICAgc2VsZi5yZWZyZXNoX21hbmlmZXN0cygpOyBzZWxmLmFzc2VydF9yZWplY3RlZCgpCgogICAgZGVmIHRlc3RfMDNfbWlzc2luZ19zb3VyY2Vfc25hcHNob3RfZmlsZV9yZWplY3RlZChzZWxmKSAtPiBOb25lOgogICAgICAgIChzZWxmLnJvb3QgLyAicGFja2V0LXNuYXBzaG90L3NvdXJjZS1wYXJ0aWFsLWV2aWRlbmNlLXNuYXBzaG90L3BhY2tldC1zbmFwc2hvdC92YWxpZGF0aW9uLWxvZ3MvdmlzdWRvLmxvZyIpLnVubGluaygpCiAgICAgICAgc2VsZi5yZWZyZXNoX21hbmlmZXN0cygpOyBzZWxmLmFzc2VydF9yZWplY3RlZCgpCgogICAgZGVmIHRlc3RfMDRfcG9saWN5X2V4ZWN1dGlvbl90cnVlX3JlamVjdGVkKHNlbGYpIC0+IE5vbmU6CiAgICAgICAgc2VsZi5tdXRhdGVfanNvbigicGFja2V0LXNuYXBzaG90L2NhbmRpZGF0ZS1hcnRpZmFjdHMvcjEtcjEtY29ycmVjdGlvbi1wb2xpY3kuanNvbiIsIGxhbWJkYSB2OiB2Ll9fc2V0aXRlbV9fKCJyb290X2RlcGxveW1lbnRfZXhlY3V0aW9uX2FsbG93ZWQiLCBUcnVlKSk7IHNlbGYuYXNzZXJ0X3JlamVjdGVkKCkKCiAgICBkZWYgdGVzdF8wNV9wb2xpY3lfc3Vkb2Vyc190cnVlX3JlamVjdGVkKHNlbGYpIC0+IE5vbmU6CiAgICAgICAgc2VsZi5tdXRhdGVfanNvbigicGFja2V0LXNuYXBzaG90L2NhbmRpZGF0ZS1hcnRpZmFjdHMvcjEtcjEtY29ycmVjdGlvbi1wb2xpY3kuanNvbiIsIGxhbWJkYSB2OiB2Ll9fc2V0aXRlbV9fKCJzdWRvZXJzX2luc3RhbGxhdGlvbl9hbGxvd2VkIiwgVHJ1ZSkpOyBzZWxmLmFzc2VydF9yZWplY3RlZCgpCgogICAgZGVmIHRlc3RfMDZfcG9saWN5X3JlbGVhc2VfZ29fcmVqZWN0ZWQoc2VsZikgLT4gTm9uZToKICAgICAgICBzZWxmLm11dGF0ZV9qc29uKCJwYWNrZXQtc25hcHNob3QvY2FuZGlkYXRlLWFydGlmYWN0cy9yMS1yMS1jb3JyZWN0aW9uLXBvbGljeS5qc29uIiwgbGFtYmRhIHY6IHYuX19zZXRpdGVtX18oInByb2R1Y3Rpb25fcmVsZWFzZV9kZWNpc2lvbiIsICJHTyIpKTsgc2VsZi5hc3NlcnRfcmVqZWN0ZWQoKQoKICAgIGRlZiB0ZXN0XzA3X2ludmVudG9yeV9maWxlX2NvdW50X3JlamVjdGVkKHNlbGYpIC0+IE5vbmU6CiAgICAgICAgc2VsZi5tdXRhdGVfanNvbigicGFja2V0LXNuYXBzaG90L2NhbmRpZGF0ZS1hcnRpZmFjdHMvcGFydGlhbC1zb3VyY2UtaW52ZW50b3J5Lmpzb24iLCBsYW1iZGEgdjogdi5fX3NldGl0ZW1fXygic291cmNlX2ZpbGVfY291bnQiLCAzOCkpOyBzZWxmLmFzc2VydF9yZWplY3RlZCgpCgogICAgZGVmIHRlc3RfMDhfaW52ZW50b3J5X3NoYV9yZWplY3RlZChzZWxmKSAtPiBOb25lOgogICAgICAgIHNlbGYubXV0YXRlX2pzb24oInBhY2tldC1zbmFwc2hvdC9jYW5kaWRhdGUtYXJ0aWZhY3RzL3BhcnRpYWwtc291cmNlLWludmVudG9yeS5qc29uIiwgbGFtYmRhIHY6IHZbImZpbGVzIl1bMF0uX19zZXRpdGVtX18oInNoYTI1NiIsICIwIiAqIDY0KSk7IHNlbGYuYXNzZXJ0X3JlamVjdGVkKCkKCiAgICBkZWYgdGVzdF8wOV9yZXBvcnRfd3JhcHBlcl9zaGFfcmVqZWN0ZWQoc2VsZikgLT4gTm9uZToKICAgICAgICBzZWxmLm11dGF0ZV9qc29uKCJwYWNrZXQtc25hcHNob3QvY2FuZGlkYXRlLWFydGlmYWN0cy92YWxpZGF0b3ItbmVnYXRpdmUtY29ycmVjdGlvbi1yZXBvcnQuanNvbiIsIGxhbWJkYSB2OiB2Ll9fc2V0aXRlbV9fKCJ3cmFwcGVyX3NoYTI1NiIsICIwIiAqIDY0KSk7IHNlbGYuYXNzZXJ0X3JlamVjdGVkKCkKCiAgICBkZWYgdGVzdF8xMF9yZXBvcnRfZmFpbGVkX3ZhbGlkYXRvcl9zaGFfcmVqZWN0ZWQoc2VsZikgLT4gTm9uZToKICAgICAgICBzZWxmLm11dGF0ZV9qc29uKCJwYWNrZXQtc25hcHNob3QvY2FuZGlkYXRlLWFydGlmYWN0cy92YWxpZGF0b3ItbmVnYXRpdmUtY29ycmVjdGlvbi1yZXBvcnQuanNvbiIsIGxhbWJkYSB2OiB2Ll9fc2V0aXRlbV9fKCJmYWlsZWRfdmFsaWRhdG9yX3NoYTI1NiIsICIwIiAqIDY0KSk7IHNlbGYuYXNzZXJ0X3JlamVjdGVkKCkKCiAgICBkZWYgdGVzdF8xMV9yZXBvcnRfZmFpbGVkX25lZ2F0aXZlX3NoYV9yZWplY3RlZChzZWxmKSAtPiBOb25lOgogICAgICAgIHNlbGYubXV0YXRlX2pzb24oInBhY2tldC1zbmFwc2hvdC9jYW5kaWRhdGUtYXJ0aWZhY3RzL3ZhbGlkYXRvci1uZWdhdGl2ZS1jb3JyZWN0aW9uLXJlcG9ydC5qc29uIiwgbGFtYmRhIHY6IHYuX19zZXRpdGVtX18oImZhaWxlZF9uZWdhdGl2ZV90ZXN0X3NoYTI1NiIsICIwIiAqIDY0KSk7IHNlbGYuYXNzZXJ0X3JlamVjdGVkKCkKCiAgICBkZWYgdGVzdF8xMl9zb3VyY2VfZmluYWxpemF0aW9uX2ZsYWdfcmVqZWN0ZWQoc2VsZikgLT4gTm9uZToKICAgICAgICBzZWxmLm11dGF0ZV9qc29uKCJwYWNrZXQtc25hcHNob3QvY2FuZGlkYXRlLWFydGlmYWN0cy9wYXJ0aWFsLXNvdXJjZS1pbnZlbnRvcnkuanNvbiIsIGxhbWJkYSB2OiB2WyJmaW5hbGl6YXRpb25fZmlsZXNfcHJlc2VudCJdLl9fc2V0aXRlbV9fKCJyZXN1bHQuanNvbiIsIFRydWUpKTsgc2VsZi5hc3NlcnRfcmVqZWN0ZWQoKQoKICAgIGRlZiB0ZXN0XzEzX3NvdXJjZV9zbmFwc2hvdF9wYXlsb2FkX2NoYW5nZV9yZWplY3RlZChzZWxmKSAtPiBOb25lOgogICAgICAgIHBhdGggPSBzZWxmLnJvb3QgLyAicGFja2V0LXNuYXBzaG90L3NvdXJjZS1wYXJ0aWFsLWV2aWRlbmNlLXNuYXBzaG90L3BhY2tldC1zbmFwc2hvdC9odW1hbi1hcHByb3ZhbC12ZXJiYXRpbS50eHQiCiAgICAgICAgcGF0aC53cml0ZV90ZXh0KHBhdGgucmVhZF90ZXh0KGVuY29kaW5nPSJ1dGYtOCIpICsgIngiLCBlbmNvZGluZz0idXRmLTgiKQogICAgICAgIHNlbGYucmVmcmVzaF9tYW5pZmVzdHMoKTsgc2VsZi5hc3NlcnRfcmVqZWN0ZWQoKQoKICAgIGRlZiB0ZXN0XzE0X3NvdXJjZV9zbmFwc2hvdF9zeW1saW5rX3JlamVjdGVkKHNlbGYpIC0+IE5vbmU6CiAgICAgICAgdGFyZ2V0ID0gc2VsZi5yb290IC8gInBhY2tldC1zbmFwc2hvdC9zb3VyY2UtcGFydGlhbC1ldmlkZW5jZS1zbmFwc2hvdC91bmV4cGVjdGVkLWxpbmsiCiAgICAgICAgdGFyZ2V0LnN5bWxpbmtfdG8oIm1pc3NpbmctdGFyZ2V0IikKICAgICAgICBzZWxmLnJlZnJlc2hfbWFuaWZlc3RzKCk7IHNlbGYuYXNzZXJ0X3JlamVjdGVkKCkKCiAgICBkZWYgdGVzdF8xNV93cmFwcGVyX2J5dGVzX2NoYW5nZV9yZWplY3RlZChzZWxmKSAtPiBOb25lOgogICAgICAgIHNlbGYubXV0YXRlX3dyYXBwZXIoIk1BWF9FWEVDVVRJT05fQVRURU1QVFMgPSAxIiwgIk1BWF9FWEVDVVRJT05fQVRURU1QVFMgPSAyIik7IHNlbGYuYXNzZXJ0X3JlamVjdGVkKCkKCiAgICBkZWYgdGVzdF8xNl93cmFwcGVyX2V4ZWN1dGlvbl90cnVlX3JlamVjdGVkKHNlbGYpIC0+IE5vbmU6CiAgICAgICAgc2VsZi5tdXRhdGVfanNvbigicGFja2V0LXNuYXBzaG90L2NhbmRpZGF0ZS1hcnRpZmFjdHMvcjEtcjEtY29ycmVjdGlvbi1wb2xpY3kuanNvbiIsIGxhbWJkYSB2OiB2Ll9fc2V0aXRlbV9fKCJjb3JyZWN0ZWRfd3JhcHBlcl9leGVjdXRpb25fYWxsb3dlZCIsIFRydWUpKTsgc2VsZi5hc3NlcnRfcmVqZWN0ZWQoKQoKICAgIGRlZiB0ZXN0XzE3X3dyYXBwZXJfY2hhbmdlX3RydWVfcmVqZWN0ZWQoc2VsZikgLT4gTm9uZToKICAgICAgICBzZWxmLm11dGF0ZV9qc29uKCJwYWNrZXQtc25hcHNob3QvY2FuZGlkYXRlLWFydGlmYWN0cy9yMS1yMS1jb3JyZWN0aW9uLXBvbGljeS5qc29uIiwgbGFtYmRhIHY6IHYuX19zZXRpdGVtX18oImNvcnJlY3RlZF93cmFwcGVyX2NoYW5nZV9hbGxvd2VkIiwgVHJ1ZSkpOyBzZWxmLmFzc2VydF9yZWplY3RlZCgpCgogICAgZGVmIHRlc3RfMThfdGVzdF9pZHNfY2hhbmdlX3JlamVjdGVkKHNlbGYpIC0+IE5vbmU6CiAgICAgICAgc2VsZi5tdXRhdGVfanNvbigicGFja2V0LXNuYXBzaG90L2NhbmRpZGF0ZS1hcnRpZmFjdHMvcjEtcjEtY29ycmVjdGlvbi1wb2xpY3kuanNvbiIsIGxhbWJkYSB2OiB2Ll9fc2V0aXRlbV9fKCJjb3JyZWN0ZWRfdGVzdF9pZHMiLCBbMjYsIDI3LCAzMF0pKTsgc2VsZi5hc3NlcnRfcmVqZWN0ZWQoKQoKICAgIGRlZiB0ZXN0XzE5X3N1ZG9lcnNfd2lsZGNhcmRfcmVqZWN0ZWQoc2VsZikgLT4gTm9uZToKICAgICAgICBwYXRoID0gc2VsZi5yb290IC8gInBhY2tldC1zbmFwc2hvdC9jYW5kaWRhdGUtYXJ0aWZhY3RzL2FpLW1lZGlhLW9zLTNlLWotcm9vdC1oZWxwZXIuc3Vkb2VycyIKICAgICAgICBwYXRoLndyaXRlX3RleHQoIipcbiIsIGVuY29kaW5nPSJ1dGYtOCIpOyBzZWxmLnJlZnJlc2hfbWFuaWZlc3RzKCk7IHNlbGYuYXNzZXJ0X3JlamVjdGVkKCkKCiAgICBkZWYgdGVzdF8yMF93cmFwcGVyX21hbmlmZXN0X3BhcnNlcl9yZW1vdmVkX3JlamVjdGVkKHNlbGYpIC0+IE5vbmU6CiAgICAgICAgc2VsZi5tdXRhdGVfd3JhcHBlcigiZGVmIHBhcnNlX2V2aWRlbmNlX21hbmlmZXN0KCIsICJkZWYgcmVtb3ZlZF9wYXJzZV9ldmlkZW5jZV9tYW5pZmVzdCgiKTsgc2VsZi5hc3NlcnRfcmVqZWN0ZWQoKQoKICAgIGRlZiB0ZXN0XzIxX3dyYXBwZXJfZXZpZGVuY2VfY2FsbF9yZW1vdmVkX3JlamVjdGVkKHNlbGYpIC0+IE5vbmU6CiAgICAgICAgc2VsZi5tdXRhdGVfcHJlZmxpZ2h0X2NhbGwoCiAgICAgICAgICAgICJ2YWxpZGF0ZV9ldmlkZW5jZV9pbnRlZ3JpdHkiLAogICAgICAgICAgICAicmVxdWlyZShUcnVlLCAnUkVNT1ZFRF9FVklERU5DRV9WQUxJREFUSU9OJykiLAogICAgICAgICAgICBleHBlY3RlZF9hcmdfbmFtZXM9KCJldmlkZW5jZV9yb290IiwgImJpbmRpbmciKSwKICAgICAgICApCiAgICAgICAgc2VsZi5hc3NlcnRfcmVqZWN0ZWQoKQoKICAgIGRlZiB0ZXN0XzIyX3dyYXBwZXJfcGFyZW50X2RldmljZV9tYXJrZXJfcmVtb3ZlZF9yZWplY3RlZChzZWxmKSAtPiBOb25lOgogICAgICAgIHNlbGYubXV0YXRlX3dyYXBwZXIoJyJST0xMQkFDS19QQVJFTlRfREVWSUNFIicsICciUkVNT1ZFRF9QQVJFTlRfREVWSUNFIicpOyBzZWxmLmFzc2VydF9yZWplY3RlZCgpCgogICAgZGVmIHRlc3RfMjNfd3JhcHBlcl9wYXJlbnRfaW5vZGVfbWFya2VyX3JlbW92ZWRfcmVqZWN0ZWQoc2VsZikgLT4gTm9uZToKICAgICAgICBzZWxmLm11dGF0ZV93cmFwcGVyKCciUk9MTEJBQ0tfUEFSRU5UX0lOT0RFIicsICciUkVNT1ZFRF9QQVJFTlRfSU5PREUiJyk7IHNlbGYuYXNzZXJ0X3JlamVjdGVkKCkKCiAgICBkZWYgdGVzdF8yNF93cmFwcGVyX2xleGlzdHNfcmVtb3ZlZF9yZWplY3RlZChzZWxmKSAtPiBOb25lOgogICAgICAgIHNlbGYubXV0YXRlX3dyYXBwZXIoIm9zLnBhdGgubGV4aXN0cyIsICJvcy5wYXRoLmV4aXN0cyIpOyBzZWxmLmFzc2VydF9yZWplY3RlZCgpCgogICAgZGVmIHRlc3RfMjVfd3JhcHBlcl9wYXRoX2Fic2VuY2VfZnVuY3Rpb25fcmVtb3ZlZF9yZWplY3RlZChzZWxmKSAtPiBOb25lOgogICAgICAgIHNlbGYubXV0YXRlX3dyYXBwZXIoImRlZiByZXF1aXJlX3BhdGhfZW50cnlfYWJzZW50KCIsICJkZWYgcmVtb3ZlZF9yZXF1aXJlX3BhdGhfZW50cnlfYWJzZW50KCIpOyBzZWxmLmFzc2VydF9yZWplY3RlZCgpCgogICAgZGVmIHRlc3RfMjZfd3JhcHBlcl9wcm90ZWN0ZWRfdmFsaWRhdGlvbl9jYWxsX3JlbW92ZWRfcmVqZWN0ZWQoc2VsZikgLT4gTm9uZToKICAgICAgICBzZWxmLm11dGF0ZV9wcmVmbGlnaHRfY2FsbCgKICAgICAgICAgICAgInZhbGlkYXRlX3Byb3RlY3RlZF9zaGEiLAogICAgICAgICAgICAicmVxdWlyZShUcnVlLCAnUkVNT1ZFRF9QUk9URUNURURfVkFMSURBVElPTicpIiwKICAgICAgICAgICAgZXhwZWN0ZWRfYXJnX25hbWVzPSgpLAogICAgICAgICkKICAgICAgICBzZWxmLmFzc2VydF9yZWplY3RlZCgpCgogICAgZGVmIHRlc3RfMjdfd3JhcHBlcl9wcm90ZWN0ZWRfdGFibGVfZXhhY3RfYXNzaWdubWVudF9yZWplY3RlZChzZWxmKSAtPiBOb25lOgogICAgICAgIHNlbGYubXV0YXRlX3dyYXBwZXIoIlBST1RFQ1RFRF9TSEEgPSB7IiwgIlJFTU9WRURfUFJPVEVDVEVEX1NIQSA9IHsiKTsgc2VsZi5hc3NlcnRfcmVqZWN0ZWQoKQoKICAgIGRlZiB0ZXN0XzI4X3dyYXBwZXJfcGFyZW50X3JvbGxiYWNrX2lkZW50aXR5X2ZhbHNlX3JlamVjdGVkKHNlbGYpIC0+IE5vbmU6CiAgICAgICAgc2VsZi5tdXRhdGVfanNvbigicGFja2V0LXNuYXBzaG90L2NhbmRpZGF0ZS1hcnRpZmFjdHMvcm9vdC1kZXBsb3ltZW50LXRyYW5zYWN0aW9uLWNvbnRyYWN0Lmpzb24iLCBsYW1iZGEgdjogdlsicm9sbGJhY2siXS5fX3NldGl0ZW1fXygiY3JlYXRlZF9wYXJlbnRfcmVtb3ZhbF9yZXF1aXJlc19pbm9kZV9kZXZpY2VfbWF0Y2giLCBGYWxzZSkpOyBzZWxmLmFzc2VydF9yZWplY3RlZCgpCgogICAgZGVmIHRlc3RfMjlfd3JhcHBlcl9yZW5hbWVfZmFsbGJhY2tfY29udHJhY3RfcmVqZWN0ZWQoc2VsZikgLT4gTm9uZToKICAgICAgICBzZWxmLm11dGF0ZV9qc29uKCJwYWNrZXQtc25hcHNob3QvY2FuZGlkYXRlLWFydGlmYWN0cy9yb290LWRlcGxveW1lbnQtdHJhbnNhY3Rpb24tY29udHJhY3QuanNvbiIsIGxhbWJkYSB2OiB2WyJwcmVmbGlnaHQiXS5fX3NldGl0ZW1fXygicmVuYW1lX2ZhbGxiYWNrX2FsbG93ZWQiLCBUcnVlKSk7IHNlbGYuYXNzZXJ0X3JlamVjdGVkKCkKCiAgICBkZWYgdGVzdF8zMF93cmFwcGVyX2JvdGhfcmVuYW1lYXQyX3JlZmVyZW5jZXNfcmVtb3ZlZF9yZWplY3RlZChzZWxmKSAtPiBOb25lOgogICAgICAgIHBhdGggPSBzZWxmLndyYXBwZXJfcGF0aCgpOyB0ZXh0ID0gcGF0aC5yZWFkX3RleHQoZW5jb2Rpbmc9InV0Zi04IikKICAgICAgICBzZWxmLmFzc2VydEVxdWFsKHRleHQuY291bnQoInJlbmFtZWF0MiA9IGxpYmMucmVuYW1lYXQyIiksIDIpCiAgICAgICAgcGF0aC53cml0ZV90ZXh0KHRleHQucmVwbGFjZSgicmVuYW1lYXQyID0gbGliYy5yZW5hbWVhdDIiLCAicmVuYW1lYXQyID0gbGliYy5yZW1vdmVkX3JlbmFtZWF0MiIpLCBlbmNvZGluZz0idXRmLTgiKQogICAgICAgIHNlbGYucmVmcmVzaF9tYW5pZmVzdHMoKTsgc2VsZi5hc3NlcnRfcmVqZWN0ZWQoKQoKICAgIGRlZiB0ZXN0XzMxX3dyYXBwZXJfcmVuYW1lX25vcmVwbGFjZV9leGFjdF9jb25zdGFudF9yZWplY3RlZChzZWxmKSAtPiBOb25lOgogICAgICAgIHNlbGYubXV0YXRlX3dyYXBwZXIoIlJFTkFNRV9OT1JFUExBQ0UgPSAxXG4iLCAiUkVOQU1FX05PUkVQTEFDRSA9IDJcbiIpOyBzZWxmLmFzc2VydF9yZWplY3RlZCgpCgogICAgZGVmIHRlc3RfMzJfd3JhcHBlcl9yZW5hbWVhdDJfZmlmdGhfYXJndW1lbnRfcmVqZWN0ZWQoc2VsZikgLT4gTm9uZToKICAgICAgICBzZWxmLm11dGF0ZV93cmFwcGVyKCIgICAgICAgIFJFTkFNRV9OT1JFUExBQ0UsXG4iLCAiICAgICAgICAwLFxuIik7IHNlbGYuYXNzZXJ0X3JlamVjdGVkKCkKCiAgICBkZWYgdGVzdF8zM193cmFwcGVyX29zX3JlbmFtZV9mYWxsYmFja19yZWplY3RlZChzZWxmKSAtPiBOb25lOgogICAgICAgIHBhdGggPSBzZWxmLndyYXBwZXJfcGF0aCgpOyBwYXRoLndyaXRlX3RleHQocGF0aC5yZWFkX3RleHQoZW5jb2Rpbmc9InV0Zi04IikgKyAiXG4jIG9zLnJlbmFtZShzdGFnZSwgdGFyZ2V0KVxuIiwgZW5jb2Rpbmc9InV0Zi04IikKICAgICAgICBzZWxmLnJlZnJlc2hfbWFuaWZlc3RzKCk7IHNlbGYuYXNzZXJ0X3JlamVjdGVkKCkKCiAgICBkZWYgdGVzdF8zNF93cmFwcGVyX3NoZWxsX3RydWVfcmVqZWN0ZWQoc2VsZikgLT4gTm9uZToKICAgICAgICBwYXRoID0gc2VsZi53cmFwcGVyX3BhdGgoKTsgcGF0aC53cml0ZV90ZXh0KHBhdGgucmVhZF90ZXh0KGVuY29kaW5nPSJ1dGYtOCIpICsgIlxuIyBzaGVsbD1UcnVlXG4iLCBlbmNvZGluZz0idXRmLTgiKQogICAgICAgIHNlbGYucmVmcmVzaF9tYW5pZmVzdHMoKTsgc2VsZi5hc3NlcnRfcmVqZWN0ZWQoKQoKICAgIGRlZiB0ZXN0XzM1X3dyYXBwZXJfZXZpZGVuY2VfYWZ0ZXJfZ3VhcmRfcmVqZWN0ZWQoc2VsZikgLT4gTm9uZToKICAgICAgICBwYXRoID0gc2VsZi53cmFwcGVyX3BhdGgoKTsgdGV4dCA9IHBhdGgucmVhZF90ZXh0KGVuY29kaW5nPSJ1dGYtOCIpCiAgICAgICAgdGV4dCA9IHRleHQucmVwbGFjZSgiICAgICAgICB2YWxpZGF0ZV9ldmlkZW5jZV9pbnRlZ3JpdHkoZXZpZGVuY2Vfcm9vdCwgYmluZGluZylcbiIsICIgICAgICAgIHJlcXVpcmUoVHJ1ZSwgJ0RFRkVSUkVEX0VWSURFTkNFJylcbiIsIDEpCiAgICAgICAgdGV4dCA9IHRleHQucmVwbGFjZSgiICAgICAgICBjcmVhdGVfb25lX3Nob3RfZ3VhcmQoZ3VhcmRfcGF5bG9hZClcbiIsICIgICAgICAgIGNyZWF0ZV9vbmVfc2hvdF9ndWFyZChndWFyZF9wYXlsb2FkKVxuICAgICAgICB2YWxpZGF0ZV9ldmlkZW5jZV9pbnRlZ3JpdHkoZXZpZGVuY2Vfcm9vdCwge30pXG4iLCAxKQogICAgICAgIHBhdGgud3JpdGVfdGV4dCh0ZXh0LCBlbmNvZGluZz0idXRmLTgiKTsgc2VsZi5yZWZyZXNoX21hbmlmZXN0cygpOyBzZWxmLmFzc2VydF9yZWplY3RlZCgpCgogICAgZGVmIHRlc3RfMzZfd3JhcHBlcl9wcm90ZWN0ZWRfYWZ0ZXJfZ3VhcmRfcmVqZWN0ZWQoc2VsZikgLT4gTm9uZToKICAgICAgICBwYXRoID0gc2VsZi53cmFwcGVyX3BhdGgoKTsgdGV4dCA9IHBhdGgucmVhZF90ZXh0KGVuY29kaW5nPSJ1dGYtOCIpCiAgICAgICAgdGV4dCA9IHRleHQucmVwbGFjZSgiICAgICAgICB2YWxpZGF0ZV9wcm90ZWN0ZWRfc2hhKClcbiIsICIgICAgICAgIHJlcXVpcmUoVHJ1ZSwgJ0RFRkVSUkVEX1BST1RFQ1RFRCcpXG4iLCAxKQogICAgICAgIHRleHQgPSB0ZXh0LnJlcGxhY2UoIiAgICAgICAgY3JlYXRlX29uZV9zaG90X2d1YXJkKGd1YXJkX3BheWxvYWQpXG4iLCAiICAgICAgICBjcmVhdGVfb25lX3Nob3RfZ3VhcmQoZ3VhcmRfcGF5bG9hZClcbiAgICAgICAgdmFsaWRhdGVfcHJvdGVjdGVkX3NoYSgpXG4iLCAxKQogICAgICAgIHBhdGgud3JpdGVfdGV4dCh0ZXh0LCBlbmNvZGluZz0idXRmLTgiKTsgc2VsZi5yZWZyZXNoX21hbmlmZXN0cygpOyBzZWxmLmFzc2VydF9yZWplY3RlZCgpCgogICAgZGVmIHRlc3RfMzdfd3JhcHBlcl9yZW5hbWVfYXZhaWxhYmlsaXR5X2FmdGVyX2d1YXJkX3JlamVjdGVkKHNlbGYpIC0+IE5vbmU6CiAgICAgICAgcGF0aCA9IHNlbGYud3JhcHBlcl9wYXRoKCk7IHRleHQgPSBwYXRoLnJlYWRfdGV4dChlbmNvZGluZz0idXRmLTgiKQogICAgICAgIHRleHQgPSB0ZXh0LnJlcGxhY2UoIiAgICAgICAgcmVxdWlyZV9yZW5hbWVfbm9yZXBsYWNlX2F2YWlsYWJsZSgpXG4iLCAiICAgICAgICByZXF1aXJlKFRydWUsICdERUZFUlJFRF9SRU5BTUVfQVZBSUxBQklMSVRZJylcbiIsIDEpCiAgICAgICAgdGV4dCA9IHRleHQucmVwbGFjZSgiICAgICAgICBjcmVhdGVfb25lX3Nob3RfZ3VhcmQoZ3VhcmRfcGF5bG9hZClcbiIsICIgICAgICAgIGNyZWF0ZV9vbmVfc2hvdF9ndWFyZChndWFyZF9wYXlsb2FkKVxuICAgICAgICByZXF1aXJlX3JlbmFtZV9ub3JlcGxhY2VfYXZhaWxhYmxlKClcbiIsIDEpCiAgICAgICAgcGF0aC53cml0ZV90ZXh0KHRleHQsIGVuY29kaW5nPSJ1dGYtOCIpOyBzZWxmLnJlZnJlc2hfbWFuaWZlc3RzKCk7IHNlbGYuYXNzZXJ0X3JlamVjdGVkKCkKCiAgICBkZWYgdGVzdF8zOF9wYWNrZXRfbWFuaWZlc3RfY291bnRfcmVqZWN0ZWQoc2VsZikgLT4gTm9uZToKICAgICAgICBwYXRoLCB2YWx1ZSA9IHNlbGYubG9hZF9qc29uKCJwYWNrZXQtc25hcHNob3QvcGFja2V0LW1hbmlmZXN0Lmpzb24iKTsgdmFsdWVbInBhY2tldF9maWxlX2NvdW50X2V4Y2x1ZGluZ19tYW5pZmVzdCJdID0gNjE7IHNlbGYud3JpdGVfanNvbihwYXRoLCB2YWx1ZSk7IHNlbGYuYXNzZXJ0X3JlamVjdGVkKCkKCiAgICBkZWYgdGVzdF8zOV9ldmlkZW5jZV9tYW5pZmVzdF9lbnRyeV9yZW1vdmVkX3JlamVjdGVkKHNlbGYpIC0+IE5vbmU6CiAgICAgICAgcGF0aCA9IHNlbGYucm9vdCAvICJldmlkZW5jZS1tYW5pZmVzdC50eHQiOyBsaW5lcyA9IHBhdGgucmVhZF90ZXh0KGVuY29kaW5nPSJ1dGYtOCIpLnNwbGl0bGluZXMoKTsgcGF0aC53cml0ZV90ZXh0KCJcbiIuam9pbihsaW5lc1s6LTFdKSArICJcbiIsIGVuY29kaW5nPSJ1dGYtOCIpOyBzZWxmLmFzc2VydF9yZWplY3RlZCgpCgogICAgZGVmIHRlc3RfNDBfcmVzdWx0X3dyYXBwZXJfZXhlY3V0ZWRfdHJ1ZV9yZWplY3RlZChzZWxmKSAtPiBOb25lOgogICAgICAgIHNlbGYubXV0YXRlX2pzb24oInJlc3VsdC5qc29uIiwgbGFtYmRhIHY6IHYuX19zZXRpdGVtX18oImNvcnJlY3RlZF93cmFwcGVyX2V4ZWN1dGVkIiwgVHJ1ZSkpOyBzZWxmLmFzc2VydF9yZWplY3RlZCgpCgoKaWYgX19uYW1lX18gPT0gIl9fbWFpbl9fIjoKICAgIHVuaXR0ZXN0Lm1haW4odmVyYm9zaXR5PTIpCg==", validate=True)
+approval_text = base64.b64decode("QVBQUk9WRV8zRV9KX1JPT1RfREVQTE9ZTUVOVF9FWEVDVVRJT05fUEFDS0VUX1IxX1IyX05FR0FUSVZFX1RFU1RfQ0FMTF9TRUxFQ1RPUl9DT1JSRUNUSU9OX1BSRVBBUkFUSU9OX05PX0VYRUNVVElPTgoKRkFJTEVEX1IxX1IxX0VWSURFTkNFX1JFQURPTkxZX0lOVkVOVE9SWT1QQVNTCkZBSUxFRF9SMV9SMV9FVklERU5DRV9NVVRBVElPTj1mYWxzZQpSRUFET05MWV9JTlZFTlRPUllfRVhJVF9DT0RFPTAKClIxX1IyX0NPUlJFQ1RJT05fUEFDS0VUX1BSRVBBUkFUSU9OX09OTFk9dHJ1ZQpDT1JSRUNURURfV1JBUFBFUl9DSEFOR0VfQUxMT1dFRD1mYWxzZQpDT1JSRUNURURfV1JBUFBFUl9FWEVDVVRJT05fQUxMT1dFRD1mYWxzZQpSMV9SMV9WQUxJREFUT1JfQ0hBTkdFX0FMTE9XRUQ9ZmFsc2UKTkVHQVRJVkVfVEVTVF9TRUxFQ1RPUl9DT1JSRUNUSU9OX09OTFk9dHJ1ZQpDT1JSRUNURURfVEVTVF9JRFM9MjEsMjYKUk9PVF9ERVBMT1lNRU5UX0VYRUNVVElPTl9BTExPV0VEPWZhbHNlClNVRE9FUlNfSU5TVEFMTEFUSU9OX0FMTE9XRUQ9ZmFsc2UKUFJPRFVDVElPTl9GSUxFX0NSRUFUSU9OX0FMTE9XRUQ9ZmFsc2UKUFJPRFVDVElPTl9ESVJFQ1RPUllfQ1JFQVRJT05fQUxMT1dFRD1mYWxzZQpST09UX0hFTFBFUl9FWEVDVVRJT05fQUxMT1dFRD1mYWxzZQpSVU5ORVJfRVhFQ1VUSU9OX0FMTE9XRUQ9ZmFsc2UKT05FX1NIT1RfREVQTE9ZTUVOVF9HVUFSRF9DUkVBVEVEPWZhbHNlCkFQUFJPVkFMX0JJTkRJTkdfQ1JFQVRFRD1mYWxzZQpST09UX1JFQURPTkxZX1ZFUklGSUNBVElPTl9SRUVYRUNVVElPTl9BTExPV0VEPWZhbHNlCk9ORV9TSE9UX0dVQVJEX0NIQU5HRV9BTExPV0VEPWZhbHNlClNVRE9FUlNfQ0hBTkdFRD1mYWxzZQpBVVRPTUFUSUNfREVQTE9ZTUVOVF9QRVJGT1JNRUQ9ZmFsc2UKQ0FORElEQVRFX0RFUExPWUVEX1RPX1BST0RVQ1RJT049ZmFsc2UKUlVOTkVSX1NUQVRVUz1CTE9DS0VEX1VOVElMX0VYUExJQ0lUX0ZJTkFMX0VYRUNVVElPTl9BUFBST1ZBTApXUklURVJfRlJFRVpFX0VYRUNVVElPTj1IT0xEClBST0RVQ1RJT05fUkVMRUFTRV9ERUNJU0lPTj1IT0xEClJFTEVBU0VfU1RBVFVTPUNBTkRJREFURV9OT1RfQVBQUk9WRUQK", validate=True)
+manual_text = base64.b64decode("IyAzRS1KIFIxLVIyIE5lZ2F0aXZlIFRlc3QgQ2FsbCBTZWxlY3RvciBDb3JyZWN0aW9uCgpUaGlzIHBhY2tldCBjb3JyZWN0cyBvbmx5IG5lZ2F0aXZlLXRlc3Qgc2VsZWN0b3JzIDIxIGFuZCAyNi4gVGhlIGZpeGVkIHJvb3QKZGVwbG95bWVudCB3cmFwcGVyIGFuZCB0aGUgUjEtUjEgdmFsaWRhdG9yIGFyZSBjb3BpZWQgYnl0ZS1mb3ItYnl0ZSBhbmQgYXJlCm5vdCBleGVjdXRlZCBhcyBkZXBsb3ltZW50IGVudHJ5cG9pbnRzLgoKVGhlIHR3byBzZWxlY3RvcnMgbG9jYXRlIGRpcmVjdCBjYWxsIHN0YXRlbWVudHMgaW5zaWRlIGBwcmVmbGlnaHRgIHVzaW5nIHRoZQpQeXRob24gQVNULCByZXF1aXJlIGV4YWN0bHkgb25lIG1hdGNoLCB2ZXJpZnkgZXhhY3QgcG9zaXRpb25hbCBhcmd1bWVudCBuYW1lcywKYW5kIHJlcGxhY2UgdGhlIHNvdXJjZSByYW5nZSBpZGVudGlmaWVkIGJ5IGBsaW5lbm9gLCBgY29sX29mZnNldGAsCmBlbmRfbGluZW5vYCwgYW5kIGBlbmRfY29sX29mZnNldGAuIFRoZSBtdXRhdGlvbiBtdXN0IGNvbXBpbGUgYW5kIG11c3QgYmUKcmVqZWN0ZWQgYnkgdGhlIHVuY2hhbmdlZCBSMS1SMSB2YWxpZGF0b3IuCgpUaGUgdW5jaGFuZ2VkIHZhbGlkYXRvciBhbmQgY29ycmVjdGVkIDQwLXRlc3Qgc3VpdGUgYXJlIGV4ZWN1dGVkIGFnYWluc3QgYQpmaW5hbGl6ZWQgUjEtUjEgY29tcGF0aWJpbGl0eSB0YXJnZXQgc3RvcmVkIGluc2lkZSB0aGUgbmV3IFIxLVIyIEV2aWRlbmNlLgpQcm9kdWN0aW9uIHJlbGVhc2UgcmVtYWlucyBIT0xELgo=", validate=True)
+selector_report_bytes = base64.b64decode("ewogICJjb3JyZWN0ZWRfbmVnYXRpdmVfdGVzdF9zaGEyNTYiOiAiZDYyNmMyMmNhYjBlMTFmODkzMjNkZjZhNWI4MWNiOGI0NGExNWQ2MTQ5MjgyMjBlMTZkNTk1NGFjOTY3NmY5OSIsCiAgImNvcnJlY3RlZF90ZXN0X2lkcyI6IFsKICAgIDIxLAogICAgMjYKICBdLAogICJjb3JyZWN0ZWRfd3JhcHBlcl9zaGEyNTYiOiAiMGQ3MTJjNmUxMmRjMGI5ODIxM2NhMTk5NWU0ZjIyZDFlOTA4OGFiNWZmYzMxYTk3YTQ5N2Q2MGJhNzY5ZmE1MyIsCiAgImZhaWxlZF9uZWdhdGl2ZV90ZXN0X3NoYTI1NiI6ICI0YzJlZjdjN2I4ZGIzNjI2NDU2MDBiYjM3NGZlMDI4M2U5YjliMTE0OWYxYzFkNDg5ODI4NDdiZjlhNDgwYzJmIiwKICAiaW5kZW50YXRpb25fc3RyaW5nX3NlbGVjdG9yX2FsbG93ZWQiOiBmYWxzZSwKICAicGhhc2UiOiAiVFNULTVELVcyQi1JMkYtM0UtSi1ST09ULURFUExPWU1FTlQtRVhFQ1VUSU9OLVBBQ0tFVC1SMS1SMiIsCiAgInByb2R1Y3Rpb25fcmVsZWFzZV9kZWNpc2lvbiI6ICJIT0xEIiwKICAicm9vdF9kZXBsb3ltZW50X2V4ZWN1dGlvbl9hbGxvd2VkIjogZmFsc2UsCiAgInNjaGVtYV92ZXJzaW9uIjogIjEuMCIsCiAgInNlbGVjdG9yX3N0cmF0ZWd5IjogIkFTVF9QUkVGTElHSFRfRElSRUNUX0NBTExfRVhBQ1RfT05FX1NPVVJDRV9SQU5HRSIsCiAgInNvdXJjZV9kaXJlY3RvcnlfY291bnRfZXhjbHVkaW5nX3Jvb3QiOiAxMiwKICAic291cmNlX2ZpbGVfY291bnQiOiA2MiwKICAic291cmNlX3Jldmlld19zdGF0ZSI6ICJSMV9SMV9QQVJUSUFMX0ZBSUxVUkVfTkVHQVRJVkVfVEVTVF9TRUxFQ1RPUl9NSVNNQVRDSCIsCiAgInNvdXJjZV90cmVlX2lkZW50aXR5X3NoYTI1NiI6ICI3ZDI5MTMyOGVlODllYTc0MzdlOTY2ZTA4OTM4MjkzMjdlNzM5ODA1NDMzZmNlODk2ZTIyMzc2NGQ3OWI1Yjk2IiwKICAidXNlc19saW5lbm9fY29sX29mZnNldF9lbmRfbGluZW5vX2VuZF9jb2xfb2Zmc2V0IjogdHJ1ZSwKICAidmFsaWRhdG9yX2NoYW5nZWQiOiBmYWxzZSwKICAidmFsaWRhdG9yX3NoYTI1NiI6ICJlZmRhYmJlODNjNjFhMjYxODEyOGY1NTE4YTcyNmYwMDcwNjJiYmEwZTkxOTU5YTAxZWVkMWYzODBkNGIyZDc0IiwKICAid3JhcHBlcl9jaGFuZ2VkIjogZmFsc2UsCiAgIndyYXBwZXJfZXhlY3V0ZWQiOiBmYWxzZQp9Cg==", validate=True)
+
+SOURCE_TREE_SHA = "7d291328ee89ea7437e966e0893829327e739805433fce896e223764d79b5b96"
+FIXED_SHA = {
+    "packet-snapshot/candidate-artifacts/candidate-manifest.json": "ebfd846f414323ecd991be665881eed64bb0e49ba76b1c7f16b17545cf640ed7",
+    "packet-snapshot/candidate-artifacts/root_deployment_execution_once_r1.py": "0d712c6e12dc0b98213ca1995e4f22d1e9088ab5ffc31a97a497d60ba769fa53",
+    "packet-snapshot/candidate-artifacts/validate_root_deployment_execution_packet_r1.py": "efdabbe83c61a2618128f5518a726f007062bba0e91959a01eed1f380d4b2d74",
+    "packet-snapshot/candidate-artifacts/test_root_deployment_execution_packet_r1_negative.py": "4c2ef7c7b8db362645600bb374fe0283e9b9b1149f1c1d48982847bf9a480c2f",
+}
+REJECTED_INPUT_SHA = {
+    "packet-snapshot/source-partial-evidence-snapshot/packet-snapshot/deployment-input-snapshot/rejected-execution-packet/result.json": "93152736eda119f41fd1d5aa5dcab670b618a5e6bdf14c0848345551b9b5f741",
+    "packet-snapshot/source-partial-evidence-snapshot/packet-snapshot/deployment-input-snapshot/rejected-execution-packet/packet-manifest.json": "134a4a7d25e23661944047654b25e0041461f7fe796556e00db3953ad1b487ad",
+    "packet-snapshot/source-partial-evidence-snapshot/packet-snapshot/deployment-input-snapshot/rejected-execution-packet/candidate-manifest.json": "7bb5f4009de9e8bb50b44db3d7524897780fe19ad86f2bae3cb6e50187f805bd",
+    "packet-snapshot/source-partial-evidence-snapshot/packet-snapshot/deployment-input-snapshot/rejected-execution-packet/evidence-manifest.txt": "61955ce7f7327d98fa3b0ab076291353619a0512d2c4d2a9753bd06209f37997",
+}
+PROTECTED_SHA = {
+    "data/database/ebook_affiliate.db": "1a421bd32edf1e9eedebc90cfd1b588b1ca0745670c6372c146a99b154e374e9",
+    "config/slack_worker_release_source_manifest.json": "ea201edeba978e1d0b3cf6219cc16efac8641567216885c5a245c66e99fc9c2d",
+    "app/db/repositories/workflow_state_repository.py": "00241611109dc51d44c8e23f2b0940c10f5488bf7cd4061597284679bdcfd90e",
+    "migrations/versions/00241611109d_add_unique_wordpress_post_id.py": "e1d29ed34fdbcaedb4a811681d8c28534682f8ce2d1144d044c0cb6dd0f3054a",
+    "scripts/run_slack_approval_socket.py": "c2ab37a7e86fbdca79a456ed17a8c55b20fdd0dc0f8e1f3b426f0ba75cebe3e6",
+    "tests/test_slack_approval_socket_hold_remediation_offline.py": "86dfc01686ffd53a2c6c7e73192d469db5040bc38f6541031cb6f36e7846ed72",
+}
+
+
+def require(condition: bool, message: str) -> None:
+    if not condition:
+        raise AssertionError(message)
+
+
+def sha256(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as stream:
+        for block in iter(lambda: stream.read(1024 * 1024), b""):
+            digest.update(block)
+    return digest.hexdigest()
+
+
+def write_exclusive(path: Path, data: bytes, mode: int = 0o640) -> None:
+    descriptor = os.open(path, os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW, mode)
+    with os.fdopen(descriptor, "wb", closefd=True) as stream:
+        view = memoryview(data)
+        offset = 0
+        while offset < len(view):
+            count = stream.write(view[offset:])
+            require(count is not None and count > 0, f"WRITE_ZERO:{path}")
+            offset += count
+        stream.flush()
+        os.fsync(stream.fileno())
+
+
+def mkdir_exclusive(path: Path, mode: int = 0o750) -> None:
+    os.mkdir(path, mode)
+
+
+def scan(root: Path):
+    files: set[str] = set(); dirs: set[str] = set(); links = 0; other = 0
+    for path in sorted(root.rglob("*")):
+        item = path.lstat(); relative = path.relative_to(root).as_posix()
+        if stat.S_ISLNK(item.st_mode): links += 1
+        elif stat.S_ISREG(item.st_mode): files.add(relative)
+        elif stat.S_ISDIR(item.st_mode): dirs.add(relative)
+        else: other += 1
+    return files, dirs, links, other
+
+
+def source_tree_digest(root: Path) -> tuple[str, list[dict[str, object]]]:
+    files, _, links, other = scan(root)
+    require(links == 0 and other == 0, "SOURCE_SPECIAL")
+    lines: list[str] = []
+    inventory: list[dict[str, object]] = []
+    for relative in sorted(files):
+        path = root / relative; item = path.lstat(); digest = sha256(path)
+        lines.append(f"{digest}  {item.st_size}  {stat.S_IMODE(item.st_mode):04o}  {item.st_uid}  {item.st_gid}  {relative}")
+        inventory.append({
+            "relative_path": relative,
+            "size_bytes": item.st_size,
+            "mode": f"{stat.S_IMODE(item.st_mode):04o}",
+            "uid": item.st_uid,
+            "gid": item.st_gid,
+            "sha256": digest,
+        })
+    return hashlib.sha256(("\n".join(lines) + "\n").encode()).hexdigest(), inventory
+
+
+def complete_identity(root: Path):
+    files, dirs, links, other = scan(root)
+    require(links == 0 and other == 0, f"TREE_SPECIAL:{root}")
+    identity: dict[str, tuple[object, ...]] = {}
+    for relative in sorted(dirs):
+        item = (root / relative).lstat()
+        identity[relative + "/"] = ("DIR", stat.S_IMODE(item.st_mode), item.st_uid, item.st_gid)
+    for relative in sorted(files):
+        path = root / relative; item = path.lstat()
+        identity[relative] = (sha256(path), item.st_size, stat.S_IMODE(item.st_mode), item.st_uid, item.st_gid)
+    return identity
+
+
+def create_tree_dirs(destination_root: Path, relative_dirs: set[str]) -> None:
+    mkdir_exclusive(destination_root)
+    for relative in sorted(relative_dirs, key=lambda value: (value.count("/"), value)):
+        mkdir_exclusive(destination_root / relative)
+
+
+def copy_file(source: Path, destination: Path) -> None:
+    item = source.lstat()
+    require(stat.S_ISREG(item.st_mode) and not stat.S_ISLNK(item.st_mode), f"SOURCE_FILE:{source}")
+    write_exclusive(destination, source.read_bytes())
+
+
+def regenerate_candidate_manifest(candidate: Path, source_manifest_path: Path) -> bytes:
+    value = json.loads(source_manifest_path.read_text(encoding="utf-8"))
+    require(isinstance(value, dict), "CANDIDATE_MANIFEST_OBJECT")
+    entries = []
+    for path in sorted(candidate.iterdir()):
+        if path.is_file() and path.name != "candidate-manifest.json":
+            entries.append({"name": path.name, "sha256": sha256(path), "size_bytes": path.stat().st_size})
+    require(len(entries) == 17, "CANDIDATE_ENTRY_COUNT")
+    value["total_file_count"] = 18
+    value["file_count_excluding_manifest"] = 17
+    value["files"] = entries
+    return (json.dumps(value, sort_keys=True, indent=2) + "\n").encode()
+
+
+def finalize_compatibility_target(root: Path, relative_label: str) -> None:
+    local_packet = root / "packet-snapshot"
+    entries = []
+    for path in sorted(local_packet.rglob("*")):
+        if path.is_file():
+            relative = path.relative_to(local_packet).as_posix()
+            if relative != "packet-manifest.json":
+                entries.append({"name": relative, "sha256": sha256(path), "size_bytes": path.stat().st_size})
+    require(len(entries) == 62, "TARGET_PACKET_ENTRY_COUNT")
+    packet_value = {
+        "schema_version": "1.0",
+        "phase": "TST-5D-W2B-I2F-3E-J-ROOT-DEPLOYMENT-EXECUTION-PACKET-R1-R1",
+        "status": "R1_R1_NEGATIVE_TEST_AND_STATIC_VALIDATOR_CORRECTION_PACKET_PREPARED_NO_EXECUTION",
+        "packet_file_count_excluding_manifest": 62,
+        "packet_files": entries,
+        "candidate_artifact_count": 18,
+        "source_partial_snapshot_file_count": 39,
+        "validation_log_count": 4,
+        "negative_test_count": 40,
+        "corrected_wrapper_changed": False,
+        "corrected_wrapper_executed": False,
+        "root_deployment_execution_allowed": False,
+        "sudoers_installation_allowed": False,
+        "production_release_decision": "HOLD",
+    }
+    write_exclusive(local_packet / "packet-manifest.json", (json.dumps(packet_value, sort_keys=True, indent=2) + "\n").encode())
+    result = {
+        "schema_version": "1.0",
+        "phase": "TST-5D-W2B-I2F-3E-J-ROOT-DEPLOYMENT-EXECUTION-PACKET-R1-R1",
+        "result": "PASS_W2B_I2F3E_J_ROOT_DEPLOYMENT_EXECUTION_PACKET_R1_R1_NEGATIVE_TEST_AND_STATIC_VALIDATOR_CORRECTION_PREPARED_NO_EXECUTION",
+        "evidence_root": relative_label,
+        "source_failed_partial_evidence_file_count": 39,
+        "source_failed_partial_evidence_directory_count": 8,
+        "source_failed_partial_evidence_finalized": False,
+        "source_failed_partial_evidence_unchanged": True,
+        "evidence_file_count": 65,
+        "evidence_directory_count_excluding_root": 12,
+        "packet_file_count": 63,
+        "packet_directory_count": 11,
+        "packet_manifest_entry_count": 62,
+        "evidence_manifest_entry_count": 64,
+        "candidate_artifact_count": 18,
+        "source_partial_snapshot_file_count": 39,
+        "validation_log_count": 4,
+        "negative_test_count": 40,
+        "corrected_test_ids": [26, 27, 30, 31],
+        "validator": "PASS",
+        "negative_tests": "PASS",
+        "visudo_static_validation": "PASS",
+        "corrected_wrapper_sha256": "0d712c6e12dc0b98213ca1995e4f22d1e9088ab5ffc31a97a497d60ba769fa53",
+        "corrected_wrapper_changed": False,
+        "corrected_wrapper_executed": False,
+        "packet_preparation_only": True,
+        "root_deployment_execution_allowed": False,
+        "sudoers_installation_allowed": False,
+        "production_file_creation_allowed": False,
+        "production_directory_creation_allowed": False,
+        "root_helper_execution_allowed": False,
+        "runner_execution_allowed": False,
+        "one_shot_deployment_guard_created": False,
+        "approval_binding_created": False,
+        "sudoers_changed": False,
+        "automatic_deployment_performed": False,
+        "candidate_deployed_to_production": False,
+        "protected_sha_unchanged": True,
+        "runner_status": "BLOCKED_UNTIL_EXPLICIT_FINAL_EXECUTION_APPROVAL",
+        "writer_freeze_execution": "HOLD",
+        "production_release_decision": "HOLD",
+        "release_status": "CANDIDATE_NOT_APPROVED",
+        "next_gate": "HUMAN_REVIEW_3E_J_ROOT_DEPLOYMENT_EXECUTION_PACKET_R1_R1_CORRECTION_READONLY",
+    }
+    write_exclusive(root / "result.json", (json.dumps(result, sort_keys=True, indent=2) + "\n").encode())
+    lines = []
+    for path in sorted(root.rglob("*")):
+        if path.is_file():
+            relative = path.relative_to(root).as_posix()
+            if relative != "evidence-manifest.txt":
+                lines.append(f"{sha256(path)}  {relative}")
+    require(len(lines) == 64, "TARGET_EVIDENCE_ENTRY_COUNT")
+    write_exclusive(root / "evidence-manifest.txt", ("\n".join(lines) + "\n").encode())
+
+
+def run_program(path: Path, args: list[str]) -> str:
+    run = subprocess.run(
+        [str(repo_root / ".venv/bin/python"), "-B", str(path), *args],
+        cwd=path.parent,
+        env={**os.environ, "PYTHONDONTWRITEBYTECODE": "1"},
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        check=False,
+        text=True,
+    )
+    require(run.returncode == 0, f"PROGRAM_NONZERO:{path.name}\n{run.stdout}")
+    return run.stdout
+
+source_files, source_dirs, links, other = scan(source_root)
+require(len(source_files) == 62, "SOURCE_FILE_COUNT")
+require(len(source_dirs) == 12, "SOURCE_DIR_COUNT")
+require(links == 0 and other == 0, "SOURCE_SPECIAL_COUNT")
+for relative in ("result.json", "evidence-manifest.txt", "packet-snapshot/packet-manifest.json"):
+    require(not (source_root / relative).is_file(), f"SOURCE_FINALIZATION_PRESENT:{relative}")
+computed_tree_sha, source_inventory_files = source_tree_digest(source_root)
+require(computed_tree_sha == SOURCE_TREE_SHA, "SOURCE_TREE_IDENTITY_SHA")
+for relative, expected in FIXED_SHA.items():
+    require(sha256(source_root / relative) == expected, f"FIXED_SHA:{relative}")
+for relative, expected in REJECTED_INPUT_SHA.items():
+    source_relative = relative.removeprefix("packet-snapshot/source-partial-evidence-snapshot/")
+    require(sha256(source_root / source_relative) == expected, f"REJECTED_INPUT_SHA:{source_relative}")
+for relative, expected in PROTECTED_SHA.items():
+    require(sha256(repo_root / relative) == expected, f"PROTECTED_SHA:{relative}")
+source_identity_before = complete_identity(source_root)
+
+# Create outer tree.
+mkdir_exclusive(packet_root)
+mkdir_exclusive(candidate_root)
+create_tree_dirs(source_snapshot, source_dirs)
+create_tree_dirs(validation_target, source_dirs)
+mkdir_exclusive(log_root)
+
+# Byte-for-byte source snapshot.
+for relative in sorted(source_files):
+    copy_file(source_root / relative, source_snapshot / relative)
+
+# Build compatibility target by copying all source files except the two regenerated Candidate files.
+negative_relative = "packet-snapshot/candidate-artifacts/test_root_deployment_execution_packet_r1_negative.py"
+candidate_manifest_relative = "packet-snapshot/candidate-artifacts/candidate-manifest.json"
+for relative in sorted(source_files):
+    if relative in {negative_relative, candidate_manifest_relative}:
+        continue
+    copy_file(source_root / relative, validation_target / relative)
+write_exclusive(validation_target / negative_relative, corrected_negative)
+target_candidate = validation_target / "packet-snapshot/candidate-artifacts"
+target_manifest_bytes = regenerate_candidate_manifest(
+    target_candidate,
+    source_root / candidate_manifest_relative,
+)
+write_exclusive(validation_target / candidate_manifest_relative, target_manifest_bytes)
+finalize_compatibility_target(validation_target, new_relative + "/packet-snapshot/r1-r1-validator-target")
+
+# Candidate is the source Candidate with only negative test and Candidate manifest changed.
+source_candidate = source_root / "packet-snapshot/candidate-artifacts"
+source_candidate_files, source_candidate_dirs, source_candidate_links, source_candidate_other = scan(source_candidate)
+require(len(source_candidate_files) == 18 and not source_candidate_dirs, "SOURCE_CANDIDATE_COUNT")
+require(source_candidate_links == 0 and source_candidate_other == 0, "SOURCE_CANDIDATE_SPECIAL")
+for name in sorted(source_candidate_files):
+    if name in {"candidate-manifest.json", "test_root_deployment_execution_packet_r1_negative.py"}:
+        continue
+    copy_file(source_candidate / name, candidate_root / name)
+write_exclusive(candidate_root / "test_root_deployment_execution_packet_r1_negative.py", corrected_negative)
+write_exclusive(
+    candidate_root / "candidate-manifest.json",
+    regenerate_candidate_manifest(candidate_root, source_candidate / "candidate-manifest.json"),
+)
+require(sha256(candidate_root / "root_deployment_execution_once_r1.py") == FIXED_SHA["packet-snapshot/candidate-artifacts/root_deployment_execution_once_r1.py"], "WRAPPER_CHANGED")
+require(sha256(candidate_root / "validate_root_deployment_execution_packet_r1.py") == FIXED_SHA["packet-snapshot/candidate-artifacts/validate_root_deployment_execution_packet_r1.py"], "VALIDATOR_CHANGED")
+require(sha256(candidate_root / "test_root_deployment_execution_packet_r1_negative.py") != FIXED_SHA["packet-snapshot/candidate-artifacts/test_root_deployment_execution_packet_r1_negative.py"], "NEGATIVE_NOT_CHANGED")
+
+inventory = {
+    "schema_version": "1.0",
+    "phase": PHASE,
+    "source_root": source_root.relative_to(repo_root).as_posix(),
+    "source_file_count": 62,
+    "source_directory_count_excluding_root": 12,
+    "source_symlink_count": 0,
+    "source_nonregular_count": 0,
+    "source_tree_identity_entry_count": 62,
+    "source_tree_identity_sha256": SOURCE_TREE_SHA,
+    "finalization_files_present": {
+        "result.json": False,
+        "evidence-manifest.txt": False,
+        "packet-snapshot/packet-manifest.json": False,
+    },
+    "files": source_inventory_files,
+}
+write_exclusive(packet_root / "source-r1-r1-partial-inventory.json", (json.dumps(inventory, sort_keys=True, indent=2) + "\n").encode())
+write_exclusive(packet_root / "selector-correction-report.json", selector_report_bytes)
+write_exclusive(packet_root / "human-approval-verbatim.txt", approval_text)
+
+# Compile only; no wrapper or blocked entrypoint execution.
+compile_lines = []
+for name in (
+    "root_deployment_execution_once_r1.py",
+    "validate_root_deployment_execution_packet_r1.py",
+    "test_root_deployment_execution_packet_r1_negative.py",
+):
+    source = (candidate_root / name).read_text(encoding="utf-8")
+    compile(source, str(candidate_root / name), "exec")
+    compile_lines.append(f"PYTHON_COMPILE_PASS={name}")
+write_exclusive(log_root / "python-compile.log", ("\n".join(compile_lines) + "\n").encode())
+
+validator_path = validation_target / "packet-snapshot/candidate-artifacts/validate_root_deployment_execution_packet_r1.py"
+negative_path = validation_target / "packet-snapshot/candidate-artifacts/test_root_deployment_execution_packet_r1_negative.py"
+validator_output = run_program(validator_path, [str(validation_target)])
+require("VALIDATION=PASS" in validator_output, "VALIDATOR_PASS_MARKER")
+write_exclusive(log_root / "validator.log", validator_output.encode())
+negative_output = run_program(negative_path, [])
+require("Ran 40 tests" in negative_output, "NEGATIVE_COUNT")
+require([line.strip() for line in negative_output.splitlines()].count("OK") == 1, "NEGATIVE_OK")
+write_exclusive(log_root / "negative-tests.log", negative_output.encode())
+
+visudo = Path("/usr/sbin/visudo")
+require(visudo.is_file(), "VISUDO_MISSING")
+visudo_run = subprocess.run(
+    [str(visudo), "-cf", str(candidate_root / "ai-media-os-3e-j-root-helper.sudoers")],
+    stdout=subprocess.PIPE,
+    stderr=subprocess.STDOUT,
+    check=False,
+    text=True,
+)
+require(visudo_run.returncode == 0, "VISUDO_NONZERO\n" + visudo_run.stdout)
+write_exclusive(log_root / "visudo.log", ("VISUDO_VALIDATION=PASS\n" + visudo_run.stdout).encode())
+
+# Outer Packet manifest.
+packet_entries = []
+for path in sorted(packet_root.rglob("*")):
+    if path.is_file():
+        relative = path.relative_to(packet_root).as_posix()
+        if relative != "packet-manifest.json":
+            packet_entries.append({"name": relative, "sha256": sha256(path), "size_bytes": path.stat().st_size})
+require(len(packet_entries) == 152, f"OUTER_PACKET_ENTRY_COUNT:{len(packet_entries)}")
+packet_manifest = {
+    "schema_version": "1.0",
+    "phase": PHASE,
+    "status": "R1_R2_NEGATIVE_TEST_CALL_SELECTOR_CORRECTION_PACKET_PREPARED_NO_EXECUTION",
+    "packet_file_count_excluding_manifest": 152,
+    "packet_files": packet_entries,
+    "candidate_artifact_count": 18,
+    "source_partial_snapshot_file_count": 62,
+    "validator_target_file_count": 65,
+    "validation_log_count": 4,
+    "negative_test_count": 40,
+    "corrected_test_ids": [21, 26],
+    "corrected_wrapper_changed": False,
+    "corrected_wrapper_executed": False,
+    "validator_changed": False,
+    "root_deployment_execution_allowed": False,
+    "sudoers_installation_allowed": False,
+    "production_release_decision": "HOLD",
+}
+write_exclusive(packet_root / "packet-manifest.json", (json.dumps(packet_manifest, sort_keys=True, indent=2) + "\n").encode())
+
+result = {
+    "schema_version": "1.0",
+    "phase": PHASE,
+    "result": "PASS_W2B_I2F3E_J_ROOT_DEPLOYMENT_EXECUTION_PACKET_R1_R2_NEGATIVE_TEST_CALL_SELECTOR_CORRECTION_PREPARED_NO_EXECUTION",
+    "evidence_root": new_relative,
+    "source_failed_r1_r1_file_count": 62,
+    "source_failed_r1_r1_directory_count_excluding_root": 12,
+    "source_failed_r1_r1_tree_identity_sha256": SOURCE_TREE_SHA,
+    "source_failed_r1_r1_unchanged": True,
+    "source_partial_snapshot_file_count": 62,
+    "validator_target_file_count": 65,
+    "evidence_file_count": 155,
+    "evidence_directory_count_excluding_root": 29,
+    "packet_file_count": 153,
+    "packet_directory_count": 28,
+    "packet_manifest_entry_count": 152,
+    "evidence_manifest_entry_count": 154,
+    "candidate_artifact_count": 18,
+    "validation_log_count": 4,
+    "negative_test_count": 40,
+    "negative_tests": "PASS",
+    "validator": "PASS",
+    "visudo_static_validation": "PASS",
+    "corrected_test_ids": [21, 26],
+    "negative_test_selector_strategy": "AST_PREFLIGHT_DIRECT_CALL_EXACT_ONE_SOURCE_RANGE",
+    "corrected_wrapper_sha256": FIXED_SHA["packet-snapshot/candidate-artifacts/root_deployment_execution_once_r1.py"],
+    "corrected_wrapper_changed": False,
+    "corrected_wrapper_executed": False,
+    "validator_sha256": FIXED_SHA["packet-snapshot/candidate-artifacts/validate_root_deployment_execution_packet_r1.py"],
+    "validator_changed": False,
+    "packet_preparation_only": True,
+    "root_deployment_execution_allowed": False,
+    "sudoers_installation_allowed": False,
+    "production_file_creation_allowed": False,
+    "production_directory_creation_allowed": False,
+    "root_helper_execution_allowed": False,
+    "runner_execution_allowed": False,
+    "one_shot_deployment_guard_created": False,
+    "approval_binding_created": False,
+    "sudoers_changed": False,
+    "automatic_deployment_performed": False,
+    "candidate_deployed_to_production": False,
+    "protected_sha_unchanged": True,
+    "runner_status": "BLOCKED_UNTIL_EXPLICIT_FINAL_EXECUTION_APPROVAL",
+    "writer_freeze_execution": "HOLD",
+    "production_release_decision": "HOLD",
+    "release_status": "CANDIDATE_NOT_APPROVED",
+    "next_gate": "HUMAN_REVIEW_3E_J_ROOT_DEPLOYMENT_EXECUTION_PACKET_R1_R2_CORRECTION_READONLY",
+}
+write_exclusive(new_root / "result.json", (json.dumps(result, sort_keys=True, indent=2) + "\n").encode())
+
+evidence_lines = []
+for path in sorted(new_root.rglob("*")):
+    if path.is_file():
+        relative = path.relative_to(new_root).as_posix()
+        if relative != "evidence-manifest.txt":
+            evidence_lines.append(f"{sha256(path)}  {relative}")
+require(len(evidence_lines) == 154, f"OUTER_EVIDENCE_ENTRY_COUNT:{len(evidence_lines)}")
+write_exclusive(new_root / "evidence-manifest.txt", ("\n".join(evidence_lines) + "\n").encode())
+
+# Final outer integrity checks.
+outer_files, outer_dirs, outer_links, outer_other = scan(new_root)
+require(len(outer_files) == 155, f"OUTER_FILE_COUNT:{len(outer_files)}")
+require(len(outer_dirs) == 29, f"OUTER_DIR_COUNT:{len(outer_dirs)}")
+require(outer_links == 0 and outer_other == 0, "OUTER_SPECIAL")
+require(not list(new_root.rglob("*.pyc")), "BYTECODE_SIDE_EFFECT")
+require(complete_identity(source_root) == source_identity_before, "SOURCE_CHANGED")
+for relative, expected in PROTECTED_SHA.items():
+    require(sha256(repo_root / relative) == expected, f"PROTECTED_CHANGED:{relative}")
+# Re-run unchanged validator against persisted target after outer finalization.
+validator_output_final = run_program(validator_path, [str(validation_target)])
+require("VALIDATION=PASS" in validator_output_final, "FINAL_VALIDATOR_PASS")
+
+print("RESULT=PASS_W2B_I2F3E_J_ROOT_DEPLOYMENT_EXECUTION_PACKET_R1_R2_NEGATIVE_TEST_CALL_SELECTOR_CORRECTION_PREPARED_NO_EXECUTION")
+print(f"EVIDENCE_ROOT={new_relative}")
+print("SOURCE_FAILED_R1_R1_FILE_COUNT=62")
+print("SOURCE_FAILED_R1_R1_DIRECTORY_COUNT_EXCLUDING_ROOT=12")
+print(f"SOURCE_FAILED_R1_R1_TREE_IDENTITY_SHA256={SOURCE_TREE_SHA}")
+print("SOURCE_FAILED_R1_R1_UNCHANGED=true")
+print("SOURCE_PARTIAL_SNAPSHOT_FILE_COUNT=62")
+print("VALIDATOR_TARGET_FILE_COUNT=65")
+print("EVIDENCE_FILE_COUNT=155")
+print("EVIDENCE_DIRECTORY_COUNT_EXCLUDING_ROOT=29")
+print("PACKET_FILE_COUNT=153")
+print("PACKET_DIRECTORY_COUNT=28")
+print("PACKET_MANIFEST_ENTRY_COUNT=152")
+print("EVIDENCE_MANIFEST_ENTRY_COUNT=154")
+print("CANDIDATE_ARTIFACT_COUNT=18")
+print("VALIDATION_LOG_COUNT=4")
+print("NEGATIVE_TEST_COUNT=40")
+print("NEGATIVE_TESTS=PASS")
+print("VALIDATOR=PASS")
+print("VISUDO_STATIC_VALIDATION=PASS")
+print("CORRECTED_TEST_IDS=21,26")
+print("NEGATIVE_TEST_SELECTOR_STRATEGY=AST_PREFLIGHT_DIRECT_CALL_EXACT_ONE_SOURCE_RANGE")
+print("CORRECTED_WRAPPER_SHA_REVIEW=PASS")
+print("CORRECTED_WRAPPER_CHANGED=false")
+print("CORRECTED_WRAPPER_EXECUTED=false")
+print("R1_R1_VALIDATOR_SHA_REVIEW=PASS")
+print("R1_R1_VALIDATOR_CHANGED=false")
+print("BYTECODE_SIDE_EFFECT=false")
+print("R1_R2_CORRECTION_PACKET_PREPARATION_ONLY=true")
+print("ROOT_DEPLOYMENT_EXECUTION_ALLOWED=false")
+print("SUDOERS_INSTALLATION_ALLOWED=false")
+print("PRODUCTION_FILE_CREATION_ALLOWED=false")
+print("PRODUCTION_DIRECTORY_CREATION_ALLOWED=false")
+print("ROOT_HELPER_EXECUTION_ALLOWED=false")
+print("RUNNER_EXECUTION_ALLOWED=false")
+print("ONE_SHOT_DEPLOYMENT_GUARD_CREATED=false")
+print("APPROVAL_BINDING_CREATED=false")
+print("ROOT_READONLY_VERIFICATION_REEXECUTION_ALLOWED=false")
+print("ONE_SHOT_GUARD_CHANGE_ALLOWED=false")
+print("SUDOERS_CHANGED=false")
+print("AUTOMATIC_DEPLOYMENT_PERFORMED=false")
+print("CANDIDATE_DEPLOYED_TO_PRODUCTION=false")
+print("PROTECTED_SHA_UNCHANGED=true")
+print("RUNNER_STATUS=BLOCKED_UNTIL_EXPLICIT_FINAL_EXECUTION_APPROVAL")
+print("WRITER_FREEZE_EXECUTION=HOLD")
+print("PRODUCTION_RELEASE_DECISION=HOLD")
+print("RELEASE_STATUS=CANDIDATE_NOT_APPROVED")
+print("NEXT_GATE=HUMAN_REVIEW_3E_J_ROOT_DEPLOYMENT_EXECUTION_PACKET_R1_R2_CORRECTION_READONLY")
+print(f"RESULT_SHA={sha256(new_root / 'result.json')}")
+print(f"PACKET_MANIFEST_SHA={sha256(packet_root / 'packet-manifest.json')}")
+print(f"CANDIDATE_MANIFEST_SHA={sha256(candidate_root / 'candidate-manifest.json')}")
+print(f"EVIDENCE_MANIFEST_SHA={sha256(new_root / 'evidence-manifest.txt')}")
+
+PY
+
+echo "SCRIPT_EXIT_CODE=0"

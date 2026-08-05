@@ -1,0 +1,216 @@
+{
+  "schema_version": "gib.alpha1.output_schemas.v0.1",
+  "task_schemas": {
+    "phase_log_summary": {
+      "type": "object",
+      "required": [
+        "summary",
+        "remaining_blockers",
+        "human_review_notes"
+      ],
+      "properties": {
+        "summary": {
+          "type": "string"
+        },
+        "remaining_blockers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "human_review_notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "validator_result_explain": {
+      "type": "object",
+      "required": [
+        "summary",
+        "risk_notes",
+        "next_checkpoints"
+      ],
+      "properties": {
+        "summary": {
+          "type": "string"
+        },
+        "risk_notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "next_checkpoints": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "product_summary": {
+      "type": "object",
+      "required": [
+        "summary",
+        "selling_points",
+        "caution_notes"
+      ],
+      "properties": {
+        "summary": {
+          "type": "string"
+        },
+        "selling_points": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "caution_notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "social_post_draft": {
+      "type": "object",
+      "required": [
+        "draft_candidates",
+        "risk_notes",
+        "human_review_notes"
+      ],
+      "properties": {
+        "draft_candidates": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "risk_notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "human_review_notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "article_outline": {
+      "type": "object",
+      "required": [
+        "outline",
+        "title_candidates",
+        "human_review_notes"
+      ],
+      "properties": {
+        "outline": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "title_candidates": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "human_review_notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "compliance_classify": {
+      "type": "object",
+      "required": [
+        "classification_label",
+        "risk_notes",
+        "requires_human_review"
+      ],
+      "properties": {
+        "classification_label": {
+          "type": "string"
+        },
+        "risk_notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "requires_human_review": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "security_log_explain": {
+      "type": "object",
+      "required": [
+        "summary",
+        "risk_notes",
+        "recommended_human_checks"
+      ],
+      "properties": {
+        "summary": {
+          "type": "string"
+        },
+        "risk_notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "recommended_human_checks": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "blocked_output_schema": {
+    "type": "object",
+    "required": [
+      "summary",
+      "risk_notes",
+      "human_review_notes"
+    ],
+    "properties": {
+      "summary": {
+        "type": "string"
+      },
+      "risk_notes": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "human_review_notes": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "additionalProperties": false
+  }
+}

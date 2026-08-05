@@ -1,0 +1,15 @@
+{
+  "schema_version": "gib.beta1.prep.audit_index.policy.v0.1",
+  "phase": "beta1_prep_a",
+  "mode": "REPORTS_ONLY",
+  "output_scope": "generic_inference_block_ai/reports",
+  "required_reference_reports": [
+    "gib_beta099_freeze_report.json",
+    "gib_beta1_prep_validation_report.json"
+  ],
+  "required_guardrails": {
+    "real_llm_call_allowed": false,
+    "execution_allowed": false,
+    "can_execute_now": false
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "schema_version": "ir11_core_receiver_v1",
+  "phase": "IR11",
+  "generated_at": "2026-05-23T00:00:00+00:00",
+  "source_task_id": "ir11_pass_live_trial",
+  "quality_gate_judgment": "PASS",
+  "core_receive_rule": "ACCEPT_DRY_RUN_REVIEW_QUEUE",
+  "validation_result": "PASS",
+  "validation_failed_checks": [],
+  "validation_warnings": [],
+  "safeguards": {
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "external_write_executed": false,
+    "actual_auto_execute": false,
+    "production_release": false
+  }
+}

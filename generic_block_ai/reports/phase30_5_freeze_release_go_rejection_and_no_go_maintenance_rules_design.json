@@ -1,0 +1,103 @@
+{
+  "phase_id": "30-5",
+  "phase_name": "Freeze Release GO Rejection and NO_GO Maintenance Rules Design",
+  "phase_japanese_name": "凍結解除GO不可時の差し戻し・NO_GO維持ルール設計",
+  "purpose": "Design rejection routing and NO_GO maintenance rules when freeze-release GO conditions are not satisfied.",
+  "layer": "pre_execution_start_manual_approval_and_freeze_release_boundary_reinforcement_layer",
+  "design_category": "reports_only",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "manual_execution_start_approval": "REQUIRED",
+    "manual_execution_start_approval_status": "PENDING",
+    "auto_execute_allowed": false,
+    "operation_transition_go_authorization": "NOT_GRANTED",
+    "production_reflection_go_authorization": "NOT_GRANTED",
+    "freeze_release_go_authorization": "NOT_GRANTED",
+    "execution_start_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "phase_30_5_scope": {
+    "scope_1_rejection_categories": {
+      "scope_id": "REJECTION_CATEGORIES",
+      "categories": {
+        "FR1": "final manual approval status is not APPROVED",
+        "FR2": "manual approval evidence lock failure in Phase 30-4",
+        "FR3": "signature invalid, revoked, or expired",
+        "FR4": "freeze-release boundary confirmation NOT_CLEARED",
+        "FR5": "human approval scope mismatch or missing"
+      }
+    },
+    "scope_2_return_and_maintenance_rules": {
+      "scope_id": "RETURN_AND_MAINTENANCE_RULES",
+      "rules": {
+        "rule_FRM1": "Any FR1-FR5 triggers production_status = NO_GO",
+        "rule_FRM2": "Force freeze_release_go_authorization and execution_start_go_authorization to NOT_GRANTED while unresolved_rejections_count > 0",
+        "rule_FRM3": "Route remediation to Phase 30-2 or Phase 30-4 based on rejection category",
+        "rule_FRM4": "Maintain app_implementation_status/tests_implementation_status as NO_GO until clean re-audit",
+        "rule_FRM5": "Escalate to HALT_REVIEW_REQUIRED after repeated rejection threshold"
+      }
+    },
+    "scope_3_report_structure": {
+      "scope_id": "REPORT_STRUCTURE",
+      "sections": {
+        "section_1_header": {
+          "report_id": "PHASE30_5_FREEZE_RELEASE_NO_GO_MAINTENANCE_<UTC_TIMESTAMP>",
+          "report_type": "freeze_release_go_rejection_and_no_go_maintenance",
+          "generated_at_utc": "RFC3339",
+          "generated_by": "authority_identifier"
+        },
+        "section_2_rejection_summary": {
+          "triggered_categories": [
+            "FR1",
+            "FR2",
+            "FR3",
+            "FR4",
+            "FR5"
+          ],
+          "unresolved_rejections_count": "integer"
+        },
+        "section_3_maintenance_state": {
+          "app_implementation_status": "NO_GO",
+          "tests_implementation_status": "NO_GO",
+          "production_status": "NO_GO",
+          "operation_transition_go_authorization": "NOT_GRANTED",
+          "production_reflection_go_authorization": "NOT_GRANTED",
+          "freeze_release_go_authorization": "NOT_GRANTED",
+          "execution_start_go_authorization": "NOT_GRANTED",
+          "changed_area": "reports only"
+        },
+        "section_4_next_actions": {
+          "remediation_route": "Phase 30-2 / 30-4",
+          "re_audit_required": true
+        }
+      }
+    }
+  },
+  "phase_30_5_governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "state_invariants": {
+      "app_implementation_status": "NO_GO",
+      "tests_implementation_status": "NO_GO",
+      "production_status": "NO_GO",
+      "operation_transition_go_authorization": "NOT_GRANTED",
+      "production_reflection_go_authorization": "NOT_GRANTED",
+      "freeze_release_go_authorization": "NOT_GRANTED",
+      "execution_start_go_authorization": "NOT_GRANTED",
+      "changed_area": "reports only"
+    }
+  }
+}

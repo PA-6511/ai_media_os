@@ -1,0 +1,48 @@
+{
+  "phase_id": "PHASE_S3",
+  "detector_name": "env_access_observer",
+  "status": "DESIGN_ONLY",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "human_approval_required": true,
+  "detector_only": true,
+  "recommendation_only": true,
+  "executor_action_allowed": false,
+  "env_access_mode": "METADATA_ONLY",
+  "secret_value_read_allowed": false,
+  "secret_value_output_allowed": false,
+  "env_file_content_output_allowed": false,
+  "token_value_output_allowed": false,
+  "sample_intent": "env_file_metadata_check",
+  "observe_intents": [
+    "env_file_metadata_check",
+    "secret_presence_check",
+    "credential_owner_check",
+    "rotation_policy_reference_check"
+  ],
+  "denied_intents": [
+    "env_file_content_read",
+    "secret_value_echo",
+    "token_value_echo",
+    "plaintext_secret_logging",
+    "prod_secret_usage_without_human_approval"
+  ],
+  "recommendations": {
+    "allow_freeze_recommendation": true,
+    "allow_human_review_recommendation": true,
+    "allow_secret_rotation_review_recommendation": true
+  },
+  "actions": {
+    "secret_read_execute": false,
+    "secret_output_execute": false,
+    "auto_revoke_execute": false,
+    "auto_rotation_execute": false,
+    "auto_freeze_execute": false
+  },
+  "state_change_executed": false,
+  "freeze_executed": false,
+  "revoke_executed": false,
+  "isolation_executed": false,
+  "wordpress_write_executed": false,
+  "external_api_call_executed": false
+}

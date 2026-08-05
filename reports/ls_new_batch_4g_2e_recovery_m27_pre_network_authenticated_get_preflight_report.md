@@ -1,0 +1,23 @@
+# LS-NEW-BATCH-4G-2E-RECOVERY-M27-PRE-NETWORK
+
+- Status: `BLOCKED_WORDPRESS_TAWAWA_REFERENCE_LAYOUT_UPDATE_AUTHENTICATED_PREFLIGHT_MISMATCH_NO_WORDPRESS_WRITE`
+- Decision: `PREFLIGHT_NOT_READY_REVIEW_RECORDED_AUTHORIZATION_REMAINS_UNCONSUMED`
+- WordPress post ID: `192`
+- Preflight passed: `false`
+- GET request count: `1`
+- Non-GET request count: `0`
+- Automatic retry count: `0`
+- HTTP status: `None`
+- Current status is publish: `false`
+- Current title matches: `false`
+- Current categories match: `false`
+- Current comment status: `None`
+- Current content matches rollback: `false`
+- Update content matches M24: `true`
+- Authorization consumed: `false`
+- WordPress write performed: `false`
+- WordPress update performed: `false`
+- Backlist carousel included: `false`
+- Production status: `NO_GO`
+- Ready for execute-now confirmation: `false`
+- Ready for WordPress update: `false`

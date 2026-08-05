@@ -1,0 +1,134 @@
+{
+  "architecture": {
+    "approval_gate": {
+      "approval_scope": "ONE_X_R13_WORDPRESS_DRAFT_CREATE_ONLY",
+      "binds": [
+        "ebook item ID",
+        "approval request ID",
+        "production database SHA",
+        "payload preview digest",
+        "category mapping digest",
+        "runner source digest"
+      ],
+      "reexecution_allowed": false,
+      "separate_from_review_ready_approval": true,
+      "single_use": true
+    },
+    "payload_adapter": {
+      "credential_read": false,
+      "input": [
+        "approved production ebook row",
+        "bound store offer rows",
+        "standard new-release article policy",
+        "candidate-specific category mapping"
+      ],
+      "maximum_candidate_count": 1,
+      "network_call": false,
+      "output": "signed offline WordPress draft payload preview",
+      "required_post_status": "draft"
+    },
+    "runner": {
+      "allowed_http_write": "POST one draft to WordPress posts collection",
+      "automatic_retry_allowed": false,
+      "maximum_wordpress_post_count": 1,
+      "media_upload_allowed": false,
+      "publish_operation_allowed": false,
+      "required_category_preflight": true,
+      "required_duplicate_preflight": true,
+      "required_post_creation_get_verification": true,
+      "slack_delivery_allowed": false,
+      "x_post_allowed": false
+    },
+    "state_reconciliation": {
+      "atomic_fields": [
+        "wordpress_post_id",
+        "wordpress_status",
+        "wordpress_updated_at"
+      ],
+      "database_commit_after_remote_verification_only": true,
+      "history_evidence_required": true,
+      "publish_ready_change_allowed": false,
+      "required_repository_operation": "record_wordpress_draft_created",
+      "required_wordpress_status_after": "DRAFT",
+      "review_status_change_allowed": false,
+      "workflow_status_change_allowed": false
+    },
+    "transport": {
+      "historical_runner_import_for_execution": false,
+      "required_operations": [
+        "parse credential environment without output",
+        "build REST base",
+        "build Basic Authorization header",
+        "perform bounded JSON GET and POST",
+        "construct collection URLs",
+        "validate WordPress JSON responses"
+      ],
+      "strategy": "EXTRACT_OR_COPY_VERIFIED_PRIMITIVES_TO_NEUTRAL_WORDPRESS_REST_CLIENT"
+    }
+  },
+  "candidate": {
+    "display_title": "メダリスト 第15巻",
+    "ebook_item_id": "e2029b2f-f44a-462f-abc8-86c4bc74b818",
+    "publish_ready": false,
+    "request_id": "39c15d3d-d79d-443a-9a56-92d3e3ff429c",
+    "review_status": "APPROVED",
+    "wordpress_post_id": null,
+    "wordpress_status": "NOT_CREATED",
+    "workflow_status": "READY"
+  },
+  "created_at": "2026-07-19T14:12:13.839995+00:00",
+  "failure_boundaries": {
+    "failure_after_database_commit_before_evidence_finalization": "STOP_NO_REEXECUTION_POST_FAILURE_EVIDENCE_RECONCILIATION",
+    "failure_after_verification_before_database_commit": "STOP_NO_AUTOMATIC_RETRY_BIND_REMOTE_POST_RECEIPT",
+    "failure_after_wordpress_post_before_verification": "STOP_NO_AUTOMATIC_RETRY_REQUIRE_READ_ONLY_RECONCILIATION",
+    "failure_before_wordpress_post": "STOP_NO_REMOTE_WRITE_NO_DATABASE_WRITE"
+  },
+  "implementation_boundary": {
+    "approval_gate_issuance_allowed": false,
+    "credential_read_allowed": false,
+    "implementation_allowed": false,
+    "payload_generation_allowed": false,
+    "production_database_write_allowed": false,
+    "production_status": "NO_GO",
+    "source_modification_allowed": false,
+    "test_execution_allowed": false,
+    "wordpress_api_call_allowed": false,
+    "wordpress_write_allowed": false
+  },
+  "phase": "X-R13-WORDPRESS-DRAFT-MINIMAL-ADAPTER-GATE-RUNNER-STATE-RECONCILIATION-DESIGN",
+  "planned_files": {
+    "modify": [
+      "app/db/repositories/workflow_state_repository.py",
+      "tests/database/test_workflow_state_repository.py"
+    ],
+    "must_not_modify": [
+      "scripts/run_x_r11_wordpress_draft_creation_once.py",
+      "scripts/run_x_r13_one_shot_production_import.py",
+      "data/database/ebook_affiliate.db",
+      "exchange/locks/x_r13_review_ready_approval_decision_execution/9e0d03f20bb99482fb36cb436176b8558da897f3f5474719df5c03b6a559aae1.completion.json"
+    ],
+    "new": [
+      "app/integrations/wordpress_rest_client.py",
+      "app/services/x_r13_wordpress_draft_payload_adapter.py",
+      "app/services/x_r13_wordpress_draft_gate.py",
+      "scripts/run_x_r13_wordpress_draft_creation_once.py",
+      "tests/test_wordpress_rest_client.py",
+      "tests/test_x_r13_wordpress_draft_payload_adapter.py",
+      "tests/test_x_r13_wordpress_draft_gate.py",
+      "tests/test_run_x_r13_wordpress_draft_creation_once.py"
+    ]
+  },
+  "production_database_sha256": "9d95143e4364e11fbce85435401417c07b4d5c607339f99b550d9f7c25ab6b6a",
+  "resolved_source_contract": {
+    "complete_state_binding_present": false,
+    "wordpress_post_id_setter_present": false,
+    "wordpress_status_setter_present": true,
+    "x_r11_approval_reusable": false,
+    "x_r11_full_runner_reusable": false,
+    "x_r11_transport_primitives_reusable": true,
+    "x_r13_wordpress_gate_present": false
+  },
+  "schema_version": "x_r13_wordpress_draft_minimal_design_policy_v1",
+  "status": "DESIGN_ONLY_NO_EXECUTION",
+  "x_r13_wordpress_draft_minimal_design_policy_digest_sha256": "8d022b0e7dc5b47d85f1415e6a25c7b02e254a53233ac2d030472dca6e8af42a"
+}

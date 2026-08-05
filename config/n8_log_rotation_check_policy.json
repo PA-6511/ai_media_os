@@ -1,0 +1,22 @@
+{
+  "phase": "N-8",
+  "name": "n8_log_rotation_check_policy",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "human_approval_required": true,
+  "wordpress_write_executed": false,
+  "wordpress_post_created": false,
+  "external_state_change": false,
+  "executor_action_allowed": false,
+  "network_observation_only": true,
+  "communication_test_only": true,
+  "log_delete_forbidden": true,
+  "log_rotation_execute_forbidden": true,
+  "observation_only": true,
+  "warn_size_mb": 10,
+  "fail_size_mb": 100,
+  "log_targets": [
+    "exchange/logs"
+  ]
+}

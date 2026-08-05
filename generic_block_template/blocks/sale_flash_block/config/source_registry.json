@@ -1,0 +1,31 @@
+{
+  "block_name": "sale_flash_block",
+  "production_status": "NO_GO",
+  "adapters": {
+    "manual_csv": {
+      "enabled": true,
+      "external_network_required": false,
+      "adapter_status": "ACTIVE_FIXTURE_ONLY"
+    },
+    "openbd_candidate": {
+      "enabled": false,
+      "external_network_required": true,
+      "adapter_status": "PLANNED_NO_CONNECTION"
+    },
+    "rakuten_books_candidate": {
+      "enabled": false,
+      "external_network_required": true,
+      "adapter_status": "PLANNED_NO_CONNECTION"
+    },
+    "publisher_news_candidate": {
+      "enabled": false,
+      "external_network_required": true,
+      "adapter_status": "PLANNED_NO_CONNECTION"
+    },
+    "creators_api_placeholder": {
+      "enabled": false,
+      "external_network_required": true,
+      "adapter_status": "WAITING_FOR_CREATORS_API_ELIGIBILITY"
+    }
+  }
+}

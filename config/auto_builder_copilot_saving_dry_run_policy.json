@@ -1,0 +1,44 @@
+{
+  "phase": "AB-T8",
+  "status": "PASS_DESIGN_ONLY_NO_EXECUTION",
+  "purpose": "copilot_saving_dry_run_pack",
+  "execution_mode": "DESIGN_ONLY",
+  "production_status": "NO_GO",
+  "safety_state": "DRY_RUN_ONLY",
+  "dry_run_rules": {
+    "simulate_pipeline": true,
+    "simulate_prompt": true,
+    "simulate_patch": true,
+    "simulate_tests": true,
+    "simulate_evidence": true,
+    "send_to_copilot": false,
+    "send_to_llm": false,
+    "allow_git_operation": false,
+    "allow_wordpress": false,
+    "allow_external_api": false,
+    "allow_credentials": false
+  },
+  "allowed_outputs": [
+    "dry_run_summary",
+    "simulated_prompt",
+    "simulated_patch",
+    "simulated_test_plan",
+    "pipeline_summary",
+    "safety_summary"
+  ],
+  "forbidden_outputs": [
+    "copilot_send",
+    "llm_send",
+    "git_commit",
+    "git_push",
+    "wordpress_command",
+    "production_execution",
+    "credential_contents",
+    "secret_values"
+  ],
+  "next_phase": {
+    "phase": "AB-T9",
+    "name": "Copilot Saving Readiness Gate",
+    "execution_allowed": false
+  }
+}

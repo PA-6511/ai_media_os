@@ -1,0 +1,63 @@
+{
+  "phase_map_name": "START_LS_REUSABLE_PUBLISH_CHAIN_PHASE_MAP",
+  "schema_version": "1.0.0",
+  "source_chain": "post_id_183_start_ls_one_shot_publish_chain",
+  "reusable_sequence": [
+    {
+      "phase_group": "intake",
+      "phase": "LS-NEXT-1",
+      "purpose": "Register next content item using the reusable input schema.",
+      "execution_allowed": false
+    },
+    {
+      "phase_group": "draft_review",
+      "phase": "LS-NEXT-2",
+      "purpose": "Build or verify next draft payload in dry-run mode.",
+      "execution_allowed": false
+    },
+    {
+      "phase_group": "human_review",
+      "phase": "LS-NEXT-3",
+      "purpose": "Human review for next content item.",
+      "execution_allowed": false
+    },
+    {
+      "phase_group": "preflight",
+      "phase": "LS-NEXT-4",
+      "purpose": "Final preflight for target draft post.",
+      "execution_allowed": false
+    },
+    {
+      "phase_group": "separated_publish_execution",
+      "phase": "LS-NEXT-PUBLISH",
+      "purpose": "Separated actual publish execution for confirmed target post ID only.",
+      "execution_allowed": "requires_explicit_human_approval"
+    },
+    {
+      "phase_group": "post_publish_verification",
+      "phase": "LS-NEXT-VERIFY",
+      "purpose": "Post-publish verification and published evidence.",
+      "execution_allowed": false
+    },
+    {
+      "phase_group": "closure",
+      "phase": "LS-NEXT-CLOSE",
+      "purpose": "Close next item publish chain.",
+      "execution_allowed": false
+    },
+    {
+      "phase_group": "monitor",
+      "phase": "LS-NEXT-MON",
+      "purpose": "GET-only published state monitoring.",
+      "execution_allowed": false
+    }
+  ],
+  "global_safety_rules": {
+    "post119_update_forbidden": true,
+    "credential_secret_output_forbidden": true,
+    "authorization_header_output_forbidden": true,
+    "rerun_forbidden_after_publish": true,
+    "human_approval_required_for_actual_publish": true,
+    "publish_execution_must_be_separated": true
+  }
+}

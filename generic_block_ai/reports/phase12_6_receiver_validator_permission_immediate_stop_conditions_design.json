@@ -1,0 +1,72 @@
+{
+  "_meta": {
+    "phase": "12-6",
+    "phase_name": "receiver validator 実装許可発効時の即時停止条件設計",
+    "version": "1.0",
+    "created_date": "2026-05-12",
+    "status": "PASS_DESIGN_ONLY",
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only",
+    "description": "receiver validator 実装許可を発効する局面で、即時に停止すべき条件を追加で固定する。"
+  },
+  "references": [
+    "generic_block_ai/reports/phase12_3_receiver_validator_permission_effective_or_no_go_maintenance_declaration.json",
+    "generic_block_ai/reports/phase11_6_receiver_validator_permission_final_stop_conditions_design.json",
+    "generic_block_ai/reports/phase12_5_integrated_decision_go_update_evidence_lock_rules_design.json"
+  ],
+  "immediate_stop_conditions": [
+    {
+      "condition_id": "ISC-01",
+      "condition": "all_evidence_locked == false",
+      "effect": "permission remains NOT_EFFECTIVE"
+    },
+    {
+      "condition_id": "ISC-02",
+      "condition": "actual_final_decision.integrated_decision != GO",
+      "effect": "permission remains NOT_EFFECTIVE"
+    },
+    {
+      "condition_id": "ISC-03",
+      "condition": "production_status != NO_GO",
+      "effect": "abort activation immediately"
+    },
+    {
+      "condition_id": "ISC-04",
+      "condition": "receiver validator scope expands beyond approved minimal scope",
+      "effect": "abort activation immediately"
+    },
+    {
+      "condition_id": "ISC-05",
+      "condition": "any blocked action becomes permitted or auto_execute_allowed becomes true",
+      "effect": "abort activation immediately"
+    }
+  ],
+  "stop_template": {
+    "immediate_stop_triggered": true,
+    "permission_blocked": true,
+    "triggered_conditions": [],
+    "overall_result": "PENDING"
+  },
+  "blocked_actions": [
+    "core_ai_real_send",
+    "external_api_call",
+    "wordpress_operation",
+    "cron_registration",
+    "auto_execute",
+    "auto_post",
+    "auto_update",
+    "auto_delete",
+    "auto_export",
+    "production_execution"
+  ],
+  "phase_decision": {
+    "phase12_6_status": "PASS_DESIGN_ONLY",
+    "app_implementation_status": "NO_GO",
+    "tests_implementation_status": "NO_GO",
+    "note": "即時停止条件の設計のみ。receiver validator 実装許可は未発効のまま。"
+  }
+}

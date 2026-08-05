@@ -1,0 +1,29 @@
+{
+  "phase": "Phase 8-9",
+  "status": "RERUN_DRAFT_CREATED_PENDING_HUMAN_REVIEW",
+  "production_status": "LIMITED_DRAFT_CREATE_ONLY",
+  "wordpress_draft_creation": "ALLOW_ONE_DRAFT_ONLY",
+  "wordpress_api_call_allowed": true,
+  "wordpress_api_call_attempted": true,
+  "wordpress_write_executed": true,
+  "publish_allowed": false,
+  "target_item_count": 1,
+  "post_id": 115,
+  "post_status": "draft",
+  "post_link": "https://hoshido.jp/?p=115",
+  "freeze_required": false,
+  "human_review_required": true,
+  "secret_values_written": false,
+  "evidence_summary": [
+    {
+      "path": "exchange/logs/phase8_8_final_credentialed_live_preflight_result.json",
+      "exists": true,
+      "status": "CREDENTIAL_PREFLIGHT_PASS_READY_FOR_PHASE8_9"
+    }
+  ],
+  "errors": [],
+  "warnings": [],
+  "safety_violations": [],
+  "allowed_next_step": "Phase 8-10 post-rerun verification and controlled draft flow closure report",
+  "checked_at": "2026-06-09T13:15:59.376009+00:00"
+}

@@ -1,0 +1,92 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-L",
+  "policy_id": "NEW_RELEASE_WP_FRESH_ARTICLE_CONTENT_HUMAN_REVIEW_POLICY_V1",
+  "source_phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-K",
+  "operation_mode": "APPROVED_GENERATED_ARTICLE_CONTENT_HUMAN_REVIEW_RECORDING_ONLY",
+  "content_item_id": "new-release-comic-20260703-001",
+  "review_contract": {
+    "review_evidence_path": "exchange/reviews/new_release/fresh/new-release-comic-20260703-001.article_content_human_review.json",
+    "review_evidence_creation_allowed": true,
+    "review_evidence_overwrite_allowed": false,
+    "generated_article_modification_allowed": false,
+    "consumption_evidence_modification_allowed": false,
+    "source_input_modification_allowed": false,
+    "content_generation_contract_modification_allowed": false
+  },
+  "required_review": {
+    "article_title": "ダークギャザリング 第20巻｜配信開始",
+    "fixed_disclosure_text": "【PR】本記事にはアフィリエイト広告を含みます。価格・配信状況は各ストアで確認してください。",
+    "cover_required": true,
+    "cover_asset_url_allowed": true,
+    "cover_anchor_allowed": false,
+    "information_card_fields_in_order": [
+      "作品名",
+      "価格",
+      "作者",
+      "出版社",
+      "発売日"
+    ],
+    "information_card_values": {
+      "作品名": "ダークギャザリング",
+      "価格": "616円（税込）",
+      "作者": "近藤憲一",
+      "出版社": "集英社",
+      "発売日": "2026-07-03"
+    },
+    "store_slots_in_order": [
+      "amazon",
+      "rakuten_kobo",
+      "dmm_books"
+    ],
+    "store_slots_must_be_non_clickable": true,
+    "store_anchor_elements_allowed": false,
+    "store_href_attributes_allowed": false,
+    "store_product_urls_allowed": false,
+    "final_affiliate_urls_allowed": false,
+    "dmm_url_allowed": false,
+    "synopsis_allowed": false,
+    "story_detail_allowed": false,
+    "discount_claims_allowed": false,
+    "point_return_claims_allowed": false,
+    "campaign_claims_allowed": false,
+    "inventory_claims_allowed": false,
+    "legacy_post185_product_data_allowed": false,
+    "legacy_post185_urls_allowed": false,
+    "categories_field_allowed": false
+  },
+  "review_decision_contract": {
+    "human_explicit_approval_required": true,
+    "all_required_checks_must_pass": true,
+    "approved_decision": "APPROVED_NO_CHANGE_REQUIRED",
+    "content_approved_for_store_link_finalization_gate": true,
+    "content_approved_for_payload_generation": false,
+    "content_approved_for_wordpress": false
+  },
+  "execution_boundary": {
+    "review_evidence_creation_allowed": true,
+    "generated_article_write_allowed": false,
+    "consumption_evidence_write_allowed": false,
+    "source_input_write_allowed": false,
+    "content_generation_contract_write_allowed": false,
+    "fresh_payload_creation_allowed": false,
+    "payload_binding_allowed": false,
+    "production_category_id_payload_injection_allowed": false,
+    "credential_file_read_allowed": false,
+    "dns_resolution_allowed": false,
+    "network_connection_allowed": false,
+    "http_request_allowed": false,
+    "wordpress_api_call_allowed": false,
+    "wordpress_write_allowed": false,
+    "wordpress_draft_creation_allowed": false,
+    "wordpress_publish_allowed": false,
+    "execution_allowed": false,
+    "production_status": "NO_GO",
+    "safety_state": "ARTICLE_CONTENT_HUMAN_REVIEW_ONLY"
+  },
+  "next_phase": {
+    "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M",
+    "name": "Fresh Store Link Finalization and DMM Recheck Gate",
+    "execution_allowed": false
+  }
+}

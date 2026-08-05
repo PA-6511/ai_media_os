@@ -1,0 +1,47 @@
+{
+  "phase": "AB-T1",
+  "name": "Repository Snapshot Digest LIGHTWEIGHT",
+  "status": "DESIGN_ONLY",
+  "final_status": "PASS_LIGHTWEIGHT_DESIGN_ONLY_NO_EXECUTION",
+  "repository": "ai_media_os",
+  "current_state": {
+    "phase_1m_fix": "PASS",
+    "phase_1n": "PASS",
+    "ab_t0": "PASS_DESIGN_ONLY_NO_EXECUTION",
+    "ab_t05": "PASS_DESIGN_ONLY_NO_EXECUTION",
+    "next_phase": "Phase 1N-FIX pre-live resnapshot evidence cleanup",
+    "phase_1_5_goal": "close readiness"
+  },
+  "safety": {
+    "production_status": "NO_GO",
+    "execution_status": "NO_EXECUTION",
+    "dry_run_only": true,
+    "evidence_only": true,
+    "live_execution_allowed": false,
+    "production_write_allowed": false,
+    "wordpress_write_allowed": false,
+    "external_api_call_allowed": false,
+    "credential_read_allowed": false,
+    "credential_output_allowed": false
+  },
+  "token_efficiency": {
+    "max_files_per_ai_context": 5,
+    "max_lines_per_file_excerpt": 120,
+    "copilot_agent_default_allowed": false,
+    "full_diff_allowed": false,
+    "full_log_allowed": false,
+    "full_evidence_index_allowed": false,
+    "repository_snapshot_digest_required": true
+  },
+  "allowed_next_action": "Phase 1N-FIX evidence/report/snapshot cleanup only",
+  "forbidden_actions": [
+    "live_execution",
+    "production_write",
+    "wordpress_write",
+    "external_api_call",
+    "credential_read",
+    "credential_output",
+    "broad_refactor",
+    "phase8_body_change"
+  ]
+}

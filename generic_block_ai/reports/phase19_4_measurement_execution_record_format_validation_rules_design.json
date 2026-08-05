@@ -1,0 +1,283 @@
+{
+  "phase_id": "19-4",
+  "phase_name": "Phase 15-7/15-8 Measurement Execution Record Format Validation Rules Design",
+  "phase_japanese_name": "Phase 15-7/15-8 測定実行記録の形式検証ルール設計",
+  "purpose": "Design format validation rules for Phase 19-1 and 19-2 measurement execution record templates, specifying structural completeness checks, field type validation, enum constraint enforcement, and mandatory field presence rules",
+  "layer": "measurement_execution_record_layer",
+  "design_category": "reports_only",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only"
+  },
+  "phase_19_4_scope": {
+    "scope_1_structural_completeness_rules": {
+      "scope_id": "STRUCTURAL_COMPLETENESS",
+      "description": "Rules to verify all 5 sections of Phase 19-1 and 19-2 templates are present and structurally complete",
+      "section_presence_rules": {
+        "rule_SC_1": {
+          "rule_id": "SECTION_PRESENCE_ALL_5",
+          "target": "Both Phase 19-1 and Phase 19-2 records",
+          "rule": "Record must contain all 5 sections: section_1_execution_preamble, section_2_measurement_scope_definition, section_3_measurement_execution_steps, section_4_measurement_result, section_5_post_measurement_actions",
+          "validation": "JSON parse: verify presence of all 5 section keys at top level of template",
+          "failure_outcome": "SECTION_MISSING → route to Phase 19-6 return procedure"
+        },
+        "rule_SC_2": {
+          "rule_id": "EXECUTION_STEPS_ALL_7",
+          "target": "section_3_measurement_execution_steps",
+          "rule": "steps array must contain exactly 7 step entries (step 1 through step 7)",
+          "validation": "len(steps) == 7 AND steps[i].step == i+1 for i in 0..6",
+          "failure_outcome": "EXECUTION_STEPS_INCOMPLETE → route to Phase 19-6 return procedure"
+        },
+        "rule_SC_3": {
+          "rule_id": "POST_ACTIONS_ALL_5",
+          "target": "section_5_post_measurement_actions",
+          "rule": "actions array must contain exactly 5 action entries",
+          "validation": "len(actions) == 5",
+          "failure_outcome": "POST_ACTIONS_INCOMPLETE → route to Phase 19-6 return procedure"
+        },
+        "rule_SC_4": {
+          "rule_id": "PHASE_19_2_HAS_DEPENDENCY_FIELDS",
+          "target": "Phase 19-2 section_1_execution_preamble only",
+          "rule": "phase_15_7_dependency_state block must be present with execution_mode, phase_15_7_execution_record_id, and phase_15_7_integrated_decision_result fields",
+          "validation": "phase_15_7_dependency_state key exists AND has 3 required sub-fields",
+          "failure_outcome": "DEPENDENCY_FIELDS_MISSING → route to Phase 19-6 return procedure"
+        }
+      }
+    },
+    "scope_2_mandatory_field_presence_rules": {
+      "scope_id": "MANDATORY_FIELD_PRESENCE",
+      "description": "Rules specifying which fields must be non-null when a record is submitted as complete",
+      "phase_19_1_mandatory_fields": {
+        "section_1_mandatory": [
+          "execution_record_id (non-null string)",
+          "phase_18_8_authorization_reference (non-null string)",
+          "phase_18_6_final_abort_verification_result (must be FINAL_ABORT_VERIFICATION_PASSED)",
+          "execution_start_timestamp_utc (non-null RFC 3339 string)",
+          "executing_authority_identifier (non-null string)",
+          "pre_execution_state_snapshot.integrated_decision_before (must be NO_GO)",
+          "pre_execution_state_snapshot.receiver_validator_permission_before (must be NOT_EFFECTIVE)",
+          "pre_execution_state_snapshot.production_status_before (must be NO_GO)",
+          "pre_execution_state_snapshot.app_implementation_status_before (must be NO_GO)",
+          "pre_execution_state_snapshot.tests_implementation_status_before (must be NO_GO)"
+        ],
+        "section_2_mandatory": [
+          "go_criteria: all 5 criterion evaluation_result fields non-null",
+          "no_go_criteria: all 4 criterion evaluation_result fields non-null"
+        ],
+        "section_3_mandatory": [
+          "All 7 steps: execution_result non-null",
+          "All 7 steps: execution_timestamp_utc non-null",
+          "step_5: integrated_decision_determined.value non-null (GO or NO_GO)",
+          "step_5: determination_rationale non-null",
+          "step_6: result_json_hash_sha256_plus non-null",
+          "step_6: authority_signature_over_result non-null"
+        ],
+        "section_4_mandatory": [
+          "integrated_decision_result non-null (GO or NO_GO)",
+          "result_determination_timestamp_utc non-null",
+          "result_evidence_hash_sha256_plus non-null",
+          "result_authority_signature.signature_value non-null",
+          "result_authority_signature.signer_authority_id non-null",
+          "result_authority_signature.signature_timestamp_utc non-null",
+          "result_authority_signature.revocation_status non-null",
+          "post_measurement_state_transition.integrated_decision_after non-null",
+          "post_measurement_state_transition.receiver_validator_permission_after (must be NOT_EFFECTIVE)"
+        ],
+        "section_5_mandatory": [
+          "All 5 actions: completion_status non-null (COMPLETED | SKIPPED_NOT_APPLICABLE | PENDING)"
+        ]
+      },
+      "phase_19_2_mandatory_fields": {
+        "section_1_mandatory": [
+          "execution_record_id (non-null string)",
+          "phase_18_8_authorization_reference (non-null string)",
+          "phase_18_6_final_abort_verification_result (must be FINAL_ABORT_VERIFICATION_PASSED)",
+          "execution_start_timestamp_utc (non-null RFC 3339 string)",
+          "executing_authority_identifier (non-null string)",
+          "phase_15_7_dependency_state.execution_mode (SEQUENTIAL or PARALLEL)",
+          "phase_15_7_dependency_state.phase_15_7_integrated_decision_result (GO | NO_GO | NOT_YET_EXECUTED)",
+          "pre_execution_state_snapshot.receiver_validator_permission_before (must be NOT_EFFECTIVE)",
+          "pre_execution_state_snapshot.production_status_before (must be NO_GO)"
+        ],
+        "section_2_mandatory": [
+          "effective_criteria: all 6 criterion evaluation_result fields non-null",
+          "not_effective_criteria: all 4 criterion evaluation_result fields non-null"
+        ],
+        "section_3_mandatory": [
+          "All 7 steps: execution_result non-null",
+          "All 7 steps: execution_timestamp_utc non-null",
+          "step_3: implementation_change_detected non-null",
+          "step_3: implementation_version_hash non-null",
+          "step_5: receiver_validator_permission_determined.value non-null",
+          "step_6: result_json_hash_sha256_plus non-null",
+          "step_6: authority_signature_over_result non-null"
+        ],
+        "section_4_mandatory": [
+          "receiver_validator_permission_result non-null (EFFECTIVE or NOT_EFFECTIVE)",
+          "result_determination_timestamp_utc non-null",
+          "result_evidence_hash_sha256_plus non-null",
+          "result_authority_signature.signature_value non-null",
+          "result_authority_signature.signer_authority_id non-null",
+          "post_measurement_state_transition.receiver_validator_permission_after non-null",
+          "post_measurement_state_transition.app_implementation_status_after non-null",
+          "post_measurement_state_transition.tests_implementation_status_after non-null"
+        ],
+        "section_5_mandatory": [
+          "All 5 actions: completion_status non-null"
+        ]
+      }
+    },
+    "scope_3_field_type_and_format_rules": {
+      "scope_id": "FIELD_TYPE_FORMAT",
+      "description": "Type and format validation rules for individual fields",
+      "format_rules": {
+        "rule_FT_1": {
+          "rule_id": "EXECUTION_RECORD_ID_FORMAT",
+          "field": "execution_record_id",
+          "rule": "Must match pattern EXEC_PHASE15_[7|8]_[0-9]{8}T[0-9]{6}Z_[A-Z0-9]{6}",
+          "example": "EXEC_PHASE15_7_20260513T120000Z_A1B2C3",
+          "failure_outcome": "FORMAT_VIOLATION"
+        },
+        "rule_FT_2": {
+          "rule_id": "TIMESTAMP_RFC3339",
+          "field": "All *_utc timestamp fields",
+          "rule": "Must conform to RFC 3339 format: YYYY-MM-DDTHH:MM:SSZ (UTC only, no offset)",
+          "failure_outcome": "FORMAT_VIOLATION"
+        },
+        "rule_FT_3": {
+          "rule_id": "HASH_FORMAT",
+          "field": "result_evidence_hash_sha256_plus, result_json_hash_sha256_plus",
+          "rule": "Must be hexadecimal string, minimum 64 characters (SHA-256 output), lowercase",
+          "failure_outcome": "FORMAT_VIOLATION"
+        },
+        "rule_FT_4": {
+          "rule_id": "SIGNATURE_BASE64",
+          "field": "result_authority_signature.signature_value, authority_signature_over_result",
+          "rule": "Must be valid Base64-encoded string (no whitespace)",
+          "failure_outcome": "FORMAT_VIOLATION"
+        },
+        "rule_FT_5": {
+          "rule_id": "ENUM_INTEGRATED_DECISION",
+          "field": "integrated_decision_result, integrated_decision_before, integrated_decision_after",
+          "rule": "Must be one of: GO, NO_GO (case-sensitive)",
+          "failure_outcome": "ENUM_VIOLATION"
+        },
+        "rule_FT_6": {
+          "rule_id": "ENUM_RECEIVER_VALIDATOR",
+          "field": "receiver_validator_permission_result, receiver_validator_permission_before, receiver_validator_permission_after",
+          "rule": "Must be one of: EFFECTIVE, NOT_EFFECTIVE (case-sensitive)",
+          "failure_outcome": "ENUM_VIOLATION"
+        },
+        "rule_FT_7": {
+          "rule_id": "ENUM_PRODUCTION_STATUS",
+          "field": "production_status_before",
+          "rule": "Must be: NO_GO (case-sensitive, hardcoded)",
+          "failure_outcome": "ENUM_VIOLATION"
+        },
+        "rule_FT_8": {
+          "rule_id": "ENUM_EXECUTION_MODE",
+          "field": "phase_15_7_dependency_state.execution_mode (Phase 19-2 only)",
+          "rule": "Must be one of: SEQUENTIAL, PARALLEL (case-sensitive)",
+          "failure_outcome": "ENUM_VIOLATION"
+        }
+      }
+    },
+    "scope_4_business_logic_rules": {
+      "scope_id": "BUSINESS_LOGIC",
+      "description": "Cross-field consistency and business logic validation rules",
+      "logic_rules": {
+        "rule_BL_1": {
+          "rule_id": "PRE_SNAPSHOT_NO_GO_INVARIANTS",
+          "rule": "pre_execution_state_snapshot.integrated_decision_before MUST be NO_GO for Phase 19-1. Phase 19-2 may be GO (if Phase 15-7 already complete) or NO_GO.",
+          "failure_outcome": "STATE_INVARIANT_VIOLATION → HALT"
+        },
+        "rule_BL_2": {
+          "rule_id": "RECEIVER_VALIDATOR_BEFORE_ALWAYS_NOT_EFFECTIVE",
+          "rule": "Both Phase 19-1 and 19-2: receiver_validator_permission_before MUST be NOT_EFFECTIVE (Phase 15-8 only can change this)",
+          "failure_outcome": "STATE_INVARIANT_VIOLATION → HALT"
+        },
+        "rule_BL_3": {
+          "rule_id": "ABORT_VERIFICATION_MUST_PASS",
+          "rule": "phase_18_6_final_abort_verification_result MUST be FINAL_ABORT_VERIFICATION_PASSED. Any other value is rejected.",
+          "failure_outcome": "ABORT_VERIFICATION_NOT_PASSED → reject record, do not accept execution"
+        },
+        "rule_BL_4": {
+          "rule_id": "STEP_5_DETERMINATION_CONSISTENT_WITH_CRITERIA",
+          "rule": "If all go_criteria evaluation_result=PASS and no no_go_criteria evaluation_result=ACTIVE → integrated_decision_determined=GO. Otherwise must be NO_GO.",
+          "failure_outcome": "DETERMINATION_INCONSISTENCY → route to Phase 19-6 return"
+        },
+        "rule_BL_5": {
+          "rule_id": "SEQUENTIAL_MODE_PHASE15_7_MUST_BE_GO",
+          "rule": "Phase 19-2 only: if execution_mode=SEQUENTIAL then phase_15_7_integrated_decision_result must be GO (not NO_GO or NOT_YET_EXECUTED)",
+          "failure_outcome": "SEQUENTIAL_DEPENDENCY_NOT_MET → route to Phase 19-6 return"
+        },
+        "rule_BL_6": {
+          "rule_id": "STEP_TIMESTAMPS_MONOTONICALLY_INCREASING",
+          "rule": "execution_timestamp_utc for step 1 <= step 2 <= ... <= step 7",
+          "failure_outcome": "TIMESTAMP_ORDER_VIOLATION → FORMAT_VIOLATION"
+        },
+        "rule_BL_7": {
+          "rule_id": "EXECUTION_DURATION_REASONABLE",
+          "rule": "execution_duration_seconds (step 7) must be positive and less than 86400 (24 hours)",
+          "failure_outcome": "DURATION_IMPLAUSIBLE → FORMAT_VIOLATION"
+        }
+      }
+    },
+    "scope_5_validation_execution_procedure": {
+      "scope_id": "VALIDATION_EXECUTION",
+      "description": "Procedure for executing all format validation rules against a submitted record",
+      "validation_procedure": {
+        "step_1": "Parse JSON: confirm record is syntactically valid JSON",
+        "step_2": "Check structural completeness (scope_1 rules SC_1 through SC_4)",
+        "step_3": "Check mandatory field presence (scope_2 rules for relevant phase)",
+        "step_4": "Check field type and format (scope_3 rules FT_1 through FT_8)",
+        "step_5": "Check business logic (scope_4 rules BL_1 through BL_7)",
+        "step_6": "Aggregate validation results: PASS (all rules pass) or FAIL (any rule fails)"
+      },
+      "validation_outcomes": {
+        "FORMAT_VALIDATION_PASS": {
+          "condition": "All rules in steps 1-5 pass",
+          "action": "Proceed to Phase 19-5 (evidence lock) and Phase 19-3 (cross-validation)"
+        },
+        "FORMAT_VALIDATION_FAIL": {
+          "condition": "Any rule fails",
+          "action": "Route to Phase 19-6 return procedure with failed rule IDs documented"
+        }
+      }
+    }
+  },
+  "phase_19_4_governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "state_invariants": {
+      "integrated_decision": "NO_GO",
+      "receiver_validator_permission": "NOT_EFFECTIVE",
+      "app_implementation_status": "NO_GO",
+      "tests_implementation_status": "NO_GO"
+    },
+    "phase_19_4_completion_criteria": [
+      "Structural completeness rules (4 rules) designed",
+      "Mandatory field presence rules (Phase 19-1: 5 sections, Phase 19-2: 5 sections) designed",
+      "Field type and format rules (8 rules) designed",
+      "Business logic rules (7 rules) designed",
+      "Validation execution procedure (5-step + 2 outcomes) designed",
+      "All JSON validation passed",
+      "No changes to app/ or tests/ directories",
+      "All state invariants maintained"
+    ]
+  }
+}

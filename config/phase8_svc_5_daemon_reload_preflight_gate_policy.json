@@ -1,0 +1,53 @@
+{
+  "phase": "8-SVC-5",
+  "phase_name": "Daemon-Reload Preflight Gate Design",
+  "status": "DESIGN_ONLY_NO_EXECUTION",
+  "production_status": "NO_GO",
+  "execution": "DRY_RUN",
+  "design_only": true,
+  "required_phase_statuses": {
+    "svc3": "PASS_UNIT_FILES_PLACED_NO_ACTIVATION",
+    "svc4": "PASS_DESIGN_ONLY_NO_ACTIVATION"
+  },
+  "required_runbook_sections": [
+    "## 1. Purpose",
+    "## 3. Preconditions",
+    "## 4. Absolute Prohibitions in SVC-5",
+    "## 5. Daemon-Reload Allow Rule (Future SVC-6)",
+    "## 6. Enable/Start Control Rule",
+    "## 8. Secret Safety Rule",
+    "## 11. Final Judgment Rule",
+    "## 12. Next Step"
+  ],
+  "forbidden_patterns": [
+    "systemctl daemon-reload",
+    "systemctl enable",
+    "systemctl start",
+    "systemctl restart",
+    "requests.post(",
+    "requests.put(",
+    "requests.patch(",
+    "requests.delete(",
+    "wp-json",
+    "WORDPRESS_APP_PASSWORD=",
+    "printenv",
+    "cat /etc/ai-media-os/credential.env",
+    "echo $WORDPRESS_",
+    "Environment=WORDPRESS_"
+  ],
+  "activation_actions": {
+    "daemon_reload_executed": false,
+    "systemctl_enable_executed": false,
+    "systemctl_start_executed": false,
+    "systemctl_restart_executed": false
+  },
+  "execution_actions": {
+    "credential_env_created": false,
+    "secret_input_executed": false,
+    "phase8_29_to_8_40_rerun_executed": false,
+    "wordpress_api_call_attempted": false,
+    "wordpress_draft_created": false,
+    "wordpress_publish_executed": false
+  },
+  "allowed_next_step": "SVC-6 daemon-reload execution checkpoint (no enable/start)"
+}

@@ -1,0 +1,23 @@
+{
+  "phase": "71-1",
+  "title": "Phase 70 完了証跡の受領・整合確認",
+  "_meta": {
+    "status": "PASS_DESIGN_ONLY",
+    "reports_only": true
+  },
+  "checks": [
+    { "id": "evidence_received", "result": "PASS" },
+    { "id": "evidence_consistency", "result": "PASS" }
+  ],
+  "governance": {
+    "production_status": "NO_GO",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "execution_start": "NO_GO",
+    "changed_area": "reports only"
+  },
+  "summary": {
+    "result": "PASS",
+    "fixed_value_check": "PASS"
+  }
+}

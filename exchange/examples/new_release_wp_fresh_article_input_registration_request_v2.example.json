@@ -1,0 +1,173 @@
+{
+  "request_version": 2,
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-G",
+  "policy_path": "config/new_release_wp_fresh_article_input_registration_v2_policy.json",
+  "source_phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-F",
+  "source_result_path": "exchange/logs/ls_new_batch_4g_2e_recovery_f_result.json",
+  "source_result_digest_sha256": "e866d41d0d201225382a13723dce944af33215e8b2576442cecb9f2a1611e2c5",
+  "source_semantic_digest_sha256": "88e63348a39ac0c14479c96a4415e64d65e12dbd43bdb9b293f99cc0933b4d0e",
+  "source_contract_path": "config/new_release_wp_fresh_payload_generation_input_contract.json",
+  "source_contract_file_sha256": "c3c3425db172f98d541983f4575f0bd6507158d60d951370770da6666fc40f33",
+  "source_contract_artifact_digest_sha256": "1f5dad97e9dbffae612647b17af673e7feb63763e1aca461688e0db03a22b450",
+  "source_template_path": "exchange/examples/new_release_wp_fresh_payload_generation_input.template.json",
+  "source_template_file_sha256": "f324cb09f51b65280dc8d44aca4af410a54ab40bf6e68811e24382bc2cfc4812",
+  "source_template_artifact_digest_sha256": "9ac5b56831c4fdffcccaec7a54a3d77a70fa3b6ba25a6257b0f7f99d80eb2969",
+  "superseded_approval_path": "exchange/approvals/ls_new_batch_4g_2e_recovery_g_article_input_registration_approval.json",
+  "superseded_approval_file_sha256": "8f5c42a3073a07cd9dcc0c1741558df1d04920a619a609f2a4f109b51edee11e",
+  "superseded_approval_evidence_digest_sha256": "324cced26217241641af34172c92ae80d920f2c9bb608272640b573d406dff3f",
+  "approval_v2_path": "exchange/approvals/ls_new_batch_4g_2e_recovery_g_article_input_registration_approval_v2.json",
+  "approval_v2_file_digest_sha256": "61fd13e53cb308a9ef64996367b49c73ab4281ce5726f2d07b85b33ae06c6cf0",
+  "operation_mode": "APPROVED_FRESH_ARTICLE_INPUT_REGISTRATION_REISSUE_V2_ONLY",
+  "article_input": {
+    "content_item_id": "new-release-comic-20260703-001",
+    "work_title": "ダークギャザリング",
+    "volume_label": "第20巻",
+    "article_title": "ダークギャザリング 第20巻｜配信開始",
+    "release_date": "2026-07-03",
+    "author_name": "近藤憲一",
+    "publisher_name": "集英社",
+    "article_type": "COMIC_NEW_RELEASE_LATEST_VOLUME_DISTRIBUTION_START",
+    "wordpress_status": "draft",
+    "content_source": {
+      "source_type": "PUBLISHER_AND_STORE_PRODUCT_PAGES",
+      "human_verified": true,
+      "verification_observed_at": "2026-07-11T01:54:53+09:00",
+      "runtime_network_verification_performed": false,
+      "source_references": [
+        {
+          "source_id": "shueisha_official",
+          "url": "https://www.shueisha.co.jp/books/items/contents.html?isbn=978-4-08-885120-4",
+          "verification_state": "VERIFIED",
+          "verified_fields": [
+            "work_title",
+            "volume_label",
+            "release_date",
+            "author_name",
+            "publisher_name",
+            "isbn_13"
+          ]
+        },
+        {
+          "source_id": "amazon_kindle",
+          "url": "https://www.amazon.co.jp/dp/B0H3N7QK5K",
+          "verification_state": "VERIFIED",
+          "verified_fields": [
+            "work_title",
+            "volume_label",
+            "release_date",
+            "author_name",
+            "publisher_name",
+            "amazon_asin"
+          ]
+        },
+        {
+          "source_id": "rakuten_kobo",
+          "url": "https://books.rakuten.co.jp/rk/2d876b43205136b7a0d36a78cec5bf46/",
+          "verification_state": "VERIFIED",
+          "verified_fields": [
+            "work_title",
+            "volume_label",
+            "release_date",
+            "author_name",
+            "publisher_name",
+            "price",
+            "product_number",
+            "cover"
+          ]
+        },
+        {
+          "source_id": "dmm_books",
+          "url": "https://book.dmm.com/product/861056/latest/",
+          "url_kind": "SERIES_LATEST_ALIAS",
+          "verification_state": "VERIFIED",
+          "verified_fields": [
+            "work_title",
+            "volume_label",
+            "author_name",
+            "publisher_name",
+            "price"
+          ],
+          "requires_recheck_before_payload_generation": true
+        }
+      ]
+    },
+    "store_links": {
+      "amazon": {
+        "url": "https://www.amazon.co.jp/dp/B0H3N7QK5K",
+        "product_identifier_type": "ASIN",
+        "product_identifier": "B0H3N7QK5K",
+        "url_kind": "STABLE_PRODUCT_URL",
+        "link_role": "PRODUCT_VERIFICATION_SOURCE_NOT_FINAL_AFFILIATE_LINK",
+        "verification_state": "VERIFIED",
+        "final_affiliate_link": false,
+        "requires_recheck_before_payload_generation": false
+      },
+      "rakuten_kobo": {
+        "url": "https://books.rakuten.co.jp/rk/2d876b43205136b7a0d36a78cec5bf46/",
+        "product_identifier_type": "RAKUTEN_KOBO_PRODUCT_NUMBER",
+        "product_identifier": "4972000159519",
+        "url_kind": "STABLE_PRODUCT_URL",
+        "link_role": "PRODUCT_VERIFICATION_SOURCE_NOT_FINAL_AFFILIATE_LINK",
+        "verification_state": "VERIFIED",
+        "final_affiliate_link": false,
+        "requires_recheck_before_payload_generation": false
+      },
+      "dmm_books": {
+        "url": "https://book.dmm.com/product/861056/latest/",
+        "product_identifier_type": "DMM_SERIES_ID",
+        "product_identifier": "861056",
+        "url_kind": "SERIES_LATEST_ALIAS",
+        "link_role": "PRODUCT_VERIFICATION_SOURCE_NOT_FINAL_AFFILIATE_LINK",
+        "verification_state": "VERIFIED",
+        "final_affiliate_link": false,
+        "requires_recheck_before_payload_generation": true
+      }
+    },
+    "cover": {
+      "image_url": "https://shop.r10s.jp/rakutenkobo-ebooks/cabinet/6485/2000020786485.jpg",
+      "source": "rakuten_kobo",
+      "source_page_url": "https://books.rakuten.co.jp/rk/2d876b43205136b7a0d36a78cec5bf46/",
+      "verification_state": "VERIFIED",
+      "local_copy_created": false
+    },
+    "price": {
+      "amount": 616,
+      "price_text": "616円（税込）",
+      "currency": "JPY",
+      "observed_at": "2026-07-11T01:54:53+09:00",
+      "verification_state": "VERIFIED",
+      "verification_sources": [
+        "rakuten_kobo",
+        "dmm_books"
+      ],
+      "automatic_refresh_performed": false
+    },
+    "identifiers": {
+      "isbn_13": "9784088851204",
+      "amazon_asin": "B0H3N7QK5K",
+      "rakuten_kobo_product_number": "4972000159519",
+      "dmm_series_id": "861056"
+    },
+    "affiliate_disclosure_required": true,
+    "categories_initial_state": "ABSENT",
+    "legacy_post185_reference": false
+  },
+  "approval_reissue_requested": true,
+  "superseded_approval_preservation_requested": true,
+  "article_input_registration_requested": true,
+  "human_review_completion_requested": false,
+  "article_content_generation_requested": false,
+  "fresh_payload_creation_requested": false,
+  "fresh_payload_read_requested": false,
+  "fresh_payload_copy_requested": false,
+  "payload_binding_requested": false,
+  "payload_modification_requested": false,
+  "production_category_id_payload_injection_requested": false,
+  "credential_file_read_requested": false,
+  "network_connection_requested": false,
+  "http_request_requested": false,
+  "wordpress_access_requested": false,
+  "wordpress_write_requested": false,
+  "wordpress_draft_creation_requested": false,
+  "execution_requested": false
+}

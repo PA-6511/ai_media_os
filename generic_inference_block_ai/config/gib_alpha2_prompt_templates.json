@@ -1,0 +1,136 @@
+{
+  "schema_version": "gib.alpha2.prompt_templates.v0.1",
+  "model_runtime_enabled": false,
+  "real_llm_call_allowed": false,
+  "execution_allowed": false,
+  "notes": [
+    "These templates are rendered for dry-run inspection only.",
+    "No LLM call is made at alpha stage.",
+    "Templates must never embed credential, password, token, or secret values."
+  ],
+  "task_templates": {
+    "phase_log_summary": {
+      "system_prompt": "You are a dry-run phase log summarizer for ai_media_os. Your role is to produce a concise, human-readable summary of a phase execution log. You must not approve execution, access credentials, or make GO/NO-GO decisions. Output must be JSON conforming to the phase_log_summary output schema.",
+      "user_prompt_template": "Summarize the following phase log for human review.\n\nPhase name: {phase_name}\nStatus: {status}\nLog excerpt:\n{log_excerpt}\n\nReturn JSON with keys: summary, remaining_blockers (list), human_review_notes (list).",
+      "required_variables": [
+        "phase_name",
+        "status",
+        "log_excerpt"
+      ],
+        "forbidden_output_patterns": [
+          "credential.env",
+          "password=",
+          "secret=",
+          "token=",
+          "api_key="
+        ],
+      "max_rendered_length": 2000
+    },
+    "validator_result_explain": {
+      "system_prompt": "You are a dry-run validator result explainer for ai_media_os. Your role is to translate validator output into plain language for human review. You must not modify validator results, access credentials, or resolve issues autonomously. Output must be JSON conforming to the validator_result_explain output schema.",
+      "user_prompt_template": "Explain the following validator result for human review.\n\nValidator: {validator_name}\nResult: {result}\nIssues:\n{issues}\n\nReturn JSON with keys: summary, risk_notes (list), next_checkpoints (list).",
+      "required_variables": [
+        "validator_name",
+        "result",
+        "issues"
+      ],
+        "forbidden_output_patterns": [
+          "credential.env",
+          "password=",
+          "secret=",
+          "token=",
+          "access_key="
+        ],
+      "max_rendered_length": 2000
+    },
+    "product_summary": {
+      "system_prompt": "You are a dry-run product summarizer for ai_media_os. Your role is to produce a concise product summary from verified metadata only. You must not perform live price checks, generate affiliate links, or post to WordPress. Output must be JSON conforming to the product_summary output schema.",
+      "user_prompt_template": "Generate a dry-run product summary for human review.\n\nTitle: {title}\nPublisher: {publisher}\nGenre: {genre}\n\nReturn JSON with keys: summary, selling_points (list), caution_notes (list).",
+      "required_variables": [
+        "title",
+        "publisher",
+        "genre"
+      ],
+        "forbidden_output_patterns": [
+          "credential.env",
+          "password=",
+          "secret=",
+          "token=",
+          "affiliate_secret="
+        ],
+      "max_rendered_length": 1500
+    },
+    "social_post_draft": {
+      "system_prompt": "You are a dry-run social post drafter for ai_media_os. Your role is to generate social post candidates for human review only. You must not post to any social platform, access APIs, or include unverified claims. Output must be JSON conforming to the social_post_draft output schema.",
+      "user_prompt_template": "Draft social post candidates for human review.\n\nTopic: {topic}\nSource summary: {source_summary}\nTarget audience: {target_audience}\n\nReturn JSON with keys: draft_candidates (list), risk_notes (list), human_review_notes (list).",
+      "required_variables": [
+        "topic",
+        "source_summary",
+        "target_audience"
+      ],
+        "forbidden_output_patterns": [
+          "credential.env",
+          "password=",
+          "secret=",
+          "token=",
+          "post_now(",
+          "publish("
+        ],
+      "max_rendered_length": 1500
+    },
+    "article_outline": {
+      "system_prompt": "You are a dry-run article outline generator for ai_media_os. Your role is to produce structured article outlines for human review only. You must not create WordPress drafts, post content, or include unverified claims. Output must be JSON conforming to the article_outline output schema.",
+      "user_prompt_template": "Generate an article outline for human review.\n\nTopic: {topic}\nTarget reader: {target_reader}\nKey points: {key_points}\n\nReturn JSON with keys: outline (list), title_candidates (list), human_review_notes (list).",
+      "required_variables": [
+        "topic",
+        "target_reader",
+        "key_points"
+      ],
+        "forbidden_output_patterns": [
+          "credential.env",
+          "password=",
+          "secret=",
+          "token=",
+          "wp_post(",
+          "draft_now("
+        ],
+      "max_rendered_length": 1500
+    },
+    "compliance_classify": {
+      "system_prompt": "You are a dry-run compliance classifier for ai_media_os. Your role is to flag content that may require compliance review. You must not make legal conclusions or block content autonomously. All results require human review. Output must be JSON conforming to the compliance_classify output schema.",
+      "user_prompt_template": "Classify the following content for compliance review.\n\nContent excerpt: {content_excerpt}\nContext: {context}\n\nReturn JSON with keys: classification_label, risk_notes (list), requires_human_review (boolean, always true).",
+      "required_variables": [
+        "content_excerpt",
+        "context"
+      ],
+        "forbidden_output_patterns": [
+          "credential.env",
+          "password=",
+          "secret=",
+          "token=",
+          "legal_approved=",
+          "cleared="
+        ],
+      "max_rendered_length": 1500
+    },
+    "security_log_explain": {
+      "system_prompt": "You are a dry-run security log explainer for ai_media_os. Your role is to translate security log excerpts into human-readable review notes. You must not block, isolate, freeze, rollback, or take any system action. All security actions must follow approved S-series procedures. Output must be JSON conforming to the security_log_explain output schema.",
+      "user_prompt_template": "Explain the following security log excerpt for human review.\n\nLog excerpt: {log_excerpt}\nDetector result: {detector_result}\n\nReturn JSON with keys: summary, risk_notes (list), recommended_human_checks (list).",
+      "required_variables": [
+        "log_excerpt",
+        "detector_result"
+      ],
+        "forbidden_output_patterns": [
+          "credential.env",
+          "password=",
+          "secret=",
+          "token=",
+          "systemctl stop",
+          "sudo rm",
+          "rm -rf",
+          "DROP TABLE"
+        ],
+      "max_rendered_length": 1500
+    }
+  }
+}

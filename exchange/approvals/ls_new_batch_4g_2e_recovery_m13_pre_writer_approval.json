@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M13-PRE-WRITER",
+  "approval_id": "wordpress-writer-credential-nonsecret-preflight-approval-v1",
+  "approval_label": "WORDPRESS_WRITER_CREDENTIAL_NONSECRET_PREFLIGHT_APPROVED",
+  "approved_by": "HUMAN_OPERATOR",
+  "human_explicit_approval": true,
+  "approved_at_utc": "2026-07-11T10:01:24.378211+00:00",
+  "writer_credential_path": "/etc/ai-media-os/credential.env",
+  "required_keys": [
+    "WORDPRESS_BASE_URL",
+    "WORDPRESS_USERNAME",
+    "WORDPRESS_APP_PASSWORD"
+  ],
+  "required_key_occurrence_count": 1,
+  "required_values_nonempty": true,
+  "m12_authorization_binding": {
+    "path": "exchange/authorizations/new_release/fresh/new-release-comic-20260703-001.wordpress_draft_creation_authorization.json",
+    "file_sha256": "7c9662a7a13502e165862e452427899228794bce6904a0215c45a5b54ba1142b",
+    "authorization_digest_sha256": "d3ede61a71d75cbbc00a594f0a8d319aed0e598bd9c061609a52bed7e96d07c3",
+    "authorization_consumed": false
+  },
+  "credential_values_output_allowed": false,
+  "credential_file_hash_allowed": false,
+  "credential_file_content_output_allowed": false,
+  "credential_file_modification_allowed": false,
+  "environment_export_allowed": false,
+  "network_connection_allowed": false,
+  "dns_resolution_allowed": false,
+  "http_request_allowed": false,
+  "wordpress_access_allowed": false,
+  "m12_authorization_consumption_allowed": false,
+  "wordpress_draft_creation_allowed": false,
+  "readonly_credential_writer_use_allowed": false,
+  "production_status": "NO_GO",
+  "approval_evidence_digest_sha256": "5551cce0efdcd4b8dfbf810ade3523fdc1ecfd18300fc8bf085ac05c6dedb850"
+}

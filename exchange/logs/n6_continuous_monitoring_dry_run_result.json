@@ -1,0 +1,337 @@
+{
+  "phase": "N-6",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "human_approval_required": true,
+  "wordpress_write_executed": false,
+  "wordpress_post_created": false,
+  "external_state_change": false,
+  "executor_action_allowed": false,
+  "network_observation_only": true,
+  "communication_test_only": true,
+  "actual_long_run_executed": false,
+  "checked_at": "2026-05-31T14:00:11.378526+00:00",
+  "status": "PASS",
+  "simulated_duration_hours": 24,
+  "check_interval_minutes": 60,
+  "expected_check_count": 24,
+  "actual_check_count": 24,
+  "fail_count": 1,
+  "fail_rate_percent": 4.17,
+  "acceptable_fail_rate_percent": 5.0,
+  "schedule": [
+    {
+      "index": 0,
+      "simulated_offset_minutes": 0,
+      "check_results": {
+        "dns": "PASS",
+        "tcp": "PASS",
+        "https": "PASS",
+        "wordpress_api_head": "PASS",
+        "slack_path_head": "PASS",
+        "github_https": "PASS"
+      },
+      "status": "PASS"
+    },
+    {
+      "index": 1,
+      "simulated_offset_minutes": 60,
+      "check_results": {
+        "dns": "PASS",
+        "tcp": "PASS",
+        "https": "PASS",
+        "wordpress_api_head": "PASS",
+        "slack_path_head": "PASS",
+        "github_https": "PASS"
+      },
+      "status": "PASS"
+    },
+    {
+      "index": 2,
+      "simulated_offset_minutes": 120,
+      "check_results": {
+        "dns": "PASS",
+        "tcp": "PASS",
+        "https": "PASS",
+        "wordpress_api_head": "PASS",
+        "slack_path_head": "PASS",
+        "github_https": "PASS"
+      },
+      "status": "PASS"
+    },
+    {
+      "index": 3,
+      "simulated_offset_minutes": 180,
+      "check_results": {
+        "dns": "PASS",
+        "tcp": "PASS",
+        "https": "PASS",
+        "wordpress_api_head": "PASS",
+        "slack_path_head": "PASS",
+        "github_https": "PASS"
+      },
+      "status": "PASS"
+    },
+    {
+      "index": 4,
+      "simulated_offset_minutes": 240,
+      "check_results": {
+        "dns": "PASS",
+        "tcp": "PASS",
+        "https": "PASS",
+        "wordpress_api_head": "PASS",
+        "slack_path_head": "PASS",
+        "github_https": "PASS"
+      },
+      "status": "PASS"
+    },
+    {
+      "index": 5,
+      "simulated_offset_minutes": 300,
+      "check_results": {
+        "dns": "PASS",
+        "tcp": "PASS",
+        "https": "PASS",
+        "wordpress_api_head": "PASS",
+        "slack_path_head": "PASS",
+        "github_https": "PASS"
+      },
+      "status": "PASS"
+    },
+    {
+      "index": 6,
+      "simulated_offset_minutes": 360,
+      "check_results": {
+        "dns": "PASS",
+        "tcp": "PASS",
+        "https": "PASS",
+        "wordpress_api_head": "PASS",
+        "slack_path_head": "PASS",
+        "github_https": "PASS"
+      },
+      "status": "PASS"
+    },
+    {
+      "index": 7,
+      "simulated_offset_minutes": 420,
+      "check_results": {
+        "dns": "PASS",
+        "tcp": "PASS",
+        "https": "PASS",
+        "wordpress_api_head": "PASS",
+        "slack_path_head": "PASS",
+        "github_https": "PASS"
+      },
+      "status": "PASS"
+    },
+    {
+      "index": 8,
+      "simulated_offset_minutes": 480,
+      "check_results": {
+        "dns": "PASS",
+        "tcp": "PASS",
+        "https": "PASS",
+        "wordpress_api_head": "PASS",
+        "slack_path_head": "PASS",
+        "github_https": "PASS"
+      },
+      "status": "PASS"
+    },
+    {
+      "index": 9,
+      "simulated_offset_minutes": 540,
+      "check_results": {
+        "dns": "PASS",
+        "tcp": "PASS",
+        "https": "PASS",
+        "wordpress_api_head": "PASS",
+        "slack_path_head": "PASS",
+        "github_https": "PASS"
+      },
+      "status": "PASS"
+    },
+    {
+      "index": 10,
+      "simulated_offset_minutes": 600,
+      "check_results": {
+        "dns": "PASS",
+        "tcp": "PASS",
+        "https": "PASS",
+        "wordpress_api_head": "PASS",
+        "slack_path_head": "PASS",
+        "github_https": "PASS"
+      },
+      "status": "PASS"
+    },
+    {
+      "index": 11,
+      "simulated_offset_minutes": 660,
+      "check_results": {
+        "dns": "PASS",
+        "tcp": "PASS",
+        "https": "PASS",
+        "wordpress_api_head": "PASS",
+        "slack_path_head": "PASS",
+        "github_https": "PASS"
+      },
+      "status": "PASS"
+    },
+    {
+      "index": 12,
+      "simulated_offset_minutes": 720,
+      "check_results": {
+        "dns": "PASS",
+        "tcp": "PASS",
+        "https": "PASS",
+        "wordpress_api_head": "PASS",
+        "slack_path_head": "PASS",
+        "github_https": "PASS"
+      },
+      "status": "PASS"
+    },
+    {
+      "index": 13,
+      "simulated_offset_minutes": 780,
+      "check_results": {
+        "dns": "PASS",
+        "tcp": "PASS",
+        "https": "PASS",
+        "wordpress_api_head": "PASS",
+        "slack_path_head": "PASS",
+        "github_https": "PASS"
+      },
+      "status": "PASS"
+    },
+    {
+      "index": 14,
+      "simulated_offset_minutes": 840,
+      "check_results": {
+        "dns": "PASS",
+        "tcp": "PASS",
+        "https": "PASS",
+        "wordpress_api_head": "PASS",
+        "slack_path_head": "PASS",
+        "github_https": "PASS"
+      },
+      "status": "PASS"
+    },
+    {
+      "index": 15,
+      "simulated_offset_minutes": 900,
+      "check_results": {
+        "dns": "PASS",
+        "tcp": "PASS",
+        "https": "PASS",
+        "wordpress_api_head": "PASS",
+        "slack_path_head": "PASS",
+        "github_https": "PASS"
+      },
+      "status": "PASS"
+    },
+    {
+      "index": 16,
+      "simulated_offset_minutes": 960,
+      "check_results": {
+        "dns": "PASS",
+        "tcp": "PASS",
+        "https": "PASS",
+        "wordpress_api_head": "PASS",
+        "slack_path_head": "PASS",
+        "github_https": "PASS"
+      },
+      "status": "PASS"
+    },
+    {
+      "index": 17,
+      "simulated_offset_minutes": 1020,
+      "check_results": {
+        "dns": "PASS",
+        "tcp": "PASS",
+        "https": "PASS",
+        "wordpress_api_head": "PASS",
+        "slack_path_head": "PASS",
+        "github_https": "PASS"
+      },
+      "status": "PASS"
+    },
+    {
+      "index": 18,
+      "simulated_offset_minutes": 1080,
+      "check_results": {
+        "dns": "PASS",
+        "tcp": "PASS",
+        "https": "PASS",
+        "wordpress_api_head": "PASS",
+        "slack_path_head": "PASS",
+        "github_https": "PASS"
+      },
+      "status": "PASS"
+    },
+    {
+      "index": 19,
+      "simulated_offset_minutes": 1140,
+      "check_results": {
+        "dns": "FAIL",
+        "tcp": "PASS",
+        "https": "PASS",
+        "wordpress_api_head": "PASS",
+        "slack_path_head": "PASS",
+        "github_https": "PASS"
+      },
+      "status": "FAIL"
+    },
+    {
+      "index": 20,
+      "simulated_offset_minutes": 1200,
+      "check_results": {
+        "dns": "PASS",
+        "tcp": "PASS",
+        "https": "PASS",
+        "wordpress_api_head": "PASS",
+        "slack_path_head": "PASS",
+        "github_https": "PASS"
+      },
+      "status": "PASS"
+    },
+    {
+      "index": 21,
+      "simulated_offset_minutes": 1260,
+      "check_results": {
+        "dns": "PASS",
+        "tcp": "PASS",
+        "https": "PASS",
+        "wordpress_api_head": "PASS",
+        "slack_path_head": "PASS",
+        "github_https": "PASS"
+      },
+      "status": "PASS"
+    },
+    {
+      "index": 22,
+      "simulated_offset_minutes": 1320,
+      "check_results": {
+        "dns": "PASS",
+        "tcp": "PASS",
+        "https": "PASS",
+        "wordpress_api_head": "PASS",
+        "slack_path_head": "PASS",
+        "github_https": "PASS"
+      },
+      "status": "PASS"
+    },
+    {
+      "index": 23,
+      "simulated_offset_minutes": 1380,
+      "check_results": {
+        "dns": "PASS",
+        "tcp": "PASS",
+        "https": "PASS",
+        "wordpress_api_head": "PASS",
+        "slack_path_head": "PASS",
+        "github_https": "PASS"
+      },
+      "status": "PASS"
+    }
+  ]
+}

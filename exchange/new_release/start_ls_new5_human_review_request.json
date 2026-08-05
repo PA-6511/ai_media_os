@@ -1,0 +1,40 @@
+{
+  "phase": "LS-NEW-5",
+  "document_type": "START_LS_NEW5_HUMAN_REVIEW_REQUEST",
+  "status": "LSNEW5_HUMAN_REVIEW_REQUEST_CREATED_NO_EXECUTION",
+  "production_status": "WAITING_FOR_HUMAN_REVIEW_NO_EXECUTION",
+  "review_required": true,
+  "review_completed": false,
+  "human_approved": false,
+  "approval_label_consumed": false,
+  "approval_label_required_for_next": "APPROVED_FOR_LS_NEW_6_WP_DRAFT_PAYLOAD_PREP_ONLY",
+  "target_candidate": {
+    "content_item_id": "new-comic-001",
+    "title": "月曜日のたわわ",
+    "volume": "第15巻",
+    "author": "比村奇石",
+    "publisher": "講談社",
+    "release_date": "2026-07-06",
+    "asin": "B0H6DQLPPB",
+    "isbn": "978-4065442296"
+  },
+  "review_targets": {
+    "wp_payload": "exchange/new_release/start_ls_new4_wp_purchase_navigation_payload_dry_run.json",
+    "wp_preview": "exchange/new_release/start_ls_new4_wp_purchase_navigation_payload_preview.md",
+    "x_payload": "exchange/new_release/start_ls_new4_x_post_payload_dry_run.json",
+    "payload_validation_summary": "exchange/new_release/start_ls_new4_payload_validation_summary.json"
+  },
+  "review_points": [
+    "作品名・巻数・作者・出版社・発売日の確認",
+    "ASIN・ISBNの人間入力値確認",
+    "購入ナビ型であり、作品解説メディアになっていないこと",
+    "公式あらすじ・ストア説明・レビューのコピーが含まれていないこと",
+    "PR表記があること",
+    "外部取得未実行の注意書きがあること",
+    "X投稿文が280文字以内であること",
+    "X投稿文に #PR が含まれること",
+    "WordPress下書き作成はまだ行わないこと",
+    "X投稿はまだ行わないこと"
+  ],
+  "execution_allowed": false
+}

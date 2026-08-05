@@ -1,0 +1,12 @@
+{
+  "request_id": "security_emergency_revoke_phase_s2_request_001",
+  "phase": "PHASE_S2",
+  "execution": "DRY_RUN",
+  "mode": "CONNECTION_TEST",
+  "dry_run_only": true,
+  "no_live_execution": true,
+  "no_external_action": true,
+  "no_wordpress_write": true,
+  "no_scheduler_execution": true,
+  "human_approval_required": true
+}

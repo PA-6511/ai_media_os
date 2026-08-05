@@ -1,0 +1,82 @@
+{
+  "phase_id": "22-7",
+  "phase_name": "GO Establishment, Boundary, and ABORT Integrated Final Judgment Report Design",
+  "phase_japanese_name": "GO成立条件・境界・ABORT の統合最終判定レポート設計",
+  "purpose": "Design the integrated final judgment report that consolidates GO establishment audit, boundary violation handling, and pre-operation ABORT checks",
+  "layer": "go_establishment_and_transition_boundary_audit_layer",
+  "design_category": "reports_only",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only"
+  },
+  "phase_22_7_scope": {
+    "scope_1_input_aggregation": {
+      "scope_id": "INPUT_AGGREGATION",
+      "required_inputs": {
+        "phase22_4_to_22_6_status": "PASS_DESIGN_ONLY",
+        "phase22_go_establishment_boundary_reinforcement_status": "PASS_DESIGN_ONLY",
+        "source_reports": [
+          "phase22_4_go_establishment_conditions_audit_result_evidence_locking_rules_design.json",
+          "phase22_5_boundary_violation_return_and_no_go_maintenance_rules_design.json",
+          "phase22_6_pre_operation_transition_final_abort_conditions_design.json"
+        ]
+      }
+    },
+    "scope_2_integrated_judgment_logic": {
+      "scope_id": "INTEGRATED_JUDGMENT_LOGIC",
+      "rules": {
+        "rule_IJ1": "GO-establishment audit is ESTABLISHED and evidence lock is LOCK_CONFIRMED",
+        "rule_IJ2": "Boundary violation unresolved count is 0",
+        "rule_IJ3": "No pre-operation ABORT category is TRIGGERED",
+        "rule_IJ4": "If any IJ1-IJ3 is NOT_MET, operation transition determination = NO_GO"
+      }
+    },
+    "scope_3_report_structure": {
+      "scope_id": "REPORT_STRUCTURE",
+      "sections": {
+        "section_1_header": {
+          "report_id": "PHASE22_7_INTEGRATED_FINAL_JUDGMENT_<UTC_TIMESTAMP>",
+          "report_type": "go_establishment_boundary_and_abort_integrated_final_judgment",
+          "generated_at_utc": "RFC3339",
+          "generated_by": "authority_identifier"
+        },
+        "section_2_component_status": {
+          "go_establishment_audit": "PASS | FAIL",
+          "boundary_violation_handling": "PASS | FAIL",
+          "pre_operation_abort_checks": "PASS | FAIL"
+        },
+        "section_3_integrated_determination": {
+          "operation_transition_readiness": "READY | NOT_READY",
+          "operation_transition_go": "GO | NO_GO",
+          "app_implementation_status": "NO_GO | GO",
+          "tests_implementation_status": "NO_GO | GO",
+          "production_status": "NO_GO",
+          "reason_summary": "human-readable reason"
+        }
+      }
+    }
+  },
+  "phase_22_7_governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "state_invariants": {
+      "app_implementation_status": "NO_GO",
+      "tests_implementation_status": "NO_GO",
+      "production_status": "NO_GO"
+    }
+  }
+}

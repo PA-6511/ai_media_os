@@ -1,0 +1,25 @@
+# LS-NEW-EXEC-LITE-1 Draft Create Report
+
+- Phase: LS-NEW-EXEC-LITE-1
+- Status: LSNEW_EXEC_LITE_1_WORDPRESS_DRAFT_CREATED_ONE_SHOT
+- Target: 月曜日のたわわ 第15巻
+- Post status target: draft
+- WordPress API attempted: true
+- WordPress API succeeded: true
+- WordPress write executed: true
+- WordPress draft created: true
+- WordPress publish executed: false
+- WordPress update executed: false
+- WordPress delete executed: false
+- Created post ID: 185
+- Created post link: https://hoshido.jp/?p=185
+- Created post status: draft
+- Credential env read executed: true
+- Credential value output: false
+- Secret output: false
+- Authorization output: false
+- Response body output: false
+- User identity output: false
+- One-shot actual count: 1
+- Ready for manual WP review: true
+- Next action: MANUAL_WORDPRESS_DRAFT_REVIEW

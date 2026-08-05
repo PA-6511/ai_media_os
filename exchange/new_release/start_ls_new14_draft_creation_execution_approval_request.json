@@ -1,0 +1,21 @@
+{
+  "phase": "LS-NEW-14",
+  "document_type": "START_LS_NEW14_DRAFT_CREATION_EXECUTION_APPROVAL_REQUEST",
+  "status": "LSNEW14_DRAFT_CREATION_EXECUTION_APPROVAL_REQUEST_READY",
+  "human_approval_required": true,
+  "approval_scope": "ONE_SHOT_WORDPRESS_DRAFT_CREATION_ONLY",
+  "required_approval_label": "APPROVED_FOR_LS_NEW_14_DRAFT_CREATION_EXECUTION_APPROVAL_GATE_ONLY",
+  "approval_label_consumed": false,
+  "approval_label_autofill_executed": false,
+  "auto_approval_executed": false,
+  "ai_self_approval_executed": false,
+  "content_item_id": "new-comic-001",
+  "title": "月曜日のたわわ",
+  "volume": "第15巻",
+  "post_status_target": "draft",
+  "target_post_id": null,
+  "target_post_id_allocated": false,
+  "one_shot_execution_count_target": 1,
+  "one_shot_execution_actual_count": 0,
+  "execution_allowed": false
+}

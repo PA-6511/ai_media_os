@@ -1,0 +1,241 @@
+{
+  "phase_identifier": "17-8",
+  "phase_title": "測定ワークフロー実行許可候補の最終証跡固定レポート設計",
+  "phase_purpose": "Phase 17-7 で合成された最終判定結果（PROCEED_TO_MEASUREMENT_EXECUTION、HOLD_PENDING_AUTHORITY_OR_REMEDIATION、HALT_DO_NOT_EXECUTE_MEASUREMENT）を受け取り、PROCEED 判定を受けた場合、その結果を最終的に固定し、権限者の Digital signature を付与し、Phase 15-7/15-8 測定ワークフロー実行の最終許可証となるレポートを設計する。改ざん検出、タイムスタンプ、監査ログ、権限者承認記録を含む。",
+  "execution_context": "reports-only design phase; design of final authorization evidence lock report structure only, no actual authorization locking or signature operations yet",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only"
+  },
+  "governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "safety_rule": "All blocked_actions remain strictly prohibited. Phase 17-8 final authorization evidence lock report is design-only; no actual authorization locking, signature operations, or measurement execution occurs. No app/tests implementation permitted.",
+    "hard_stop_condition": "This phase is design-only. No actual authorization signing or measurement execution occurs."
+  },
+  "final_authorization_evidence_lock_purpose": {
+    "purpose": "Lock Phase 17-7 final judgment result and authorize Phase 15-7 and/or Phase 15-8 measurement workflow execution by applying authority digital signature",
+    "authorization_targets": [
+      "Phase 17-7 final judgment result (PROCEED_TO_MEASUREMENT_EXECUTION, HOLD_PENDING_AUTHORITY_OR_REMEDIATION, or HALT_DO_NOT_EXECUTE_MEASUREMENT)",
+      "Individual Phase 15-7 and Phase 15-8 execution authorization (if PROCEED result)"
+    ],
+    "authorization_scope": {
+      "if_overall_proceed": "Authorize Phase 15-7 and/or Phase 15-8 measurement execution with authority signature",
+      "if_overall_hold": "Record authority deferred decision; authorization is NOT issued; measurement execution is suspended",
+      "if_overall_halt": "Record halt decision; authorization is NOT issued; measurement execution is forbidden"
+    },
+    "evidence_lock_mechanism": [
+      "SHA-256+ cryptographic hash of Phase 17-7 final judgment report",
+      "Digital signature (e.g., RSA-2048, ECDSA) by measurement authority",
+      "Timestamp (UTC) of signature",
+      "Audit trail of authorization workflow"
+    ]
+  },
+  "final_authorization_report_structure": {
+    "report_id": "PHASE_17_8_FINAL_AUTHORIZATION_REPORT_v1",
+    "report_header": {
+      "report_timestamp": "ISO8601 UTC when final authorization report created",
+      "authorization_status": "AWAITING_AUTHORITY_SIGNATURE or AUTHORIZED or AUTHORIZATION_DENIED or AUTHORIZATION_DEFERRED",
+      "report_purpose": "Final authorization evidence lock for Phase 15-7 and Phase 15-8 measurement execution"
+    },
+    "report_elements": {
+      "phase17_7_final_judgment_reference": {
+        "judgment_report_id": "Reference to Phase 17-7 final judgment report",
+        "judgment_report_hash": {
+          "hash_algorithm": "SHA-256 or stronger",
+          "hash_value": "hexadecimal hash of Phase 17-7 report",
+          "hash_timestamp": "ISO8601 UTC when hash computed"
+        },
+        "judgment_overall_result": "PROCEED_TO_MEASUREMENT_EXECUTION | HOLD_PENDING_AUTHORITY_OR_REMEDIATION | HALT_DO_NOT_EXECUTE_MEASUREMENT",
+        "judgment_phase15_7_result": "PROCEED | HOLD | HALT",
+        "judgment_phase15_8_result": "PROCEED | HOLD | HALT"
+      },
+      "authorization_decision_logic": {
+        "logic_rule_1": "IF Phase 17-7 overall result == PROCEED_TO_MEASUREMENT_EXECUTION THEN proceed to authority signature workflow (step 1 below)",
+        "logic_rule_2": "IF Phase 17-7 overall result == HOLD_PENDING_AUTHORITY_OR_REMEDIATION THEN record deferred decision and await authority judgment",
+        "logic_rule_3": "IF Phase 17-7 overall result == HALT_DO_NOT_EXECUTE_MEASUREMENT THEN record halt decision; authorization denied; skip signature workflow"
+      },
+      "authority_signature_workflow_if_proceed": {
+        "step_1_prepare_authorization_document": {
+          "action": "Prepare document for authority signature",
+          "document_content": [
+            "Phase 17-7 final judgment report hash and verification",
+            "Phase 15-7 execution authorization summary",
+            "Phase 15-8 execution authorization summary",
+            "Authority signature scope and delegations"
+          ]
+        },
+        "step_2_authority_review": {
+          "action": "Authority reviews Phase 17-7 final judgment and decides to authorize or withhold authorization",
+          "authority_decision_options": [
+            "AUTHORIZE_FULL: Sign authorization; both Phase 15-7 and Phase 15-8 can execute immediately",
+            "AUTHORIZE_PHASE15_7_ONLY: Sign authorization for Phase 15-7 only; Phase 15-8 execution deferred or blocked",
+            "AUTHORIZE_PHASE15_8_ONLY: Sign authorization for Phase 15-8 only; Phase 15-7 execution deferred or blocked",
+            "WITHHOLD_AUTHORIZATION: Refuse to sign; measurement execution halted pending remediation"
+          ]
+        },
+        "step_3_digital_signature": {
+          "action": "Authority applies digital signature to authorization document",
+          "signature_elements": {
+            "signature_algorithm": "RSA-2048, ECDSA P-256, or approved equivalent",
+            "signature_private_key_storage": "Hardware security module (HSM) or trusted key store; never in plain text",
+            "signature_timestamp": "ISO8601 UTC when signature applied",
+            "signature_authority_identity": "Authority identifier (name, role, org unit)",
+            "signature_scope": "Authorizes Phase 15-7 and/or Phase 15-8 measurement execution"
+          }
+        },
+        "step_4_record_authorization_grant": {
+          "action": "Record authorization grant with signature and metadata",
+          "record_elements": {
+            "authorization_timestamp": "When signature applied",
+            "authorization_authority": "Authority name and ID",
+            "authorization_scope": "PHASE_15_7_AND_15_8 | PHASE_15_7_ONLY | PHASE_15_8_ONLY",
+            "authorization_validity_duration": "How long authorization remains valid (e.g., 24 hours, or indefinite until Phase 15-7/15-8 complete)",
+            "authorization_conditions": "Any conditions attached to authorization (e.g., 'execute Phase 15-7 first, then Phase 15-8')"
+          }
+        }
+      },
+      "authorization_hold_workflow_if_hold": {
+        "action": "If Phase 17-7 result is HOLD, record deferred decision",
+        "record_elements": {
+          "defer_timestamp": "When deferred status recorded",
+          "defer_reason": "Which component is in HOLD (Phase 15-7, Phase 15-8, or both)",
+          "pending_decision_type": "PENDING_READINESS_GAP_WAIVER | PENDING_REMEDIATION_APPROVAL | PENDING_OTHER_PHASE_COMPLETION",
+          "authority_decision_deadline": "When authority decision is expected"
+        }
+      },
+      "authorization_denial_workflow_if_halt": {
+        "action": "If Phase 17-7 result is HALT, record authorization denial",
+        "record_elements": {
+          "denial_timestamp": "When denial recorded",
+          "denial_reason": "Why measurement execution is forbidden (blocking gate failure, lock tampering, state inconsistency, etc.)",
+          "forensic_evidence_reference": "Link to root cause analysis and forensic evidence",
+          "remediation_required_before_retry": "What must be fixed before Phase 17-7 re-evaluation can occur"
+        }
+      },
+      "final_authorization_evidence_lock": {
+        "lock_elements": {
+          "phase17_7_judgment_hash": "Hash of Phase 17-7 final judgment report",
+          "phase17_7_judgment_hash_algorithm": "Algorithm used for judgment hash",
+          "final_authorization_document_hash": "Hash of final authorization document (including signature)",
+          "authorization_document_hash_algorithm": "Algorithm used",
+          "combined_evidence_hash": "hash(phase17_7_judgment_hash || final_authorization_document_hash)",
+          "evidence_lock_timestamp": "ISO8601 UTC when evidence lock created",
+          "evidence_lock_state": "LOCKED (authorization granted) | DEFERRED (holding) | DENIED (halt)"
+        }
+      },
+      "audit_trail": {
+        "field_name": "final_authorization_audit_trail",
+        "type": "append-only log of authorization workflow events",
+        "log_entries": [
+          {
+            "timestamp": "ISO8601 UTC when event occurred",
+            "event_type": "JUDGMENT_RECEIVED | AUTHORITY_REVIEW_INITIATED | AUTHORITY_DECISION_RECORDED | SIGNATURE_APPLIED | AUTHORIZATION_GRANTED | AUTHORIZATION_WITHHELD | AUTHORIZATION_DEFERRED",
+            "detail": "Descriptive text of event",
+            "actor": "Authority or system identifier"
+          }
+        ],
+        "immutability": "Append-only; prior entries cannot be modified or deleted"
+      }
+    }
+  },
+  "authorization_record_storage": {
+    "storage_requirements": "Final authorization records must be stored with high availability and tamper-proof properties",
+    "storage_options": [
+      "Append-only database (immutable log)",
+      "Blockchain or ledger technology (immutable distributed ledger)",
+      "Archive storage with digital signatures and timestamps"
+    ],
+    "access_control": "Only authorized roles (measurement authority, Phase 15-7/15-8 executors) can read; write access restricted to authorization workflow system"
+  },
+  "measurement_execution_authorization_certificate": {
+    "certificate_purpose": "Final document that Phase 15-7 and/or Phase 15-8 measurement workflows will check before executing",
+    "certificate_contents": {
+      "authorization_timestamp": "When authority issued authorization",
+      "authorization_authority_identity": "Who authorized",
+      "phase15_7_authorized": "true | false",
+      "phase15_8_authorized": "true | false",
+      "authorization_validity_until": "Timestamp when authorization expires",
+      "phase17_7_judgment_hash": "Hash of final judgment (for verification)",
+      "signature": "Authority digital signature over all above fields"
+    },
+    "certificate_verification_at_phase15_7_8_entry": "Before Phase 15-7 or Phase 15-8 begins execution, retrieve and verify authorization certificate: (1) signature valid, (2) timestamp current, (3) target phase authorized, (4) judgment hash unchanged"
+  },
+  "authorization_failure_recovery": {
+    "failure_scenario_1_signature_invalid": {
+      "scenario": "Authority signature on authorization document is invalid or tampered with",
+      "detection": "Signature verification fails",
+      "response": "HALT measurement execution; alert authority; preserve forensic evidence; request signature reapplication"
+    },
+    "failure_scenario_2_judgment_hash_mismatch": {
+      "scenario": "Phase 17-7 final judgment report has been modified since authorization was granted",
+      "detection": "Hash verification fails during Phase 15-7/15-8 entry",
+      "response": "HALT measurement execution; security incident; forensic investigation; request re-authorization after investigation"
+    },
+    "failure_scenario_3_authorization_expired": {
+      "scenario": "Authorization validity period has expired before Phase 15-7/15-8 begins",
+      "detection": "Current timestamp is after authorization_validity_until",
+      "response": "Request fresh authorization from authority; re-evaluate if circumstances have changed"
+    },
+    "failure_scenario_4_authority_revocation": {
+      "scenario": "Authority issues revocation order after authorization was granted",
+      "detection": "Authority revocation order in audit trail",
+      "response": "HALT measurement execution immediately; audit trail documents revocation; preserve evidence"
+    }
+  },
+  "phase_dependencies": {
+    "depends_on": [
+      "Phase 17-7: Final judgment report (provides PROCEED/HOLD/HALT result to authorize or deny)"
+    ],
+    "feeds_into": [
+      "Phase 17-9: Phase 17 final handoff gate layer completion declaration (receives authorization evidence lock completion verification)",
+      "Phase 15-7: Measurement workflow (uses authorization certificate to verify execution permission)",
+      "Phase 15-8: Measurement workflow (uses authorization certificate to verify execution permission)"
+    ]
+  },
+  "design_review_checklist": [
+    "Final authorization evidence lock purpose clearly stated",
+    "Authorization scope (both Phase 15-7/15-8, or one only, or none) defined",
+    "Signature workflow (4 steps) for PROCEED case complete",
+    "Hold workflow for HOLD case defined",
+    "Denial workflow for HALT case defined",
+    "Authority decision options enumerated (AUTHORIZE_FULL, AUTHORIZE_PHASE_ONLY, WITHHOLD)",
+    "Evidence lock mechanism (hashes, timestamp, signature) specified",
+    "Audit trail (append-only) design included",
+    "Measurement execution authorization certificate structure defined",
+    "Authorization verification at Phase 15-7/15-8 entry specified",
+    "Authorization failure recovery scenarios (4) defined",
+    "All blocked actions remain in governance",
+    "production_status remains NO_GO (hardcoded)",
+    "Phase dependencies are accurate"
+  ],
+  "completion_gate": {
+    "gate_condition": "Final authorization evidence lock structure approved AND authorization workflows finalized",
+    "approval_required": "Human technical reviewer + Phase 17 design authority + Authority signature protocol lead",
+    "prerequisite_for": "Phase 17-9 (Phase 17 final handoff gate layer completion declaration) can begin once Phase 17-8 authorization structure is complete"
+  },
+  "status": {
+    "phase_status": "DESIGN_ONLY",
+    "actual_authorization_evidence_locking_status": "NOT_YET_STARTED",
+    "actual_authority_signature_status": "NOT_YET_STARTED",
+    "integrated_decision_status": "NO_GO",
+    "receiver_validator_implementation_permission_status": "NOT_EFFECTIVE",
+    "app_implementation_status": "NO_GO",
+    "tests_implementation_status": "NO_GO",
+    "production_status": "NO_GO"
+  }
+}

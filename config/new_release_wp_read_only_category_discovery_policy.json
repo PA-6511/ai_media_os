@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4D",
+  "policy_id": "NEW_RELEASE_WP_READ_ONLY_CATEGORY_DISCOVERY_POLICY_V1",
+  "source_phase_id": "LS-NEW-BATCH-4C",
+  "template_contract_id": "POST185_STANDARD_TEMPLATE_V1_FIXED",
+  "discovery": {
+    "current_allowed_mode": "LOCAL_FIXTURE_ONLY",
+    "future_mode": "PRODUCTION_READ_ONLY",
+    "exact_slug_match_required": true,
+    "exact_name_match_required": true,
+    "one_match_per_category_required": true,
+    "missing_match_must_block": true,
+    "duplicate_match_must_block": true
+  },
+  "fixture_rules": {
+    "source_type": "LOCAL_FIXTURE",
+    "site_identity": "LOCAL_TEST_SITE_ONLY",
+    "minimum_reserved_category_id": 990000,
+    "maximum_reserved_category_id": 999999,
+    "production_usable": false,
+    "payload_injection_allowed": false
+  },
+  "production_read_only_future_rules": {
+    "credential_isolation_required": true,
+    "read_only_http_method_required": true,
+    "wordpress_write_method_allowed": false,
+    "database_write_allowed": false,
+    "human_verification_required": true
+  },
+  "integrity": {
+    "source_preexecution_digest_verification_required": true,
+    "source_pending_payload_digest_verification_required": true,
+    "source_package_mutation_allowed": false,
+    "discovery_package_digest_required": true
+  },
+  "execution_boundary": {
+    "local_json_read_allowed": true,
+    "local_discovery_result_write_allowed": true,
+    "credential_read_allowed": false,
+    "wordpress_api_call_allowed": false,
+    "wordpress_category_lookup_allowed": false,
+    "wordpress_database_read_allowed": false,
+    "wordpress_database_write_allowed": false,
+    "wordpress_write_allowed": false,
+    "wordpress_publish_allowed": false,
+    "x_api_call_allowed": false,
+    "x_post_allowed": false,
+    "external_api_call_allowed": false,
+    "execution_approval_issued": false,
+    "approval_token_generation_allowed": false,
+    "execution_allowed": false,
+    "production_status": "NO_GO",
+    "safety_state": "READ_ONLY_DISCOVERY_DESIGN_ONLY"
+  },
+  "next_phase": {
+    "phase_id": "LS-NEW-BATCH-4E",
+    "name": "Credential-Isolated Read-Only Category Lookup Preflight",
+    "execution_allowed": false
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "phase_id": "LS-NEW-BATCH-2",
+  "status": "PASS_VERIFICATION_BASELINE_NO_EXTERNAL_ACCESS",
+  "decision": "MULTI_SOURCE_VERIFICATION_AND_CLASSIFICATION_READY",
+  "policy_id": "NEW_RELEASE_VERIFICATION_POLICY_V1",
+  "batch_id": "example-20260717",
+  "batch_input_path": "exchange/examples/new_release_batch_normalized.example.json",
+  "verification_input_path": "exchange/examples/new_release_verification_request.example.json",
+  "verification_output_path": "exchange/examples/new_release_verification_result.example.json",
+  "record_count": 1,
+  "classification_counts": {
+    "NEEDS_RELEASE_DATE_CONFIRMATION": 1
+  },
+  "ready_for_draft_count": 0,
+  "all_records_classified": true,
+  "verified_checks": [
+    "policy_phase_id",
+    "policy_identity",
+    "batch_schema_reference",
+    "template_contract_reference",
+    "execution_boundary",
+    "observation_completeness",
+    "publisher_official_validation",
+    "store_observation_validation",
+    "title_volume_release_date_comparison",
+    "store_coverage_classification",
+    "price_confirmation_classification",
+    "image_availability_classification",
+    "manual_exclusion_precedence",
+    "duplicate_suspicion_precedence"
+  ],
+  "external_api_call_allowed": false,
+  "web_scraping_allowed": false,
+  "wordpress_write_allowed": false,
+  "wordpress_publish_allowed": false,
+  "x_post_allowed": false,
+  "automatic_draft_creation_allowed": false,
+  "production_status": "NO_GO",
+  "safety_state": "DRY_RUN_ONLY",
+  "ready_for_real_verification_input": true,
+  "ready_for_ls_new_batch_3": true,
+  "next_phase_execution_allowed": false
+}

@@ -1,0 +1,418 @@
+{
+  "phase_identifier": "17-5",
+  "phase_title": "PROCEED/HOLD/HALT 判定時の差し戻し・停止ルール設計",
+  "phase_purpose": "Phase 17-2（Phase 15-7 実行可否判定）と Phase 17-3（Phase 15-8 実行可否判定）が出力する 3 種類の判定結果（PROCEED_TO_PHASE_15_7_MEASUREMENT、HOLD_PENDING_AUTHORITY_DECISION、HALT_DO_NOT_EXECUTE_PHASE_15_7/PHASE_15_8）に対応するルール設計。各判定結果に応じて、次ステップ（測定実行、権限者判定待ち、差し戻し、停止）の条件、権限者判定フロー、差し戻し対象フェーズ、停止理由の記録、を定義する。",
+  "execution_context": "reports-only design phase; design of decision handling rules only, no actual decision routing or authority decision processing yet",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only"
+  },
+  "governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "safety_rule": "All blocked_actions remain strictly prohibited. Phase 17-5 judgment handling rules are design-only; no actual authority decision routing, difference analysis, or return handling occurs. No app/tests implementation permitted.",
+    "hard_stop_condition": "This phase is design-only. No actual decision routing or judgment result redistribution occurs."
+  },
+  "judgment_decision_handling_framework": {
+    "overview": "Phase 17-2 and Phase 17-3 each output one of three possible results: PROCEED, HOLD, or HALT. Phase 17-5 defines the handling rules for each outcome and their combinations.",
+    "judgment_result_values": {
+      "PROCEED_TO_PHASE_15_7_MEASUREMENT": "Phase 15-7 integrated_decision measurement workflow is cleared for execution; all 6 gates passed; judgment is final and signed",
+      "HOLD_PENDING_AUTHORITY_DECISION": "One or more gates failed with non-blocking severity (readiness gap, caution flag); authority decision required before proceeding; measurement execution is suspended pending authority judgment",
+      "HALT_DO_NOT_EXECUTE_PHASE_15_7": "One or more gates failed with blocking severity (receipt confirmation failure, state inconsistency); measurement execution is prohibited; Phase 16 diagnosis or Phase 17 gate re-evaluation required"
+    }
+  },
+  "judgment_result_combination_scenarios": {
+    "scenario_1_phase17_2_PROCEED_phase17_3_PROCEED": {
+      "scenario_name": "Both Phase 15-7 and Phase 15-8 measurement workflows cleared for execution",
+      "phase17_2_result": "PROCEED_TO_PHASE_15_7_MEASUREMENT",
+      "phase17_3_result": "PROCEED_TO_PHASE_15_8_MEASUREMENT",
+      "combined_decision": "BOTH_PROCEED",
+      "handling_rule": "Both Phase 15-7 and Phase 15-8 measurement workflows can proceed immediately. Execution order (sequential or concurrent) to be determined by authority; Phase 15-7 result may inform Phase 15-8 execution decision. Lock both judgment results immediately via Phase 17-4 procedures.",
+      "next_action": "Authorize both Phase 15-7 and Phase 15-8 execution",
+      "authority_involvement": "Minimal; final authorization signature required on both locked judgment results"
+    },
+    "scenario_2_phase17_2_PROCEED_phase17_3_HOLD": {
+      "scenario_name": "Phase 15-7 cleared for execution; Phase 15-8 pending authority decision",
+      "phase17_2_result": "PROCEED_TO_PHASE_15_7_MEASUREMENT",
+      "phase17_3_result": "HOLD_PENDING_AUTHORITY_DECISION",
+      "combined_decision": "MIXED_PROCEED_HOLD",
+      "handling_rule": "Phase 15-7 can proceed to execution immediately; Phase 15-8 is suspended. Authority must decide: (a) waive Phase 15-8 readiness gap and permit execution, (b) return Phase 17-3 to Phase 16-3 for readiness improvement, or (c) keep Phase 15-8 on hold until Phase 15-7 completes. Lock Phase 17-2 judgment immediately. Phase 17-3 handling depends on authority decision.",
+      "next_action": "Phase 15-7 execution authorizes; escalate Phase 15-8 to authority decision committee",
+      "authority_involvement": "Phase 15-8 readiness gap analysis + approval decision required; Phase 15-7 is final"
+    },
+    "scenario_3_phase17_2_PROCEED_phase17_3_HALT": {
+      "scenario_name": "Phase 15-7 cleared for execution; Phase 15-8 execution prohibited",
+      "phase17_2_result": "PROCEED_TO_PHASE_15_7_MEASUREMENT",
+      "phase17_3_result": "HALT_DO_NOT_EXECUTE_PHASE_15_8",
+      "combined_decision": "PROCEED_WITH_HALT",
+      "handling_rule": "Phase 15-7 can proceed immediately; Phase 15-8 is strictly prohibited until blocking gate(s) are resolved. Lock Phase 17-2 immediately. Perform forensic analysis on Phase 17-3 blocking gate failure; generate remediation plan. Authority must approve remediation before Phase 17-3 re-evaluation is permitted. Separate Phase 15-7 execution from Phase 15-8 remediation workflows.",
+      "next_action": "Phase 15-7 proceeds; Phase 15-8 escalate blocking gate failure for remediation",
+      "authority_involvement": "HALT decision is final; authority must approve Phase 15-8 re-evaluation strategy"
+    },
+    "scenario_4_phase17_2_HOLD_phase17_3_PROCEED": {
+      "scenario_name": "Phase 15-7 pending authority decision; Phase 15-8 cleared for execution",
+      "phase17_2_result": "HOLD_PENDING_AUTHORITY_DECISION",
+      "phase17_3_result": "PROCEED_TO_PHASE_15_8_MEASUREMENT",
+      "combined_decision": "HOLD_WITH_PROCEED",
+      "handling_rule": "Phase 15-8 can proceed to execution immediately; Phase 15-7 is suspended. Authority must decide for Phase 15-7: (a) waive readiness gap and permit execution, (b) return Phase 17-2 to Phase 16-3 for readiness improvement, or (c) keep on hold pending Phase 15-8 results. Lock Phase 17-3 judgment immediately. Phase 17-2 handling depends on authority decision.",
+      "next_action": "Phase 15-8 execution authorizes; escalate Phase 15-7 to authority decision committee",
+      "authority_involvement": "Phase 15-7 readiness gap analysis + approval decision required; Phase 15-8 is final"
+    },
+    "scenario_5_phase17_2_HOLD_phase17_3_HOLD": {
+      "scenario_name": "Both Phase 15-7 and Phase 15-8 pending authority decision",
+      "phase17_2_result": "HOLD_PENDING_AUTHORITY_DECISION",
+      "phase17_3_result": "HOLD_PENDING_AUTHORITY_DECISION",
+      "combined_decision": "BOTH_HOLD",
+      "handling_rule": "Both measurement workflows are suspended pending authority decision. Escalate both Phase 17-2 and Phase 17-3 readiness gap analyses to authority. Authority must decide for each workflow independently: (a) waive readiness gap, (b) return to Phase 16-3, or (c) hold pending additional data. Both judgment results remain unlocked until authority decision.",
+      "next_action": "Escalate both readiness gaps to authority; await coordinated decision",
+      "authority_involvement": "Authority must analyze both readiness gaps; may request re-evaluation, improvements, or conditional waivers"
+    },
+    "scenario_6_phase17_2_HOLD_phase17_3_HALT": {
+      "scenario_name": "Phase 15-7 pending authority decision; Phase 15-8 execution prohibited",
+      "phase17_2_result": "HOLD_PENDING_AUTHORITY_DECISION",
+      "phase17_3_result": "HALT_DO_NOT_EXECUTE_PHASE_15_8",
+      "combined_decision": "HOLD_WITH_HALT",
+      "handling_rule": "Phase 15-8 is strictly prohibited; Phase 15-7 is suspended. Perform forensic analysis on Phase 15-8 blocking gate failure immediately. For Phase 15-7, authority decides independently: waive, improve, or hold. Lock neither judgment result until Phase 15-8 remediation is approved and Phase 15-7 authority decision is finalized.",
+      "next_action": "Phase 15-8 blocking gate analysis + remediation plan; Phase 15-7 escalate to authority decision committee",
+      "authority_involvement": "Phase 15-8 HALT is final; authority must approve Phase 15-8 re-evaluation strategy. Phase 15-7 decision independent."
+    },
+    "scenario_7_phase17_2_HALT_phase17_3_PROCEED": {
+      "scenario_name": "Phase 15-7 execution prohibited; Phase 15-8 cleared for execution",
+      "phase17_2_result": "HALT_DO_NOT_EXECUTE_PHASE_15_7",
+      "phase17_3_result": "PROCEED_TO_PHASE_15_8_MEASUREMENT",
+      "combined_decision": "HALT_WITH_PROCEED",
+      "handling_rule": "Phase 15-7 is strictly prohibited; Phase 15-8 can proceed immediately. Perform forensic analysis on Phase 15-7 blocking gate failure. Generate remediation plan for Phase 15-7. Lock Phase 17-3 immediately. Authority must approve Phase 15-7 remediation before re-evaluation is permitted.",
+      "next_action": "Phase 15-8 proceeds; Phase 15-7 escalate blocking gate failure for remediation",
+      "authority_involvement": "Phase 15-7 HALT is final; authority must approve Phase 15-7 re-evaluation strategy"
+    },
+    "scenario_8_phase17_2_HALT_phase17_3_HALT": {
+      "scenario_name": "Both Phase 15-7 and Phase 15-8 execution prohibited",
+      "phase17_2_result": "HALT_DO_NOT_EXECUTE_PHASE_15_7",
+      "phase17_3_result": "HALT_DO_NOT_EXECUTE_PHASE_15_8",
+      "combined_decision": "BOTH_HALT",
+      "handling_rule": "Both measurement workflows are strictly prohibited. Perform forensic analysis on both Phase 17-2 and Phase 17-3 blocking gate failures. Generate comprehensive remediation plan addressing both workflows. Authority must review both failures and approve remediation strategies before any re-evaluation is permitted. Lock neither judgment result until remediation is approved.",
+      "next_action": "Forensic analysis on both Phase 15-7 and Phase 15-8 blocking gates; escalate for authority decision on remediation",
+      "authority_involvement": "Authority must analyze both HALT decisions; may require Phase 16 re-evaluation or Phase 15-7/15-8 redesign; final approval required for re-entry"
+    },
+    "scenario_9_phase17_2_HALT_phase17_3_HOLD": {
+      "scenario_name": "Phase 15-7 execution prohibited; Phase 15-8 pending authority decision",
+      "phase17_2_result": "HALT_DO_NOT_EXECUTE_PHASE_15_7",
+      "phase17_3_result": "HOLD_PENDING_AUTHORITY_DECISION",
+      "combined_decision": "HALT_WITH_HOLD",
+      "handling_rule": "Phase 15-7 is strictly prohibited; Phase 15-8 is suspended. Perform forensic analysis on Phase 15-7 blocking gate failure immediately. For Phase 15-8, authority must decide independently: waive readiness gap, improve, or hold. Lock neither judgment result until Phase 15-7 remediation is approved and Phase 15-8 authority decision is finalized.",
+      "next_action": "Phase 15-7 blocking gate forensic analysis + remediation plan; Phase 15-8 escalate readiness gap to authority",
+      "authority_involvement": "Phase 15-7 HALT is final; authority must approve Phase 15-7 re-evaluation strategy. Phase 15-8 decision independent."
+    }
+  },
+  "judgment_result_return_and_difference_analysis_framework": {
+    "return_scenario_definition": "A judgment result can be 'returned' when it fails pre-conditions or when upstream phase outputs (Phase 16, Phase 17-1, or Phase 17-2 for Phase 17-3) change, necessitating re-evaluation.",
+    "return_trigger_conditions": [
+      "Phase 16 result changes or Phase 16-9 completion verification fails → return Phase 17-1 and downstream (Phase 17-2, 17-3)",
+      "Phase 17-1 receipt status downgrades or becomes inconsistent → return Phase 17-2 and Phase 17-3",
+      "Phase 17-2 PROCEED result becomes invalid (underlying gate data changes) → return Phase 17-3 (as it may depend on Phase 15-7 execution authority)"
+    ],
+    "difference_analysis_procedure": {
+      "step_1_identify_change": "Identify which upstream output changed (Phase 16 artifact, Phase 17-1 receipt status, or Phase 17-2 gate data)",
+      "step_2_locate_affected_gates": "Determine which Phase 17-2 or Phase 17-3 gates are affected by the change",
+      "step_3_simulate_affected_gates": "Re-evaluate affected gates with new data to determine outcome change (PASS → FAIL, or vice versa)",
+      "step_4_compute_overall_impact": "Determine how gate outcome changes affect overall feasibility result (PROCEED → HOLD, PROCEED → HALT, etc.)",
+      "step_5_generate_difference_report": "Document: original result, new result, gates affected, reason for change, recommendation (re-evaluation, remediation, return)",
+      "step_6_escalate_return_request": "Return judgment result to authority with difference report; request re-evaluation or confirm return necessity"
+    }
+  },
+  "judgment_result_return_routing_rules": {
+    "return_routing_1_phase16_output_change": {
+      "trigger": "Phase 16 artifacts modified or Phase 16-9 completion verification fails",
+      "return_target": "Phase 17-1 (Phase 16 receipt validation must be re-performed)",
+      "cascade_return": "Phase 17-2 and Phase 17-3 must also be re-evaluated as downstream",
+      "handling": "Request Phase 17-1 re-execution; upon Phase 17-1 result, conditionally trigger Phase 17-2 and Phase 17-3 re-evaluation"
+    },
+    "return_routing_2_phase17_1_receipt_downgrade": {
+      "trigger": "Phase 17-1 receipt status changes from CONFIRMED to FAILED or consistency issues emerge",
+      "return_target": "Phase 17-2 and Phase 17-3",
+      "cascade_return": "Both feasibility judgments become invalid as Phase 16 receipt condition is not met",
+      "handling": "Mark Phase 17-2 and Phase 17-3 as requiring re-evaluation; automatically set gate_1 (Phase 16 receipt) to FAIL status"
+    },
+    "return_routing_3_phase17_2_gate_data_change": {
+      "trigger": "Gate input data changes (e.g., Phase 16-3 feasibility status updated, authority decision overridden)",
+      "return_target": "Phase 17-2 (re-evaluate affected gate(s))",
+      "cascade_return": "If Phase 17-2 result changes from PROCEED to HOLD/HALT, Phase 17-3 may need re-evaluation depending on Phase 17-3's gate 6 (integrated_decision observation gate)",
+      "handling": "Perform gate re-evaluation (Difference Analysis Step 3); if overall result changes, escalate for authority review"
+    }
+  },
+  "halt_handling_framework": {
+    "halt_decision_finality": "HALT decision is final at the time it is issued; no automatic override or retry loop is permitted",
+    "halt_types": {
+      "halt_type_blocking_gate_failure": "One or more blocking gates (gates 1-5 in Phase 17-2 or Phase 17-3) failed with blocking severity",
+      "halt_type_receipt_confirmation_failure": "Phase 17-1 overall receipt status is FAILED; Phase 16 artifacts are inconsistent or incomplete",
+      "halt_type_state_inconsistency": "integrated_decision or receiver_validator_permission state is inconsistent with expected values"
+    },
+    "halt_response_procedures": {
+      "procedure_1_forensic_analysis": {
+        "action": "Perform detailed root cause analysis on why gate(s) failed",
+        "output": "Forensic report: gate failure reason, contributing factors, data inconsistencies, evidence of state problems"
+      },
+      "procedure_2_remediation_planning": {
+        "action": "Develop remediation plan addressing root causes",
+        "plan_elements": [
+          "Which Phase must be re-evaluated or modified (Phase 16, Phase 17-1, or Phase 17-2/17-3 gate conditions)",
+          "Specific action(s) required (fix Phase 16 artifact, re-validate Phase 17-1, update gate inputs, authority approval of new conditions)",
+          "Estimated effort and timeline",
+          "Risk assessment of remediation"
+        ]
+      },
+      "procedure_3_authority_approval": {
+        "action": "Submit forensic report and remediation plan to authority for approval",
+        "authority_decision_options": [
+          "APPROVE_REMEDIATION: Proceed with plan; upon completion, Phase 17-2 or Phase 17-3 can be re-evaluated",
+          "REQUEST_MODIFICATIONS: Modification to remediation plan required; resubmit for approval",
+          "ESCALATE_TO_DESIGN_PHASE: HALT is due to fundamental design flaw; Phase 15-7 or Phase 15-8 measurement redesign required before proceeding",
+          "DEFER_INDEFINITELY: No remediation approved; Phase 15-7 or Phase 15-8 measurement is indefinitely suspended"
+        ]
+      },
+      "procedure_4_remediation_execution": {
+        "action": "Upon authority approval, execute remediation plan",
+        "forbidden": "Do not execute Phase 15-7 or Phase 15-8 measurement workflows during remediation; measurement must wait for remediation completion"
+      },
+      "procedure_5_re_evaluation_authorization": {
+        "action": "Upon remediation completion, request re-evaluation of Phase 17-2 or Phase 17-3",
+        "gate_re_evaluation_target": "Re-evaluate only the previously failing gate(s); other gates retain their prior evaluation results"
+      }
+    },
+    "halt_record_structure": {
+      "halt_record_id": "HALT_DECISION_RECORD_v1",
+      "halt_record_elements": {
+        "halt_timestamp": "ISO8601 UTC when HALT decision was issued",
+        "halt_phase": "Phase 17-2 or Phase 17-3",
+        "halt_reason": "Narrative explanation of why HALT was necessary",
+        "blocking_gates": "List of gate(s) that caused HALT (gate IDs and failure reasons)",
+        "forensic_analysis": "Root cause analysis report",
+        "remediation_plan": "Detailed plan to resolve HALT condition",
+        "authority_decision": "Authority's decision on remediation (APPROVE, REQUEST_MODIFICATIONS, ESCALATE, DEFER)",
+        "remediation_status": "NOT_STARTED | IN_PROGRESS | COMPLETED | REMEDIATION_FAILED",
+        "re_evaluation_status": "PENDING_REMEDIATION | AUTHORIZED | NOT_YET_REQUESTED"
+      }
+    }
+  },
+  "hold_handling_framework": {
+    "hold_decision_non_finality": "HOLD decision is suspensory, not final; authority must actively decide to proceed, improve, or escalate",
+    "hold_types": {
+      "hold_type_readiness_gap": "One or more gates have readiness gaps (caution flags, unmet soft pre-conditions) but are not blocking",
+      "hold_type_insufficient_data": "Additional data or verification needed before PROCEED or HALT determination is possible",
+      "hold_type_authority_judgment_required": "Gate evaluation resulted in CAUTION flag; human authority judgment needed to waive or enforce readiness requirement"
+    },
+    "hold_response_procedures": {
+      "procedure_1_readiness_gap_analysis": {
+        "action": "Document all readiness gaps identified in HOLD gates",
+        "output": "Readiness gap report: which gates have gaps, what conditions are unmet, severity of each gap, recommended improvements"
+      },
+      "procedure_2_authority_decision_request": {
+        "action": "Escalate readiness gap report to authority",
+        "authority_decision_options": [
+          "WAIVE_READINESS_GAP: Authority waives unmet condition; convert HOLD to PROCEED",
+          "REQUEST_IMPROVEMENT: Require improvement of readiness gap; trigger re-evaluation of Phase 16-3 or Phase 15-7/15-8 design",
+          "HOLD_PENDING_OTHER_PHASE: Hold measurement pending another phase completion (e.g., Phase 15-7 result needed before Phase 15-8 proceeds)",
+          "ESCALATE_TO_DESIGN_PHASE: Readiness gaps indicate fundamental design insufficiency; redesign Phase 15-7 or Phase 15-8 before proceeding"
+        ]
+      },
+      "procedure_3_authority_decision_recording": {
+        "action": "Record authority decision with timestamp and signature",
+        "record_elements": {
+          "decision_timestamp": "When authority decided",
+          "authority_decision": "Which option was chosen",
+          "decision_rationale": "Why authority chose this decision",
+          "conditions": "If WAIVE, any conditions on the waiver (e.g., 'proceed but monitor X')"
+        }
+      },
+      "procedure_4_conditional_proceed_vs_improvement": {
+        "if_authority_waives": "Convert judgment result from HOLD to PROCEED; lock judgment result per Phase 17-4 procedures; authorize measurement execution",
+        "if_authority_requests_improvement": "Return to Phase 16-3 (if feasibility assessment needs improvement) or Phase 15-7/15-8 (if measurement design needs revision); upon completion, re-evaluate Phase 17-2 or Phase 17-3"
+      }
+    },
+    "hold_record_structure": {
+      "hold_record_id": "HOLD_DECISION_RECORD_v1",
+      "hold_record_elements": {
+        "hold_timestamp": "ISO8601 UTC when HOLD decision was issued",
+        "hold_phase": "Phase 17-2 or Phase 17-3",
+        "hold_reason": "Narrative explanation of why HOLD was necessary",
+        "readiness_gaps": "List of unmet conditions or caution flags preventing PROCEED",
+        "readiness_gap_report": "Detailed analysis of each gap and recommended improvements",
+        "authority_decision": "Authority's decision (WAIVE, REQUEST_IMPROVEMENT, HOLD_PENDING, ESCALATE)",
+        "authority_decision_timestamp": "When authority decided",
+        "authority_signature": "Digital signature or approval ID",
+        "decision_conditions": "If WAIVE, any conditions attached to waiver",
+        "next_action": "What happens next based on authority decision (measurement proceeds, design improvement triggered, etc.)"
+      }
+    }
+  },
+  "proceed_handling_framework": {
+    "proceed_decision_finality": "PROCEED decision is final; measurement workflow can execute immediately upon authorization signature",
+    "proceed_conditions": [
+      "All 6 gates PASS",
+      "All gate evaluation outcomes recorded",
+      "No readiness gaps identified",
+      "No blocking conditions present"
+    ],
+    "proceed_response_procedures": {
+      "procedure_1_judgment_result_locking": {
+        "action": "Lock judgment result immediately per Phase 17-4 evidence lock procedures",
+        "output": "Locked judgment result with hash, timestamp, audit trail"
+      },
+      "procedure_2_authorization_signature": {
+        "action": "Authority reviews locked judgment result and applies digital signature",
+        "signature_elements": {
+          "authority_signature": "Digital signature or approval ID",
+          "signature_timestamp": "ISO8601 UTC when authority signed",
+          "signature_scope": "This signature authorizes Phase 15-7 (and/or Phase 15-8) measurement execution"
+        }
+      },
+      "procedure_3_measurement_execution_authorization": {
+        "action": "Issue measurement execution authorization to Phase 15-7 and/or Phase 15-8",
+        "authorization_content": {
+          "target_phase": "Phase 15-7 and/or Phase 15-8",
+          "judgment_result_locked_reference": "Reference to locked judgment result from Phase 17-4",
+          "authority_signature": "Digital signature authorizing execution",
+          "execution_scope": "Measurement workflow can now proceed to actual integrated_decision and receiver_validator_permission measurements"
+        }
+      }
+    },
+    "proceed_record_structure": {
+      "proceed_record_id": "PROCEED_AUTHORIZATION_RECORD_v1",
+      "proceed_record_elements": {
+        "proceed_timestamp": "ISO8601 UTC when PROCEED decision was issued",
+        "proceed_phase": "Phase 17-2 or Phase 17-3 (or BOTH if both PROCEED)",
+        "proceed_reason": "All gates passed; measurement execution authorized",
+        "locked_judgment_result_reference": "Link to locked judgment result record from Phase 17-4",
+        "authority_signature": "Digital signature authorizing measurement execution",
+        "authority_signature_timestamp": "When authority signed",
+        "measurement_execution_authorization_issued": "Timestamp when measurement authorization was issued to Phase 15-7 and/or Phase 15-8",
+        "measurement_execution_status": "AWAITING_PHASE_15_7_15_8_EXECUTION | IN_PROGRESS | COMPLETED"
+      }
+    }
+  },
+  "combined_judgment_result_decision_matrix": {
+    "matrix_purpose": "Quick reference for handling all 8 combination scenarios (Phase 17-2 × Phase 17-3 outcomes)",
+    "decision_matrix": {
+      "row_headers": ["Phase 17-2 Result"],
+      "column_headers": ["Phase 17-3 PROCEED", "Phase 17-3 HOLD", "Phase 17-3 HALT"],
+      "matrix_cells": [
+        {
+          "phase17_2": "PROCEED",
+          "phase17_3": "PROCEED",
+          "combined": "BOTH_PROCEED",
+          "handling": "Lock both; authorize both Phase 15-7 and Phase 15-8 execution"
+        },
+        {
+          "phase17_2": "PROCEED",
+          "phase17_3": "HOLD",
+          "combined": "PROCEED_HOLD",
+          "handling": "Lock Phase 17-2; escalate Phase 17-3 to authority; Phase 15-7 proceeds; Phase 15-8 suspended"
+        },
+        {
+          "phase17_2": "PROCEED",
+          "phase17_3": "HALT",
+          "combined": "PROCEED_HALT",
+          "handling": "Lock Phase 17-2; Phase 15-7 proceeds; Phase 15-8 blocked; analyze Phase 15-8 blocking gate failure"
+        },
+        {
+          "phase17_2": "HOLD",
+          "phase17_3": "PROCEED",
+          "combined": "HOLD_PROCEED",
+          "handling": "Lock Phase 17-3; escalate Phase 17-2 to authority; Phase 15-8 proceeds; Phase 15-7 suspended"
+        },
+        {
+          "phase17_2": "HOLD",
+          "phase17_3": "HOLD",
+          "combined": "BOTH_HOLD",
+          "handling": "Escalate both to authority; both Phase 15-7 and Phase 15-8 suspended; authority decides independently"
+        },
+        {
+          "phase17_2": "HOLD",
+          "phase17_3": "HALT",
+          "combined": "HOLD_HALT",
+          "handling": "Escalate Phase 17-2 to authority; Phase 15-8 blocked; analyze Phase 15-8 blocking gate failure; separate decision workflows"
+        },
+        {
+          "phase17_2": "HALT",
+          "phase17_3": "PROCEED",
+          "combined": "HALT_PROCEED",
+          "handling": "Lock Phase 17-3; Phase 15-7 blocked; Phase 15-8 proceeds; analyze Phase 15-7 blocking gate failure"
+        },
+        {
+          "phase17_2": "HALT",
+          "phase17_3": "HALT",
+          "combined": "BOTH_HALT",
+          "handling": "Both Phase 15-7 and Phase 15-8 blocked; analyze both blocking gate failures; escalate for comprehensive remediation"
+        },
+        {
+          "phase17_2": "HALT",
+          "phase17_3": "HOLD",
+          "combined": "HALT_HOLD",
+          "handling": "Phase 15-7 blocked; Phase 15-8 suspended; analyze Phase 15-7 blocking gate failure; escalate Phase 15-8 independently"
+        }
+      ]
+    }
+  },
+  "judgment_result_difference_analysis_trigger_conditions": {
+    "trigger_1_phase16_change": "Phase 16 artifacts modified after Phase 17-1 completion → Trigger Phase 17-1 re-execution → Conditionally trigger Phase 17-2 and Phase 17-3 difference analysis",
+    "trigger_2_phase17_1_downgrade": "Phase 17-1 receipt status changes from CONFIRMED to FAILED → Trigger Phase 17-2 and Phase 17-3 difference analysis (gate 1 becomes FAIL)",
+    "trigger_3_gate_input_change": "Gate input data changes (Phase 16-3 output, authority decision, state values) → Trigger affected gate re-evaluation and overall result difference analysis",
+    "trigger_4_time_based_revalidation": "Lock timestamp becomes stale (e.g., > 24 hours old) → Request authority decision to refresh or re-evaluate",
+    "trigger_5_security_incident": "Tampering detected in Phase 17-4 evidence lock → Trigger forensic investigation and comprehensive re-evaluation"
+  },
+  "phase_dependencies": {
+    "depends_on": [
+      "Phase 17-2: Phase 15-7 measurement workflow execution feasibility judgment report (provides PROCEED/HOLD/HALT result)",
+      "Phase 17-3: Phase 15-8 measurement workflow execution feasibility judgment report (provides PROCEED/HOLD/HALT result)",
+      "Phase 17-4: Judgment result evidence lock and tamper detection rules (provides locking procedures)"
+    ],
+    "feeds_into": [
+      "Phase 17-6: Measurement workflow execution preconditions and final halt conditions (uses decision handling rules)",
+      "Phase 15-7: integrated_decision measurement workflow (receives authorization or halt decision)",
+      "Phase 15-8: receiver_validator_permission measurement workflow (receives authorization or halt decision)"
+    ]
+  },
+  "design_review_checklist": [
+    "9 judgment result combination scenarios defined",
+    "PROCEED handling procedure: locking → authority signature → measurement authorization",
+    "HOLD handling procedure: readiness gap analysis → authority decision → conditional proceed or return",
+    "HALT handling procedure: forensic analysis → remediation planning → authority approval → re-evaluation",
+    "Return routing rules clear (what returns where based on trigger)",
+    "Difference analysis procedure step-by-step defined",
+    "Authority decision options enumerated for each scenario",
+    "Combined decision matrix (9 cells) complete and consistent",
+    "HOLD record and HALT record structures defined",
+    "Trigger conditions for difference analysis specified",
+    "All blocked actions remain in governance",
+    "production_status remains NO_GO (hardcoded)",
+    "Phase dependencies are accurate"
+  ],
+  "completion_gate": {
+    "gate_condition": "PROCEED/HOLD/HALT judgment handling rules approved AND authority decision flows finalized",
+    "approval_required": "Human technical reviewer + Phase 17 design authority + Authority decision stakeholder",
+    "prerequisite_for": "Phase 17-6 (measurement workflow execution preconditions and final halt conditions) can begin once judgment result handling rules are approved"
+  },
+  "status": {
+    "phase_status": "DESIGN_ONLY",
+    "actual_decision_routing_status": "NOT_YET_STARTED",
+    "integrated_decision_status": "NO_GO",
+    "receiver_validator_implementation_permission_status": "NOT_EFFECTIVE",
+    "app_implementation_status": "NO_GO",
+    "tests_implementation_status": "NO_GO",
+    "production_status": "NO_GO"
+  }
+}

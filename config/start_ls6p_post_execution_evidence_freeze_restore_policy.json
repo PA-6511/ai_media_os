@@ -1,0 +1,109 @@
+{
+  "phase": "LS-6P",
+  "name": "Post-execution Evidence, Draft Verification, Runtime Freeze Restore, and Rerun Prevention Finalization",
+  "status": "POST_EXECUTION_EVIDENCE_FREEZE_RESTORE_GATE",
+  "execution_mode": "POST_EXECUTION_VERIFICATION_AND_FREEZE_RESTORE_ONLY",
+  "production_status": "POST_EXECUTION_DRAFT_CREATED_AND_LOCKED",
+  "purpose": "Verify the one-shot WordPress draft created by LS-6O-C-1, finalize evidence, restore runtime freeze, and prevent rerun.",
+  "required_previous_phase": {
+    "ls6oc1": {
+      "required_run_status": "LS6OC1_ACTUAL_WORDPRESS_ONE_SHOT_DRAFT_CREATION_EXECUTED_ONE_SHOT_DRAFT_ONLY",
+      "required_validation_status": "LS6OC1_ACTUAL_WORDPRESS_ONE_SHOT_DRAFT_CREATION_VALIDATED_ONE_SHOT_DRAFT_ONLY",
+      "execution_result": "exchange/runtime/start_ls6oc1_actual_wordpress_one_shot_draft_creation_execution_result.json",
+      "consumption_lock": "exchange/locks/start_ls6oc1_actual_execution_consumption.lock.json",
+      "run_result": "exchange/logs/start_ls6oc1_actual_wordpress_one_shot_draft_creation_result.json",
+      "validation_result": "exchange/logs/start_ls6oc1_actual_wordpress_one_shot_draft_creation_validation_result.json"
+    },
+    "runtime_freeze": {
+      "active_state": "exchange/runtime/start_ls6m_runtime_freeze_active_state.json",
+      "active_lock": "exchange/locks/start_ls6m_runtime_freeze_active.lock.json",
+      "required_runtime_freeze_active_before_restore": true,
+      "required_runtime_freeze_restored_before_ls6p": false
+    }
+  },
+  "target_post": {
+    "post_id": 183,
+    "expected_link": "https://hoshido.jp/?p=183",
+    "title": "2.5次元の誘惑",
+    "asin": "B07X2G67B4",
+    "expected_status": "draft",
+    "created_count": 1,
+    "max_items": 1
+  },
+  "wordpress_verification_policy": {
+    "wordpress_read_allowed_by_this_phase": true,
+    "wordpress_get_post_allowed_by_this_phase": true,
+    "wordpress_get_post_id": 183,
+    "wordpress_post_allowed_by_this_phase": false,
+    "wordpress_put_allowed_by_this_phase": false,
+    "wordpress_patch_allowed_by_this_phase": false,
+    "wordpress_delete_allowed_by_this_phase": false,
+    "wordpress_write_allowed_by_this_phase": false,
+    "wordpress_draft_creation_allowed_by_this_phase": false,
+    "wordpress_existing_post_update_allowed_by_this_phase": false,
+    "wordpress_publish_allowed_by_this_phase": false,
+    "wordpress_schedule_allowed_by_this_phase": false,
+    "post119_update_allowed": false
+  },
+  "credential_policy": {
+    "credential_env_read_allowed_for_draft_verification": true,
+    "credential_env_path": "/etc/ai-media-os/credential.env",
+    "required_credential_keys": [
+      "WORDPRESS_BASE_URL",
+      "WORDPRESS_USERNAME",
+      "WORDPRESS_APP_PASSWORD"
+    ],
+    "credential_value_output_allowed": false,
+    "credential_length_output_allowed": false,
+    "credential_hash_output_allowed": false,
+    "authorization_header_output_allowed": false
+  },
+  "runtime_freeze_restore_policy": {
+    "runtime_freeze_restore_allowed_by_this_phase": true,
+    "runtime_freeze_restore_output": "exchange/runtime/start_ls6p_runtime_freeze_restore_result.json",
+    "do_not_delete_original_freeze_state": true,
+    "restore_by_evidence_record_only": true
+  },
+  "rerun_prevention_policy": {
+    "final_rerun_prevention_lock_required": true,
+    "rerun_allowed": false,
+    "ls6oc1_rerun_allowed": false,
+    "target_post_id_locked": 183
+  },
+  "must_remain_false_flags": {
+    "wordpress_post_executed": false,
+    "wordpress_put_executed": false,
+    "wordpress_patch_executed": false,
+    "wordpress_delete_executed": false,
+    "wordpress_write_executed_by_this_phase": false,
+    "wordpress_draft_creation_executed_by_this_phase": false,
+    "wordpress_existing_post_update_executed": false,
+    "post119_update_executed": false,
+    "publish_executed": false,
+    "future_schedule_executed": false,
+    "delete_executed": false,
+    "credential_value_output": false,
+    "credential_value_persisted": false,
+    "credential_secret_output": false,
+    "secret_length_output": false,
+    "secret_hash_output": false,
+    "authorization_header_output": false,
+    "ls6oc1_rerun_executed": false
+  },
+  "outputs": {
+    "wordpress_draft_verification_result": "exchange/runtime/start_ls6p_wordpress_draft_verification_result.json",
+    "runtime_freeze_restore_result": "exchange/runtime/start_ls6p_runtime_freeze_restore_result.json",
+    "rerun_prevention_final_lock": "exchange/locks/start_ls6p_rerun_prevention_final.lock.json",
+    "run_result": "exchange/logs/start_ls6p_post_execution_evidence_freeze_restore_result.json",
+    "validation_result": "exchange/logs/start_ls6p_post_execution_evidence_freeze_restore_validation_result.json",
+    "run_report": "reports/start_ls6p_post_execution_evidence_freeze_restore_report.md",
+    "validation_report": "reports/start_ls6p_post_execution_evidence_freeze_restore_validation_report.md"
+  },
+  "next_phase": {
+    "phase": "LS-6Q",
+    "name": "Human WordPress Draft Review and Manual Publish Decision",
+    "execution_allowed_by_this_phase": false,
+    "manual_review_required": true,
+    "manual_publish_allowed_by_this_phase": false
+  }
+}

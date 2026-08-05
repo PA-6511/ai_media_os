@@ -1,0 +1,76 @@
+{
+  "schema_version": "ir186_retention_refix_evidence_snapshot_v1",
+  "phase": "IR186",
+  "generated_at": "2026-05-26T13:10:38.855745+00:00",
+  "source_task_id": "ir186_190_batch",
+  "validation_result": "PASS",
+  "validation_failed_checks": [],
+  "validation_warnings": [],
+  "retention_refix_evidence_snapshot": {
+    "snapshot_id": "ir186_snapshot_ir186_190_batch_20260526T131038Z",
+    "generated_at": "2026-05-26T13:10:38.855728+00:00",
+    "source_task_id": "ir186_190_batch",
+    "new_cycle_id": "IR71_PLUS_CYCLE_A",
+    "evidence_entries": [
+      {
+        "evidence_item_id": "evidence_1",
+        "source_phase": "IR181",
+        "source_content": "Timeline Retention Audit Snapshot",
+        "retention_refix_status": "REFIXED",
+        "change_detected": false
+      },
+      {
+        "evidence_item_id": "evidence_2",
+        "source_phase": "IR182",
+        "source_content": "Post-Terminal Reference Consistency Registry",
+        "retention_refix_status": "REFIXED",
+        "change_detected": false
+      },
+      {
+        "evidence_item_id": "evidence_3",
+        "source_phase": "IR183",
+        "source_content": "Consistency Digest Refix",
+        "retention_refix_status": "REFIXED",
+        "change_detected": false
+      },
+      {
+        "evidence_item_id": "evidence_4",
+        "source_phase": "IR184",
+        "source_content": "Dry-Run Retention Consistency Attestation",
+        "retention_refix_status": "REFIXED",
+        "change_detected": false
+      },
+      {
+        "evidence_item_id": "evidence_5",
+        "source_phase": "IR185",
+        "source_content": "Phase 181-185 Completion Bundle",
+        "retention_refix_status": "REFIXED",
+        "change_detected": false
+      }
+    ],
+    "entry_count": 5,
+    "retention_refix_ready": true,
+    "unlock_eligible": false,
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "snapshot_hash": "e4f19fad7ac19f1d8ef29e963661b16c95bb1c3eefb25523759685565e016eb1",
+  "safety_gate_snapshot": {
+    "dry_run": "maintained",
+    "OBSERVE": "maintained",
+    "submission_execution_blocked": true,
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "network_transmission_executed": false,
+    "production_release": false,
+    "GitHub_push": "未実行"
+  }
+}

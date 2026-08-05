@@ -1,0 +1,21 @@
+# LS-NEW-BATCH-4G-2E-RECOVERY-M11-FIX2
+
+- Status: `PASS_POST_SUCCESS_HTML_ENTITY_VALIDATOR_FIXED_EXISTING_PAYLOAD_REVIEW_APPROVED_NO_REGENERATION`
+- Review verdict: `APPROVED_NO_CHANGE_REQUIRED`
+- Payload file SHA-256: `30a70be4110e863a85e2896f69f5b3e51d814a6fd82d5489f899d8a244166d8f`
+- Payload digest: `2ab27b59305dbae98f997ca3a460400298152f173ef605b534df922c187411c6`
+- Payload mode: `0600`
+- HTML reparsed: `true`
+- href HTML entity decoded: `true`
+- Decoded href exact match: `true`
+- Authorization remains consumed: `true`
+- Payload regenerated: `false`
+- Payload modified: `false`
+- Article modified: `false`
+- Authorization reissued: `false`
+- Authorization reconsumed: `false`
+- Network accessed: `false`
+- WordPress accessed: `false`
+- WordPress draft created: `false`
+- Production status: `NO_GO`
+- Ready for WordPress draft creation authorization gate: `true`

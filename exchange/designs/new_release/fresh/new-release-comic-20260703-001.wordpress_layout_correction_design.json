@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M20",
+  "document_role": "WORDPRESS_LAYOUT_CORRECTION_DESIGN",
+  "content_item_id": "new-release-comic-20260703-001",
+  "wordpress_post_id": 192,
+  "requested_layout": {
+    "status": "BLOCKED_BY_PR_DISCLOSURE_POSITION_COMPLIANCE_GATE",
+    "desktop_right_column_order": [
+      "amazon_button",
+      "rakuten_kobo_button",
+      "dmm_button",
+      "responsive_work_details",
+      "pr_disclosure"
+    ],
+    "mobile_order": [
+      "cover_image",
+      "responsive_work_details",
+      "amazon_button",
+      "rakuten_kobo_button",
+      "dmm_button",
+      "pr_disclosure"
+    ]
+  },
+  "compliant_alternative": {
+    "status": "DRAFTED_AWAITING_HUMAN_APPROVAL",
+    "desktop": {
+      "left_column": [
+        "cover_image"
+      ],
+      "right_column_order": [
+        "pr_disclosure",
+        "amazon_button",
+        "rakuten_kobo_button",
+        "dmm_button",
+        "responsive_work_details"
+      ]
+    },
+    "mobile_order": [
+      "cover_image",
+      "responsive_work_details",
+      "pr_disclosure",
+      "amazon_button",
+      "rakuten_kobo_button",
+      "dmm_button"
+    ],
+    "template_html": "<section class=\"ebook-product-card\" data-layout-version=\"M20-COMPLIANT-DRAFT\">\n  <div class=\"ebook-product-card__cover\">\n    {{COVER_HTML}}\n  </div>\n  <div class=\"ebook-product-card__content\">\n    <p class=\"ebook-product-card__pr\" role=\"note\">\n      PR：このページにはアフィリエイト広告が含まれます。\n    </p>\n    <div class=\"ebook-product-card__stores\">\n      {{AMAZON_BUTTON_HTML}}\n      {{RAKUTEN_KOBO_BUTTON_HTML}}\n      {{DMM_BUTTON_HTML}}\n    </div>\n    <dl class=\"ebook-product-card__details\">\n      <div class=\"ebook-product-card__detail-row\">\n        <dt>作品名</dt>\n        <dd>{{WORK_TITLE_TEXT}}</dd>\n      </div>\n      <div class=\"ebook-product-card__detail-row\">\n        <dt>価格</dt>\n        <dd>{{PRICE_TEXT}}</dd>\n      </div>\n      <div class=\"ebook-product-card__detail-row\">\n        <dt>作者</dt>\n        <dd>{{AUTHOR_TEXT}}</dd>\n      </div>\n      <div class=\"ebook-product-card__detail-row\">\n        <dt>出版社</dt>\n        <dd>{{PUBLISHER_TEXT}}</dd>\n      </div>\n      <div class=\"ebook-product-card__detail-row\">\n        <dt>発売日</dt>\n        <dd>{{RELEASE_DATE_TEXT}}</dd>\n      </div>\n    </dl>\n  </div>\n</section>",
+    "template_css": ".ebook-product-card {\n  display: grid;\n  grid-template-columns: minmax(0, 1fr);\n  gap: 1.25rem;\n  align-items: start;\n}\n\n.ebook-product-card__cover {\n  min-width: 0;\n}\n\n.ebook-product-card__cover img {\n  display: block;\n  width: min(100%, 360px);\n  height: auto;\n  margin-inline: auto;\n}\n\n.ebook-product-card__content {\n  display: flex;\n  min-width: 0;\n  flex-direction: column;\n  gap: 1rem;\n}\n\n.ebook-product-card__details {\n  order: 1;\n  display: grid;\n  gap: 0;\n  width: 100%;\n  margin: 0;\n  overflow: hidden;\n  border: 1px solid currentColor;\n  border-radius: 0.5rem;\n}\n\n.ebook-product-card__pr {\n  order: 2;\n  margin: 0;\n  padding: 0.65rem 0.8rem;\n  border: 1px solid currentColor;\n  border-radius: 0.4rem;\n  font-size: 14px;\n  font-weight: 700;\n  line-height: 1.5;\n}\n\n.ebook-product-card__stores {\n  order: 3;\n  display: grid;\n  gap: 0.75rem;\n}\n\n.ebook-product-card__detail-row {\n  display: grid;\n  grid-template-columns: minmax(5.5rem, 32%) minmax(0, 1fr);\n  margin: 0;\n  border-bottom: 1px solid currentColor;\n}\n\n.ebook-product-card__detail-row:last-child {\n  border-bottom: 0;\n}\n\n.ebook-product-card__detail-row dt,\n.ebook-product-card__detail-row dd {\n  min-width: 0;\n  margin: 0;\n  padding: 0.7rem 0.8rem;\n  overflow-wrap: anywhere;\n}\n\n.ebook-product-card__detail-row dt {\n  font-weight: 700;\n}\n\n@media (min-width: 768px) {\n  .ebook-product-card {\n    grid-template-columns: minmax(260px, 38%) minmax(0, 1fr);\n    gap: 2rem;\n  }\n\n  .ebook-product-card__cover img {\n    width: 100%;\n    max-width: 360px;\n  }\n\n  .ebook-product-card__pr {\n    order: 1;\n  }\n\n  .ebook-product-card__stores {\n    order: 2;\n  }\n\n  .ebook-product-card__details {\n    order: 3;\n  }\n\n  .ebook-product-card__detail-row {\n    grid-template-columns: minmax(7rem, 28%) minmax(0, 1fr);\n  }\n}"
+  },
+  "comment_correction": {
+    "post_id_192_comment_status": "closed",
+    "comment_form_visible": false,
+    "comment_list_visible": false,
+    "comment_heading_visible": false,
+    "future_template_scope": "EBOOK_AFFILIATE_ARTICLES",
+    "future_template_update_executable": false
+  },
+  "source_content_file_sha256": "de2739c8ae1aa4a50973b983964b05844086a2187b9ef337383ad6fa7123697d",
+  "source_payload_file_sha256": "30a70be4110e863a85e2896f69f5b3e51d814a6fd82d5489f899d8a244166d8f",
+  "source_payload_digest_sha256": "2ab27b59305dbae98f997ca3a460400298152f173ef605b534df922c187411c6",
+  "compliance_assessment_digest_sha256": "957874620811effbae144f86a5b4b7a06e5fa12001aaee0608307db71654dc01",
+  "wordpress_access_performed": false,
+  "wordpress_update_performed": false,
+  "execution_allowed": false,
+  "created_at_utc": "2026-07-11T12:20:34.508408+00:00",
+  "design_digest_sha256": "e49bbaf98e529986f0c04956b909029f2055e2eb0f9e19e100a002e265caf495"
+}

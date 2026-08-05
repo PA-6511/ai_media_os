@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0.0",
+  "document_role": "WORDPRESS_DRAFT_CREATION_ONE_SHOT_AUTHORIZATION",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M12",
+  "content_item_id": "new-release-comic-20260703-001",
+  "authorization_id": "WORDPRESS_DRAFT_CREATION_ONE_SHOT_AUTHORIZATION_V1",
+  "authorized_operation": "CREATE_ONE_WORDPRESS_DRAFT_FROM_BOUND_PAYLOAD",
+  "payload_binding": {
+    "path": "exchange/payloads/new_release/fresh/new-release-comic-20260703-001.wordpress_draft_payload.json",
+    "file_sha256": "30a70be4110e863a85e2896f69f5b3e51d814a6fd82d5489f899d8a244166d8f",
+    "payload_digest_sha256": "2ab27b59305dbae98f997ca3a460400298152f173ef605b534df922c187411c6",
+    "mode": "0600"
+  },
+  "article_binding": {
+    "path": "exchange/content/new_release/fresh/new-release-comic-20260703-001.article.json",
+    "file_sha256": "de2739c8ae1aa4a50973b983964b05844086a2187b9ef337383ad6fa7123697d"
+  },
+  "human_review_binding": {
+    "path": "exchange/reviews/new_release/fresh/new-release-comic-20260703-001.wordpress_draft_payload_human_review.json",
+    "review_verdict": "APPROVED_NO_CHANGE_REQUIRED",
+    "review_digest_sha256": "52136cc8b50e8a7279e13ea4cb224033eca9790f354c7bcb18b0f6d694d71c25"
+  },
+  "historical_bindings": {
+    "m11_fix2_result_digest_sha256": "dc08a7212e812e366b05952c8e8eceba85f8f8421e2f9fcc65a54ddaa82ea404",
+    "m11_fix1_consumption_digest_sha256": "977e85a2de5f0b4ab07a140d39d39b6c461c87094ef636c52ab3e9a9c0338597",
+    "m11_fix1_result_digest_sha256": "56dc9fae9bd9ce621bbe98493829fd9fb751acaf0560e3c6c879dc567dc2e0d4",
+    "m10_authorization_digest_sha256": "fed0e3c217c654f5e9803f750fd1d07269bff3eed4917a58638e61c9b571bc5b"
+  },
+  "wordpress_draft_contract": {
+    "title": "ダークギャザリング 第20巻｜配信開始",
+    "content_source": "BOUND_PAYLOAD_CONTENT_HTML",
+    "post_status": "draft",
+    "publish": false,
+    "category_id": 10,
+    "categories": [
+      10
+    ],
+    "template_id": "POST185_STANDARD_TEMPLATE_V1_FIXED",
+    "maximum_draft_count": 1,
+    "create_only": true,
+    "update_existing_post_allowed": false,
+    "delete_post_allowed": false,
+    "create_category_allowed": false,
+    "update_category_allowed": false,
+    "media_upload_allowed": false,
+    "publish_allowed": false,
+    "x_post_allowed": false
+  },
+  "single_use": true,
+  "authorization_consumed": false,
+  "authorization_reuse_allowed": false,
+  "automatic_retry_allowed": false,
+  "automatic_reissue_allowed": false,
+  "actual_wordpress_access_allowed": false,
+  "actual_wordpress_draft_creation_allowed": false,
+  "actual_execution_requires_execute_now_approval": true,
+  "planned_execution_phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M13",
+  "full_payload_present": false,
+  "full_final_affiliate_url_present": false,
+  "dmm_affiliate_identifier_present": false,
+  "wordpress_credentials_present": false,
+  "network_connection_performed": false,
+  "wordpress_access_performed": false,
+  "wordpress_write_performed": false,
+  "wordpress_draft_created": false,
+  "wordpress_published": false,
+  "x_post_performed": false,
+  "execution_allowed": false,
+  "production_status": "NO_GO",
+  "authorized_at_utc": "2026-07-11T09:51:56.079636+00:00",
+  "authorization_digest_sha256": "d3ede61a71d75cbbc00a594f0a8d319aed0e598bd9c061609a52bed7e96d07c3"
+}

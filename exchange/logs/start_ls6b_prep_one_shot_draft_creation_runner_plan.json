@@ -1,0 +1,45 @@
+{
+  "phase": "LS-6B-PREP",
+  "status": "LS6B_PREP_RUNNER_PLAN_BLOCKED_NO_EXECUTION",
+  "execution_mode": "DRY_RUN_ONLY",
+  "production_status": "NO_GO",
+  "target_next_phase": "LS-6B",
+  "blocked_until_actual_human_approval": true,
+  "required_actual_approval_status": "LS6A_ACTUAL_HUMAN_APPROVAL_READY_NO_EXECUTION",
+  "approval_label": "APPROVED_FOR_ONE_SHOT_DRAFT_CREATION_ONLY",
+  "payload_preview": "exchange/logs/start_ls4_wordpress_draft_payload_preview.json",
+  "max_items": 1,
+  "post_status": "draft",
+  "guards": {
+    "publish_allowed": false,
+    "future_schedule_allowed": false,
+    "existing_post_update_allowed": false,
+    "delete_allowed": false,
+    "freeze_after_run": true,
+    "rollback_pointer_required": true,
+    "post_id_evidence_required_after_execution": true
+  },
+  "current_phase_execution": {
+    "wordpress_api_call_executed": false,
+    "wordpress_write_executed": false,
+    "wordpress_draft_creation_executed": false,
+    "publish_executed": false,
+    "credential_env_read_executed": false,
+    "approval_token_consumed": false
+  },
+  "future_execution_contract": {
+    "must_revalidate_actual_human_approval": true,
+    "must_revalidate_payload_preview": true,
+    "must_revalidate_credential_ready": true,
+    "must_reject_multiple_payloads": true,
+    "must_reject_non_draft_status": true,
+    "must_reject_publish_update_delete": true,
+    "must_record_post_id": true,
+    "must_record_rollback_pointer": true,
+    "must_freeze_after_run": true
+  },
+  "next_phase": {
+    "phase": "LS-6B",
+    "execution_allowed": false
+  }
+}

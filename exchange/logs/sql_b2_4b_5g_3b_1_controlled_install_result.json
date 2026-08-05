@@ -1,0 +1,70 @@
+{
+  "phase": "SQL-B2-4B-5G-3B-1",
+  "result": "PASS_CONTROLLED_UNIT_INSTALL_FAIL_CLOSED_NO_GO",
+  "recorded_at": "2026-07-14T15:07:14.957496+00:00",
+  "git": {
+    "branch": "feature/sql-b2-4b-slack-production-readiness",
+    "source_commit": "baff0b24045d29634f5bd48d45b00b7441b27f71",
+    "source_commit_short": "baff0b2"
+  },
+  "installation": {
+    "repository_unit_sha256": "ea27ffcff758a32020102f35a4df025aba8358501a6798d33f0ba069162005fc",
+    "installed_unit_sha256": "ea27ffcff758a32020102f35a4df025aba8358501a6798d33f0ba069162005fc",
+    "repository_and_installed_match": true,
+    "installed_owner": "root",
+    "installed_group": "root",
+    "installed_mode": "0644",
+    "installed_is_regular_file": true,
+    "installed_is_symbolic_link": false,
+    "exec_condition_present": true,
+    "exec_condition_count": 1,
+    "daemon_reload_completed": true,
+    "systemd_verify_exit_code": 0
+  },
+  "rollback": {
+    "backup_path": "/var/backups/ai-media-os/systemd/ai-media-os-slack-approval-readiness.service.pre-5g-3b-1.94b6aaac4f43605996eec4e3e79ee50eb7523e5efe50bf447069dc9489b4681e",
+    "backup_sha256": "94b6aaac4f43605996eec4e3e79ee50eb7523e5efe50bf447069dc9489b4681e",
+    "backup_matches_previous_unit": true,
+    "automatic_rollback_available": true
+  },
+  "fail_closed": {
+    "gate_present": false,
+    "autostart_check_exit_code": 3,
+    "readiness_health": "PASS",
+    "autostart_approval": "NOT_APPROVED",
+    "final_decision": "NO_GO"
+  },
+  "database_safety": {
+    "production_sha256": "a4c5c6b3c9f016cd745cdb9c531c807fe5bc4a3ac28f9422609dfa96cd7b37d8",
+    "production_database_unchanged": true,
+    "readiness_quick_check": "ok",
+    "readiness_approval_count": 0
+  },
+  "systemd_final_state": {
+    "fragment_path": "/etc/systemd/system/ai-media-os-slack-approval-readiness.service",
+    "need_daemon_reload": "no",
+    "active_state": "inactive",
+    "sub_state": "dead",
+    "unit_file_state": "disabled",
+    "main_pid": 0,
+    "enabled": false,
+    "running": false
+  },
+  "decision": {
+    "installed_unit_updated": true,
+    "daemon_reload": "PASS",
+    "autostart_gate": "ABSENT",
+    "autostart_approval": "NOT_APPROVED",
+    "unit_enabled": false,
+    "service_running": false,
+    "final_decision": "NO_GO"
+  },
+  "governance": {
+    "production_status": "NO_GO",
+    "safety_state": "UNIT_INSTALLED_DISABLED_INACTIVE_GATE_ABSENT",
+    "automatic_start_allowed": false,
+    "production_slack_approval_allowed": false,
+    "service_start_executed": false,
+    "unit_enable_executed": false
+  }
+}

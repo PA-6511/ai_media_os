@@ -1,0 +1,70 @@
+{
+  "schema_version": "ir91_gap_remediation_plan_v1",
+  "phase": "IR91",
+  "generated_at": "2026-05-24T14:43:33.219816+00:00",
+  "source_task_id": "ir91_95_live_trial",
+  "validation_result": "PASS",
+  "validation_failed_checks": [],
+  "validation_warnings": [],
+  "gap_remediation_plan": {
+    "plan_id": "ir91_plan_ir91_95_live_trial_20260524T144333Z",
+    "generated_at": "2026-05-24T14:43:33.219797+00:00",
+    "source_task_id": "ir91_95_live_trial",
+    "new_cycle_id": "IR71_PLUS_CYCLE_A",
+    "remediation_items": [
+      {
+        "item": "go_decision_document",
+        "owner": "design_owner",
+        "target_state": "PRESENT",
+        "status": "PLANNED"
+      },
+      {
+        "item": "release_approver_signature",
+        "owner": "release_governor",
+        "target_state": "PRESENT",
+        "status": "PLANNED"
+      },
+      {
+        "item": "safety_redeclaration_record",
+        "owner": "safety_reviewer",
+        "target_state": "PRESENT",
+        "status": "PLANNED"
+      },
+      {
+        "item": "full_test_matrix_record",
+        "owner": "qa_owner",
+        "target_state": "PRESENT",
+        "status": "PLANNED"
+      },
+      {
+        "item": "execution_authorization_record",
+        "owner": "governance_board",
+        "target_state": "PRESENT",
+        "status": "PLANNED"
+      }
+    ],
+    "all_items_planned": true,
+    "all_items_completed": false,
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "plan_hash": "37022df3c129bca45739746059bed8dd7fa2412621fae547c67a8195c777ac0d",
+  "safety_gate_snapshot": {
+    "dry_run": "maintained",
+    "OBSERVE": "maintained",
+    "submission_execution_blocked": true,
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "network_transmission_executed": false,
+    "production_release": false,
+    "GitHub_push": "未実行"
+  }
+}

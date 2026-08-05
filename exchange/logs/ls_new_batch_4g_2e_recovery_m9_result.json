@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M9",
+  "status": "FAILED_AFTER_M9_AUTHORIZATION_CONSUMPTION_NO_AUTOMATIC_RETRY",
+  "decision": "M9_AUTHORIZATION_CONSUMED_MANUAL_RECOVERY_REVIEW_REQUIRED",
+  "error_code": "POSTIMAGE_FINAL_URL_MISSING",
+  "authorization_consumed": true,
+  "authorization_reuse_allowed": false,
+  "automatic_retry_allowed": false,
+  "automatic_reissue_allowed": false,
+  "consumption_evidence_preserved": true,
+  "article_rollback_attempted": false,
+  "article_rollback_succeeded": false,
+  "article_preimage_restored": false,
+  "full_final_affiliate_url_output": false,
+  "affiliate_identifier_output": false,
+  "network_connection_performed": false,
+  "wordpress_access_performed": false,
+  "production_status": "NO_GO",
+  "manual_recovery_review_required": true,
+  "failed_at_utc": "2026-07-11T06:53:52.706458+00:00",
+  "result_digest_sha256": "afa3ead430b6111b146aee0cec9aa125fd28b49375f197d690fa9b09314a3367"
+}

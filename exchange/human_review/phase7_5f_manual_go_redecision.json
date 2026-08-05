@@ -1,0 +1,53 @@
+{
+  "package_type": "phase7_5f_manual_go_redecision",
+  "phase": "Phase 7-5F",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "source": "human_operator",
+  "target": "phase7_5c_single_draft_create_live_manual",
+  "reviewer": "manual_human_reviewer",
+  "reviewer_is_human": true,
+  "reviewed_at": "REPLACE_WITH_ACTUAL_REVIEW_TIME",
+  "decision": "MANUAL_GO_SINGLE_DRAFT_CREATE_ONE_TIME",
+  "decision_choices": [
+    "MANUAL_GO_SINGLE_DRAFT_CREATE_ONE_TIME",
+    "KEEP_FREEZE",
+    "REQUEST_FIX",
+    "ABORT"
+  ],
+  "approval_token": "MANUAL_GO_SINGLE_DRAFT_CREATE_ONE_TIME",
+  "reason": "全確認項目を人間オペレーターがレビュー済み。1件限定・draft限定でGO再判断。",
+  "manual_confirmation": {
+    "payload_title_and_content_reviewed": true,
+    "content_url_validity_confirmed": true,
+    "affiliate_tag_confirmed": true,
+    "pr_disclosure_confirmed": true,
+    "wordpress_editor_role_confirmed": true,
+    "status_draft_only_confirmed": true,
+    "manual_delete_procedure_confirmed": true,
+    "approval_token_expiry_confirmed": true
+  },
+  "token_constraints": {
+    "one_time_only": true,
+    "expires_minutes": 30,
+    "post_status": "draft",
+    "post_count_limit": 1,
+    "publish_allowed": false,
+    "update_allowed": false,
+    "delete_allowed": false,
+    "export_allowed": false
+  },
+  "safety_flags": {
+    "wordpress_post_enabled": false,
+    "real_write_enabled": false,
+    "wordpress_write_executed": false,
+    "auto_post": false,
+    "auto_update": false,
+    "auto_delete": false,
+    "auto_export": false,
+    "github_actions_triggered": false,
+    "slack_notification_executed": false,
+    "vps_self_builder_executed": false,
+    "env_or_secrets_modified": false
+  }
+}

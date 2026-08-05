@@ -1,0 +1,49 @@
+{
+  "phase": "Implementation Restart Phase 48",
+  "status": "COMPLETED",
+  "generated_at": "2026-05-24T03:34:02.811170+00:00",
+  "schema_version": "ir48_destination_human_review_result_intake_v1",
+  "test_result": {
+    "focused_tests": {
+      "passed": 6,
+      "failed": 0
+    },
+    "adjacent_ir46_ir48": {
+      "passed": 18,
+      "failed": 0
+    },
+    "scoped_regression": {
+      "passed": 344,
+      "failed": 0
+    }
+  },
+  "overall_approval_decision": "APPROVE_DRY_RUN",
+  "overall_submission_gate_decision": "READY_FOR_REVIEW",
+  "overall_review_queue_approval_decision": "READY_FOR_HUMAN_REVIEW",
+  "overall_human_review_result": "APPROVE",
+  "overall_intake_action": "Human review intake recorded destination approvals.",
+  "release_candidate_id": "rc_20260523T155148Z_ir26_live_trial_b940393b490b",
+  "final_submission_decision": "READY_FOR_SUBMISSION_SUMMARY",
+  "validation_result": "PASS",
+  "validation_failed_check_count": 0,
+  "validation_warning_count": 0,
+  "summary": {
+    "destination_count": 3,
+    "approve_count": 3,
+    "request_fix_count": 0,
+    "reject_count": 0,
+    "abort_ack_count": 0
+  },
+  "artifacts": {
+    "runbook_report": "generic_block_ai/reports/ir48_destination_human_review_result_intake_report_ir48_live_trial.json",
+    "completion_report": "reports/implementation_restart_phase48_completion_report.json"
+  },
+  "safeguards": {
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "network_transmission_executed": false,
+    "production_release": false
+  }
+}

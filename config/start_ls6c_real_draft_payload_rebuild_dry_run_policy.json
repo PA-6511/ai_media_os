@@ -1,0 +1,69 @@
+{
+  "phase": "LS-6C",
+  "name": "Real Draft Payload Rebuild DRY_RUN",
+  "status": "REAL_PAYLOAD_REBUILD_DRY_RUN_ONLY",
+  "execution_mode": "DRY_RUN_ONLY",
+  "production_status": "NO_GO",
+  "purpose": "Replace sample payload with real/manual payload, convert Markdown to HTML, fix Japanese affiliate disclosure, category and tags, without WordPress write.",
+  "required_previous_phase": {
+    "ls7a": {
+      "required_status": "LS7A_HUMAN_REVIEW_DO_NOT_PUBLISH_EVIDENCE_RECORDED",
+      "result": "exchange/logs/start_ls7a_human_review_result_evidence_result.json",
+      "review_decision": "exchange/human_review/start_ls7a_post119_human_review_decision.json"
+    },
+    "ls6b": {
+      "required_status": "LS6B_WORDPRESS_ONE_SHOT_DRAFT_CREATED_AND_FROZEN",
+      "validation_status": "LS6B_ONE_SHOT_DRAFT_CREATION_RESULT_VALIDATED",
+      "result": "exchange/logs/start_ls6b_wordpress_one_shot_draft_creation_result.json",
+      "validation_result": "exchange/logs/start_ls6b_wordpress_one_shot_draft_creation_validation_result.json",
+      "lock": "exchange/locks/start_ls6b_wordpress_one_shot_draft_creation.lock.json"
+    }
+  },
+  "input": {
+    "example": "manual_affiliate_builder/real_manual_item.input.example.json",
+    "actual": "manual_affiliate_builder/real_manual_item.input.json",
+    "actual_input_auto_create_allowed": false,
+    "manual_input_required_for_ready_payload": true
+  },
+  "output_payload_preview": "exchange/logs/start_ls6c_real_draft_payload_preview.json",
+  "payload_rules": {
+    "max_items": 1,
+    "post_status": "draft",
+    "title_must_not_contain_sample": true,
+    "author_must_not_contain_sample": true,
+    "asin_must_not_be_sample": true,
+    "affiliate_tag_must_not_be_exampletag": true,
+    "content_format": "html",
+    "markdown_link_allowed": false,
+    "html_link_required": true,
+    "japanese_affiliate_disclosure_required": true,
+    "category_required": true,
+    "uncategorized_allowed": false,
+    "tags_required": true
+  },
+  "current_phase_safety_flags": {
+    "wordpress_api_call_executed": false,
+    "wordpress_write_executed": false,
+    "wordpress_draft_creation_executed": false,
+    "wordpress_existing_post_update_executed": false,
+    "post119_update_executed": false,
+    "publish_executed": false,
+    "future_schedule_executed": false,
+    "delete_executed": false,
+    "amazon_api_call_executed": false,
+    "x_api_call_executed": false,
+    "x_post_executed": false,
+    "credential_env_read_executed": false,
+    "credential_secret_output": false,
+    "secret_length_output": false,
+    "secret_hash_output": false,
+    "approval_token_consumed": false,
+    "ls6b_rerun_executed": false
+  },
+  "next_phase": {
+    "phase": "LS-6D",
+    "name": "Real Draft Payload Human Review Gate",
+    "execution_allowed_by_this_phase": false,
+    "purpose": "Human-review rebuilt real payload preview before any additional WordPress write."
+  }
+}

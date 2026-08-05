@@ -1,0 +1,66 @@
+{
+  "schema_version": "gib.alpha.samples.v0.1",
+  "requests": [
+    {
+      "task_type": "phase_log_summary",
+      "input": {
+        "phase_name": "Phase 47-B",
+        "status": "PASS_DRY_RUN_ONLY",
+        "log_excerpt": "dry-run completed without error. no actual write performed."
+      }
+    },
+    {
+      "task_type": "validator_result_explain",
+      "input": {
+        "validator_name": "credential_readiness_validator",
+        "result": "NOT_READY",
+        "issues": [
+          "WP_USERNAME not set",
+          "WP_APP_PASSWORD not set"
+        ]
+      }
+    },
+    {
+      "task_type": "product_summary",
+      "input": {
+        "title": "Sample Manga Volume 1",
+        "publisher": "Sample Publisher",
+        "genre": "Action"
+      }
+    },
+    {
+      "task_type": "social_post_draft",
+      "input": {
+        "topic": "Sample Manga Volume 1 release",
+        "source_summary": "New action manga from Sample Publisher",
+        "target_audience": "manga fans"
+      }
+    },
+    {
+      "task_type": "article_outline",
+      "input": {
+        "topic": "Sample Manga Volume 1",
+        "target_reader": "manga newcomers",
+        "key_points": [
+          "engaging story",
+          "clean art style",
+          "affordable price"
+        ]
+      }
+    },
+    {
+      "task_type": "compliance_classify",
+      "input": {
+        "content_excerpt": "Limited time offer: 50% off all titles this weekend only.",
+        "context": "promotional article draft"
+      }
+    },
+    {
+      "task_type": "security_log_explain",
+      "input": {
+        "log_excerpt": "2026-06-11T03:00:00Z WARNING: Unusual login attempt from unknown IP.",
+        "detector_result": "recommendation_only"
+      }
+    }
+  ]
+}

@@ -1,0 +1,361 @@
+{
+  "schema_version": "ir195_phase_191_195_completion_bundle_v1",
+  "phase": "IR195",
+  "generated_at": "2026-05-26T13:19:47.285846+00:00",
+  "source_task_id": "ir191_195_batch",
+  "new_cycle_id": "IR71_PLUS_CYCLE_A",
+  "ir191_result": {
+    "schema_version": "ir191_terminal_archive_organization_snapshot_v1",
+    "phase": "IR191",
+    "generated_at": "2026-05-26T13:19:47.285043+00:00",
+    "source_task_id": "ir191_195_batch",
+    "validation_result": "PASS",
+    "validation_failed_checks": [],
+    "validation_warnings": [],
+    "terminal_archive_organization_snapshot": {
+      "snapshot_id": "ir191_snapshot_ir191_195_batch_20260526T131947Z",
+      "generated_at": "2026-05-26T13:19:47.285024+00:00",
+      "source_task_id": "ir191_195_batch",
+      "new_cycle_id": "IR71_PLUS_CYCLE_A",
+      "archive_entries": [
+        {
+          "archive_item_id": "archive_1",
+          "source_phase": "IR186",
+          "source_content": "Retention Refix Evidence Snapshot",
+          "archive_status": "ORGANIZED_LONG_TERM",
+          "change_detected": false
+        },
+        {
+          "archive_item_id": "archive_2",
+          "source_phase": "IR187",
+          "source_content": "Reference Consistency Terminal Registry",
+          "archive_status": "ORGANIZED_LONG_TERM",
+          "change_detected": false
+        },
+        {
+          "archive_item_id": "archive_3",
+          "source_phase": "IR188",
+          "source_content": "Terminal Digest Refix",
+          "archive_status": "ORGANIZED_LONG_TERM",
+          "change_detected": false
+        },
+        {
+          "archive_item_id": "archive_4",
+          "source_phase": "IR189",
+          "source_content": "Dry-Run Terminal Audit Attestation",
+          "archive_status": "ORGANIZED_LONG_TERM",
+          "change_detected": false
+        },
+        {
+          "archive_item_id": "archive_5",
+          "source_phase": "IR190",
+          "source_content": "Phase 186-190 Completion Bundle",
+          "archive_status": "ORGANIZED_LONG_TERM",
+          "change_detected": false
+        }
+      ],
+      "entry_count": 5,
+      "archive_organization_ready": true,
+      "unlock_eligible": false,
+      "safety_gate_snapshot": {
+        "dry_run": "maintained",
+        "OBSERVE": "maintained",
+        "submission_execution_blocked": true,
+        "execution_policy_execute": false,
+        "external_write_executed": false,
+        "network_transmission_executed": false,
+        "production_release": false,
+        "GitHub_push": "未実行"
+      }
+    },
+    "snapshot_hash": "31b443fe4a8c1068b0004129d26dadbfb6db9ff644fd0c2b06eba59ade1a4301",
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "ir192_result": {
+    "schema_version": "ir192_final_reference_consistency_reverification_registry_v1",
+    "phase": "IR192",
+    "generated_at": "2026-05-26T13:19:47.285316+00:00",
+    "source_task_id": "ir191_195_batch",
+    "validation_result": "PASS",
+    "validation_failed_checks": [],
+    "validation_warnings": [],
+    "final_reference_consistency_reverification_registry": {
+      "registry_id": "ir192_registry_ir191_195_batch_20260526T131947Z",
+      "generated_at": "2026-05-26T13:19:47.285310+00:00",
+      "source_task_id": "ir191_195_batch",
+      "new_cycle_id": "IR71_PLUS_CYCLE_A",
+      "registry_entries": [
+        {
+          "archive_item_id": "archive_1",
+          "source_phase": "IR186",
+          "source_content": "Retention Refix Evidence Snapshot",
+          "final_reverification_status": "FINAL_CONSISTENT_REFERENCE_ONLY",
+          "change_detected": false
+        },
+        {
+          "archive_item_id": "archive_2",
+          "source_phase": "IR187",
+          "source_content": "Reference Consistency Terminal Registry",
+          "final_reverification_status": "FINAL_CONSISTENT_REFERENCE_ONLY",
+          "change_detected": false
+        },
+        {
+          "archive_item_id": "archive_3",
+          "source_phase": "IR188",
+          "source_content": "Terminal Digest Refix",
+          "final_reverification_status": "FINAL_CONSISTENT_REFERENCE_ONLY",
+          "change_detected": false
+        },
+        {
+          "archive_item_id": "archive_4",
+          "source_phase": "IR189",
+          "source_content": "Dry-Run Terminal Audit Attestation",
+          "final_reverification_status": "FINAL_CONSISTENT_REFERENCE_ONLY",
+          "change_detected": false
+        },
+        {
+          "archive_item_id": "archive_5",
+          "source_phase": "IR190",
+          "source_content": "Phase 186-190 Completion Bundle",
+          "final_reverification_status": "FINAL_CONSISTENT_REFERENCE_ONLY",
+          "change_detected": false
+        }
+      ],
+      "entry_count": 5,
+      "all_final_consistent_reference_only": true,
+      "unlock_eligible": false,
+      "safety_gate_snapshot": {
+        "dry_run": "maintained",
+        "OBSERVE": "maintained",
+        "submission_execution_blocked": true,
+        "execution_policy_execute": false,
+        "external_write_executed": false,
+        "network_transmission_executed": false,
+        "production_release": false,
+        "GitHub_push": "未実行"
+      }
+    },
+    "registry_hash": "128ca32c31043af4c46fbb8df606954e595c87a91b7ddfa9300a31f7444a8eda",
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "ir193_result": {
+    "schema_version": "ir193_final_consistency_digest_refix_v1",
+    "phase": "IR193",
+    "generated_at": "2026-05-26T13:19:47.285492+00:00",
+    "source_task_id": "ir191_195_batch",
+    "validation_result": "PASS",
+    "validation_failed_checks": [],
+    "validation_warnings": [],
+    "final_consistency_digest_refix": {
+      "digest_id": "ir193_digest_ir191_195_batch_20260526T131947Z",
+      "generated_at": "2026-05-26T13:19:47.285489+00:00",
+      "source_task_id": "ir191_195_batch",
+      "new_cycle_id": "IR71_PLUS_CYCLE_A",
+      "digest_entries": [
+        {
+          "archive_item_id": "archive_1",
+          "source_phase": "IR186",
+          "digest_id": "32a79ae3bacc5113db679be00a72c05d2f0e31a17ef1703d456aa5e87102723c",
+          "digest_status": "FINAL_CONSISTENCY_DIGEST_REFIXED"
+        },
+        {
+          "archive_item_id": "archive_2",
+          "source_phase": "IR187",
+          "digest_id": "0e4c0adb4222850348600a60d9511ab9b9e163bb6d13e8d3feba551582dc4763",
+          "digest_status": "FINAL_CONSISTENCY_DIGEST_REFIXED"
+        },
+        {
+          "archive_item_id": "archive_3",
+          "source_phase": "IR188",
+          "digest_id": "ddaa69bfa98f87d9f4d6089bb2819927431f95f321814175e89a1569ca9b529f",
+          "digest_status": "FINAL_CONSISTENCY_DIGEST_REFIXED"
+        },
+        {
+          "archive_item_id": "archive_4",
+          "source_phase": "IR189",
+          "digest_id": "1cd1c0ad6e9ef1820b783c031d01c8c927b1db8bf301e0740e8cce6bd606e5f9",
+          "digest_status": "FINAL_CONSISTENCY_DIGEST_REFIXED"
+        },
+        {
+          "archive_item_id": "archive_5",
+          "source_phase": "IR190",
+          "digest_id": "ee77ddfe28355d86f2d3c7a9450b979af1baacd1d319b1a342fd8ac8fb9148bb",
+          "digest_status": "FINAL_CONSISTENCY_DIGEST_REFIXED"
+        }
+      ],
+      "entry_count": 5,
+      "final_consistency_digest_refix_ready": true,
+      "unlock_eligible": false,
+      "safety_gate_snapshot": {
+        "dry_run": "maintained",
+        "OBSERVE": "maintained",
+        "submission_execution_blocked": true,
+        "execution_policy_execute": false,
+        "external_write_executed": false,
+        "network_transmission_executed": false,
+        "production_release": false,
+        "GitHub_push": "未実行"
+      }
+    },
+    "digest_hash": "956b25994ec8a591ea4e0f52ad8831fe16ef580713e8debdae6d9d184dff3856",
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "ir194_result": {
+    "schema_version": "ir194_dry_run_final_reverification_attestation_v1",
+    "phase": "IR194",
+    "generated_at": "2026-05-26T13:19:47.285692+00:00",
+    "source_task_id": "ir191_195_batch",
+    "dry_run_final_reverification_attestation_decision": "PROHIBITION_CONTINUITY_FINALIZED_DRY_RUN_ONLY",
+    "gate_action": "Dry-run final reverification attestation confirmed.",
+    "validation_result": "PASS",
+    "validation_failed_checks": [],
+    "validation_warnings": [],
+    "dry_run_final_reverification_attestation": {
+      "attestation_id": "ir194_attestation_ir191_195_batch_20260526T131947Z",
+      "generated_at": "2026-05-26T13:19:47.285688+00:00",
+      "source_task_id": "ir191_195_batch",
+      "decision": "PROHIBITION_CONTINUITY_FINALIZED_DRY_RUN_ONLY",
+      "unlock_prohibited": true,
+      "final_reverification_attested": true,
+      "safety_gate_snapshot": {
+        "dry_run": "maintained",
+        "OBSERVE": "maintained",
+        "submission_execution_blocked": true,
+        "execution_policy_execute": false,
+        "external_write_executed": false,
+        "network_transmission_executed": false,
+        "production_release": false,
+        "GitHub_push": "未実行"
+      }
+    },
+    "attestation_hash": "aa2a8ac69901a05ee9bd43f86d7da056c483849c645337ac891828e50ce2c216",
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "test_summary": {
+    "focused": {
+      "passed": 6,
+      "failed": 0
+    },
+    "adjacent": {
+      "passed": 12,
+      "failed": 0
+    },
+    "scoped": {
+      "passed": 530,
+      "failed": 0
+    }
+  },
+  "live_summary": {
+    "ir191": "PASS",
+    "ir192": "PASS",
+    "ir193": "PASS",
+    "ir194": "PASS",
+    "ir195": "PASS"
+  },
+  "safety_gate_summary": {
+    "dry_run": "maintained",
+    "OBSERVE": "maintained",
+    "submission_execution_blocked": true,
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "network_transmission_executed": false,
+    "production_release": false,
+    "GitHub_push": "未実行"
+  },
+  "completion_table": [
+    {
+      "phase": "IR191",
+      "content": "Terminal Archive Organization Snapshot",
+      "focused": "PASS",
+      "adjacent": "PASS",
+      "scoped": "PASS",
+      "live": "PASS",
+      "judgement": "完了"
+    },
+    {
+      "phase": "IR192",
+      "content": "Final Reference Consistency Reverification Registry",
+      "focused": "PASS",
+      "adjacent": "PASS",
+      "scoped": "PASS",
+      "live": "PASS",
+      "judgement": "完了"
+    },
+    {
+      "phase": "IR193",
+      "content": "Final Consistency Digest Refix",
+      "focused": "PASS",
+      "adjacent": "PASS",
+      "scoped": "PASS",
+      "live": "PASS",
+      "judgement": "完了"
+    },
+    {
+      "phase": "IR194",
+      "content": "Dry-Run Final Reverification Attestation",
+      "focused": "PASS",
+      "adjacent": "PASS",
+      "scoped": "PASS",
+      "live": "PASS",
+      "judgement": "完了"
+    },
+    {
+      "phase": "IR195",
+      "content": "Phase 191-195 Completion Bundle",
+      "focused": "PASS",
+      "adjacent": "PASS",
+      "scoped": "PASS",
+      "live": "PASS",
+      "judgement": "完了"
+    }
+  ],
+  "final_decision": "PROHIBITION_CONTINUITY_FINALIZED_DRY_RUN_ONLY",
+  "prohibition_continuity_finalized": true,
+  "delta_closure_pending": true,
+  "artifacts": {
+    "ir191_terminal_archive_organization_snapshot": "generic_block_ai/reports/ir191_195/ir191_terminal_archive_organization_snapshot.json",
+    "ir192_final_reference_consistency_reverification_registry": "generic_block_ai/reports/ir191_195/ir192_final_reference_consistency_reverification_registry.json",
+    "ir193_final_consistency_digest_refix": "generic_block_ai/reports/ir191_195/ir193_final_consistency_digest_refix.json",
+    "ir194_dry_run_final_reverification_attestation": "generic_block_ai/reports/ir191_195/ir194_dry_run_final_reverification_attestation.json",
+    "ir195_completion_bundle": "generic_block_ai/reports/ir191_195/ir195_completion_bundle.json",
+    "ir191_195_live_status": "generic_block_ai/reports/ir191_195/ir191_195_live_status.md",
+    "ir191_195_completion_table": "generic_block_ai/reports/ir191_195/ir191_195_completion_table.md"
+  },
+  "external_write_executed": false
+}

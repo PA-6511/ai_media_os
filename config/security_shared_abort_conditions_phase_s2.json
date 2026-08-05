@@ -1,0 +1,35 @@
+{
+  "phase_id": "PHASE_S2",
+  "name": "security_shared_abort_conditions",
+  "status": "DESIGN_ONLY",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "abort_if_true": [
+    "publish_allowed",
+    "wordpress_write_executed",
+    "auto_execute",
+    "auto_post",
+    "auto_update",
+    "auto_delete",
+    "auto_export",
+    "allow_wordpress_write",
+    "allow_scheduler_execution",
+    "allow_external_api_write"
+  ],
+  "abort_if_equals": {
+    "execution": "LIVE",
+    "production_status": "GO"
+  },
+  "forbidden_unlock_keys": [
+    "unlock_token",
+    "production_unlock",
+    "production_unlock_token",
+    "freeze_unlock_token"
+  ],
+  "forbidden_env_output_flag_keys": [
+    "env_output_requested",
+    "env_value_output_requested",
+    "dot_env_output_requested",
+    "dotenv_output_requested"
+  ]
+}

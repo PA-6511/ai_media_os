@@ -1,0 +1,10 @@
+{
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "endpoint_url": "https://example.com/wp-json/wp/v2",
+  "method": "HEAD",
+  "iterations": 5,
+  "timeout_seconds": 3,
+  "retry_limit": 1
+}

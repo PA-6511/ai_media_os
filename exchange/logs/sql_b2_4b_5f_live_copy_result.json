@@ -1,0 +1,50 @@
+{
+  "phase": "SQL-B2-4B-5F",
+  "result": "PASS_REAL_SLACK_LIVE_COPY_ONLY",
+  "recorded_at": "2026-07-14T13:21:46.045391+00:00",
+  "git": {
+    "branch": "feature/sql-b2-4b-slack-live-copy-integration",
+    "commit": "5000ea8e21e3dfe3c5140d36688f06b96335b4a2",
+    "commit_short": "5000ea8"
+  },
+  "runtime": {
+    "slack_mode": "LIVE_COPY_ONLY",
+    "database_target": "/tmp/ebook_affiliate_slack_5f.db",
+    "production_database_allowed": false,
+    "real_socket_connection": true,
+    "real_slack_message_sent": true,
+    "real_button_decision_received": "APPROVE",
+    "slack_test_message_cleanup": "PASS"
+  },
+  "copy_database": {
+    "item_id": "3a64d723-cff2-430f-a030-fa5243776bdb",
+    "title": "【LIVEコピーDB試験】電子書籍承認Bot",
+    "request_id": "b3a689b1-bb28-42b5-a783-522f2a21bf7c",
+    "workflow_status": "READY",
+    "review_status": "APPROVED",
+    "approval_type": "REVIEW_READY",
+    "approval_status": "APPROVED",
+    "decided_by": "slack:U0A46P67WN6",
+    "decided_at": "2026-07-14 13:11:11.687042",
+    "slack_binding_present": true,
+    "raw_approval_token_stored": false
+  },
+  "production_database": {
+    "path": "/home/deploy/ai_media_os/data/database/ebook_affiliate.db",
+    "sha256_before": "a4c5c6b3c9f016cd745cdb9c531c807fe5bc4a3ac28f9422609dfa96cd7b37d8",
+    "sha256_after": "a4c5c6b3c9f016cd745cdb9c531c807fe5bc4a3ac28f9422609dfa96cd7b37d8",
+    "sha256_match": true,
+    "approval_request_count": 0,
+    "integration_test_item_count": 0,
+    "mutated": false
+  },
+  "tests": {
+    "regression_tests_passed": 136,
+    "result": "PASS"
+  },
+  "governance": {
+    "production_status": "NO_GO",
+    "production_slack_approval_allowed": false,
+    "safety_state": "LIVE_COPY_ONLY_PRODUCTION_BLOCKED"
+  }
+}

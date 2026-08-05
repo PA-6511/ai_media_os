@@ -1,0 +1,37 @@
+{
+  "phase": "Phase 8-20",
+  "phase_name": "Limited Update Closure Report for post_id 115",
+  "status": "PHASE8_20_LIMITED_DRAFT_UPDATE_VERIFIED_PENDING_HUMAN_REVIEW",
+  "target_post_id": 115,
+  "production_status": "LIMITED_DRAFT_UPDATE_ONLY",
+  "post_id": 115,
+  "post_status": "draft",
+  "post_link": "https://hoshido.jp/?p=115",
+  "wordpress_api_call_attempted": true,
+  "wordpress_write_executed": true,
+  "wordpress_draft_updated": true,
+  "publish_allowed": false,
+  "publish_executed": false,
+  "update_executed": true,
+  "delete_allowed": false,
+  "delete_executed": false,
+  "bulk_operation_executed": false,
+  "export_executed": false,
+  "rollback_executed": false,
+  "freeze_executed": false,
+  "human_review_required": true,
+  "secret_values_output": false,
+  "secret_values_written": false,
+  "errors": [],
+  "warnings": [],
+  "safety_violations": [],
+  "evidence_summary": [
+    {
+      "path": "exchange/logs/phase8_19_limited_update_post_115_execution_result.json",
+      "exists": true,
+      "status": "PHASE8_19_LIMITED_DRAFT_UPDATE_EXECUTED_PENDING_HUMAN_REVIEW"
+    }
+  ],
+  "next_step": "phase8_21_manual_inspection_after_limited_update",
+  "checked_at": "2026-06-09T13:35:33.324034+00:00"
+}

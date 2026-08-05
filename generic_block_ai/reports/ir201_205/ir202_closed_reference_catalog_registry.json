@@ -1,0 +1,76 @@
+{
+  "schema_version": "ir202_closed_reference_catalog_registry_v1",
+  "phase": "IR202",
+  "generated_at": "2026-05-26T13:29:20.667254+00:00",
+  "source_task_id": "ir201_205_batch",
+  "validation_result": "PASS",
+  "validation_failed_checks": [],
+  "validation_warnings": [],
+  "closed_reference_catalog_registry": {
+    "registry_id": "ir202_registry_ir201_205_batch_20260526T132920Z",
+    "generated_at": "2026-05-26T13:29:20.667247+00:00",
+    "source_task_id": "ir201_205_batch",
+    "new_cycle_id": "IR71_PLUS_CYCLE_A",
+    "registry_entries": [
+      {
+        "preservation_item_id": "preserve_1",
+        "source_phase": "IR196",
+        "source_content": "Terminal Audit Seal Snapshot",
+        "catalog_status": "CLOSED_REFERENCE_CATALOG",
+        "change_detected": false
+      },
+      {
+        "preservation_item_id": "preserve_2",
+        "source_phase": "IR197",
+        "source_content": "Long-Term Reference Catalog Lock",
+        "catalog_status": "CLOSED_REFERENCE_CATALOG",
+        "change_detected": false
+      },
+      {
+        "preservation_item_id": "preserve_3",
+        "source_phase": "IR198",
+        "source_content": "Final Immutable Digest",
+        "catalog_status": "CLOSED_REFERENCE_CATALOG",
+        "change_detected": false
+      },
+      {
+        "preservation_item_id": "preserve_4",
+        "source_phase": "IR199",
+        "source_content": "Dry-Run Terminal Preservation Declaration",
+        "catalog_status": "CLOSED_REFERENCE_CATALOG",
+        "change_detected": false
+      },
+      {
+        "preservation_item_id": "preserve_5",
+        "source_phase": "IR200",
+        "source_content": "Phase 196-200 Completion Bundle",
+        "catalog_status": "CLOSED_REFERENCE_CATALOG",
+        "change_detected": false
+      }
+    ],
+    "entry_count": 5,
+    "all_closed_reference_catalog": true,
+    "unlock_eligible": false,
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "registry_hash": "2ec64811364c132dbac968666594a6212cbf852a679dac5c5bb58ab1c7669bb5",
+  "safety_gate_snapshot": {
+    "dry_run": "maintained",
+    "OBSERVE": "maintained",
+    "submission_execution_blocked": true,
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "network_transmission_executed": false,
+    "production_release": false,
+    "GitHub_push": "未実行"
+  }
+}

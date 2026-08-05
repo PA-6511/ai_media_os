@@ -1,0 +1,30 @@
+{
+  "fixture_version": 1,
+  "phase_id": "LS-NEW-BATCH-4G-1",
+  "source_type": "LOCAL_WORDPRESS_API_MOCK",
+  "request": {
+    "method": "GET",
+    "rest_path": "/wp-json/wp/v2/categories",
+    "query_parameters": {
+      "slug": "comic-new-release",
+      "per_page": 100,
+      "_fields": "id,slug,name,count"
+    },
+    "request_body": null,
+    "authorization_header_present": false
+  },
+  "response": {
+    "http_status": 200,
+    "content_type": "application/json",
+    "body": [
+      {
+        "id": 980001,
+        "slug": "comic-new-release",
+        "name": "コミック新刊",
+        "count": 0
+      }
+    ]
+  },
+  "production_usable": false,
+  "payload_injection_allowed": false
+}

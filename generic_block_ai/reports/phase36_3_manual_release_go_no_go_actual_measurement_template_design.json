@@ -1,0 +1,99 @@
+{
+  "phase_id": "36-3",
+  "phase_name": "Manual Release GO/NO-GO Actual Measurement Template Design",
+  "phase_japanese_name": "manual_release_go / NO_GO 実測判定テンプレート設計",
+  "purpose": "Design actual measurement template for manual_release_go / NO_GO while keeping manual release blocked until explicit grant.",
+  "layer": "manual_release_go_actual_measurement_layer",
+  "design_category": "reports_only",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "operation_transition_go_authorization": "NOT_GRANTED",
+    "production_reflection_go_authorization": "NOT_GRANTED",
+    "freeze_release_go_authorization": "NOT_GRANTED",
+    "execution_start_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "phase_36_3_scope": {
+    "scope_1_input_contract": {
+      "scope_id": "INPUT_CONTRACT",
+      "required_inputs": {
+        "phase36_2_final_safety_status": "SAFETY_CONFIRMED | NO_GO"
+      }
+    },
+    "scope_2_judgment_template_rules": {
+      "scope_id": "JUDGMENT_TEMPLATE_RULES",
+      "rules": {
+        "rule_P36J1": "Collect pre-measurement safety confirmations",
+        "rule_P36J2": "Define minimum GO conditions for manual release",
+        "rule_P36J3": "Define NO_GO and ABORT triggers",
+        "rule_P36J4": "If all minimum conditions met and no triggers, manual_release_status = GO_CANDIDATE",
+        "rule_P36J5": "If any condition not met or triggers present, manual_release_status = NO_GO"
+      }
+    },
+    "scope_3_report_structure": {
+      "scope_id": "REPORT_STRUCTURE",
+      "sections": {
+        "section_1_header": {
+          "report_id": "PHASE36_3_MANUAL_RELEASE_GO_NO_GO_JUDGMENT_<UTC_TIMESTAMP>",
+          "report_type": "manual_release_go_no_go_actual_measurement_template",
+          "generated_at_utc": "RFC3339",
+          "generated_by": "authority_identifier"
+        },
+        "section_2_pre_measurement_summary": {
+          "final_safety_status_from_P36_2": "SAFETY_CONFIRMED | NO_GO",
+          "minimum_condition_met": "PASS | FAIL"
+        },
+        "section_3_judgment_result": {
+          "manual_release_status": "GO_CANDIDATE | NO_GO",
+          "abort_triggered": "YES | NO"
+        },
+        "section_4_state_confirmation": {
+          "app_implementation_status": "NO_GO",
+          "tests_implementation_status": "NO_GO",
+          "production_status": "NO_GO",
+          "operation_transition_go_authorization": "NOT_GRANTED",
+          "production_reflection_go_authorization": "NOT_GRANTED",
+          "freeze_release_go_authorization": "NOT_GRANTED",
+          "execution_start_go_authorization": "NOT_GRANTED",
+          "actual_process_start_go_authorization": "NOT_GRANTED",
+          "manual_release_go_authorization": "NOT_GRANTED",
+          "changed_area": "reports only"
+        }
+      }
+    }
+  },
+  "phase_36_3_governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution",
+      "manual_release_execution",
+      "actual_process_start_execution"
+    ],
+    "state_invariants": {
+      "app_implementation_status": "NO_GO",
+      "tests_implementation_status": "NO_GO",
+      "production_status": "NO_GO",
+      "operation_transition_go_authorization": "NOT_GRANTED",
+      "production_reflection_go_authorization": "NOT_GRANTED",
+      "freeze_release_go_authorization": "NOT_GRANTED",
+      "execution_start_go_authorization": "NOT_GRANTED",
+      "actual_process_start_go_authorization": "NOT_GRANTED",
+      "manual_release_go_authorization": "NOT_GRANTED",
+      "changed_area": "reports only"
+    }
+  }
+}

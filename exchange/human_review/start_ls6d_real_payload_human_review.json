@@ -1,0 +1,47 @@
+{
+"phase": "LS-6D",
+"review_type": "HUMAN_REVIEW_REAL_DRAFT_PAYLOAD_PREVIEW",
+"review_status": "HUMAN_REVIEW_PASSED_FOR_REAL_DRAFT_PAYLOAD",
+"reviewed_by": "HUMAN",
+"reviewed_at": "2026-06-21T21:00:00+09:00",
+"target_payload": {
+"payload_preview": "exchange/logs/start_ls6c_real_draft_payload_preview.json",
+"payload_result": "exchange/logs/start_ls6c_real_draft_payload_rebuild_dry_run_result.json",
+"title_expected": "2.5次元の誘惑",
+"asin_expected": "B07X2G67B4",
+"post_status_expected": "draft"
+},
+"review_checklist": {
+"title_checked": true,
+"author_checked": true,
+"volume_checked": true,
+"release_date_checked": true,
+"asin_and_purchase_url_checked": true,
+"affiliate_tag_checked": true,
+"japanese_pr_disclosure_checked": true,
+"html_link_checked": true,
+"markdown_link_absent_checked": true,
+"category_and_tags_checked": true,
+"summary_not_raw_copy_checked": true,
+"no_sample_content_checked": true,
+"wordpress_write_not_allowed_in_this_phase_checked": true
+},
+"decision": {
+"human_review_passed": true,
+"manual_publish_allowed": false,
+"wordpress_write_allowed_next_phase": false,
+"requires_payload_fix": false
+},
+"current_phase_execution": {
+"wordpress_api_call_executed": false,
+"wordpress_write_executed": false,
+"wordpress_draft_creation_executed": false,
+"wordpress_existing_post_update_executed": false,
+"post119_update_executed": false,
+"publish_executed": false,
+"delete_executed": false,
+"approval_token_consumed": false
+},
+"note": "Human review completed for LS-6C real payload preview. This approval is only for proceeding to the next approval-gate phase, not for WordPress write or publish.",
+"human_confirmation_text": "I reviewed the LS-6C real payload preview and approve it for the next approval-gate phase only."
+}

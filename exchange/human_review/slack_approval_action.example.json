@@ -1,0 +1,18 @@
+{
+  "package_type": "slack_approval_action",
+  "action": "approved",
+  "decision_id": "phase6_7_dry_run_approval_001",
+  "reason": "human approved after review",
+  "source": "slack_button_dry_run",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "human_approval_required": true,
+  "production_status": "NO_GO",
+  "auto_post": false,
+  "auto_update": false,
+  "auto_delete": false,
+  "auto_export": false,
+  "wordpress_write_executed": false,
+  "slack_notification_executed": false,
+  "github_actions_triggered": false
+}

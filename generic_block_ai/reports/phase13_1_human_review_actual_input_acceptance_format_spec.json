@@ -1,0 +1,67 @@
+{
+  "_meta": {
+    "phase": "13-1",
+    "phase_name": "human review 実入力受入フォーマット固定",
+    "version": "1.0",
+    "created_date": "2026-05-12",
+    "status": "PASS_DESIGN_ONLY",
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only",
+    "description": "human review の実際の入力を受け入れる直前に、許容する入力フォーマットと必須フィールドを固定する。"
+  },
+  "references": [
+    "generic_block_ai/reports/phase10_1_phase9_human_review_execution_record.json",
+    "generic_block_ai/reports/phase12_1_human_review_completed_input_receipt_and_consistency_check.json",
+    "generic_block_ai/reports/phase12_9_phase12_safe_update_gate_completion_declaration.json"
+  ],
+  "accepted_format": {
+    "record_fields": [
+      "review_record.review_id",
+      "review_record.review_datetime",
+      "review_record.reviewer.name",
+      "review_record.reviewer.role",
+      "review_record.reviewer.signature",
+      "review_record.safety_boundary_verification",
+      "review_record.unresolved_items",
+      "review_record.review_comments"
+    ],
+    "field_constraints": {
+      "reviewer.role": "human_reviewer",
+      "safety_boundary_verification": "all true",
+      "unresolved_items": "empty array"
+    },
+    "forbidden_mutations": [
+      "production_status change",
+      "operation_mode change",
+      "auto_execute_allowed change",
+      "blocked_actions removal"
+    ]
+  },
+  "acceptance_template": {
+    "format_locked": true,
+    "input_accepted": false,
+    "reason": "実入力受領前のため、現時点では未受入。"
+  },
+  "blocked_actions": [
+    "core_ai_real_send",
+    "external_api_call",
+    "wordpress_operation",
+    "cron_registration",
+    "auto_execute",
+    "auto_post",
+    "auto_update",
+    "auto_delete",
+    "auto_export",
+    "production_execution"
+  ],
+  "phase_decision": {
+    "phase13_1_status": "PASS_DESIGN_ONLY",
+    "app_implementation_status": "NO_GO",
+    "tests_implementation_status": "NO_GO",
+    "note": "実入力受入フォーマットの設計のみ。実装許可は含まない。"
+  }
+}

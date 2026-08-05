@@ -1,0 +1,9 @@
+# LS-NEW-3 Candidate Evidence Dry Run Validation Report
+
+- generated_at: 2026-07-04T16:56:02.583245+00:00
+- validation_status: LSNEW3_CANDIDATE_EVIDENCE_DRY_RUN_VALIDATED_NO_EXECUTION
+- run_status: LSNEW3_CANDIDATE_EVIDENCE_DRY_RUN_PASSED_NO_EXECUTION
+- production_status: NO_EXECUTION_CANDIDATE_EVIDENCE_DRY_RUN_ONLY
+
+## Errors
+- none

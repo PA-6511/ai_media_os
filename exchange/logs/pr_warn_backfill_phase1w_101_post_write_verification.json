@@ -1,0 +1,12 @@
+{
+  "phase": "PR_WARN_BACKFILL_PHASE1W_POST_WRITE_VERIFICATION",
+  "status": "NOT_EXECUTED_ABORT_BEFORE_WRITE",
+  "target_post_id": 101,
+  "reason": "live write was not executed because pre-write base checks failed",
+  "post_write_checks": {
+    "executed": false
+  },
+  "snapshot_body_displayed": false,
+  "payload_body_displayed": false,
+  "secrets_displayed": false
+}

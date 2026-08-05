@@ -1,0 +1,121 @@
+{
+  "package_type": "wordpress_draft_phase8_4_publish_execution_protocol",
+  "phase": "Phase 8-4",
+  "label": "WordPress公開実行プロトコル設計",
+  "design_status": "DESIGN_ONLY",
+  "wordpress_post_enabled": false,
+  "real_write_enabled": false,
+  "production_status": "NO_GO",
+  "wordpress_publish_execution": "NO_GO",
+  "wordpress_write_executed": false,
+  "target_draft": {
+    "wordpress_draft_id": 110,
+    "expected_status": "draft",
+    "source_logs": [
+      "exchange/logs/phase7_6_wordpress_draft_creation_overall_completion_report.json",
+      "exchange/logs/phase8_3_publish_gate_design_validation_result.json"
+    ]
+  },
+  "protocol_purpose": "公開実行時の手順・承認トークン・制約・証跡・停止条件を定義する。Phase 8-4 では公開を実行しない。",
+  "protocol_steps": [
+    {
+      "id": "px_01",
+      "step": "Phase 8-3 publish gate が PASS であることを確認",
+      "mandatory": true
+    },
+    {
+      "id": "px_02",
+      "step": "Phase 8-2 decision が APPROVE であることを確認",
+      "mandatory": true
+    },
+    {
+      "id": "px_03",
+      "step": "対象下書きIDとステータス(draft)を再確認",
+      "mandatory": true
+    },
+    {
+      "id": "px_04",
+      "step": "公開承認トークンの一致と有効期限を確認",
+      "mandatory": true
+    },
+    {
+      "id": "px_05",
+      "step": "人間オペレーターによる最終目視確認を実施",
+      "mandatory": true
+    },
+    {
+      "id": "px_06",
+      "step": "1件限定公開であることを再確認",
+      "mandatory": true
+    },
+    {
+      "id": "px_07",
+      "step": "公開失敗時の即時中止条件を確認",
+      "mandatory": true
+    },
+    {
+      "id": "px_08",
+      "step": "公開後に証跡ログを保存する手順を確認",
+      "mandatory": true
+    },
+    {
+      "id": "px_09",
+      "step": "再ロック手順を確認",
+      "mandatory": true
+    },
+    {
+      "id": "px_10",
+      "step": "公開以外の操作（更新/削除/Export）が禁止であることを再確認",
+      "mandatory": true
+    }
+  ],
+  "approval_token_rules": {
+    "token_name": "APPROVE_PUBLISH_ONE_TIME_MANUAL_ONLY",
+    "token_value_required": "APPROVE_PUBLISH_ONE_TIME_MANUAL_ONLY",
+    "one_time_only": true,
+    "expires_minutes": 30,
+    "human_reviewer_required": true,
+    "publish_count_limit": 1,
+    "allowed_status_transition": "draft_to_publish_only"
+  },
+  "safety_constraints": {
+    "allow_publish_only": true,
+    "allow_update": false,
+    "allow_delete": false,
+    "allow_export": false,
+    "allow_bulk_operations": false,
+    "allow_cron_automation": false
+  },
+  "abort_conditions": [
+    "draft_id_mismatch",
+    "status_not_draft",
+    "token_missing_or_expired",
+    "reviewer_not_human",
+    "publish_response_not_2xx",
+    "unexpected_multiple_publish_attempt",
+    "safety_constraint_violation"
+  ],
+  "forbidden_actions_in_phase8_4": [
+    "wordpress_rest_publish_post",
+    "wordpress_rest_update_existing_post",
+    "wordpress_rest_delete_post",
+    "wordpress_rest_bulk_post",
+    "external_export",
+    "cron_automation",
+    "github_actions_trigger",
+    "slack_production_notification",
+    "vps_self_builder_execution",
+    "env_secret_auto_edit"
+  ],
+  "protocol_result": {
+    "description": "Phase 8-4 は公開実行プロトコル設計のみ。READYでも公開操作は NO_GO 維持。",
+    "result_values": [
+      "PUBLISH_PROTOCOL_DESIGN_READY",
+      "PUBLISH_PROTOCOL_NEEDS_FIX",
+      "PUBLISH_PROTOCOL_BLOCKED"
+    ],
+    "current_result": "PUBLISH_PROTOCOL_DESIGN_READY"
+  },
+  "next_step": "phase8_5_manual_publish_rehearsal_design_only",
+  "note": "Design-only phase. Keep publish NO_GO."
+}

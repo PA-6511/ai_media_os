@@ -1,0 +1,61 @@
+{
+  "phase": "AB-T5",
+  "final_status": "PASS_DESIGN_ONLY_NO_EXECUTION",
+  "execution_mode": "DESIGN_ONLY",
+  "production_status": "NO_GO",
+  "safety_state": "DRY_RUN_ONLY",
+  "test_selection_rules_loaded": true,
+  "limited_test_plan_generated": true,
+  "target_test_files": [
+    "tests/test_build_auto_builder_copilot_prompt_compression.py"
+  ],
+  "selected_test_commands": [
+    "python3 -m json.tool config/auto_builder_limited_test_selector_policy.json >/dev/null",
+    "python3 -m py_compile scripts/select_auto_builder_limited_tests.py",
+    "pytest -q tests/test_build_auto_builder_copilot_prompt_compression.py"
+  ],
+  "selected_test_command_count": 3,
+  "full_pytest_blocked": true,
+  "network_tests_blocked": true,
+  "wordpress_tests_blocked": true,
+  "credential_tests_blocked": true,
+  "git_operations_blocked": true,
+  "forbidden_operations_all_blocked": true,
+  "next_phase": {
+    "phase": "AB-T6",
+    "name": "Copilot Usage Saving Evidence Pack",
+    "execution_allowed": false
+  },
+  "ready_for_ab_t6": true,
+  "limited_test_plan": {
+    "target_files": [
+      "scripts/build_auto_builder_copilot_prompt_compression.py",
+      "tests/test_build_auto_builder_copilot_prompt_compression.py",
+      "scripts/__init__.py",
+      "scripts/audit_phase8_12_no_secret_leak.py",
+      "scripts/build_ebook_trial_adapter_3_completion_payload.py"
+    ],
+    "selected_tests": [
+      "python3 -m json.tool config/auto_builder_limited_test_selector_policy.json >/dev/null",
+      "python3 -m py_compile scripts/select_auto_builder_limited_tests.py",
+      "pytest -q tests/test_build_auto_builder_copilot_prompt_compression.py"
+    ],
+    "why_these_tests": "Policy json validation, script compile validation, and one targeted pytest only.",
+    "blocked_commands": [
+      "full pytest sweep",
+      "network commands",
+      "wordpress commands",
+      "credential/env reads",
+      "git commit/push"
+    ],
+    "safety_confirmation": {
+      "no_full_pytest": true,
+      "no_network": true,
+      "no_wordpress": true,
+      "no_credential_read": true,
+      "no_git_operation": true
+    }
+  },
+  "errors": [],
+  "generated_at": "2026-07-01T13:42:45.031723+00:00"
+}

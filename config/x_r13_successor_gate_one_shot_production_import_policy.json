@@ -1,0 +1,47 @@
+{
+  "candidate": {
+    "item_type": "tankobon",
+    "source_name": "rakuten_kobo",
+    "store_item_id": "4310000887411",
+    "store_name": "rakuten_kobo",
+    "title": "メダリスト",
+    "volume_label": "第15巻"
+  },
+  "execution_default": "BLOCKED",
+  "phase": "X-R13-ONE-SHOT-PRODUCTION-IMPORT-POLICY",
+  "policy_digest_sha256": "fa497600fe2c7c787d4235e5aebcc9fc04a4ac3d3d7deb21bfd1f9c5ef729e89",
+  "policy_version": "1.0.0",
+  "production_status": "NO_GO",
+  "runtime_contract": {
+    "approval_digest_field": "x_r13_production_import_execution_approval_certificate_digest_sha256",
+    "gate_digest_field": "x_r13_reconciled_production_import_gate_digest_sha256",
+    "required_approval_state": "APPROVED_FOR_X_R13_MEDALIST_15_PRODUCTION_IMPORT_EXECUTION_ONLY",
+    "required_approval_status": "PASS_X_R13_MEDALIST_15_PRODUCTION_IMPORT_EXECUTION_APPROVAL_ISSUED",
+    "required_gate_state": "RECONCILED_CLOSED_PENDING_POST_RECONCILIATION_HUMAN_REVIEW",
+    "required_gate_status": "READY_X_R13_MEDALIST_15_RECONCILED_PRODUCTION_IMPORT_GATE_CLOSED_PENDING_POST_RECONCILIATION_HUMAN_REVIEW"
+  },
+  "safety": {
+    "approval_reuse_allowed": false,
+    "automatic_retry_allowed": false,
+    "candidate_count_limit": 1,
+    "credential_read_allowed": false,
+    "database_sha_precondition_required": true,
+    "duplicate_source_item_check_required": true,
+    "duplicate_store_item_check_required": true,
+    "external_api_call_allowed": false,
+    "failure_action": "STOP",
+    "manual_raw_sql_allowed": false,
+    "nonempty_wal_block_required": true,
+    "post_write_foreign_key_check_required": true,
+    "post_write_integrity_check_required": true,
+    "reexecution_allowed": false,
+    "rollback_on_failure_required": true,
+    "temporary_database_copy_allowed": false,
+    "transaction_required": true,
+    "x_r11_runner_reexecution_allowed": false
+  },
+  "source_binding": {
+    "production_import_gate_digest_sha256": "eea4347b90722c7ee405f21fb0443aae1c11406943267f373d85323d18303c1c",
+    "source_interface_digest_sha256": "bd05be7922445dd5e8a5b3212fd7e37d7eb45ff126b766524e43784ccecd962d"
+  }
+}

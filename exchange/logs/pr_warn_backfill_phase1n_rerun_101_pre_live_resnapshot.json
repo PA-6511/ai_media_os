@@ -1,0 +1,40 @@
+{
+  "phase": "PR_WARN_BACKFILL_PHASE1N",
+  "mode": "READ_ONLY_GET",
+  "status": "PASS_PRE_LIVE_RESNAPSHOT",
+  "target_post_id": 101,
+  "fetched_post_id": 101,
+  "title": "呪術廻戦は何巻まで出てる？最新巻・関連情報まとめ",
+  "status_from_wp": "draft",
+  "link": "https://hoshido.jp/?p=101",
+  "slug": "manga_0001-volume-guide-13",
+  "modified": "2026-05-01T14:14:24",
+  "categories": [
+    4
+  ],
+  "tags": [
+    9,
+    8,
+    5,
+    6,
+    7
+  ],
+  "featured_media": 0,
+  "content": "<h1>呪術廻戦は何巻まで出てる？最新巻・関連情報まとめ</h1>\n<h2>結論</h2><p>この記事では「呪術廻戦 何巻まで」について、最新の巻数情報と配信状況を整理します。</p>\n<div class=\"release-alert-box\"><h2>最新巻速報</h2><p>最新刊は<strong>25巻</strong>です。</p><p>発売日 / 配信日: <strong>2026-05-01</strong></p><p>現在の配信状態: <strong>配信中</strong></p><p class=\"release-updated-notice\">※ 新刊情報が更新されました。最新情報を優先して確認してください。</p></div>\n<h2>前巻からの更新ポイント</h2><p>前巻: <strong>25巻</strong> → 最新巻: <strong>25巻</strong></p><p>前巻発売日: 2026-04-30 → 最新発売日: 2026-05-01</p>\n<h2>今すぐ確認する方法</h2><p>最新の巻数情報や購入対象はストアページで確認してください。</p><p>全巻まとめ買いを検討している方は全巻情報もあわせてご確認ください。</p>\n<div class=\"related-links\"><h2>関連記事</h2><p>全巻情報・最新巻情報・セール情報もあわせて確認できます。</p></div>\n<h2>購入リンク</h2><p>気になる巻は電子書籍ストアで確認してください。</p>\n<div class=\"cta-box release-updated\"><p>新刊情報が更新されました。最新巻を今すぐチェックしたい方はストアページをご確認ください。すぐに続きを読みたい方は最新巻リンクを確認してください。</p></div><div class=\"journey-box release-journey-box\"><h2>新刊をチェックするならこちら</h2><p class=\"release-journey-meta\">最新巻: 25巻 / 配信日: 2026-05-01 / 配信状態: available</p><p>新刊情報が更新されたため、最新情報を優先して確認してください。新刊情報が更新されたため、最新情報を優先して確認してください。</p><ul><li><a href=\"/related/呪術廻戦-全巻\">呪術廻戦 全巻</a></li><li><a href=\"/related/呪術廻戦-最新巻\">呪術廻戦 最新巻</a></li><li><a href=\"/related/呪術廻戦-セール\">呪術廻戦 セール</a></li></ul></div>",
+  "content_hash": "fed3e62ba7fd5baad3da128e89afb7d03841bab53c49189ff671be143f8f5adb",
+  "title_hash": "e6a4224bbd59d02deee5418f429a02b6f18e04c6146c1e8bd376b5d342835545",
+  "content_length": 1177,
+  "fetched_at": "2026-06-20T13:07:13.269677+00:00",
+  "valid_until": "2026-06-20T13:37:13.269677+00:00",
+  "valid_minutes": 30,
+  "source": "WordPress GET only",
+  "compared_to_rollback_snapshot_path": "exchange/logs/pr_warn_backfill_phase1g_101_pre_live_snapshot.json",
+  "rollback_snapshot_content_hash": "fed3e62ba7fd5baad3da128e89afb7d03841bab53c49189ff671be143f8f5adb",
+  "rollback_snapshot_modified": "2026-05-01T14:14:24",
+  "modified_matches_rollback_snapshot": true,
+  "content_hash_matches_rollback_snapshot": true,
+  "wordpress_read_executed": true,
+  "wordpress_write_executed": false,
+  "live_execution_executed": false,
+  "update_count": 0
+}

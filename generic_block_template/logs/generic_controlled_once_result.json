@@ -1,0 +1,21 @@
+{
+  "block_id": "sample_block",
+  "status": "PASS",
+  "mode": "DRY_RUN",
+  "production_status": "NO_GO",
+  "result": "simulated_execution_only",
+  "safety_guards": {
+    "external_api_called": false,
+    "external_network_called": false,
+    "wordpress_called": false,
+    "publish_executed": false,
+    "update_executed": false,
+    "delete_executed": false,
+    "export_executed": false
+  },
+  "created_at": "2026-06-13T06:30:02.627587+00:00",
+  "target_block": "sample_block",
+  "run_type": "CONTROLLED_ONCE",
+  "policy_enforced": true,
+  "evidence_recorded": true
+}

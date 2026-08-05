@@ -1,0 +1,71 @@
+{
+  "phase": "N-2",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "human_approval_required": true,
+  "wordpress_write_executed": false,
+  "wordpress_post_created": false,
+  "external_state_change": false,
+  "executor_action_allowed": false,
+  "network_observation_only": true,
+  "communication_test_only": true,
+  "checked_at": "2026-05-31T13:19:48.172231+00:00",
+  "status": "PASS",
+  "endpoint_url": "https://example.com/wp-json/wp/v2",
+  "method": "HEAD",
+  "iterations": 5,
+  "success_rate_percent": 100.0,
+  "success_count": 5,
+  "fail_count": 0,
+  "average_response_time_ms": 23.05,
+  "max_response_time_ms": 28.34,
+  "min_response_time_ms": 17.84,
+  "samples": [
+    {
+      "index": 0,
+      "response_time_ms": 28.34,
+      "http_status": 404,
+      "timeout": false,
+      "retry_count": 0,
+      "status": "PASS",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "index": 1,
+      "response_time_ms": 24.02,
+      "http_status": 404,
+      "timeout": false,
+      "retry_count": 0,
+      "status": "PASS",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "index": 2,
+      "response_time_ms": 20.48,
+      "http_status": 404,
+      "timeout": false,
+      "retry_count": 0,
+      "status": "PASS",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "index": 3,
+      "response_time_ms": 17.84,
+      "http_status": 404,
+      "timeout": false,
+      "retry_count": 0,
+      "status": "PASS",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "index": 4,
+      "response_time_ms": 24.55,
+      "http_status": 404,
+      "timeout": false,
+      "retry_count": 0,
+      "status": "PASS",
+      "error": "HTTP Error 404: Not Found"
+    }
+  ]
+}

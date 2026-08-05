@@ -1,0 +1,22 @@
+# LS-NEW-BATCH-4G-2E-RECOVERY-M16
+
+- Status: `PASS_WORDPRESS_PUBLICATION_ONE_SHOT_AUTHORIZATION_GATE_FIXED_NO_NETWORK_NO_WORDPRESS`
+- Decision: `WORDPRESS_PUBLICATION_AUTHORIZATION_RECORDED_AWAITING_SEPARATE_PREFLIGHT_AND_EXPLICIT_EXECUTE_NOW_CONFIRMATION`
+- WordPress post ID: `192`
+- Authorization ID: `WORDPRESS_PUBLICATION_ONE_SHOT_AUTHORIZATION_V1`
+- Authorization single use: `true`
+- Authorization consumed: `false`
+- Authorization reuse allowed: `false`
+- Automatic retry allowed: `false`
+- Automatic reissue allowed: `false`
+- Maximum publish count: `1`
+- Explicit execute-now confirmation required: `true`
+- Network connection performed: `false`
+- WordPress access performed: `false`
+- WordPress write performed: `false`
+- WordPress publish performed: `false`
+- Credential accessed: `false`
+- Production status: `NO_GO`
+- Ready for publication preflight: `true`
+- Ready for publication execute-now gate: `false`
+- Ready for WordPress publish: `false`

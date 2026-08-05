@@ -1,0 +1,36 @@
+{
+  "phase": "Phase 8-23",
+  "name": "pre_rerun_safety_snapshot_policy",
+  "policy_status": "SNAPSHOT_ONLY",
+  "production_status": "NO_GO",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "human_approval_required": true,
+  "snapshot_is_execution_permission": false,
+  "commands_executed_in_this_phase": false,
+  "wordpress_api_call_allowed": false,
+  "wordpress_write_executed": false,
+  "publish_allowed": false,
+  "target_item_count": 1,
+  "required_evidence": [
+    "exchange/logs/phase8_21_manual_credential_completion_checklist_result.json",
+    "exchange/logs/phase8_22_credential_ready_path_switch_result.json"
+  ],
+  "required_phase8_21_status": "PASS_CHECKLIST_ONLY",
+  "ready_status": "CREDENTIAL_READY_PATH_AVAILABLE_NO_SECRET_OUTPUT",
+  "not_ready_status": "CREDENTIAL_READY_PATH_NOT_AVAILABLE_MISSING_CREDENTIALS",
+  "snapshot_required_flags": {
+    "auto_post": false,
+    "auto_update": false,
+    "auto_delete": false,
+    "auto_export": false,
+    "publish_allowed": false,
+    "wordpress_api_call_allowed": false,
+    "wordpress_write_executed": false,
+    "bulk_execution": false,
+    "external_write": false,
+    "vps_self_builder_execution": false,
+    "commands_executed_in_this_phase": false
+  },
+  "allowed_next_step": "Phase 8-24 operator GO/NO-GO decision for manual rerun sequence"
+}

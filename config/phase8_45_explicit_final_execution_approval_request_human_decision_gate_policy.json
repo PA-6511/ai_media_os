@@ -1,0 +1,49 @@
+{
+  "phase": "Phase 8-45",
+  "name": "explicit_final_execution_approval_request_human_decision_gate_policy",
+  "policy_status": "FINAL_EXECUTION_APPROVAL_REQUEST_AND_HUMAN_DECISION_ONLY",
+  "production_status": "NO_GO",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "human_approval_required": true,
+  "human_decision_gate_is_execution_permission": false,
+  "execution_allowed": false,
+  "actual_go_decision_issued": false,
+  "commands_executed_in_this_phase": false,
+  "phase8_6_to_8_10_executed": false,
+  "wordpress_api_call_allowed": false,
+  "wordpress_write_executed": false,
+  "wordpress_draft_created": false,
+  "publish_allowed": false,
+  "secret_values_output": false,
+  "target_item_count": 1,
+  "required_approval_label": "APPROVED_FOR_ONE_SHOT_DRAFT_CREATION_ONLY",
+  "required_evidence": [
+    "exchange/logs/phase8_44_final_one_shot_draft_creation_execution_preflight_result.json"
+  ],
+  "required_statuses": {
+    "exchange/logs/phase8_44_final_one_shot_draft_creation_execution_preflight_result.json": [
+      "PHASE8_44_FINAL_PREFLIGHT_READY_NO_EXECUTION"
+    ]
+  },
+  "required_review_acknowledgements": [
+    "acknowledged_human_decision_gate_only",
+    "acknowledged_no_wordpress_api_call",
+    "acknowledged_no_wordpress_write",
+    "acknowledged_no_draft_creation",
+    "acknowledged_execution_allowed_false",
+    "acknowledged_actual_go_decision_issued_false",
+    "acknowledged_secret_values_output_false",
+    "acknowledged_approval_label_consumed_false_in_phase8_45"
+  ],
+  "allowed_decisions": [
+    "REQUEST_FINAL_APPROVAL_REVIEW_ONLY",
+    "APPROVED_FOR_ONE_SHOT_DRAFT_CREATION_ONLY",
+    "REQUEST_FIX",
+    "REJECT",
+    "ABORT"
+  ],
+  "allowed_next_step_if_request_created": "Collect explicit human final decision record while keeping NO_GO and no-execution",
+  "allowed_next_step_if_granted": "Proceed to Phase 8-46 one-shot draft creation execution with separate execution runner consuming approval label",
+  "allowed_next_step_if_fix_required": "Keep NO_GO and fix evidence or decision mismatches before execution consideration"
+}

@@ -1,0 +1,17 @@
+{
+  "total_observations": 1,
+  "kpis": {
+    "legal_warn_rate": 1.0,
+    "disclosure_missing_rate": 1.0,
+    "api_terms_pending_rate": 1.0,
+    "secret_abort_count": 0,
+    "human_legal_review_rate": 1.0
+  },
+  "status_counts": {
+    "LEGAL_REVIEW_REQUIRED": 1
+  },
+  "risk_id_counts": {
+    "AFFILIATE_DISCLOSURE_REQUIRED": 1,
+    "API_TERMS_CHECK_REQUIRED": 1
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "phase": "PR_WARN_BACKFILL_PHASE1O_REFRESH_RERUN3",
+  "mode": "ACTIVE_APPROVAL_REFERENCE_REFRESH_ONLY",
+  "status": "PASS_ACTIVE_APPROVAL_REFRESHED_RERUN3_NO_WRITE",
+  "target_post_id": 101,
+  "approval_state": "REFRESHED_NOT_APPROVED",
+  "approved": false,
+  "wordpress_live_write_allowed": false,
+  "created_for_execution": false,
+  "required_pre_live_snapshot_path": "exchange/logs/pr_warn_backfill_phase1n_rerun3_101_pre_live_resnapshot.json",
+  "required_pre_live_snapshot_result_path": "exchange/logs/pr_warn_backfill_phase1n_rerun3_101_pre_live_resnapshot_result.json",
+  "pre_live_snapshot_valid_until": "2026-06-20T14:52:48.696778+00:00",
+  "valid_until_checked_at": "2026-06-20T14:28:09.045788+00:00",
+  "pre_live_snapshot_expired_at_refresh": false,
+  "resnapshot_required_before_live": false,
+  "max_live_updates": 1,
+  "allowed_changed_fields": [
+    "content"
+  ],
+  "wordpress_read_executed": false,
+  "wordpress_write_executed": false,
+  "live_execution_executed": false,
+  "update_count": 0,
+  "approved_true_created": false,
+  "template_modified": false,
+  "snapshot_modified": false,
+  "snapshot_body_displayed": false,
+  "payload_body_displayed": false,
+  "secrets_displayed": false,
+  "next_required_phase": "Phase 1O-REFRESH-FIX"
+}

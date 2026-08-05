@@ -1,0 +1,53 @@
+{
+  "block_id": "ranking_dry_run_block",
+  "status": "PASS",
+  "mode": "DRY_RUN",
+  "production_status": "NO_GO",
+  "reason": "ranking preview generated from fixture input",
+  "policy_path": "/home/deploy/ai_media_os/config/ranking_policy.json",
+  "input_source": "/home/deploy/ai_media_os/generic_block_template/fixtures/ranking_sample_items.json",
+  "input_status": "PASS",
+  "input_item_count": 3,
+  "weights": {
+    "new_release_weight": 0.35,
+    "sale_weight": 0.3,
+    "author_weight": 0.2,
+    "publisher_weight": 0.15
+  },
+  "ranking_preview": [
+    {
+      "item_id": "sample-1",
+      "title": "新刊セール注目作A",
+      "new_release_score": 1.0,
+      "sale_score": 0.9,
+      "author_score": 0.6,
+      "publisher_score": 0.5,
+      "ranking_score": 0.815,
+      "rank": 1
+    },
+    {
+      "item_id": "sample-3",
+      "title": "話題作C",
+      "new_release_score": 0.8,
+      "sale_score": 0.5,
+      "author_score": 0.7,
+      "publisher_score": 0.6,
+      "ranking_score": 0.66,
+      "rank": 2
+    },
+    {
+      "item_id": "sample-2",
+      "title": "定番人気作B",
+      "new_release_score": 0.4,
+      "sale_score": 0.3,
+      "author_score": 0.9,
+      "publisher_score": 0.8,
+      "ranking_score": 0.53,
+      "rank": 3
+    }
+  ],
+  "execution_enabled": false,
+  "external_api_called": false,
+  "external_network_called": false,
+  "created_at": "2026-06-13T06:30:02.628191+00:00"
+}

@@ -1,0 +1,29 @@
+{
+  "phase": "AB-T2",
+  "final_status": "PASS_DESIGN_ONLY_NO_EXECUTION",
+  "execution_mode": "DESIGN_ONLY",
+  "production_status": "NO_GO",
+  "safety_state": "DRY_RUN_ONLY",
+  "max_files_per_ai_context": 5,
+  "max_lines_per_file_excerpt": 120,
+  "generated_prompt_template_exists": true,
+  "forbidden_operations_all_blocked": true,
+  "next_phase": {
+    "phase": "AB-T3",
+    "name": "Related File Selector",
+    "execution_allowed": false
+  },
+  "ready_for_ab_t3": true,
+  "target_file_list": [
+    "config/auto_builder_copilot_prompt_compression_policy.json",
+    "scripts/build_auto_builder_copilot_prompt_compression.py",
+    "tests/test_build_auto_builder_copilot_prompt_compression.py",
+    "scripts/validate_auto_builder_token_efficiency_policy.py",
+    "scripts/validate_auto_builder_token_budget_and_snapshot_digest.py"
+  ],
+  "bounded_diff_instruction": "Use minimal diff only and avoid unrelated refactors.",
+  "limited_pytest_instruction": "pytest -q tests/test_build_auto_builder_copilot_prompt_compression.py",
+  "compressed_prompt_template": "---\nTask:\nImplement only the smallest safe design-only patch for the requested phase.\n\nContext Budget:\n- Max files: 5\n- Max lines per file excerpt: 120\n\nSafety Constraints:\n- DRY_RUN only\n- NO_GO production status\n- No WordPress write\n- No credential read/output\n- No external API call\n- No destructive operation\n\nRelevant Files:\n- config/auto_builder_copilot_prompt_compression_policy.json\n- scripts/build_auto_builder_copilot_prompt_compression.py\n- tests/test_build_auto_builder_copilot_prompt_compression.py\n- scripts/validate_auto_builder_token_efficiency_policy.py\n- scripts/validate_auto_builder_token_budget_and_snapshot_digest.py\n\nInstructions:\n- Use minimal diff only\n- Do not refactor unrelated code\n- Do not modify production execution gates\n- Do not read or output secrets\n- Return patch proposal only\n- Include limited pytest command suggestion\n\nExpected Output:\n- Changed files\n- Patch summary\n- Safety confirmation\n- Suggested limited tests\n---",
+  "errors": [],
+  "generated_at": "2026-07-01T13:24:39.417365+00:00"
+}

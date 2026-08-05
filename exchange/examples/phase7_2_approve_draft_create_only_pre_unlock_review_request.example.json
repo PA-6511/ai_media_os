@@ -1,0 +1,47 @@
+{
+  "request_id": "phase7_2_pre_unlock_review_request_001",
+  "phase": "Phase 7-2",
+  "decision_token": "APPROVE_DRAFT_CREATE_ONLY",
+  "review_mode": "PRE_UNLOCK_DESIGN_REVIEW_ONLY",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "target_item_count": 1,
+  "single_item_lock": true,
+  "human_approval_file": {
+    "exists": true,
+    "path": "exchange/human_review/phase7_2_approve_draft_create_only_pre_unlock_review.example.json",
+    "review_status": "PENDING_REVIEW",
+    "approved": false
+  },
+  "reviewer_verification": {
+    "exists": true,
+    "reviewer_id": "reviewer_sample",
+    "identity_verified": true
+  },
+  "decision_expiry": {
+    "exists": true,
+    "expired": false
+  },
+  "freeze_conditions": {
+    "exists": true,
+    "freeze_on_wordpress_write_attempt": true,
+    "freeze_on_bulk_execution": true,
+    "freeze_on_external_write": true,
+    "freeze_on_missing_preflight": true
+  },
+  "safety_flags": {
+    "production_status": "NO_GO",
+    "wordpress_draft_creation": "NO_GO",
+    "wordpress_write_executed": false,
+    "approve_draft_create_only_currently_allowed": false,
+    "unlock_in_this_phase": false,
+    "auto_post": false,
+    "auto_update": false,
+    "auto_delete": false,
+    "auto_export": false,
+    "publish_allowed": false,
+    "bulk_execution": false,
+    "external_write": false,
+    "vps_self_builder_execution": false
+  }
+}

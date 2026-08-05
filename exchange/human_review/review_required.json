@@ -1,0 +1,47 @@
+{
+  "package_type": "human_review_request",
+  "source": "exchange_connection_dry_run",
+  "target": "human_operator",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "human_approval_required": true,
+  "review_status": "REQUIRED",
+  "overall_status": "WARN",
+  "review_reason": "overall_status=WARN; human review is required before any next step.",
+  "review_options": [
+    "APPROVE_DRY_RUN_ONLY",
+    "REQUEST_FIX",
+    "REJECT",
+    "ABORT"
+  ],
+  "auto_post": false,
+  "auto_update": false,
+  "auto_delete": false,
+  "auto_export": false,
+  "wordpress_write_executed": false,
+  "slack_notification_executed": false,
+  "github_actions_triggered": false,
+  "summary": {
+    "result_count": 3,
+    "statuses": [
+      {
+        "package_type": "decision_package",
+        "status": "PASS",
+        "issues": []
+      },
+      {
+        "package_type": "patch_proposal",
+        "status": "PASS",
+        "issues": []
+      },
+      {
+        "package_type": "test_report",
+        "status": "WARN",
+        "issues": []
+      }
+    ]
+  },
+  "source_validation_result": "/home/deploy/ai_media_os/exchange/logs/validation_result.json",
+  "created_at": "2026-05-05T04:59:54.357418+00:00",
+  "next_step": "human_operator_decision"
+}

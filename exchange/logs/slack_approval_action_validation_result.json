@@ -1,0 +1,16 @@
+{
+  "package_type": "slack_approval_action_validation_result",
+  "status": "PASS",
+  "reason": "slack approval action is valid",
+  "action": "approved",
+  "decision_id": "phase6_7_dry_run_approval_001",
+  "review_reason": "human approved after review",
+  "source": "slack_button_dry_run",
+  "next_step": "record_approval_evidence",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "human_approval_required": true,
+  "production_status": "NO_GO",
+  "created_at": "2026-05-24T04:15:19.411195+00:00",
+  "input_path": "exchange/human_review/slack_approval_action.example.json"
+}

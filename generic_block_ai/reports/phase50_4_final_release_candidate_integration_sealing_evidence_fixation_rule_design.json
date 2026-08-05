@@ -1,0 +1,35 @@
+{
+  "_meta": {
+    "phase": "50-4",
+    "phase_name": "発効・実処理開始層",
+    "layer": "証跡固定設計層 (evidence fixation design layer)",
+    "title": "最終解除候補の統合封印結果の証跡固定ルール設計",
+    "created": "2026-05-14",
+    "author": "governance-framework",
+    "status": "PASS_DESIGN_ONLY",
+    "reports_only": true
+  },
+  "scope": "Phase 50-2 で統合封印された manual_release_go / actual_process_start_go の最終解除候補について，その封印結果を改ざん不可の証跡として固定するルールを設計層で定義する。証跡内容：(1) 各解除候補の封印状態（NOT_GRANTED）・封印時刻・署名者，(2) 封印設計ファイル・監査リストとの整合性，(3) 改ざん不可性の担保（タイムスタンプ・署名等），(4) 証跡固定後の状態変更不可ルール。",
+  "governance": {
+    "production_status": "NO_GO",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "report": {
+    "description": "Phase 50-4 では，Phase 50-2 で統合封印された manual_release_go / actual_process_start_go の最終解除候補について，その封印結果を改ざん不可の証跡として固定するルールを設計層で定義する。(1) 各解除候補の封印状態（NOT_GRANTED）・封印時刻・署名者を記録，(2) 封印設計ファイル・監査リストとの整合性を確認，(3) 改ざん不可性の担保（タイムスタンプ・署名等），(4) 証跡固定後の状態変更不可ルール。これらは全て reports-only で実装され，実処理開始許可は含まれない。",
+    "invariants": [
+      "NO_GO 維持：証跡固定時点で production_status = 'NO_GO' を維持",
+      "NOT_GRANTED 維持：manual_release_go / actual_process_start_go の NOT_GRANTED 状態を証跡として固定",
+      "改ざん不可：証跡はタイムスタンプ・署名等で改ざん不可性を担保",
+      "証跡固定後の変更不可：証跡固定後は状態変更不可",
+      "reports only：全証跡固定ルールは設計層の報告書形式で実施"
+    ],
+    "actions": [],
+    "notes": [
+      "Phase 50-4 は設計層のみで実装される（reports-only）",
+      "実処理開始許可は含まれない",
+      "証跡固定後の状態変更は一切不可"
+    ]
+  }
+}

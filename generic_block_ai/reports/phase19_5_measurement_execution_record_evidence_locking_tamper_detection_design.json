@@ -1,0 +1,213 @@
+{
+  "phase_id": "19-5",
+  "phase_name": "Measurement Execution Record Evidence Locking and Tamper Detection Rules Design",
+  "phase_japanese_name": "測定実行記録の証跡固定・改ざん検出ルール設計",
+  "purpose": "Design evidence locking and tamper detection rules for Phase 19-1 and 19-2 measurement execution records, extending Phase 18-4 evidence locking principles to cover completed measurement execution records as immutable audit evidence",
+  "layer": "measurement_execution_record_layer",
+  "design_category": "reports_only",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only"
+  },
+  "phase_19_5_scope": {
+    "scope_1_execution_record_locking_procedure": {
+      "scope_id": "RECORD_LOCKING_PROCEDURE",
+      "description": "Design the locking procedure applied to completed and format-validated Phase 19-1 and 19-2 records",
+      "locking_steps": {
+        "step_1_confirm_format_validation_pass": {
+          "step_id": "CONFIRM_FORMAT_PASS",
+          "action": "Confirm Phase 19-4 format validation has passed for the record being locked",
+          "prerequisite": "FORMAT_VALIDATION_PASS from Phase 19-4",
+          "failure_if_not_met": "Do not lock; route to Phase 19-6 return procedure"
+        },
+        "step_2_canonical_serialization": {
+          "step_id": "CANONICAL_SERIALIZE",
+          "action": "Serialize complete execution record to canonical JSON for hashing",
+          "serialization_rules": [
+            "All JSON object keys in alphabetical order (recursive)",
+            "No extra whitespace (compact output)",
+            "All timestamps in RFC 3339 UTC format",
+            "All hash values in lowercase hexadecimal",
+            "All signature values in standard Base64 (no linebreaks)"
+          ],
+          "output": "canonical_record_json (string)"
+        },
+        "step_3_compute_record_evidence_hash": {
+          "step_id": "COMPUTE_RECORD_HASH",
+          "action": "Compute SHA-256+ hash of canonical_record_json",
+          "hash_algorithm": "SHA-256+ (minimum; SHA-3-256 or Blake2b-256 preferred)",
+          "hash_input": "canonical_record_json from step_2",
+          "hash_output": "record_evidence_hash (hexadecimal, 64+ characters)",
+          "note": "This hash covers sections 1-5 of the execution record in full"
+        },
+        "step_4_create_record_lock_entry": {
+          "step_id": "CREATE_LOCK_ENTRY",
+          "action": "Create immutable lock entry for the execution record",
+          "lock_entry_structure": {
+            "lock_id": "RECLOCK_PHASE15_[7|8]_<UTC_TIMESTAMP>_<RANDOM_NONCE>",
+            "locked_record_type": "phase_19_[1|2]_measurement_execution_record",
+            "locked_execution_record_id": "EXEC_PHASE15_[7|8]_... (from section_1)",
+            "locked_phase": "15-7 or 15-8",
+            "timestamp_locked_utc": "RFC 3339",
+            "record_evidence_hash_sha256_plus": "hexadecimal hash from step_3",
+            "measurement_result_summary": {
+              "integrated_decision_result": "GO | NO_GO (Phase 19-1 only)",
+              "receiver_validator_permission_result": "EFFECTIVE | NOT_EFFECTIVE (Phase 19-2 only)"
+            },
+            "authority_lock_signature": {
+              "algorithm": "RSA-2048 or ECDSA-256",
+              "signature_value": "Base64 of sign(lock_id + record_hash + timestamp + measurement_result_summary)",
+              "signer_authority_id": "identifier of authority",
+              "signature_valid_from_utc": "RFC 3339",
+              "signature_valid_to_utc": "RFC 3339",
+              "revocation_status": "ACTIVE | REVOKED | EXPIRED"
+            },
+            "secondary_tamper_checksum": "SHA-256+(lock_id + authority_lock_signature.signature_value + timestamp_locked_utc)"
+          }
+        },
+        "step_5_append_to_audit_trail": {
+          "step_id": "APPEND_TO_AUDIT_TRAIL",
+          "action": "Append lock entry to immutable audit trail (append-only array)",
+          "storage_location": "generic_block_ai/reports/audit_trail_measurement_execution_records.json",
+          "storage_constraint": "Append-only; never modify or delete existing entries",
+          "integrity_verify": "Re-read lock entry after append and compare hash to confirm storage success"
+        }
+      }
+    },
+    "scope_2_tamper_detection_rules": {
+      "scope_id": "TAMPER_DETECTION_RULES",
+      "description": "Rules to detect if a locked execution record has been tampered with after locking",
+      "detection_rules": {
+        "rule_TD_1": {
+          "rule_id": "HASH_RECOMPUTE_MATCH",
+          "trigger": "Whenever a locked execution record is read for verification or use in Phase 19-3",
+          "action": "Recompute SHA-256+ hash of canonical_record_json and compare against record_evidence_hash in lock entry",
+          "pass_condition": "Recomputed hash == stored record_evidence_hash",
+          "fail_condition": "Recomputed hash != stored record_evidence_hash",
+          "fail_outcome": "TAMPER_DETECTED → HALT (route to Phase 19-6 HALT scenario)"
+        },
+        "rule_TD_2": {
+          "rule_id": "AUTHORITY_SIGNATURE_VERIFY",
+          "trigger": "Whenever lock entry is read for verification",
+          "action": "Verify authority_lock_signature using signer's public key",
+          "pass_condition": "Signature cryptographically valid AND revocation_status=ACTIVE AND current_utc < signature_valid_to_utc",
+          "fail_condition": "Signature invalid OR revoked OR expired",
+          "fail_outcome": "SIGNATURE_INVALID → HALT or HOLD depending on reason (see Phase 19-6)"
+        },
+        "rule_TD_3": {
+          "rule_id": "SECONDARY_CHECKSUM_VERIFY",
+          "trigger": "Whenever lock entry is read",
+          "action": "Recompute SHA-256+(lock_id + signature_value + timestamp_locked_utc) and compare against stored secondary_tamper_checksum",
+          "pass_condition": "Recomputed == stored",
+          "fail_condition": "Mismatch",
+          "fail_outcome": "LOCK_ENTRY_TAMPERED → HALT"
+        },
+        "rule_TD_4": {
+          "rule_id": "AUDIT_TRAIL_PRESENCE",
+          "trigger": "Before using any locked record for Phase 19-3 cross-validation",
+          "action": "Confirm lock entry exists in audit trail and has not been deleted",
+          "pass_condition": "Lock entry present in audit trail AND audit trail append-only integrity intact",
+          "fail_condition": "Lock entry missing OR audit trail modified",
+          "fail_outcome": "EVIDENCE_LOSS → HALT (critical security incident)"
+        },
+        "rule_TD_5": {
+          "rule_id": "RESULT_SUMMARY_CONSISTENCY",
+          "trigger": "When verifying lock entry",
+          "action": "Confirm measurement_result_summary in lock entry matches section_4 of the full execution record",
+          "pass_condition": "lock.measurement_result_summary == record.section_4 result values",
+          "fail_condition": "Values differ",
+          "fail_outcome": "RESULT_SUMMARY_TAMPERED → HALT"
+        }
+      }
+    },
+    "scope_3_continuous_monitoring_rules": {
+      "scope_id": "CONTINUOUS_MONITORING",
+      "description": "Rules for continuous monitoring of locked execution records between locking and Phase 19-3 cross-validation",
+      "monitoring_rules": {
+        "rule_CM_1": {
+          "rule_id": "PERIODIC_HASH_CHECK",
+          "frequency": "Every 5 minutes between locking and Phase 19-3 execution",
+          "action": "Run TD_1 hash recompute check on all locked execution records",
+          "alert_on_fail": "Immediate authority notification"
+        },
+        "rule_CM_2": {
+          "rule_id": "SIGNATURE_EXPIRY_WATCH",
+          "frequency": "Continuous",
+          "action": "Monitor signature_valid_to_utc for all locked records; alert if expiry < 1 hour away",
+          "alert_action": "Notify authority to refresh signature before Phase 19-3 execution"
+        },
+        "rule_CM_3": {
+          "rule_id": "AUDIT_TRAIL_INTEGRITY_CHECK",
+          "frequency": "Every 5 minutes",
+          "action": "Verify audit trail append-only integrity (no modifications, no deletions since last check)",
+          "alert_on_fail": "Immediate authority notification + security incident activation"
+        }
+      }
+    },
+    "scope_4_chain_of_custody_for_records": {
+      "scope_id": "CHAIN_OF_CUSTODY",
+      "description": "Design chain of custody verification covering the full measurement record lifecycle",
+      "chain_links": {
+        "link_1_template_to_execution": {
+          "from": "Phase 19-1 / 19-2 template (design artifact)",
+          "to": "Filled execution record (actual measurement)",
+          "verification": "execution_record must reference phase template as structural basis; section presence matches template design"
+        },
+        "link_2_execution_to_format_validation": {
+          "from": "Filled execution record",
+          "to": "Phase 19-4 format validation pass",
+          "verification": "FORMAT_VALIDATION_PASS recorded with execution_record_id reference and timestamp"
+        },
+        "link_3_format_validation_to_lock": {
+          "from": "Phase 19-4 FORMAT_VALIDATION_PASS",
+          "to": "Phase 19-5 lock entry creation",
+          "verification": "lock entry timestamp must be after format validation timestamp; format_validation_id referenced in lock entry",
+          "timestamp_constraint": "lock_timestamp > format_validation_timestamp"
+        },
+        "link_4_lock_to_cross_validation": {
+          "from": "Phase 19-5 lock entry",
+          "to": "Phase 19-3 cross-validation usage",
+          "verification": "Phase 19-3 must reference lock_id from Phase 19-5; hash verification passes before use",
+          "timing_constraint": "Phase 19-3 cross-validation must occur after both Phase 19-1 and 19-2 records are locked"
+        }
+      },
+      "chain_of_custody_outcome": {
+        "complete_unbroken_chain": "CHAIN_OF_CUSTODY_VERIFIED → proceed to Phase 19-3",
+        "any_link_broken": "CHAIN_OF_CUSTODY_BROKEN → HALT; route to Phase 19-6"
+      }
+    }
+  },
+  "phase_19_5_governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "state_invariants": {
+      "integrated_decision": "NO_GO",
+      "receiver_validator_permission": "NOT_EFFECTIVE",
+      "app_implementation_status": "NO_GO",
+      "tests_implementation_status": "NO_GO"
+    },
+    "phase_19_5_completion_criteria": [
+      "5-step evidence locking procedure designed",
+      "5 tamper detection rules (TD_1 through TD_5) designed",
+      "3 continuous monitoring rules (CM_1 through CM_3) designed",
+      "4-link chain of custody verification designed",
+      "All JSON validation passed",
+      "No changes to app/ or tests/ directories",
+      "All state invariants maintained"
+    ]
+  }
+}

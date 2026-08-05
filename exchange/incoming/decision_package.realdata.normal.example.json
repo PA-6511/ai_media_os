@@ -1,0 +1,21 @@
+{
+  "package_type": "decision_package",
+  "source": "local_self_builder",
+  "target": "ebook_affiliate_block",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "human_approval_required": true,
+  "requested_action": "propose_article_template_update",
+  "risk_level": "LOW",
+  "auto_post": false,
+  "auto_update": false,
+  "auto_delete": false,
+  "auto_export": false,
+  "self_builder_origin": {
+    "type": "LOCAL_SELF_BUILDER",
+    "location": "local",
+    "execution_allowed": false,
+    "vps_migration_ready": false
+  },
+  "summary": "Phase 5-1 real-data schema normal sample"
+}

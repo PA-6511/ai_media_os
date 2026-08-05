@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M8-FIX1",
+  "policy_id": "DMM_ARTICLE_RESERVED_SLOT_HTML_VALIDATOR_FIX_POLICY_V1",
+  "operation_mode": "VALIDATOR_FIX_AND_M8_EVIDENCE_REBUILD_ONLY",
+  "content_item_id": "new-release-comic-20260703-001",
+  "article_preimage": {
+    "path": "exchange/content/new_release/fresh/new-release-comic-20260703-001.article.json",
+    "required_file_sha256": "849a37519c6af70d2212ec01d5cddef5793bfa811e97ca9f248ce099a0350bf4"
+  },
+  "reserved_slot_contract": {
+    "container_field": "content_html",
+    "required_element_count": 1,
+    "required_tag": "span",
+    "required_class_tokens": [
+      "ls-store-btn",
+      "ls-store-dmm",
+      "ls-store-disabled"
+    ],
+    "required_aria_disabled": "true",
+    "required_normalized_text": "DMMブックスで確認（再確認待ち）",
+    "href_attribute_allowed": false,
+    "descendant_anchor_allowed": false,
+    "existing_al_dmm_url_allowed": false,
+    "existing_af_id_parameter_allowed": false
+  },
+  "fixed_source_bindings": {
+    "m7_link_file_sha256": "c5a70d9804a4e2dfd91049ee20bdda5379abf3e1fe3c25b0fb8cbd5fa587faa0",
+    "m7_link_artifact_digest_sha256": "4807e0a6d8a8416a936bafa978ba4f90d43ae7d304322bbd6a6ababcb2cd2db6",
+    "m7_link_fingerprint_sha256": "f01572020caf88cd0a017e0e739bc492394fa275eeac0e346328adba0fd99141",
+    "m7_consumption_digest_sha256": "9d6a8ba944747d1df2d039075a2f511fdf88215a81cc4b867c9d184313b0efcc",
+    "m6_authorization_digest_sha256": "0607dd3774aa592369a1a22ac2692372ad57d70fe3a70d5eee387d47a27ec3f5",
+    "m5_human_review_digest_sha256": "92c59e79b7f8ff9b3dae934d1912f5249ccd4ce0c754cb5a5070e0b8264be892",
+    "cred1_result_digest_sha256": "7a173b74bef53781a3b2fe2e2cc2d3f363a096b937508c241d454311d072ec7e"
+  },
+  "execution_boundary": {
+    "validator_fix_allowed": true,
+    "m8_review_rebuild_allowed": true,
+    "m9_authorization_creation_allowed": true,
+    "article_modification_allowed": false,
+    "article_url_injection_allowed": false,
+    "article_dmm_slot_activation_allowed": false,
+    "secret_link_modification_allowed": false,
+    "network_connection_allowed": false,
+    "dns_resolution_allowed": false,
+    "http_request_allowed": false,
+    "dmm_recheck_allowed": false,
+    "payload_generation_allowed": false,
+    "wordpress_access_allowed": false,
+    "wordpress_write_allowed": false,
+    "wordpress_publish_allowed": false,
+    "production_status": "NO_GO"
+  }
+}

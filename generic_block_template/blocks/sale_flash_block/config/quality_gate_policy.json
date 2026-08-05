@@ -1,0 +1,37 @@
+{
+  "block_name": "sale_flash_block",
+  "phase": "SFB-2",
+  "production_status": "NO_GO",
+  "mode": "DRY_RUN",
+  "confidence_thresholds": {
+    "low": 0.7,
+    "high_priority": 0.85
+  },
+  "source_trust": {
+    "manual_csv": 0.9,
+    "publisher_news_candidate": 0.7,
+    "rakuten_books_candidate": 0.75,
+    "openbd_candidate": 0.8,
+    "creators_api_placeholder": 0.6,
+    "default": 0.5
+  },
+  "bucket_order": [
+    "ready_high_priority",
+    "needs_asin_confirmation",
+    "needs_metadata_fix",
+    "duplicate_review",
+    "blocked_or_invalid"
+  ],
+  "sort_within_bucket": [
+    "priority_score_desc",
+    "confidence_desc",
+    "title_asc"
+  ],
+  "safety": {
+    "external_api_called": false,
+    "external_network_called": false,
+    "wordpress_write_executed": false,
+    "creators_api_called": false,
+    "amazon_scraping_called": false
+  }
+}

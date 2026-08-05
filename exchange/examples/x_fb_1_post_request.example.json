@@ -1,0 +1,9 @@
+{
+  "action": "POST",
+  "feedback_id": "x-fb-example-20260717-101",
+  "actually_posted_text": "『サンプル作品 第1巻』は7月17日発売。各電子書籍ストアの価格を記事でまとめています。",
+  "posting_adjustment_labels": [],
+  "posting_adjustment_note": null,
+  "posted_at": "2026-07-17T12:00:00+09:00",
+  "x_post_id": null
+}

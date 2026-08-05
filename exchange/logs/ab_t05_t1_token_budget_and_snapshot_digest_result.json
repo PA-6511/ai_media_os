@@ -1,0 +1,68 @@
+{
+  "phase_group": "AB-T0.5+AB-T1",
+  "phases": [
+    "AB-T0.5",
+    "AB-T1"
+  ],
+  "status": "PASS_DESIGN_ONLY",
+  "final_status": [
+    "AB-T0.5: PASS_DESIGN_ONLY_NO_EXECUTION",
+    "AB-T1: PASS_LIGHTWEIGHT_DESIGN_ONLY_NO_EXECUTION"
+  ],
+  "production_status": "NO_GO",
+  "execution_status": "NO_EXECUTION",
+  "files_added": [
+    "config/auto_builder_token_budget_governor_policy.json",
+    "config/repository_snapshot_digest.json",
+    "reports/ab_t05_t1_token_budget_and_snapshot_digest_report.md",
+    "exchange/logs/ab_t05_t1_token_budget_and_snapshot_digest_result.json",
+    "scripts/validate_auto_builder_token_budget_and_snapshot_digest.py",
+    "tests/test_validate_auto_builder_token_budget_and_snapshot_digest.py"
+  ],
+  "files_updated": [],
+  "validation": {
+    "token_budget_policy": "PASS",
+    "snapshot_digest": "PASS",
+    "validator_compile": "PASS",
+    "target_test": "PASS"
+  },
+  "safety_flags": {
+    "production_write_executed": false,
+    "wordpress_write_executed": false,
+    "external_api_call_executed": false,
+    "credential_read_executed": false,
+    "credential_output_executed": false,
+    "live_execution_executed": false,
+    "copilot_agent_required": false,
+    "phase8_body_changed": false
+  },
+  "token_budget_limits": {
+    "max_files_per_ai_context": 5,
+    "max_lines_per_file_excerpt": 120,
+    "max_ai_context_items_per_turn": 8,
+    "max_git_diff_lines_for_ai": 0,
+    "copilot_agent_default_allowed": false,
+    "full_diff_allowed": false,
+    "full_log_allowed": false,
+    "full_evidence_index_allowed": false
+  },
+  "snapshot_digest_state": {
+    "phase_1m_fix": "PASS",
+    "phase_1n": "PASS",
+    "ab_t0": "PASS_DESIGN_ONLY_NO_EXECUTION",
+    "ab_t05": "PASS_DESIGN_ONLY_NO_EXECUTION",
+    "next_phase": "Phase 1N-FIX pre-live resnapshot evidence cleanup"
+  },
+  "next_allowed_action": "Phase 1N-FIX pre-live resnapshot evidence cleanup only",
+  "forbidden_actions": [
+    "live_execution",
+    "production_write",
+    "wordpress_write",
+    "external_api_call",
+    "credential_read",
+    "credential_output",
+    "broad_refactor",
+    "phase8_body_change"
+  ],
+  "timestamp": "2026-06-20T12:40:48Z"
+}

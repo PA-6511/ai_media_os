@@ -1,0 +1,12 @@
+{
+  "phase": "LS-NEW-5",
+  "document_type": "START_LS_NEW5_HUMAN_REVIEW_DECISION_RECORD",
+  "status": "LSNEW5_HUMAN_REVIEW_DECISION_WAITING_FOR_HUMAN_NO_EXECUTION",
+  "human_review_completed": false,
+  "human_approved": false,
+  "approval_label": "",
+  "approval_label_consumed": false,
+  "reviewer_notes": "",
+  "ready_for_ls_new_6": false,
+  "execution_allowed": false
+}

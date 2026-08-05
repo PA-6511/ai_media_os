@@ -1,0 +1,203 @@
+{
+  "manifest_content_sha256": "1590693d6ae72a2197c6b49f2c58f07764acd05fa4da492f721ce4c416bb2c02",
+  "release_id_candidate": "slack-worker-5441bd1-1590693d6ae7",
+  "schema_version": 1,
+  "phase": "SQL-B2-4B-5G-3B-1D-1C",
+  "design_source_commit": "5441bd1506bb28d1938865f8818c60182df89058",
+  "runtime_source_baseline": {
+    "phase": "SQL-B2-4B-5G-3B-1D-1A",
+    "source_commit": "d7b589454520877e4239bb04c0531d1312de64a8",
+    "evidence_path": "exchange/logs/sql_b2_4b_5g_3b_1d_1a_worker_release_dependency_discovery_result.json"
+  },
+  "dependency_baseline": {
+    "phase": "SQL-B2-4B-5G-3B-1D-1B",
+    "source_commit": "a69ff2e325ce49e90720ea1fbf715acd92717580",
+    "evidence_path": "exchange/logs/sql_b2_4b_5g_3b_1d_1b_transitive_wheel_abi_discovery_result.json"
+  },
+  "release_layout": {
+    "source_root_relative": "src",
+    "venv_relative": "venv",
+    "manifest_directory_relative": "manifest",
+    "source_manifest_relative": "manifest/slack_worker_release_source_manifest.json",
+    "requirements_lock_relative": "manifest/requirements_hash_locked.txt"
+  },
+  "entrypoint": "src/scripts/run_slack_approval_readiness.py",
+  "pythonpath_relative": "src",
+  "working_directory_relative": "src",
+  "source_file_count": 16,
+  "source_files": [
+    {
+      "path": "app/db/base.py",
+      "sha256": "ae74cae560ca38c3eafa5662f3b2a4da6732e5877b89906ca2273f3663726a40",
+      "size": 468,
+      "mode": "0664"
+    },
+    {
+      "path": "app/db/config.py",
+      "sha256": "4056cad744af633b2949bc514163e3565c63854c89f68ef12721f9f14b30d25c",
+      "size": 1163,
+      "mode": "0664"
+    },
+    {
+      "path": "app/db/models/__init__.py",
+      "sha256": "6d62f9f14bc3c408e34780f7730b0b9d127a7058a17a3b48fc6f79222b3adc65",
+      "size": 269,
+      "mode": "0664"
+    },
+    {
+      "path": "app/db/models/ebook.py",
+      "sha256": "7eacde338e8b2c793bd65a523ba7d2867456adf0dc23974c2a1b0a06bfecf43a",
+      "size": 8889,
+      "mode": "0664"
+    },
+    {
+      "path": "app/db/models/workflow_approval.py",
+      "sha256": "a256b5877bab27ad33513cc87161a4aa7ec80171f72c82ccf1406e21dbe5971a",
+      "size": 4038,
+      "mode": "0664"
+    },
+    {
+      "path": "app/db/repositories/workflow_approval_repository.py",
+      "sha256": "4dd3ecbc89b452b43265994e7a6d99c3c8de23954fb8365dfb277c4807d98753",
+      "size": 4833,
+      "mode": "0664"
+    },
+    {
+      "path": "app/db/repositories/workflow_repository.py",
+      "sha256": "8d4a5aad59c757ee1113d440586d68247b29c88377863ede58044310e44729a8",
+      "size": 1446,
+      "mode": "0664"
+    },
+    {
+      "path": "app/db/repositories/workflow_state_repository.py",
+      "sha256": "ff91599f2d9c0e6f848957a2f3bdea7d1118680436f8c6a623eb14d8341cc4ca",
+      "size": 5426,
+      "mode": "0664"
+    },
+    {
+      "path": "app/db/session.py",
+      "sha256": "5a2ff748c0bd35156cb89e24fbd96b4be257448b91c69fdd49348fc5643f1944",
+      "size": 1325,
+      "mode": "0664"
+    },
+    {
+      "path": "app/services/slack_approval_message_service.py",
+      "sha256": "8f8a79222c1e5cd11c8833fadcda570518bb70c2abb0087cbf2911e527bfea2c",
+      "size": 22743,
+      "mode": "0664"
+    },
+    {
+      "path": "app/services/slack_approval_socket_service.py",
+      "sha256": "3d5b79edcf4028f9bfb8a149c9e945850ed9d39bc197e44c4f44709eaf896841",
+      "size": 16462,
+      "mode": "0664"
+    },
+    {
+      "path": "app/services/slack_readiness_guard.py",
+      "sha256": "71c0e27e15372203cae17cb99bbfc92f088c410cbe2e55f74d2a1f50d315e67b",
+      "size": 7677,
+      "mode": "0664"
+    },
+    {
+      "path": "app/services/workflow_approval_service.py",
+      "sha256": "d1f8c54b8cddeac3fefcb363339fbb64f9d6697f9d42b72b372db7caf410ac5c",
+      "size": 11339,
+      "mode": "0664"
+    },
+    {
+      "path": "scripts/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0,
+      "mode": "0664"
+    },
+    {
+      "path": "scripts/run_slack_approval_readiness.py",
+      "sha256": "7739ce3233102b7f1fcf5b0160c6203c61db31652ddac9c98c9dabe27f0cb8e6",
+      "size": 2001,
+      "mode": "0664"
+    },
+    {
+      "path": "scripts/run_slack_approval_socket.py",
+      "sha256": "aa686ae4223ec1961326567c88f1fa8cf903a39466cf6b2a06fbefe0fc51901a",
+      "size": 7304,
+      "mode": "0664"
+    }
+  ],
+  "candidate_data_files": [],
+  "wheel_count": 5,
+  "wheels": [
+    {
+      "canonical_name": "greenlet",
+      "metadata_name": "greenlet",
+      "version": "3.5.3",
+      "filename": "greenlet-3.5.3-cp310-cp310-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl",
+      "sha256": "9bcd2d72ccd70a1ec68ba6ef93e7fbb4420ef9997dabc7010d893bd4015e0bec",
+      "size": 615675,
+      "root_is_purelib": false,
+      "native_member_count": 3,
+      "compatible_tags": [
+        "cp310-cp310-manylinux_2_24_x86_64",
+        "cp310-cp310-manylinux_2_28_x86_64"
+      ]
+    },
+    {
+      "canonical_name": "slack-bolt",
+      "metadata_name": "slack_bolt",
+      "version": "1.29.0",
+      "filename": "slack_bolt-1.29.0-py2.py3-none-any.whl",
+      "sha256": "1835b66b778158f3af0da77603aa18d7dfd82fd9b9a985e25c752f95050ab826",
+      "size": 235345,
+      "root_is_purelib": true,
+      "native_member_count": 0,
+      "compatible_tags": [
+        "py3-none-any"
+      ]
+    },
+    {
+      "canonical_name": "slack-sdk",
+      "metadata_name": "slack_sdk",
+      "version": "3.43.0",
+      "filename": "slack_sdk-3.43.0-py2.py3-none-any.whl",
+      "sha256": "4b6557c65577fc172f685af218b811f9f3b4909e24cddd839ada09565f10c585",
+      "size": 315866,
+      "root_is_purelib": true,
+      "native_member_count": 0,
+      "compatible_tags": [
+        "py3-none-any"
+      ]
+    },
+    {
+      "canonical_name": "sqlalchemy",
+      "metadata_name": "SQLAlchemy",
+      "version": "2.0.51",
+      "filename": "sqlalchemy-2.0.51-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+      "sha256": "2e54ff2dd657f2e3e0fbf2b097db1182f7bfea263eca4353f00065bae2a67c3d",
+      "size": 3243515,
+      "root_is_purelib": false,
+      "native_member_count": 5,
+      "compatible_tags": [
+        "cp310-cp310-manylinux2014_x86_64",
+        "cp310-cp310-manylinux_2_17_x86_64",
+        "cp310-cp310-manylinux_2_28_x86_64"
+      ]
+    },
+    {
+      "canonical_name": "typing-extensions",
+      "metadata_name": "typing_extensions",
+      "version": "4.16.0",
+      "filename": "typing_extensions-4.16.0-py3-none-any.whl",
+      "sha256": "481caa481374e813c1b176ada14e97f1f67a4539ce9cfeb3f350d78d6370c2e8",
+      "size": 45571,
+      "root_is_purelib": true,
+      "native_member_count": 0,
+      "compatible_tags": [
+        "py3-none-any"
+      ]
+    }
+  ],
+  "requirements_hash_lock": {
+    "repository_path": "config/slack_worker_release_requirements_hash_locked.txt",
+    "sha256": "404f695387cb0fa1939275647c73ed0f62ee81c358645a1fbbe69acedd805bc0",
+    "line_count": 5
+  }
+}

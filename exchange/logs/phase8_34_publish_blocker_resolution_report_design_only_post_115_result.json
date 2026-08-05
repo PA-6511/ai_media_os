@@ -1,0 +1,47 @@
+{
+  "phase": "Phase 8-34",
+  "phase_name": "Publish Blocker Resolution Report Design Only",
+  "status": "PHASE8_34_PUBLISH_BLOCKER_RESOLUTION_REPORT_DESIGN_ONLY_READY",
+  "target_post_id": 115,
+  "production_status": "NO_PUBLISH_PAUSE",
+  "design_only": true,
+  "open_publish_blockers": [
+    "tags_policy_deferred_no_execution",
+    "business_facts_not_finalized",
+    "content_accuracy_not_finalized",
+    "legal_review_not_finalized",
+    "explicit_human_publish_go_not_provided"
+  ],
+  "resolved_blockers": [],
+  "blocker_resolution_strategy": {
+    "requires_human_review": true,
+    "requires_explicit_publish_go": true,
+    "requires_separate_execution_phase": true
+  },
+  "publish_allowed": false,
+  "publish_executed": false,
+  "wordpress_api_call_attempted": false,
+  "wordpress_write_executed": false,
+  "wordpress_draft_updated": false,
+  "secret_values_output": false,
+  "secret_values_written": false,
+  "errors": [],
+  "warnings": [
+    "All blockers remain open by design in this phase; no publish path is unlocked."
+  ],
+  "safety_violations": [],
+  "evidence_summary": [
+    {
+      "path": "exchange/logs/phase8_32_tag_policy_design_only_no_execution_post_115_result.json",
+      "exists": true,
+      "status": "PHASE8_32_TAG_POLICY_DESIGN_ONLY_NO_EXECUTION_READY"
+    },
+    {
+      "path": "exchange/logs/phase8_33_business_content_legal_review_checklist_evidence_design_only_post_115_result.json",
+      "exists": true,
+      "status": "PHASE8_33_BUSINESS_CONTENT_LEGAL_CHECKLIST_EVIDENCE_DESIGN_ONLY_READY"
+    }
+  ],
+  "next_step": "phase8_35_publish_readiness_final_no_go_or_ready_decision_design_only",
+  "checked_at": "2026-06-09T13:57:11.267092+00:00"
+}

@@ -1,0 +1,55 @@
+{
+  "schema_version": "ir15_manual_event_role_guard_v1",
+  "phase": "IR15",
+  "generated_at": "2026-05-23T15:23:29.190035+00:00",
+  "source_task_id": "ir15_pass_live_trial",
+  "manual_event": "APPROVE",
+  "actor": "human_reviewer_pass",
+  "actor_role": "approver",
+  "allowed_roles": [
+    "approver",
+    "senior_reviewer",
+    "admin"
+  ],
+  "role_policy": {
+    "APPROVE": [
+      "approver",
+      "senior_reviewer",
+      "admin"
+    ],
+    "REJECT": [
+      "reviewer",
+      "approver",
+      "senior_reviewer",
+      "admin"
+    ],
+    "REQUEST_FIX": [
+      "reviewer",
+      "approver",
+      "senior_reviewer",
+      "admin"
+    ]
+  },
+  "role_policy_hash": "aec46ac5fdbb9b7d46415f299f82d4ed7b8212fb89e225079ac86bc14d94d76f",
+  "queue_state": "APPROVED_DRY_RUN_PENDING_RELEASE",
+  "quality_gate_judgment": "PASS",
+  "role_guard_result": "PASS",
+  "role_guard_failed_checks": [],
+  "role_guard_warnings": [],
+  "upstream": {
+    "ir13_schema_version": "ir13_manual_approval_v1",
+    "ir13_event_validation_result": "PASS",
+    "ir13_path_hint": "ir13_pass_live_trial"
+  },
+  "execution_policy": {
+    "execute": false,
+    "reason": "ir15_role_guard_dryrun_only"
+  },
+  "safeguards": {
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "external_write_executed": false,
+    "actual_auto_execute": false,
+    "production_release": false
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "schema_version": "ir87_approval_delta_analyzer_v1",
+  "phase": "IR87",
+  "generated_at": "2026-05-24T14:36:23.667227+00:00",
+  "source_task_id": "ir86_90_live_trial",
+  "validation_result": "PASS",
+  "validation_failed_checks": [],
+  "validation_warnings": [],
+  "approval_delta_analysis": {
+    "delta_id": "ir87_delta_ir86_90_live_trial_20260524T143623Z",
+    "generated_at": "2026-05-24T14:36:23.667221+00:00",
+    "source_task_id": "ir86_90_live_trial",
+    "new_cycle_id": "IR71_PLUS_CYCLE_A",
+    "required_approval_items": 5,
+    "missing_evidence_items": 5,
+    "approval_delta_status": "GAP_REMAINS",
+    "unlock_eligible": false,
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "delta_hash": "c91d6a91b3d7fdb021d85199b5d40af7d6281a958f7ae5587f45913d588f66e0",
+  "safety_gate_snapshot": {
+    "dry_run": "maintained",
+    "OBSERVE": "maintained",
+    "submission_execution_blocked": true,
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "network_transmission_executed": false,
+    "production_release": false,
+    "GitHub_push": "未実行"
+  }
+}

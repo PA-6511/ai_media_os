@@ -1,0 +1,40 @@
+{
+  "phase": "Phase 8-2",
+  "name": "final_live_preflight_policy",
+  "policy_status": "PREFLIGHT_ONLY",
+  "production_status": "NO_GO",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "human_approval_required": true,
+  "preflight_is_execution_permission": false,
+  "phase8_3_may_execute_if_this_passes": true,
+  "wordpress_draft_creation": "NO_GO",
+  "wordpress_write_executed": false,
+  "wordpress_api_call_allowed": false,
+  "wordpress_api_call_allowed_in_phase8_2": false,
+  "publish_allowed": false,
+  "approve_draft_create_only_currently_allowed": false,
+  "unlock_in_this_phase": false,
+  "target_item_count": 1,
+  "required_evidence": [
+    "exchange/logs/phase7_14_pre_live_unlock_final_report.json",
+    "exchange/logs/phase8_1_explicit_human_approval_result.json"
+  ],
+  "required_statuses": {
+    "phase7_14": "READY_FOR_PHASE8_HUMAN_APPROVAL_BUT_NO_GO",
+    "phase8_1": "APPROVAL_FILE_VALID_FOR_PREFLIGHT_ONLY"
+  },
+  "dangerous_operations": {
+    "auto_post": false,
+    "auto_update": false,
+    "auto_delete": false,
+    "auto_export": false,
+    "publish_allowed": false,
+    "wordpress_write_executed": false,
+    "wordpress_api_call_allowed": false,
+    "bulk_execution": false,
+    "external_write": false,
+    "vps_self_builder_execution": false
+  },
+  "allowed_next_step": "Phase 8-3 first one-item WordPress draft creation execution only if human explicitly approves"
+}

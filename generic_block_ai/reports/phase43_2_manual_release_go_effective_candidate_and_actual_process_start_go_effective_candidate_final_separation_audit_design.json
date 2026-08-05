@@ -1,0 +1,28 @@
+{
+    "_meta": {
+        "phase": "43-2",
+        "created": "2026-05-14T00:00:00Z",
+        "author": "system",
+        "status": "PASS_DESIGN_ONLY",
+        "reports_only": true
+    },
+    "scope": "manual_release_go発効候補とactual_process_start_go発効候補の最終分離監査設計",
+    "governance": {
+        "production_status": "NO_GO",
+        "manual_release_go_authorization": "NOT_GRANTED",
+        "actual_process_start_go_authorization": "NOT_GRANTED",
+        "changed_area": "reports only"
+    },
+    "report": {
+        "description": "manual_release_go発効候補とactual_process_start_go発効候補の最終分離監査設計。実処理開始直前に、manual_release_go と actual_process_start_go が相互に干渉していないことを監査する設計。実処理開始や権限付与は一切行わず、最終分離監査設計のみ。",
+        "invariants": [
+            "NO_GO 維持",
+            "NOT_GRANTED 維持",
+            "reports only"
+        ],
+        "actions": [],
+        "notes": [
+            "この設計ファイルは最終分離監査設計のみを目的とし、実際のGO変換や権限付与は一切行わない。"
+        ]
+    }
+}

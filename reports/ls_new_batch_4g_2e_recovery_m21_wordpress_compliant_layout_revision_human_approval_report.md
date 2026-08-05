@@ -1,0 +1,21 @@
+# LS-NEW-BATCH-4G-2E-RECOVERY-M21
+
+- Status: `PASS_WORDPRESS_COMPLIANT_LAYOUT_REVISION_HUMAN_APPROVAL_RECORDED_LOCAL_ONLY_NO_WORDPRESS_ACCESS`
+- Decision: `COMPLIANT_LAYOUT_REVISION_ADOPTED_READY_FOR_SEPARATE_RENDERED_UPDATE_PAYLOAD_GENERATION_GATE`
+- WordPress post ID: `192`
+- Human approval complete: `true`
+- Compliant layout revision adopted: `true`
+- Desktop layout: `cover left / PR / Amazon / Rakuten Kobo / DMM / responsive details`
+- Mobile layout: `cover / responsive details / PR / Amazon / Rakuten Kobo / DMM`
+- Comment status target: `closed`
+- Rendered update payload generated: `false`
+- WordPress request body generated: `false`
+- Network connection performed: `false`
+- WordPress access performed: `false`
+- WordPress update performed: `false`
+- Authorization issued: `false`
+- Authorization consumed: `false`
+- Production status: `NO_GO`
+- Ready for rendered update payload generation gate: `true`
+- Ready for WordPress update authorization gate: `false`
+- Ready for WordPress update: `false`

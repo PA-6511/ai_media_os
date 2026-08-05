@@ -1,0 +1,59 @@
+{
+  "phase": "LS-6Q",
+  "document_type": "HUMAN_WORDPRESS_DRAFT_REVIEW_TEMPLATE",
+  "review_status": "TEMPLATE_NOT_DECIDED",
+  "target_post": {
+    "post_id": 183,
+    "post_link": "https://hoshido.jp/?p=183",
+    "title": "2.5次元の誘惑",
+    "asin": "B07X2G67B4",
+    "expected_status": "draft"
+  },
+  "review_checklist": {
+    "post_id_checked": false,
+    "title_checked": false,
+    "draft_status_checked": false,
+    "affiliate_link_checked": false,
+    "advertising_disclosure_checked": false,
+    "content_rendering_checked": false,
+    "smartphone_rendering_checked": false,
+    "no_publish_checked": false,
+    "no_schedule_checked": false,
+    "no_existing_post_update_checked": false,
+    "no_delete_checked": false,
+    "rerun_prevention_checked": false,
+    "manual_publish_requires_next_phase_checked": false
+  },
+  "human_decision": {
+    "decision": "UNDECIDED",
+    "allowed_decisions": [
+      "APPROVED_FOR_MANUAL_PUBLISH_DECISION_ONLY",
+      "NEEDS_EDIT_BEFORE_PUBLISH",
+      "HOLD_AS_DRAFT",
+      "REJECT_AND_KEEP_DRAFT"
+    ],
+    "decision_reason": "",
+    "manual_publish_allowed_by_this_phase": false,
+    "manual_publish_executed": false
+  },
+  "current_phase_execution": {
+    "wordpress_api_call_executed": false,
+    "wordpress_write_executed": false,
+    "wordpress_draft_creation_executed": false,
+    "wordpress_existing_post_update_executed": false,
+    "wordpress_publish_executed": false,
+    "publish_executed": false,
+    "future_schedule_executed": false,
+    "delete_executed": false,
+    "post119_update_executed": false,
+    "credential_env_read_executed": false,
+    "credential_value_output": false,
+    "credential_value_persisted": false,
+    "credential_secret_output": false,
+    "secret_length_output": false,
+    "secret_hash_output": false,
+    "authorization_header_output": false,
+    "manual_publish_executed": false,
+    "ls6oc1_rerun_executed": false
+  }
+}

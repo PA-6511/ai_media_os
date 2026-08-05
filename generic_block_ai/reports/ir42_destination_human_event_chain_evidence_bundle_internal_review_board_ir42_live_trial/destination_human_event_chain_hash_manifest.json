@@ -1,0 +1,13 @@
+{
+  "destination": "internal_review_board",
+  "bundle_hash": "9c7deda214cd93265c62751de7a11fce2f2764e0cd0fdcfb72a67711b48fb633",
+  "evidence_digest": "7ea7a6d2ff2cb130a6c9a178bce7a13db811a07ad8d7f57999a7aac687acc87e",
+  "chain_hash": "072ad9c550d8e7ff74ab1a6e662a1b0344e5d7f696e52ec0ccbf9478d061e8e8",
+  "review_status": "PASS",
+  "source_refs": {
+    "ir39": "generic_block_ai/reports/ir39_human_approval_event_simulator_for_destinations_report_ir39_live_trial.json",
+    "ir40": "generic_block_ai/reports/ir40_human_event_audit_replay_for_destinations_report_ir40_live_trial.json",
+    "ir41": "generic_block_ai/reports/ir41_destination_human_event_chain_integrity_report_ir41_live_trial.json"
+  },
+  "generated_at": "2026-05-24T02:48:34.675834+00:00"
+}

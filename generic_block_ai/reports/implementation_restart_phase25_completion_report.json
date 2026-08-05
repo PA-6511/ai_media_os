@@ -1,0 +1,44 @@
+{
+  "phase": "Implementation Restart Phase 25",
+  "status": "COMPLETED",
+  "generated_at": "2026-05-23T15:48:40.408093+00:00",
+  "schema_version": "ir25_submission_change_approval_gate_v1",
+  "test_result": {
+    "focused_tests": {
+      "passed": 6,
+      "failed": 0
+    },
+    "full_regression": {
+      "passed": 206,
+      "failed": 0
+    }
+  },
+  "decision": "ALLOW",
+  "validation_failed_check_count": 0,
+  "validation_warning_count": 0,
+  "summary": {
+    "decision": "ALLOW",
+    "reason_count": 1,
+    "failed_check_count": 0,
+    "warning_count": 0,
+    "bundle_added_count": 0,
+    "bundle_removed_count": 0,
+    "bundle_sha_changed_count": 0,
+    "profile_added_count": 0,
+    "profile_removed_count": 0,
+    "profile_selected_added_count": 0,
+    "profile_selected_removed_count": 0,
+    "profile_sha_changed_count": 0
+  },
+  "artifacts": {
+    "gate_report": "generic_block_ai/reports/ir25_submission_change_approval_gate_report_ir25_live_trial.json",
+    "completion_report": "reports/implementation_restart_phase25_completion_report.json"
+  },
+  "safeguards": {
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "production_release": false
+  }
+}

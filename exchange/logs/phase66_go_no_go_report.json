@@ -1,0 +1,12 @@
+{
+  "phase": "66",
+  "review_type": "go_no_go_for_limited_dry_run_preparation_only",
+  "human_approval_required": true,
+  "review_status": "APPROVED",
+  "go_no_go": "GO",
+  "can_execute": false,
+  "execute_allowed": false,
+  "next_step": "prepare_limited_dry_run_protocol_without_execution",
+  "reasons": [],
+  "selected_decision": "ALLOW_LIMITED_DRY_RUN_PREPARATION_ONLY"
+}

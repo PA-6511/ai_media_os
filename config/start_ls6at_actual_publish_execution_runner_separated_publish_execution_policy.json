@@ -1,0 +1,139 @@
+{
+  "phase": "LS-6AT",
+  "name": "Manual Publish Actual Publish Execution Runner Separated Publish Execution Phase / Actual Publish Execution",
+  "status": "ACTUAL_PUBLISH_EXECUTION_RUNNER_SEPARATED_PUBLISH_EXECUTION",
+  "execution_mode": "SEPARATED_ACTUAL_PUBLISH_EXECUTION",
+  "production_status": "PUBLISH_EXECUTION_ALLOWED_FOR_POST_183_ONLY",
+  "purpose": "Execute the separated actual publish operation for existing WordPress post_id=183 only, after LS-6AS final command. This phase may read credential.env in memory, perform WordPress GET for pre/post verification, and perform exactly one WordPress POST to update only status=publish for post_id=183. It must not output secrets, must not update content/title/meta, must not create posts, must not touch post_id=119, and must not process any other post.",
+  "target_post": {
+    "post_id": 183,
+    "post_link": "https://hoshido.jp/?p=183",
+    "title": "2.5次元の誘惑",
+    "asin": "B07X2G67B4",
+    "expected_pre_publish_status": "draft",
+    "target_status": "publish"
+  },
+  "credential_policy": {
+    "credential_env_path": "/etc/ai-media-os/credential.env",
+    "credential_env_read_allowed_by_this_phase": true,
+    "credential_env_read_mode": "IN_MEMORY_ONLY_NO_SECRET_OUTPUT",
+    "accepted_site_url_keys": [
+      "WORDPRESS_SITE_URL",
+      "WORDPRESS_BASE_URL"
+    ],
+    "required_key_names": [
+      "WORDPRESS_USERNAME",
+      "WORDPRESS_APP_PASSWORD"
+    ],
+    "must_not_output_values": true,
+    "must_not_output_value_lengths": true,
+    "must_not_output_value_hashes": true,
+    "must_not_output_authorization_header": true,
+    "must_not_output_basic_auth_string": true,
+    "must_not_persist_values": true
+  },
+  "required_previous_phase": {
+    "ls6as": {
+      "required_template_status": "LS6AS_ACTUAL_PUBLISH_EXECUTION_RUNNER_FINAL_COMMAND_TEMPLATE_READY_NO_PUBLISH",
+      "required_ready_status": "LS6AS_ACTUAL_PUBLISH_EXECUTION_RUNNER_FINAL_COMMAND_READY_NO_PUBLISH",
+      "required_command_status": "ACTUAL_PUBLISH_EXECUTION_RUNNER_FINAL_COMMAND_RECORDED_NO_PUBLISH_EXECUTION",
+      "required_final_command_label": "FINAL_COMMAND_FOR_ACTUAL_PUBLISH_EXECUTION_RUNNER_SEPARATED_EXECUTION_PHASE_ONLY",
+      "required_final_command_consumed": false,
+      "required_final_command_allows_execution_by_this_phase": false,
+      "required_final_command_approved_for_later_separated_phase": true,
+      "required_separate_publish_execution_phase": true,
+      "required_actual_publish_execution_runner_separated_execution": true,
+      "required_publish_execution_still_blocked": true,
+      "template_result": "exchange/logs/start_ls6as_actual_publish_execution_runner_final_command_template_result.json",
+      "ready_result": "exchange/logs/start_ls6as_actual_publish_execution_runner_final_command_ready_result.json",
+      "final_command_result": "exchange/human_review/start_ls6as_actual_publish_execution_runner_final_command.json"
+    },
+    "ls6ar": {
+      "required_validation_status": "LS6AR_ACTUAL_PUBLISH_EXECUTION_RUNNER_CREDENTIAL_PREFLIGHT_VALIDATED_NO_PUBLISH",
+      "required_credential_preflight_ready": true,
+      "required_credential_preflight_consumed": false,
+      "required_credential_env_exists": true,
+      "required_credential_env_readable": true,
+      "required_credential_required_keys_present": true,
+      "required_credential_required_keys_non_empty": true,
+      "required_no_secret_output": true,
+      "credential_preflight_result": "exchange/runtime/start_ls6ar_actual_publish_execution_runner_credential_preflight_result.json",
+      "credential_preflight_lock": "exchange/locks/start_ls6ar_actual_publish_execution_runner_credential_preflight.lock.json",
+      "validation_result": "exchange/logs/start_ls6ar_actual_publish_execution_runner_credential_preflight_validation_result.json"
+    }
+  },
+  "actual_publish_execution_policy": {
+    "actual_publish_execution_allowed_by_this_phase": true,
+    "actual_runner_execution_allowed_by_this_phase": true,
+    "manual_publish_execution_allowed_by_this_phase": false,
+    "wordpress_get_allowed_by_this_phase": true,
+    "wordpress_post_allowed_by_this_phase": true,
+    "wordpress_put_allowed_by_this_phase": false,
+    "wordpress_patch_allowed_by_this_phase": false,
+    "wordpress_delete_allowed_by_this_phase": false,
+    "wordpress_new_post_allowed_by_this_phase": false,
+    "wordpress_content_update_allowed_by_this_phase": false,
+    "wordpress_title_update_allowed_by_this_phase": false,
+    "wordpress_meta_update_allowed_by_this_phase": false,
+    "wordpress_schedule_allowed_by_this_phase": false,
+    "wordpress_status_publish_allowed_by_this_phase": true,
+    "allowed_post_id": 183,
+    "allowed_payload_fields": [
+      "status"
+    ],
+    "required_payload": {
+      "status": "publish"
+    },
+    "max_wordpress_post_calls": 1,
+    "requires_pre_publish_get": true,
+    "requires_post_publish_get": true,
+    "requires_pre_publish_status": "draft",
+    "requires_post_publish_status": "publish",
+    "requires_no_secret_output": true,
+    "requires_result_lock": true,
+    "requires_next_phase": "LS-6AU"
+  },
+  "must_remain_false_flags": {
+    "post119_update_executed": false,
+    "wordpress_put_executed": false,
+    "wordpress_patch_executed": false,
+    "wordpress_delete_executed": false,
+    "wordpress_new_post_executed": false,
+    "wordpress_content_update_executed": false,
+    "wordpress_title_update_executed": false,
+    "wordpress_meta_update_executed": false,
+    "wordpress_schedule_executed": false,
+    "future_schedule_executed": false,
+    "delete_executed": false,
+    "credential_values_loaded_for_output": false,
+    "credential_values_persisted": false,
+    "credential_values_logged": false,
+    "credential_value_output": false,
+    "credential_value_persisted": false,
+    "credential_secret_output": false,
+    "secret_length_output": false,
+    "secret_hash_output": false,
+    "authorization_header_output": false,
+    "basic_auth_string_output": false,
+    "manual_publish_executed": false,
+    "manual_publish_allowed_by_this_phase": false,
+    "manual_publish_execution_allowed_by_this_phase": false,
+    "rerun_allowed": false,
+    "ls6oc1_rerun_executed": false
+  },
+  "outputs": {
+    "publish_execution_result": "exchange/runtime/start_ls6at_actual_publish_execution_runner_separated_publish_execution_result.json",
+    "publish_execution_lock": "exchange/locks/start_ls6at_actual_publish_execution_runner_separated_publish_execution.lock.json",
+    "run_result": "exchange/logs/start_ls6at_actual_publish_execution_runner_separated_publish_execution_result.json",
+    "validation_result": "exchange/logs/start_ls6at_actual_publish_execution_runner_separated_publish_execution_validation_result.json",
+    "run_report": "reports/start_ls6at_actual_publish_execution_runner_separated_publish_execution_report.md",
+    "validation_report": "reports/start_ls6at_actual_publish_execution_runner_separated_publish_execution_validation_report.md"
+  },
+  "next_phase": {
+    "phase": "LS-6AU",
+    "name": "Manual Publish Actual Publish Execution Runner Post-Publish Verification / Published Evidence",
+    "requires_post_publish_verification": true,
+    "requires_published_evidence": true,
+    "requires_rollback_readiness_record": true
+  }
+}

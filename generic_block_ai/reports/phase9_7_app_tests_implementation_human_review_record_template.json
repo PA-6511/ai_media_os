@@ -1,0 +1,75 @@
+{
+  "_meta": {
+    "phase": "9-7",
+    "phase_name": "app/tests 実装判定の human review 記録テンプレート",
+    "version": "1.0",
+    "created_date": "2026-05-12",
+    "status": "PASS_DESIGN_ONLY",
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "changed_area": "reports only",
+    "description": "app実装ゲートとtests実装ゲートの判定結果を human review で記録するためのテンプレート。"
+  },
+  "references": [
+    "generic_block_ai/reports/phase9_4_receiver_validator_app_implementation_permission_final_design.json",
+    "generic_block_ai/reports/phase9_5_tests_implementation_permission_final_design.json",
+    "generic_block_ai/reports/phase9_6_app_tests_implementation_go_nogo_decision_template.json"
+  ],
+  "template_fields": {
+    "review_id": "P9-HR-YYYYMMDD-XXX",
+    "review_datetime": "YYYY-MM-DDTHH:MM:SS+09:00",
+    "reviewer": {
+      "name": "",
+      "role": "human_reviewer",
+      "signature": ""
+    },
+    "app_gate_review": {
+      "decision": "NO_GO",
+      "allowed_values": [
+        "GO",
+        "NO_GO",
+        "PENDING",
+        "ABORT"
+      ],
+      "evidence": [],
+      "rationale": ""
+    },
+    "tests_gate_review": {
+      "decision": "NO_GO",
+      "allowed_values": [
+        "GO",
+        "NO_GO",
+        "PENDING",
+        "ABORT"
+      ],
+      "evidence": [],
+      "rationale": ""
+    },
+    "integrated_decision": {
+      "decision": "NO_GO",
+      "rule": "app/tests の両ゲートが GO の場合のみ GO",
+      "allowed_values": [
+        "GO",
+        "NO_GO",
+        "PENDING",
+        "ABORT"
+      ]
+    },
+    "safety_flags": {
+      "operation_mode": "OBSERVE",
+      "execution": "dry_run",
+      "production_status": "NO_GO",
+      "requires_human_approval": true,
+      "auto_execute_allowed": false
+    }
+  },
+  "phase_decision": {
+    "phase9_7_status": "PASS_DESIGN_ONLY",
+    "app_implementation_status": "NO_GO",
+    "tests_implementation_status": "NO_GO",
+    "note": "本成果物は記録テンプレートの設計のみであり、実装許可確定ではない。"
+  }
+}

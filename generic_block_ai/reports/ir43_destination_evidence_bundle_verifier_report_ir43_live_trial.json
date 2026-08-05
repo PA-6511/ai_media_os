@@ -1,0 +1,94 @@
+{
+  "schema_version": "ir43_destination_evidence_bundle_verifier_v1",
+  "phase": "IR43",
+  "generated_at": "2026-05-24T02:57:32.675328+00:00",
+  "source_task_id": "ir43_live_trial",
+  "release_candidate_id": "rc_20260523T155148Z_ir26_live_trial_b940393b490b",
+  "final_submission_decision": "READY_FOR_SUBMISSION_SUMMARY",
+  "overall_approval_decision": "APPROVE_DRY_RUN",
+  "overall_verifier_action": "Destination evidence bundles verified for manifest, summary, recomputation, and completeness.",
+  "validation_result": "PASS",
+  "validation_failed_checks": [],
+  "validation_warnings": [],
+  "summary": {
+    "destination_count": 3,
+    "verification_pass_count": 3,
+    "verification_fail_count": 0,
+    "hash_manifest_verified_count": 3,
+    "summary_verified_count": 3,
+    "completeness_verified_count": 3
+  },
+  "destination_evidence_bundle_verification": [
+    {
+      "destination": "compliance_archive",
+      "verification_status": "PASS",
+      "bundle_hash": "d989516e21c22fce56a5e3e7e555aab4749bf8fd2fa4147832578b2ab91cea81",
+      "evidence_digest": "465a42bd8d3f472c978577c2039fa9522fd1f3da5dd05a5380783144648d6569",
+      "recomputed_evidence_digest": "465a42bd8d3f472c978577c2039fa9522fd1f3da5dd05a5380783144648d6569",
+      "recomputed_bundle_hash": "d989516e21c22fce56a5e3e7e555aab4749bf8fd2fa4147832578b2ab91cea81",
+      "verification_checks": {
+        "hash_manifest_exists": true,
+        "summary_exists": true,
+        "manifest_hash_ok": true,
+        "recompute_ok": true,
+        "summary_ok": true,
+        "completeness_ok": true
+      },
+      "failed_reasons": [],
+      "hash_manifest_path": "generic_block_ai/reports/ir42_destination_human_event_chain_evidence_bundle_compliance_archive_ir42_live_trial/destination_human_event_chain_hash_manifest.json",
+      "review_summary_path": "generic_block_ai/reports/ir42_destination_human_event_chain_evidence_bundle_compliance_archive_ir42_live_trial/destination_human_event_chain_review_summary.md"
+    },
+    {
+      "destination": "internal_review_board",
+      "verification_status": "PASS",
+      "bundle_hash": "9c7deda214cd93265c62751de7a11fce2f2764e0cd0fdcfb72a67711b48fb633",
+      "evidence_digest": "7ea7a6d2ff2cb130a6c9a178bce7a13db811a07ad8d7f57999a7aac687acc87e",
+      "recomputed_evidence_digest": "7ea7a6d2ff2cb130a6c9a178bce7a13db811a07ad8d7f57999a7aac687acc87e",
+      "recomputed_bundle_hash": "9c7deda214cd93265c62751de7a11fce2f2764e0cd0fdcfb72a67711b48fb633",
+      "verification_checks": {
+        "hash_manifest_exists": true,
+        "summary_exists": true,
+        "manifest_hash_ok": true,
+        "recompute_ok": true,
+        "summary_ok": true,
+        "completeness_ok": true
+      },
+      "failed_reasons": [],
+      "hash_manifest_path": "generic_block_ai/reports/ir42_destination_human_event_chain_evidence_bundle_internal_review_board_ir42_live_trial/destination_human_event_chain_hash_manifest.json",
+      "review_summary_path": "generic_block_ai/reports/ir42_destination_human_event_chain_evidence_bundle_internal_review_board_ir42_live_trial/destination_human_event_chain_review_summary.md"
+    },
+    {
+      "destination": "regulatory_audit",
+      "verification_status": "PASS",
+      "bundle_hash": "54fbf3189cb9b6a2600965cfb69204e916509fb3510bc85c18606e917272ee2b",
+      "evidence_digest": "b6089d8777711b38146e953f44af2d4c5317696faf0621a8e7730bb443765526",
+      "recomputed_evidence_digest": "b6089d8777711b38146e953f44af2d4c5317696faf0621a8e7730bb443765526",
+      "recomputed_bundle_hash": "54fbf3189cb9b6a2600965cfb69204e916509fb3510bc85c18606e917272ee2b",
+      "verification_checks": {
+        "hash_manifest_exists": true,
+        "summary_exists": true,
+        "manifest_hash_ok": true,
+        "recompute_ok": true,
+        "summary_ok": true,
+        "completeness_ok": true
+      },
+      "failed_reasons": [],
+      "hash_manifest_path": "generic_block_ai/reports/ir42_destination_human_event_chain_evidence_bundle_regulatory_audit_ir42_live_trial/destination_human_event_chain_hash_manifest.json",
+      "review_summary_path": "generic_block_ai/reports/ir42_destination_human_event_chain_evidence_bundle_regulatory_audit_ir42_live_trial/destination_human_event_chain_review_summary.md"
+    }
+  ],
+  "artifacts": {
+    "verifier_root": "generic_block_ai/reports/ir43_destination_evidence_bundle_verifier_ir43_live_trial",
+    "destination_evidence_bundle_verifier": "generic_block_ai/reports/ir43_destination_evidence_bundle_verifier_ir43_live_trial/destination_evidence_bundle_verifier.json",
+    "destination_evidence_bundle_verifier_summary": "generic_block_ai/reports/ir43_destination_evidence_bundle_verifier_ir43_live_trial/destination_evidence_bundle_verifier_summary.md",
+    "completion_report": "reports/implementation_restart_phase43_completion_report.json"
+  },
+  "safeguards": {
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "network_transmission_executed": false,
+    "production_release": false
+  }
+}

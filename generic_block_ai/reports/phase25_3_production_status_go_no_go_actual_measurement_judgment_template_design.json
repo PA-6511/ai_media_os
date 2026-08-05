@@ -1,0 +1,103 @@
+{
+  "phase_id": "25-3",
+  "phase_name": "Production Status GO/NO-GO Actual Measurement Judgment Template Design",
+  "phase_japanese_name": "production_status GO/NO-GO 実測判定テンプレート設計",
+  "purpose": "Design the actual-measurement judgment template for deciding production_status GO/NO-GO with strict preconditions and explicit authorization semantics",
+  "layer": "production_status_actual_measurement_judgment_template_layer",
+  "design_category": "reports_only",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "operation_transition_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "phase_25_3_scope": {
+    "scope_1_minimum_conditions_template": {
+      "scope_id": "MINIMUM_CONDITIONS_TEMPLATE",
+      "conditions": {
+        "condition_1": "pre-production final confirmation status = CLEARED",
+        "condition_2": "boundary integrity and rollback readiness evidence = VALID",
+        "condition_3": "execution permission elevation evidence = VALID and explicitly approved",
+        "condition_4": "operation_transition_go_authorization = GRANTED by measured judgment",
+        "condition_5": "human final approval signature for production transition = VALID and ACTIVE"
+      },
+      "evaluation_values": "MET | NOT_MET"
+    },
+    "scope_2_judgment_rules": {
+      "scope_id": "JUDGMENT_RULES",
+      "rules": {
+        "rule_PJ1": "If all condition_1 through condition_5 are MET, production_status = GO",
+        "rule_PJ2": "If any condition is NOT_MET, production_status = NO_GO",
+        "rule_PJ3": "Any integrity/signature/authorization defect forces NO_GO"
+      }
+    },
+    "scope_3_template_sections": {
+      "scope_id": "TEMPLATE_SECTIONS",
+      "sections": {
+        "section_1_header": {
+          "judgment_id": "PRODUCTION_STATUS_MEASURED_JUDGMENT_<UTC_TIMESTAMP>",
+          "template_version": "1.0.0",
+          "generated_at_utc": "RFC3339",
+          "generated_by": "authority_identifier"
+        },
+        "section_2_measurement_inputs": {
+          "evidence_ids": [
+            "pre_production_final_confirmation_evidence_id",
+            "boundary_and_rollback_readiness_evidence_id",
+            "execution_permission_elevation_evidence_id",
+            "operation_transition_authorization_evidence_id",
+            "production_transition_human_approval_evidence_id"
+          ]
+        },
+        "section_3_condition_evaluation": {
+          "condition_1": "MET | NOT_MET",
+          "condition_2": "MET | NOT_MET",
+          "condition_3": "MET | NOT_MET",
+          "condition_4": "MET | NOT_MET",
+          "condition_5": "MET | NOT_MET"
+        },
+        "section_4_final_determination": {
+          "production_status": "GO | NO_GO",
+          "operation_transition_go_authorization": "GRANTED | NOT_GRANTED",
+          "app_implementation_status": "NO_GO | GO",
+          "tests_implementation_status": "NO_GO | GO",
+          "reason_summary": "human-readable reason"
+        }
+      }
+    },
+    "scope_4_default_fixed_state": {
+      "scope_id": "DEFAULT_FIXED_STATE",
+      "default_state_until_measured": {
+        "app_implementation_status": "NO_GO",
+        "tests_implementation_status": "NO_GO",
+        "production_status": "NO_GO",
+        "operation_transition_go_authorization": "NOT_GRANTED",
+        "changed_area": "reports only"
+      }
+    }
+  },
+  "phase_25_3_governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "state_invariants": {
+      "app_implementation_status": "NO_GO",
+      "tests_implementation_status": "NO_GO",
+      "production_status": "NO_GO",
+      "operation_transition_go_authorization": "NOT_GRANTED",
+      "changed_area": "reports only"
+    }
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-C",
+  "policy_id": "NEW_RELEASE_WP_CATEGORY_INDEX_HUMAN_REVIEW_POLICY_V1",
+  "source_phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-B",
+  "template_contract_id": "POST185_STANDARD_TEMPLATE_V1_FIXED",
+  "operation_mode": "HUMAN_CATEGORY_SELECTION_EVIDENCE_ONLY",
+  "source_contract": {
+    "required_source_status": "PASS_ONE_SHOT_ACTUAL_READ_ONLY_CATEGORY_INDEX_RECOVERY",
+    "required_source_decision": "CATEGORY_INDEX_RECORDED_HUMAN_REVIEW_REQUIRED",
+    "required_source_lock_state": "CONSUMED_COMPLETED_PASS",
+    "required_http_status": 200,
+    "required_category_count": 6,
+    "required_total_pages": 1,
+    "previous_approval_consumed_required": true,
+    "previous_approval_reuse_allowed": false,
+    "previous_lock_deletion_allowed": false,
+    "previous_lock_reuse_allowed": false
+  },
+  "human_review_contract": {
+    "required_approval_label": "CATEGORY_INDEX_HUMAN_REVIEW_APPROVED",
+    "selected_category_id": 10,
+    "selected_category_name": "最新巻",
+    "selected_category_purpose": "コミック新刊・新巻配信開始記事",
+    "human_selection_required": true,
+    "automatic_selection_allowed": false,
+    "selection_change_requires_new_human_approval": true,
+    "approval_reuse_for_different_selection_allowed": false
+  },
+  "selection_boundary": {
+    "selected_category_must_exist_in_source_index": true,
+    "selected_category_id_must_match_source": true,
+    "selected_category_name_must_match_source": true,
+    "selected_category_digest_must_match_source": true,
+    "human_selection_recording_allowed": true,
+    "category_mapping_fixation_allowed": false,
+    "production_category_id_payload_injection_allowed": false,
+    "production_category_id_automatic_use_allowed": false,
+    "wordpress_category_creation_allowed": false,
+    "wordpress_draft_preparation_allowed": false,
+    "wordpress_draft_creation_allowed": false
+  },
+  "current_phase_access": {
+    "credential_file_metadata_read_allowed": false,
+    "credential_file_content_read_allowed": false,
+    "environment_variable_read_allowed": false,
+    "authorization_header_construction_allowed": false,
+    "dns_resolution_allowed": false,
+    "network_connection_allowed": false,
+    "tls_connection_allowed": false,
+    "http_request_allowed": false,
+    "wordpress_response_read_allowed": false
+  },
+  "execution_boundary": {
+    "credential_value_output_allowed": false,
+    "environment_variable_export_allowed": false,
+    "dns_resolution_allowed": false,
+    "network_connection_allowed": false,
+    "tls_connection_allowed": false,
+    "wordpress_api_call_allowed": false,
+    "wordpress_category_creation_allowed": false,
+    "wordpress_write_allowed": false,
+    "wordpress_publish_allowed": false,
+    "production_payload_modification_allowed": false,
+    "production_category_id_payload_injection_allowed": false,
+    "execution_allowed": false,
+    "production_status": "NO_GO",
+    "safety_state": "HUMAN_CATEGORY_SELECTION_RECORDED_MAPPING_NOT_FIXED"
+  },
+  "next_phase": {
+    "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-D",
+    "name": "Production Category Mapping Fixation Gate",
+    "execution_allowed": false
+  }
+}

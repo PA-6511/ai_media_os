@@ -1,0 +1,107 @@
+{
+  "phase_id": "37-8",
+  "phase_name": "Actual Process Start GO Candidate Final Evidence Locking Report Design",
+  "phase_japanese_name": "actual_process_start_go候補の最終証跡固定レポート設計",
+  "purpose": "Design final evidence locking report for actual_process_start_go candidate after boundary confirmation.",
+  "layer": "post_manual_release_pre_actual_process_start_boundary_confirmation_layer",
+  "design_category": "reports_only",
+  "_meta": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "operation_transition_go_authorization": "NOT_GRANTED",
+    "production_reflection_go_authorization": "NOT_GRANTED",
+    "freeze_release_go_authorization": "NOT_GRANTED",
+    "execution_start_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "phase_37_8_scope": {
+    "scope_1_input_contract": {
+      "scope_id": "INPUT_CONTRACT",
+      "required_inputs": {
+        "phase37_7_integrated_judgment_status": "PASS_DESIGN_ONLY"
+      }
+    },
+    "scope_2_final_evidence_locking_rules": {
+      "scope_id": "FINAL_EVIDENCE_LOCKING_RULES",
+      "rules": {
+        "rule_P37L1": "Receive integrated final judgment from Phase 37-7",
+        "rule_P37L2": "Apply final cryptographic signature and timestamp to all evidence",
+        "rule_P37L3": "Lock all Phase 37-1 through Phase 37-7 reports with immutable hashes",
+        "rule_P37L4": "Create sealed audit package with integrity verification",
+        "rule_P37L5": "If any locking operation fails, abort completion and maintain NO_GO"
+      }
+    },
+    "scope_3_report_structure": {
+      "scope_id": "REPORT_STRUCTURE",
+      "sections": {
+        "section_1_header": {
+          "report_id": "PHASE37_8_ACTUAL_PROCESS_START_FINAL_EVIDENCE_LOCKING_<UTC_TIMESTAMP>",
+          "report_type": "actual_process_start_go_candidate_final_evidence_locking",
+          "generated_at_utc": "RFC3339",
+          "generated_by": "authority_identifier"
+        },
+        "section_2_evidence_package": {
+          "phase37_1_hash": "SHA256_HEX | NONE",
+          "phase37_2_hash": "SHA256_HEX | NONE",
+          "phase37_3_hash": "SHA256_HEX | NONE",
+          "phase37_4_hash": "SHA256_HEX | NONE",
+          "phase37_5_hash": "SHA256_HEX | NONE",
+          "phase37_6_hash": "SHA256_HEX | NONE",
+          "phase37_7_hash": "SHA256_HEX | NONE",
+          "integrated_package_hash": "SHA256_HEX | NONE"
+        },
+        "section_3_locking_status": {
+          "cryptographic_signatures_applied": "YES | NO",
+          "timestamp_locks": "APPLIED | FAILED",
+          "audit_package_sealed": "YES | NO",
+          "integrity_verification": "PASS | FAIL"
+        },
+        "section_4_final_state": {
+          "app_implementation_status": "NO_GO",
+          "tests_implementation_status": "NO_GO",
+          "production_status": "NO_GO",
+          "operation_transition_go_authorization": "NOT_GRANTED",
+          "production_reflection_go_authorization": "NOT_GRANTED",
+          "freeze_release_go_authorization": "NOT_GRANTED",
+          "execution_start_go_authorization": "NOT_GRANTED",
+          "actual_process_start_go_authorization": "NOT_GRANTED",
+          "manual_release_go_authorization": "NOT_GRANTED",
+          "changed_area": "reports only"
+        }
+      }
+    }
+  },
+  "phase_37_8_governance": {
+    "blocked_actions": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution",
+      "manual_release_execution",
+      "actual_process_start_execution"
+    ],
+    "state_invariants": {
+      "app_implementation_status": "NO_GO",
+      "tests_implementation_status": "NO_GO",
+      "production_status": "NO_GO",
+      "operation_transition_go_authorization": "NOT_GRANTED",
+      "production_reflection_go_authorization": "NOT_GRANTED",
+      "freeze_release_go_authorization": "NOT_GRANTED",
+      "execution_start_go_authorization": "NOT_GRANTED",
+      "actual_process_start_go_authorization": "NOT_GRANTED",
+      "manual_release_go_authorization": "NOT_GRANTED",
+      "changed_area": "reports only"
+    }
+  }
+}

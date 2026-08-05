@@ -1,0 +1,54 @@
+{
+  "phase": "Implementation Restart Phase 12",
+  "status": "COMPLETED",
+  "generated_at": "2026-05-23T14:49:57.366456+00:00",
+  "schema_version": "ir12_core_decision_queue_v1",
+  "test_result": {
+    "focused_tests": {
+      "passed": 4,
+      "failed": 0
+    },
+    "full_regression": {
+      "passed": 138,
+      "failed": 0
+    }
+  },
+  "summary": {
+    "processed_judgments": [
+      "PASS",
+      "WARN",
+      "FAIL",
+      "ABORT"
+    ],
+    "unique_judgments": [
+      "ABORT",
+      "FAIL",
+      "PASS",
+      "WARN"
+    ],
+    "queue_state_counts": {
+      "READY_FOR_DRY_RUN_REVIEW": 1,
+      "WAITING_HUMAN_REVIEW": 1,
+      "REJECTED_NO_GO": 1,
+      "ABORT_EVIDENCE_LOCKED": 1
+    },
+    "execution_triggered": false
+  },
+  "artifacts": {
+    "queue_reports": [
+      "generic_block_ai/reports/ir12_core_decision_queue_ir12_pass_live_trial.json",
+      "generic_block_ai/reports/ir12_core_decision_queue_ir12_warn_live_trial.json",
+      "generic_block_ai/reports/ir12_core_decision_queue_ir12_fail_live_trial.json",
+      "generic_block_ai/reports/ir12_core_decision_queue_ir12_abort_live_trial.json"
+    ],
+    "audit_log": "generic_block_ai/reports/ir12_core_decision_queue_audit.log",
+    "completion_report": "reports/implementation_restart_phase12_completion_report.json"
+  },
+  "safeguards": {
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "external_write_executed": false,
+    "actual_auto_execute": false,
+    "production_release": false
+  }
+}

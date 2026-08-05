@@ -1,0 +1,791 @@
+{
+  "report_timestamp": "2026-05-20T17:00:01.657346+00:00",
+  "total_drafted": 20,
+  "checks": [
+    {
+      "post_id": 111,
+      "post_title": "(untitled)",
+      "check_timestamp": "2026-05-20T17:00:01.657611+00:00",
+      "checks": {
+        "content_quality": {
+          "result": "FAIL",
+          "details": [
+            "本文が空です"
+          ]
+        },
+        "urls": {
+          "result": "WARN",
+          "details": [
+            "URL が見つかりません"
+          ]
+        },
+        "cta": {
+          "result": "WARN",
+          "details": [
+            "CTA（ボタン/リンク）が見つかりません"
+          ]
+        },
+        "pr_notice": {
+          "result": "WARN",
+          "details": [
+            "PR/広告表記が見つかりません"
+          ]
+        },
+        "featured_image": {
+          "result": "WARN",
+          "details": [
+            "アイキャッチが未設定です"
+          ]
+        }
+      },
+      "final_result": "FAIL",
+      "recommendation": "公開不可: content_quality"
+    },
+    {
+      "post_id": 110,
+      "post_title": "(untitled)",
+      "check_timestamp": "2026-05-20T17:00:01.657628+00:00",
+      "checks": {
+        "content_quality": {
+          "result": "FAIL",
+          "details": [
+            "本文が空です"
+          ]
+        },
+        "urls": {
+          "result": "WARN",
+          "details": [
+            "URL が見つかりません"
+          ]
+        },
+        "cta": {
+          "result": "WARN",
+          "details": [
+            "CTA（ボタン/リンク）が見つかりません"
+          ]
+        },
+        "pr_notice": {
+          "result": "WARN",
+          "details": [
+            "PR/広告表記が見つかりません"
+          ]
+        },
+        "featured_image": {
+          "result": "WARN",
+          "details": [
+            "アイキャッチが未設定です"
+          ]
+        }
+      },
+      "final_result": "FAIL",
+      "recommendation": "公開不可: content_quality"
+    },
+    {
+      "post_id": 109,
+      "post_title": "(untitled)",
+      "check_timestamp": "2026-05-20T17:00:01.657640+00:00",
+      "checks": {
+        "content_quality": {
+          "result": "FAIL",
+          "details": [
+            "本文が空です"
+          ]
+        },
+        "urls": {
+          "result": "WARN",
+          "details": [
+            "URL が見つかりません"
+          ]
+        },
+        "cta": {
+          "result": "WARN",
+          "details": [
+            "CTA（ボタン/リンク）が見つかりません"
+          ]
+        },
+        "pr_notice": {
+          "result": "WARN",
+          "details": [
+            "PR/広告表記が見つかりません"
+          ]
+        },
+        "featured_image": {
+          "result": "WARN",
+          "details": [
+            "アイキャッチが未設定です"
+          ]
+        }
+      },
+      "final_result": "FAIL",
+      "recommendation": "公開不可: content_quality"
+    },
+    {
+      "post_id": 108,
+      "post_title": "(untitled)",
+      "check_timestamp": "2026-05-20T17:00:01.657649+00:00",
+      "checks": {
+        "content_quality": {
+          "result": "FAIL",
+          "details": [
+            "本文が空です"
+          ]
+        },
+        "urls": {
+          "result": "WARN",
+          "details": [
+            "URL が見つかりません"
+          ]
+        },
+        "cta": {
+          "result": "WARN",
+          "details": [
+            "CTA（ボタン/リンク）が見つかりません"
+          ]
+        },
+        "pr_notice": {
+          "result": "WARN",
+          "details": [
+            "PR/広告表記が見つかりません"
+          ]
+        },
+        "featured_image": {
+          "result": "WARN",
+          "details": [
+            "アイキャッチが未設定です"
+          ]
+        }
+      },
+      "final_result": "FAIL",
+      "recommendation": "公開不可: content_quality"
+    },
+    {
+      "post_id": 107,
+      "post_title": "(untitled)",
+      "check_timestamp": "2026-05-20T17:00:01.657660+00:00",
+      "checks": {
+        "content_quality": {
+          "result": "FAIL",
+          "details": [
+            "本文が空です"
+          ]
+        },
+        "urls": {
+          "result": "WARN",
+          "details": [
+            "URL が見つかりません"
+          ]
+        },
+        "cta": {
+          "result": "WARN",
+          "details": [
+            "CTA（ボタン/リンク）が見つかりません"
+          ]
+        },
+        "pr_notice": {
+          "result": "WARN",
+          "details": [
+            "PR/広告表記が見つかりません"
+          ]
+        },
+        "featured_image": {
+          "result": "WARN",
+          "details": [
+            "アイキャッチが未設定です"
+          ]
+        }
+      },
+      "final_result": "FAIL",
+      "recommendation": "公開不可: content_quality"
+    },
+    {
+      "post_id": 105,
+      "post_title": "(untitled)",
+      "check_timestamp": "2026-05-20T17:00:01.657669+00:00",
+      "checks": {
+        "content_quality": {
+          "result": "FAIL",
+          "details": [
+            "本文が空です"
+          ]
+        },
+        "urls": {
+          "result": "WARN",
+          "details": [
+            "URL が見つかりません"
+          ]
+        },
+        "cta": {
+          "result": "WARN",
+          "details": [
+            "CTA（ボタン/リンク）が見つかりません"
+          ]
+        },
+        "pr_notice": {
+          "result": "WARN",
+          "details": [
+            "PR/広告表記が見つかりません"
+          ]
+        },
+        "featured_image": {
+          "result": "WARN",
+          "details": [
+            "アイキャッチが未設定です"
+          ]
+        }
+      },
+      "final_result": "FAIL",
+      "recommendation": "公開不可: content_quality"
+    },
+    {
+      "post_id": 104,
+      "post_title": "(untitled)",
+      "check_timestamp": "2026-05-20T17:00:01.657679+00:00",
+      "checks": {
+        "content_quality": {
+          "result": "FAIL",
+          "details": [
+            "本文が空です"
+          ]
+        },
+        "urls": {
+          "result": "WARN",
+          "details": [
+            "URL が見つかりません"
+          ]
+        },
+        "cta": {
+          "result": "WARN",
+          "details": [
+            "CTA（ボタン/リンク）が見つかりません"
+          ]
+        },
+        "pr_notice": {
+          "result": "WARN",
+          "details": [
+            "PR/広告表記が見つかりません"
+          ]
+        },
+        "featured_image": {
+          "result": "WARN",
+          "details": [
+            "アイキャッチが未設定です"
+          ]
+        }
+      },
+      "final_result": "FAIL",
+      "recommendation": "公開不可: content_quality"
+    },
+    {
+      "post_id": 103,
+      "post_title": "(untitled)",
+      "check_timestamp": "2026-05-20T17:00:01.657688+00:00",
+      "checks": {
+        "content_quality": {
+          "result": "FAIL",
+          "details": [
+            "本文が空です"
+          ]
+        },
+        "urls": {
+          "result": "WARN",
+          "details": [
+            "URL が見つかりません"
+          ]
+        },
+        "cta": {
+          "result": "WARN",
+          "details": [
+            "CTA（ボタン/リンク）が見つかりません"
+          ]
+        },
+        "pr_notice": {
+          "result": "WARN",
+          "details": [
+            "PR/広告表記が見つかりません"
+          ]
+        },
+        "featured_image": {
+          "result": "WARN",
+          "details": [
+            "アイキャッチが未設定です"
+          ]
+        }
+      },
+      "final_result": "FAIL",
+      "recommendation": "公開不可: content_quality"
+    },
+    {
+      "post_id": 102,
+      "post_title": "(untitled)",
+      "check_timestamp": "2026-05-20T17:00:01.657698+00:00",
+      "checks": {
+        "content_quality": {
+          "result": "FAIL",
+          "details": [
+            "本文が空です"
+          ]
+        },
+        "urls": {
+          "result": "WARN",
+          "details": [
+            "URL が見つかりません"
+          ]
+        },
+        "cta": {
+          "result": "WARN",
+          "details": [
+            "CTA（ボタン/リンク）が見つかりません"
+          ]
+        },
+        "pr_notice": {
+          "result": "WARN",
+          "details": [
+            "PR/広告表記が見つかりません"
+          ]
+        },
+        "featured_image": {
+          "result": "WARN",
+          "details": [
+            "アイキャッチが未設定です"
+          ]
+        }
+      },
+      "final_result": "FAIL",
+      "recommendation": "公開不可: content_quality"
+    },
+    {
+      "post_id": 101,
+      "post_title": "(untitled)",
+      "check_timestamp": "2026-05-20T17:00:01.657707+00:00",
+      "checks": {
+        "content_quality": {
+          "result": "FAIL",
+          "details": [
+            "本文が空です"
+          ]
+        },
+        "urls": {
+          "result": "WARN",
+          "details": [
+            "URL が見つかりません"
+          ]
+        },
+        "cta": {
+          "result": "WARN",
+          "details": [
+            "CTA（ボタン/リンク）が見つかりません"
+          ]
+        },
+        "pr_notice": {
+          "result": "WARN",
+          "details": [
+            "PR/広告表記が見つかりません"
+          ]
+        },
+        "featured_image": {
+          "result": "WARN",
+          "details": [
+            "アイキャッチが未設定です"
+          ]
+        }
+      },
+      "final_result": "FAIL",
+      "recommendation": "公開不可: content_quality"
+    },
+    {
+      "post_id": 100,
+      "post_title": "(untitled)",
+      "check_timestamp": "2026-05-20T17:00:01.657717+00:00",
+      "checks": {
+        "content_quality": {
+          "result": "FAIL",
+          "details": [
+            "本文が空です"
+          ]
+        },
+        "urls": {
+          "result": "WARN",
+          "details": [
+            "URL が見つかりません"
+          ]
+        },
+        "cta": {
+          "result": "WARN",
+          "details": [
+            "CTA（ボタン/リンク）が見つかりません"
+          ]
+        },
+        "pr_notice": {
+          "result": "WARN",
+          "details": [
+            "PR/広告表記が見つかりません"
+          ]
+        },
+        "featured_image": {
+          "result": "WARN",
+          "details": [
+            "アイキャッチが未設定です"
+          ]
+        }
+      },
+      "final_result": "FAIL",
+      "recommendation": "公開不可: content_quality"
+    },
+    {
+      "post_id": 99,
+      "post_title": "(untitled)",
+      "check_timestamp": "2026-05-20T17:00:01.657727+00:00",
+      "checks": {
+        "content_quality": {
+          "result": "FAIL",
+          "details": [
+            "本文が空です"
+          ]
+        },
+        "urls": {
+          "result": "WARN",
+          "details": [
+            "URL が見つかりません"
+          ]
+        },
+        "cta": {
+          "result": "WARN",
+          "details": [
+            "CTA（ボタン/リンク）が見つかりません"
+          ]
+        },
+        "pr_notice": {
+          "result": "WARN",
+          "details": [
+            "PR/広告表記が見つかりません"
+          ]
+        },
+        "featured_image": {
+          "result": "WARN",
+          "details": [
+            "アイキャッチが未設定です"
+          ]
+        }
+      },
+      "final_result": "FAIL",
+      "recommendation": "公開不可: content_quality"
+    },
+    {
+      "post_id": 98,
+      "post_title": "(untitled)",
+      "check_timestamp": "2026-05-20T17:00:01.657739+00:00",
+      "checks": {
+        "content_quality": {
+          "result": "FAIL",
+          "details": [
+            "本文が空です"
+          ]
+        },
+        "urls": {
+          "result": "WARN",
+          "details": [
+            "URL が見つかりません"
+          ]
+        },
+        "cta": {
+          "result": "WARN",
+          "details": [
+            "CTA（ボタン/リンク）が見つかりません"
+          ]
+        },
+        "pr_notice": {
+          "result": "WARN",
+          "details": [
+            "PR/広告表記が見つかりません"
+          ]
+        },
+        "featured_image": {
+          "result": "WARN",
+          "details": [
+            "アイキャッチが未設定です"
+          ]
+        }
+      },
+      "final_result": "FAIL",
+      "recommendation": "公開不可: content_quality"
+    },
+    {
+      "post_id": 96,
+      "post_title": "(untitled)",
+      "check_timestamp": "2026-05-20T17:00:01.657747+00:00",
+      "checks": {
+        "content_quality": {
+          "result": "FAIL",
+          "details": [
+            "本文が空です"
+          ]
+        },
+        "urls": {
+          "result": "WARN",
+          "details": [
+            "URL が見つかりません"
+          ]
+        },
+        "cta": {
+          "result": "WARN",
+          "details": [
+            "CTA（ボタン/リンク）が見つかりません"
+          ]
+        },
+        "pr_notice": {
+          "result": "WARN",
+          "details": [
+            "PR/広告表記が見つかりません"
+          ]
+        },
+        "featured_image": {
+          "result": "WARN",
+          "details": [
+            "アイキャッチが未設定です"
+          ]
+        }
+      },
+      "final_result": "FAIL",
+      "recommendation": "公開不可: content_quality"
+    },
+    {
+      "post_id": 95,
+      "post_title": "(untitled)",
+      "check_timestamp": "2026-05-20T17:00:01.657755+00:00",
+      "checks": {
+        "content_quality": {
+          "result": "FAIL",
+          "details": [
+            "本文が空です"
+          ]
+        },
+        "urls": {
+          "result": "WARN",
+          "details": [
+            "URL が見つかりません"
+          ]
+        },
+        "cta": {
+          "result": "WARN",
+          "details": [
+            "CTA（ボタン/リンク）が見つかりません"
+          ]
+        },
+        "pr_notice": {
+          "result": "WARN",
+          "details": [
+            "PR/広告表記が見つかりません"
+          ]
+        },
+        "featured_image": {
+          "result": "WARN",
+          "details": [
+            "アイキャッチが未設定です"
+          ]
+        }
+      },
+      "final_result": "FAIL",
+      "recommendation": "公開不可: content_quality"
+    },
+    {
+      "post_id": 94,
+      "post_title": "(untitled)",
+      "check_timestamp": "2026-05-20T17:00:01.657766+00:00",
+      "checks": {
+        "content_quality": {
+          "result": "FAIL",
+          "details": [
+            "本文が空です"
+          ]
+        },
+        "urls": {
+          "result": "WARN",
+          "details": [
+            "URL が見つかりません"
+          ]
+        },
+        "cta": {
+          "result": "WARN",
+          "details": [
+            "CTA（ボタン/リンク）が見つかりません"
+          ]
+        },
+        "pr_notice": {
+          "result": "WARN",
+          "details": [
+            "PR/広告表記が見つかりません"
+          ]
+        },
+        "featured_image": {
+          "result": "WARN",
+          "details": [
+            "アイキャッチが未設定です"
+          ]
+        }
+      },
+      "final_result": "FAIL",
+      "recommendation": "公開不可: content_quality"
+    },
+    {
+      "post_id": 93,
+      "post_title": "(untitled)",
+      "check_timestamp": "2026-05-20T17:00:01.657776+00:00",
+      "checks": {
+        "content_quality": {
+          "result": "FAIL",
+          "details": [
+            "本文が空です"
+          ]
+        },
+        "urls": {
+          "result": "WARN",
+          "details": [
+            "URL が見つかりません"
+          ]
+        },
+        "cta": {
+          "result": "WARN",
+          "details": [
+            "CTA（ボタン/リンク）が見つかりません"
+          ]
+        },
+        "pr_notice": {
+          "result": "WARN",
+          "details": [
+            "PR/広告表記が見つかりません"
+          ]
+        },
+        "featured_image": {
+          "result": "WARN",
+          "details": [
+            "アイキャッチが未設定です"
+          ]
+        }
+      },
+      "final_result": "FAIL",
+      "recommendation": "公開不可: content_quality"
+    },
+    {
+      "post_id": 92,
+      "post_title": "(untitled)",
+      "check_timestamp": "2026-05-20T17:00:01.657785+00:00",
+      "checks": {
+        "content_quality": {
+          "result": "FAIL",
+          "details": [
+            "本文が空です"
+          ]
+        },
+        "urls": {
+          "result": "WARN",
+          "details": [
+            "URL が見つかりません"
+          ]
+        },
+        "cta": {
+          "result": "WARN",
+          "details": [
+            "CTA（ボタン/リンク）が見つかりません"
+          ]
+        },
+        "pr_notice": {
+          "result": "WARN",
+          "details": [
+            "PR/広告表記が見つかりません"
+          ]
+        },
+        "featured_image": {
+          "result": "WARN",
+          "details": [
+            "アイキャッチが未設定です"
+          ]
+        }
+      },
+      "final_result": "FAIL",
+      "recommendation": "公開不可: content_quality"
+    },
+    {
+      "post_id": 91,
+      "post_title": "(untitled)",
+      "check_timestamp": "2026-05-20T17:00:01.657794+00:00",
+      "checks": {
+        "content_quality": {
+          "result": "FAIL",
+          "details": [
+            "本文が空です"
+          ]
+        },
+        "urls": {
+          "result": "WARN",
+          "details": [
+            "URL が見つかりません"
+          ]
+        },
+        "cta": {
+          "result": "WARN",
+          "details": [
+            "CTA（ボタン/リンク）が見つかりません"
+          ]
+        },
+        "pr_notice": {
+          "result": "WARN",
+          "details": [
+            "PR/広告表記が見つかりません"
+          ]
+        },
+        "featured_image": {
+          "result": "WARN",
+          "details": [
+            "アイキャッチが未設定です"
+          ]
+        }
+      },
+      "final_result": "FAIL",
+      "recommendation": "公開不可: content_quality"
+    },
+    {
+      "post_id": 90,
+      "post_title": "(untitled)",
+      "check_timestamp": "2026-05-20T17:00:01.657807+00:00",
+      "checks": {
+        "content_quality": {
+          "result": "FAIL",
+          "details": [
+            "本文が空です"
+          ]
+        },
+        "urls": {
+          "result": "WARN",
+          "details": [
+            "URL が見つかりません"
+          ]
+        },
+        "cta": {
+          "result": "WARN",
+          "details": [
+            "CTA（ボタン/リンク）が見つかりません"
+          ]
+        },
+        "pr_notice": {
+          "result": "WARN",
+          "details": [
+            "PR/広告表記が見つかりません"
+          ]
+        },
+        "featured_image": {
+          "result": "WARN",
+          "details": [
+            "アイキャッチが未設定です"
+          ]
+        }
+      },
+      "final_result": "FAIL",
+      "recommendation": "公開不可: content_quality"
+    }
+  ],
+  "summary": {
+    "PASS_ALL": 0,
+    "PASS_WITH_WARNS": 0,
+    "FAIL": 20
+  }
+}

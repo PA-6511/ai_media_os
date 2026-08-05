@@ -1,0 +1,63 @@
+{
+  "phase": "8-SVC-8",
+  "phase_name": "Timer Enable Preflight Design",
+  "status": "DESIGN_ONLY_NO_ENABLE",
+  "production_status": "NO_GO",
+  "execution": "DRY_RUN",
+  "design_only": true,
+  "required_phase_statuses": {
+    "svc3": "REPO_UNIT_READY_INSTALL_BLOCKED_BY_SUDO_AUTH",
+    "svc3b": "POST_INSTALL_VERIFICATION_PROMPT_READY",
+    "svc4": "PASS_DESIGN_ONLY_NO_ACTIVATION",
+    "svc5": "PASS_DESIGN_ONLY_DAEMON_RELOAD_PRECHECK",
+    "svc6": "PASS_DESIGN_ONLY_DAEMON_RELOAD_POST_CHECK",
+    "svc7": "PASS_DESIGN_ONLY_REMOVAL_ROLLBACK_PREPARED"
+  },
+  "required_runbook_sections": [
+    "## 1. Purpose",
+    "## 2. Preconditions",
+    "## 4. Absolute Prohibitions",
+    "## 5. Timer Enable Gate Conditions (Future Human-GO Phase)",
+    "## 6. Activation Boundary",
+    "## 8. Secret Safety Rules",
+    "## 11. Final Judgment Rule",
+    "## 12. Next Step"
+  ],
+  "forbidden_patterns": [
+    "systemctl enable",
+    "systemctl start",
+    "systemctl daemon-reload",
+    "service start",
+    "timer enable",
+    "timer start",
+    "requests.post(",
+    "requests.put(",
+    "requests.patch(",
+    "requests.delete(",
+    "wp-json",
+    "WORDPRESS_APP_PASSWORD=",
+    "printenv",
+    "cat /etc/ai-media-os/credential.env",
+    "echo $WORDPRESS_",
+    "phase 8-29",
+    "phase 8-40"
+  ],
+  "activation_actions": {
+    "daemon_reload_executed": false,
+    "systemctl_enable_executed": false,
+    "systemctl_start_executed": false,
+    "systemctl_restart_executed": false,
+    "service_start_executed": false,
+    "timer_enable_executed": false,
+    "timer_start_executed": false
+  },
+  "execution_actions": {
+    "credential_env_created": false,
+    "secret_input_executed": false,
+    "phase8_29_to_8_40_rerun_executed": false,
+    "wordpress_api_call_attempted": false,
+    "wordpress_draft_created": false,
+    "wordpress_publish_executed": false
+  },
+  "allowed_next_step": "Await explicit human GO for controlled timer-enable execution checkpoint"
+}

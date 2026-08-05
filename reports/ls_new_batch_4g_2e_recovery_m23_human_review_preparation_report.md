@@ -1,0 +1,27 @@
+# LS-NEW-BATCH-4G-2E-RECOVERY-M23
+
+- Status: `PASS_WORDPRESS_RENDERED_LAYOUT_CORRECTION_HUMAN_REVIEW_PREPARATION_SAFE_PREVIEWS_READY_LOCAL_ONLY_NO_WORDPRESS_ACCESS`
+- Decision: `SAFE_DESKTOP_AND_MOBILE_PREVIEWS_READY_AWAITING_HUMAN_VISUAL_REVIEW`
+- WordPress post ID: `192`
+- Safe desktop preview generated: `true`
+- Safe mobile preview generated: `true`
+- Desktop preview SHA-256: `910b848cdce593d61e966a7fd1faa73d573c4eea317965e71b8c26d95f831a51`
+- Mobile preview SHA-256: `76e9cf117640d414a866202a9f2ff42309f86ec4c23bd55d3d21b48b3dae3358`
+- Store confirmation method: `host / state / fingerprint only`
+- Active external links in preview: `false`
+- External asset requests in preview: `false`
+- Full store URL in preview: `false`
+- Affiliate identifier in preview: `false`
+- Comment status target: `closed`
+- Allowed update fields: `content, comment_status`
+- Human review completed: `false`
+- Human review verdict: `NOT_RECORDED`
+- Network connection performed: `false`
+- WordPress access performed: `false`
+- WordPress update performed: `false`
+- Authorization issued: `false`
+- Execution allowed: `false`
+- Production status: `NO_GO`
+- Ready for human visual review: `true`
+- Ready for WordPress update authorization gate: `false`
+- Ready for WordPress update: `false`

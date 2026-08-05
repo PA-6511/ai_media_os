@@ -1,0 +1,30 @@
+{
+  "package_type": "wordpress_draft_candidate",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "human_approval_required": true,
+  "wordpress_write_executed": false,
+  "auto_post": false,
+  "auto_update": false,
+  "auto_delete": false,
+  "auto_export": false,
+  "title_candidate": "【DRY_RUN候補】Phase 5-1 real-data schema normal sample",
+  "content_html_candidate": "<p>これは WordPress 下書き候補です。まだ投稿は実行されません。</p><p>概要: Phase 5-1 real-data schema normal sample</p><p>リスクレベル: LOW</p><ul><li>本番投稿: 未実行</li><li>本番更新: 未実行</li><li>外部Export: 未実行</li></ul>",
+  "category_candidates": [
+    "電子書籍",
+    "セール"
+  ],
+  "tag_candidates": [
+    "Kindle",
+    "漫画",
+    "セール"
+  ],
+  "source_builder": {
+    "type": "LOCAL_SELF_BUILDER",
+    "location": "local",
+    "execution_allowed": false,
+    "vps_migration_ready": false
+  },
+  "next_step": "human_review",
+  "created_at": "2026-05-05T05:15:29.080287+00:00"
+}

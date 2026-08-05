@@ -1,0 +1,15 @@
+{
+  "policy_version": "v1",
+  "approval_mode": "HUMAN_APPROVAL_REQUIRED",
+  "default_approval_state": "PENDING",
+  "allow_execute_when_pending": false,
+  "allow_execute_when_rejected": false,
+  "allow_execute_when_approved": true,
+  "required_checks": [
+    "dry_run_only",
+    "no_external_api",
+    "no_external_network",
+    "no_wordpress",
+    "no_publish_update_delete_export"
+  ]
+}

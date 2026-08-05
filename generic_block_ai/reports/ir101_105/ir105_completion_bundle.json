@@ -1,0 +1,339 @@
+{
+  "schema_version": "ir105_phase_101_105_completion_bundle_v1",
+  "phase": "IR105",
+  "generated_at": "2026-05-24T15:10:46.901774+00:00",
+  "source_task_id": "ir101_105_live_trial",
+  "new_cycle_id": "IR71_PLUS_CYCLE_A",
+  "ir101_result": {
+    "schema_version": "ir101_evidence_consolidation_status_report_v1",
+    "phase": "IR101",
+    "generated_at": "2026-05-24T15:10:46.900916+00:00",
+    "source_task_id": "ir101_105_live_trial",
+    "validation_result": "PASS",
+    "validation_failed_checks": [],
+    "validation_warnings": [],
+    "evidence_consolidation_status": {
+      "report_id": "ir101_consolidation_ir101_105_live_trial_20260524T151046Z",
+      "generated_at": "2026-05-24T15:10:46.900881+00:00",
+      "source_task_id": "ir101_105_live_trial",
+      "new_cycle_id": "IR71_PLUS_CYCLE_A",
+      "consolidation_entries": [
+        {
+          "queue_item_id": "queue_1",
+          "item": "go_decision_document",
+          "prior_intake_status": "NOT_RECEIVED",
+          "consolidation_status": "PENDING_CONSOLIDATION",
+          "evidence_consolidated": false
+        },
+        {
+          "queue_item_id": "queue_2",
+          "item": "release_approver_signature",
+          "prior_intake_status": "NOT_RECEIVED",
+          "consolidation_status": "PENDING_CONSOLIDATION",
+          "evidence_consolidated": false
+        },
+        {
+          "queue_item_id": "queue_3",
+          "item": "safety_redeclaration_record",
+          "prior_intake_status": "NOT_RECEIVED",
+          "consolidation_status": "PENDING_CONSOLIDATION",
+          "evidence_consolidated": false
+        },
+        {
+          "queue_item_id": "queue_4",
+          "item": "full_test_matrix_record",
+          "prior_intake_status": "NOT_RECEIVED",
+          "consolidation_status": "PENDING_CONSOLIDATION",
+          "evidence_consolidated": false
+        },
+        {
+          "queue_item_id": "queue_5",
+          "item": "execution_authorization_record",
+          "prior_intake_status": "NOT_RECEIVED",
+          "consolidation_status": "PENDING_CONSOLIDATION",
+          "evidence_consolidated": false
+        }
+      ],
+      "consolidated_count": 5,
+      "all_evidence_consolidated": false,
+      "consolidation_eligible": false,
+      "safety_gate_snapshot": {
+        "dry_run": "maintained",
+        "OBSERVE": "maintained",
+        "submission_execution_blocked": true,
+        "execution_policy_execute": false,
+        "external_write_executed": false,
+        "network_transmission_executed": false,
+        "production_release": false,
+        "GitHub_push": "未実行"
+      }
+    },
+    "report_hash": "075580927b5542b2e73f6ba84c6cbd621499e6271008c4f4d582d63efd43f01e",
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "ir102_result": {
+    "schema_version": "ir102_remediation_delta_progress_tracker_v1",
+    "phase": "IR102",
+    "generated_at": "2026-05-24T15:10:46.901266+00:00",
+    "source_task_id": "ir101_105_live_trial",
+    "validation_result": "PASS",
+    "validation_failed_checks": [],
+    "validation_warnings": [],
+    "remediation_delta_progress": {
+      "tracker_id": "ir102_delta_ir101_105_live_trial_20260524T151046Z",
+      "generated_at": "2026-05-24T15:10:46.901260+00:00",
+      "source_task_id": "ir101_105_live_trial",
+      "new_cycle_id": "IR71_PLUS_CYCLE_A",
+      "delta_items": [
+        {
+          "item_id": "queue_1",
+          "item": "go_decision_document",
+          "prior_consolidation_status": "PENDING_CONSOLIDATION",
+          "delta_progress_status": "DELTA_OPEN",
+          "progress_percentage": 0,
+          "closure_eligible": false
+        },
+        {
+          "item_id": "queue_2",
+          "item": "release_approver_signature",
+          "prior_consolidation_status": "PENDING_CONSOLIDATION",
+          "delta_progress_status": "DELTA_OPEN",
+          "progress_percentage": 0,
+          "closure_eligible": false
+        },
+        {
+          "item_id": "queue_3",
+          "item": "safety_redeclaration_record",
+          "prior_consolidation_status": "PENDING_CONSOLIDATION",
+          "delta_progress_status": "DELTA_OPEN",
+          "progress_percentage": 0,
+          "closure_eligible": false
+        },
+        {
+          "item_id": "queue_4",
+          "item": "full_test_matrix_record",
+          "prior_consolidation_status": "PENDING_CONSOLIDATION",
+          "delta_progress_status": "DELTA_OPEN",
+          "progress_percentage": 0,
+          "closure_eligible": false
+        },
+        {
+          "item_id": "queue_5",
+          "item": "execution_authorization_record",
+          "prior_consolidation_status": "PENDING_CONSOLIDATION",
+          "delta_progress_status": "DELTA_OPEN",
+          "progress_percentage": 0,
+          "closure_eligible": false
+        }
+      ],
+      "total_delta_count": 5,
+      "open_delta_count": 5,
+      "closed_delta_count": 0,
+      "all_deltas_closed": false,
+      "unlock_eligible": false,
+      "safety_gate_snapshot": {
+        "dry_run": "maintained",
+        "OBSERVE": "maintained",
+        "submission_execution_blocked": true,
+        "execution_policy_execute": false,
+        "external_write_executed": false,
+        "network_transmission_executed": false,
+        "production_release": false,
+        "GitHub_push": "未実行"
+      }
+    },
+    "tracker_hash": "f65d6882a35fb3067b5bb6b8cb22314bd09bed5bd4d54d9c6b22cbb39d46511a",
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "ir103_result": {
+    "schema_version": "ir103_re_review_cycle_assessment_v1",
+    "phase": "IR103",
+    "generated_at": "2026-05-24T15:10:46.901463+00:00",
+    "source_task_id": "ir101_105_live_trial",
+    "validation_result": "PASS",
+    "validation_failed_checks": [],
+    "validation_warnings": [],
+    "re_review_cycle_assessment": {
+      "assessment_id": "ir103_cycle_ir101_105_live_trial_20260524T151046Z",
+      "generated_at": "2026-05-24T15:10:46.901458+00:00",
+      "source_task_id": "ir101_105_live_trial",
+      "new_cycle_id": "IR71_PLUS_CYCLE_A",
+      "prior_cycle_decision": "UNLOCK_PROHIBITION_RECONFIRMED_DRY_RUN_ONLY",
+      "open_delta_count": 5,
+      "total_delta_count": 5,
+      "cycle_status": "CYCLE_IN_PROGRESS",
+      "next_cycle_recommended": true,
+      "unlock_eligible": false,
+      "safety_gate_snapshot": {
+        "dry_run": "maintained",
+        "OBSERVE": "maintained",
+        "submission_execution_blocked": true,
+        "execution_policy_execute": false,
+        "external_write_executed": false,
+        "network_transmission_executed": false,
+        "production_release": false,
+        "GitHub_push": "未実行"
+      }
+    },
+    "assessment_hash": "c5369617c58614702bcbe9668492440a67e66a915a55dc318a0381401b7dc729",
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "ir104_result": {
+    "schema_version": "ir104_prohibition_cycle_continuation_gate_v1",
+    "phase": "IR104",
+    "generated_at": "2026-05-24T15:10:46.901619+00:00",
+    "source_task_id": "ir101_105_live_trial",
+    "prohibition_cycle_continuation_decision": "PROHIBITION_CYCLE_CONTINUED_DRY_RUN_ONLY",
+    "gate_action": "Prohibition cycle continuation confirmed. Dry-run-only remains enforced.",
+    "validation_result": "PASS",
+    "validation_failed_checks": [],
+    "validation_warnings": [],
+    "gate_record": {
+      "gate_id": "ir104_gate_ir101_105_live_trial_20260524T151046Z",
+      "generated_at": "2026-05-24T15:10:46.901615+00:00",
+      "source_task_id": "ir101_105_live_trial",
+      "decision": "PROHIBITION_CYCLE_CONTINUED_DRY_RUN_ONLY",
+      "unlock_prohibited": true,
+      "cycle_continued": true,
+      "safety_gate_snapshot": {
+        "dry_run": "maintained",
+        "OBSERVE": "maintained",
+        "submission_execution_blocked": true,
+        "execution_policy_execute": false,
+        "external_write_executed": false,
+        "network_transmission_executed": false,
+        "production_release": false,
+        "GitHub_push": "未実行"
+      }
+    },
+    "gate_hash": "0f1133233ba9ec6a0d46ea8f47c9d29e4501ad02b85ac7b41882b1e2bbe5f441",
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "test_summary": {
+    "focused": {
+      "passed": 6,
+      "failed": 0
+    },
+    "adjacent": {
+      "passed": 60,
+      "failed": 0
+    },
+    "scoped": {
+      "passed": 422,
+      "failed": 0
+    }
+  },
+  "live_summary": {
+    "ir101": "PASS",
+    "ir102": "PASS",
+    "ir103": "PASS",
+    "ir104": "PASS",
+    "ir105": "PASS"
+  },
+  "safety_gate_summary": {
+    "dry_run": "maintained",
+    "OBSERVE": "maintained",
+    "submission_execution_blocked": true,
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "network_transmission_executed": false,
+    "production_release": false,
+    "GitHub_push": "未実行"
+  },
+  "completion_table": [
+    {
+      "phase": "IR101",
+      "content": "Evidence Consolidation Status Report",
+      "focused": "PASS",
+      "adjacent": "PASS",
+      "scoped": "PASS",
+      "live": "PASS",
+      "judgement": "完了"
+    },
+    {
+      "phase": "IR102",
+      "content": "Remediation Delta Progress Tracker",
+      "focused": "PASS",
+      "adjacent": "PASS",
+      "scoped": "PASS",
+      "live": "PASS",
+      "judgement": "完了"
+    },
+    {
+      "phase": "IR103",
+      "content": "Re-Review Cycle Assessment",
+      "focused": "PASS",
+      "adjacent": "PASS",
+      "scoped": "PASS",
+      "live": "PASS",
+      "judgement": "完了"
+    },
+    {
+      "phase": "IR104",
+      "content": "Prohibition Cycle Continuation Gate",
+      "focused": "PASS",
+      "adjacent": "PASS",
+      "scoped": "PASS",
+      "live": "PASS",
+      "judgement": "完了"
+    },
+    {
+      "phase": "IR105",
+      "content": "Phase 101-105 Completion Bundle",
+      "focused": "PASS",
+      "adjacent": "PASS",
+      "scoped": "PASS",
+      "live": "PASS",
+      "judgement": "完了"
+    }
+  ],
+  "final_decision": "PROHIBITION_CYCLE_CONTINUED_DRY_RUN_ONLY",
+  "prohibition_cycle_continued": true,
+  "evidence_consolidation_pending": true,
+  "artifacts": {
+    "ir101_evidence_consolidation_status_report": "generic_block_ai/reports/ir101_105/ir101_evidence_consolidation_status_report.json",
+    "ir102_remediation_delta_progress_tracker": "generic_block_ai/reports/ir101_105/ir102_remediation_delta_progress_tracker.json",
+    "ir103_re_review_cycle_assessment": "generic_block_ai/reports/ir101_105/ir103_re_review_cycle_assessment.json",
+    "ir104_prohibition_cycle_continuation_gate_report": "generic_block_ai/reports/ir101_105/ir104_prohibition_cycle_continuation_gate_report.json",
+    "ir105_completion_bundle": "generic_block_ai/reports/ir101_105/ir105_completion_bundle.json",
+    "ir101_105_live_status": "generic_block_ai/reports/ir101_105/ir101_105_live_status.md",
+    "ir101_105_completion_table": "generic_block_ai/reports/ir101_105/ir101_105_completion_table.md"
+  },
+  "external_write_executed": false
+}

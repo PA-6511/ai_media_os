@@ -1,0 +1,15 @@
+{
+  "block_id": "sale_flash_block",
+  "lifecycle_phase": "DESIGN_POLICY_ONLY",
+  "execution_enabled": false,
+  "dry_run_only": true,
+  "production_status": "NO_GO",
+  "external_api_allowed": false,
+  "external_network_allowed": false,
+  "wordpress_allowed": false,
+  "publish_allowed": false,
+  "update_allowed": false,
+  "delete_allowed": false,
+  "export_allowed": false,
+  "notes": "Scaffold generated. Execution logic intentionally not implemented."
+}

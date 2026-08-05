@@ -1,0 +1,22 @@
+{
+  "phase": "LS-NEW-6",
+  "document_type": "START_LS_NEW6_WP_DRAFT_PAYLOAD_SAFETY_SUMMARY",
+  "status": "LSNEW6_SAFETY_SUMMARY_READY_NO_EXECUTION",
+  "wordpress_api_call_executed": false,
+  "wordpress_write_executed": false,
+  "wordpress_draft_created": false,
+  "wordpress_publish_executed": false,
+  "x_api_call_executed": false,
+  "x_post_executed": false,
+  "external_fetch_executed": false,
+  "http_get_executed": false,
+  "credential_env_read_executed": false,
+  "credential_value_output": false,
+  "credential_secret_output": false,
+  "secret_length_output": false,
+  "secret_hash_output": false,
+  "target_post_id_allocated": false,
+  "approval_label_consumed": false,
+  "execution_allowed": false,
+  "ready_for_ls_new_7": true
+}

@@ -1,0 +1,21 @@
+# LS-NEW-BATCH-4G-2E-RECOVERY-M6
+
+- Status: `PASS_DMM_FINAL_AFFILIATE_LINK_GENERATION_ONE_SHOT_AUTHORIZATION_FIXED_NO_GENERATION_NO_NETWORK`
+- Decision: `DMM_FINAL_LINK_GENERATION_AUTHORIZATION_RECORDED_AWAITING_EXPLICIT_EXECUTE_NOW_CONFIRMATION`
+- Verified product URL: `https://book.dmm.com/product/861056/b950yshes32617/`
+- Required final scheme: `https`
+- Required final host: `al.dmm.com`
+- Identifier source: `/etc/ai-media-os/credential.env`
+- Identifier key: `DMM_AFFILIATE_ID`
+- CRED1 commitment revalidated: `true`
+- Identifier value output: `false`
+- Identifier value persisted: `false`
+- Authorization single use: `true`
+- Authorization consumed: `false`
+- Authorization reuse allowed: `false`
+- Network accessed: `false`
+- Final affiliate link generated: `false`
+- Article modified: `false`
+- WordPress accessed: `false`
+- Production status: `NO_GO`
+- Ready for M7 execute-now gate: `true`

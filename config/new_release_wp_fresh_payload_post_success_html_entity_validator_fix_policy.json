@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-M11-FIX2",
+  "policy_id": "FRESH_PAYLOAD_POST_SUCCESS_HTML_ENTITY_VALIDATOR_FIX_POLICY_V1",
+  "operation_mode": "EXISTING_PAYLOAD_READ_ONLY_VALIDATION_AND_HUMAN_REVIEW",
+  "diagnosis": "POST_SUCCESS_SAFETY_CHECK_HTML_ENTITY_ESCAPING_FALSE_NEGATIVE",
+  "content_item_id": "new-release-comic-20260703-001",
+  "payload_binding": {
+    "path": "exchange/payloads/new_release/fresh/new-release-comic-20260703-001.wordpress_draft_payload.json",
+    "required_file_sha256": "30a70be4110e863a85e2896f69f5b3e51d814a6fd82d5489f899d8a244166d8f",
+    "required_payload_digest_sha256": "2ab27b59305dbae98f997ca3a460400298152f173ef605b534df922c187411c6",
+    "required_mode": "0600"
+  },
+  "historical_bindings": {
+    "m11_fix1_consumption_digest_sha256": "977e85a2de5f0b4ab07a140d39d39b6c461c87094ef636c52ab3e9a9c0338597",
+    "m11_fix1_result_digest_sha256": "56dc9fae9bd9ce621bbe98493829fd9fb751acaf0560e3c6c879dc567dc2e0d4",
+    "m10_authorization_digest_sha256": "fed0e3c217c654f5e9803f750fd1d07269bff3eed4917a58638e61c9b571bc5b"
+  },
+  "validator_contract": {
+    "raw_url_substring_validation_allowed": false,
+    "html_reparse_required": true,
+    "href_entity_decode_required": true,
+    "decoded_href_exact_secret_link_match_required": true
+  },
+  "review_contract": {
+    "success_verdict": "APPROVED_NO_CHANGE_REQUIRED",
+    "wordpress_draft_creation_authorization_created": false,
+    "ready_for_wordpress_draft_creation_authorization_gate": true
+  },
+  "execution_boundary": {
+    "payload_regeneration_allowed": false,
+    "payload_modification_allowed": false,
+    "payload_deletion_allowed": false,
+    "article_modification_allowed": false,
+    "authorization_reissue_allowed": false,
+    "authorization_reconsumption_allowed": false,
+    "network_connection_allowed": false,
+    "dmm_recheck_allowed": false,
+    "wordpress_access_allowed": false,
+    "wordpress_write_allowed": false,
+    "wordpress_publish_allowed": false,
+    "x_post_allowed": false,
+    "production_status": "NO_GO"
+  }
+}

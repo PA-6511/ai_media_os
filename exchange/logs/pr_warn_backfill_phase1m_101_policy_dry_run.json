@@ -1,0 +1,28 @@
+{
+  "phase": "PR_WARN_BACKFILL_PHASE1M",
+  "mode": "REPORTS_ONLY",
+  "status": "PASS_FINAL_APPROVAL_AND_RESNAPSHOT_POLICY_REPORTS_ONLY",
+  "target_post_id": 101,
+  "final_live_approval_template_created": true,
+  "final_live_approval_real_file_created": false,
+  "final_live_approval_approved": false,
+  "final_live_write_allowed": false,
+  "pre_live_resnapshot_required": true,
+  "pre_live_resnapshot_executed": false,
+  "pre_live_snapshot_valid_minutes": 30,
+  "modified_diff_abort_required": true,
+  "content_hash_diff_abort_required": true,
+  "status_draft_required": true,
+  "payload_content_only_required": true,
+  "wordpress_read_executed": false,
+  "wordpress_write_executed": false,
+  "live_execution_executed": false,
+  "update_count": 0,
+  "next_required_phase": "Phase 1M-FIX or Phase 1N",
+  "policy_scope": {
+    "example_template_is_not_active_approval": true,
+    "real_approval_file_creation_in_phase1m": false,
+    "no_wordpress_api_connection": true,
+    "no_live_execution": true
+  }
+}

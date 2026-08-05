@@ -1,0 +1,480 @@
+{
+  "_meta": {
+    "phase": "6-4",
+    "purpose": "receiver_validator_detail_design",
+    "created_at": "2026-05-12",
+    "status": "DESIGN_ONLY",
+    "note": "Core側 receiver validator の詳細設計。受信スキーマの詳細化、PASS/WARN/REJECT/ABORT条件の明文化。実装候補は設計情報に留める。"
+  },
+  "validator_scope": {
+    "validator_type": "receiver_validator",
+    "purpose": "Core側から受け取る decision_package 和 observation の入力妥当性を詳細検証",
+    "design_basis": [
+      "reports/phase6_2_receiver_validator_implementation_conditions.json",
+      "reports/phase5_1_core_receiver_schema.json"
+    ],
+    "permitted_payload_types": [
+      "observation_only",
+      "decision_package_reference_only",
+      "dry_run_metadata"
+    ],
+    "blocked_payload_types": [
+      "execution_request",
+      "api_call_request",
+      "external_send_request",
+      "wordpress_write_request",
+      "cron_request",
+      "auto_execute_request"
+    ]
+  },
+  "input_schema_detail": {
+    "observation_schema": {
+      "type": "object",
+      "required": true,
+      "fields": {
+        "observation_id": {
+          "type": "string",
+          "format": "uuid",
+          "required": true,
+          "validation": "UUID形式の確認"
+        },
+        "observation_type": {
+          "type": "string",
+          "enum": [
+            "proposal_request",
+            "decision_query",
+            "status_check",
+            "condition_evaluation"
+          ],
+          "required": true,
+          "validation": "列挙値に限定"
+        },
+        "observation_content": {
+          "type": "object",
+          "required": true,
+          "fields": {
+            "proposal": {
+              "type": "object",
+              "description": "提案内容（observation情報のみ）"
+            },
+            "context": {
+              "type": "object",
+              "description": "背景情報（history、metadata等）"
+            },
+            "constraints": {
+              "type": "object",
+              "description": "制約条件（safety_level、permission_level等）"
+            }
+          }
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "ISO8601",
+          "required": true,
+          "validation": "タイムスタンプ形式の確認"
+        },
+        "source_id": {
+          "type": "string",
+          "required": true,
+          "validation": "Core AI識別子の確認"
+        }
+      }
+    },
+    "decision_package_reference_schema": {
+      "type": "object",
+      "required": true,
+      "fields": {
+        "reference_id": {
+          "type": "string",
+          "format": "uuid",
+          "required": true,
+          "validation": "reference UUID形式の確認"
+        },
+        "reference_type": {
+          "type": "string",
+          "enum": [
+            "decision_package_v1",
+            "decision_package_v2"
+          ],
+          "required": true,
+          "validation": "サポートバージョンのみ許可"
+        },
+        "reference_payload": {
+          "type": "object",
+          "required": true,
+          "fields": {
+            "decision_id": {
+              "type": "string",
+              "required": true
+            },
+            "decision_logic": {
+              "type": "string",
+              "description": "decision logic は reference のみ、実行不可"
+            },
+            "decision_result": {
+              "type": "object",
+              "description": "decision の判定結果（observation情報のみ）"
+            }
+          }
+        },
+        "dry_run_indicator": {
+          "type": "boolean",
+          "required": true,
+          "validation": "dry_run=true に固定"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "ISO8601",
+          "required": true
+        }
+      }
+    },
+    "permission_schema": {
+      "type": "object",
+      "required": true,
+      "fields": {
+        "execution_permission": {
+          "type": "string",
+          "enum": ["none"],
+          "required": true,
+          "validation": "none に固定、変更不可"
+        },
+        "write_permission": {
+          "type": "string",
+          "enum": ["none"],
+          "required": true,
+          "validation": "none に固定、変更不可"
+        },
+        "transport_permission": {
+          "type": "string",
+          "enum": [
+            "none",
+            "internal_dry_run_reference"
+          ],
+          "required": true,
+          "validation": "none または internal_dry_run_reference のみ"
+        },
+        "observation_read": {
+          "type": "boolean",
+          "required": true,
+          "default": true,
+          "validation": "true に固定"
+        }
+      }
+    },
+    "safety_flags": {
+      "type": "object",
+      "required": true,
+      "fields": {
+        "dry_run_mode": {
+          "type": "boolean",
+          "required": true,
+          "validation": "true に固定"
+        },
+        "external_call_blocked": {
+          "type": "boolean",
+          "required": true,
+          "validation": "true に固定"
+        },
+        "wordpress_blocked": {
+          "type": "boolean",
+          "required": true,
+          "validation": "true に固定"
+        },
+        "cron_blocked": {
+          "type": "boolean",
+          "required": true,
+          "validation": "true に固定"
+        },
+        "auto_execute_blocked": {
+          "type": "boolean",
+          "required": true,
+          "validation": "true に固定"
+        },
+        "auto_post_blocked": {
+          "type": "boolean",
+          "required": true,
+          "validation": "true に固定"
+        },
+        "auto_update_blocked": {
+          "type": "boolean",
+          "required": true,
+          "validation": "true に固定"
+        },
+        "auto_delete_blocked": {
+          "type": "boolean",
+          "required": true,
+          "validation": "true に固定"
+        },
+        "auto_export_blocked": {
+          "type": "boolean",
+          "required": true,
+          "validation": "true に固定"
+        },
+        "production_execution_blocked": {
+          "type": "boolean",
+          "required": true,
+          "validation": "true に固定"
+        }
+      }
+    }
+  },
+  "pass_conditions": {
+    "condition_1_schema_conformance": {
+      "description": "入力JSONが上記スキーマに完全準拠",
+      "validation_points": [
+        "observation_id は有効UUID",
+        "observation_type は許可値のみ",
+        "timestamp は有効ISO8601",
+        "source_id は空でない",
+        "reference_id は有効UUID（reference payloadの場合）",
+        "all safety_flags = true",
+        "execution_permission = none",
+        "write_permission = none",
+        "transport_permission in [none, internal_dry_run_reference]"
+      ],
+      "result": "PASS"
+    },
+    "condition_2_permission_enforcement": {
+      "description": "permission 境界が完全に強制されている",
+      "validation_points": [
+        "execution_permission=none 確認",
+        "write_permission=none 確認",
+        "transport_permission 逸脱なし確認",
+        "observation_read=true 確認"
+      ],
+      "result": "PASS"
+    },
+    "condition_3_dry_run_enforcement": {
+      "description": "dry_run mode が完全に強制されている",
+      "validation_points": [
+        "dry_run_mode=true 確認",
+        "external_call_blocked=true 確認",
+        "wordpress_blocked=true 確認",
+        "cron_blocked=true 確認",
+        "auto_execute_blocked=true 確認",
+        "production_execution_blocked=true 確認"
+      ],
+      "result": "PASS"
+    },
+    "condition_4_blocked_actions_absent": {
+      "description": "blocked actions が payload に混入していない",
+      "validation_points": [
+        "external_api_call フィールドなし",
+        "wordpress_operation フィールドなし",
+        "cron_request フィールドなし",
+        "auto_execute_request フィールドなし",
+        "auto_post フィールドなし",
+        "auto_delete フィールドなし",
+        "production_execution フィールドなし"
+      ],
+      "result": "PASS"
+    },
+    "condition_5_observation_or_reference_only": {
+      "description": "observation または decision_package_reference のいずれかが存在",
+      "validation_points": [
+        "observation_schema OR decision_package_reference_schema のいずれかが完全",
+        "両方が存在する場合は許可",
+        "どちらも存在しない場合は REJECT"
+      ],
+      "result": "PASS"
+    }
+  },
+  "warn_conditions": {
+    "condition_1_observation_depth": {
+      "description": "observation content が深くネストされている場合",
+      "trigger": "nesting depth > 5 levels",
+      "action": "WARN",
+      "requires_human_review": true,
+      "reason": "過度にネストされた構造は解析困難"
+    },
+    "condition_2_large_payload": {
+      "description": "payload サイズが閾値を超える場合",
+      "trigger": "payload size > 10 MB",
+      "action": "WARN",
+      "requires_human_review": true,
+      "reason": "大規模 payload は処理負荷増加の可能性"
+    },
+    "condition_3_unusual_timestamp_gap": {
+      "description": "タイムスタンプが現在時刻から大きく乖離している場合",
+      "trigger": "gap > 24 hours",
+      "action": "WARN",
+      "requires_human_review": true,
+      "reason": "タイムスタンプの異常値は clock skew や遅延を示唆"
+    },
+    "condition_4_reference_id_not_found": {
+      "description": "reference_id が既知の decision_package を指していない場合",
+      "trigger": "reference_id lookup fails",
+      "action": "WARN",
+      "requires_human_review": true,
+      "reason": "参照先が不明、history 追跡困難"
+    },
+    "condition_5_observation_type_unusual": {
+      "description": "observation_type が通常と異なる場合",
+      "trigger": "observation_type が rare category",
+      "action": "WARN",
+      "requires_human_review": true,
+      "reason": "珍しい observation type は事前検証必要"
+    }
+  },
+  "reject_conditions": {
+    "condition_1_schema_violation": {
+      "description": "入力が上記スキーマに非準拠",
+      "trigger": "JSON schema validation failure",
+      "action": "REJECT",
+      "reason": "構造的に要件を満たさない"
+    },
+    "condition_2_permission_violation": {
+      "description": "execution_permission または write_permission が none でない",
+      "trigger": "execution_permission != none OR write_permission != none",
+      "action": "REJECT",
+      "reason": "権限逸脱は即時拒否"
+    },
+    "condition_3_dry_run_disabled": {
+      "description": "dry_run_mode=false または safety_flags に false がある",
+      "trigger": "dry_run_mode=false OR any safety_flag=false",
+      "action": "REJECT",
+      "reason": "dry_run 強制逸脱は即時拒否"
+    },
+    "condition_4_blocked_action_detected": {
+      "description": "blocked actions が payload に混入",
+      "trigger": "external_api_call OR wordpress_operation OR cron_request OR auto_execute_request OR auto_post OR auto_delete OR production_execution detected",
+      "action": "REJECT",
+      "reason": "禁止操作の混入は即時拒否"
+    },
+    "condition_5_malformed_uuid": {
+      "description": "observation_id または reference_id が有効UUID でない",
+      "trigger": "UUID validation failure",
+      "action": "REJECT",
+      "reason": "トレーサビリティ不備は拒否"
+    },
+    "condition_6_invalid_timestamp": {
+      "description": "timestamp が有効 ISO8601 でない",
+      "trigger": "ISO8601 parse failure",
+      "action": "REJECT",
+      "reason": "時系列追跡不可"
+    },
+    "condition_7_transport_permission_violation": {
+      "description": "transport_permission が none でも internal_dry_run_reference でもない",
+      "trigger": "transport_permission not in [none, internal_dry_run_reference]",
+      "action": "REJECT",
+      "reason": "transport 権限逸脱"
+    },
+    "condition_8_source_id_missing": {
+      "description": "source_id が空または null",
+      "trigger": "source_id is empty or null",
+      "action": "REJECT",
+      "reason": "送信元追跡不可"
+    }
+  },
+  "abort_conditions": {
+    "condition_1_critical_permission_bypass": {
+      "description": "permission チェックが bypass されている兆候",
+      "trigger": "execution_permission が dynamic に変更される可能性が検出される場合",
+      "action": "ABORT",
+      "severity": "CRITICAL",
+      "reason": "permission model の逸脱は致命的"
+    },
+    "condition_2_malicious_payload": {
+      "description": "payload が悪意ある形式である可能性",
+      "trigger": "SQL injection / code injection / XXE パターン検出",
+      "action": "ABORT",
+      "severity": "CRITICAL",
+      "reason": "セキュリティ脅威"
+    },
+    "condition_3_encryption_violation": {
+      "description": "payload が暗号化されていない（要求される場合）",
+      "trigger": "sensitive payload + no encryption",
+      "action": "ABORT",
+      "severity": "CRITICAL",
+      "reason": "機密情報露出のリスク"
+    }
+  },
+  "validation_flow": {
+    "step1_schema_check": {
+      "action": "JSON schema validation",
+      "pass_result": "step2へ進む",
+      "fail_result": "REJECT"
+    },
+    "step2_permission_check": {
+      "action": "permission boundaries の確認",
+      "pass_result": "step3へ進む",
+      "fail_result": "REJECT"
+    },
+    "step3_safety_flags_check": {
+      "action": "dry_run / blocked_actions / safety_flags の確認",
+      "pass_result": "step4へ進む",
+      "fail_result": "REJECT"
+    },
+    "step4_blocked_actions_scan": {
+      "action": "payload 内に banned action が混入していないか確認",
+      "pass_result": "step5へ進む",
+      "fail_result": "REJECT"
+    },
+    "step5_warning_check": {
+      "action": "WARN 条件の確認",
+      "warn_result": "human review gate へ",
+      "pass_result": "PASS"
+    }
+  },
+  "implementation_candidates": {
+    "note": "以下は設計上の候補。実装ファイルはまだ作成しない。",
+    "candidate_structure": {
+      "main_validator": "app/core_receiver_validator.py (DESIGN_ONLY)",
+      "schema_validator": "app/receiver_schema_validator.py (DESIGN_ONLY)",
+      "permission_enforcer": "app/receiver_permission_enforcer.py (DESIGN_ONLY)",
+      "safety_flags_enforcer": "app/receiver_safety_enforcer.py (DESIGN_ONLY)"
+    },
+    "test_candidates": {
+      "test_schema": "tests/test_core_receiver_validator_schema.py (DESIGN_ONLY)",
+      "test_permission": "tests/test_core_receiver_validator_permission.py (DESIGN_ONLY)",
+      "test_safety": "tests/test_core_receiver_validator_safety.py (DESIGN_ONLY)"
+    }
+  },
+  "safety_audit": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "external_connection_allowed": false,
+    "wordpress_operation_allowed": false,
+    "cron_registration_allowed": false,
+    "app_implementation_added": false,
+    "tests_implementation_added": false,
+    "validator_implementation_blocked": true
+  },
+  "judgment": {
+    "phase6_4_detail_design_status": "PASS",
+    "design_completeness": "COMPLETE",
+    "input_schema_detailed": true,
+    "pass_conditions_clear": true,
+    "warn_conditions_clear": true,
+    "reject_conditions_clear": true,
+    "abort_conditions_clear": true,
+    "validation_flow_clear": true,
+    "implementation_candidates_noted": true,
+    "implementation_not_performed": true,
+    "production_status": "NO_GO",
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "allowed_state": [
+      "OBSERVE",
+      "DRY_RUN",
+      "HUMAN_REVIEW_REQUIRED"
+    ],
+    "blocked": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "next_phase": "phase6_5_rejection_validator_detail_design"
+  }
+}

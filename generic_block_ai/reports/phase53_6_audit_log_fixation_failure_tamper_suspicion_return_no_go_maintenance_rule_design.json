@@ -1,0 +1,35 @@
+{
+  "_meta": {
+    "phase": "53-6",
+    "phase_name": "監査ログ固定・改ざん防止層",
+    "layer": "差し戻し/NO_GO維持設計層 (remand/NO_GO maintenance design layer)",
+    "title": "監査ログ固定失敗・改ざん疑義時の差し戻し/NO_GO維持ルール設計",
+    "created": "2026-05-15",
+    "author": "governance-framework",
+    "status": "PASS_DESIGN_ONLY",
+    "reports_only": true
+  },
+  "scope": "Phase 53-2/53-3 で設計した監査ログ固定処理に失敗が発生した場合，または改ざん疑義が検出された場合に，差し戻し・NO_GO維持を厳格に行うルールを設計層で定義する。内容：(1) 失敗・疑義の検出条件，(2) 差し戻し手順・記録，(3) NO_GO維持の強制，(4) 再設計・再監査プロセスの明示。",
+  "governance": {
+    "production_status": "NO_GO",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "report": {
+    "description": "Phase 53-6 では，Phase 53-2/53-3 で設計した監査ログ固定処理に失敗が発生した場合，または改ざん疑義が検出された場合に，差し戻し・NO_GO維持を厳格に行うルールを設計層で定義する。(1) 失敗・疑義の検出条件，(2) 差し戻し手順・記録，(3) NO_GO維持の強制，(4) 再設計・再監査プロセスの明示。これらは全て reports-only で実装され，実処理開始許可は含まれない。",
+    "invariants": [
+      "NO_GO 維持：失敗・改ざん疑義検出時は production_status = 'NO_GO' を強制維持",
+      "NOT_GRANTED 維持：manual_release_go / actual_process_start_go の NOT_GRANTED 状態を維持",
+      "差し戻し手順明示：失敗・疑義時は必ず差し戻し・再設計・再監査を実施",
+      "改ざん疑義の記録：検出時は証跡を残し監査対象へ即時追加",
+      "reports only：全差し戻し/NO_GO維持ルールは設計層の報告書形式で実施"
+    ],
+    "actions": [],
+    "notes": [
+      "Phase 53-6 は設計層のみで実装される（reports-only）",
+      "実処理開始許可は含まれない",
+      "NO_GO維持は絶対条件"
+    ]
+  }
+}

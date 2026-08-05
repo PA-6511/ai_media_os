@@ -1,0 +1,18 @@
+{
+  "phase": "LS-DESIGN-LITE-4",
+  "status": "LS_DESIGN_LITE_4_SNS_AUTHOR_STORE_CSS_APPENDED",
+  "target_style_css": "/var/www/wordpress/wp-content/themes/cocoon-child-manga/style.css",
+  "backup_path": "/var/www/wordpress/wp-content/themes/cocoon-child-manga/style.css.backup_ls_design_lite_4_20260710_000048",
+  "default_sns_buttons_hidden": true,
+  "author_display_hidden": true,
+  "mini_share_css_prepared": true,
+  "store_button_css_prepared": true,
+  "book_cover_css_prepared": true,
+  "wordpress_api_call_executed": false,
+  "credential_env_read_executed": false,
+  "post_update_executed": false,
+  "theme_parent_modified": false,
+  "child_theme_modified": true,
+  "recommended_next_action": "BROWSER_HARD_RELOAD_AND_VISUAL_CHECK",
+  "errors": []
+}

@@ -1,0 +1,70 @@
+{
+  "schema_name": "START_LS_REUSABLE_PUBLISH_CHAIN_INPUT_SCHEMA",
+  "schema_version": "1.0.0",
+  "required_fields": [
+    "content_item_id",
+    "target_post_id",
+    "target_post_link",
+    "payload_title",
+    "payload_asin",
+    "expected_pre_publish_status",
+    "target_publish_status",
+    "public_url",
+    "public_rest_url",
+    "human_review_required",
+    "execution_allowed_initially"
+  ],
+  "field_definitions": {
+    "content_item_id": {
+      "type": "string",
+      "description": "Stable identifier for the next content item."
+    },
+    "target_post_id": {
+      "type": "integer",
+      "description": "Existing WordPress draft post ID. Must not be 119. Must be explicitly confirmed before execution."
+    },
+    "target_post_link": {
+      "type": "string",
+      "description": "Public or preview link for the target post."
+    },
+    "payload_title": {
+      "type": "string",
+      "description": "Human-readable content title."
+    },
+    "payload_asin": {
+      "type": "string",
+      "description": "ASIN or affiliate content identifier."
+    },
+    "expected_pre_publish_status": {
+      "type": "string",
+      "allowed_values": [
+        "draft"
+      ]
+    },
+    "target_publish_status": {
+      "type": "string",
+      "allowed_values": [
+        "publish"
+      ]
+    },
+    "public_url": {
+      "type": "string"
+    },
+    "public_rest_url": {
+      "type": "string"
+    },
+    "human_review_required": {
+      "type": "boolean",
+      "required_value": true
+    },
+    "execution_allowed_initially": {
+      "type": "boolean",
+      "required_value": false
+    }
+  },
+  "forbidden_values": {
+    "target_post_id": [
+      119
+    ]
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "phase": "SFB-13",
+  "phase_name": "CSV Import Diff Report Enhancement",
+  "mode": "DRY_RUN",
+  "production_status": "NO_GO",
+  "external_api_allowed": false,
+  "external_network_allowed": false,
+  "wordpress_write_allowed": false,
+  "approval_token_consumption_allowed": false,
+  "input_paths": {
+    "before_csv": "generic_block_template/blocks/sale_flash_block/data/import_history/sample_sale_candidates.fixture_backup.20260614T043838Z.csv",
+    "after_csv": "generic_block_template/blocks/sale_flash_block/data/incoming/sale_flash_candidates.csv"
+  },
+  "output_paths": {
+    "report_json": "logs/sfb_13_csv_import_diff_report.json",
+    "report_md": "logs/sfb_13_csv_import_diff_report.md"
+  },
+  "key_priority_columns": [
+    "asin",
+    "isbn",
+    "title",
+    "author"
+  ],
+  "compare_columns": [
+    "source",
+    "title",
+    "author",
+    "isbn",
+    "asin",
+    "campaign",
+    "sale_status",
+    "confidence",
+    "note"
+  ],
+  "confidence_thresholds": {
+    "low": 0.7
+  },
+  "adopt_review_buckets": [
+    "adopt"
+  ],
+  "max_detail_samples": 20
+}

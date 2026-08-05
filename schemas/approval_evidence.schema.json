@@ -1,0 +1,129 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ai-media-os.local/schemas/approval_evidence.schema.json",
+  "title": "Approval Evidence",
+  "type": "object",
+  "required": [
+    "package_type",
+    "phase",
+    "mode",
+    "execution",
+    "human_approval_required",
+    "status",
+    "decision",
+    "summary",
+    "created_at"
+  ],
+  "properties": {
+    "package_type": {
+      "type": "string",
+      "minLength": 1
+    },
+    "phase": {
+      "type": "string",
+      "minLength": 1
+    },
+    "mode": {
+      "type": "string",
+      "enum": ["CONNECTION_TEST"]
+    },
+    "execution": {
+      "type": "string",
+      "enum": ["DRY_RUN"]
+    },
+    "human_approval_required": {
+      "type": "boolean",
+      "const": true
+    },
+    "status": {
+      "type": "string",
+      "enum": ["PASS", "WARN", "FAIL", "ABORT"]
+    },
+    "reason": {
+      "type": "string",
+      "minLength": 1
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "decision": {
+      "type": "string",
+      "minLength": 1
+    },
+    "production_status": {
+      "type": "string",
+      "enum": ["NO_GO"]
+    },
+    "decision_status": {
+      "type": "string",
+      "enum": ["PASS", "WARN", "FAIL", "ABORT"]
+    },
+    "decision_next_step": {
+      "type": "string"
+    },
+    "allowed_next_step": {
+      "type": "string"
+    },
+    "forbidden_actions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "safety_flags": {
+      "type": "object",
+      "properties": {
+        "auto_post": {
+          "type": "boolean",
+          "const": false
+        },
+        "auto_update": {
+          "type": "boolean",
+          "const": false
+        },
+        "auto_delete": {
+          "type": "boolean",
+          "const": false
+        },
+        "auto_export": {
+          "type": "boolean",
+          "const": false
+        },
+        "wordpress_write_executed": {
+          "type": "boolean",
+          "const": false
+        },
+        "slack_notification_executed": {
+          "type": "boolean",
+          "const": false
+        },
+        "github_actions_triggered": {
+          "type": "boolean",
+          "const": false
+        }
+      },
+      "additionalProperties": true
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "enum": ["WARN", "FAIL", "ABORT"]
+          }
+        },
+        "required": ["status"]
+      },
+      "then": {
+        "required": ["reason"]
+      }
+    }
+  ],
+  "additionalProperties": true
+}

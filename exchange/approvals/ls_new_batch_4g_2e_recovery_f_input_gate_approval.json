@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0.0",
+  "phase_id": "LS-NEW-BATCH-4G-2E-RECOVERY-F",
+  "approval_id": "ls-new-batch-4g-2e-recovery-f-fresh-payload-generation-input-gate",
+  "approval_label": "FRESH_PAYLOAD_GENERATION_INPUT_GATE_APPROVED",
+  "approved_by": "HUMAN_OPERATOR",
+  "human_explicit_approval": true,
+  "approved_at_utc": "2026-07-10T16:36:40.361700+00:00",
+  "approved_scope": {
+    "input_contract_id": "FRESH_NEW_RELEASE_COMIC_DRAFT_INPUT_V1",
+    "article_scope_id": "COMIC_NEW_RELEASE_LATEST_VOLUME_DISTRIBUTION_START",
+    "legacy_post185_reference_allowed": false,
+    "article_input_registration_approved": false,
+    "fresh_payload_generation_approved": false,
+    "payload_binding_approved": false,
+    "category_id_injection_approved": false,
+    "wordpress_access_approved": false,
+    "wordpress_write_approved": false
+  },
+  "source_result_digest_sha256": "434847c574944b7e5236876dee00eca4020fd855dc86365734f35c7a8e1cf5a5",
+  "source_plan_file_sha256": "a8ae5a7265624946facb21622619575e79e16f6bc5f2ec4e8f2939fff47b7d32",
+  "source_plan_artifact_digest_sha256": "e7cee302af303c87367865d7eeb965ee45de128f92a62c21ef2cd90c135793f8",
+  "source_plan_approval_digest_sha256": "23c8003c21851905394acc080a09df068332478a871e184c1769bed9824c3c9f",
+  "approval_reuse_allowed": false,
+  "contract_change_requires_new_human_approval": true,
+  "execution_allowed": false,
+  "approval_evidence_digest_sha256": "671e2b997e9bad0c53c90f5ec637dd444be243cf7bc8a025464714d03827e69b"
+}

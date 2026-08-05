@@ -1,0 +1,17 @@
+{
+  "_meta": {
+    "phase": 100,
+    "sub_phase": 4,
+    "status": "PASS_DESIGN_ONLY",
+    "reports_only": true,
+    "layer": "final_release_candidate_reports_only_phase75_to_99_overall_confirmation_layer",
+    "title": "Phase 75 to 99 reports only overall evidence fixation and no go persistence reinforcement design"
+  },
+  "governance": {
+    "production_status": "NO_GO",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "execution_start": "NO_GO",
+    "changed_area": "reports only"
+  }
+}

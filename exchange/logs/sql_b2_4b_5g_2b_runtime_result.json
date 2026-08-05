@@ -1,0 +1,66 @@
+{
+  "phase": "SQL-B2-4B-5G-2B",
+  "result": "PASS_MANUAL_RUNTIME_AND_RESTART_CONTROL",
+  "recorded_at": "2026-07-14T14:07:21.742056+00:00",
+  "git": {
+    "branch": "feature/sql-b2-4b-slack-production-readiness",
+    "commit": "f50ea38d2a9d3a1b7ac66c639fd3382095de7eae",
+    "commit_short": "f50ea38"
+  },
+  "manual_runtime": {
+    "manual_start": true,
+    "readiness_guard_passed": true,
+    "slack_mode": "DRY_RUN",
+    "real_socket_connection": true,
+    "slack_session_established": true,
+    "bolt_worker_running": true
+  },
+  "graceful_shutdown": {
+    "signal": "SIGTERM",
+    "result": "PASS",
+    "exit_status": 0,
+    "traceback_detected": false
+  },
+  "failure_restart": {
+    "failure_signal": "SIGKILL",
+    "pid_before": 47286,
+    "pid_after": 47394,
+    "pid_changed": true,
+    "restart_count_before": 0,
+    "restart_count_after": 1,
+    "restart_counter_increased": true,
+    "systemd_started_count": 2,
+    "readiness_guard_count": 2,
+    "current_nrestarts_after_stop": 0,
+    "current_counter_reset_after_stop": true,
+    "result": "PASS"
+  },
+  "database_safety": {
+    "production_sha256_before": "a4c5c6b3c9f016cd745cdb9c531c807fe5bc4a3ac28f9422609dfa96cd7b37d8",
+    "production_sha256_after": "a4c5c6b3c9f016cd745cdb9c531c807fe5bc4a3ac28f9422609dfa96cd7b37d8",
+    "production_sha256_match": true,
+    "production_approval_count": 0,
+    "readiness_quick_check": "ok",
+    "readiness_approval_count": 0,
+    "production_mutated": false,
+    "readiness_mutated": false
+  },
+  "systemd_final_state": {
+    "active_state": "inactive",
+    "sub_state": "dead",
+    "unit_file_state": "disabled",
+    "enabled": false,
+    "running": false
+  },
+  "audit": {
+    "journald_evidence": true,
+    "secret_detected": false,
+    "unexpected_error_detected": false
+  },
+  "governance": {
+    "production_status": "NO_GO",
+    "safety_state": "READINESS_RUNTIME_TEST_COMPLETE",
+    "production_slack_approval_allowed": false,
+    "automatic_start_allowed": false
+  }
+}

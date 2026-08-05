@@ -1,0 +1,21 @@
+{
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "operator_note": "Example request for readiness-only adapter check",
+  "proposals": [
+    {
+      "source": "ebook_affiliate_block",
+      "action": "generate_article",
+      "title": "人気ファンタジー漫画ランキング",
+      "target": "人気ファンタジー漫画ランキング",
+      "priority": 0.68,
+      "reason": "人気ジャンル",
+      "metadata": {
+        "genre": "ファンタジー",
+        "work_title": "辺境ギルド運営録",
+        "opportunity_type": "popular_genre"
+      }
+    }
+  ]
+}

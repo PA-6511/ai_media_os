@@ -1,0 +1,78 @@
+{
+  "phase": "Phase 7-3",
+  "name": "single_draft_final_preflight_design_policy",
+  "policy_status": "DESIGN_ONLY",
+  "production_status": "NO_GO",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "human_approval_required": true,
+  "approve_draft_create_only_currently_allowed": false,
+  "unlock_in_this_phase": false,
+  "eligible_is_execution_permission": false,
+  "wordpress_draft_creation": "NO_GO",
+  "wordpress_write_executed": false,
+  "publish_allowed": false,
+  "auto_post": false,
+  "auto_update": false,
+  "auto_delete": false,
+  "auto_export": false,
+  "required_upstream_evidence": [
+    "exchange/logs/phase7_1_eligible_single_controlled_run_policy_result.json",
+    "exchange/logs/phase7_2_approve_draft_create_only_pre_unlock_review_result.json",
+    "exchange/logs/phase6_9_hardening_preflight_report.json",
+    "exchange/logs/phase6_10_existing_generated_test_fix_report.json"
+  ],
+  "acceptable_upstream_statuses": [
+    "PASS",
+    "PASS_DRY_RUN_ONLY",
+    "PASS_DRY_RUN_ONLY_WITH_WARN",
+    "ELIGIBLE_DRY_RUN_ONLY",
+    "ELIGIBLE_DRY_RUN_ONLY_WITH_WARN",
+    "PASS_DESIGN_ONLY",
+    "PASS_DESIGN_ONLY_WITH_WARN"
+  ],
+  "required_preflight_checks": [
+    "single_item_limit_is_1",
+    "human_approval_file_exists",
+    "human_approval_pending_or_under_review",
+    "approval_token_is_approve_draft_create_only",
+    "approval_not_expired",
+    "freeze_on_write_attempt",
+    "freeze_on_bulk_attempt",
+    "freeze_on_external_write",
+    "no_wordpress_write_execution",
+    "no_publish_execution"
+  ],
+  "required_freeze_conditions": [
+    "missing_human_approval_file",
+    "approval_token_mismatch",
+    "approval_expired",
+    "target_item_count_not_1",
+    "wordpress_write_attempt_detected",
+    "publish_attempt_detected",
+    "bulk_execution_attempt_detected",
+    "external_write_attempt_detected",
+    "unlock_or_allow_flag_enabled"
+  ],
+  "blocked_operations": [
+    "wordpress_rest_post",
+    "wordpress_rest_put",
+    "wordpress_rest_patch",
+    "wordpress_rest_delete",
+    "wordpress_publish",
+    "wordpress_update",
+    "wordpress_delete",
+    "bulk_posting",
+    "external_export",
+    "github_actions_trigger",
+    "slack_production_notification",
+    "cron_change",
+    "vps_self_builder_execution"
+  ],
+  "allowed_next_step": "Phase 7-4 execution gate validation with NO_GO freeze maintained",
+  "decision_rules": {
+    "all_preflight_design_checks_ok": "PASS_DESIGN_ONLY",
+    "missing_required_preflight_material": "ABORT",
+    "safety_violation": "ABORT"
+  }
+}

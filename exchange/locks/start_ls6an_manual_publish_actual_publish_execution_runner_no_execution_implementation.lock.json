@@ -1,0 +1,21 @@
+{
+  "phase": "LS-6AN",
+  "document_type": "MANUAL_PUBLISH_ACTUAL_PUBLISH_EXECUTION_RUNNER_NO_EXECUTION_IMPLEMENTATION_LOCK",
+  "status": "MANUAL_PUBLISH_ACTUAL_PUBLISH_EXECUTION_RUNNER_NO_EXECUTION_IMPLEMENTATION_LOCKED_NO_PUBLISH",
+  "locked": true,
+  "post_id": 183,
+  "target_post_status": "draft",
+  "actual_publish_execution_runner_no_execution_implementation_ready": true,
+  "actual_publish_execution_runner_no_execution_implementation_consumed": false,
+  "actual_publish_execution_runner_execution_enabled": false,
+  "actual_publish_execution_runner_executed": false,
+  "rerun_allowed": false,
+  "ls6oc1_rerun_executed": false,
+  "requires_next_phase": "LS-6AO",
+  "requires_actual_publish_execution_runner_no_execution_validation": true,
+  "requires_actual_publish_execution_runner_execution_approval_gate": true,
+  "requires_separate_publish_execution_phase": true,
+  "publish_execution_still_blocked": true,
+  "errors": [],
+  "generated_at": "2026-07-04T08:05:27.013740+00:00"
+}

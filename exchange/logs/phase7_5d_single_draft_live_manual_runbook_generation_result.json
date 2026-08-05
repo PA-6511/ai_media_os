@@ -1,0 +1,23 @@
+{
+  "package_type": "phase7_5d_single_draft_live_manual_runbook_generation_result",
+  "phase": "Phase 7-5D",
+  "status": "PASS",
+  "reason": "manual runbook generated successfully",
+  "runbook_generated": true,
+  "runbook_json": "/home/deploy/ai_media_os/exchange/logs/phase7_5d_single_draft_live_manual_runbook.json",
+  "runbook_md": "/home/deploy/ai_media_os/exchange/logs/phase7_5d_single_draft_live_manual_runbook.md",
+  "fixed_procedure_item_count": 10,
+  "still_forbidden_count": 10,
+  "live_execution_allowed": false,
+  "wordpress_post_enabled": false,
+  "real_write_enabled": false,
+  "wordpress_write_executed": false,
+  "production_status": "NO_GO",
+  "wordpress_draft_creation": "NO_GO",
+  "auto_post": false,
+  "auto_update": false,
+  "auto_delete": false,
+  "auto_export": false,
+  "next_step": "manual_go_or_freeze_decision",
+  "created_at": "2026-05-05T06:06:51.386951+00:00"
+}

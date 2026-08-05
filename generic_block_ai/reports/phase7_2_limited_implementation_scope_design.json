@@ -1,0 +1,278 @@
+{
+  "_meta": {
+    "phase": "7-2",
+    "purpose": "limited_implementation_scope_design",
+    "created_at": "2026-05-12",
+    "status": "DESIGN_ONLY",
+    "note": "Phase 7-2: Phase 7 実装範囲の限定設計。Phase 7 で実装してよい範囲と禁止範囲を明確化。"
+  },
+  "implementation_scope_overview": {
+    "phase7_purpose": "Core側 validator を実装前設計する（まだ実装しない）",
+    "scope_constraint": "設計のみ。app/ / tests/ への実装ファイル追加は禁止。",
+    "safety_maintained": "operation_mode=OBSERVE / execution=dry_run / production_status=NO_GO 継続",
+    "design_basis": [
+      "reports/phase6_4_receiver_validator_detail_design.json",
+      "reports/phase6_5_rejection_validator_detail_design.json",
+      "reports/phase6_6_human_review_validator_detail_design.json"
+    ]
+  },
+  "permitted_implementation_scope": {
+    "title": "Phase 7 で実装してよい範囲（設計のみ）",
+    "scope": [
+      {
+        "item": "receiver_validator 実装設計",
+        "description": "Phase 6-4 詳細設計に基づき、入力スキーマ検証、PASS/WARN/REJECT/ABORT ロジックの実装設計",
+        "constraint": "ローカル検証のみ。Core AI 実送信なし。",
+        "implementation_candidates": [
+          "app/core_receiver_validator.py (設計のみ、実装なし)",
+          "app/receiver_schema_validator.py (設計のみ、実装なし)",
+          "app/receiver_validation_rules.py (設計のみ、実装なし)"
+        ]
+      },
+      {
+        "item": "rejection_validator 実装設計",
+        "description": "Phase 6-5 詳細設計に基づき、operation_mode/execution/permission/banned_actions チェック ロジックの実装設計",
+        "constraint": "検査ロジックのみ。Core AI 実送信なし。",
+        "implementation_candidates": [
+          "app/core_rejection_validator.py (設計のみ、実装なし)",
+          "app/rejection_mode_checker.py (設計のみ、実装なし)",
+          "app/rejection_permission_checker.py (設計のみ、実装なし)",
+          "app/rejection_blocked_action_scanner.py (設計のみ、実装なし)"
+        ]
+      },
+      {
+        "item": "human_review_validator 実装設計",
+        "description": "Phase 6-6 詳細設計に基づき、human review 条件、승인前/후 禁止操作、判定タイプのロジック実装設計",
+        "constraint": "ロジック設計のみ。自動承認なし。Core AI 実送信なし。",
+        "implementation_candidates": [
+          "app/core_human_review_validator.py (設計のみ、実装なし)",
+          "app/human_review_gatekeeper.py (設計のみ、実装なし)",
+          "app/human_review_decision_logger.py (設計のみ、実装なし)"
+        ]
+      }
+    ]
+  },
+  "prohibited_implementation_scope": {
+    "title": "Phase 7 で実装してはいけない範囲",
+    "absolute_prohibitions": [
+      {
+        "item": "Core AI への実送信",
+        "reason": "production_status=NO_GO、connection_test_mode のみが許容",
+        "enforcement": "core_ai_real_send flag = false に硬コード化"
+      },
+      {
+        "item": "外部 API への接続",
+        "reason": "DRY_RUN mode のみ。実外部接続禁止。",
+        "enforcement": "external_api_call flag = false に硬コード化"
+      },
+      {
+        "item": "WordPress 操作",
+        "reason": "OBSERVE mode。WordPress 操作は禁止。",
+        "enforcement": "wordpress_operation flag = false に硬コード化"
+      },
+      {
+        "item": "cron 登録",
+        "reason": "OBSERVE mode。自動実行なし。",
+        "enforcement": "cron_registration flag = false に硬コード化"
+      },
+      {
+        "item": "本番反映",
+        "reason": "NO_GO status 継続。本番環境への変更なし。",
+        "enforcement": "production_execution flag = false に硬コード化"
+      },
+      {
+        "item": "auto_post / auto_update / auto_delete / auto_export",
+        "reason": "自動操作禁止。dry_run のみ。",
+        "enforcement": "all auto_* flags = false に硬コード化"
+      },
+      {
+        "item": "app/ 実装ファイル の新規作成",
+        "reason": "Phase 7-1〜7-3 は実装前設計。app/ ファイル作成禁止。",
+        "enforcement": "git status 確認で新規ファイルなし確認"
+      },
+      {
+        "item": "tests/ テストファイルの新規作成",
+        "reason": "Phase 7-1〜7-3 は設計のみ。tests/ ファイル作成禁止。",
+        "enforcement": "git status 確認で新規ファイルなし確認"
+      },
+      {
+        "item": "validator 実装",
+        "reason": "Phase 7-1〜7-3 は実装前設計。実装コードなし。",
+        "enforcement": "app/ ファイルなし確認"
+      }
+    ]
+  },
+  "implementation_gate_conditions": {
+    "title": "Phase 7 で実装に進む場合の必須条件",
+    "mandatory_conditions": [
+      {
+        "id": "human_review_approved",
+        "condition": "human review decision が APPROVE_DESIGN_ONLY",
+        "status": "MANDATORY",
+        "enforcement": "Phase 7-1 approval record に APPROVE_DESIGN_ONLY 記入必須"
+      },
+      {
+        "id": "phase6_artifacts_complete",
+        "condition": "Phase 6-1〜6-9 全設計成果物が揃っている",
+        "status": "MANDATORY",
+        "enforcement": "Phase 6-8 インベントリで全 7 ファイル確認"
+      },
+      {
+        "id": "phase7_scope_limited",
+        "condition": "Phase 7 実装範囲が receiver validator 局所検証のみに限定されている",
+        "status": "MANDATORY",
+        "enforcement": "Phase 7-2 限定設計で明記"
+      },
+      {
+        "id": "operation_mode_observe",
+        "condition": "operation_mode = OBSERVE 維持",
+        "status": "MANDATORY",
+        "enforcement": "block_manifest.json で OBSERVE に固定"
+      },
+      {
+        "id": "execution_dry_run",
+        "condition": "execution = dry_run 維持",
+        "status": "MANDATORY",
+        "enforcement": "app/block_contract.py で dry_run に固定"
+      },
+      {
+        "id": "production_no_go",
+        "condition": "production_status = NO_GO 維持",
+        "status": "MANDATORY",
+        "enforcement": "block_manifest.json で NO_GO に固定"
+      },
+      {
+        "id": "banned_actions_blocked",
+        "condition": "10個の banned actions すべてがブロック状態",
+        "status": "MANDATORY",
+        "enforcement": "rejection_validator で IMMEDIATE_REJECT 実装"
+      },
+      {
+        "id": "no_core_real_send",
+        "condition": "Core AI への実送信フラグなし",
+        "status": "MANDATORY",
+        "enforcement": "core_ai_real_send = false に硬コード化"
+      },
+      {
+        "id": "no_external_connection",
+        "condition": "外部 API 接続フラグなし",
+        "status": "MANDATORY",
+        "enforcement": "external_api_call = false に硬コード化"
+      },
+      {
+        "id": "no_wordpress",
+        "condition": "WordPress 操作フラグなし",
+        "status": "MANDATORY",
+        "enforcement": "wordpress_operation = false に硬コード化"
+      },
+      {
+        "id": "no_cron",
+        "condition": "cron 登録フラグなし",
+        "status": "MANDATORY",
+        "enforcement": "cron_registration = false に硬コード化"
+      },
+      {
+        "id": "no_production_execution",
+        "condition": "本番実行フラグなし",
+        "status": "MANDATORY",
+        "enforcement": "production_execution = false に硬コード化"
+      }
+    ]
+  },
+  "phase7_and_beyond_continuity": {
+    "title": "Phase 7+ でも継続維持すべき固定項目",
+    "continuity_items": [
+      {
+        "item": "operation_mode = OBSERVE",
+        "phase_7_enforcement": "validator 実装コード内で硬コード化",
+        "phase_8_onwards": "継続維持"
+      },
+      {
+        "item": "execution = dry_run",
+        "phase_7_enforcement": "validator 実装コード内で硬コード化",
+        "phase_8_onwards": "継続維持"
+      },
+      {
+        "item": "production_status = NO_GO",
+        "phase_7_enforcement": "block_manifest.json で固定",
+        "phase_8_onwards": "継続維持"
+      },
+      {
+        "item": "requires_human_approval = true",
+        "phase_7_enforcement": "human_review_validator で署名・timestamp 必須",
+        "phase_8_onwards": "継続維持"
+      },
+      {
+        "item": "10個 banned actions 全て BLOCKED",
+        "phase_7_enforcement": "rejection_validator で IMMEDIATE_REJECT 実装",
+        "phase_8_onwards": "継続維持"
+      },
+      {
+        "item": "Core AI 実送信禁止",
+        "phase_7_enforcement": "core_ai_real_send = false",
+        "phase_8_onwards": "継続禁止"
+      },
+      {
+        "item": "外部接続禁止",
+        "phase_7_enforcement": "external_api_call = false",
+        "phase_8_onwards": "継続禁止"
+      },
+      {
+        "item": "WordPress 操作禁止",
+        "phase_7_enforcement": "wordpress_operation = false",
+        "phase_8_onwards": "継続禁止"
+      },
+      {
+        "item": "cron 登録禁止",
+        "phase_7_enforcement": "cron_registration = false",
+        "phase_8_onwards": "継続禁止"
+      },
+      {
+        "item": "本番実行禁止",
+        "phase_7_enforcement": "production_execution = false",
+        "phase_8_onwards": "継続禁止"
+      }
+    ]
+  },
+  "safety_audit": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "app_implementation_added": false,
+    "tests_implementation_added": false,
+    "scope_design_only": true
+  },
+  "judgment": {
+    "phase7_2_scope_design_status": "PASS",
+    "design_completeness": "COMPLETE",
+    "permitted_scope_clear": true,
+    "prohibited_scope_clear": true,
+    "gate_conditions_clear": true,
+    "continuity_policy_clear": true,
+    "scope_limited_to_design": true,
+    "implementation_not_permitted": true,
+    "production_status": "NO_GO",
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "allowed_state": [
+      "OBSERVE",
+      "DRY_RUN",
+      "HUMAN_REVIEW_REQUIRED"
+    ],
+    "blocked": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "next_phase": "phase7_3_receiver_validator_preflight_design"
+  }
+}

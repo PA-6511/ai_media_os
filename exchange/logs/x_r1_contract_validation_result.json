@@ -1,0 +1,27 @@
+{
+  "phase_id": "X-R1",
+  "status": "PASS_CONTRACT_FIXED_NO_EXECUTION",
+  "decision": "X_DRAFT_MODULE_CONTRACT_V1_FIXED",
+  "contract_id": "X_DRAFT_MODULE_CONTRACT_V1",
+  "verified_checks": [
+    "identity",
+    "input_contract",
+    "generation_contract",
+    "output_contract",
+    "workflow_mapping",
+    "storage_contract",
+    "failure_policy",
+    "execution_boundary",
+    "next_phase"
+  ],
+  "verified_check_count": 9,
+  "database_table_addition_required": false,
+  "x_api_call_allowed": false,
+  "x_post_allowed": false,
+  "wordpress_write_allowed": false,
+  "external_api_call_allowed": false,
+  "production_status": "NO_GO",
+  "safety_state": "DRY_RUN_ONLY",
+  "ready_for_x_r2": true,
+  "next_phase_execution_allowed": false
+}

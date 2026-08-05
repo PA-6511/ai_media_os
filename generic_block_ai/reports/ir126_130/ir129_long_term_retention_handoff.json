@@ -1,0 +1,40 @@
+{
+  "schema_version": "ir129_long_term_retention_handoff_v1",
+  "phase": "IR129",
+  "generated_at": "2026-05-25T12:37:58.533617+00:00",
+  "source_task_id": "ir126_130_batch",
+  "long_term_retention_handoff_decision": "PROHIBITION_CONTINUITY_FINALIZED_DRY_RUN_ONLY",
+  "gate_action": "Long-term retention handoff confirmed in dry-run non-submission mode.",
+  "validation_result": "PASS",
+  "validation_failed_checks": [],
+  "validation_warnings": [],
+  "long_term_retention_handoff": {
+    "handoff_id": "ir129_handoff_ir126_130_batch_20260525T123758Z",
+    "generated_at": "2026-05-25T12:37:58.533614+00:00",
+    "source_task_id": "ir126_130_batch",
+    "decision": "PROHIBITION_CONTINUITY_FINALIZED_DRY_RUN_ONLY",
+    "unlock_prohibited": true,
+    "retention_handoff_completed": true,
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "handoff_hash": "ea301f91ec06267d724030d24f8f073d1b24f81086889b98336d7a7705ca0fdf",
+  "safety_gate_snapshot": {
+    "dry_run": "maintained",
+    "OBSERVE": "maintained",
+    "submission_execution_blocked": true,
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "network_transmission_executed": false,
+    "production_release": false,
+    "GitHub_push": "未実行"
+  }
+}

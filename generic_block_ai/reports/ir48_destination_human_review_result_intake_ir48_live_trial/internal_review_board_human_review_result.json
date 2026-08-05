@@ -1,0 +1,20 @@
+{
+  "destination": "internal_review_board",
+  "review_queue_approval_decision": "READY_FOR_HUMAN_REVIEW",
+  "human_review_result": "APPROVE",
+  "reviewer_role": "human_queue_reviewer",
+  "integrity_result": "PASS",
+  "review_item_ids": [
+    "internal_review_board-R1",
+    "internal_review_board-R2"
+  ],
+  "review_notes": [
+    "queue approved for human review intake"
+  ],
+  "evidence_reference_links": {
+    "hash_manifest": "generic_block_ai/reports/ir42_destination_human_event_chain_evidence_bundle_internal_review_board_ir42_live_trial/destination_human_event_chain_hash_manifest.json",
+    "review_summary": "generic_block_ai/reports/ir42_destination_human_event_chain_evidence_bundle_internal_review_board_ir42_live_trial/destination_human_event_chain_review_summary.md",
+    "gate_report": "generic_block_ai/reports/ir44_destination_evidence_bundle_submission_gate_report_ir44_live_trial.json"
+  },
+  "recorded_at": "2026-05-24T03:34:02.810500+00:00"
+}

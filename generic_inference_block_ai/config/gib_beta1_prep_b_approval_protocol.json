@@ -1,0 +1,37 @@
+{
+  "schema_version": "gib.beta1.prep_b.approval_protocol.v0.1",
+  "phase": "beta1_prep_b",
+  "status": "DRY_RUN_BETA1_PREP_B_APPROVAL_PROTOCOL_ONLY",
+  "production_status": "NO_GO",
+  "real_llm_call_allowed": false,
+  "execution_allowed": false,
+  "generate_call_allowed": false,
+  "chat_call_allowed": false,
+  "can_execute_now": false,
+  "output_scope": "generic_inference_block_ai/reports",
+  "approval_protocol": {
+    "required_approval_statement_template": "I approve GIB beta1 first local experiment for local_pc and model gemma-4-qat-e2b only. ApprovalToken={APPROVAL_TOKEN_ID}; ChangeID={CHANGE_MANAGEMENT_ID}; This approval does not authorize automatic execution.",
+    "required_identifiers": [
+      "APPROVAL_TOKEN_ID",
+      "CHANGE_MANAGEMENT_ID"
+    ],
+    "identifier_reference_rules": {
+      "approval_token": "^APR-[0-9]{8}-[A-Z0-9]{6}$",
+      "change_management_id": "^CHG-[0-9]{8}-[A-Z0-9]{4}$"
+    },
+    "manual_only": true,
+    "auto_execute_after_approval": false
+  },
+  "non_execution_guards": {
+    "keep_real_llm_call_allowed_false": true,
+    "keep_execution_allowed_false": true,
+    "keep_generate_chat_unexecuted": true,
+    "wordpress_write_forbidden": true,
+    "credential_access_forbidden": true,
+    "systemd_forbidden": true
+  },
+  "required_prerequisites": {
+    "beta1_prep_report": "PASS_DRY_RUN_BETA1_PREP_RUNBOOK_FIXED",
+    "beta1_prep_a_report": "PASS_REPORTS_ONLY_BETA1_PREP_AUDIT_INDEX_FIXED"
+  }
+}

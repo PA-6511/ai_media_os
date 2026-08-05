@@ -1,0 +1,72 @@
+{
+  "phase_id": "PHASE_S4_1",
+  "batch_type": "ISOLATION_POLICY_DRY_RUN_REQUESTS",
+  "execution": "DRY_RUN",
+  "production_status": "NO_GO",
+  "human_approval_required": true,
+  "isolation_recommendation_only": true,
+  "isolation_execution_allowed": false,
+  "isolation_executed": false,
+  "requests": [
+    {
+      "request_id": "unknown_block_connects_to_generic",
+      "source_block_ai": "unknown_block_ai",
+      "target": "generic_block_ai",
+      "requested_action": "connect_block_ai",
+      "expected_decision": "RECOMMEND_ISOLATION"
+    },
+    {
+      "request_id": "restricted_to_production_core",
+      "source_block_ai": "adult_or_risky_experiment_ai",
+      "target": "production_core_ai",
+      "requested_action": "connect_block_ai",
+      "expected_decision": "BLOCK_ROUTE"
+    },
+    {
+      "request_id": "experimental_to_production_core",
+      "source_block_ai": "experimental_block_ai",
+      "target": "production_core_ai",
+      "requested_action": "connect_block_ai",
+      "expected_decision": "BLOCK_ROUTE"
+    },
+    {
+      "request_id": "ebook_wordpress_write",
+      "source_block_ai": "ebook_affiliate_block_ai",
+      "target": "wordpress",
+      "requested_action": "wordpress_write",
+      "expected_decision": "DENY_CAPABILITY"
+    },
+    {
+      "request_id": "self_builder_code_modify",
+      "source_block_ai": "self_builder_ai",
+      "target": "repository",
+      "requested_action": "code_modify",
+      "expected_decision": "DENY_CAPABILITY"
+    },
+    {
+      "request_id": "core_external_action_request",
+      "source_block_ai": "core_ai",
+      "target": "external_api",
+      "requested_action": "external_action",
+      "expected_decision": "DENY_CAPABILITY"
+    },
+    {
+      "request_id": "core_proposal_to_generic",
+      "source_block_ai": "core_ai",
+      "target": "generic_block_ai",
+      "requested_action": "proposal",
+      "expected_decision": "ALLOW_PROPOSAL"
+    }
+  ],
+  "actions": {
+    "isolation_executed": false,
+    "network_policy_applied": false,
+    "container_stop_executed": false,
+    "process_kill_executed": false,
+    "firewall_applied": false,
+    "scheduler_stop_executed": false,
+    "wordpress_write_executed": false,
+    "external_api_call_executed": false,
+    "state_change_executed": false
+  }
+}

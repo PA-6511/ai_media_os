@@ -1,0 +1,40 @@
+{
+  "schema_version": "ir114_dry_run_finalization_audit_gate_v1",
+  "phase": "IR114",
+  "generated_at": "2026-05-25T11:44:18.351672+00:00",
+  "source_task_id": "ir111_115_batch",
+  "dry_run_finalization_audit_decision": "PROHIBITION_CONTINUITY_FINALIZED_DRY_RUN_ONLY",
+  "gate_action": "Dry-run finalization audit passed. Prohibition continuity remains finalized.",
+  "validation_result": "PASS",
+  "validation_failed_checks": [],
+  "validation_warnings": [],
+  "audit_gate_record": {
+    "gate_id": "ir114_gate_ir111_115_batch_20260525T114418Z",
+    "generated_at": "2026-05-25T11:44:18.351669+00:00",
+    "source_task_id": "ir111_115_batch",
+    "decision": "PROHIBITION_CONTINUITY_FINALIZED_DRY_RUN_ONLY",
+    "unlock_prohibited": true,
+    "finalization_audit_passed": true,
+    "safety_gate_snapshot": {
+      "dry_run": "maintained",
+      "OBSERVE": "maintained",
+      "submission_execution_blocked": true,
+      "execution_policy_execute": false,
+      "external_write_executed": false,
+      "network_transmission_executed": false,
+      "production_release": false,
+      "GitHub_push": "未実行"
+    }
+  },
+  "audit_gate_hash": "d1599e8d73db547194c09a25d8544cd9c9a7ad8973a9763a34369cf5299c6a82",
+  "safety_gate_snapshot": {
+    "dry_run": "maintained",
+    "OBSERVE": "maintained",
+    "submission_execution_blocked": true,
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "network_transmission_executed": false,
+    "production_release": false,
+    "GitHub_push": "未実行"
+  }
+}

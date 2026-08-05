@@ -1,0 +1,40 @@
+{
+  "_meta": {
+    "phase": "45-6",
+    "phase_name": "手動最終確認後・発効可否分離確認層",
+    "layer": "補強層 (reinforcement layer)",
+    "title": "変換不可時の差し戻し・NO_GO維持ルール設計",
+    "created": "2026-05-14",
+    "author": "governance-framework",
+    "status": "PASS_DESIGN_ONLY",
+    "reports_only": true
+  },
+  "scope": "Phase 45-2 / Phase 45-3 で実施された manual_release_go_authorization / actual_process_start_go_authorization の変換可否判定において、GRANTED 変換不可と判定された場合、以下のルールを設計する：(1) 即座な NO_GO 再宣言ルール、(2) 変換不可の詳細理由の差し戻し・報告ルール、(3) Phase 44 プロセスへの遡及確認（必要に応じて Phase 43 への再確認）ルール、(4) 差し戻し後の修正経路の設計、(5) NO_GO 状態の恒久的維持ルール（変換不可が最終判定されるまで NO_GO は解除されない）、(6) 差し戻し判定と Phase 45-7～45-9 の最終判定層への引き継ぎ。",
+  "governance": {
+    "production_status": "NO_GO",
+    "manual_release_go_authorization": "NOT_GRANTED",
+    "actual_process_start_go_authorization": "NOT_GRANTED",
+    "changed_area": "reports only"
+  },
+  "report": {
+    "description": "Phase 45-6 では、Phase 45-2 / Phase 45-3 で manual_release_go_authorization / actual_process_start_go_authorization の変換不可が判定された場合、その後のプロセスを 設計層で定義する。(1) 即座な NO_GO 再宣言ルール：Phase 45-2 で manual_release_go_authorization 変換不可と判定された場合、即座に 'production_status: NO_GO' と 'manual_release_go_authorization: NOT_GRANTED' を再宣言し、レポートで明記する。同様に Phase 45-3 で actual_process_start_go_authorization 変換不可と判定された場合、即座に 'production_status: NO_GO' と 'actual_process_start_go_authorization: NOT_GRANTED' を再宣言する。両方の変換が不可の場合、両方の NOT_GRANTED を再宣言する。(2) 変換不可理由の詳細差し戻しルール：変換不可の理由（権限不足・フォーマット不完全・矛盾・異常・リスク残存など）を詳細に分類したレポートを生成し、それを次の修正段階への差し戻し資料とする。差し戻し資料は改ざん不可の報告書形式で保存される。(3) 遡及確認ルール：変換不可の理由によっては、Phase 44 プロセス全体の再確認、またはさらに Phase 43 実行不可境界確認への遡及が必要となる場合がある。権限不足・リスク残存などが理由の場合は遡及確認をトリガーする。遡及確認の結果と判定をレポートに記録する。(4) 修正経路の設計：変換不可と判定された場合、その理由に応じた修正の方向性を提示する。例：①権限不足 → 権限レベルの高い確認者による再確認を提案、②フォーマット不完全 → 欠落項目の補足を提案、③矛盾 → 矛盾内容の分析と解決策を提案、④異常 → 異常内容の詳細調査と対応策を提案、⑤リスク残存 → リスク解消方法の検討を提案。(5) NO_GO 恒久維持ルール：変換不可と最終判定されるまで、production_status = 'NO_GO' / manual_release_go_authorization = 'NOT_GRANTED' / actual_process_start_go_authorization = 'NOT_GRANTED' は解除されない。修正後の再判定が行われても、最終的に変換不可となれば NO_GO が再確認される。(6) 最終判定層への引き継ぎ：Phase 45-2 / 45-3 の変換不可判定、Phase 45-4 / 45-5 の証跡固定、Phase 45-6 の差し戻し・NO_GO維持判定の全てを、Phase 45-7～45-9 の最終判定層に引き継ぎ、最終的な NO_GO / NOT_GRANTED の確認を行う。これらのルールは全て 設計層（reports only）で実装され、実処理開始許可を含まない。",
+    "invariants": [
+      "NO_GO 強制：変換不可判定時は即座に production_status = 'NO_GO' を再宣言（例外なし）",
+      "NOT_GRANTED 強制：変換不可判定時は即座に manual_release_go_authorization / actual_process_start_go_authorization = 'NOT_GRANTED' を再宣言（例外なし）",
+      "reports only：差し戻し・NO_GO維持ルール全体は報告書形式で実装され、実処理への権限付与を含まない",
+      "即座判定：変換不可判定の NO_GO 再宣言は遅延なく即座に行われる（待機・猶予なし）",
+      "レポート記録：全ての変換不可判定、差し戻し理由、遡及確認、修正経路提示はレポートで完全に記録される（改ざん不可）",
+      "恒久維持：変換不可と最終判定されるまで NO_GO は解除されない"
+    ],
+    "actions": [],
+    "notes": [
+      "Phase 45-6 は 設計層のみで実装される（実処理開始許可ではない）",
+      "変換不可時の差し戻し・NO_GO維持ルールは reports only であり、生産環境コード変更を含まない",
+      "变换不可 → NO_GO 再宣言は自動的に動作し、例外や手動判定による上書きはない",
+      "遡及確認が必要な場合は Phase 44 / Phase 43 への確認をトリガー（段階的な対応）",
+      "修正経路の提案は推奨であり、実際の修正は Phase 46 以降で行われる",
+      "変換不可が複数（manual_release_go と actual_process_start_go 両方）の場合、両方の NOT_GRANTED を記録",
+      "実処理開始は NO_GO のまま"
+    ]
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "schema_version": "gib.alpha4.runtime_gate.v0.1",
+  "alpha_version": "alpha4",
+  "design_status": "DESIGN_ONLY",
+  "production_status": "NO_GO",
+  "execution_mode": "DRY_RUN_ONLY",
+  "active_runtime_lock": "stub",
+  "allowed_runtimes": [
+    "stub",
+    "ollama",
+    "llama_cpp"
+  ],
+  "runtime_switch_conditions": {
+    "stub": {
+      "always_allowed": true,
+      "notes": [
+        "Stub runtime is always allowed in alpha stage.",
+        "No model call is performed."
+      ]
+    },
+    "ollama": {
+      "requires_flags": [
+        "model_runtime_enabled",
+        "real_llm_call_allowed",
+        "execution_allowed"
+      ],
+      "requires_manual_gate": true,
+      "notes": [
+        "Selection can be planned in alpha stage but execution is blocked.",
+        "Actual runtime call is beta-only after approval."
+      ]
+    },
+    "llama_cpp": {
+      "requires_flags": [
+        "model_runtime_enabled",
+        "real_llm_call_allowed",
+        "execution_allowed"
+      ],
+      "requires_manual_gate": true,
+      "notes": [
+        "Selection can be planned in alpha stage but execution is blocked.",
+        "Actual runtime call is beta-only after approval."
+      ]
+    }
+  },
+  "beta0_promotion_requirements": [
+    "production_status must transition from NO_GO to CONDITIONAL_GO or GO via formal approval",
+    "model_runtime_enabled must be true",
+    "real_llm_call_allowed must be true",
+    "execution_allowed must be true",
+    "external_network_allowed must be explicitly approved",
+    "credential_access_allowed policy must remain least-privileged and audited",
+    "dry-run evidence and rollback plan must be documented"
+  ],
+  "hard_blocks": [
+    "if real_llm_call_allowed is false then ollama and llama_cpp must be blocked",
+    "if model_runtime_enabled is false then ollama and llama_cpp must be blocked",
+    "if execution_allowed is false then ollama and llama_cpp must be blocked",
+    "if active_runtime is not stub in alpha stage then fail validation"
+  ]
+}

@@ -1,0 +1,279 @@
+{
+  "_meta": {
+    "phase": "7-1",
+    "purpose": "human_review_approval_record_template",
+    "created_at": "2026-05-12",
+    "status": "DESIGN_ONLY",
+    "note": "Phase 7-1: human review 承認記録テンプレート作成。Phase 6 設計を human review 対象として扱うための承認記録形式を定義。"
+  },
+  "review_scope": {
+    "review_target": "Phase 6-1 to 6-9 design artifacts",
+    "review_basis": [
+      "reports/phase6_1_pre_validator_final_design_audit.json",
+      "reports/phase6_2_receiver_validator_implementation_conditions.json",
+      "reports/phase6_3_implementation_go_no_go_gate_design.json",
+      "reports/phase6_4_receiver_validator_detail_design.json",
+      "reports/phase6_5_rejection_validator_detail_design.json",
+      "reports/phase6_6_human_review_validator_detail_design.json",
+      "reports/phase6_7_validator_implementation_condition_summary.json",
+      "reports/phase6_8_design_artifact_inventory.json",
+      "reports/phase6_9_phase6_design_completion_declaration.json"
+    ],
+    "review_purpose": "Phase 6 設計が安全かつ完全であり、Phase 7 実装前設計に進んでよいかを判定"
+  },
+  "approval_record_template": {
+    "header": {
+      "review_date": "YYYY-MM-DD (ISO8601)",
+      "reviewer_id": "string (unique identifier)",
+      "reviewer_name": "string",
+      "review_duration": "HH:MM (hours:minutes)",
+      "review_method": "enum [in_person, remote, document_review, meeting]"
+    },
+    "review_scope_checklist": {
+      "reviewed_artifacts": {
+        "phase6_1_audit": {
+          "reviewed": "boolean",
+          "comments": "string (optional)"
+        },
+        "phase6_2_conditions": {
+          "reviewed": "boolean",
+          "comments": "string (optional)"
+        },
+        "phase6_3_gate": {
+          "reviewed": "boolean",
+          "comments": "string (optional)"
+        },
+        "phase6_4_receiver_detail": {
+          "reviewed": "boolean",
+          "comments": "string (optional)"
+        },
+        "phase6_5_rejection_detail": {
+          "reviewed": "boolean",
+          "comments": "string (optional)"
+        },
+        "phase6_6_human_review_detail": {
+          "reviewed": "boolean",
+          "comments": "string (optional)"
+        },
+        "phase6_7_summary": {
+          "reviewed": "boolean",
+          "comments": "string (optional)"
+        },
+        "phase6_8_inventory": {
+          "reviewed": "boolean",
+          "comments": "string (optional)"
+        },
+        "phase6_9_declaration": {
+          "reviewed": "boolean",
+          "comments": "string (optional)"
+        }
+      }
+    },
+    "safety_boundary_verification": {
+      "operation_mode_observe": {
+        "requirement": "operation_mode = OBSERVE",
+        "verified": "boolean",
+        "comment": "string (optional)"
+      },
+      "execution_dry_run": {
+        "requirement": "execution = dry_run",
+        "verified": "boolean",
+        "comment": "string (optional)"
+      },
+      "production_no_go": {
+        "requirement": "production_status = NO_GO",
+        "verified": "boolean",
+        "comment": "string (optional)"
+      },
+      "requires_human_approval": {
+        "requirement": "requires_human_approval = true",
+        "verified": "boolean",
+        "comment": "string (optional)"
+      },
+      "auto_execute_disabled": {
+        "requirement": "auto_execute_allowed = false",
+        "verified": "boolean",
+        "comment": "string (optional)"
+      },
+      "all_banned_actions_blocked": {
+        "requirement": "10個の banned actions すべてがブロック",
+        "verified": "boolean",
+        "comment": "string (optional)"
+      }
+    },
+    "design_completeness_assessment": {
+      "receiver_validator_design": {
+        "completeness": "enum [complete, incomplete, partial]",
+        "coverage": "string (description of coverage)",
+        "issues": "array of strings (issues found, if any)"
+      },
+      "rejection_validator_design": {
+        "completeness": "enum [complete, incomplete, partial]",
+        "coverage": "string (description of coverage)",
+        "issues": "array of strings (issues found, if any)"
+      },
+      "human_review_validator_design": {
+        "completeness": "enum [complete, incomplete, partial]",
+        "coverage": "string (description of coverage)",
+        "issues": "array of strings (issues found, if any)"
+      },
+      "implementation_gate_design": {
+        "completeness": "enum [complete, incomplete, partial]",
+        "coverage": "string (description of coverage)",
+        "issues": "array of strings (issues found, if any)"
+      }
+    },
+    "phase7_readiness_assessment": {
+      "ready_for_phase7_preparation": {
+        "assessment": "boolean",
+        "reason": "string (explanation)"
+      },
+      "design_quality": "enum [excellent, good, acceptable, poor]",
+      "safety_level": "enum [critical_safe, safe, acceptable, risky]",
+      "completeness_level": "enum [complete, mostly_complete, partial, incomplete]"
+    }
+  },
+  "approval_decision_types": {
+    "approve_design_only": {
+      "code": "APPROVE_DESIGN_ONLY",
+      "meaning": "Phase 6 設計は承認。Phase 7-1〜7-3 実装前設計へ進むことを許可。ただし app/tests 実装許可ではない。",
+      "conditions": [
+        "Phase 6-1〜6-9 全設計が完全",
+        "安全性境界が完全に維持",
+        "operation_mode=OBSERVE/execution=dry_run/production_status=NO_GO 確認",
+        "banned actions 10個全てブロック確認",
+        "設計品質が acceptable 以上"
+      ],
+      "next_phase": "Phase 7-1〜7-3 実装前設計へ進む",
+      "restrictions": [
+        "app/ への実装ファイル追加禁止",
+        "tests/ へのテストファイル追加禁止",
+        "Core AI 実送信禁止",
+        "外部接続禁止"
+      ]
+    },
+    "request_fix": {
+      "code": "REQUEST_FIX",
+      "meaning": "Phase 6 設計に修正が必要。修正指摘項目を提示し、修正後に再レビュー。",
+      "conditions": [
+        "設計に軽微な欠落や曖昧性あり",
+        "修正で対応可能な問題"
+      ],
+      "next_phase": "修正 → 再 review → APPROVE_DESIGN_ONLY または REQUEST_FIX",
+      "blocking_issues": "指摘事項リスト（詳細）"
+    },
+    "reject": {
+      "code": "REJECT",
+      "meaning": "Phase 6 設計は承認できない。根本的な再設計が必要。",
+      "conditions": [
+        "安全性境界の逸脱",
+        "実装許可条件が曖昧",
+        "banned actions の一部が明確に禁止されていない"
+      ],
+      "next_phase": "Phase 6 全体の再検討",
+      "blocking_issues": "再設計が必須の指摘事項"
+    },
+    "abort": {
+      "code": "ABORT",
+      "meaning": "重大な安全違反。即座に Phase 7 進行を停止。",
+      "conditions": [
+        "Core AI 実送信を前提とする記述",
+        "本番反映を前提とする記述",
+        "禁止操作が明確に実装候補として扱われている"
+      ],
+      "next_phase": "STOP. インシデント対応。",
+      "critical_issues": "重大な問題リスト"
+    }
+  },
+  "reviewer_responsibilities": {
+    "before_review": [
+      "Phase 6-1〜6-9 全ファイルを事前に読み込む",
+      "Phase 5 設計完了宣言を参照して前工程を確認",
+      "チェックリスト項目を準備"
+    ],
+    "during_review": [
+      "設計の完全性を確認",
+      "安全性境界の維持を確認",
+      "実装範囲の妥当性を確認",
+      "human review 必須条件が明記されているか確認",
+      "APPROVE_DESIGN_ONLY が app/tests 実装許可でないことを確認"
+    ],
+    "after_review": [
+      "approval record template を完成させる",
+      "decision (APPROVE_DESIGN_ONLY / REQUEST_FIX / REJECT / ABORT) を記入",
+      "signature / timestamp を記録",
+      "修正指摘がある場合は詳細リストを作成"
+    ]
+  },
+  "approval_record_output": {
+    "required_fields": [
+      "review_date (ISO8601)",
+      "reviewer_id (unique)",
+      "reviewer_name",
+      "decision (APPROVE_DESIGN_ONLY / REQUEST_FIX / REJECT / ABORT)",
+      "reviewed_artifacts checklist (all items checked)",
+      "safety_boundary_verification (all items verified)",
+      "design_completeness_assessment (all 4 validators)",
+      "phase7_readiness_assessment",
+      "approval_comment (人間が読める説明)",
+      "blocking_issues (修正指摘があれば)",
+      "reviewer_signature (改ざん防止)",
+      "approval_timestamp (ISO8601)"
+    ]
+  },
+  "approval_record_usage": {
+    "usage_in_phase7": "Phase 7-1〜7-3 実装前設計で、human review decision を参照",
+    "decision_path": {
+      "if_approve_design_only": "Phase 7-1〜7-3 実装前設計へ進む",
+      "if_request_fix": "修正 → 修正確認 → 再 review",
+      "if_reject": "Phase 6 再設計",
+      "if_abort": "STOP"
+    }
+  },
+  "auto_approval_prohibition": {
+    "rule": "自動承認は禁止。必ず人間の署名が必須。",
+    "enforcement": "reviewer_signature フィールドが空の場合は無効。"
+  },
+  "safety_audit": {
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "production_status": "NO_GO",
+    "requires_human_approval": true,
+    "auto_execute_allowed": false,
+    "app_implementation_added": false,
+    "tests_implementation_added": false,
+    "template_design_only": true
+  },
+  "judgment": {
+    "phase7_1_template_status": "PASS",
+    "template_completeness": "COMPLETE",
+    "review_checklist_clear": true,
+    "safety_verification_items_clear": true,
+    "decision_types_clear": true,
+    "approval_record_format_defined": true,
+    "auto_approval_prohibition_explicit": true,
+    "template_design_only": true,
+    "implementation_not_performed": true,
+    "production_status": "NO_GO",
+    "operation_mode": "OBSERVE",
+    "execution": "dry_run",
+    "allowed_state": [
+      "OBSERVE",
+      "DRY_RUN",
+      "HUMAN_REVIEW_REQUIRED"
+    ],
+    "blocked": [
+      "core_ai_real_send",
+      "external_api_call",
+      "wordpress_operation",
+      "cron_registration",
+      "auto_execute",
+      "auto_post",
+      "auto_update",
+      "auto_delete",
+      "auto_export",
+      "production_execution"
+    ],
+    "next_phase": "phase7_2_limited_implementation_scope_design"
+  }
+}

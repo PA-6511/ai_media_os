@@ -1,0 +1,118 @@
+{
+  "phase": "Phase 6-4",
+  "plan_name": "wordpress_draft_controlled_unlock_plan_design",
+  "mode": "CONNECTION_TEST",
+  "execution": "DRY_RUN",
+  "plan_status": "DESIGN_ONLY",
+  "production_status": "NO_GO",
+  "wordpress_draft_creation": "NO_GO",
+  "unlock_target": {
+    "decision_token": "APPROVE_DRAFT_CREATE_ONLY",
+    "currently_allowed": false,
+    "unlock_in_this_phase": false,
+    "note": "Phase 6-4は解放手順の設計のみ。解放は実施しない。"
+  },
+  "minimal_activation_conditions": [
+    "phase6_1_release_policy_validation_result.status == PASS",
+    "phase6_2_preflight_gate_validation_result.status == PASS",
+    "phase6_3_release_decision_rules_validation_result.status == PASS",
+    "phase5_overall_completion_status in [PASS_DRY_RUN_ONLY, PASS_DRY_RUN_ONLY_WITH_WARN]",
+    "human_review_final_decision == APPROVE_DRAFT_CREATE_ONLY",
+    "all_pre_execution_checklist_items == PASS",
+    "single_draft_limit == 1",
+    "post_status == draft",
+    "wordpress_write_executed == false"
+  ],
+  "transition_conditions": {
+    "from": "single_dry_run",
+    "to": "single_real_draft",
+    "enabled": false,
+    "required_checks": [
+      "latest_dry_run_result.status == PASS",
+      "candidate_quality_check.status in [PASS, WARN_WITH_EXPLICIT_HUMAN_OVERRIDE]",
+      "explicit_human_override_for_warn == true when quality is WARN",
+      "wordpress_dedicated_user_permission_verified == true",
+      "secrets_env_non_edit_verified == true",
+      "existing_post_impact_zero_verified == true"
+    ],
+    "note": "遷移条件のみ設計。Phase 6-4では遷移を実行しない。"
+  },
+  "pre_execution_checklist": {
+    "required": true,
+    "items": [
+      "request_id_present",
+      "reviewer_identity_verified",
+      "review_decision_is_APPROVE_DRAFT_CREATE_ONLY",
+      "decision_not_expired",
+      "wordpress_role_in_allowed_roles",
+      "application_password_active",
+      "single_draft_limit_is_1",
+      "target_post_status_is_draft",
+      "existing_post_impact_zero",
+      "secrets_env_not_edited",
+      "forbidden_actions_not_requested"
+    ]
+  },
+  "post_execution_evidence_spec": {
+    "required_in_phase6_4": false,
+    "note": "Phase 6-4は設計のみ。実行証跡は将来定義として保持。",
+    "future_required_fields": [
+      "request_id",
+      "draft_post_id",
+      "reviewer_id",
+      "decision_token",
+      "wordpress_user",
+      "executed_at",
+      "post_status_before_after",
+      "affected_existing_posts_count"
+    ]
+  },
+  "failure_handling_policy": {
+    "auto_retry_forbidden": true,
+    "retry_on_failure": false,
+    "manual_requeue_requires_new_review": true,
+    "note": "失敗時は自動再試行せず、新規レビューで再キュー。"
+  },
+  "impact_guardrails": {
+    "existing_post_impact_must_be_zero": true,
+    "update_existing_post_forbidden": true,
+    "delete_existing_post_forbidden": true,
+    "bulk_operation_forbidden": true
+  },
+  "wordpress_permission_requirements": {
+    "allowed_roles": ["editor", "administrator"],
+    "dedicated_username_required": true,
+    "application_password_required": true,
+    "token_scope_limited": true
+  },
+  "secrets_env_policy": {
+    "auto_edit_forbidden": true,
+    "manual_rotation_only": true,
+    "runtime_secret_write_forbidden": true
+  },
+  "rollback_policy": {
+    "auto_rollback": false,
+    "strategy": "manual_verify_and_manual_delete_only",
+    "note": "自動ロールバックは使わず、人間確認のうえ手動削除。"
+  },
+  "phase6_5_entry_conditions": [
+    "phase6_4_controlled_unlock_plan_validation_result.status == PASS",
+    "controlled_unlock_execution_spec_is_defined",
+    "manual_operation_runbook_is_approved",
+    "no_production_action_executed_in_phase6_4"
+  ],
+  "forbidden_actions": [
+    "wordpress_rest_post",
+    "wordpress_rest_put_patch",
+    "publish_post",
+    "update_existing_post",
+    "delete_post",
+    "bulk_posting",
+    "external_export",
+    "github_actions_trigger",
+    "slack_production_notification",
+    "cron_automation",
+    "env_secret_auto_edit",
+    "vps_self_builder_execution"
+  ]
+}

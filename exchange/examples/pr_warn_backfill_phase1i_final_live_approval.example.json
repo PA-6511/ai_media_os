@@ -1,0 +1,32 @@
+{
+  "phase": "PR_WARN_BACKFILL_PHASE1I_FINAL_LIVE_APPROVAL",
+  "approved": false,
+  "wordpress_live_write_allowed": false,
+  "target_post_id": 101,
+  "max_live_updates": 1,
+  "allowed_changed_fields": [
+    "content"
+  ],
+  "forbidden_changed_fields": [
+    "title",
+    "status",
+    "slug",
+    "link",
+    "categories",
+    "tags",
+    "featured_media",
+    "publish",
+    "excerpt",
+    "author",
+    "date"
+  ],
+  "required_snapshot_path": "exchange/logs/pr_warn_backfill_phase1g_101_pre_live_snapshot.json",
+  "required_snapshot_result_path": "exchange/logs/pr_warn_backfill_phase1g_101_readonly_snapshot_result.json",
+  "require_pre_live_resnapshot": true,
+  "require_modified_unchanged_or_abort": true,
+  "require_content_hash_match_or_abort": true,
+  "require_human_final_confirmation": true,
+  "approval_scope": "post_id_101_single_update_only",
+  "approval_expires_after_next_run": true,
+  "notes": "Phase 1I example only. Do not use as active approval without explicit human confirmation in next phase."
+}

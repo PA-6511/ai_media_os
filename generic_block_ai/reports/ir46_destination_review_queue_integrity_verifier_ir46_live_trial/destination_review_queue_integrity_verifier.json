@@ -1,0 +1,110 @@
+{
+  "schema_version": "ir46_destination_review_queue_integrity_verifier_v1",
+  "phase": "IR46",
+  "generated_at": "2026-05-24T03:23:33.501432+00:00",
+  "source_task_id": "ir46_live_trial",
+  "release_candidate_id": "rc_20260523T155148Z_ir26_live_trial_b940393b490b",
+  "final_submission_decision": "READY_FOR_SUBMISSION_SUMMARY",
+  "overall_approval_decision": "APPROVE_DRY_RUN",
+  "overall_submission_gate_decision": "READY_FOR_REVIEW",
+  "overall_integrity_action": "Review queue integrity verified for item completeness, uniqueness, links, and status mapping.",
+  "validation_result": "PASS",
+  "validation_failed_checks": [],
+  "validation_warnings": [],
+  "summary": {
+    "destination_count": 3,
+    "integrity_pass_count": 3,
+    "integrity_fail_count": 0,
+    "queue_status_verified_count": 3,
+    "item_uniqueness_verified_count": 3,
+    "evidence_link_verified_count": 3
+  },
+  "destination_review_queue_integrity": [
+    {
+      "destination": "compliance_archive",
+      "review_queue_status": "QUEUED_FOR_REVIEW",
+      "integrity_result": "PASS",
+      "integrity_checks": {
+        "queue_status_ok": true,
+        "missing_items": false,
+        "duplicate_destination": false,
+        "duplicate_item_ids": false,
+        "item_count_ok": true,
+        "checklist_ok": true,
+        "evidence_links_ok": true
+      },
+      "review_item_ids": [
+        "compliance_archive-R1",
+        "compliance_archive-R2"
+      ],
+      "failed_reasons": [],
+      "evidence_reference_links": {
+        "hash_manifest": "generic_block_ai/reports/ir42_destination_human_event_chain_evidence_bundle_compliance_archive_ir42_live_trial/destination_human_event_chain_hash_manifest.json",
+        "review_summary": "generic_block_ai/reports/ir42_destination_human_event_chain_evidence_bundle_compliance_archive_ir42_live_trial/destination_human_event_chain_review_summary.md",
+        "gate_report": "generic_block_ai/reports/ir44_destination_evidence_bundle_submission_gate_report_ir44_live_trial.json"
+      }
+    },
+    {
+      "destination": "internal_review_board",
+      "review_queue_status": "QUEUED_FOR_REVIEW",
+      "integrity_result": "PASS",
+      "integrity_checks": {
+        "queue_status_ok": true,
+        "missing_items": false,
+        "duplicate_destination": false,
+        "duplicate_item_ids": false,
+        "item_count_ok": true,
+        "checklist_ok": true,
+        "evidence_links_ok": true
+      },
+      "review_item_ids": [
+        "internal_review_board-R1",
+        "internal_review_board-R2"
+      ],
+      "failed_reasons": [],
+      "evidence_reference_links": {
+        "hash_manifest": "generic_block_ai/reports/ir42_destination_human_event_chain_evidence_bundle_internal_review_board_ir42_live_trial/destination_human_event_chain_hash_manifest.json",
+        "review_summary": "generic_block_ai/reports/ir42_destination_human_event_chain_evidence_bundle_internal_review_board_ir42_live_trial/destination_human_event_chain_review_summary.md",
+        "gate_report": "generic_block_ai/reports/ir44_destination_evidence_bundle_submission_gate_report_ir44_live_trial.json"
+      }
+    },
+    {
+      "destination": "regulatory_audit",
+      "review_queue_status": "QUEUED_FOR_REVIEW",
+      "integrity_result": "PASS",
+      "integrity_checks": {
+        "queue_status_ok": true,
+        "missing_items": false,
+        "duplicate_destination": false,
+        "duplicate_item_ids": false,
+        "item_count_ok": true,
+        "checklist_ok": true,
+        "evidence_links_ok": true
+      },
+      "review_item_ids": [
+        "regulatory_audit-R1",
+        "regulatory_audit-R2"
+      ],
+      "failed_reasons": [],
+      "evidence_reference_links": {
+        "hash_manifest": "generic_block_ai/reports/ir42_destination_human_event_chain_evidence_bundle_regulatory_audit_ir42_live_trial/destination_human_event_chain_hash_manifest.json",
+        "review_summary": "generic_block_ai/reports/ir42_destination_human_event_chain_evidence_bundle_regulatory_audit_ir42_live_trial/destination_human_event_chain_review_summary.md",
+        "gate_report": "generic_block_ai/reports/ir44_destination_evidence_bundle_submission_gate_report_ir44_live_trial.json"
+      }
+    }
+  ],
+  "artifacts": {
+    "verifier_root": "generic_block_ai/reports/ir46_destination_review_queue_integrity_verifier_ir46_live_trial",
+    "destination_review_queue_integrity_verifier": "generic_block_ai/reports/ir46_destination_review_queue_integrity_verifier_ir46_live_trial/destination_review_queue_integrity_verifier.json",
+    "destination_review_queue_integrity_summary": "generic_block_ai/reports/ir46_destination_review_queue_integrity_verifier_ir46_live_trial/destination_review_queue_integrity_summary.md",
+    "completion_report": "reports/implementation_restart_phase46_completion_report.json"
+  },
+  "safeguards": {
+    "mode": "dry_run",
+    "operation_mode": "OBSERVE",
+    "execution_policy_execute": false,
+    "external_write_executed": false,
+    "network_transmission_executed": false,
+    "production_release": false
+  }
+}

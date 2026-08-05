@@ -1,0 +1,40 @@
+{
+  "phase": "Phase 7-10",
+  "status": "PASS_REVIEW_ONLY_NO_GO",
+  "production_status": "NO_GO",
+  "wordpress_draft_creation": "NO_GO",
+  "wordpress_write_executed": false,
+  "wordpress_api_call_allowed": false,
+  "publish_allowed": false,
+  "approve_draft_create_only_currently_allowed": false,
+  "unlock_in_this_phase": false,
+  "human_decision_is_execution_permission": false,
+  "target_item_count": 1,
+  "human_decision_summary": {
+    "review_id": "phase7_10_human_unlock_review_001",
+    "operator": "human",
+    "decision": "ACKNOWLEDGE_UNLOCK_REVIEW_ONLY",
+    "requested_token": "NONE",
+    "candidate_id": "phase7_1_sample_candidate_001"
+  },
+  "evidence_summary": [
+    {
+      "path": "exchange/logs/phase7_9_pre_unlock_overall_report.json",
+      "exists": true,
+      "status": "PRE_UNLOCK_READY_BUT_NO_GO"
+    }
+  ],
+  "approval_scope": {
+    "draft_create_only": false,
+    "publish": false,
+    "update": false,
+    "delete": false,
+    "bulk": false,
+    "external_export": false
+  },
+  "errors": [],
+  "warnings": [],
+  "safety_violations": [],
+  "allowed_next_step": "Phase 7-11 APPROVE_DRAFT_CREATE_ONLY unlock token final validation, still locked",
+  "checked_at": "2026-05-27T14:01:08.164219+00:00"
+}
