@@ -5,6 +5,7 @@ from datetime import datetime, timedelta, timezone
 import pytest
 
 from app.services.wordpress_bulk_draft_service import (
+    BulkDraftItemResult,
     BulkDraftRequest,
     BulkDraftState,
     BulkWordPressDraftError,
@@ -132,3 +133,131 @@ def test_prepare_request_cannot_replace_existing_request() -> None:
 
     assert error.value.code == "BULK_DRAFT_ALREADY_PREPARED"
     assert first_request.state is BulkDraftState.PREPARED
+
+
+def test_confirmed_request_executes_successfully() -> None:
+    service = BulkWordPressDraftService(
+        ["ebook-1"],
+        item_executor=lambda item_id: BulkDraftItemResult(
+            ebook_item_id=item_id,
+            status="CREATED",
+            wordpress_post_id=101,
+        ),
+    )
+    request = service.prepare_request(now=NOW)
+    service.confirm_request(request, now=NOW)
+
+    result = service.execute_request(request)
+
+    assert result.request_id == request.request_id
+    assert result.completed_count == 1
+    assert result.failed_count == 0
+    assert result.reconciliation_required is False
+    assert result.item_results[0].wordpress_post_id == 101
+    assert request.state is BulkDraftState.COMPLETED
+    assert service.state is BulkDraftState.COMPLETED
+
+
+def test_unconfirmed_request_cannot_execute() -> None:
+    executed = []
+    service = BulkWordPressDraftService(
+        ["ebook-1"],
+        item_executor=lambda item_id: executed.append(item_id),
+    )
+    request = service.prepare_request(now=NOW)
+
+    with pytest.raises(BulkWordPressDraftError) as error:
+        service.execute_request(request)
+
+    assert error.value.code == "BULK_DRAFT_NOT_CONFIRMED"
+    assert executed == []
+    assert request.state is BulkDraftState.PREPARED
+
+
+def test_item_failure_is_preserved_in_execution_result() -> None:
+    def execute(item_id: str) -> BulkDraftItemResult:
+        if item_id == "ebook-1":
+            raise RuntimeError("internal detail")
+        return BulkDraftItemResult(
+            ebook_item_id=item_id,
+            status="CREATED",
+            wordpress_post_id=202,
+        )
+
+    service = BulkWordPressDraftService(
+        ["ebook-1", "ebook-2"],
+        item_executor=execute,
+    )
+    request = service.prepare_request(now=NOW)
+    service.confirm_request(request, now=NOW)
+
+    result = service.execute_request(request)
+
+    assert result.completed_count == 1
+    assert result.failed_count == 1
+    assert result.item_results[0] == BulkDraftItemResult(
+        ebook_item_id="ebook-1",
+        status="FAILED",
+        error_code="BULK_DRAFT_ITEM_FAILED",
+        message="Item execution failed.",
+    )
+    assert result.item_results[1].status == "CREATED"
+    assert request.state is BulkDraftState.PARTIAL_FAILED
+
+
+def test_execute_request_preserves_selected_order() -> None:
+    executed = []
+
+    def execute(item_id: str) -> BulkDraftItemResult:
+        executed.append(item_id)
+        return BulkDraftItemResult(
+            ebook_item_id=item_id,
+            status="CREATED",
+        )
+
+    selected_item_ids = ["ebook-3", "ebook-1", "ebook-2"]
+    service = BulkWordPressDraftService(
+        selected_item_ids,
+        item_executor=execute,
+    )
+    request = service.prepare_request(now=NOW)
+    service.confirm_request(request, now=NOW)
+
+    result = service.execute_request(request)
+
+    assert executed == selected_item_ids
+    assert [
+        item_result.ebook_item_id
+        for item_result in result.item_results
+    ] == selected_item_ids
+
+
+def test_reconciliation_required_is_reported_and_stops_execution() -> None:
+    executed = []
+
+    def execute(item_id: str) -> BulkDraftItemResult:
+        executed.append(item_id)
+        return BulkDraftItemResult(
+            ebook_item_id=item_id,
+            status="RECONCILIATION_REQUIRED",
+            error_code="reconciliation_required",
+        )
+
+    service = BulkWordPressDraftService(
+        ["ebook-1", "ebook-2"],
+        item_executor=execute,
+    )
+    request = service.prepare_request(now=NOW)
+    service.confirm_request(request, now=NOW)
+
+    result = service.execute_request(request)
+
+    assert executed == ["ebook-1"]
+    assert result.reconciliation_required is True
+    assert result.completed_count == 0
+    assert result.failed_count == 2
+    assert result.item_results[1].error_code == (
+        "BULK_ABORTED_AFTER_RECONCILIATION"
+    )
+    assert request.state is BulkDraftState.RECONCILIATION_REQUIRED
+    assert service.state is BulkDraftState.RECONCILIATION_REQUIRED

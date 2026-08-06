@@ -36,6 +36,15 @@ class BulkDraftItemResult:
     message: str = ""
 
 
+@dataclass(frozen=True)
+class BulkExecutionResult:
+    request_id: str
+    item_results: tuple[BulkDraftItemResult, ...]
+    completed_count: int
+    failed_count: int
+    reconciliation_required: bool
+
+
 @dataclass
 class BulkDraftRequest:
     request_id: str
@@ -151,6 +160,145 @@ class BulkWordPressDraftService:
         request.state = BulkDraftState.CONFIRMED
         self.state = BulkDraftState.CONFIRMED
         return request
+
+    def execute_request(
+        self,
+        request: BulkDraftRequest,
+    ) -> BulkExecutionResult:
+        if self._request is not request:
+            raise BulkWordPressDraftError(
+                "BULK_DRAFT_TOKEN_INVALID",
+                "Bulk draft request was not issued by this service.",
+            )
+        if request.state in {
+            BulkDraftState.RUNNING,
+            BulkDraftState.COMPLETED,
+            BulkDraftState.PARTIAL_FAILED,
+            BulkDraftState.FAILED,
+            BulkDraftState.RECONCILIATION_REQUIRED,
+        }:
+            raise BulkWordPressDraftError(
+                "BULK_DRAFT_REQUEST_REUSED",
+                "Bulk draft request has already been executed.",
+            )
+        if (
+            not request.used
+            or request.state is not BulkDraftState.CONFIRMED
+            or self.state is not BulkDraftState.CONFIRMED
+        ):
+            raise BulkWordPressDraftError(
+                "BULK_DRAFT_NOT_CONFIRMED",
+                "Bulk draft request must be confirmed before execution.",
+            )
+
+        request.state = BulkDraftState.RUNNING
+        self.state = BulkDraftState.RUNNING
+        item_results: list[BulkDraftItemResult] = []
+        reconciliation_required = False
+
+        for index, ebook_item_id in enumerate(
+            request.selected_item_ids
+        ):
+            try:
+                item_result = self.delegate_item(ebook_item_id)
+            except Exception as exc:
+                item_result = self._item_failure_result(
+                    ebook_item_id,
+                    exc,
+                )
+
+            item_results.append(item_result)
+            if self._requires_reconciliation(item_result):
+                reconciliation_required = True
+                for remaining_item_id in request.selected_item_ids[
+                    index + 1 :
+                ]:
+                    item_results.append(
+                        BulkDraftItemResult(
+                            ebook_item_id=remaining_item_id,
+                            status=BulkDraftState.FAILED.value,
+                            error_code=(
+                                "BULK_ABORTED_AFTER_RECONCILIATION"
+                            ),
+                            message=(
+                                "Execution was not attempted after a "
+                                "reconciliation-required result."
+                            ),
+                        )
+                    )
+                break
+
+        completed_count = sum(
+            self._is_completed(item_result)
+            for item_result in item_results
+        )
+        failed_count = len(item_results) - completed_count
+
+        if reconciliation_required:
+            final_state = BulkDraftState.RECONCILIATION_REQUIRED
+        elif completed_count == len(item_results):
+            final_state = BulkDraftState.COMPLETED
+        elif completed_count == 0:
+            final_state = BulkDraftState.FAILED
+        else:
+            final_state = BulkDraftState.PARTIAL_FAILED
+
+        request.state = final_state
+        self.state = final_state
+        return BulkExecutionResult(
+            request_id=request.request_id,
+            item_results=tuple(item_results),
+            completed_count=completed_count,
+            failed_count=failed_count,
+            reconciliation_required=reconciliation_required,
+        )
+
+    @staticmethod
+    def _is_completed(result: BulkDraftItemResult) -> bool:
+        return result.status.upper() in {
+            "CREATED",
+            "COMPLETED",
+            "WORDPRESS_DRAFT_CREATED",
+        }
+
+    @staticmethod
+    def _requires_reconciliation(
+        result: BulkDraftItemResult,
+    ) -> bool:
+        values = (result.status, result.error_code or "")
+        return any(
+            "RECONCILIATION_REQUIRED" in value.upper()
+            or value.lower() == "reconciliation_required"
+            for value in values
+        )
+
+    @classmethod
+    def _item_failure_result(
+        cls,
+        ebook_item_id: str,
+        exc: Exception,
+    ) -> BulkDraftItemResult:
+        error_code = str(
+            getattr(exc, "code", "BULK_DRAFT_ITEM_FAILED")
+        )
+        reconciliation_required = (
+            "RECONCILIATION_REQUIRED" in error_code.upper()
+            or error_code.lower() == "reconciliation_required"
+        )
+        return BulkDraftItemResult(
+            ebook_item_id=ebook_item_id,
+            status=(
+                BulkDraftState.RECONCILIATION_REQUIRED.value
+                if reconciliation_required
+                else BulkDraftState.FAILED.value
+            ),
+            error_code=error_code,
+            message=(
+                str(exc)
+                if isinstance(exc, BulkWordPressDraftError)
+                else "Item execution failed."
+            ),
+        )
 
     def delegate_item(self, ebook_item_id: str) -> BulkDraftItemResult:
         if self._item_executor is None:
