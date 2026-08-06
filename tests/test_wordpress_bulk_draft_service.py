@@ -5,6 +5,7 @@ from datetime import datetime, timedelta, timezone
 import pytest
 
 from app.services.wordpress_bulk_draft_service import (
+    BulkDraftRequest,
     BulkDraftState,
     BulkWordPressDraftError,
     BulkWordPressDraftService,
@@ -77,3 +78,57 @@ def test_used_request_cannot_be_confirmed_again() -> None:
         service.confirm_request(request, now=NOW)
 
     assert error.value.code == "BULK_DRAFT_TOKEN_REUSED"
+
+
+def test_prepare_request_sets_request_contract() -> None:
+    service = BulkWordPressDraftService(["ebook-2", "ebook-1"])
+
+    request = service.prepare_request(now=NOW)
+
+    assert request.request_id
+    assert request.selected_item_ids == ("ebook-2", "ebook-1")
+    assert request.created_at == NOW
+    assert request.expires_at == NOW + timedelta(minutes=15)
+    assert request.state is BulkDraftState.PREPARED
+    assert request.used is False
+
+
+def test_confirm_request_updates_request_and_service_state() -> None:
+    service = BulkWordPressDraftService(["ebook-1"])
+    request = service.prepare_request(now=NOW)
+
+    result = service.confirm_request(request, now=NOW)
+
+    assert result is request
+    assert request.state is BulkDraftState.CONFIRMED
+    assert request.used is True
+    assert service.state is BulkDraftState.CONFIRMED
+
+
+def test_unissued_request_is_rejected() -> None:
+    service = BulkWordPressDraftService(["ebook-1"])
+    service.prepare_request(now=NOW)
+    unissued_request = BulkDraftRequest(
+        request_id="unissued-request",
+        selected_item_ids=("ebook-1",),
+        created_at=NOW,
+        expires_at=NOW + timedelta(minutes=15),
+    )
+
+    with pytest.raises(BulkWordPressDraftError) as error:
+        service.confirm_request(unissued_request, now=NOW)
+
+    assert error.value.code == "BULK_DRAFT_TOKEN_INVALID"
+    assert unissued_request.used is False
+    assert unissued_request.state is BulkDraftState.PREPARED
+
+
+def test_prepare_request_cannot_replace_existing_request() -> None:
+    service = BulkWordPressDraftService(["ebook-1"])
+    first_request = service.prepare_request(now=NOW)
+
+    with pytest.raises(BulkWordPressDraftError) as error:
+        service.prepare_request(now=NOW + timedelta(minutes=1))
+
+    assert error.value.code == "BULK_DRAFT_ALREADY_PREPARED"
+    assert first_request.state is BulkDraftState.PREPARED

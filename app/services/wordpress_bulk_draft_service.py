@@ -43,6 +43,7 @@ class BulkDraftRequest:
     created_at: datetime
     expires_at: datetime
     used: bool = False
+    state: BulkDraftState = BulkDraftState.PREPARED
 
 
 ItemExecutor = Callable[[str], BulkDraftItemResult]
@@ -74,20 +75,36 @@ class BulkWordPressDraftService:
         self.selected_item_ids = item_ids
         self.state = BulkDraftState.PREPARED
         self._item_executor = item_executor
+        self._request: BulkDraftRequest | None = None
 
-    def create_request(
+    def prepare_request(
         self,
         *,
         now: datetime | None = None,
     ) -> BulkDraftRequest:
+        if self._request is not None:
+            raise BulkWordPressDraftError(
+                "BULK_DRAFT_ALREADY_PREPARED",
+                "Bulk draft request has already been prepared.",
+            )
+
         created_at = now or _utc_now()
-        return BulkDraftRequest(
+        request = BulkDraftRequest(
             request_id=secrets.token_urlsafe(32),
             selected_item_ids=self.selected_item_ids,
             created_at=created_at,
             expires_at=created_at
             + timedelta(minutes=BULK_DRAFT_REQUEST_TTL_MINUTES),
         )
+        self._request = request
+        return request
+
+    def create_request(
+        self,
+        *,
+        now: datetime | None = None,
+    ) -> BulkDraftRequest:
+        return self.prepare_request(now=now)
 
     @staticmethod
     def is_request_expired(
@@ -103,11 +120,16 @@ class BulkWordPressDraftService:
         request: BulkDraftRequest,
         *,
         now: datetime | None = None,
-    ) -> None:
+    ) -> BulkDraftRequest:
         if request.used:
             raise BulkWordPressDraftError(
                 "BULK_DRAFT_TOKEN_REUSED",
                 "Bulk draft request has already been used.",
+            )
+        if self._request is not request:
+            raise BulkWordPressDraftError(
+                "BULK_DRAFT_TOKEN_INVALID",
+                "Bulk draft request was not issued by this service.",
             )
         if self.is_request_expired(request, now=now):
             raise BulkWordPressDraftError(
@@ -119,9 +141,16 @@ class BulkWordPressDraftService:
                 "BULK_DRAFT_REQUEST_MISMATCH",
                 "Bulk draft request does not match the selected items.",
             )
+        if request.state is not BulkDraftState.PREPARED:
+            raise BulkWordPressDraftError(
+                "BULK_DRAFT_INVALID_STATE",
+                "Bulk draft request must be prepared before confirmation.",
+            )
 
         request.used = True
+        request.state = BulkDraftState.CONFIRMED
         self.state = BulkDraftState.CONFIRMED
+        return request
 
     def delegate_item(self, ebook_item_id: str) -> BulkDraftItemResult:
         if self._item_executor is None:
