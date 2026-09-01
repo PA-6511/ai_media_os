@@ -31,6 +31,11 @@ from app.db.models.supplement_import import (
     SupplementRegistrationCancellationHistory,
 )
 
+from app.db.models.cover_automation import (
+    CoverAutomationAuditQueue,
+    StoreCoverPolicyAgreement,
+)
+
 __all__ = [
     "EbookItem",
     "EbookSeriesClassificationRule",
@@ -52,4 +57,6 @@ __all__ = [
     "SupplementParseHistory",
     "SupplementImportHistory",
     "SupplementRegistrationCancellationHistory",
+    "CoverAutomationAuditQueue",
+    "StoreCoverPolicyAgreement",
 ]

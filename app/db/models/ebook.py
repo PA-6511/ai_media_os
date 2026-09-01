@@ -128,6 +128,18 @@ class EbookItem(Base):
             "('manual', 'series_rule')",
             name="valid_classification_source",
         ),
+        CheckConstraint(
+            "cover_source IN "
+            "('RAKUTEN_KOBO_API', 'AMAZON_PA_API', "
+            "'DMM_AFFILIATE_API', 'MANUAL', 'UNKNOWN')",
+            name="valid_cover_source",
+        ),
+        CheckConstraint(
+            "cover_status IN "
+            "('AUTO_ALLOWED', 'HIDDEN_UNVERIFIED', "
+            "'MANUAL_REVIEW', 'UNAVAILABLE')",
+            name="valid_cover_status",
+        ),
     )
 
     id: Mapped[str] = mapped_column(
@@ -223,6 +235,30 @@ class EbookItem(Base):
         nullable=False,
         default="UNCHECKED",
         server_default="UNCHECKED",
+        index=True,
+    )
+
+    # Cover URLs are display references returned by an official store API.
+    # The application never downloads, republishes, or rewrites the image.
+    cover_source: Mapped[str] = mapped_column(
+        String(32),
+        nullable=False,
+        default="UNKNOWN",
+        server_default="UNKNOWN",
+        index=True,
+    )
+    cover_source_item_id: Mapped[str | None] = mapped_column(String(255))
+    cover_image_url: Mapped[str | None] = mapped_column(Text)
+    cover_destination_url: Mapped[str | None] = mapped_column(Text)
+    cover_retrieved_at: Mapped[datetime | None] = mapped_column(
+        DateTime(timezone=True),
+    )
+    cover_policy_version: Mapped[str | None] = mapped_column(String(64))
+    cover_status: Mapped[str] = mapped_column(
+        String(32),
+        nullable=False,
+        default="HIDDEN_UNVERIFIED",
+        server_default="HIDDEN_UNVERIFIED",
         index=True,
     )
 

@@ -1,0 +1,30 @@
+[Unit]
+Description=AI Media OS monthly comic release synchronization
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=deploy
+Group=deploy
+WorkingDirectory=/home/deploy/ai_media_os
+EnvironmentFile=-/etc/ai-media-os/credential.env
+Environment=PYTHONPATH=/home/deploy/ai_media_os
+Environment=PYTHONDONTWRITEBYTECODE=1
+ExecStart=/usr/bin/flock -n /home/deploy/ai_media_os/data/locks/monthly-comic-release-sync.lock /home/deploy/ai_media_os/.venv/bin/python /home/deploy/ai_media_os/scripts/run_monthly_comic_release_sync.py --execute --phase all --detail-limit 1000 --detail-workers 3 --kobo-limit 1000 --dmm-limit 1000 --kindle-limit 1000 --cover-limit 1000
+TimeoutStartSec=180min
+Nice=10
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=read-only
+ReadWritePaths=/home/deploy/ai_media_os/data/database /home/deploy/ai_media_os/data/locks /home/deploy/ai_media_os/exchange/runtime /home/deploy/ai_media_os/backups
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+
+[Install]
+WantedBy=multi-user.target

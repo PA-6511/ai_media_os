@@ -1,0 +1,11 @@
+[Unit]
+Description=Run AI Media OS full monthly comic release synchronization
+
+[Timer]
+OnCalendar=*-*-01 02:10:00 Asia/Tokyo
+Persistent=true
+RandomizedDelaySec=5m
+Unit=ai-media-os-monthly-comic-release-sync.service
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,11 @@
+[Unit]
+Description=Reconcile AI Media OS comic release additions and corrections daily
+
+[Timer]
+OnCalendar=*-*-* 08:00:00 Asia/Tokyo
+Persistent=true
+RandomizedDelaySec=3m
+Unit=ai-media-os-monthly-comic-release-sync.service
+
+[Install]
+WantedBy=timers.target
