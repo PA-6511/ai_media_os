@@ -286,11 +286,35 @@ class ImportRepository:
                     item.is_split_edition = rule.is_split_edition
                     item.classification_source = "series_rule"
         else:
+            preserve_published_monthly_contract = (
+                source_name == "new_release_multistore"
+                and str(item.wordpress_status or "").upper()
+                == "PUBLISHED"
+            )
+
             desired_values = {
-                "title": title,
+                "title": (
+                    item.title
+                    if preserve_published_monthly_contract
+                    else title
+                ),
                 "isbn": isbn or item.isbn,
-                "normalized_title": normalized_title or item.normalized_title,
-                "volume_label": volume_label or item.volume_label,
+                "normalized_title": (
+                    item.normalized_title
+                    if preserve_published_monthly_contract
+                    else (
+                        normalized_title
+                        or item.normalized_title
+                    )
+                ),
+                "volume_label": (
+                    item.volume_label
+                    if preserve_published_monthly_contract
+                    else (
+                        volume_label
+                        or item.volume_label
+                    )
+                ),
                 "author_name": author_name or item.author_name,
                 "publisher_name": publisher_name or item.publisher_name,
                 "series_name": series_name or item.series_name,
@@ -301,8 +325,12 @@ class ImportRepository:
                     or "unknown"
                 ).strip(),
                 "wordpress_status": (
-                    requested_wordpress_status
-                    or item.wordpress_status
+                    item.wordpress_status
+                    if preserve_published_monthly_contract
+                    else (
+                        requested_wordpress_status
+                        or item.wordpress_status
+                    )
                 ),
             }
             updated = any(
@@ -326,6 +354,47 @@ class ImportRepository:
                 item.wordpress_status = desired_values[
                     "wordpress_status"
                 ]
+
+        # Basic metadata-only imports must not synthesize an empty
+        # StoreOffer. A store offer is handled only when at least one
+        # explicit offer/store field contains a value.
+        offer_input_present = any(
+            str(row.get(field_name) or "").strip()
+            for field_name in (
+                "store_name",
+                "store_item_id",
+                "item_url",
+                "product_url",
+                "affiliate_url",
+                "price_yen",
+                "item_price",
+                "price",
+                "price_amount",
+                "currency",
+                "currency_code",
+                "discount_rate",
+                "point_rate",
+                "source_row_sha256",
+                "verified_at",
+                "verification_method",
+                "rakuten_kobo_url",
+                "rakuten_kobo_price",
+                "rakuten_kobo_currency",
+                "rakuten_kobo_affiliate_url",
+            )
+        )
+
+        if not offer_input_present:
+            self.session.flush()
+            return ImportResult(
+                ebook_item_id=item.id,
+                created=created,
+                updated=updated,
+                unchanged=unchanged,
+                offer_created=False,
+                offer_updated=False,
+                offer_unchanged=False,
+            )
 
         rakuten_columns_present = any_column(
             "rakuten_kobo_url",
