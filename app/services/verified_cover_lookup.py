@@ -76,37 +76,241 @@ def configured_cover_request(**kwargs):
     return load_repository_live_configuration(environment=values, **kwargs)
 
 
-def verified_kobo_item(item, offer, *, api_client=None, configuration_loader=None):
-    expected = str(offer.store_item_id or '').strip()
-    product_url = str(offer.product_url or '').strip()
-    legacy_id = not re.fullmatch(r'[0-9]{13}', expected)
+def verified_kobo_item(
+    item,
+    offer,
+    *,
+    api_client=None,
+    configuration_loader=None,
+):
+    expected = str(
+        offer.store_item_id
+        or ""
+    ).strip()
+
+    product_url = str(
+        offer.product_url
+        or ""
+    ).strip()
+
+    product_identity = (
+        _normalized_product_identity(
+            product_url
+        )[1:]
+    )
+
+    legacy_id = not re.fullmatch(
+        r"[0-9]{13}",
+        expected,
+    )
+
     if legacy_id:
-        product_identity = _normalized_product_identity(product_url)[1:]
-        # This existing resolver binds title, canonical product page and number.
-        # Only the number is used; the image must still come from the API.
-        resolved = _resolve_official_product_page(
-            requested_title=item.title, product_url=product_url, entered_price='',
+        resolved = (
+            _resolve_official_product_page(
+                requested_title=item.title,
+                product_url=product_url,
+                entered_price="",
+            )
         )
-        expected = resolved.item_number
-    loader = configuration_loader or load_repository_live_configuration
-    configuration = loader(title=None, item_number=expected)
-    if configuration is None:
-        raise VerifiedCoverLookupError('STORE_NOT_CONNECTED')
-    client = api_client or RakutenKoboApiClient(RequestsGetTransport())
-    response = client.fetch(configuration)
-    payload = json.loads(response.body.decode('utf-8'))
-    wrappers = payload.get('Items', [])
-    if len(wrappers) != 1:
-        raise VerifiedCoverLookupError('API_ITEM_NOT_UNIQUE')
-    value = wrappers[0].get('Item', wrappers[0])
-    if str(value.get('itemNumber', '')) != expected:
-        raise VerifiedCoverLookupError('ITEM_MISMATCH')
-    if legacy_id and _normalized_product_identity(value.get('itemUrl', ''))[1:] != product_identity:
-        raise VerifiedCoverLookupError('PRODUCT_URL_MISMATCH')
-    image = str(value.get('largeImageUrl') or '')
+
+        expected = (
+            resolved.item_number
+        )
+
+    loader = (
+        configuration_loader
+        or load_repository_live_configuration
+    )
+
+    client = (
+        api_client
+        or RakutenKoboApiClient(
+            RequestsGetTransport()
+        )
+    )
+
+    def fetch_values(**selectors):
+        configuration = loader(
+            **selectors
+        )
+
+        if configuration is None:
+            raise VerifiedCoverLookupError(
+                "STORE_NOT_CONNECTED"
+            )
+
+        response = client.fetch(
+            configuration
+        )
+
+        payload = json.loads(
+            response.body.decode(
+                "utf-8"
+            )
+        )
+
+        wrappers = payload.get(
+            "Items",
+            [],
+        )
+
+        if not isinstance(
+            wrappers,
+            list,
+        ):
+            raise VerifiedCoverLookupError(
+                "API_RESPONSE_INVALID"
+            )
+
+        values = []
+
+        for wrapper in wrappers:
+            if not isinstance(
+                wrapper,
+                dict,
+            ):
+                continue
+
+            value = wrapper.get(
+                "Item",
+                wrapper,
+            )
+
+            if isinstance(
+                value,
+                dict,
+            ):
+                values.append(
+                    value
+                )
+
+        return values
+
+    exact_values = fetch_values(
+        title=None,
+        item_number=expected,
+    )
+
+    exact_matches = [
+        value
+        for value in exact_values
+        if str(
+            value.get(
+                "itemNumber",
+                "",
+            )
+        ).strip()
+        == expected
+    ]
+
+    selected_by_product_url = False
+
+    if len(exact_matches) == 1:
+        value = exact_matches[0]
+
+    elif len(exact_matches) > 1:
+        raise VerifiedCoverLookupError(
+            "API_ITEM_NOT_UNIQUE"
+        )
+
+    else:
+        # Some confirmed Rakuten Kobo store IDs
+        # are not the Kobo API itemNumber.
+        #
+        # In that case use the already-confirmed
+        # canonical product URL as the strong
+        # identity and obtain only the cover from
+        # the official API.
+        if api_client is None:
+            import time
+            time.sleep(1.1)
+
+        title_values = fetch_values(
+            title=str(
+                item.title
+                or ""
+            ),
+            item_number=None,
+            hits=30,
+        )
+
+        product_matches = []
+
+        for candidate in title_values:
+            candidate_url = str(
+                candidate.get(
+                    "itemUrl",
+                    "",
+                )
+            ).strip()
+
+            try:
+                candidate_identity = (
+                    _normalized_product_identity(
+                        candidate_url
+                    )[1:]
+                )
+            except Exception:
+                continue
+
+            if (
+                candidate_identity
+                == product_identity
+            ):
+                product_matches.append(
+                    candidate
+                )
+
+        if len(product_matches) != 1:
+            raise VerifiedCoverLookupError(
+                "API_PRODUCT_URL_NOT_UNIQUE"
+            )
+
+        value = product_matches[0]
+        selected_by_product_url = True
+
+    if (
+        legacy_id
+        or selected_by_product_url
+    ):
+        if (
+            _normalized_product_identity(
+                value.get(
+                    "itemUrl",
+                    "",
+                )
+            )[1:]
+            != product_identity
+        ):
+            raise VerifiedCoverLookupError(
+                "PRODUCT_URL_MISMATCH"
+            )
+
+    image = str(
+        value.get(
+            "largeImageUrl"
+        )
+        or ""
+    )
+
     if not image:
-        raise VerifiedCoverLookupError('IMAGE_MISSING')
-    parsed = urlsplit(image)
-    if parsed.scheme != 'https' or parsed.hostname != 'thumbnail.image.rakuten.co.jp' or parsed.username or parsed.password:
-        raise VerifiedCoverLookupError('OFFICIAL_IMAGE_URL_INVALID')
+        raise VerifiedCoverLookupError(
+            "IMAGE_MISSING"
+        )
+
+    parsed = urlsplit(
+        image
+    )
+
+    if (
+        parsed.scheme != "https"
+        or parsed.hostname
+        != "thumbnail.image.rakuten.co.jp"
+        or parsed.username
+        or parsed.password
+    ):
+        raise VerifiedCoverLookupError(
+            "OFFICIAL_IMAGE_URL_INVALID"
+        )
+
     return value
