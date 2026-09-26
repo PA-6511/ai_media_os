@@ -108,6 +108,88 @@ def emit(
     )
 
 
+def _load_verified_cover_media_intent(
+    wordpress_post_id: int | None,
+) -> dict[str, object] | None:
+    if wordpress_post_id is None:
+        return None
+
+    from sqlalchemy import select
+
+    from app.db.models import EbookItem
+    from app.db.session import SessionLocal
+    from app.services.display_cover_resolver import (
+        DisplayCoverResolver,
+    )
+
+    with SessionLocal() as session:
+        session.connection().exec_driver_sql(
+            "PRAGMA query_only=ON"
+        )
+
+        items = list(
+            session.scalars(
+                select(
+                    EbookItem
+                )
+                .where(
+                    EbookItem.wordpress_post_id
+                    == wordpress_post_id
+                )
+                .limit(2)
+            )
+        )
+
+        # Fail closed for attachment identity:
+        # no exact item or duplicate mapping => text-only post.
+        if len(items) != 1:
+            return None
+
+        item = items[0]
+
+        cover = DisplayCoverResolver(
+            session
+        ).resolve(
+            str(item.id)
+        )
+
+        cover_status = str(
+            cover.display_cover_status
+            or ""
+        )
+
+        cover_url = str(
+            cover.display_cover_url
+            or ""
+        ).strip()
+
+        if (
+            cover_status != "AVAILABLE"
+            or not cover_url.startswith(
+                "https://"
+            )
+        ):
+            return None
+
+        return {
+            "schema":
+                "ebook_autonomy_verified_cover_media_v1",
+            "wordpress_post_id":
+                wordpress_post_id,
+            "ebook_item_id":
+                str(item.id),
+            "cover_status":
+                "AVAILABLE",
+            "cover_source":
+                str(
+                    cover.display_cover_source
+                    or ""
+                ),
+            "cover_url":
+                cover_url,
+        }
+
+
 def main() -> int:
 
 
@@ -345,8 +427,17 @@ def main() -> int:
 
     try:
 
+        verified_cover_media_intent = (
+            _load_verified_cover_media_intent(
+                wp_post_id
+            )
+        )
+
         result = run_live_canary(
-            confirm="LIVE_X_POST"
+            confirm="LIVE_X_POST",
+            verified_cover_media_intent=(
+                verified_cover_media_intent
+            ),
         )
 
 

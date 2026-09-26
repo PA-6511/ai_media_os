@@ -202,6 +202,7 @@ def preflight_live_canary(
 def run_live_canary(
     *,
     confirm: str,
+    verified_cover_media_intent: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     plan = (
         prepare_current_xnr_post()
@@ -218,6 +219,34 @@ def run_live_canary(
         != "READY_FOR_LIVE_CANARY"
     ):
         return preflight
+
+    if verified_cover_media_intent is not None:
+        if (
+            not isinstance(
+                verified_cover_media_intent,
+                dict,
+            )
+            or verified_cover_media_intent.get(
+                "schema"
+            )
+            != "ebook_autonomy_verified_cover_media_v1"
+            or verified_cover_media_intent.get(
+                "cover_status"
+            )
+            != "AVAILABLE"
+            or not str(
+                verified_cover_media_intent.get(
+                    "cover_url"
+                )
+                or ""
+            ).strip().startswith(
+                "https://"
+            )
+        ):
+            raise XLiveCanaryError(
+                "X_PRE_SEND_BLOCKED:"
+                "VERIFIED_COVER_MEDIA_INTENT_INVALID"
+            )
 
     # Validate ALL live locks before
     # creating POSTING state.
@@ -237,9 +266,18 @@ def run_live_canary(
     )
 
     try:
+        publish_kwargs: dict[str, Any] = {
+            "confirm": confirm,
+        }
+
+        if verified_cover_media_intent is not None:
+            publish_kwargs[
+                "verified_cover_media_intent"
+            ] = verified_cover_media_intent
+
         result = publish_live(
             plan,
-            confirm=confirm,
+            **publish_kwargs,
         )
 
     # X_CANARY_PRE_SEND_CLASSIFICATION_V1

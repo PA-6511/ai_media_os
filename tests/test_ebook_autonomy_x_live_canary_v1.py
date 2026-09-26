@@ -212,3 +212,114 @@ def test_failure_becomes_unknown_and_blocks_retry(
         mod.preflight_live_canary(
             plan()
         )
+
+
+
+def test_verified_cover_media_intent_passes_to_publisher(
+    tmp_path,
+    monkeypatch,
+):
+    monkeypatch.setattr(
+        mod,
+        "DELIVERY_STATE_ROOT",
+        tmp_path,
+    )
+
+    monkeypatch.setattr(
+        mod,
+        "prepare_current_xnr_post",
+        plan,
+    )
+
+    monkeypatch.setattr(
+        mod,
+        "_require_live_unlock",
+        lambda confirm: None,
+    )
+
+    captured = {}
+
+    def fake_publish(
+        value,
+        confirm,
+        verified_cover_media_intent=None,
+    ):
+        captured[
+            "verified_cover_media_intent"
+        ] = verified_cover_media_intent
+
+        return {
+            "status": "POSTED",
+            "x_post_id": "media-post-1",
+            "x_post_url":
+                "https://x.com/i/web/status/media-post-1",
+            "evidence_path":
+                "/tmp/media-evidence.json",
+        }
+
+    monkeypatch.setattr(
+        mod,
+        "publish_live",
+        fake_publish,
+    )
+
+    intent = {
+        "schema":
+            "ebook_autonomy_verified_cover_media_v1",
+        "wordpress_post_id":
+            3920,
+        "ebook_item_id":
+            "ebook-1",
+        "cover_status":
+            "AVAILABLE",
+        "cover_source":
+            "RAKUTEN_KOBO",
+        "cover_url":
+            "https://example.test/cover.jpg",
+    }
+
+    result = mod.run_live_canary(
+        confirm="LIVE_X_POST",
+        verified_cover_media_intent=intent,
+    )
+
+    assert (
+        captured[
+            "verified_cover_media_intent"
+        ]
+        == intent
+    )
+
+    assert (
+        result["x_post_id"]
+        == "media-post-1"
+    )
+
+
+def test_invalid_verified_cover_media_intent_blocks_pre_send(
+    monkeypatch,
+):
+    monkeypatch.setattr(
+        mod,
+        "prepare_current_xnr_post",
+        plan,
+    )
+
+    with pytest.raises(
+        mod.XLiveCanaryError,
+        match=(
+            "X_PRE_SEND_BLOCKED:"
+            "VERIFIED_COVER_MEDIA_INTENT_INVALID"
+        ),
+    ):
+        mod.run_live_canary(
+            confirm="LIVE_X_POST",
+            verified_cover_media_intent={
+                "schema":
+                    "ebook_autonomy_verified_cover_media_v1",
+                "cover_status":
+                    "MISSING",
+                "cover_url":
+                    "",
+            },
+        )

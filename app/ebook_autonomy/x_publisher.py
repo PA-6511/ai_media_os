@@ -735,6 +735,7 @@ def publish_live(
     plan: XPostPlan,
     *,
     confirm: str,
+    verified_cover_media_intent: dict[str, Any] | None = None,
     experiment_media_intent: dict[str, Any] | None = None,
     experiment_confirm: str = "",
 ) -> dict[str, Any]:
@@ -757,6 +758,51 @@ def publish_live(
             "x_post_executed":
                 False,
         }
+
+    normal_cover_url = ""
+
+    if (
+        verified_cover_media_intent is not None
+        and experiment_media_intent is not None
+    ):
+        raise XPublisherError(
+            "MULTIPLE_MEDIA_INTENTS_NOT_ALLOWED"
+        )
+
+    if verified_cover_media_intent is not None:
+        if (
+            verified_cover_media_intent.get(
+                "schema"
+            )
+            != "ebook_autonomy_verified_cover_media_v1"
+        ):
+            raise XPublisherError(
+                "VERIFIED_COVER_MEDIA_SCHEMA_INVALID"
+            )
+
+        if (
+            verified_cover_media_intent.get(
+                "cover_status"
+            )
+            != "AVAILABLE"
+        ):
+            raise XPublisherError(
+                "VERIFIED_COVER_MEDIA_NOT_AVAILABLE"
+            )
+
+        normal_cover_url = str(
+            verified_cover_media_intent.get(
+                "cover_url"
+            )
+            or ""
+        ).strip()
+
+        if not normal_cover_url.startswith(
+            "https://"
+        ):
+            raise XPublisherError(
+                "VERIFIED_COVER_MEDIA_URL_INVALID"
+            )
 
     if experiment_media_intent is not None:
         if (
@@ -800,7 +846,19 @@ def publish_live(
         "text": plan.text,
     }
 
-    if experiment_media_intent is not None:
+    if verified_cover_media_intent is not None:
+        from app.services.x_analytics_experiment_x_media_upload_service import (
+            upload_verified_cover_url,
+        )
+
+        media_upload = (
+            upload_verified_cover_url(
+                normal_cover_url,
+                auth=auth,
+            )
+        )
+
+    elif experiment_media_intent is not None:
         from app.services.x_analytics_experiment_x_media_upload_service import (
             upload_verified_treatment_cover,
         )
@@ -812,6 +870,7 @@ def publish_live(
             )
         )
 
+    if media_upload is not None:
         x_payload[
             "media"
         ] = {

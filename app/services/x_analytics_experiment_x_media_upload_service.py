@@ -217,23 +217,26 @@ def validate_treatment_media_intent(
             )
 
 
-def upload_verified_treatment_cover(
-    intent: Mapping[str, Any],
+def upload_verified_cover_url(
+    cover_url: str,
     *,
     auth: Any,
     transport: Any | None = None,
 ) -> XExperimentMediaUploadResult:
-    validate_treatment_media_intent(
-        intent
-    )
-
     if transport is None:
         import requests
         transport = requests
 
     source_url = str(
-        intent["cover_url"]
-    )
+        cover_url or ""
+    ).strip()
+
+    if not source_url.startswith(
+        "https://"
+    ):
+        raise XExperimentMediaUploadError(
+            "HTTPS_COVER_URL_REQUIRED"
+        )
 
     cover_response = transport.get(
         source_url,
@@ -456,4 +459,23 @@ def upload_verified_treatment_cover(
         byte_count=len(
             image_bytes
         ),
+    )
+
+
+def upload_verified_treatment_cover(
+    intent: Mapping[str, Any],
+    *,
+    auth: Any,
+    transport: Any | None = None,
+) -> XExperimentMediaUploadResult:
+    validate_treatment_media_intent(
+        intent
+    )
+
+    return upload_verified_cover_url(
+        str(
+            intent["cover_url"]
+        ),
+        auth=auth,
+        transport=transport,
     )
