@@ -1,0 +1,37 @@
+[Unit]
+Description=AI Media OS weekly ebook report Slack delivery
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=deploy
+Group=deploy
+WorkingDirectory=/home/deploy/ai_media_os
+
+Environment=TZ=Asia/Tokyo
+Environment=PYTHONPATH=/home/deploy/ai_media_os
+Environment=PYTHONDONTWRITEBYTECODE=1
+Environment=PYTHONUNBUFFERED=1
+
+EnvironmentFile=/etc/ai-media-os/slack.env
+EnvironmentFile=/etc/ai-media-os/credential.env
+
+ExecStart=/home/deploy/ai_media_os/.venv/bin/python /home/deploy/ai_media_os/scripts/send_slack_periodic_report.py weekly --send
+
+TimeoutStartSec=2min
+
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=read-only
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=ai-media-os-x-analytics-weekly-slack

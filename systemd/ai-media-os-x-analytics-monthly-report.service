@@ -1,6 +1,7 @@
 [Unit]
 Description=AI Media OS X Analytics monthly advisory report
 After=systemd-journald.service
+OnSuccess=ai-media-os-x-analytics-monthly-slack.service
 
 [Service]
 Type=oneshot
