@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ai-media-os.local/schemas/x_core_advisory_manifest_v1.schema.json",
+  "title": "X Analytics Core Advisory Manifest",
+  "$defs": {
+    "reference": {
+      "type": "object",
+      "required": ["snapshot_id", "report_id", "report_type", "path", "sha256", "generated_at", "as_of", "status"],
+      "properties": {
+        "snapshot_id": {"type": "string", "pattern": "^xadv-[0-9a-f]{24}$"},
+        "report_id": {"type": "string", "minLength": 1},
+        "report_type": {"enum": ["x_kpi_summary", "weekly", "monthly"]},
+        "path": {"type": "string", "minLength": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "generated_at": {"type": "string", "format": "date-time"},
+        "as_of": {"type": "string", "format": "date-time"},
+        "status": {"const": "VALID"}
+      },
+      "additionalProperties": false
+    }
+  },
+  "type": "object",
+  "required": ["schema_version", "generated_at", "advisory_only", "latest", "snapshots"],
+  "properties": {
+    "schema_version": {"const": "x_core_advisory_manifest_v1"},
+    "generated_at": {"type": "string", "format": "date-time"},
+    "advisory_only": {"const": true},
+    "latest": {
+      "type": "object",
+      "required": ["x_kpi_summary", "weekly", "monthly"],
+      "properties": {
+        "x_kpi_summary": {"oneOf": [{"$ref": "#/$defs/reference"}, {"type": "null"}]},
+        "weekly": {"oneOf": [{"$ref": "#/$defs/reference"}, {"type": "null"}]},
+        "monthly": {"oneOf": [{"$ref": "#/$defs/reference"}, {"type": "null"}]}
+      },
+      "additionalProperties": false
+    },
+    "snapshots": {"type": "array", "items": {"$ref": "#/$defs/reference"}}
+  },
+  "additionalProperties": false
+}
