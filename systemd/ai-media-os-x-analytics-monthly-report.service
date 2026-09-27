@@ -1,0 +1,29 @@
+[Unit]
+Description=AI Media OS X Analytics monthly advisory report
+After=systemd-journald.service
+
+[Service]
+Type=oneshot
+User=deploy
+Group=deploy
+WorkingDirectory=/home/deploy/ai_media_os
+Environment=TZ=Asia/Tokyo
+Environment=PYTHONPATH=/home/deploy/ai_media_os
+Environment=PYTHONDONTWRITEBYTECODE=1
+ExecStart=/usr/bin/flock -n /home/deploy/ai_media_os/data/locks/x-analytics-report.lock /home/deploy/ai_media_os/.venv/bin/python /home/deploy/ai_media_os/scripts/run_x_analytics_periodic_export.py monthly --period-mode rolling --source x_api_v2
+TimeoutStartSec=5min
+Nice=10
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=read-only
+ReadWritePaths=/home/deploy/ai_media_os/data/reports/x_analytics /home/deploy/ai_media_os/exchange/core_advisory/x_analytics /home/deploy/ai_media_os/data/locks
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+RestrictAddressFamilies=AF_UNIX
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=ai-media-os-x-analytics-monthly-report

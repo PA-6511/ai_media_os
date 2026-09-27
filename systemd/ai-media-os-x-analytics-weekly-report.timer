@@ -1,0 +1,11 @@
+[Unit]
+Description=Generate AI Media OS X Analytics weekly report
+
+[Timer]
+OnCalendar=Mon *-*-* 06:15:00 Asia/Tokyo
+Persistent=true
+AccuracySec=5min
+Unit=ai-media-os-x-analytics-weekly-report.service
+
+[Install]
+WantedBy=timers.target

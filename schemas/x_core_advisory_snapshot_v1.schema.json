@@ -1,0 +1,209 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ai-media-os.local/schemas/x_core_advisory_snapshot_v1.schema.json",
+  "title": "X Analytics Core Advisory Snapshot",
+  "$defs": {
+    "metric": {
+      "type": "object",
+      "required": ["value", "reason"],
+      "properties": {
+        "value": {"type": ["number", "null"]},
+        "reason": {"type": ["string", "null"]},
+        "currency": {"type": ["string", "null"]},
+        "numerator": {"type": ["number", "null"]},
+        "denominator": {"type": ["number", "null"]},
+        "valid_count": {"type": "integer", "minimum": 0},
+        "denominator_count": {"type": "integer", "minimum": 0}
+      },
+      "additionalProperties": true
+    },
+    "kpi_group": {
+      "type": "object",
+      "required": ["group", "group_key", "post_count", "unit_count", "kpis"],
+      "properties": {
+        "group": {"type": "object"},
+        "group_key": {"type": "string"},
+        "post_count": {"type": "integer", "minimum": 0},
+        "unit_count": {"type": "integer", "minimum": 0},
+        "kpis": {"type": "object", "additionalProperties": {"$ref": "#/$defs/metric"}}
+      },
+      "additionalProperties": true
+    },
+    "ranked_pattern": {
+      "type": "object",
+      "required": ["identity", "value", "post_count", "valid_count", "denominator_count", "status"],
+      "properties": {
+        "identity": {"type": "string"},
+        "value": {"type": "number"},
+        "post_count": {"type": "integer", "minimum": 0},
+        "valid_count": {"type": "integer", "minimum": 0},
+        "denominator_count": {"type": "integer", "minimum": 0},
+        "status": {"const": "eligible"}
+      },
+      "additionalProperties": true
+    },
+    "anomaly": {
+      "type": "object",
+      "required": ["rule_id", "type", "severity", "count", "evidence_field"],
+      "properties": {
+        "rule_id": {"type": "string"},
+        "type": {"enum": ["missing_data", "duplicate_suspected", "counter_decrease", "stale_data"]},
+        "severity": {"enum": ["warning", "error"]},
+        "count": {"type": "integer", "minimum": 1},
+        "evidence_field": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "insufficient": {
+      "type": "object",
+      "required": ["scope", "metric", "identity", "reason", "sample_size", "details"],
+      "properties": {
+        "scope": {"enum": ["overall", "pattern"]},
+        "metric": {"type": "string"},
+        "identity": {"type": ["string", "null"]},
+        "reason": {"type": "string", "minLength": 1},
+        "sample_size": {"type": "integer", "minimum": 0},
+        "details": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": false
+    },
+    "recommended_action": {
+      "type": "object",
+      "required": ["rule_id", "kind", "summary", "rationale", "target_period", "sample_size", "constraints", "advisory_only", "execution_allowed"],
+      "properties": {
+        "rule_id": {"type": "string"},
+        "kind": {"type": "string"},
+        "summary": {"type": "string"},
+        "rationale": {"type": "object"},
+        "target_period": {"type": "object"},
+        "sample_size": {"type": "integer", "minimum": 0},
+        "constraints": {"type": "array", "items": {"type": "string"}},
+        "advisory_only": {"const": true},
+        "execution_allowed": {"const": false}
+      },
+      "additionalProperties": false
+    },
+    "evidence_reference": {
+      "type": "object",
+      "required": ["path", "sha256", "schema_version"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "schema_version": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    }
+  },
+  "type": "object",
+  "required": [
+    "schema_version",
+    "snapshot_id",
+    "report_id",
+    "report_type",
+    "generated_at",
+    "as_of",
+    "period",
+    "measurement_basis",
+    "overall_kpis",
+    "store_kpis",
+    "post_type_kpis",
+    "top_patterns",
+    "bottom_patterns",
+    "anomalies",
+    "insufficient_data",
+    "recommended_actions",
+    "evidence",
+    "coverage",
+    "freshness",
+    "period_strategy",
+    "comparison",
+    "operational_metrics",
+    "advisory_only",
+    "safety"
+  ],
+  "properties": {
+    "schema_version": {"const": "x_core_advisory_snapshot_v1"},
+    "snapshot_id": {"type": "string", "minLength": 1},
+    "report_id": {"type": "string", "minLength": 1},
+    "report_type": {"enum": ["x_kpi_summary", "weekly", "monthly"]},
+    "generated_at": {"type": "string", "format": "date-time"},
+    "as_of": {"type": "string", "format": "date-time"},
+    "period": {
+      "type": "object",
+      "required": ["start", "end", "timezone", "semantics"],
+      "properties": {
+        "start": {"type": "string", "format": "date-time"},
+        "end": {"type": "string", "format": "date-time"},
+        "timezone": {"type": "string", "minLength": 1},
+        "semantics": {"const": "half_open_start_inclusive_end_exclusive"}
+      },
+      "additionalProperties": true
+    },
+    "measurement_basis": {
+      "type": "object",
+      "required": ["source_schema_version", "mode", "basis", "recalculated"],
+      "properties": {
+        "recalculated": {"const": false}
+      },
+      "additionalProperties": true
+    },
+    "overall_kpis": {"type": "object", "additionalProperties": {"$ref": "#/$defs/metric"}},
+    "store_kpis": {"type": "array", "items": {"$ref": "#/$defs/kpi_group"}},
+    "post_type_kpis": {"type": "array", "items": {"$ref": "#/$defs/kpi_group"}},
+    "top_patterns": {"type": "array", "items": {"$ref": "#/$defs/ranked_pattern"}},
+    "bottom_patterns": {"type": "array", "items": {"$ref": "#/$defs/ranked_pattern"}},
+    "anomalies": {"type": "array", "items": {"$ref": "#/$defs/anomaly"}},
+    "insufficient_data": {"type": "array", "items": {"$ref": "#/$defs/insufficient"}},
+    "recommended_actions": {"type": "array", "items": {"$ref": "#/$defs/recommended_action"}},
+    "evidence": {
+      "type": "object",
+      "required": ["source_references", "source_content_treated_as_data", "source_content_treated_as_instruction"],
+      "properties": {
+        "source_references": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/evidence_reference"}},
+        "source_content_treated_as_data": {"const": true},
+        "source_content_treated_as_instruction": {"const": false}
+      },
+      "additionalProperties": false
+    },
+    "coverage": {"type": "object"},
+    "freshness": {
+      "type": "object",
+      "required": ["basis", "status", "age_seconds", "max_age_seconds"],
+      "properties": {
+        "basis": {"const": "as_of"},
+        "status": {"enum": ["fresh", "stale"]},
+        "age_seconds": {"type": "integer", "minimum": 0},
+        "max_age_seconds": {"type": "integer", "minimum": 1}
+      },
+      "additionalProperties": false
+    },
+    "period_strategy": {"type": "object"},
+    "comparison": {"type": "object"},
+    "operational_metrics": {"type": "object"},
+    "business_metrics": {"type": "object"},
+    "advisory_only": {"const": true},
+    "safety": {
+      "type": "object",
+      "required": [
+        "operation_mode",
+        "database_write_allowed",
+        "post_to_x_allowed",
+        "wordpress_publish_allowed",
+        "job_start_allowed",
+        "automatic_change_allowed",
+        "external_text_is_instruction"
+      ],
+      "properties": {
+        "operation_mode": {"const": "OBSERVE"},
+        "database_write_allowed": {"const": false},
+        "post_to_x_allowed": {"const": false},
+        "wordpress_publish_allowed": {"const": false},
+        "job_start_allowed": {"const": false},
+        "automatic_change_allowed": {"const": false},
+        "external_text_is_instruction": {"const": false}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
