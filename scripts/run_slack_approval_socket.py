@@ -22,6 +22,24 @@ from app.services.slack_approval_socket_service import (  # noqa: E402
     SlackApprovalSocketService,
     parse_slack_approval_interaction,
 )
+from app.services.kobo_sale_package_slack_service import (  # noqa: E402
+    ACTION_IDS as KOBO_SALE_PACKAGE_ACTION_IDS,
+    KoboSalePackageSlackError,
+    KoboSalePackageSlackService,
+)
+from app.services.slack_sale_approval_message_service import (  # noqa: E402
+    ACTION_IDS as SALE_CAMPAIGN_ACTION_IDS,
+)
+from app.services.slack_sale_approval_socket_service import (  # noqa: E402
+    SlackSaleApprovalSocketError,
+    SlackSaleApprovalSocketService,
+)
+from app.services.x_post_draft_slack_preset_service import (  # noqa: E402
+    X_POST_DRAFT_OPEN_ACTION_ID,
+    X_POST_DRAFT_VIEW_CALLBACK_ID,
+    SlackXPostDraftPresetError,
+    XPostDraftSlackPresetService,
+)
 
 
 ACTION_IDS = (
@@ -143,6 +161,10 @@ def build_app(
         token=config.bot_token,
     )
 
+    DATE_BLOCK_ID_FALLBACK = (
+        "x_post_draft_schedule_date"
+    )
+
     def handle_approval_action(
         ack: Any,
         body: dict[str, Any],
@@ -250,9 +272,398 @@ def build_app(
                     logger=logger,
                 )
 
+    def handle_kobo_sale_package_action(
+        ack: Any,
+        body: dict[str, Any],
+        client: Any,
+        logger: logging.Logger,
+    ) -> None:
+        ack()
+
+        interaction = None
+
+        try:
+            interaction = (
+                parse_slack_approval_interaction(
+                    body
+                )
+            )
+
+            result = (
+                KoboSalePackageSlackService(
+                    config
+                ).process_interaction(
+                    interaction
+                )
+            )
+
+            client.chat_update(
+                channel=interaction.channel_id,
+                ts=interaction.message_ts,
+                text=result.update_payload["text"],
+                blocks=result.update_payload["blocks"],
+                unfurl_links=False,
+                unfurl_media=False,
+            )
+
+            safe_ephemeral(
+                client=client,
+                channel_id=interaction.channel_id,
+                user_id=interaction.user_id,
+                text=result.ephemeral_text,
+                logger=logger,
+            )
+
+            logger.info(
+                "Kobo sale Slack decision applied: "
+                "approval_id=%s decision=%s",
+                result.approval_id,
+                result.decision,
+            )
+
+        except KoboSalePackageSlackError as exc:
+            logger.warning(
+                "Kobo sale Slack action rejected: "
+                "code=%s",
+                exc.code,
+            )
+
+            if interaction is not None:
+                safe_ephemeral(
+                    client=client,
+                    channel_id=interaction.channel_id,
+                    user_id=interaction.user_id,
+                    text=(
+                        "Koboセール承認を実行"
+                        "できませんでした。"
+                        f" エラーコード: {exc.code}"
+                    ),
+                    logger=logger,
+                )
+
+        except Exception:
+            logger.exception(
+                "Unexpected Kobo sale Slack failure"
+            )
+
+            if interaction is not None:
+                safe_ephemeral(
+                    client=client,
+                    channel_id=interaction.channel_id,
+                    user_id=interaction.user_id,
+                    text=(
+                        "Koboセール承認処理中に"
+                        "予期しないエラーが発生しました。"
+                    ),
+                    logger=logger,
+                )
+
+    def handle_sale_campaign_action(
+        ack: Any,
+        body: dict[str, Any],
+        client: Any,
+        logger: logging.Logger,
+    ) -> None:
+        ack()
+        interaction = None
+        try:
+            interaction = parse_slack_approval_interaction(body)
+            with SessionLocal() as session:
+                result = SlackSaleApprovalSocketService(
+                    session,
+                    config,
+                ).process_interaction(interaction)
+
+            if result.dry_run:
+                safe_ephemeral(
+                    client=client,
+                    channel_id=interaction.channel_id,
+                    user_id=interaction.user_id,
+                    text=(
+                        "DRY_RUNのためSale Campaign承認内容を"
+                        "検証しましたが、DBは変更していません。"
+                    ),
+                    logger=logger,
+                )
+                return
+
+            payload = result.update_payload
+            if payload is None:
+                raise SlackSaleApprovalSocketError(
+                    "missing_update_payload",
+                    "Slack update payload is missing.",
+                )
+            client.chat_update(
+                channel=interaction.channel_id,
+                ts=interaction.message_ts,
+                text=payload["text"],
+                blocks=payload["blocks"],
+                unfurl_links=False,
+                unfurl_media=False,
+            )
+            logger.info(
+                "Sale campaign Slack decision handled: "
+                "request_id=%s decision=%s status=%s",
+                result.request_id,
+                result.decision,
+                result.status,
+            )
+        except SlackSaleApprovalSocketError as exc:
+            logger.warning(
+                "Sale campaign Slack action rejected: code=%s",
+                exc.code,
+            )
+            if interaction is not None:
+                safe_ephemeral(
+                    client=client,
+                    channel_id=interaction.channel_id,
+                    user_id=interaction.user_id,
+                    text=(
+                        "Sale Campaign承認を実行できませんでした。"
+                        f" エラーコード: {exc.code}"
+                    ),
+                    logger=logger,
+                )
+        except Exception:
+            logger.exception("Unexpected Sale campaign Slack failure")
+            if interaction is not None:
+                safe_ephemeral(
+                    client=client,
+                    channel_id=interaction.channel_id,
+                    user_id=interaction.user_id,
+                    text=(
+                        "Sale Campaign承認処理中に"
+                        "予期しないエラーが発生しました。"
+                    ),
+                    logger=logger,
+                )
+
+    def handle_x_post_draft_open(
+        ack: Any,
+        body: dict[str, Any],
+        client: Any,
+        logger: logging.Logger,
+    ) -> None:
+        ack()
+
+        try:
+            with SessionLocal() as session:
+                trigger_id, view = (
+                    XPostDraftSlackPresetService(
+                        session,
+                        config,
+                    ).build_open_view(
+                        body
+                    )
+                )
+
+            client.views_open(
+                trigger_id=trigger_id,
+                view=view,
+            )
+
+        except SlackXPostDraftPresetError as exc:
+            logger.warning(
+                "X draft preset open rejected: code=%s",
+                exc.code,
+            )
+
+            user = body.get("user", {})
+            channel = body.get(
+                "channel",
+                {},
+            )
+
+            user_id = str(
+                user.get("id", "")
+                if isinstance(user, dict)
+                else ""
+            )
+
+            channel_id = str(
+                channel.get("id", "")
+                if isinstance(channel, dict)
+                else ""
+            )
+
+            if user_id and channel_id:
+                safe_ephemeral(
+                    client=client,
+                    channel_id=channel_id,
+                    user_id=user_id,
+                    text=(
+                        "X下書き設定を開けませんでした。"
+                        f" エラーコード: {exc.code}"
+                    ),
+                    logger=logger,
+                )
+
+        except Exception:
+            logger.exception(
+                "Unexpected X draft preset open failure"
+            )
+
+    def handle_x_post_draft_submission(
+        ack: Any,
+        body: dict[str, Any],
+        client: Any,
+        logger: logging.Logger,
+    ) -> None:
+        try:
+            with SessionLocal() as session:
+                result = (
+                    XPostDraftSlackPresetService(
+                        session,
+                        config,
+                    ).apply_submission(
+                        body
+                    )
+                )
+
+                if config.mode == "LIVE":
+                    session.commit()
+                else:
+                    session.rollback()
+
+            ack()
+
+            if config.mode == "DRY_RUN":
+                user = body.get(
+                    "user",
+                    {},
+                )
+
+                user_id = str(
+                    user.get("id", "")
+                    if isinstance(
+                        user,
+                        dict,
+                    )
+                    else ""
+                )
+
+                if user_id:
+                    safe_ephemeral(
+                        client=client,
+                        channel_id=(
+                            result.channel_id
+                        ),
+                        user_id=user_id,
+                        text=(
+                            "DRY_RUNのためX下書き設定を"
+                            "検証しましたが、DBは変更して"
+                            "いません。"
+                        ),
+                        logger=logger,
+                    )
+
+                logger.info(
+                    "X draft preset DRY_RUN passed: "
+                    "draft_id=%s scheduled_at=%s "
+                    "paid_partnership=%s",
+                    result.draft_id,
+                    (
+                        result.scheduled_at.isoformat()
+                        if result.scheduled_at
+                        else "NONE"
+                    ),
+                    result.paid_partnership,
+                )
+                return
+
+            client.chat_update(
+                channel=result.channel_id,
+                ts=result.message_ts,
+                text=result.update_payload["text"],
+                blocks=result.update_payload["blocks"],
+                unfurl_links=False,
+                unfurl_media=False,
+            )
+
+            logger.info(
+                "X draft preset saved: "
+                "draft_id=%s scheduled_at=%s "
+                "paid_partnership=%s",
+                result.draft_id,
+                (
+                    result.scheduled_at.isoformat()
+                    if result.scheduled_at
+                    else "NONE"
+                ),
+                result.paid_partnership,
+            )
+
+        except SlackXPostDraftPresetError as exc:
+            logger.warning(
+                "X draft preset submission rejected: "
+                "code=%s",
+                exc.code,
+            )
+
+            if exc.field_errors:
+                ack(
+                    response_action="errors",
+                    errors=exc.field_errors,
+                )
+            else:
+                ack(
+                    response_action="errors",
+                    errors={
+                        DATE_BLOCK_ID_FALLBACK: (
+                            "設定を保存できませんでした。"
+                            f" ({exc.code})"
+                        )
+                    },
+                )
+
+        except Exception:
+            logger.exception(
+                "Unexpected X draft preset "
+                "submission failure"
+            )
+
+            ack(
+                response_action="errors",
+                errors={
+                    DATE_BLOCK_ID_FALLBACK: (
+                        "設定保存中に"
+                        "エラーが発生しました。"
+                    )
+                },
+            )
+
     for action_id in ACTION_IDS:
         app.action(action_id)(
             handle_approval_action
+        )
+
+    for action_id in KOBO_SALE_PACKAGE_ACTION_IDS:
+        app.action(action_id)(
+            handle_kobo_sale_package_action
+        )
+
+    for action_id in SALE_CAMPAIGN_ACTION_IDS:
+        app.action(action_id)(
+            handle_sale_campaign_action
+        )
+
+    app.action(
+        X_POST_DRAFT_OPEN_ACTION_ID
+    )(
+        handle_x_post_draft_open
+    )
+
+    view_registrar = getattr(
+        app,
+        "view",
+        None,
+    )
+
+    if callable(view_registrar):
+        view_registrar(
+            X_POST_DRAFT_VIEW_CALLBACK_ID
+        )(
+            handle_x_post_draft_submission
         )
 
     return app
