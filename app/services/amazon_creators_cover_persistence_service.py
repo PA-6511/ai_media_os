@@ -26,6 +26,9 @@ class AmazonCoverPersistenceResult:
     status: str
     reason_code: str | None = None
     changed: bool = False
+    source_item_id: str | None = None
+    cover_image_url: str | None = None
+    cover_destination_url: str | None = None
 
 
 def _amazon_cover_url(value: str | None) -> str | None:
@@ -289,6 +292,9 @@ class AmazonCreatorsCoverPersistenceService:
             return AmazonCoverPersistenceResult(
                 item.id,
                 "VERIFIED_DRY_RUN",
+                source_item_id=asin,
+                cover_image_url=cover_url,
+                cover_destination_url=destination_url,
             )
 
         item.cover_source = (

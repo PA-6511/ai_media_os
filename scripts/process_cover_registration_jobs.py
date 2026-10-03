@@ -26,6 +26,7 @@ from app.services.display_cover_resolver import (
 )
 from app.services.official_cover_automation_service import (
     RAKUTEN_KOBO_COVER_POLICY_VERSION,
+    StoreCoverPolicyService,
 )
 from app.services.verified_cover_lookup import (
     configured_cover_request,
@@ -171,7 +172,7 @@ def _run_amazon_fallback(
                     client,
                 ).persist_item(
                     item_id,
-                    execute=True,
+                    execute=False,
                 )
             )
     finally:
@@ -603,6 +604,10 @@ def run(limit=20):
                 != revision
                 or current_item
                 is None
+                or snapshot(
+                    current_item
+                )
+                != before
             ):
                 session.rollback()
                 counts[
@@ -615,6 +620,96 @@ def run(limit=20):
                     )
 
                 continue
+
+            # AMAZON_ATOMIC_APPLY_V2
+            if (
+                amazon_result is not None
+                and str(
+                    amazon_result.status
+                    or ""
+                ).upper()
+                == "VERIFIED_DRY_RUN"
+            ):
+                policy = (
+                    StoreCoverPolicyService(
+                        session
+                    ).amazon_state()
+                )
+
+                rights = session.scalar(
+                    select(
+                        ImageRightsEvidence
+                    )
+                    .where(
+                        ImageRightsEvidence.candidate_id
+                        == item_id
+                    )
+                    .order_by(
+                        ImageRightsEvidence.verified_at.desc(),
+                        ImageRightsEvidence.created_at.desc(),
+                        ImageRightsEvidence.id.desc(),
+                    )
+                    .limit(1)
+                )
+
+                if not policy.current_and_agreed:
+                    done = False
+                    reason = (
+                        "AMAZON_COVER_POLICY_NOT_AGREED"
+                    )
+
+                elif (
+                    rights is not None
+                    and str(
+                        rights.rights_status
+                        or ""
+                    ).upper()
+                    in (
+                        "VERIFIED_NOT_ALLOWED",
+                        "UNRESOLVED",
+                    )
+                ):
+                    done = False
+                    reason = "RIGHTS_NOT_ALLOWED"
+
+                elif (
+                    not amazon_result.source_item_id
+                    or not amazon_result.cover_image_url
+                    or not amazon_result.cover_destination_url
+                ):
+                    done = False
+                    reason = (
+                        "AMAZON_VERIFIED_PAYLOAD_MISSING"
+                    )
+
+                else:
+                    current_item.cover_source = (
+                        "AMAZON_PA_API"
+                    )
+                    current_item.cover_source_item_id = (
+                        amazon_result.source_item_id
+                    )
+                    current_item.cover_image_url = (
+                        amazon_result.cover_image_url
+                    )
+                    current_item.cover_destination_url = (
+                        amazon_result.cover_destination_url
+                    )
+                    current_item.cover_retrieved_at = (
+                        datetime.now(
+                            timezone.utc
+                        )
+                    )
+                    current_item.cover_policy_version = (
+                        policy.current_version
+                    )
+                    current_item.cover_status = (
+                        "AUTO_ALLOWED"
+                    )
+                    current_item.image_status = "READY"
+
+                    done = True
+                    reason = "AMAZON_COVER_SAVED"
 
             if (
                 amazon_result
