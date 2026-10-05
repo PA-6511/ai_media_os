@@ -710,10 +710,39 @@ def run_metadata(
                     "previewed_count"
                 ] += 1
 
-                possible = (
+                service_possible = (
                     _preview_apply_possible(
                         preview
                     )
+                )
+
+                detail_status = str(
+                    detail_fallback.get(
+                        "status",
+                        "",
+                    )
+                ).upper()
+
+                detail_possible = (
+                    detail_status
+                    in {
+                        "DRY_RUN_READY",
+                        "APPLIED",
+                    }
+                )
+
+                detail_applied_fields = [
+                    str(field)
+                    for field in detail_fallback.get(
+                        "applied_fields",
+                        [],
+                    )
+                    if str(field)
+                ]
+
+                possible = (
+                    service_possible
+                    or detail_possible
                 )
 
                 item_result = {
@@ -730,7 +759,9 @@ def run_metadata(
                         "apply_possible_count"
                     ] += 1
 
-                if execute and possible:
+                applied_fields = []
+
+                if execute and service_possible:
                     fingerprint = (
                         _preview_fingerprint(
                             preview
@@ -774,21 +805,27 @@ def run_metadata(
 
                     session.commit()
 
-                    item_result[
-                        "applied_fields"
-                    ] = applied_fields
-
-                    if applied_fields:
-                        result[
-                            "applied_item_count"
-                        ] += 1
-                        result[
-                            "applied_field_count"
-                        ] += len(
-                            applied_fields
-                        )
                 else:
                     session.rollback()
+
+                combined_applied_fields = sorted(
+                    set(detail_applied_fields)
+                    | set(applied_fields)
+                )
+
+                item_result[
+                    "applied_fields"
+                ] = combined_applied_fields
+
+                if combined_applied_fields:
+                    result[
+                        "applied_item_count"
+                    ] += 1
+                    result[
+                        "applied_field_count"
+                    ] += len(
+                        combined_applied_fields
+                    )
 
                 result["items"].append(
                     item_result

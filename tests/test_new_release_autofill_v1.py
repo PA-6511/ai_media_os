@@ -698,3 +698,177 @@ def test_selected_ids_are_forwarded_to_every_store(
         "dmm": selected,
         "amazon": selected,
     }
+
+
+
+def test_metadata_counts_rakuten_detail_dry_run_ready_as_apply_possible(
+    monkeypatch,
+):
+    module = load_module()
+
+    class FakeSession:
+        def __enter__(self):
+            return self
+
+        def __exit__(
+            self,
+            exc_type,
+            exc,
+            tb,
+        ):
+            return False
+
+        def rollback(self):
+            pass
+
+        def commit(self):
+            raise AssertionError(
+                "dry-run must not commit"
+            )
+
+    class FakePreview:
+        apply_possible = False
+
+    class FakeService:
+        def __init__(self, session):
+            self.session = session
+
+        def preview(self, ebook_item_id):
+            assert ebook_item_id == "item-1"
+            return FakePreview()
+
+    monkeypatch.setattr(
+        module,
+        "SessionLocal",
+        lambda: FakeSession(),
+    )
+
+    monkeypatch.setattr(
+        module,
+        "EbookMetadataAutofillService",
+        FakeService,
+    )
+
+    monkeypatch.setattr(
+        module,
+        "_run_rakuten_detail_fallback",
+        lambda **kwargs: {
+            "ebook_item_id": "item-1",
+            "status": "DRY_RUN_READY",
+            "proposed_fields": [
+                "author_name",
+                "isbn",
+            ],
+            "applied_fields": [],
+        },
+    )
+
+    result = module.run_metadata(
+        execute=False,
+        item_ids=["item-1"],
+    )
+
+    assert result["previewed_count"] == 1
+    assert result["apply_possible_count"] == 1
+
+    assert (
+        result["items"][0]["apply_possible"]
+        is True
+    )
+
+    assert (
+        result["items"][0]["rakuten_detail"][
+            "status"
+        ]
+        == "DRY_RUN_READY"
+    )
+
+
+
+def test_metadata_counts_rakuten_detail_applied_in_top_level(
+    monkeypatch,
+):
+    module = load_module()
+
+    class FakeSession:
+        def __enter__(self):
+            return self
+
+        def __exit__(
+            self,
+            exc_type,
+            exc,
+            tb,
+        ):
+            return False
+
+        def rollback(self):
+            pass
+
+        def commit(self):
+            pass
+
+    class FakePreview:
+        apply_possible = False
+
+    class FakeService:
+        def __init__(self, session):
+            self.session = session
+
+        def preview(self, ebook_item_id):
+            assert ebook_item_id == "item-1"
+            return FakePreview()
+
+        def apply(self, **kwargs):
+            raise AssertionError(
+                "service apply must not run"
+            )
+
+    monkeypatch.setattr(
+        module,
+        "SessionLocal",
+        lambda: FakeSession(),
+    )
+
+    monkeypatch.setattr(
+        module,
+        "EbookMetadataAutofillService",
+        FakeService,
+    )
+
+    monkeypatch.setattr(
+        module,
+        "_run_rakuten_detail_fallback",
+        lambda **kwargs: {
+            "ebook_item_id": "item-1",
+            "status": "APPLIED",
+            "proposed_fields": [
+                "author_name",
+                "isbn",
+            ],
+            "applied_fields": [
+                "author_name",
+                "isbn",
+            ],
+        },
+    )
+
+    result = module.run_metadata(
+        execute=True,
+        item_ids=["item-1"],
+    )
+
+    assert result["previewed_count"] == 1
+    assert result["apply_possible_count"] == 1
+    assert result["applied_item_count"] == 1
+    assert result["applied_field_count"] == 2
+
+    assert (
+        result["items"][0]["apply_possible"]
+        is True
+    )
+
+    assert result["items"][0]["applied_fields"] == [
+        "author_name",
+        "isbn",
+    ]
