@@ -884,3 +884,215 @@ def test_4e_c_successful_write_marks_executed():
     mark_executed.assert_called_once_with(
         "proposal_v1_test"
     )
+
+
+
+def test_4g_a_execute_approved_proposal_does_not_auto_approve(
+    monkeypatch,
+):
+    import sys
+    from unittest.mock import patch
+
+    from dev_agent import agent_loop as module
+
+    proposal_id = "proposal_v1_4g_a_test"
+    source = (
+        "app/services/"
+        "ebook_new_release_autonomy_shadow_compare.py"
+    )
+
+    proposal = {
+        "status": "VALID",
+        "proposal_id": proposal_id,
+        "relative_path": source,
+        "old_text": "old",
+        "new_text": "new",
+        "before_sha256": "a" * 64,
+        "proposal_state": "APPROVED",
+    }
+
+    with (
+        patch.object(
+            module,
+            "load_write_proposal",
+            return_value=proposal,
+        ) as load,
+        patch.object(
+            module,
+            "mark_proposal_approved",
+        ) as approve,
+        patch.object(
+            module,
+            "run_agent",
+            return_value="done",
+        ) as run,
+    ):
+        monkeypatch.setattr(
+            sys,
+            "argv",
+            [
+                "agent_loop.py",
+                "--execute-approved-proposal-id",
+                proposal_id,
+                "execute approved proposal",
+            ],
+        )
+
+        module.main()
+
+    load.assert_called_once_with(proposal_id)
+    approve.assert_not_called()
+
+    run.assert_called_once_with(
+        "execute approved proposal",
+        approved_write_files={source},
+        write_contract={
+            "relative_path": source,
+            "old_text": "old",
+            "new_text": "new",
+            "before_sha256": "a" * 64,
+            "proposal_id": proposal_id,
+        },
+    )
+
+
+def test_4g_a_pending_proposal_is_not_executed(
+    monkeypatch,
+):
+    import sys
+    from unittest.mock import patch
+
+    import pytest
+
+    from dev_agent import agent_loop as module
+
+    proposal_id = "proposal_v1_4g_a_pending"
+
+    proposal = {
+        "status": "VALID",
+        "proposal_id": proposal_id,
+        "relative_path": "allowed.py",
+        "old_text": "old",
+        "new_text": "new",
+        "before_sha256": "a" * 64,
+        "proposal_state": "PENDING",
+    }
+
+    with (
+        patch.object(
+            module,
+            "load_write_proposal",
+            return_value=proposal,
+        ),
+        patch.object(
+            module,
+            "mark_proposal_approved",
+        ) as approve,
+        patch.object(
+            module,
+            "run_agent",
+        ) as run,
+    ):
+        monkeypatch.setattr(
+            sys,
+            "argv",
+            [
+                "agent_loop.py",
+                "--execute-approved-proposal-id",
+                proposal_id,
+                "execute approved proposal",
+            ],
+        )
+
+        with pytest.raises(SystemExit) as exc:
+            module.main()
+
+    assert exc.value.code == 2
+    approve.assert_not_called()
+    run.assert_not_called()
+
+
+def test_4g_a_stale_proposal_is_not_executed(
+    monkeypatch,
+):
+    import sys
+    from unittest.mock import patch
+
+    import pytest
+
+    from dev_agent import agent_loop as module
+
+    proposal_id = "proposal_v1_4g_a_stale"
+
+    with (
+        patch.object(
+            module,
+            "load_write_proposal",
+            return_value={
+                "status": "DENIED",
+                "reason": (
+                    "STALE_PROPOSAL_SOURCE_CHANGED"
+                ),
+                "proposal_id": proposal_id,
+            },
+        ),
+        patch.object(
+            module,
+            "mark_proposal_approved",
+        ) as approve,
+        patch.object(
+            module,
+            "run_agent",
+        ) as run,
+    ):
+        monkeypatch.setattr(
+            sys,
+            "argv",
+            [
+                "agent_loop.py",
+                "--execute-approved-proposal-id",
+                proposal_id,
+                "execute approved proposal",
+            ],
+        )
+
+        with pytest.raises(SystemExit) as exc:
+            module.main()
+
+    assert exc.value.code == 2
+    approve.assert_not_called()
+    run.assert_not_called()
+
+
+def test_4g_a_execute_option_rejects_allow_write_file(
+    monkeypatch,
+):
+    import sys
+    from unittest.mock import patch
+
+    import pytest
+
+    from dev_agent import agent_loop as module
+
+    with patch.object(
+        module,
+        "load_write_proposal",
+    ) as load:
+        monkeypatch.setattr(
+            sys,
+            "argv",
+            [
+                "agent_loop.py",
+                "--execute-approved-proposal-id",
+                "proposal_v1_4g_a_test",
+                "--allow-write-file",
+                "allowed.py",
+                "execute approved proposal",
+            ],
+        )
+
+        with pytest.raises(SystemExit) as exc:
+            module.main()
+
+    assert exc.value.code == 2
+    load.assert_not_called()

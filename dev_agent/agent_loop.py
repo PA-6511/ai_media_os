@@ -712,6 +712,16 @@ def main():
     )
 
     parser.add_argument(
+        "--execute-approved-proposal-id",
+        default=None,
+        metavar="PROPOSAL_ID",
+        help=(
+            "Execute one persisted proposal that is already APPROVED. "
+            "This option never approves a PENDING proposal."
+        ),
+    )
+
+    parser.add_argument(
         "--allow-write-file",
         action="append",
         default=[],
@@ -752,6 +762,28 @@ def main():
         args.required_old_text,
         args.required_new_text,
     )
+
+    if (
+        args.approve_proposal_id is not None
+        and args.execute_approved_proposal_id is not None
+    ):
+        parser.error(
+            "--approve-proposal-id cannot be combined with "
+            "--execute-approved-proposal-id"
+        )
+
+    if (
+        args.execute_approved_proposal_id is not None
+        and (
+            any(value is not None for value in contract_values)
+            or args.allow_write_file
+        )
+    ):
+        parser.error(
+            "--execute-approved-proposal-id cannot be combined with "
+            "--allow-write-file or --required-write-path/"
+            "--required-old-text/--required-new-text"
+        )
 
     if (
         args.approve_proposal_id is not None
@@ -812,6 +844,73 @@ def main():
         )
 
         if approval_state["status"] != "VALID":
+            raise SystemExit(2)
+
+        approved_write_files = {
+            proposal_result["relative_path"]
+        }
+
+        write_contract = {
+            "relative_path": (
+                proposal_result["relative_path"]
+            ),
+            "old_text": proposal_result["old_text"],
+            "new_text": proposal_result["new_text"],
+            "before_sha256": (
+                proposal_result["before_sha256"]
+            ),
+            "proposal_id": (
+                proposal_result["proposal_id"]
+            ),
+        }
+
+    elif args.execute_approved_proposal_id is not None:
+        proposal_result = load_write_proposal(
+            args.execute_approved_proposal_id
+        )
+
+        print(
+            "=== APPROVED PROPOSAL EXECUTION PREFLIGHT ==="
+        )
+        print(
+            json.dumps(
+                proposal_result,
+                ensure_ascii=False,
+                indent=2,
+            )
+        )
+
+        if proposal_result["status"] != "VALID":
+            raise SystemExit(2)
+
+        if (
+            proposal_result.get("proposal_state")
+            != "APPROVED"
+        ):
+            denial = {
+                "status": "DENIED",
+                "reason": (
+                    "PROPOSAL_NOT_APPROVED_FOR_EXECUTION"
+                ),
+                "proposal_id": proposal_result[
+                    "proposal_id"
+                ],
+                "proposal_state": proposal_result.get(
+                    "proposal_state"
+                ),
+            }
+
+            print(
+                "=== PROPOSAL EXECUTION DENIED ==="
+            )
+            print(
+                json.dumps(
+                    denial,
+                    ensure_ascii=False,
+                    indent=2,
+                )
+            )
+
             raise SystemExit(2)
 
         approved_write_files = {
