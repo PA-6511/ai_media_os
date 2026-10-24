@@ -955,6 +955,44 @@ def main():
     else:
         write_contract = None
 
+    if args.execute_approved_proposal_id is not None:
+        execution_audit = []
+
+        execution_result = dispatch_tool(
+            "replace_text",
+            {
+                "relative_path": write_contract[
+                    "relative_path"
+                ],
+                "old_text": write_contract["old_text"],
+                "new_text": write_contract["new_text"],
+            },
+            approved_write_files=approved_write_files,
+            write_audit=execution_audit,
+            write_contract=write_contract,
+        )
+
+        print(
+            "\n=== APPROVED PROPOSAL EXECUTION RESULT ==="
+        )
+        print(
+            json.dumps(
+                execution_result,
+                ensure_ascii=False,
+                indent=2,
+            )
+        )
+
+        if (
+            execution_result.get("status")
+            != "EXECUTED"
+            or execution_result.get("proposal_state")
+            != "EXECUTED"
+        ):
+            raise SystemExit(2)
+
+        return
+
     try:
         final_text = run_agent(
             args.prompt,

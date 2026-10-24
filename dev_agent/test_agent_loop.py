@@ -923,8 +923,16 @@ def test_4g_a_execute_approved_proposal_does_not_auto_approve(
         ) as approve,
         patch.object(
             module,
+            "dispatch_tool",
+            return_value={
+                "status": "EXECUTED",
+                "proposal_id": proposal_id,
+                "proposal_state": "EXECUTED",
+            },
+        ) as dispatch,
+        patch.object(
+            module,
             "run_agent",
-            return_value="done",
         ) as run,
     ):
         monkeypatch.setattr(
@@ -942,18 +950,36 @@ def test_4g_a_execute_approved_proposal_does_not_auto_approve(
 
     load.assert_called_once_with(proposal_id)
     approve.assert_not_called()
+    run.assert_not_called()
 
-    run.assert_called_once_with(
-        "execute approved proposal",
-        approved_write_files={source},
-        write_contract={
+    dispatch.assert_called_once()
+
+    call_args, call_kwargs = dispatch.call_args
+
+    assert call_args == (
+        "replace_text",
+        {
             "relative_path": source,
             "old_text": "old",
             "new_text": "new",
-            "before_sha256": "a" * 64,
-            "proposal_id": proposal_id,
         },
     )
+
+    assert call_kwargs[
+        "approved_write_files"
+    ] == {source}
+
+    assert call_kwargs[
+        "write_contract"
+    ] == {
+        "relative_path": source,
+        "old_text": "old",
+        "new_text": "new",
+        "before_sha256": "a" * 64,
+        "proposal_id": proposal_id,
+    }
+
+    assert call_kwargs["write_audit"] == []
 
 
 def test_4g_a_pending_proposal_is_not_executed(
@@ -1096,3 +1122,71 @@ def test_4g_a_execute_option_rejects_allow_write_file(
 
     assert exc.value.code == 2
     load.assert_not_called()
+
+
+
+def test_4g_a2_direct_execution_denial_does_not_run_agent(
+    monkeypatch,
+):
+    import sys
+    from unittest.mock import patch
+
+    import pytest
+
+    from dev_agent import agent_loop as module
+
+    proposal_id = "proposal_v1_4g_a2_denied"
+
+    proposal = {
+        "status": "VALID",
+        "proposal_id": proposal_id,
+        "relative_path": "allowed.py",
+        "old_text": "old",
+        "new_text": "new",
+        "before_sha256": "a" * 64,
+        "proposal_state": "APPROVED",
+    }
+
+    with (
+        patch.object(
+            module,
+            "load_write_proposal",
+            return_value=proposal,
+        ),
+        patch.object(
+            module,
+            "mark_proposal_approved",
+        ) as approve,
+        patch.object(
+            module,
+            "dispatch_tool",
+            return_value={
+                "status": "DENIED",
+                "reason": (
+                    "STALE_PROPOSAL_SOURCE_CHANGED"
+                ),
+            },
+        ) as dispatch,
+        patch.object(
+            module,
+            "run_agent",
+        ) as run,
+    ):
+        monkeypatch.setattr(
+            sys,
+            "argv",
+            [
+                "agent_loop.py",
+                "--execute-approved-proposal-id",
+                proposal_id,
+                "execute approved proposal",
+            ],
+        )
+
+        with pytest.raises(SystemExit) as exc:
+            module.main()
+
+    assert exc.value.code == 2
+    approve.assert_not_called()
+    dispatch.assert_called_once()
+    run.assert_not_called()
