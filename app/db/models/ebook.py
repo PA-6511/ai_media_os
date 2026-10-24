@@ -87,8 +87,15 @@ class EbookItem(Base):
         CheckConstraint(
             "item_type IN "
             "('tankobon', 'light_novel', 'general_book', "
-            "'single_chapter', 'magazine_episode', 'unknown')",
+            "'single_chapter', 'magazine_episode', 'comic_magazine', 'mook', "
+            "'setting_material', 'artbook', 'unknown')",
             name="valid_item_type",
+        ),
+        CheckConstraint(
+            "edition_type IN "
+            "('normal', 'special_edition', "
+            "'special_release', 'limited_edition')",
+            name="valid_edition_type",
         ),
         CheckConstraint(
             "workflow_status IN "
@@ -174,6 +181,14 @@ class EbookItem(Base):
     is_single_episode: Mapped[bool | None] = mapped_column(Boolean)
     is_split_edition: Mapped[bool | None] = mapped_column(Boolean)
     classification_source: Mapped[str | None] = mapped_column(String(32))
+
+    edition_type: Mapped[str] = mapped_column(
+        String(32),
+        nullable=False,
+        default="normal",
+        server_default="normal",
+        index=True,
+    )
 
     is_excluded: Mapped[bool] = mapped_column(
         Boolean,
@@ -437,6 +452,65 @@ class StoreOffer(Base):
     )
 
     ebook_item: Mapped[EbookItem] = relationship(back_populates="offers")
+
+
+class SaleCrawlCheckpoint(Base):
+    """Minimal per-item sale crawl outcome/checkpoint."""
+
+    __tablename__ = "sale_crawl_checkpoints"
+    __table_args__ = (
+        CheckConstraint(
+            "store_name IN ('amazon', 'rakuten_kobo', 'dmm')",
+            name="valid_sale_crawl_checkpoint_store",
+        ),
+        CheckConstraint(
+            "check_result IN ('SUCCESS', 'FAILED')",
+            name="valid_sale_crawl_checkpoint_result",
+        ),
+    )
+
+    id: Mapped[str] = mapped_column(
+        String(36),
+        primary_key=True,
+        default=lambda: str(uuid.uuid4()),
+    )
+
+    ebook_item_id: Mapped[str] = mapped_column(
+        String(36),
+        nullable=False,
+        index=True,
+    )
+
+    store_name: Mapped[str] = mapped_column(
+        String(32),
+        nullable=False,
+        index=True,
+    )
+
+    checked_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True),
+        nullable=False,
+        index=True,
+    )
+
+    check_result: Mapped[str] = mapped_column(
+        String(16),
+        nullable=False,
+    )
+
+    review_state: Mapped[str | None] = mapped_column(
+        String(32),
+    )
+
+    sale_end_at_snapshot: Mapped[datetime | None] = mapped_column(
+        DateTime(timezone=True),
+    )
+
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True),
+        nullable=False,
+        default=utc_now,
+    )
 
 
 class WorkflowHistory(Base):

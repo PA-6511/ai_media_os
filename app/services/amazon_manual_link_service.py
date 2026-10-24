@@ -4,6 +4,8 @@ import re
 from dataclasses import dataclass
 from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 
+from app.services.store_url_policy import StoreUrlPolicyError, normalize_store_url
+
 
 ASIN_PATTERN = re.compile(r"^[A-Z0-9]{10}$")
 TRACKING_ID_PATTERN = re.compile(
@@ -61,15 +63,19 @@ class AmazonManualLinkService:
         supplied_url: str | None = None
         normalized = raw.upper()
 
-        if raw.startswith("https://"):
-            parsed = urlsplit(raw)
-            if parsed.hostname not in {
-                "amazon.co.jp",
-                "www.amazon.co.jp",
-            }:
-                raise AmazonManualLinkError(
-                    "Amazon product URL must use amazon.co.jp."
+        parsed_raw = urlsplit(raw)
+        if parsed_raw.scheme in {"http", "https"}:
+            try:
+                supplied_url = normalize_store_url(
+                    raw,
+                    store_name="amazon",
+                    purpose="product",
+                    required=True,
                 )
+            except StoreUrlPolicyError as exc:
+                raise AmazonManualLinkError(str(exc)) from exc
+            assert supplied_url is not None
+            parsed = urlsplit(supplied_url)
             match = re.search(
                 r"/(?:dp|gp/product)/([A-Za-z0-9]{10})(?:[/?]|$)",
                 parsed.path + ("?" if parsed.query else ""),
@@ -79,9 +85,6 @@ class AmazonManualLinkService:
                     "Amazon product URL does not contain an ASIN."
                 )
             normalized = match.group(1).upper()
-            supplied_url = urlunsplit(
-                ("https", parsed.netloc, parsed.path, parsed.query, "")
-            )
 
         if not normalized:
             raise AmazonManualLinkError("ASIN is required.")
