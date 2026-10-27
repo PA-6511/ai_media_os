@@ -111,9 +111,11 @@ class XAnalyticsMetricSnapshot(Base):
                 "engagements",
                 "link_clicks",
                 "profile_clicks",
+                "detail_clicks",
                 "likes",
                 "reposts",
                 "replies",
+                "bookmarks",
                 "follows",
             )
         ),
@@ -153,9 +155,11 @@ class XAnalyticsMetricSnapshot(Base):
     engagement_rate_format: Mapped[str | None] = mapped_column(String(32))
     link_clicks: Mapped[int | None] = mapped_column(Integer)
     profile_clicks: Mapped[int | None] = mapped_column(Integer)
+    detail_clicks: Mapped[int | None] = mapped_column(Integer)
     likes: Mapped[int | None] = mapped_column(Integer)
     reposts: Mapped[int | None] = mapped_column(Integer)
     replies: Mapped[int | None] = mapped_column(Integer)
+    bookmarks: Mapped[int | None] = mapped_column(Integer)
     follows: Mapped[int | None] = mapped_column(Integer)
     reach_metric_name: Mapped[str | None] = mapped_column(String(32))
     reach_metric_source_header: Mapped[str | None] = mapped_column(String(255))

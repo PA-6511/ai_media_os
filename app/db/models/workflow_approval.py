@@ -10,6 +10,7 @@ from sqlalchemy import (
     Index,
     String,
     Text,
+    event,
     func,
 )
 from sqlalchemy.orm import Mapped, mapped_column, relationship
@@ -166,4 +167,168 @@ class WorkflowApprovalRequest(Base):
 
     ebook_item: Mapped["EbookItem"] = relationship(
         "EbookItem",
+    )
+
+    remediation_events: Mapped[
+        list["WorkflowApprovalRemediationEvent"]
+    ] = relationship(
+        "WorkflowApprovalRemediationEvent",
+        back_populates="superseded_approval_request",
+        passive_deletes=True,
+    )
+
+    @property
+    def execution_eligibility(self) -> str:
+        if any(
+            event.expected_execution_eligibility
+            == "INELIGIBLE"
+            for event in self.remediation_events
+        ):
+            return "INELIGIBLE"
+
+        return "ELIGIBLE"
+
+
+class WorkflowApprovalRemediationEvent(Base):
+    """Immutable evidence that supersedes an unsafe approval."""
+
+    __tablename__ = "workflow_approval_remediation_events"
+    __table_args__ = (
+        CheckConstraint(
+            "event_type = 'AUTOMATED_APPROVAL_REMEDIATION'",
+            name="valid_approval_remediation_event_type",
+        ),
+        CheckConstraint(
+            "before_workflow_state = 'READY' "
+            "AND before_review_status = 'APPROVED' "
+            "AND after_workflow_state = 'REVIEW' "
+            "AND after_review_status = 'NOT_REVIEWED'",
+            name="valid_approval_remediation_transition",
+        ),
+        CheckConstraint(
+            "human_decision_evidence_status = 'NOT_PROVEN'",
+            name="valid_approval_remediation_human_evidence",
+        ),
+        CheckConstraint(
+            "expected_execution_eligibility = 'INELIGIBLE'",
+            name="valid_approval_remediation_execution_eligibility",
+        ),
+        CheckConstraint(
+            "length(metadata_snapshot_digest) = 64",
+            name="valid_approval_remediation_metadata_digest",
+        ),
+        CheckConstraint(
+            "length(trim(reason)) > 0",
+            name="approval_remediation_reason_not_blank",
+        ),
+        CheckConstraint(
+            "length(trim(remediation_actor)) > 0",
+            name="approval_remediation_actor_not_blank",
+        ),
+    )
+
+    id: Mapped[str] = mapped_column(
+        String(36),
+        primary_key=True,
+        default=lambda: str(uuid.uuid4()),
+    )
+    event_type: Mapped[str] = mapped_column(
+        String(64),
+        nullable=False,
+        default="AUTOMATED_APPROVAL_REMEDIATION",
+        server_default="AUTOMATED_APPROVAL_REMEDIATION",
+    )
+    candidate_item_id: Mapped[str] = mapped_column(
+        ForeignKey("ebook_items.id", ondelete="RESTRICT"),
+        nullable=False,
+        index=True,
+    )
+    superseded_approval_request_id: Mapped[str] = mapped_column(
+        ForeignKey(
+            "workflow_approval_requests.id",
+            ondelete="RESTRICT",
+        ),
+        nullable=False,
+        unique=True,
+        index=True,
+    )
+    # The batch schema currently has no ORM model. The migration adds the
+    # database-level RESTRICT foreign key for this identifier.
+    related_batch_item_id: Mapped[str] = mapped_column(
+        String(36),
+        nullable=False,
+        index=True,
+    )
+    reason: Mapped[str] = mapped_column(Text, nullable=False)
+    remediation_actor: Mapped[str] = mapped_column(
+        String(128),
+        nullable=False,
+        index=True,
+    )
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True),
+        nullable=False,
+        default=utc_now,
+        server_default=func.now(),
+        index=True,
+    )
+    before_workflow_state: Mapped[str] = mapped_column(
+        String(32),
+        nullable=False,
+    )
+    before_review_status: Mapped[str] = mapped_column(
+        String(32),
+        nullable=False,
+    )
+    after_workflow_state: Mapped[str] = mapped_column(
+        String(32),
+        nullable=False,
+    )
+    after_review_status: Mapped[str] = mapped_column(
+        String(32),
+        nullable=False,
+    )
+    metadata_snapshot_digest: Mapped[str] = mapped_column(
+        String(64),
+        nullable=False,
+    )
+    human_decision_evidence_status: Mapped[str] = mapped_column(
+        String(32),
+        nullable=False,
+        default="NOT_PROVEN",
+        server_default="NOT_PROVEN",
+    )
+    expected_execution_eligibility: Mapped[str] = mapped_column(
+        String(32),
+        nullable=False,
+        default="INELIGIBLE",
+        server_default="INELIGIBLE",
+    )
+    idempotency_key: Mapped[str] = mapped_column(
+        String(64),
+        nullable=False,
+        unique=True,
+        index=True,
+    )
+
+    superseded_approval_request: Mapped[
+        WorkflowApprovalRequest
+    ] = relationship(
+        back_populates="remediation_events",
+    )
+
+
+@event.listens_for(
+    WorkflowApprovalRemediationEvent,
+    "before_update",
+)
+@event.listens_for(
+    WorkflowApprovalRemediationEvent,
+    "before_delete",
+)
+def _prevent_approval_remediation_event_mutation(
+    *_: object,
+) -> None:
+    raise ValueError(
+        "workflow approval remediation events are immutable"
     )

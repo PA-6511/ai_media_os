@@ -1,0 +1,3 @@
+VALUE = 1
+MIDDLE = "KEEP"
+VALUE = 1

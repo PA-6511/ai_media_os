@@ -22,6 +22,11 @@ from app.services.slack_approval_socket_service import (  # noqa: E402
     SlackApprovalSocketService,
     parse_slack_approval_interaction,
 )
+from dev_agent.slack_proposal_approval_adapter import (  # noqa: E402
+    DEV_AGENT_PROPOSAL_APPROVE_ACTION_ID,
+    SlackProposalApprovalError,
+    approve_slack_proposal,
+)
 from app.services.kobo_sale_package_slack_service import (  # noqa: E402
     ACTION_IDS as KOBO_SALE_PACKAGE_ACTION_IDS,
     KoboSalePackageSlackError,
@@ -271,6 +276,97 @@ def build_app(
                     ),
                     logger=logger,
                 )
+
+    def handle_dev_agent_proposal_action(
+        ack: Any,
+        body: dict[str, Any],
+        client: Any,
+        logger: logging.Logger,
+    ) -> None:
+        ack()
+
+        interaction = None
+
+        try:
+            interaction = (
+                parse_slack_approval_interaction(
+                    body
+                )
+            )
+
+            result = approve_slack_proposal(
+                interaction=interaction,
+                config=config,
+            )
+
+            if result.dry_run:
+                text = (
+                    "DRY_RUN: Dev Agent proposalを"
+                    "検証しましたが、承認状態は"
+                    "変更していません。\n"
+                    f"`{result.proposal_id}`"
+                )
+            else:
+                text = (
+                    "Dev Agent proposalを承認しました。\n"
+                    "AI実行はまだ開始していません。\n"
+                    f"`{result.proposal_id}`"
+                )
+
+            safe_ephemeral(
+                client=client,
+                channel_id=interaction.channel_id,
+                user_id=interaction.user_id,
+                text=text,
+                logger=logger,
+            )
+
+            logger.info(
+                "Dev Agent proposal Slack approval: "
+                "proposal_id=%s state=%s dry_run=%s",
+                result.proposal_id,
+                result.proposal_state,
+                result.dry_run,
+            )
+
+        except SlackProposalApprovalError as exc:
+            logger.warning(
+                "Dev Agent proposal Slack approval "
+                "rejected: code=%s",
+                exc.code,
+            )
+
+            if interaction is not None:
+                safe_ephemeral(
+                    client=client,
+                    channel_id=interaction.channel_id,
+                    user_id=interaction.user_id,
+                    text=(
+                        "Dev Agent proposalを"
+                        "承認できませんでした。"
+                        f" エラーコード: {exc.code}"
+                    ),
+                    logger=logger,
+                )
+
+        except Exception:
+            logger.exception(
+                "Unexpected Dev Agent proposal "
+                "Slack approval failure"
+            )
+
+            if interaction is not None:
+                safe_ephemeral(
+                    client=client,
+                    channel_id=interaction.channel_id,
+                    user_id=interaction.user_id,
+                    text=(
+                        "Dev Agent proposal承認処理中に"
+                        "予期しないエラーが発生しました。"
+                    ),
+                    logger=logger,
+                )
+
 
     def handle_kobo_sale_package_action(
         ack: Any,
@@ -636,6 +732,12 @@ def build_app(
         app.action(action_id)(
             handle_approval_action
         )
+
+    app.action(
+        DEV_AGENT_PROPOSAL_APPROVE_ACTION_ID
+    )(
+        handle_dev_agent_proposal_action
+    )
 
     for action_id in KOBO_SALE_PACKAGE_ACTION_IDS:
         app.action(action_id)(
