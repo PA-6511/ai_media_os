@@ -9,3 +9,7 @@ python-dotenv>=1.0,<2
 
 # Test dependencies
 pytest>=9.0,<10
+
+# Database dependencies (VPS-verified versions, Phase 6A CI fix)
+SQLAlchemy==2.0.51
+alembic==1.18.5
