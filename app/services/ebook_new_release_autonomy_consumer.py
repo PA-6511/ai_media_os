@@ -5,7 +5,7 @@ from __future__ import annotations
 from datetime import date
 
 from app.services.ebook_context import EbookContext
-from integrations.wordpress.ebook_new_releases.scripts.export_ready_approved_new_releases import (
+from app.services.ebook_new_release_store_contract import (
     STORE_ALIASES,
     STORE_KEYS,
 )

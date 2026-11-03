@@ -9,7 +9,7 @@ from app.services.ebook_context import EbookContext
 from app.services.ebook_new_release_autonomy_consumer import (
     build_new_release_autonomy_input,
 )
-from integrations.wordpress.ebook_new_releases.scripts.export_ready_approved_new_releases import (
+from app.services.ebook_new_release_store_contract import (
     STORE_KEYS,
 )
 

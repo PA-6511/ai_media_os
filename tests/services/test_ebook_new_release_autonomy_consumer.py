@@ -5,8 +5,10 @@ import os
 
 import pytest
 
-from app.services.ebook_context import EbookDisplayCover, EbookStore
-from test_ebook_wordpress_consumer import context_fixture
+from app.services.ebook_context import (
+    EbookAffiliate, EbookContext, EbookCover, EbookDisplayCover,
+    EbookIdentity, EbookPublication, EbookStore, EbookX,
+)
 
 try:
     from app.services.ebook_new_release_autonomy_consumer import (
@@ -23,11 +25,14 @@ def build(*args, **kwargs):
 
 
 def autonomy_context(*, cover_url="https://images.example.jp/resolved.jpg"):
-    context = context_fixture("AVAILABLE")
-    return replace(
-        context,
+    return EbookContext(
+        identity=EbookIdentity("db-1", "fixture", "source-1", None),
+        title="作品 1巻", volume="1",
         release=date(2026, 9, 14),
-        publication=replace(context.publication, review_status="APPROVED"),
+        cover=EbookCover("UNKNOWN", None, "http://raw.invalid/cover", None, "AUTO_ALLOWED"),
+        affiliate=EbookAffiliate(None),
+        publication=EbookPublication(None, "APPROVED", False, None, None),
+        x=EbookX(None, None), author_name="著者", publisher_name="出版社",
         stores=(
             EbookStore("amazon", "a-1", "https://product.example/a",
                        "https://affiliate.example/a", "AVAILABLE"),
