@@ -30,6 +30,19 @@ RAKUTEN_KOBO_POLICY_TEXT = (
     "楽天Kobo公式APIが返す書影のみを、対応する楽天Koboリンクとともに"
     "掲載することを了承する"
 )
+AMAZON_COVER_POLICY_VERSION = "2026-09-11.v1"
+
+
+def store_cover_policy_version(store_name: str) -> str | None:
+    """Read the module constants at call time so version changes take effect."""
+
+    if store_name == "rakuten_kobo":
+        return RAKUTEN_KOBO_COVER_POLICY_VERSION
+    if store_name == "amazon":
+        return AMAZON_COVER_POLICY_VERSION
+    return None
+
+
 COVER_SOURCES = {
     "RAKUTEN_KOBO_API",
     "AMAZON_PA_API",
@@ -136,6 +149,25 @@ class StoreCoverPolicyService:
         return CoverPolicyState(
             store_name="rakuten_kobo",
             current_version=RAKUTEN_KOBO_COVER_POLICY_VERSION,
+            agreed=bool(row and row.agreed),
+            responsible_name=str(row.responsible_name if row else ""),
+            agreed_at=row.agreed_at if row else None,
+            recorded_version=str(row.policy_version if row else ""),
+        )
+
+    def amazon_state(self) -> CoverPolicyState:
+        return self.state("amazon")
+
+    def state(self, store_name: str) -> CoverPolicyState:
+        current_version = store_cover_policy_version(store_name)
+        if current_version is None:
+            raise OfficialCoverAutomationError(
+                "STORE_COVER_POLICY_UNSUPPORTED"
+            )
+        row = self.session.get(StoreCoverPolicyAgreement, store_name)
+        return CoverPolicyState(
+            store_name=store_name,
+            current_version=current_version,
             agreed=bool(row and row.agreed),
             responsible_name=str(row.responsible_name if row else ""),
             agreed_at=row.agreed_at if row else None,
